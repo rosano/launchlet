@@ -1,6 +1,6 @@
 function composedSample() {
-	let ROCOLaunchletPropertyListSelectedItemIndex = 0;
-	let ROCOLaunchletPropertyShortcutListener;
+	let LCHLaunchletPropertyListSelectedItemIndex = 0;
+	let LCHLaunchletPropertyShortcutListener;
 
 	const api = {
 		functionObjects: function () {
@@ -60,7 +60,7 @@ function composedSample() {
 				//# LOGIC
 	  		
 				{
-					id: 'ROCOLogicFilter',
+					id: 'LCHLogicFilter',
 					fn: LCHComposeLogic.LCHComposeLogicFilter,
 				},
 
@@ -70,41 +70,41 @@ function composedSample() {
 					id: 'LCHPropertiesListSelectedItemIndex',
 					fn: function LCHPropertiesListSelectedItemIndex (inputData) {
 						if (typeof inputData === 'undefined') {
-							return ROCOLaunchletPropertyListSelectedItemIndex;
+							return LCHLaunchletPropertyListSelectedItemIndex;
 						}
 
-						ROCOLaunchletPropertyListSelectedItemIndex = Math.max(0, Math.min(this.api.lib('d3').selectAll('.__LaunchletListItem').data().length, inputData));
+						LCHLaunchletPropertyListSelectedItemIndex = Math.max(0, Math.min(this.api.lib('d3').selectAll('.__LaunchletListItem').data().length, inputData));
 
-						this.api.fn('ROCOReactBezelListSelectedItem')(ROCOLaunchletPropertyListSelectedItemIndex);
+						this.api.fn('LCHReactBezelListSelectedItem')(LCHLaunchletPropertyListSelectedItemIndex);
 					},
 				},
 
 				//# INTERFACE
 	  		
 				{
-					id: 'ROCOInterfaceBezelDidReceiveInput',
-					fn: function ROCOInterfaceBezelDidReceiveInput (inputData) {
-						this.api.fn('ROCOCommandsFilter')(inputData);
+					id: 'LCHInterfaceBezelDidReceiveInput',
+					fn: function LCHInterfaceBezelDidReceiveInput (inputData) {
+						this.api.fn('LCHCommandsFilter')(inputData);
 					},
 				},
 	  		
 				{
-					id: 'ROCOInterfaceDocumentDidKeyDown',
-					fn: function ROCOInterfaceDocumentDidKeyDown (event) {
+					id: 'LCHInterfaceDocumentDidKeyDown',
+					fn: function LCHInterfaceDocumentDidKeyDown (event) {
 						if (event.code === 'Escape') {
-							return this.api.fn('ROCOCommandsResetInput')('');
+							return this.api.fn('LCHCommandsResetInput')('');
 						}
 
 						if (event.code === 'ArrowUp') {
-							return this.api.fn('ROCOCommandsSetListSelectedItem')(this.api.fn('LCHPropertiesListSelectedItemIndex')() - 1);
+							return this.api.fn('LCHCommandsSetListSelectedItem')(this.api.fn('LCHPropertiesListSelectedItemIndex')() - 1);
 						};
 
 						if (event.code === 'ArrowDown') {
-							return this.api.fn('ROCOCommandsSetListSelectedItem')(this.api.fn('LCHPropertiesListSelectedItemIndex')() + 1);
+							return this.api.fn('LCHCommandsSetListSelectedItem')(this.api.fn('LCHPropertiesListSelectedItemIndex')() + 1);
 						};
 
 						if (event.code === 'Enter') {
-							return this.api.fn('ROCOCommandsLaunch')(d3.select('.__LaunchletListItemSelected').data().pop());
+							return this.api.fn('LCHCommandsLaunch')(d3.select('.__LaunchletListItemSelected').data().pop());
 						};
 					},
 				},
@@ -112,64 +112,64 @@ function composedSample() {
 				//# COMMANDS
 	  		
 				{
-					id: 'ROCOCommandsResetInput',
-					fn: function ROCOCommandsResetInput (inputData) {
-						this.api.fn('ROCOInterfaceBezelDidReceiveInput')(inputData);
-						this.api.fn('ROCOReactManualInput')(inputData);
+					id: 'LCHCommandsResetInput',
+					fn: function LCHCommandsResetInput (inputData) {
+						this.api.fn('LCHInterfaceBezelDidReceiveInput')(inputData);
+						this.api.fn('LCHReactManualInput')(inputData);
 					},
 				},
 	  		
 				{
-					id: 'ROCOCommandsFilter',
-					fn: function ROCOCommandsFilter (inputData) {
-						this.api.fn('ROCOCommandsSetListItems')(!inputData.trim() ? [] : this.api.actionObjects().filter(this.api.fn('ROCOLogicFilter')(inputData)));
+					id: 'LCHCommandsFilter',
+					fn: function LCHCommandsFilter (inputData) {
+						this.api.fn('LCHCommandsSetListItems')(!inputData.trim() ? [] : this.api.actionObjects().filter(this.api.fn('LCHLogicFilter')(inputData)));
 					},
 				},
 	  		
 				{
-					id: 'ROCOCommandsSetListItems',
-					fn: function ROCOCommandsSetListItems (inputData) {
-						this.api.fn('ROCOReactBezelListItems')(inputData);
+					id: 'LCHCommandsSetListItems',
+					fn: function LCHCommandsSetListItems (inputData) {
+						this.api.fn('LCHReactBezelListItems')(inputData);
 						
-						this.api.fn('ROCOCommandsSetListSelectedItem')(0);
+						this.api.fn('LCHCommandsSetListSelectedItem')(0);
 					},
 				},
 	  		
 				{
-					id: 'ROCOCommandsSetListSelectedItem',
-					fn: function ROCOCommandsSetListSelectedItem (inputData) {
+					id: 'LCHCommandsSetListSelectedItem',
+					fn: function LCHCommandsSetListSelectedItem (inputData) {
 						this.api.fn('LCHPropertiesListSelectedItemIndex')(inputData);
 					},
 				},
 	  		
 				{
-					id: 'ROCOCommandsLaunch',
-					fn: function ROCOCommandsLaunch (inputData) {
+					id: 'LCHCommandsLaunch',
+					fn: function LCHCommandsLaunch (inputData) {
 						if (!inputData || !inputData.fn) {
 							throw new Error('LCHErrorInvalidInput');
 						}
 
-						this.api.fn('ROCOReactManualInput')(inputData.name);
+						this.api.fn('LCHReactManualInput')(inputData.name);
 						
 						this.api.fn(inputData.id)();
 
-						this.api.fn('ROCOCommandsExit')();
+						this.api.fn('LCHCommandsExit')();
 					},
 				},
 	  		
 				{
-					id: 'ROCOCommandsExit',
-					fn: function ROCOCommandsExit () {
+					id: 'LCHCommandsExit',
+					fn: function LCHCommandsExit () {
 						this.api.lib('d3').select('#__Launchlet').classed('__LaunchletExit', true);
-						setTimeout(this.api.fn('ROCOUnbuildEverything'), 500);
+						setTimeout(this.api.fn('LCHUnbuildEverything'), 500);
 					},
 				},
 
 				//# REACT
 
 				{
-					id: 'ROCOReactBezelListItems',
-					fn: function ROCOReactBezelListItems (actionObjects) {
+					id: 'LCHReactBezelListItems',
+					fn: function LCHReactBezelListItems (actionObjects) {
 						const d3 = this.api.lib('d3');
 
 						let selection = d3.select('#__LaunchletList').selectAll('.__LaunchletListItem').data(actionObjects);
@@ -193,8 +193,8 @@ function composedSample() {
 				},
 
 				{
-					id: 'ROCOReactBezelListSelectedItem',
-					fn: function ROCOReactBezelListSelectedItem (selectedIndex) {
+					id: 'LCHReactBezelListSelectedItem',
+					fn: function LCHReactBezelListSelectedItem (selectedIndex) {
 						this.api.lib('d3').selectAll('.__LaunchletListItem').classed('__LaunchletListItemSelected', function (obj, index) {
 								return index === selectedIndex;
 							});
@@ -202,35 +202,35 @@ function composedSample() {
 				},
 
 				{
-					id: 'ROCOReactManualInput',
-					fn: function ROCOReactManualInput (inputData) {
+					id: 'LCHReactManualInput',
+					fn: function LCHReactManualInput (inputData) {
 						d3.select('#__LaunchletInput').property('value', inputData);
 					},
 				},	
 
 				//# SETUP
 
-				//_ ROCOSetupEverything
+				//_ LCHSetupEverything
 	  		
 				{
-					id: 'ROCOSetupEverything',
-					fn: function ROCOSetupEverything () {
-						this.api.fn('ROCOUnbuildEverything')();
+					id: 'LCHSetupEverything',
+					fn: function LCHSetupEverything () {
+						this.api.fn('LCHUnbuildEverything')();
 
-						this.api.fn('ROCOSetupContainer')();
-						this.api.fn('ROCOSetupBezel')();
-						this.api.fn('ROCOSetupInput')();
-						this.api.fn('ROCOSetupList')();
-						this.api.fn('ROCOSetupStyle')();
-						this.api.fn('ROCOSetupShortcuts')();
+						this.api.fn('LCHSetupContainer')();
+						this.api.fn('LCHSetupBezel')();
+						this.api.fn('LCHSetupInput')();
+						this.api.fn('LCHSetupList')();
+						this.api.fn('LCHSetupStyle')();
+						this.api.fn('LCHSetupShortcuts')();
 				  },
 				},
 
-				//_ ROCOSetupContainer
+				//_ LCHSetupContainer
 
 				{
-					id: 'ROCOSetupContainer',
-					fn: function ROCOSetupContainer () {
+					id: 'LCHSetupContainer',
+					fn: function LCHSetupContainer () {
 						const d3 = this.api.lib('d3');
 
 						d3.select('body').append('div')
@@ -239,11 +239,11 @@ function composedSample() {
 				  },
 				},
 
-				//_ ROCOSetupBezel
+				//_ LCHSetupBezel
 
 				{
-					id: 'ROCOSetupBezel',
-					fn: function ROCOSetupBezel () {
+					id: 'LCHSetupBezel',
+					fn: function LCHSetupBezel () {
 						const d3 = this.api.lib('d3');
 
 						d3.select('#__Launchlet').append('div')
@@ -251,11 +251,11 @@ function composedSample() {
 				  },
 				},
 
-				//_ ROCOSetupInput
+				//_ LCHSetupInput
 
 				{
-					id: 'ROCOSetupInput',
-					fn: function ROCOSetupInput () {
+					id: 'LCHSetupInput',
+					fn: function LCHSetupInput () {
 						const d3 = this.api.lib('d3');
 						let api = this.api;
 
@@ -264,16 +264,16 @@ function composedSample() {
 							.attr('autofocus', '')
 							.attr('placeholder', 'Type to search')
 							.on('input', function () {
-								api.fn('ROCOInterfaceBezelDidReceiveInput')(this.value);
+								api.fn('LCHInterfaceBezelDidReceiveInput')(this.value);
 							});
 				  },
 				},
 
-				//_ ROCOSetupList
+				//_ LCHSetupList
 
 				{
-					id: 'ROCOSetupList',
-					fn: function ROCOSetupList () {
+					id: 'LCHSetupList',
+					fn: function LCHSetupList () {
 						const d3 = this.api.lib('d3');
 
 						d3.select('#__LaunchletBezel').append('div')
@@ -282,11 +282,11 @@ function composedSample() {
 				  },
 				},
 
-				//_ ROCOSetupStyle
+				//_ LCHSetupStyle
 
 				{
-					id: 'ROCOSetupStyle',
-					fn: function ROCOSetupStyle () {
+					id: 'LCHSetupStyle',
+					fn: function LCHSetupStyle () {
 d3.select('body').append('style').node().outerHTML = `
 <style type="text/css" class="__Launchlet">
 // paste styles
@@ -296,43 +296,43 @@ d3.select('body').append('style').node().outerHTML = `
 				  },
 				},
 
-				//_ ROCOSetupShortcuts
+				//_ LCHSetupShortcuts
 
 				{
-					id: 'ROCOSetupShortcuts',
-					fn: function ROCOSetupShortcuts () {
-						document.body.addEventListener('keydown', ROCOLaunchletPropertyShortcutListener = this.api.fn('ROCOInterfaceDocumentDidKeyDown'));
+					id: 'LCHSetupShortcuts',
+					fn: function LCHSetupShortcuts () {
+						document.body.addEventListener('keydown', LCHLaunchletPropertyShortcutListener = this.api.fn('LCHInterfaceDocumentDidKeyDown'));
 				  },
 				},
 
 				//# UNBUILD
 
-				//_ ROCOUnbuildEverything
+				//_ LCHUnbuildEverything
 	  		
 				{
-					id: 'ROCOUnbuildEverything',
-					fn: function ROCOUnbuildEverything () {
-						this.api.fn('ROCOUnbuildShortcuts')();
+					id: 'LCHUnbuildEverything',
+					fn: function LCHUnbuildEverything () {
+						this.api.fn('LCHUnbuildShortcuts')();
 
 						this.api.lib('d3').selectAll('.__Launchlet').remove();
 				  },
 				},
 
-				//_ ROCOUnbuildShortcuts
+				//_ LCHUnbuildShortcuts
 
 				{
-					id: 'ROCOUnbuildShortcuts',
-					fn: function ROCOUnbuildShortcuts () {
-						document.body.removeEventListener('keydown', ROCOLaunchletPropertyShortcutListener);
+					id: 'LCHUnbuildShortcuts',
+					fn: function LCHUnbuildShortcuts () {
+						document.body.removeEventListener('keydown', LCHLaunchletPropertyShortcutListener);
 				  },
 				},
 
 				//# LIFECYCLE
 	  		
 				{
-					id: 'ROCOLifecycleInitialize',
-					fn: function ROCOLifecycleInitialize () {
-						this.api.fn('ROCOSetupEverything')(true);
+					id: 'LCHLifecycleInitialize',
+					fn: function LCHLifecycleInitialize () {
+						this.api.fn('LCHSetupEverything')(true);
 				  },
 				},
 			];
@@ -364,7 +364,7 @@ d3.select('body').append('style').node().outerHTML = `
 		},
 	};
 
-	api.fn('ROCOLifecycleInitialize')();
+	api.fn('LCHLifecycleInitialize')();
 };
 
 (function (global, factory) {
