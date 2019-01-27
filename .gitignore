@@ -1,0 +1,16 @@
+# NODE
+node_modules
+package-lock.json
+
+# OLDSKOOL
+os-cache
+os-workspace-testing
+
+# BUILD
+os-public/shared-assets/external
+os-public/shared-assets/internal
+
+# LOCAL
+.env
+.env.staging
+.env.test
