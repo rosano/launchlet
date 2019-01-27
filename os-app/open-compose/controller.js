@@ -9,6 +9,7 @@ exports.OLSKControllerRoutes = function() {
 				return res.render(req.OLSKLive.OLSKLivePathJoin(__dirname, 'view'), {
 					OLSKPagePublicLocalizedStringKeys: [
 						'LCHComposeListItemToolbarCollapseButtonText',
+						'LCHComposeListItemToolbarRevealButtonText',
 						'LCHComposeListItemToolbarDeleteButtonText',
 						'LCHComposeListItemDeletePromptText',
 						'LCHComposeListItemInputIDPlaceholder',

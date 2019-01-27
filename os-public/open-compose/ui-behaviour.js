@@ -46,6 +46,14 @@
 		moi.reactMemberCollapsed(inputData);
 	};
 
+	//_ actionMembersReveal
+
+	moi.actionMembersReveal = function (inputData) {
+		delete inputData.LCHComposeCollapsed;
+
+		moi.reactMemberCollapsed(inputData);
+	};
+
 	//_ actionMembersDelete
 
 	moi.actionMembersDelete = function (inputData) {
@@ -76,6 +84,10 @@
 		toolbarElement.append('button')
 			.attr('class', 'LCHComposeListItemToolbarCollapseButton')
 			.text(OLSKLocalized('LCHComposeListItemToolbarCollapseButtonText'));
+
+		toolbarElement.append('button')
+			.attr('class', 'LCHComposeListItemToolbarRevealButton')
+			.text(OLSKLocalized('LCHComposeListItemToolbarRevealButtonText'));
 
 		toolbarElement.append('button')
 			.attr('class', 'LCHComposeListItemToolbarDeleteButton')
@@ -120,6 +132,11 @@
 			.attr('class', 'LCHComposeListItemInputName');
 
 		parentElement = parentElement.merge(selection);
+
+		parentElement.select('.LCHComposeListItemToolbarRevealButton')
+			.on('click', function (obj) {
+				moi.actionMembersReveal(obj);
+			});
 
 		parentElement.select('.LCHComposeListItemToolbarCollapseButton')
 			.on('click', function (obj) {

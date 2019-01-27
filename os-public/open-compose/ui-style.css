@@ -21,14 +21,7 @@ body {
 	background: #e6e6e6;
 }
 
-.LCHComposeListItem .CodeMirror {
-	margin: 10px 0;
-
-	/* CodeMirrorAdjustHeightToContent */
-	height: auto;
-}
-
-.LCHComposeListItemCollapsed .LCHComposeListItemContent {
+.LCHComposeListItemToolbarRevealButton {
 	display: none;
 }
 
@@ -38,7 +31,22 @@ body {
 	flex-direction: column;
 }
 
-.CodeMirror-scroll {
+.LCHComposeListItemContent .CodeMirror {
+	margin: 10px 0;
+
+	/* CodeMirrorAdjustHeightToContent */
+	height: auto;
+}
+
+.LCHComposeListItemContent .CodeMirror-scroll {
 	/* CodeMirrorAdjustHeightToContent */
 	max-height: 350px;
+}
+
+.LCHComposeListItemCollapsed .LCHComposeListItemToolbarCollapseButton, .LCHComposeListItemCollapsed .LCHComposeListItemContent {
+	display: none;
+}
+
+.LCHComposeListItemCollapsed .LCHComposeListItemToolbarRevealButton {
+	display: inline-block;
 }
