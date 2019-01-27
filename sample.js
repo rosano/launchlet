@@ -14,7 +14,7 @@ function composedSample() {
 						window.location.href = 'nvalt://albums%20queue';
 					},
 					name: 'Queue sound',
-					tags: [],
+					labels: [],
 				},
 
 				// CUSTOM COMMAND 1
@@ -25,7 +25,7 @@ function composedSample() {
 						this.api.fn('ROCOCopyToClipboard')(`${document.title} ${location.href}`);
 					},
 					name: 'Copy URL and title',
-					tags: ['share'],
+					labels: ['share'],
 				},
 
 				// CUSTOM FUNCTION
