@@ -98,7 +98,7 @@ function composedSample() {
 				{
 					id: 'ROCOSetupContainer',
 					fn: function ROCOSetupContainer () {
-						const d3 = this.api.fn('d3')();
+						const d3 = this.api.lib('d3');
 
 						d3.select('body').append('div')
 							.attr('id', '__Launchlet')
@@ -111,7 +111,7 @@ function composedSample() {
 				{
 					id: 'ROCOSetupBezel',
 					fn: function ROCOSetupBezel () {
-						const d3 = this.api.fn('d3')();
+						const d3 = this.api.lib('d3');
 
 						d3.select('#__Launchlet').append('div')
 							.attr('id', '__LaunchletBezel');
@@ -123,7 +123,7 @@ function composedSample() {
 				{
 					id: 'ROCOSetupInput',
 					fn: function ROCOSetupInput () {
-						const d3 = this.api.fn('d3')();
+						const d3 = this.api.lib('d3');
 						let api = this.api;
 
 						d3.select('#__LaunchletBezel').append('input')
@@ -156,7 +156,7 @@ d3.select('body').append('style').node().outerHTML = `
 				{
 					id: 'ROCOUnbuildEverything',
 					fn: function ROCOUnbuildEverything () {
-						const d3 = this.api.fn('d3')();
+						const d3 = this.api.lib('d3');
 
 						d3.selectAll('.__Launchlet').remove();
 				  },
@@ -193,7 +193,10 @@ d3.select('body').append('style').node().outerHTML = `
 			return functionObject.fn.bind({
 				api: api,
 			});
-		}
+		},
+		lib: function (inputData) {
+			return api.fn(inputData)();
+		},
 	};
 
 	api.fn('ROCOLifecycleInitialize')();
