@@ -1,5 +1,6 @@
 function composedSample() {
 	let ROCOLaunchletPropertyListSelectedItemIndex = 0;
+	let ROCOLaunchletPropertyShortcutListener;
 
 	const api = {
 		functionObjects: function () {
@@ -145,7 +146,7 @@ function composedSample() {
 					id: 'ROCOCommandsLaunch',
 					fn: function ROCOCommandsLaunch (inputData) {
 						if (!inputData || !inputData.fn) {
-							return;
+							throw new Error('RCSErrorInvalidInput');
 						}
 
 						this.api.fn('ROCOReactManualInput')(inputData.name);
@@ -289,7 +290,7 @@ d3.select('body').append('style').node().outerHTML = `
 				{
 					id: 'ROCOSetupShortcuts',
 					fn: function ROCOSetupShortcuts () {
-						document.body.addEventListener('keydown', this.api.fn('ROCOInterfaceDocumentDidKeyDown'));
+						document.body.addEventListener('keydown', ROCOLaunchletPropertyShortcutListener = this.api.fn('ROCOInterfaceDocumentDidKeyDown'));
 				  },
 				},
 
@@ -300,7 +301,7 @@ d3.select('body').append('style').node().outerHTML = `
 				{
 					id: 'ROCOUnbuildEverything',
 					fn: function ROCOUnbuildEverything () {
-						this.api.fn('ROCOUnbuildShortcuts');
+						this.api.fn('ROCOUnbuildShortcuts')();
 
 						this.api.lib('d3').selectAll('.__Launchlet').remove();
 				  },
@@ -311,7 +312,7 @@ d3.select('body').append('style').node().outerHTML = `
 				{
 					id: 'ROCOUnbuildShortcuts',
 					fn: function ROCOUnbuildShortcuts () {
-						document.body.removeEventListener('keydown', this.api.fn('ROCOInterfaceDocumentDidKeyDown'));
+						document.body.removeEventListener('keydown', ROCOLaunchletPropertyShortcutListener);
 				  },
 				},
 
