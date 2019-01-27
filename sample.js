@@ -68,6 +68,25 @@ function composedSample() {
 						this.api.fn('ROCOReactBezelActions')(!inputText.trim() ? [] : this.api.actionObjects().filter(this.api.fn('ROCOLogicFilter')(inputText)));
 					},
 				},
+	  		
+				{
+					id: 'ROCOInterfaceDocumentDidKeyDown',
+					fn: function ROCOInterfaceDocumentDidKeyDown (event) {
+						if (event.code === 'Escape') {
+							return this.api.fn('ROCOCommandsResetInput')('');
+						}
+					},
+				},
+
+				//# COMMANDS
+	  		
+				{
+					id: 'ROCOCommandsResetInput',
+					fn: function ROCOCommandsResetInput (inputText) {
+						d3.select('#__LaunchletInput').property('value', inputText);
+						this.api.fn('ROCOInterfaceBezelDidReceiveInput')(inputText);
+					},
+				},
 
 				//# REACT
 
@@ -113,6 +132,7 @@ function composedSample() {
 						this.api.fn('ROCOSetupInput')();
 						this.api.fn('ROCOSetupList')();
 						this.api.fn('ROCOSetupStyle')();
+						this.api.fn('ROCOSetupShortcuts')();
 				  },
 				},
 
@@ -182,6 +202,16 @@ d3.select('body').append('style').node().outerHTML = `
 // paste styles
 </style>
 `;
+
+				  },
+				},
+
+				//_ ROCOSetupShortcuts
+
+				{
+					id: 'ROCOSetupShortcuts',
+					fn: function ROCOSetupShortcuts () {
+						document.body.addEventListener('keydown', this.api.fn('ROCOInterfaceDocumentDidKeyDown'));
 				  },
 				},
 
@@ -192,9 +222,18 @@ d3.select('body').append('style').node().outerHTML = `
 				{
 					id: 'ROCOUnbuildEverything',
 					fn: function ROCOUnbuildEverything () {
-						const d3 = this.api.lib('d3');
+						this.api.fn('ROCOUnbuildShortcuts');
 
-						d3.selectAll('.__Launchlet').remove();
+						this.api.lib('d3').selectAll('.__Launchlet').remove();
+				  },
+				},
+
+				//_ ROCOUnbuildShortcuts
+
+				{
+					id: 'ROCOUnbuildShortcuts',
+					fn: function ROCOUnbuildShortcuts () {
+						document.body.removeEventListener('keydown', this.api.fn('ROCOInterfaceDocumentDidKeyDown'));
 				  },
 				},
 
