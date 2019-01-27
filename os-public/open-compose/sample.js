@@ -146,7 +146,7 @@ function composedSample() {
 					id: 'LCHCommandsLaunch',
 					fn: function LCHCommandsLaunch (inputData) {
 						if (!inputData || !inputData.fn) {
-							throw new Error('LCHErrorInvalidInput');
+							return;
 						}
 
 						this.api.fn('LCHReactManualInput')(inputData.name);
