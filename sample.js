@@ -74,6 +74,25 @@ function composedSample() {
 				{
 					id: 'ROCOReactBezelActions',
 					fn: function ROCOReactBezelActions (actionObjects) {
+						const d3 = this.api.lib('d3');
+
+						let selection = d3.select('#__LaunchletList').selectAll('.__LaunchletListItem').data(actionObjects);
+
+						var parentElement = selection.enter()
+							.append('div')
+								.attr('class', '__LaunchletListItem');
+
+						parentElement = parentElement.merge(selection);
+
+						parentElement
+							.text(function(obj) {
+								return obj.name;
+							});
+
+						selection.exit().remove();
+
+						d3.select('#__LaunchletList')
+							.classed('__LaunchletHidden', !actionObjects.length);
 					},
 				},
 
