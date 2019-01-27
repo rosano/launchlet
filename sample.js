@@ -1,7 +1,9 @@
 function composedSample() {
+	let ROCOLaunchletPropertyListSelectedItemIndex = 0;
 
 	const api = {
 		functionObjects: function () {
+
 			return [
 
 				// CUSTOM COMMAND 2
@@ -60,12 +62,27 @@ function composedSample() {
 					fn: RCSLaunchletLogic.RCSLaunchletLogicFilter,
 				},
 
+				//# PROPERTIES
+	  		
+				{
+					id: 'ROCOPropertiesListSelectedItemIndex',
+					fn: function ROCOPropertiesListSelectedItemIndex (inputData) {
+						if (typeof inputData === 'undefined') {
+							return ROCOLaunchletPropertyListSelectedItemIndex;
+						}
+
+						ROCOLaunchletPropertyListSelectedItemIndex = inputData;
+
+						this.api.fn('ROCOReactBezelListSelectedItem')(inputData);
+					},
+				},
+
 				//# INTERFACE
 	  		
 				{
 					id: 'ROCOInterfaceBezelDidReceiveInput',
-					fn: function ROCOInterfaceBezelDidReceiveInput (inputText) {
-						this.api.fn('ROCOReactBezelActions')(!inputText.trim() ? [] : this.api.actionObjects().filter(this.api.fn('ROCOLogicFilter')(inputText)));
+					fn: function ROCOInterfaceBezelDidReceiveInput (inputData) {
+						this.api.fn('ROCOCommandsFilter')(inputData);
 					},
 				},
 	  		
@@ -75,6 +92,14 @@ function composedSample() {
 						if (event.code === 'Escape') {
 							return this.api.fn('ROCOCommandsResetInput')('');
 						}
+
+						if (event.code === 'ArrowUp') {
+							return this.api.fn('ROCOCommandsSetListSelectedItem')(this.api.fn('ROCOPropertiesListSelectedItemIndex')() - 1);
+						};
+
+						if (event.code === 'ArrowDown') {
+							return this.api.fn('ROCOCommandsSetListSelectedItem')(this.api.fn('ROCOPropertiesListSelectedItemIndex')() + 1);
+						};
 					},
 				},
 
@@ -82,17 +107,41 @@ function composedSample() {
 	  		
 				{
 					id: 'ROCOCommandsResetInput',
-					fn: function ROCOCommandsResetInput (inputText) {
-						d3.select('#__LaunchletInput').property('value', inputText);
-						this.api.fn('ROCOInterfaceBezelDidReceiveInput')(inputText);
+					fn: function ROCOCommandsResetInput (inputData) {
+						d3.select('#__LaunchletInput').property('value', inputData);
+
+						this.api.fn('ROCOInterfaceBezelDidReceiveInput')(inputData);
+					},
+				},
+	  		
+				{
+					id: 'ROCOCommandsFilter',
+					fn: function ROCOCommandsFilter (inputData) {
+						this.api.fn('ROCOCommandsSetListItems')(!inputData.trim() ? [] : this.api.actionObjects().filter(this.api.fn('ROCOLogicFilter')(inputData)));
+					},
+				},
+	  		
+				{
+					id: 'ROCOCommandsSetListItems',
+					fn: function ROCOCommandsSetListItems (inputData) {
+						this.api.fn('ROCOReactBezelListItems')(inputData);
+						
+						this.api.fn('ROCOCommandsSetListSelectedItem')(0);
+					},
+				},
+	  		
+				{
+					id: 'ROCOCommandsSetListSelectedItem',
+					fn: function ROCOCommandsSetListSelectedItem (inputData) {
+						this.api.fn('ROCOPropertiesListSelectedItemIndex')(inputData);
 					},
 				},
 
 				//# REACT
 
 				{
-					id: 'ROCOReactBezelActions',
-					fn: function ROCOReactBezelActions (actionObjects) {
+					id: 'ROCOReactBezelListItems',
+					fn: function ROCOReactBezelListItems (actionObjects) {
 						const d3 = this.api.lib('d3');
 
 						let selection = d3.select('#__LaunchletList').selectAll('.__LaunchletListItem').data(actionObjects);
@@ -104,9 +153,6 @@ function composedSample() {
 						parentElement = parentElement.merge(selection);
 
 						parentElement
-							.classed('__LaunchletListItemSelected', function (obj, index) {
-								return !index;
-							})
 							.text(function(obj) {
 								return obj.name;
 							});
@@ -115,6 +161,15 @@ function composedSample() {
 
 						d3.select('#__LaunchletList')
 							.classed('__LaunchletHidden', !actionObjects.length);
+					},
+				},
+
+				{
+					id: 'ROCOReactBezelListSelectedItem',
+					fn: function ROCOReactBezelListSelectedItem (selectedIndex) {
+						this.api.lib('d3').selectAll('.__LaunchletListItem').classed('__LaunchletListItemSelected', function (obj, index) {
+								return index === selectedIndex;
+							});
 					},
 				},
 

@@ -14,7 +14,7 @@
 	z-index: 999;
 
 	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
-	font-size: 24px;
+	font-size: 22px;
 }
 
 #__LaunchletBezel {
@@ -33,7 +33,7 @@
 }
 
 #__LaunchletInput {
-	padding: 4px;
+	padding: 6px;
 	border: 1px solid #cccccc;
 	border-radius: 5px;
 
@@ -49,6 +49,8 @@
 
 #__LaunchletList {
 	margin-top: var(--__LaunchletSharedPadding);
+
+	font-size: 18px;
 }
 
 .__LaunchletListItem {
