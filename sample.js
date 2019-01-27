@@ -34,7 +34,7 @@ function composedSample() {
 				
 				{
 					id: 'ROCOCopyToClipboard',
-					fn: function ROCOCopyToClipboard () {
+					fn: function ROCOCopyToClipboard (inputData) {
 						const el = document.createElement('textarea');
 						el.value = inputData;
 						el.setAttribute('readonly', '');
@@ -43,6 +43,7 @@ function composedSample() {
 						document.body.appendChild(el);
 						el.select();
 						document.execCommand('copy');
+						el.remove();
 					},
 				},
 
@@ -100,6 +101,10 @@ function composedSample() {
 						if (event.code === 'ArrowDown') {
 							return this.api.fn('ROCOCommandsSetListSelectedItem')(this.api.fn('ROCOPropertiesListSelectedItemIndex')() + 1);
 						};
+
+						if (event.code === 'Enter') {
+							return this.api.fn('ROCOCommandsLaunch')(d3.select('.__LaunchletListItemSelected').data().pop());
+						};
 					},
 				},
 
@@ -108,9 +113,8 @@ function composedSample() {
 				{
 					id: 'ROCOCommandsResetInput',
 					fn: function ROCOCommandsResetInput (inputData) {
-						d3.select('#__LaunchletInput').property('value', inputData);
-
 						this.api.fn('ROCOInterfaceBezelDidReceiveInput')(inputData);
+						this.api.fn('ROCOReactManualInput')(inputData);
 					},
 				},
 	  		
@@ -134,6 +138,18 @@ function composedSample() {
 					id: 'ROCOCommandsSetListSelectedItem',
 					fn: function ROCOCommandsSetListSelectedItem (inputData) {
 						this.api.fn('ROCOPropertiesListSelectedItemIndex')(inputData);
+					},
+				},
+	  		
+				{
+					id: 'ROCOCommandsLaunch',
+					fn: function ROCOCommandsLaunch (inputData) {
+						if (!inputData || !inputData.fn) {
+							return;
+						}
+
+						this.api.fn('ROCOReactManualInput')(inputData.name);
+						this.api.fn(inputData.id)();
 					},
 				},
 
@@ -172,6 +188,13 @@ function composedSample() {
 							});
 					},
 				},
+
+				{
+					id: 'ROCOReactManualInput',
+					fn: function ROCOReactManualInput (inputData) {
+						d3.select('#__LaunchletInput').property('value', inputData);
+					},
+				},	
 
 				//# SETUP
 
