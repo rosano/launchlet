@@ -59,10 +59,18 @@
 				});
 			});
 
+		parentElement.append('hr');
+
+		parentElement.append('input')
+			.attr('id', 'LCHComposeListItemInputName');
+
 		parentElement = parentElement.merge(selection);
 
 		parentElement.select('#LCHComposeListItemInputID')
 			.attr('placeholder', OLSKLocalized('LCHComposeListItemInputIDPlaceholder'));
+
+		parentElement.select('#LCHComposeListItemInputName')
+			.attr('placeholder', OLSKLocalized('LCHComposeListItemInputNamePlaceholder'));
 
 		// parentElement
 		// 	.text(function(obj) {
