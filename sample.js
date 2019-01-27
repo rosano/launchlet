@@ -150,7 +150,18 @@ function composedSample() {
 						}
 
 						this.api.fn('ROCOReactManualInput')(inputData.name);
+						
 						this.api.fn(inputData.id)();
+
+						this.api.fn('ROCOCommandsExit')();
+					},
+				},
+	  		
+				{
+					id: 'ROCOCommandsExit',
+					fn: function ROCOCommandsExit () {
+						this.api.lib('d3').select('#__Launchlet').classed('__LaunchletExit', true);
+						setTimeout(this.api.fn('ROCOUnbuildEverything'), 500);
 					},
 				},
 

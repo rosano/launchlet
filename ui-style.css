@@ -17,6 +17,21 @@
 	font-size: 22px;
 }
 
+@keyframes __LaunchletExit {
+  from {
+  	opacity: 1;
+  }
+  to {
+  	opacity: 0;
+  }
+}
+
+.__LaunchletExit {
+  animation-name: __LaunchletExit;
+  animation-duration: 0.235s;
+  opacity: 0;
+}
+
 #__LaunchletBezel {
 	padding: var(--__LaunchletSharedPadding);
 	border: 1px solid #cccccc;
