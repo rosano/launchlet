@@ -22,6 +22,22 @@
 		moi.reactMemberObjects(LCHComposeBehaviourCustomMemberObjects);
 	};
 
+	//# INTERFACE
+
+	//_ interfaceAddButtonDidClick
+
+	moi.interfaceAddButtonDidClick = function () {
+		moi.actionNewMemberObject();
+	};
+
+	//# ACTION
+
+	//_ actionNewMemberObject
+
+	moi.actionNewMemberObject = function () {
+		moi.propertiesCustomMemberObjects(moi.propertiesCustomMemberObjects().concat({}));
+	};
+
 	//# REACT
 
 	//_ reactMemberObjects

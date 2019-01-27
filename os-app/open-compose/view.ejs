@@ -25,6 +25,10 @@ locals.OLSKPageAssets = [
 	<div id="LCHComposeList"></div>
 
 	<p>
+		<button id="LCHComposeAddButton" onclick="LCHComposeBehaviour.interfaceAddButtonDidClick()"><%= OLSKLocalized('LCHComposeAddButtonText') %></button>
+	</p>
+
+	<p>
 		<textarea id="LCHComposeComposedSample"></textarea>
 		<script type="text/javascript">
 			d3.select('#LCHComposeComposedSample').property('value', LCHComposeSample.composedSample.toString());
