@@ -31,7 +31,7 @@
 
 	<% if (locals.OLSKSharedPageControllerSlug && Array.isArray(locals.OLSKPageAssets)) { %>
 		<% locals.OLSKPageAssets.forEach(function(e) { %>
-			<% var defaultDirectory = e[0] === '/' ? '' : '/' + (locals.OLSKSharedPageControllerSlug + '/'); %>
+			<% let defaultDirectory = e[0] === '/' ? '' : '/' + (locals.OLSKSharedPageControllerSlug + '/'); %>
 			
 			<% if (e.split('.').pop() === 'js') { %>
 	<script src="<%= defaultDirectory %><%= e %>"></script>

@@ -174,7 +174,7 @@ function composedSample() {
 
 						let selection = d3.select('#__LaunchletList').selectAll('.__LaunchletListItem').data(actionObjects);
 
-						var parentElement = selection.enter()
+						let parentElement = selection.enter()
 							.append('div')
 								.attr('class', '__LaunchletListItem');
 
