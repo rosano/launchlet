@@ -33,10 +33,10 @@
 			.attr('class', 'LCHComposeListItem');
 
 		parentElement.append('input')
-			.attr('id', 'LCHComposeListItemInputID');
+			.attr('class', 'LCHComposeListItemInputID');
 
 		parentElement.append('textarea')
-			.attr('id', 'LCHComposeListItemInputFunction')
+			.attr('class', 'LCHComposeListItemInputFunction')
 			.each(function (obj) {
 				obj.LCHComposeEditor = CodeMirror.fromTextArea(this, {
 					mode: 'javascript',
@@ -62,14 +62,14 @@
 		parentElement.append('hr');
 
 		parentElement.append('input')
-			.attr('id', 'LCHComposeListItemInputName');
+			.attr('class', 'LCHComposeListItemInputName');
 
 		parentElement = parentElement.merge(selection);
 
-		parentElement.select('#LCHComposeListItemInputID')
+		parentElement.select('.LCHComposeListItemInputID')
 			.attr('placeholder', OLSKLocalized('LCHComposeListItemInputIDPlaceholder'));
 
-		parentElement.select('#LCHComposeListItemInputName')
+		parentElement.select('.LCHComposeListItemInputName')
 			.attr('placeholder', OLSKLocalized('LCHComposeListItemInputNamePlaceholder'));
 
 		// parentElement
