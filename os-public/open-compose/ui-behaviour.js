@@ -81,6 +81,8 @@
 		let toolbarElement = parentElement.append('div')
 			.attr('class', 'LCHComposeListItemToolbar');
 
+		toolbarElement.append('hr')
+
 		toolbarElement.append('button')
 			.attr('class', 'LCHComposeListItemToolbarCollapseButton')
 			.text(OLSKLocalized('LCHComposeListItemToolbarCollapseButtonText'));
