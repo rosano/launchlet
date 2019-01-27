@@ -1,0 +1,27 @@
+body {
+	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+}
+
+.LCHComposeListItem {
+	padding: 10px;
+	width: 400px;
+
+	background: #f3f3f3;
+
+	/* LCHComposeListItemFlexboxParent */
+	display: flex;
+	flex-direction: column;
+	/*align-items: stretch;*/
+}
+
+.LCHComposeListItem hr {
+	width: 100%;
+	height: 1px;
+	border: none;
+
+	background: #e6e6e6;
+}
+
+.LCHComposeListItem .CodeMirror {
+	margin: 10px 0;
+}
