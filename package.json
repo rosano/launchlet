@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "gulp": "4.0",
+    "OLSKFilesystem": "olsk/OLSKFilesystem",
     "OLSKTesting": "olsk/OLSKTesting"
   }
 }
