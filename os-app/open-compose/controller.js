@@ -6,7 +6,11 @@ exports.OLSKControllerRoutes = function() {
 			OLSKRoutePath: '/',
 			OLSKRouteMethod: 'get',
 			OLSKRouteFunction: function(req, res, next) {
-				return res.render(req.OLSKLive.OLSKLivePathJoin(__dirname, 'view'), {});
+				return res.render(req.OLSKLive.OLSKLivePathJoin(__dirname, 'view'), {
+					OLSKPagePublicLocalizedStringKeys: [
+						'LCHComposeListItemInputIDPlaceholder',
+					],
+				});
 			},
 			OLSKRouteLanguages: ['en'],
 		},

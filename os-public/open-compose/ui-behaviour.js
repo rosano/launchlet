@@ -32,12 +32,18 @@
 		let parentElement = selection.enter().append('div')
 			.attr('class', 'LCHComposeListItem');
 
+		parentElement.append('input')
+			.attr('id', 'LCHComposeListItemInputID');
+
 		parentElement = parentElement.merge(selection);
 
-		parentElement
-			.text(function(obj) {
-				return obj.name;
-			});
+		parentElement.select('#LCHComposeListItemInputID')
+			.attr('placeholder', OLSKLocalized('LCHComposeListItemInputIDPlaceholder'));
+
+		// parentElement
+		// 	.text(function(obj) {
+		// 		return obj.name;
+		// 	});
 
 		selection.exit().remove();
 	};
