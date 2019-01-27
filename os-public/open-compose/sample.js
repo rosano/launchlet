@@ -61,7 +61,7 @@ function composedSample() {
 	  		
 				{
 					id: 'ROCOLogicFilter',
-					fn: RCSLaunchletLogic.RCSLaunchletLogicFilter,
+					fn: LCHComposeLogic.LCHComposeLogicFilter,
 				},
 
 				//# PROPERTIES

@@ -1,12 +1,12 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
-	(factory((global.RCSLaunchletLogic = global.RCSLaunchletLogic || {})));
+	(factory((global.LCHComposeLogic = global.LCHComposeLogic || {})));
 }(this, (function (exports) { 'use strict';
 
-	//_ RCSLaunchletLogicFilter
+	//_ LCHComposeLogicFilter
 
-	exports.RCSLaunchletLogicFilter = function (inputData) {
+	exports.LCHComposeLogicFilter = function (inputData) {
 		if (typeof inputData !== 'string') {
 			throw new Error('RCSErrorInvalidInput');
 		}
