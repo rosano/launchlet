@@ -94,7 +94,7 @@
 		parentElement.append('input')
 			.attr('class', 'LCHComposeListItemInputName');
 
-		parentElement.append('button')
+		parentElement.append('p').append('button')
 			.attr('class', 'LCHComposeListItemDeleteButton');
 
 		parentElement = parentElement.merge(selection);
