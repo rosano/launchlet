@@ -65,7 +65,7 @@ function composedSample() {
 				{
 					id: 'ROCOInterfaceBezelDidReceiveInput',
 					fn: function ROCOInterfaceBezelDidReceiveInput (inputText) {
-						this.api.fn('ROCOReactBezelActions')(this.api.actionObjects().filter(this.api.fn('ROCOLogicFilter')(inputText)));
+						this.api.fn('ROCOReactBezelActions')(!inputText.trim() ? [] : this.api.actionObjects().filter(this.api.fn('ROCOLogicFilter')(inputText)));
 					},
 				},
 
@@ -89,6 +89,7 @@ function composedSample() {
 						this.api.fn('ROCOSetupContainer')();
 						this.api.fn('ROCOSetupBezel')();
 						this.api.fn('ROCOSetupInput')();
+						this.api.fn('ROCOSetupList')();
 						this.api.fn('ROCOSetupStyle')();
 				  },
 				},
@@ -133,6 +134,19 @@ function composedSample() {
 							.on('input', function () {
 								api.fn('ROCOInterfaceBezelDidReceiveInput')(this.value);
 							});
+				  },
+				},
+
+				//_ ROCOSetupList
+
+				{
+					id: 'ROCOSetupList',
+					fn: function ROCOSetupList () {
+						const d3 = this.api.lib('d3');
+
+						d3.select('#__LaunchletBezel').append('div')
+							.attr('id', '__LaunchletList')
+							.classed('__LaunchletHidden', true);
 				  },
 				},
 
