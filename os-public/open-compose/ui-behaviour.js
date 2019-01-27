@@ -63,7 +63,10 @@
 			.attr('class', 'LCHComposeListItem');
 
 		parentElement.append('input')
-			.attr('class', 'LCHComposeListItemInputID');
+			.attr('class', 'LCHComposeListItemInputID')
+			.on('input', function (obj) {
+				obj.id = this.value;
+			});
 
 		parentElement.append('textarea')
 			.attr('class', 'LCHComposeListItemInputFunction')
@@ -100,10 +103,21 @@
 		parentElement = parentElement.merge(selection);
 
 		parentElement.select('.LCHComposeListItemInputID')
-			.attr('placeholder', OLSKLocalized('LCHComposeListItemInputIDPlaceholder'));
+			.attr('placeholder', OLSKLocalized('LCHComposeListItemInputIDPlaceholder'))
+			.property('value', function (obj) {
+				return obj.id;
+			});
+
+		parentElement.select('.LCHComposeListItemInputFunction')
+			.each(function (obj) {
+				obj.LCHComposeEditor.setValue((obj.fnbody || '').toString());
+			});
 
 		parentElement.select('.LCHComposeListItemInputName')
-			.attr('placeholder', OLSKLocalized('LCHComposeListItemInputNamePlaceholder'));
+			.attr('placeholder', OLSKLocalized('LCHComposeListItemInputNamePlaceholder'))
+			.property('value', function (obj) {
+				return obj.name;
+			});
 
 		parentElement.select('.LCHComposeListItemDeleteButton')
 			.text(OLSKLocalized('LCHComposeListItemDeleteButtonText'))
@@ -137,9 +151,7 @@
 		moi.propertiesCustomMemberObjects([
 			{
 				id: 'XYZGreet',
-				fn: function XYZGreet () {
-					window.prompt('Hello');
-				},
+				fnbody: `window.prompt('Hello');`,
 				name: 'Greet',
 			},
 		]);
