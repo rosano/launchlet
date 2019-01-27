@@ -7,6 +7,8 @@ const NODE_MODULE_NAMES = [
 	'normalize.css',
 	'd3',
 	'codemirror',
+	'OLSKInternational',
+	'OLSKString',
 ];
 
 const INTERNAL_PATHS = [];

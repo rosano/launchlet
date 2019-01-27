@@ -16,6 +16,10 @@
     "// CODE EDITING": null,
     "codemirror": "rosano/CodeMirror#add-distribution",
 
+    "// I18N": null,
+    "OLSKInternational": "olsk/OLSKInternational",
+    "OLSKString": "olsk/OLSKString",
+
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {

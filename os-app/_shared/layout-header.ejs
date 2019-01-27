@@ -42,6 +42,20 @@
 			<% } %>
 		<% }) %>
 	<% } %>
+
+	<% if (locals.OLSKPagePublicLocalizedStringKeys) { %>
+	<script src="/shared-assets/external/OLSKInternational/main.js"></script>
+	<script src="/shared-assets/external/OLSKString/main.js"></script>
+	<script type="text/javascript">
+		window.OLSKFormatted = OLSKString.OLSKStringWithFormat;
+		window.OLSKLocalized = function(translationConstant) {
+			return OLSKInternational.OLSKInternationalLocalizedStringWithTranslationKeyAndTranslationDictionary(translationConstant, <%- JSON.stringify(OLSKPagePublicLocalizedStringKeys.reduce(function(map, e) {
+					map[e] = OLSKLocalized(e);
+					return map;
+				}, {})) %>);
+		};
+	</script>
+	<% } %>
 </head>
 
 <body>
