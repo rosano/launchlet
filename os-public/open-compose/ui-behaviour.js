@@ -128,6 +128,7 @@
 
 	moi.setupEverything = function () {
 		moi.setupListItems();
+		moi.setupDragAndDrop();
 	};
 
 	//_ setupListItems
@@ -142,6 +143,12 @@
 				name: 'Greet',
 			},
 		]);
+	};
+
+	//_ setupDragAndDrop
+
+	moi.setupDragAndDrop = function () {
+		dragula([document.getElementById('LCHComposeList')]);
 	};
 
 	//# LIFECYCLE
