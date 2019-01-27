@@ -10,6 +10,8 @@ exports.OLSKControllerRoutes = function() {
 					OLSKPagePublicLocalizedStringKeys: [
 						'LCHComposeListItemInputIDPlaceholder',
 						'LCHComposeListItemInputNamePlaceholder',
+						'LCHComposeListItemDeleteButtonText',
+						'LCHComposeListItemDeletePromptText',
 					],
 				});
 			},
