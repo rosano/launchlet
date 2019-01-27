@@ -1,7 +1,8 @@
 LCHComposeTitle: Launchlet
 LCHComposeDescription: A bookmarklet to launch other bookmarklets
+LCHComposeListItemToolbarCollapseButtonText: Collapse
+LCHComposeListItemToolbarDeleteButtonText: Delete
+LCHComposeListItemDeletePromptText: Are you sure?
 LCHComposeListItemInputIDPlaceholder: Identifier (e.g. XYZGreet)
 LCHComposeListItemInputNamePlaceholder: Name (e.g. Say Hello)
-LCHComposeListItemDeleteButtonText: Delete
-LCHComposeListItemDeletePromptText: Are you sure?
 LCHComposeAddButtonText: Add
