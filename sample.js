@@ -8,7 +8,7 @@ function composedSample() {
 
 				{
 					id: 'XYZQueueAlbum',
-					callback: function XYZQueueAlbum () {
+					fn: function XYZQueueAlbum () {
 						this.api.fn('XYZCopyPageInfo')();
 
 						window.location.href = 'nvalt://albums%20queue';
@@ -21,7 +21,7 @@ function composedSample() {
 
 				{
 					id: 'XYZCopyPageInfo',
-					callback: function XYZCopyPageInfo () {
+					fn: function XYZCopyPageInfo () {
 						this.api.fn('ROCOCopyToClipboard')(`${document.title} ${location.href}`);
 					},
 					name: 'Copy URL and title',
@@ -32,7 +32,7 @@ function composedSample() {
 				
 				{
 					id: 'ROCOCopyToClipboard',
-					callback: function ROCOCopyToClipboard () {
+					fn: function ROCOCopyToClipboard () {
 						const el = document.createElement('textarea');
 						el.value = inputData;
 						el.setAttribute('readonly', '');
@@ -48,7 +48,7 @@ function composedSample() {
 				
 				{
 					id: 'd3',
-					callback: function () {
+					fn: function () {
 						return d3;
 					},
 				},
@@ -57,14 +57,14 @@ function composedSample() {
 	  		
 				{
 					id: 'ROCOLogicFilter',
-					callback: function ROCOLogicFilter () {},
+					fn: function ROCOLogicFilter () {},
 				},
 
 				//# INTERFACE
 	  		
 				{
 					id: 'ROCOInterfaceBezelDidReceiveInput',
-					callback: function ROCOInterfaceBezelDidReceiveInput (inputText) {
+					fn: function ROCOInterfaceBezelDidReceiveInput (inputText) {
 						this.api.fn('ROCOReactBezelActions')(this.api.actionObjects().filter(this.api.fn('ROCOLogicFilter')(inputText)));
 					},
 				},
@@ -73,7 +73,7 @@ function composedSample() {
 
 				{
 					id: 'ROCOReactBezelActions',
-					callback: function ROCOReactBezelActions (actionObjects) {},
+					fn: function ROCOReactBezelActions (actionObjects) {},
 				},
 
 				//# SETUP
@@ -82,7 +82,7 @@ function composedSample() {
 	  		
 				{
 					id: 'ROCOSetupEverything',
-					callback: function ROCOSetupEverything () {
+					fn: function ROCOSetupEverything () {
 						this.api.fn('ROCOUnbuildEverything')();
 
 						this.api.fn('ROCOSetupContainer')();
@@ -96,7 +96,7 @@ function composedSample() {
 
 				{
 					id: 'ROCOSetupContainer',
-					callback: function ROCOSetupContainer () {
+					fn: function ROCOSetupContainer () {
 						const d3 = this.api.fn('d3')();
 
 						d3.select('body').append('div')
@@ -109,7 +109,7 @@ function composedSample() {
 
 				{
 					id: 'ROCOSetupBezel',
-					callback: function ROCOSetupBezel () {
+					fn: function ROCOSetupBezel () {
 						const d3 = this.api.fn('d3')();
 
 						d3.select('#__Launchlet').append('div')
@@ -121,7 +121,7 @@ function composedSample() {
 
 				{
 					id: 'ROCOSetupInput',
-					callback: function ROCOSetupInput () {
+					fn: function ROCOSetupInput () {
 						const d3 = this.api.fn('d3')();
 						let api = this.api;
 
@@ -139,7 +139,7 @@ function composedSample() {
 
 				{
 					id: 'ROCOSetupStyle',
-					callback: function ROCOSetupStyle () {
+					fn: function ROCOSetupStyle () {
 d3.select('body').append('style').node().outerHTML = `
 <style type="text/css" class="__Launchlet">
 // paste styles
@@ -154,7 +154,7 @@ d3.select('body').append('style').node().outerHTML = `
 	  		
 				{
 					id: 'ROCOUnbuildEverything',
-					callback: function ROCOUnbuildEverything () {
+					fn: function ROCOUnbuildEverything () {
 						const d3 = this.api.fn('d3')();
 
 						d3.selectAll('.__Launchlet').remove();
@@ -165,7 +165,7 @@ d3.select('body').append('style').node().outerHTML = `
 	  		
 				{
 					id: 'ROCOLifecycleInitialize',
-					callback: function ROCOLifecycleInitialize () {
+					fn: function ROCOLifecycleInitialize () {
 						this.api.fn('ROCOSetupEverything')(true);
 				  },
 				},
@@ -189,7 +189,7 @@ d3.select('body').append('style').node().outerHTML = `
 
 			// ! non existant
 
-			return functionObject.callback.bind({
+			return functionObject.fn.bind({
 				api: api,
 			});
 		}
