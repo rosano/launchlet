@@ -20,19 +20,38 @@
 #__LaunchletBezel {
 	padding: var(--__LaunchletSharedPadding);
 	border: 1px solid #cccccc;
-	box-shadow: 0 0 var(--__LaunchletSharedPadding) 5px #ccc;
+	border-radius: 5px;
+	box-shadow: 0 0 10px 0px #e6e6e6;
 
 	background: #e6e6e6;
-	text-align: center;
 	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
 	font-size: 24px;
 	font-weight: bold;
 
+	/* __LaunchletBezelFlexboxParent */
 	display: flex;
+	flex-direction: column;
 }
 
 #__LaunchletInput {
 	padding: 4px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
 
-	flex-grow: 1;
+	background: #f3f3f3;
+	color: #3f3f3f;
+
+	/* browser defaults */
+	outline: none;
+
+	/* __LaunchletBezelFlexboxChild */
+	/*flex-grow: 1;*/
+}
+
+#__LaunchletList {
+	margin-top: var(--__LaunchletSharedPadding);
+}
+
+.__LaunchletHidden {
+	display: none;
 }
