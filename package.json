@@ -1,0 +1,22 @@
+{
+  "scripts": {
+    "start": "node ./os-launch",
+    "postinstall": "gulp default"
+  },
+  "dependencies": {
+    "// OLDSKOOL": null,
+    "OldSkool": "olsk/OldSkool",
+
+    "// NORMALIZE": null,
+    "normalize.css": "latest",
+
+    "// GENERAL JAVASCRIPT": null,
+    "d3": "latest",
+
+    "// I sacrifice myself for the commas of others": null
+  },
+  "devDependencies": {
+    "gulp": "4.0",
+    "OLSKTesting": "olsk/OLSKTesting"
+  }
+}
