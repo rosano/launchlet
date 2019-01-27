@@ -73,9 +73,9 @@ function composedSample() {
 							return ROCOLaunchletPropertyListSelectedItemIndex;
 						}
 
-						ROCOLaunchletPropertyListSelectedItemIndex = inputData;
+						ROCOLaunchletPropertyListSelectedItemIndex = Math.max(0, Math.min(this.api.lib('d3').selectAll('.__LaunchletListItem').data().length, inputData));
 
-						this.api.fn('ROCOReactBezelListSelectedItem')(inputData);
+						this.api.fn('ROCOReactBezelListSelectedItem')(ROCOLaunchletPropertyListSelectedItemIndex);
 					},
 				},
 
