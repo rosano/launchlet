@@ -8,18 +8,18 @@
 
 	//# PROPERTIES
 
-	//_ propertiesMemberObjects
+	//_ propertiesCustomMemberObjects
 
-	let LCHComposeBehaviourMemberObjects;
+	let LCHComposeBehaviourCustomMemberObjects;
 
-	moi.propertiesMemberObjects = function (inputData) {
+	moi.propertiesCustomMemberObjects = function (inputData) {
 		if (typeof inputData === 'undefined') {
-			return LCHComposeBehaviourMemberObjects;
+			return LCHComposeBehaviourCustomMemberObjects;
 		}
 
-		LCHComposeBehaviourMemberObjects = inputData;
+		LCHComposeBehaviourCustomMemberObjects = inputData;
 
-		moi.reactMemberObjects(LCHComposeBehaviourMemberObjects);
+		moi.reactMemberObjects(LCHComposeBehaviourCustomMemberObjects);
 	};
 
 	//# REACT
@@ -59,7 +59,7 @@
 	//_ setupListItems
 
 	moi.setupListItems = function () {
-		moi.propertiesMemberObjects([
+		moi.propertiesCustomMemberObjects([
 			{
 				id: 'XYZGreet',
 				fn: function XYZGreet () {
