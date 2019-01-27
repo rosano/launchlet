@@ -1,6 +1,6 @@
 <%
-locals.OLSKPageTitle = OLSKLocalized('RCSLaunchletTitle');
-locals.OLSKPageDescription = OLSKLocalized('RCSLaunchletDescription');
+locals.OLSKPageTitle = OLSKLocalized('LCHComposeTitle');
+locals.OLSKPageDescription = OLSKLocalized('LCHComposeDescription');
 locals.OLSKPageAssets = [
 	'/shared-assets/external/normalize.css/normalize.css',
 	'/shared-assets/external/d3/dist/d3.min.js',
@@ -17,20 +17,20 @@ locals.OLSKPageAssets = [
 
 <%- include('../_shared/layout-header.ejs') %>
 
-<div id="RCSLaunchlet">
-	<p><%= OLSKLocalized('RCSLaunchletTitle') %></p>
+<div id="LCHCompose">
+	<p><%= OLSKLocalized('LCHComposeTitle') %></p>
 
 	<p>
-		<textarea id="RCSLaunchletComposedSample"></textarea>
+		<textarea id="LCHComposeComposedSample"></textarea>
 		<script type="text/javascript">
-			d3.select('#RCSLaunchletComposedSample').property('value', RCSLauchletSample.composedSample.toString());
+			d3.select('#LCHComposeComposedSample').property('value', RCSLauchletSample.composedSample.toString());
 		</script>
 	</p>
 
 	<p>
-		<textarea id="RCSLaunchletBinary"></textarea>
+		<textarea id="LCHComposeBinary"></textarea>
 		<script type="text/javascript">
-			d3.select('#RCSLaunchletBinary').property('value', `javascript:(${encodeURIComponent(d3.select('#RCSLaunchletComposedSample').property('value'))})()`);
+			d3.select('#LCHComposeBinary').property('value', `javascript:(${encodeURIComponent(d3.select('#LCHComposeComposedSample').property('value'))})()`);
 		</script>
 	</p>
 
@@ -40,7 +40,7 @@ locals.OLSKPageAssets = [
 </div>
 
 <script type="text/javascript">
-	RCSLaunchletBehaviour.lifecyclePageWillLoad();
+	LCHComposeBehaviour.lifecyclePageWillLoad();
 </script>
 
 <%- include('../_shared/layout-footer.ejs') %>

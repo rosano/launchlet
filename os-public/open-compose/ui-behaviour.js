@@ -1,7 +1,7 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
-	(factory((global.RCSLaunchletBehaviour = global.RCSLaunchletBehaviour || {})));
+	(factory((global.LCHComposeBehaviour = global.LCHComposeBehaviour || {})));
 }(this, (function (exports) { 'use strict';
 
 	let moi = {};
