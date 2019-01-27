@@ -1,1 +1,38 @@
+:root {
+  --__LaunchletWidth: 400px;
+  --__LaunchletSharedPadding: 10px;
+}
 
+#__Launchlet {
+	width: var(--__LaunchletWidth);
+
+	position: fixed;
+	/*top: calc(var(--__LaunchletSharedPadding) * 2);*/
+	top: 0;
+	left: 50%;
+	margin: 0 0 0 calc(var(--__LaunchletWidth) / -2);
+	z-index: 999;
+
+	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+	font-size: 24px;
+}
+
+#__LaunchletBezel {
+	padding: var(--__LaunchletSharedPadding);
+	border: 1px solid #cccccc;
+	box-shadow: 0 0 var(--__LaunchletSharedPadding) 5px #ccc;
+
+	background: #e6e6e6;
+	text-align: center;
+	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+
+	display: flex;
+}
+
+#__LaunchletInput {
+	padding: 4px;
+
+	flex-grow: 1;
+}
