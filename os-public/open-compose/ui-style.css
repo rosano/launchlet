@@ -24,4 +24,12 @@ body {
 
 .LCHComposeListItem .CodeMirror {
 	margin: 10px 0;
+
+	/* CodeMirrorAdjustHeightToContent */
+	height: auto;
+}
+
+.CodeMirror-scroll {
+	/* CodeMirrorAdjustHeightToContent */
+	max-height: 350px;
 }
