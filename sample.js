@@ -85,6 +85,9 @@ function composedSample() {
 						parentElement = parentElement.merge(selection);
 
 						parentElement
+							.classed('__LaunchletListItemSelected', function (obj, index) {
+								return !index;
+							})
 							.text(function(obj) {
 								return obj.name;
 							});
