@@ -67,8 +67,8 @@ function composedSample() {
 				//# PROPERTIES
 	  		
 				{
-					id: 'ROCOPropertiesListSelectedItemIndex',
-					fn: function ROCOPropertiesListSelectedItemIndex (inputData) {
+					id: 'LCHPropertiesListSelectedItemIndex',
+					fn: function LCHPropertiesListSelectedItemIndex (inputData) {
 						if (typeof inputData === 'undefined') {
 							return ROCOLaunchletPropertyListSelectedItemIndex;
 						}
@@ -96,11 +96,11 @@ function composedSample() {
 						}
 
 						if (event.code === 'ArrowUp') {
-							return this.api.fn('ROCOCommandsSetListSelectedItem')(this.api.fn('ROCOPropertiesListSelectedItemIndex')() - 1);
+							return this.api.fn('ROCOCommandsSetListSelectedItem')(this.api.fn('LCHPropertiesListSelectedItemIndex')() - 1);
 						};
 
 						if (event.code === 'ArrowDown') {
-							return this.api.fn('ROCOCommandsSetListSelectedItem')(this.api.fn('ROCOPropertiesListSelectedItemIndex')() + 1);
+							return this.api.fn('ROCOCommandsSetListSelectedItem')(this.api.fn('LCHPropertiesListSelectedItemIndex')() + 1);
 						};
 
 						if (event.code === 'Enter') {
@@ -138,7 +138,7 @@ function composedSample() {
 				{
 					id: 'ROCOCommandsSetListSelectedItem',
 					fn: function ROCOCommandsSetListSelectedItem (inputData) {
-						this.api.fn('ROCOPropertiesListSelectedItemIndex')(inputData);
+						this.api.fn('LCHPropertiesListSelectedItemIndex')(inputData);
 					},
 				},
 	  		
