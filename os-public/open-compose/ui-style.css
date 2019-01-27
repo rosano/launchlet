@@ -1,6 +1,6 @@
 :root {
-  --__LaunchletWidth: 400px;
-  --__LaunchletSharedPadding: 10px;
+	--__LaunchletWidth: 400px;
+	--__LaunchletSharedPadding: 10px;
 }
 
 #__Launchlet {
@@ -18,18 +18,18 @@
 }
 
 @keyframes __LaunchletExit {
-  from {
-  	opacity: 1;
-  }
-  to {
-  	opacity: 0;
-  }
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
 }
 
 .__LaunchletExit {
-  animation-name: __LaunchletExit;
-  animation-duration: 0.235s;
-  opacity: 0;
+	animation-name: __LaunchletExit;
+	animation-duration: 0.235s;
+	opacity: 0;
 }
 
 #__LaunchletBezel {
