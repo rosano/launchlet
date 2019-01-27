@@ -370,7 +370,7 @@ d3.select('body').append('style').node().outerHTML = `
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
-	(factory((global.RCSLauchletSample = global.RCSLauchletSample || {})));
+	(factory((global.LCHComposeSample = global.LCHComposeSample || {})));
 }(this, (function (exports) { 'use strict';
 
 	exports.composedSample = composedSample;
