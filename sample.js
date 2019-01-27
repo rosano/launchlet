@@ -57,7 +57,7 @@ function composedSample() {
 	  		
 				{
 					id: 'ROCOLogicFilter',
-					fn: function ROCOLogicFilter () {},
+					fn: RCSLaunchletLogic.RCSLaunchletLogicFilter,
 				},
 
 				//# INTERFACE
@@ -73,7 +73,8 @@ function composedSample() {
 
 				{
 					id: 'ROCOReactBezelActions',
-					fn: function ROCOReactBezelActions (actionObjects) {},
+					fn: function ROCOReactBezelActions (actionObjects) {
+					},
 				},
 
 				//# SETUP
