@@ -6,9 +6,10 @@ const OLSKFilesystem = require('OLSKFilesystem');
 const NODE_MODULE_NAMES = [
 	'normalize.css',
 	'd3',
-	'codemirror',
 	'OLSKInternational',
 	'OLSKString',
+	'codemirror',
+	'dragula',
 ];
 
 const INTERNAL_PATHS = [];
