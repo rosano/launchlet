@@ -146,7 +146,7 @@ function composedSample() {
 					id: 'ROCOCommandsLaunch',
 					fn: function ROCOCommandsLaunch (inputData) {
 						if (!inputData || !inputData.fn) {
-							throw new Error('RCSErrorInvalidInput');
+							throw new Error('LCHErrorInvalidInput');
 						}
 
 						this.api.fn('ROCOReactManualInput')(inputData.name);

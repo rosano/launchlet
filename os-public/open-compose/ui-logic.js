@@ -8,7 +8,7 @@
 
 	exports.LCHComposeLogicFilter = function (inputData) {
 		if (typeof inputData !== 'string') {
-			throw new Error('RCSErrorInvalidInput');
+			throw new Error('LCHErrorInvalidInput');
 		}
 
 		return function (e) {
