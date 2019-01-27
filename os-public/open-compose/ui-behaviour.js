@@ -6,6 +6,16 @@
 
 	let moi = {};
 
+	let LCHComposeBehaviourMemberObjects = [
+		{
+			id: 'XYZGreet',
+			fn: function XYZGreet () {
+				window.prompt('Hello');
+			},
+			name: 'Greet',
+		},
+	];
+
 	//# SETUP
 
 	//_ setupEverything
