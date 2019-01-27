@@ -1,9 +1,3 @@
-/*!
- * roco-site
- * Copyright(c) 2018 Rosano Coutinho
- * MIT Licensed
- */
-
 const assert = require('assert');
 
 const RCSLaunchletLogic = require('./ui-logic.js');

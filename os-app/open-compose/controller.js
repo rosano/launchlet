@@ -1,9 +1,3 @@
-/*!
- * roco-site
- * Copyright(c) 2018 Rosano Coutinho
- * MIT Licensed
- */
-
 //_ OLSKControllerRoutes
 
 exports.OLSKControllerRoutes = function() {
