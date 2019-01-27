@@ -13,6 +13,9 @@
     "// GENERAL JAVASCRIPT": null,
     "d3": "latest",
 
+    "// CODE EDITING": null,
+    "codemirror": "rosano/CodeMirror#add-distribution",
+
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {

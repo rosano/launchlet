@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html<%- locals.OLSKSharedPageCurrentLanguage ? [' lang="', OLSKSharedPageCurrentLanguage, '"'].join('') : ''; %>>
+
+<head>
+	<% var pageTitle = locals.OLSKPageTitle || (locals.OLSKLocalized ? OLSKLocalized('RCSSharedDefaultPageTitle') : null)  %>
+	<% if (pageTitle) { %>
+		<title><%= pageTitle %></title>
+	<% } %>
+
+	<% var pageDescription = locals.OLSKPageDescription || (locals.OLSKLocalized ? OLSKLocalized('RCSSharedDefaultPageDescription') : null)  %>
+	<% if (pageDescription) { %>
+		<meta name="description" content="<%= pageDescription %>" />
+	<% } %>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width">
+
+	<% if (typeof locals.OLSKPageMetaTags === 'object') { %>
+		<% Object.keys(locals.OLSKPageMetaTags).forEach(function(e) { %>
+			<meta name="<%= e %>" content="<%= locals.OLSKPageMetaTags[e] %>">
+		<% }) %>
+	<% } %>
+
+	<% if (locals.OLSKSharedActiveRouteConstant) { %>
+		<link rel="canonical" href="<%= OLSKCanonicalFor(locals.OLSKSharedActiveRouteConstant) %>" />
+
+		<% if (locals.OLSKSharedPageLanguagesAvailable) { %>
+			<% locals.OLSKSharedPageLanguagesAvailable.forEach(function (e) { %>
+				<link rel="alternate" hreflang="<%= e %>" href="<%= OLSKCanonicalLocalizedFor(OLSKSharedActiveRouteConstant, { OLSKRoutingLanguage: e }) %>" />
+			<% }) %>
+		<% } %>
+	<% } %>
+
+	<% if (locals.OLSKSharedPageControllerSlug && Array.isArray(locals.OLSKPageAssets)) { %>
+		<% locals.OLSKPageAssets.forEach(function(e) { %>
+			<% var defaultDirectory = e[0] === '/' ? '' : '/' + (locals.OLSKSharedPageControllerSlug + '/'); %>
+			
+			<% if (e.split('.').pop() === 'js') { %>
+	<script src="<%= defaultDirectory %><%= e %>"></script>
+			<% } %>
+
+			<% if (e.split('.').pop() === 'css') { %>
+	<link rel="stylesheet" type="text/css" href="<%= defaultDirectory %><%= e %>">
+			<% } %>
+		<% }) %>
+	<% } %>
+</head>
+
+<body>

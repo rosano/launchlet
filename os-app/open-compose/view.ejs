@@ -2,6 +2,8 @@
 locals.OLSKPageTitle = OLSKLocalized('RCSLaunchletTitle');
 locals.OLSKPageDescription = OLSKLocalized('RCSLaunchletDescription');
 locals.OLSKPageAssets = [
+	'/shared-assets/external/normalize.css/normalize.css',
+	'/shared-assets/external/d3/dist/d3.min.js',
 	'/shared-assets/external/codemirror/lib/codemirror.js',
 	'/shared-assets/external/codemirror/lib/codemirror.css',
 	'/shared-assets/external/codemirror/mode/javascript/javascript.js',
@@ -13,7 +15,7 @@ locals.OLSKPageAssets = [
 ];
 %>
 
-<%- include('../../_shared/RCSLayout/header.ejs') %>
+<%- include('../_shared/layout-header.ejs') %>
 
 <div id="RCSLaunchlet">
 	<p><%= OLSKLocalized('RCSLaunchletTitle') %></p>
@@ -41,4 +43,4 @@ locals.OLSKPageAssets = [
 	RCSLaunchletBehaviour.lifecyclePageWillLoad();
 </script>
 
-<%- include('../../_shared/RCSLayout/footer.ejs') %>
+<%- include('../_shared/layout-footer.ejs') %>
