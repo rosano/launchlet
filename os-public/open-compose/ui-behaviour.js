@@ -35,6 +35,30 @@
 		parentElement.append('input')
 			.attr('id', 'LCHComposeListItemInputID');
 
+		parentElement.append('textarea')
+			.attr('id', 'LCHComposeListItemInputFunction')
+			.each(function (obj) {
+				obj.LCHComposeEditor = CodeMirror.fromTextArea(this, {
+					mode: 'javascript',
+					lineNumbers: true,
+					lineWrapping: true,
+					
+					extraKeys: {
+						// Esc: function () {
+						// 	return document.querySelector('button').focus();
+						// },
+					},
+				})
+
+				obj.LCHComposeEditor.on('change', function (instance, changeObject) {
+					// if (changeObject.origin === 'setValue') {
+					// 	return;
+					// }
+
+					// moi.actionsConvertData(instance.getValue());
+				});
+			});
+
 		parentElement = parentElement.merge(selection);
 
 		parentElement.select('#LCHComposeListItemInputID')
