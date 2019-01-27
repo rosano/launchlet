@@ -56,7 +56,7 @@
 
 	//_ reactMemberObjects
 
-	moi.reactMemberObjects = function (memberObjects) {
+	moi.reactMemberObjects = function LCHComposeBehaviourMembersJoin(memberObjects) {
 		let selection = d3.select('#LCHComposeList').selectAll('.LCHComposeListItem').data(memberObjects);
 		
 		let parentElement = selection.enter().append('div')
