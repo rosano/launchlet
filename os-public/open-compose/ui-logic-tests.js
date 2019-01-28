@@ -2,7 +2,7 @@ const assert = require('assert');
 
 const LCHComposeLogic = require('./ui-logic.js');
 
-context('LCHComposeLogicFilter', function() {
+describe('LCHComposeLogicFilter', function testLCHComposeLogicFilter() {
 
 	it('throws error if not string', function() {
 		assert.throws(function() {
