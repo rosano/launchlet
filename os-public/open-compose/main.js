@@ -70,16 +70,6 @@
 		}, {});
 	};
 
-	//_ LCHBoomarkletTokens
-
-	exports.LCHBoomarkletTokens = function () {
-		return [
-			'__LCHTokenLibraryD3__',
-			'__LCHTokenLCHLogicFilter__',
-			'__LCHTokenMemberObjects__',
-		];
-	};
-
 	//_ LCHBoomarkletTemplate
 
 	exports.LCHBoomarkletTemplate = function () {
@@ -414,6 +404,20 @@
 		api.fn('LCHLifecycleInitialize')();
 	};
 
+	//_ LCHBoomarkletReplacementHashFor
+
+	exports.LCHBoomarkletReplacementHashFor = function (inputData) {
+		if (!Array.isArray(inputData)) {
+			throw new Error('LCHErrorInvalidInput');
+		}
+
+		return {
+			'__LCHTokenLibraryD3__': d3SelectionPackage.toString(),
+			'__LCHTokenLCHLogicFilter__': exports.LCHLogicFilter.toString(),
+			'__LCHTokenMemberObjects__': exports._LCHBoomarkletReplacementForMemberObjects(inputData),
+		};
+	};
+
 	//_ _LCHBoomarkletReplacementForMemberObjects
 
 	exports._LCHBoomarkletReplacementForMemberObjects = function (inputData) {
@@ -432,9 +436,9 @@
 		})).replace(/("__LCHClosureOpen__)|(__LCHClosureClose__")/g, '');
 	};
 
-	//_ _LCHUnescapedBookmarkletForReplacementHash
+	//_ LCHBookmarkletUnescapedStringForReplacementHash
 
-	exports._LCHUnescapedBookmarkletForReplacementHash = function (inputData) {
+	exports.LCHBookmarkletUnescapedStringForReplacementHash = function (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('LCHErrorInvalidInput');
 		}
@@ -442,20 +446,6 @@
 		return Object.keys(inputData).reduce(function (coll, e) {
 			return coll.replace(e, inputData[e]);
 		}, exports.LCHBoomarkletTemplate.toString());
-	};
-
-	//_ LCHUnescapedBookmarkletFor
-
-	exports.LCHUnescapedBookmarkletFor = function (inputData) {
-		if (!Array.isArray(inputData)) {
-			throw new Error('LCHErrorInvalidInput');
-		}
-
-		return exports._LCHUnescapedBookmarkletForReplacementHash({
-			'__LCHTokenLibraryD3__': d3SelectionPackage.toString(),
-			'__LCHTokenLCHLogicFilter__': exports.LCHLogicFilter.toString(),
-			'__LCHTokenMemberObjects__': exports._LCHBoomarkletReplacementForMemberObjects(inputData),
-		});
 	};
 
 	Object.defineProperty(exports, '__esModule', { value: true });

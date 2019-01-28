@@ -140,24 +140,30 @@ describe('LCHWrappedMemberObjectFor', function testLCHWrappedMemberObjectFor() {
 
 });
 
-describe('LCHBoomarkletTokens', function testLCHBoomarkletTokens() {
+describe('LCHBoomarkletTemplate', function testLCHBoomarkletTemplate() {
 
-	it('returns array', function() {
-		assert.deepEqual(LCHCompile.LCHBoomarkletTokens(), [
-			'__LCHTokenLibraryD3__',
-			'__LCHTokenLCHLogicFilter__',
-			'__LCHTokenMemberObjects__',
-			]);
+	it('contains LCHTokens', function() {
+		assert.deepEqual(Object.keys(LCHCompile.LCHBoomarkletReplacementHashFor([])).filter(function (e) {
+			return !LCHCompile.LCHBoomarkletTemplate.toString().match(e);
+		}), []);
 	});
 
 });
 
-describe('LCHBoomarkletTemplate', function testLCHBoomarkletTemplate() {
+describe('LCHBoomarkletReplacementHashFor', function testLCHBoomarkletReplacementHashFor() {	
 
-	it('contains LCHBoomarkletTokens', function() {
-		assert.deepEqual(LCHCompile.LCHBoomarkletTokens().filter(function (e) {
-			return !LCHCompile.LCHBoomarkletTemplate.toString().match(e);
-		}), []);
+	it('throws error if not array', function() {
+		assert.throws(function() {
+			LCHCompile.LCHBoomarkletReplacementHashFor(null);
+		}, /LCHErrorInvalidInput/);
+	});
+
+	it('returns array', function() {
+		assert.deepEqual(LCHCompile.LCHBoomarkletReplacementHashFor([]), {
+			'__LCHTokenLibraryD3__': d3SelectionPackage.toString(),
+			'__LCHTokenLCHLogicFilter__': LCHCompile.LCHLogicFilter.toString(),
+			'__LCHTokenMemberObjects__': LCHCompile._LCHBoomarkletReplacementForMemberObjects([]),
+		});
 	});
 
 });
@@ -166,7 +172,7 @@ describe('_LCHBoomarkletReplacementForMemberObjects', function test_LCHBoomarkle
 
 	it('throws error if not array', function() {
 		assert.throws(function() {
-			LCHCompile._LCHUnescapedBookmarkletForReplacementHash(null);
+			LCHCompile.LCHBookmarkletUnescapedStringForReplacementHash(null);
 		}, /LCHErrorInvalidInput/);
 	});
 
@@ -180,36 +186,18 @@ describe('_LCHBoomarkletReplacementForMemberObjects', function test_LCHBoomarkle
 
 });
 
-describe('_LCHUnescapedBookmarkletForReplacementHash', function test_LCHUnescapedBookmarkletForReplacementHash() {
+describe('LCHBookmarkletUnescapedStringForReplacementHash', function testLCHBookmarkletUnescapedStringForReplacementHash() {
 
 	it('throws error if not object', function() {
 		assert.throws(function() {
-			LCHCompile._LCHUnescapedBookmarkletForReplacementHash(null);
+			LCHCompile.LCHBookmarkletUnescapedStringForReplacementHash(null);
 		}, /LCHErrorInvalidInput/);
 	});
 
 	it('replaces tokens', function() {
-		assert.deepEqual(LCHCompile._LCHUnescapedBookmarkletForReplacementHash({
+		assert.deepEqual(LCHCompile.LCHBookmarkletUnescapedStringForReplacementHash({
 			LCHToken: 'alfa',
 		}), LCHCompile.LCHBoomarkletTemplate.toString().replace('LCHToken', 'alfa'));
-	});
-
-});
-
-describe('LCHUnescapedBookmarkletFor', function testLCHUnescapedBookmarkletFor() {
-
-	it('throws error if not array', function() {
-		assert.throws(function() {
-			LCHCompile.LCHUnescapedBookmarkletFor(null);
-		}, /LCHErrorInvalidInput/);
-	});
-
-	it('returns string', function() {
-		assert.strictEqual(LCHCompile.LCHUnescapedBookmarkletFor([]), LCHCompile._LCHUnescapedBookmarkletForReplacementHash({
-			'__LCHTokenLibraryD3__': d3SelectionPackage.toString(),
-			'__LCHTokenLCHLogicFilter__': LCHCompile.LCHLogicFilter.toString(),
-			'__LCHTokenMemberObjects__': LCHCompile._LCHBoomarkletReplacementForMemberObjects([]),
-		}));
 	});
 
 });
