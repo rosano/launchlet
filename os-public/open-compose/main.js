@@ -53,9 +53,6 @@
 	//_ LCHBoomarkletTemplate
 
 	exports.LCHBoomarkletTemplate = function () {
-		let LCHLaunchletPropertyListSelectedItemIndex = 0;
-		let LCHLaunchletPropertyShortcutListener;
-
 		const api = {
 			functionObjects: function () {
 				return [];
@@ -66,17 +63,25 @@
 				});
 			},
 			fn: function (inputData) {
-				// ! string
+				if (typeof inputData !== 'string') {
+					throw new Error('LCHBookmarkletErrorIdentifierNotString');
+				}
 
-				// ! blank
+				if (inputData === '') {
+					throw new Error('LCHBookmarkletErrorIdentifierBlank');
+				}
 
-				// ! id untrimmed whitespace
+				if (inputData.trim() !== inputData) {
+					throw new Error('LCHBookmarkletErrorIdentifierContainsUntrimmedWhitespace');
+				}
 
 				let functionObject = api.functionObjects().filter(function (e) {
 					return e.id === inputData;
 				}).shift();
 
-				// ! non existant
+				if (!functionObject) {
+					throw new Error('LCHBookmarkletErrorIdentifierNotDefined');
+				}
 
 				return functionObject.fn.bind({
 					api: api,
