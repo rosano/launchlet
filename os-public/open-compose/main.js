@@ -75,7 +75,7 @@
 			functionObjects: function () {
 				return [
 
-				].concat(_LCHBoomarkletTemplateReplaceToken);
+				].concat(__LCHTokenMemberObjects__);
 			},
 			actionObjects: function () {
 				return api.functionObjects().filter(function (e) {
@@ -122,7 +122,7 @@
 			throw new Error('LCHErrorInvalidInput');
 		}
 
-		return exports.LCHBoomarkletTemplate.toString().replace('_LCHBoomarkletTemplateReplaceToken', JSON.stringify(inputData.map(function (memberObject) {
+		return exports.LCHBoomarkletTemplate.toString().replace('__LCHTokenMemberObjects__', JSON.stringify(inputData.map(function (memberObject) {
 			return Object.keys(memberObject).reduce(function (coll, e) {
 				if (e === 'fnclosure') {
 					return Object.assign(coll, {
