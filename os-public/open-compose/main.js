@@ -448,6 +448,16 @@
 		}, exports.LCHBoomarkletTemplate.toString());
 	};
 
+	//_ LCHBookmarkletBinaryFor
+
+	exports.LCHBookmarkletBinaryFor = function (inputData) {
+		if (typeof inputData !== 'string') {
+			throw new Error('LCHErrorInvalidInput');
+		}
+
+		return `javascript:(${encodeURIComponent(inputData)})()`;
+	};
+
 	Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
