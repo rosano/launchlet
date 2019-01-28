@@ -230,6 +230,9 @@
 
 		d3.select('#LCHComposeBinary')
 			.property('value', LCHCompile.LCHBookmarkletBinaryFor(d3.select('#LCHComposeComposedSample').property('value')));
+
+		d3.select('#LCHComposeBuildLink')
+			.property('href', d3.select('#LCHComposeBinary').property('value'))
 	};
 
 	//# SETUP
