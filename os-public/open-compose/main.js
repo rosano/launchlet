@@ -30,6 +30,22 @@
 		return Object.keys(errorsHash).length ? errorsHash : null;
 	};
 
+	//_ LCHWrappedMemberObjectFor
+
+	exports.LCHWrappedMemberObjectFor = function (inputData) {
+		if (exports.LCHModelErrorsForUnwrappedMemberObject(inputData)) {
+			throw new Error('LCHErrorInvalidInput');
+		}
+
+		let wrappedMemberObject = Object.assign({
+			fnclosure: `function () { ${inputData.fnbody} }`,
+		}, inputData);
+
+		delete wrappedMemberObject.fnbody;
+
+		return wrappedMemberObject;
+	};
+
 	Object.defineProperty(exports, '__esModule', { value: true });
 
 })));

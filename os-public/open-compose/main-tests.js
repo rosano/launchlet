@@ -48,3 +48,20 @@ describe('LCHModelErrorsForUnwrappedMemberObject', function testLCHModelErrorsFo
 	});
 
 });
+
+describe('LCHWrappedMemberObjectFor', function testLCHWrappedMemberObjectFor() {
+
+	it('throws error if not UnwrappedMemberObject', function() {
+		assert.throws(function() {
+			LCHCompile.LCHWrappedMemberObjectFor({});
+		}, /LCHErrorInvalidInput/);
+	});
+
+	it('returns WrappedMemberObject', function() {
+		assert.deepEqual(LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMember()), {
+			id: kTesting.kTestingValidMember().id,
+			fnclosure: 'function () { return; }',
+		});
+	});
+
+});
