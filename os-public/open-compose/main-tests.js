@@ -1,5 +1,7 @@
 const assert = require('assert');
 
+const d3SelectionPackage = require('d3-selection');
+
 const LCHCompile = require('./main.js');
 
 const kTesting = {
@@ -190,6 +192,24 @@ describe('_LCHUnescapedBookmarkletForReplacementHash', function test_LCHUnescape
 		assert.deepEqual(LCHCompile._LCHUnescapedBookmarkletForReplacementHash({
 			LCHToken: 'alfa',
 		}), LCHCompile.LCHBoomarkletTemplate.toString().replace('LCHToken', 'alfa'));
+	});
+
+});
+
+describe('LCHUnescapedBookmarkletFor', function testLCHUnescapedBookmarkletFor() {
+
+	it('throws error if not array', function() {
+		assert.throws(function() {
+			LCHCompile.LCHUnescapedBookmarkletFor(null);
+		}, /LCHErrorInvalidInput/);
+	});
+
+	it('returns string', function() {
+		assert.strictEqual(LCHCompile.LCHUnescapedBookmarkletFor([]), LCHCompile._LCHUnescapedBookmarkletForReplacementHash({
+			'__LCHTokenLibraryD3__': d3SelectionPackage.toString(),
+			'__LCHTokenLCHLogicFilter__': LCHCompile.LCHLogicFilter.toString(),
+			'__LCHTokenMemberObjects__': LCHCompile._LCHBoomarkletReplacementForMemberObjects([]),
+		}));
 	});
 
 });

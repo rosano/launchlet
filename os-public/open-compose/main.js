@@ -4,6 +4,8 @@
 	(factory((global.LCHCompile = global.LCHCompile || {})));
 }(this, (function (exports) { 'use strict';
 
+	const d3SelectionPackage = require('d3-selection');
+
 	//_ LCHModelErrorsForUnwrappedMemberObject
 
 	exports.LCHModelErrorsForUnwrappedMemberObject = function (inputData) {
@@ -440,6 +442,20 @@
 		return Object.keys(inputData).reduce(function (coll, e) {
 			return coll.replace(e, inputData[e]);
 		}, exports.LCHBoomarkletTemplate.toString());
+	};
+
+	//_ LCHUnescapedBookmarkletFor
+
+	exports.LCHUnescapedBookmarkletFor = function (inputData) {
+		if (!Array.isArray(inputData)) {
+			throw new Error('LCHErrorInvalidInput');
+		}
+
+		return exports._LCHUnescapedBookmarkletForReplacementHash({
+			'__LCHTokenLibraryD3__': d3SelectionPackage.toString(),
+			'__LCHTokenLCHLogicFilter__': exports.LCHLogicFilter.toString(),
+			'__LCHTokenMemberObjects__': exports._LCHBoomarkletReplacementForMemberObjects(inputData),
+		});
 	};
 
 	Object.defineProperty(exports, '__esModule', { value: true });
