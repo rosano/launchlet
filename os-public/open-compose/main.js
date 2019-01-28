@@ -55,7 +55,9 @@
 	exports.LCHBoomarkletTemplate = function () {
 		const api = {
 			functionObjects: function () {
-				return [];
+				return [
+
+				].concat(_LCHBoomarkletTemplateReplaceToken);
 			},
 			actionObjects: function () {
 				return api.functionObjects().filter(function (e) {
@@ -102,7 +104,7 @@
 			throw new Error('LCHErrorInvalidInput');
 		}
 
-		return exports.LCHBoomarkletTemplate.toString().replace('[]', JSON.stringify(inputData.map(function (memberObject) {
+		return exports.LCHBoomarkletTemplate.toString().replace('_LCHBoomarkletTemplateReplaceToken', JSON.stringify(inputData.map(function (memberObject) {
 			return Object.keys(memberObject).reduce(function (coll, e) {
 				if (e === 'fnclosure') {
 					return Object.assign(coll, {
