@@ -30,6 +30,24 @@
 		return Object.keys(errorsHash).length ? errorsHash : null;
 	};
 
+	//_ LCHLogicFilter
+
+	exports.LCHLogicFilter = function (inputData) {
+		if (typeof inputData !== 'string') {
+			throw new Error('LCHErrorInvalidInput');
+		}
+
+		return function (e) {
+			return [].concat([e.name]).concat(e.labels).filter(function (e) {
+				if (!e) {
+					return false;
+				}
+
+				return e.match(new RegExp(inputData, 'i'));
+			}).length > 0;
+		};
+	};
+
 	//_ LCHWrappedMemberObjectFor
 
 	exports.LCHWrappedMemberObjectFor = function (inputData) {

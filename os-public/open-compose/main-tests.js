@@ -49,6 +49,78 @@ describe('LCHModelErrorsForUnwrappedMemberObject', function testLCHModelErrorsFo
 
 });
 
+describe('LCHLogicFilter', function testLCHLogicFilter() {
+
+	it('throws error if not string', function() {
+		assert.throws(function() {
+			LCHCompile.LCHLogicFilter(null);
+		}, /LCHErrorInvalidInput/);
+	});
+
+	it('returns function', function() {
+		assert.strictEqual(typeof LCHCompile.LCHLogicFilter('alfa'), 'function');
+	});
+
+	context('function', function () {
+
+		it('returns false if match id', function() {
+			assert.strictEqual(LCHCompile.LCHLogicFilter('alfa')({
+				id: 'alfa',
+			}), false);
+		});
+
+		it('returns false if match fn', function() {
+			assert.strictEqual(LCHCompile.LCHLogicFilter('alfa')({
+				fn: function () {
+					return 'alfa';
+				},
+			}), false);
+		});
+
+		it('returns false if no match name', function() {
+			assert.strictEqual(LCHCompile.LCHLogicFilter('alfa')({
+				name: 'bravo',
+			}), false);
+		});
+
+		it('returns false if no match labels', function() {
+			assert.strictEqual(LCHCompile.LCHLogicFilter('alfa')({
+				labels: [
+					'bravo',
+				],
+			}), false);
+		});
+
+		it('returns true if match name', function() {
+			assert.strictEqual(LCHCompile.LCHLogicFilter('alfa')({
+				name: 'alfa',
+			}), true);
+		});
+
+		it('returns true if match labels', function() {
+			assert.strictEqual(LCHCompile.LCHLogicFilter('alfa')({
+				labels: [
+					'alfa',
+				],
+			}), true);
+		});
+
+		it('returns true if match partial', function() {
+			assert.strictEqual(LCHCompile.LCHLogicFilter('alf')({
+				name: 'alfa',
+			}), true);
+		});
+
+		it('returns true if alternate case', function() {
+			assert.strictEqual(LCHCompile.LCHLogicFilter('ALF')({
+				name: 'alfa',
+			}), true);
+		});
+		
+	});
+
+});
+
 describe('LCHWrappedMemberObjectFor', function testLCHWrappedMemberObjectFor() {
 
 	it('throws error if not UnwrappedMemberObject', function() {
