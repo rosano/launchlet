@@ -4,7 +4,7 @@
 	(factory((global.LCHCompile = global.LCHCompile || {})));
 }(this, (function (exports) { 'use strict';
 
-	const d3SelectionPackage = require('d3-selection');
+	const d3SelectionPackage = typeof require === 'undefined' ? window.d3 : require('d3-selection');
 
 	//_ LCHModelErrorsForUnwrappedMemberObject
 
