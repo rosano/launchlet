@@ -218,15 +218,18 @@
 
 	moi.reactModelChanged = function () {
 		console.trace();
-		
+
 		d3.select('#LCHComposeComposedSample')
-			.text(LCHCompile.LCHBookmarkletTextForReplacementHash(LCHCompile.LCHBoomarkletReplacementHashFor(moi.propertiesCustomMemberObjects().map(function (e) {
+			.property('value', LCHCompile.LCHBookmarkletTextForReplacementHash(LCHCompile.LCHBoomarkletReplacementHashFor(moi.propertiesCustomMemberObjects().map(function (e) {
 				let sanitized = Object.assign({}, e);
 
 				delete sanitized.LCHComposeEditor;
 
 				return sanitized;
 			}))));
+
+		d3.select('#LCHComposeBinary')
+			.property('value', LCHCompile.LCHBookmarkletBinaryFor(d3.select('#LCHComposeComposedSample').property('value')));
 	};
 
 	//# SETUP
