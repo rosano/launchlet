@@ -73,6 +73,9 @@
 	//_ LCHBoomarkletTemplate
 
 	exports.LCHBoomarkletTemplate = function () {
+		let LCHLaunchletPropertyListSelectedItemIndex = 0;
+		let LCHLaunchletPropertyShortcutListener;
+		
 		const api = {
 			functionObjects: function () {
 				return [
