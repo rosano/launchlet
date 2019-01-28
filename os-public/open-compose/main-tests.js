@@ -6,21 +6,21 @@ const kTesting = {
 	kTestingValidMember: function() {
 		return {
 			id: 'alfa',
-			fnbody: 'bravo',
+			fnbody: 'return;',
 		};
 	},
 };
 
-describe('LCHMemberModelErrorsFor', function testLCHMemberModelErrorsFor() {
+describe('LCHModelErrorsForUnwrappedMemberObject', function testLCHModelErrorsForUnwrappedMemberObject() {
 
 	it('throws error if not object', function() {
 		assert.throws(function() {
-			LCHCompile.LCHMemberModelErrorsFor(null);
+			LCHCompile.LCHModelErrorsForUnwrappedMemberObject(null);
 		}, /LCHErrorInvalidInput/);
 	});
 
 	it('returns error if id not string', function() {
-		assert.deepEqual(LCHCompile.LCHMemberModelErrorsFor(Object.assign(kTesting.kTestingValidMember(), {
+		assert.deepEqual(LCHCompile.LCHModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.kTestingValidMember(), {
 			id: null,
 		})), {
 			id: new Error('LCHErrorNotString'),
@@ -28,7 +28,7 @@ describe('LCHMemberModelErrorsFor', function testLCHMemberModelErrorsFor() {
 	});
 
 	it('returns error if fnbody not string', function() {
-		assert.deepEqual(LCHCompile.LCHMemberModelErrorsFor(Object.assign(kTesting.kTestingValidMember(), {
+		assert.deepEqual(LCHCompile.LCHModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.kTestingValidMember(), {
 			fnbody: null,
 		})), {
 			fnbody: new Error('LCHErrorNotString'),
@@ -36,11 +36,11 @@ describe('LCHMemberModelErrorsFor', function testLCHMemberModelErrorsFor() {
 	});
 
 	it('returns empty array', function() {
-		assert.strictEqual(LCHCompile.LCHMemberModelErrorsFor(kTesting.kTestingValidMember()), null);
+		assert.strictEqual(LCHCompile.LCHModelErrorsForUnwrappedMemberObject(kTesting.kTestingValidMember()), null);
 	});
 
 	it('returns error if name not string', function() {
-		assert.deepEqual(LCHCompile.LCHMemberModelErrorsFor(Object.assign(kTesting.kTestingValidMember(), {
+		assert.deepEqual(LCHCompile.LCHModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.kTestingValidMember(), {
 			name: null,
 		})), {
 			name: new Error('LCHErrorNotString'),

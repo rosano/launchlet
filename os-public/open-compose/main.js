@@ -4,9 +4,9 @@
 	(factory((global.LCHCompile = global.LCHCompile || {})));
 }(this, (function (exports) { 'use strict';
 
-	//_ LCHMemberModelErrorsFor
+	//_ LCHModelErrorsForUnwrappedMemberObject
 
-	exports.LCHMemberModelErrorsFor = function (inputData) {
+	exports.LCHModelErrorsForUnwrappedMemberObject = function (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('LCHErrorInvalidInput');
 		}
