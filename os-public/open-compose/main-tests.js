@@ -138,14 +138,24 @@ describe('LCHWrappedMemberObjectFor', function testLCHWrappedMemberObjectFor() {
 
 });
 
-describe('LCHBoomarkletTemplate', function testLCHBoomarkletTemplate() {
+describe('LCHBoomarkletTokens', function testLCHBoomarkletTokens() {
 
-	it('contains __LCHTokenLCHLogicFilter__', function() {
-		assert.strictEqual(!!LCHCompile.LCHBoomarkletTemplate.toString().match('__LCHTokenLCHLogicFilter__'), true);
+	it('returns array', function() {
+		assert.deepEqual(LCHCompile.LCHBoomarkletTokens(), [
+			'__LCHTokenLibraryD3__',
+			'__LCHTokenLCHLogicFilter__',
+			'__LCHTokenMemberObjects__',
+			]);
 	});
 
-	it('contains __LCHTokenMemberObjects__', function() {
-		assert.strictEqual(!!LCHCompile.LCHBoomarkletTemplate.toString().match('__LCHTokenMemberObjects__'), true);
+});
+
+describe('LCHBoomarkletTemplate', function testLCHBoomarkletTemplate() {
+
+	it('contains LCHBoomarkletTokens', function() {
+		assert.deepEqual(LCHCompile.LCHBoomarkletTokens().filter(function (e) {
+			return !LCHCompile.LCHBoomarkletTemplate.toString().match(e);
+		}), []);
 	});
 
 });

@@ -68,18 +68,29 @@
 		}, {});
 	};
 
+	//_ LCHBoomarkletTokens
+
+	exports.LCHBoomarkletTokens = function () {
+		return [
+			'__LCHTokenLibraryD3__',
+			'__LCHTokenLCHLogicFilter__',
+			'__LCHTokenMemberObjects__',
+		];
+	};
+
 	//_ LCHBoomarkletTemplate
 
 	exports.LCHBoomarkletTemplate = function () {
 		const api = {
 			functionObjects: function () {
 				return [
-	// D3
+
+	//# LIBRARIES
 
 	{
 		id: 'd3',
 		fn: function () {
-			return d3;
+			return __LCHTokenLibraryD3__;
 		},
 	},
 
