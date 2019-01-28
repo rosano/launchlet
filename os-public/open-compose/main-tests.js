@@ -140,6 +140,10 @@ describe('LCHWrappedMemberObjectFor', function testLCHWrappedMemberObjectFor() {
 
 describe('LCHBoomarkletTemplate', function testLCHBoomarkletTemplate() {
 
+	it('contains __LCHTokenLCHLogicFilter__', function() {
+		assert.strictEqual(!!LCHCompile.LCHBoomarkletTemplate.toString().match('__LCHTokenLCHLogicFilter__'), true);
+	});
+
 	it('contains __LCHTokenMemberObjects__', function() {
 		assert.strictEqual(!!LCHCompile.LCHBoomarkletTemplate.toString().match('__LCHTokenMemberObjects__'), true);
 	});
@@ -148,18 +152,26 @@ describe('LCHBoomarkletTemplate', function testLCHBoomarkletTemplate() {
 
 describe('LCHUnescapedBookmarkletForWrappedMemberObjects', function testLCHUnescapedBookmarkletForWrappedMemberObjects() {
 
-	it('throws error if not array', function() {
+	it('throws error if not object', function() {
 		assert.throws(function() {
-			LCHCompile.LCHUnescapedBookmarkletForWrappedMemberObjects(kTesting.kTestingValidMember());
+			LCHCompile.LCHUnescapedBookmarkletForWrappedMemberObjects(null);
 		}, /LCHErrorInvalidInput/);
 	});
 
-	it('returns string', function() {
-		assert.deepEqual(LCHCompile.LCHUnescapedBookmarkletForWrappedMemberObjects([LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMember())]), LCHCompile.LCHBoomarkletTemplate.toString().replace('__LCHTokenMemberObjects__', JSON.stringify([LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMember())]).replace('"fnclosure"', '"fn"').replace('"function () { return; }"', 'function () { return; }')));
+	it('replaces nothing without replacementHash', function() {
+		assert.deepEqual(LCHCompile.LCHUnescapedBookmarkletForWrappedMemberObjects({}), LCHCompile.LCHBoomarkletTemplate.toString());
 	});
 
-	it('replaces all tokens', function() {
-		assert.deepEqual(LCHCompile.LCHUnescapedBookmarkletForWrappedMemberObjects([LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMember())]).match('__LCHToken'), null);
+	it('replaces __LCHTokenMemberObjects__ with memberObjects', function() {
+		assert.deepEqual(LCHCompile.LCHUnescapedBookmarkletForWrappedMemberObjects({
+			__LCHTokenMemberObjects__: [LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMember())],
+		}), LCHCompile.LCHBoomarkletTemplate.toString().replace('__LCHTokenMemberObjects__', JSON.stringify([LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMember())]).replace('"fnclosure"', '"fn"').replace('"function () { return; }"', 'function () { return; }')));
+	});
+
+	it('replaces __LCHTokenLCHLogicFilter__ with LCHLogicFilter', function() {
+		assert.deepEqual(LCHCompile.LCHUnescapedBookmarkletForWrappedMemberObjects({
+			__LCHTokenLCHLogicFilter__: LCHCompile.LCHLogicFilter.toString(),
+		}), LCHCompile.LCHBoomarkletTemplate.toString().replace('__LCHTokenLCHLogicFilter__', LCHCompile.LCHLogicFilter.toString()));
 	});
 
 });

@@ -87,7 +87,7 @@
 
 	{
 		id: 'LCHLogicFilter',
-		fn: exports.LCHLogicFilter,
+		fn: __LCHTokenLCHLogicFilter__,
 	},
 
 	//# PROPERTIES
@@ -404,23 +404,29 @@
 	//_ LCHUnescapedBookmarkletForWrappedMemberObjects
 
 	exports.LCHUnescapedBookmarkletForWrappedMemberObjects = function (inputData) {
-		if (!Array.isArray(inputData)) {
+		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('LCHErrorInvalidInput');
 		}
 
-		return exports.LCHBoomarkletTemplate.toString().replace('__LCHTokenMemberObjects__', JSON.stringify(inputData.map(function (memberObject) {
-			return Object.keys(memberObject).reduce(function (coll, e) {
-				if (e === 'fnclosure') {
-					return Object.assign(coll, {
-						fn: `__LCHClosureOpen__${ memberObject.fnclosure }__LCHClosureClose__`,
-					});
-				}
+		return Object.keys(inputData).reduce(function (coll, e) {
+			if (e === '__LCHTokenMemberObjects__') {
+				return coll.replace('__LCHTokenMemberObjects__', JSON.stringify(inputData[e].map(function (memberObject) {
+					return Object.keys(memberObject).reduce(function (coll, e) {
+						if (e === 'fnclosure') {
+							return Object.assign(coll, {
+								fn: `__LCHClosureOpen__${ memberObject.fnclosure }__LCHClosureClose__`,
+							});
+						}
 
-				coll[e] = memberObject[e];
+						coll[e] = memberObject[e];
 
-				return coll;
-			}, {});
-		})).replace(/("__LCHClosureOpen__)|(__LCHClosureClose__")/g, ''));
+						return coll;
+					}, {});
+				}))).replace(/("__LCHClosureOpen__)|(__LCHClosureClose__")/g, '');
+			}
+
+			return coll.replace(e, inputData[e]);
+		}, exports.LCHBoomarkletTemplate.toString());
 	};
 
 	Object.defineProperty(exports, '__esModule', { value: true });
