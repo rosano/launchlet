@@ -172,7 +172,7 @@ describe('_LCHBoomarkletReplacementForMemberObjects', function test_LCHBoomarkle
 
 	it('throws error if not array', function() {
 		assert.throws(function() {
-			LCHCompile.LCHBookmarkletUnescapedStringForReplacementHash(null);
+			LCHCompile.LCHBookmarkletTextForReplacementHash(null);
 		}, /LCHErrorInvalidInput/);
 	});
 
@@ -186,16 +186,16 @@ describe('_LCHBoomarkletReplacementForMemberObjects', function test_LCHBoomarkle
 
 });
 
-describe('LCHBookmarkletUnescapedStringForReplacementHash', function testLCHBookmarkletUnescapedStringForReplacementHash() {
+describe('LCHBookmarkletTextForReplacementHash', function testLCHBookmarkletTextForReplacementHash() {
 
 	it('throws error if not object', function() {
 		assert.throws(function() {
-			LCHCompile.LCHBookmarkletUnescapedStringForReplacementHash(null);
+			LCHCompile.LCHBookmarkletTextForReplacementHash(null);
 		}, /LCHErrorInvalidInput/);
 	});
 
 	it('replaces tokens', function() {
-		assert.deepEqual(LCHCompile.LCHBookmarkletUnescapedStringForReplacementHash({
+		assert.deepEqual(LCHCompile.LCHBookmarkletTextForReplacementHash({
 			LCHToken: 'alfa',
 		}), LCHCompile.LCHBoomarkletTemplate.toString().replace('LCHToken', 'alfa'));
 	});
