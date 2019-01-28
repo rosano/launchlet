@@ -65,3 +65,17 @@ describe('LCHWrappedMemberObjectFor', function testLCHWrappedMemberObjectFor() {
 	});
 
 });
+
+describe('LCHUnescapedBookmarkletForWrappedMemberObjects', function testLCHUnescapedBookmarkletForWrappedMemberObjects() {
+
+	it('throws error if not array', function() {
+		assert.throws(function() {
+			LCHCompile.LCHUnescapedBookmarkletForWrappedMemberObjects(kTesting.kTestingValidMember());
+		}, /LCHErrorInvalidInput/);
+	});
+
+	it('returns string', function() {
+		assert.deepEqual(LCHCompile.LCHUnescapedBookmarkletForWrappedMemberObjects([LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMember())]), LCHCompile.LCHBoomarkletTemplate.toString().replace('[]', JSON.stringify([LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMember())]).replace('"fnclosure"', '"fn"').replace('"function () { return; }"', 'function () { return; }')));
+	});
+
+});

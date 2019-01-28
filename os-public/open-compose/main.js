@@ -37,13 +37,79 @@
 			throw new Error('LCHErrorInvalidInput');
 		}
 
-		let wrappedMemberObject = Object.assign({
-			fnclosure: `function () { ${inputData.fnbody} }`,
-		}, inputData);
+		return Object.keys(inputData).reduce(function (coll, e) {
+			if (e === 'fnbody') {
+				return Object.assign(coll, {
+					fnclosure: `function () { ${inputData.fnbody} }`,
+				});
+			}
 
-		delete wrappedMemberObject.fnbody;
+			coll[e] = inputData[e];
 
-		return wrappedMemberObject;
+			return coll;
+		}, {});
+	};
+
+	//_ LCHBoomarkletTemplate
+
+	exports.LCHBoomarkletTemplate = function () {
+		let LCHLaunchletPropertyListSelectedItemIndex = 0;
+		let LCHLaunchletPropertyShortcutListener;
+
+		const api = {
+			functionObjects: function () {
+				return [];
+			},
+			actionObjects: function () {
+				return api.functionObjects().filter(function (e) {
+					return !!e.name;
+				});
+			},
+			fn: function (inputData) {
+				// ! string
+
+				// ! blank
+
+				// ! id untrimmed whitespace
+
+				let functionObject = api.functionObjects().filter(function (e) {
+					return e.id === inputData;
+				}).shift();
+
+				// ! non existant
+
+				return functionObject.fn.bind({
+					api: api,
+				});
+			},
+			lib: function (inputData) {
+				return api.fn(inputData)();
+			},
+		};
+
+		api.fn('LCHLifecycleInitialize')();
+	};
+
+	//_ LCHUnescapedBookmarkletForWrappedMemberObjects
+
+	exports.LCHUnescapedBookmarkletForWrappedMemberObjects = function (inputData) {
+		if (!Array.isArray(inputData)) {
+			throw new Error('LCHErrorInvalidInput');
+		}
+
+		return exports.LCHBoomarkletTemplate.toString().replace('[]', JSON.stringify(inputData.map(function (memberObject) {
+			return Object.keys(memberObject).reduce(function (coll, e) {
+				if (e === 'fnclosure') {
+					return Object.assign(coll, {
+						fn: `__LCHClosureOpen__${ memberObject.fnclosure }__LCHClosureClose__`,
+					});
+				}
+
+				coll[e] = memberObject[e];
+
+				return coll;
+			}, {});
+		})).replace(/("__LCHClosureOpen__)|(__LCHClosureClose__")/g, ''));
 	};
 
 	Object.defineProperty(exports, '__esModule', { value: true });
