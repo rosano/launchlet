@@ -17,7 +17,7 @@
 					return false;
 				}
 
-				return e.match(inputData);
+				return e.match(new RegExp(inputData, 'i'));
 			}).length > 0;
 		};
 	};

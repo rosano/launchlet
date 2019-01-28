@@ -63,6 +63,12 @@ context('LCHComposeLogicFilter', function() {
 				name: 'alfa',
 			}), true);
 		});
+
+		it('returns true if alternate case', function() {
+			assert.strictEqual(LCHComposeLogic.LCHComposeLogicFilter('ALF')({
+				name: 'alfa',
+			}), true);
+		});
 		
 	});
 
