@@ -20,6 +20,7 @@
 		LCHComposeBehaviourCustomMemberObjects = inputData;
 
 		moi.reactMemberObjects(LCHComposeBehaviourCustomMemberObjects);
+		moi.reactModelChanged();
 	};
 
 	//_ propertiesIdentifiersVisible
@@ -211,6 +212,21 @@
 			.classed('LCHComposeListItemCollapsed', function (obj) {
 				return obj.LCHComposeCollapsed;
 			});
+	};
+
+	//_ reactModelChanged
+
+	moi.reactModelChanged = function () {
+		console.trace();
+		
+		d3.select('#LCHComposeComposedSample')
+			.text(LCHCompile.LCHBookmarkletTextForReplacementHash(LCHCompile.LCHBoomarkletReplacementHashFor(moi.propertiesCustomMemberObjects().map(function (e) {
+				let sanitized = Object.assign({}, e);
+
+				delete sanitized.LCHComposeEditor;
+
+				return sanitized;
+			}))));
 	};
 
 	//# SETUP
