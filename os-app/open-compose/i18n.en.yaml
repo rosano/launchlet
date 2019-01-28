@@ -1,9 +1,14 @@
 LCHComposeTitle: Launchlet
 LCHComposeDescription: A bookmarklet to launch other bookmarklets
+LCHComposeToolbarIdentifierVisibilityButtonText: Show Identifiers
+LCHComposeToolbarAddButtonText: Add
 LCHComposeListItemToolbarCollapseButtonText: Collapse
 LCHComposeListItemToolbarRevealButtonText: Reveal
 LCHComposeListItemToolbarDeleteButtonText: Delete
 LCHComposeListItemDeletePromptText: Are you sure?
 LCHComposeListItemInputIDPlaceholder: Identifier (e.g. XYZGreet)
 LCHComposeListItemInputNamePlaceholder: Name (e.g. Say Hello)
-LCHComposeAddButtonText: Add
+LCHComposeListItemInputFunctionBodyPlaceholder: Function Body (e.g. window.prompt('Hello');)
+LCHComposeSampleMemberID: XYZGreet
+LCHComposeSampleMemberName: Say Hello
+LCHComposeSampleMemberFNBody: window.prompt('Hello');

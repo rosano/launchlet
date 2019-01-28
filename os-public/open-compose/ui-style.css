@@ -2,9 +2,19 @@ body {
 	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
 }
 
+#LCHComposeList .LCHComposeListItemInputID {
+	display: none;
+}
+
+.LCHComposeListIdentifiersVisible .LCHComposeListItemInputID {
+	display: inline-block !important;
+}
+
 .LCHComposeListItem {
 	padding: 10px;
 	width: 400px;
+
+	margin: 5px 0;
 
 	background: #f3f3f3;
 
@@ -36,25 +46,33 @@ body {
 	display: none;
 }
 
-.LCHComposeListItemContent {
-	/* LCHComposeListItemContentlexboxParent */
+.LCHComposeListItemForm {
+	/* LCHComposeListItemFormlexboxParent */
 	display: flex;
 	flex-direction: column;
 }
 
-.LCHComposeListItemContent .CodeMirror {
+.LCHComposeListItemForm .LCHComposeListItemInput {
+	margin: 5px 0;
+}
+
+.LCHComposeListItemForm .CodeMirror {
 	margin: 10px 0;
 
 	/* CodeMirrorAdjustHeightToContent */
 	height: auto;
 }
 
-.LCHComposeListItemContent .CodeMirror-scroll {
+.LCHComposeListItemForm .CodeMirror-scroll {
 	/* CodeMirrorAdjustHeightToContent */
 	max-height: 350px;
 }
 
-.LCHComposeListItemContent hr {
+.LCHComposeListItemForm .CodeMirror-empty {
+	color: #999999;
+}
+
+.LCHComposeListItemForm hr {
 	width: 100%;
 	height: 1px;
 	border: none;
@@ -62,7 +80,7 @@ body {
 	background: #e6e6e6;
 }
 
-.LCHComposeListItemCollapsed .LCHComposeListItemToolbarCollapseButton, .LCHComposeListItemCollapsed .LCHComposeListItemContent {
+.LCHComposeListItemCollapsed .LCHComposeListItemToolbarCollapseButton, .LCHComposeListItemCollapsed .LCHComposeListItemForm {
 	display: none;
 }
 

@@ -9,6 +9,7 @@ locals.OLSKPageAssets = [
 	'/shared-assets/external/codemirror/lib/codemirror.css',
 	'/shared-assets/external/codemirror/lib/codemirror.js',
 	'/shared-assets/external/codemirror/mode/javascript/javascript.js',
+	'/shared-assets/external/codemirror/addon/display/placeholder.js',
 	'ui-style.css',
 	'ui-behaviour.js',
 	'ui-logic.js',
@@ -24,11 +25,11 @@ locals.OLSKPageAssets = [
 </header>
 
 <div id="LCHCompose">
+	<div id="LCHComposeToolbar">
+		<button id="LCHComposeToolbarIdentifierVisibilityButton" onclick="LCHComposeBehaviour.interfaceIdentifierVisibilityButtonDidClick()"><%= OLSKLocalized('LCHComposeToolbarIdentifierVisibilityButtonText') %></button>
+		<button id="LCHComposeToolbarAddButton" onclick="LCHComposeBehaviour.interfaceAddButtonDidClick()" accesskey="n"><%= OLSKLocalized('LCHComposeToolbarAddButtonText') %></button>
+	</div>
 	<div id="LCHComposeList"></div>
-
-	<p>
-		<button id="LCHComposeAddButton" onclick="LCHComposeBehaviour.interfaceAddButtonDidClick()"><%= OLSKLocalized('LCHComposeAddButtonText') %></button>
-	</p>
 
 	<p>
 		<textarea id="LCHComposeComposedSample"></textarea>

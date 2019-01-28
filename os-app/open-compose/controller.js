@@ -8,12 +8,16 @@ exports.OLSKControllerRoutes = function() {
 			OLSKRouteFunction: function(req, res, next) {
 				return res.render(req.OLSKLive.OLSKLivePathJoin(__dirname, 'view'), {
 					OLSKPagePublicLocalizedStringKeys: [
+						'LCHComposeSampleMemberID',
+						'LCHComposeSampleMemberName',
+						'LCHComposeSampleMemberFNBody',
 						'LCHComposeListItemToolbarCollapseButtonText',
 						'LCHComposeListItemToolbarRevealButtonText',
 						'LCHComposeListItemToolbarDeleteButtonText',
 						'LCHComposeListItemDeletePromptText',
 						'LCHComposeListItemInputIDPlaceholder',
 						'LCHComposeListItemInputNamePlaceholder',
+						'LCHComposeListItemInputFunctionBodyPlaceholder',
 					],
 				});
 			},

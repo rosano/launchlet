@@ -22,20 +22,39 @@
 		moi.reactMemberObjects(LCHComposeBehaviourCustomMemberObjects);
 	};
 
+	//_ propertiesIdentifiersVisible
+
+	moi.propertiesIdentifiersVisible = function (inputData) {
+		if (typeof inputData === 'undefined') {
+			return d3.select('#LCHComposeList').classed('LCHComposeListIdentifiersVisible');
+		}
+
+		d3.select('#LCHComposeList')
+			.classed('LCHComposeListIdentifiersVisible', inputData);
+	};
+
 	//# INTERFACE
+
+	//_ interfaceIdentifierVisibilityButtonDidClick
+
+	moi.interfaceIdentifierVisibilityButtonDidClick = function () {
+		moi.propertiesIdentifiersVisible(!moi.propertiesIdentifiersVisible());
+	};
 
 	//_ interfaceAddButtonDidClick
 
 	moi.interfaceAddButtonDidClick = function () {
-		moi.actionNewMemberObject();
+		moi.actionMembersCreate();
 	};
 
 	//# ACTION
 
-	//_ actionNewMemberObject
+	//_ actionMembersCreate
 
-	moi.actionNewMemberObject = function () {
-		moi.propertiesCustomMemberObjects(moi.propertiesCustomMemberObjects().concat({}));
+	moi.actionMembersCreate = function () {
+		moi.propertiesCustomMemberObjects(moi.propertiesCustomMemberObjects().concat({
+			id: `XYZ${Date.now()}`,
+		}));
 	};
 
 	//_ actionMembersCollapse
@@ -96,21 +115,30 @@
 			.text(OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText'));
 
 		let contentElement = parentElement.append('div')
-			.attr('class', 'LCHComposeListItemContent');
+			.attr('class', 'LCHComposeListItemForm');
 
 		contentElement.append('input')
-			.attr('class', 'LCHComposeListItemInputID')
+			.attr('class', 'LCHComposeListItemInput LCHComposeListItemInputID')
+			.attr('placeholder', OLSKLocalized('LCHComposeListItemInputIDPlaceholder'))
+			.attr('autofocus', moi.propertiesIdentifiersVisible() ? '' : undefined)
 			.on('input', function (obj) {
 				obj.id = this.value;
 			});
 
+		contentElement.append('input')
+			.attr('class', 'LCHComposeListItemInput LCHComposeListItemInputName')
+			.attr('autofocus', !moi.propertiesIdentifiersVisible() ? '' : undefined)
+			.attr('placeholder', OLSKLocalized('LCHComposeListItemInputNamePlaceholder'));
+
 		contentElement.append('textarea')
-			.attr('class', 'LCHComposeListItemInputFunction')
+			.attr('class', 'LCHComposeListItemInputFunctionBody')
 			.each(function (obj) {
 				obj.LCHComposeEditor = CodeMirror.fromTextArea(this, {
 					mode: 'javascript',
 					lineNumbers: true,
 					lineWrapping: true,
+
+					placeholder: OLSKLocalized('LCHComposeListItemInputFunctionBodyPlaceholder'),
 					
 					extraKeys: {
 						// Esc: function () {
@@ -127,11 +155,6 @@
 					// moi.actionsConvertData(instance.getValue());
 				});
 			});
-
-		contentElement.append('hr');
-
-		contentElement.append('input')
-			.attr('class', 'LCHComposeListItemInputName');
 
 		parentElement = parentElement.merge(selection);
 
@@ -151,20 +174,18 @@
 			});
 
 		parentElement.select('.LCHComposeListItemInputID')
-			.attr('placeholder', OLSKLocalized('LCHComposeListItemInputIDPlaceholder'))
 			.property('value', function (obj) {
 				return obj.id;
 			});
 
-		parentElement.select('.LCHComposeListItemInputFunction')
-			.each(function (obj) {
-				obj.LCHComposeEditor.setValue((obj.fnbody || '').toString());
-			});
-
 		parentElement.select('.LCHComposeListItemInputName')
-			.attr('placeholder', OLSKLocalized('LCHComposeListItemInputNamePlaceholder'))
 			.property('value', function (obj) {
 				return obj.name;
+			});
+
+		parentElement.select('.LCHComposeListItemInputFunctionBody')
+			.each(function (obj) {
+				obj.LCHComposeEditor.setValue((obj.fnbody || '').toString());
 			});
 
 		parentElement.select('.LCHComposeListItemToolbarDeleteButton')
@@ -206,9 +227,9 @@
 	moi.setupListItems = function () {
 		moi.propertiesCustomMemberObjects([
 			{
-				id: 'XYZGreet',
-				fnbody: `window.prompt('Hello');`,
-				name: 'Greet',
+				id: OLSKLocalized('LCHComposeSampleMemberID'),
+				fnbody: OLSKLocalized('LCHComposeSampleMemberFNBody'),
+				name: OLSKLocalized('LCHComposeSampleMemberName'),
 			},
 		]);
 	};
