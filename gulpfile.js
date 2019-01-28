@@ -10,6 +10,7 @@ const NODE_MODULE_NAMES = [
 	'OLSKString',
 	'codemirror',
 	'dragula',
+	'd3-selection',
 ];
 
 const INTERNAL_PATHS = [];

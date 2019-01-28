@@ -23,6 +23,9 @@
     "// DRAG AND DROP": null,
     "dragula": "bevacqua/dragula",
 
+    "// BOOKMARKLET LIBRARIES": null,
+    "d3-selection": "latest",
+
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {
