@@ -160,28 +160,36 @@ describe('LCHBoomarkletTemplate', function testLCHBoomarkletTemplate() {
 
 });
 
-describe('LCHUnescapedBookmarkletForWrappedMemberObjects', function testLCHUnescapedBookmarkletForWrappedMemberObjects() {
+describe('_LCHBoomarkletReplacementForMemberObjects', function test_LCHBoomarkletReplacementForMemberObjects() {
 
-	it('throws error if not object', function() {
+	it('throws error if not array', function() {
 		assert.throws(function() {
-			LCHCompile.LCHUnescapedBookmarkletForWrappedMemberObjects(null);
+			LCHCompile._LCHUnescapedBookmarkletForReplacementHash(null);
 		}, /LCHErrorInvalidInput/);
 	});
 
-	it('replaces nothing without replacementHash', function() {
-		assert.deepEqual(LCHCompile.LCHUnescapedBookmarkletForWrappedMemberObjects({}), LCHCompile.LCHBoomarkletTemplate.toString());
+	it('returns empty if no objects', function() {
+		assert.deepEqual(LCHCompile._LCHBoomarkletReplacementForMemberObjects([]), '[]');
 	});
 
-	it('replaces __LCHTokenMemberObjects__ with memberObjects', function() {
-		assert.deepEqual(LCHCompile.LCHUnescapedBookmarkletForWrappedMemberObjects({
-			__LCHTokenMemberObjects__: [LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMember())],
-		}), LCHCompile.LCHBoomarkletTemplate.toString().replace('__LCHTokenMemberObjects__', JSON.stringify([LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMember())]).replace('"fnclosure"', '"fn"').replace('"function () { return; }"', 'function () { return; }')));
+	it('returns stringified if single', function() {
+		assert.deepEqual(LCHCompile._LCHBoomarkletReplacementForMemberObjects([LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMember())]), JSON.stringify([LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMember())]).replace('"fnclosure"', '"fn"').replace('"function () { return; }"', 'function () { return; }'));
 	});
 
-	it('replaces __LCHTokenLCHLogicFilter__ with LCHLogicFilter', function() {
-		assert.deepEqual(LCHCompile.LCHUnescapedBookmarkletForWrappedMemberObjects({
-			__LCHTokenLCHLogicFilter__: LCHCompile.LCHLogicFilter.toString(),
-		}), LCHCompile.LCHBoomarkletTemplate.toString().replace('__LCHTokenLCHLogicFilter__', LCHCompile.LCHLogicFilter.toString()));
+});
+
+describe('_LCHUnescapedBookmarkletForReplacementHash', function test_LCHUnescapedBookmarkletForReplacementHash() {
+
+	it('throws error if not object', function() {
+		assert.throws(function() {
+			LCHCompile._LCHUnescapedBookmarkletForReplacementHash(null);
+		}, /LCHErrorInvalidInput/);
+	});
+
+	it('replaces tokens', function() {
+		assert.deepEqual(LCHCompile._LCHUnescapedBookmarkletForReplacementHash({
+			LCHToken: 'alfa',
+		}), LCHCompile.LCHBoomarkletTemplate.toString().replace('LCHToken', 'alfa'));
 	});
 
 });

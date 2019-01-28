@@ -412,30 +412,32 @@
 		api.fn('LCHLifecycleInitialize')();
 	};
 
-	//_ LCHUnescapedBookmarkletForWrappedMemberObjects
+	//_ _LCHBoomarkletReplacementForMemberObjects
 
-	exports.LCHUnescapedBookmarkletForWrappedMemberObjects = function (inputData) {
+	exports._LCHBoomarkletReplacementForMemberObjects = function (inputData) {
+		return JSON.stringify(inputData.map(function (e) {
+			return Object.keys(e).reduce(function (coll, key) {
+				if (key === 'fnclosure') {
+					return Object.assign(coll, {
+						fn: `__LCHClosureOpen__${ e.fnclosure }__LCHClosureClose__`,
+					});
+				}
+
+				coll[key] = e[key];
+
+				return coll;
+			}, {});
+		})).replace(/("__LCHClosureOpen__)|(__LCHClosureClose__")/g, '');
+	};
+
+	//_ _LCHUnescapedBookmarkletForReplacementHash
+
+	exports._LCHUnescapedBookmarkletForReplacementHash = function (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('LCHErrorInvalidInput');
 		}
 
 		return Object.keys(inputData).reduce(function (coll, e) {
-			if (e === '__LCHTokenMemberObjects__') {
-				return coll.replace('__LCHTokenMemberObjects__', JSON.stringify(inputData[e].map(function (memberObject) {
-					return Object.keys(memberObject).reduce(function (coll, e) {
-						if (e === 'fnclosure') {
-							return Object.assign(coll, {
-								fn: `__LCHClosureOpen__${ memberObject.fnclosure }__LCHClosureClose__`,
-							});
-						}
-
-						coll[e] = memberObject[e];
-
-						return coll;
-					}, {});
-				}))).replace(/("__LCHClosureOpen__)|(__LCHClosureClose__")/g, '');
-			}
-
 			return coll.replace(e, inputData[e]);
 		}, exports.LCHBoomarkletTemplate.toString());
 	};
