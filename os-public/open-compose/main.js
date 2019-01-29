@@ -4,8 +4,6 @@
 	(factory((global.LCHCompile = global.LCHCompile || {})));
 }(this, (function (exports) { 'use strict';
 
-	const d3SelectionPackage = typeof require === 'undefined' ? window.d3 : require('d3-selection');
-
 	//_ LCHModelErrorsForUnwrappedMemberObject
 
 	exports.LCHModelErrorsForUnwrappedMemberObject = function (inputData) {
@@ -76,6 +74,8 @@
 		let LCHLaunchletPropertyListSelectedItemIndex = 0;
 		let LCHLaunchletPropertyShortcutListener;
 
+		__LCHTokenLibraryD3__
+
 		const api = {
 			functionObjects: function () {
 				return [
@@ -85,7 +85,7 @@
 	{
 		id: 'd3',
 		fn: function () {
-			return __LCHTokenLibraryD3__;
+			return d3;
 		},
 	},
 

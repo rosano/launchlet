@@ -226,22 +226,50 @@
 	//_ reactModelChanged
 
 	moi.reactModelChanged = function () {
-		console.trace();
+		let bookmarklet = LCHCompile.LCHBookmarkletTextForReplacementHash(LCHCompile.LCHBoomarkletReplacementHashFor(moi.propertiesCustomMemberObjects().filter(function (e) {
+			return !!e.fnbody;
+		}).map(function (e) {
+			let sanitized = Object.assign({}, e);
+
+			delete sanitized.LCHComposeEditor;
+
+			return LCHCompile.LCHWrappedMemberObjectFor(sanitized);
+		}), d3.select('#LCHComposeD3LibraryContents').text()));
 
 		d3.select('#LCHComposeComposedSample')
-			.property('value', LCHCompile.LCHBookmarkletTextForReplacementHash(LCHCompile.LCHBoomarkletReplacementHashFor(moi.propertiesCustomMemberObjects().map(function (e) {
-				let sanitized = Object.assign({}, e);
-
-				delete sanitized.LCHComposeEditor;
-
-				return sanitized;
-			}))));
+			.property('value', bookmarklet);
 
 		d3.select('#LCHComposeBinary')
-			.property('value', LCHCompile.LCHBookmarkletBinaryFor(d3.select('#LCHComposeComposedSample').property('value')));
+			.property('value', LCHCompile.LCHBookmarkletBinaryFor(bookmarklet));
 
 		d3.select('#LCHComposeBuildLink')
-			.property('href', d3.select('#LCHComposeBinary').property('value'))
+			.property('href', d3.select('#LCHComposeBinary').property('value'));
+
+		d3.select('#LCHComposeBuildScript script').remove();
+		d3.select('#LCHComposeBuildScript').append('script')
+			.html(`LCHComposeBuildScript = ${ bookmarklet }`);
+
+		return;
+
+		// let editor = CodeMirror.fromTextArea(d3.select('#LCHComposeComposedSample').node(), {
+		// 	mode: 'javascript',
+		// 	lineNumbers: true,
+		// 	lineWrapping: true,
+		// });
+
+		// editor.on('change', function (instance, changeObject) {
+		// 	d3.select('#LCHComposeBinary')
+		// 		.property('value', LCHCompile.LCHBookmarkletBinaryFor(instance.getValue()));
+
+		// 	d3.select('#LCHComposeBuildLink')
+		// 		.property('href', d3.select('#LCHComposeBinary').property('value'));
+
+		// 	d3.select('#LCHComposeBuildScript script').remove();
+		// 	d3.select('#LCHComposeBuildScript').append('script')
+		// 		.html(`LCHComposeBuildScript = ${ instance.getValue() }`);
+		// });
+
+		// editor.setValue(bookmarklet);
 	};
 
 	//# SETUP
