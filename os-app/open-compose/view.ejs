@@ -22,6 +22,11 @@ locals.OLSKPageAssets = [
 	<p><%= OLSKLocalized('LCHComposeTitle') %></p>
 </header>
 
+<script type="text/javascript">
+	window.d3x = d3;
+	delete window.d3;
+</script>
+
 <div id="LCHCompose">
 	<div id="LCHComposeToolbar">
 		<button id="LCHComposeToolbarIdentifierVisibilityButton" onclick="LCHComposeBehaviour.interfaceIdentifierVisibilityButtonDidClick()"><%= OLSKLocalized('LCHComposeToolbarIdentifierVisibilityButtonText') %></button>

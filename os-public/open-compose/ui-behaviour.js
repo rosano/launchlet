@@ -37,10 +37,10 @@
 
 	moi.propertiesIdentifiersVisible = function (inputData) {
 		if (typeof inputData === 'undefined') {
-			return d3.select('#LCHComposeList').classed('LCHComposeListIdentifiersVisible');
+			return d3x.select('#LCHComposeList').classed('LCHComposeListIdentifiersVisible');
 		}
 
-		d3.select('#LCHComposeList')
+		d3x.select('#LCHComposeList')
 			.classed('LCHComposeListIdentifiersVisible', inputData);
 	};
 
@@ -103,7 +103,7 @@
 	//_ reactMemberObjects
 
 	moi.reactMemberObjects = function (memberObjects) {
-		let selection = d3.select('#LCHComposeList').selectAll('.LCHComposeListItem').data(memberObjects);
+		let selection = d3x.select('#LCHComposeList').selectAll('.LCHComposeListItem').data(memberObjects);
 		
 		let parentElement = selection.enter().append('div')
 			.attr('class', 'LCHComposeListItem');
@@ -254,7 +254,7 @@
 
 			parentElement.select('.LCHComposeListItemToolbarDeleteButton')
 				.on('click', function (obj) {
-					// d3.selectAll('.LCHComposeListItem').filter(function (obj2) {
+					// d3x.selectAll('.LCHComposeListItem').filter(function (obj2) {
 					// 	return obj2 === obj;
 					// }).classed('LCHComposeListItemExit', true);
 					moi.actionMembersDelete(obj);
@@ -267,7 +267,7 @@
 	//_ reactMemberCollapsed
 
 	moi.reactMemberCollapsed = function (memberObject) {
-		d3.selectAll('.LCHComposeListItem')
+		d3x.selectAll('.LCHComposeListItem')
 			.classed('LCHComposeListItemCollapsed', function (obj) {
 				return obj.LCHComposeCollapsed;
 			});
@@ -287,42 +287,42 @@
 			LCHInputMemberObjects: sanitizedMemberObjects.filter(function (e) {
 				return !!e.fnbody;
 			}).map(LCHCompile.LCHWrappedMemberObjectFor),
-			LCHInputStyleContent: d3.select('#LCHComposeStyleContent').text(),
-			LCHInputLibraryD3Content: d3.select('#LCHComposeLibraryD3Content').text(),
+			LCHInputStyleContent: d3x.select('#LCHComposeStyleContent').text(),
+			LCHInputLibraryD3Content: d3x.select('#LCHComposeLibraryD3Content').text(),
 		}));
 
-		d3.select('#LCHComposeComposedSample')
+		d3x.select('#LCHComposeComposedSample')
 			.property('value', bookmarklet);
 
-		d3.select('#LCHComposeBinary')
+		d3x.select('#LCHComposeBinary')
 			.property('value', LCHCompile.LCHBookmarkletBinaryFor(bookmarklet));
 
-		d3.select('#LCHComposeBuildLink')
-			.property('href', d3.select('#LCHComposeBinary').property('value'));
+		d3x.select('#LCHComposeBuildLink')
+			.property('href', d3x.select('#LCHComposeBinary').property('value'));
 
-		d3.select('#LCHComposeBuildScript script').remove();
-		d3.select('#LCHComposeBuildScript').append('script')
+		d3x.select('#LCHComposeBuildScript script').remove();
+		d3x.select('#LCHComposeBuildScript').append('script')
 			.html(`LCHComposeBuildScript = ${ bookmarklet }`);
 
 		moi.propertiesLocalStorageCustomMemberObjects(sanitizedMemberObjects);
 
 		return;
 
-		// let editor = CodeMirror.fromTextArea(d3.select('#LCHComposeComposedSample').node(), {
+		// let editor = CodeMirror.fromTextArea(d3x.select('#LCHComposeComposedSample').node(), {
 		// 	mode: 'javascript',
 		// 	lineNumbers: true,
 		// 	lineWrapping: true,
 		// });
 
 		// editor.on('change', function (instance, changeObject) {
-		// 	d3.select('#LCHComposeBinary')
+		// 	d3x.select('#LCHComposeBinary')
 		// 		.property('value', LCHCompile.LCHBookmarkletBinaryFor(instance.getValue()));
 
-		// 	d3.select('#LCHComposeBuildLink')
-		// 		.property('href', d3.select('#LCHComposeBinary').property('value'));
+		// 	d3x.select('#LCHComposeBuildLink')
+		// 		.property('href', d3x.select('#LCHComposeBinary').property('value'));
 
-		// 	d3.select('#LCHComposeBuildScript script').remove();
-		// 	d3.select('#LCHComposeBuildScript').append('script')
+		// 	d3x.select('#LCHComposeBuildScript script').remove();
+		// 	d3x.select('#LCHComposeBuildScript').append('script')
 		// 		.html(`LCHComposeBuildScript = ${ instance.getValue() }`);
 		// });
 
