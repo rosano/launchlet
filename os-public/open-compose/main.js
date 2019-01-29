@@ -409,15 +409,15 @@
 
 	//_ LCHBoomarkletReplacementHashFor
 
-	exports.LCHBoomarkletReplacementHashFor = function (inputData) {
-		if (!Array.isArray(inputData)) {
+	exports.LCHBoomarkletReplacementHashFor = function (memberObjects, d3LibraryContents) {
+		if (!Array.isArray(memberObjects)) {
 			throw new Error('LCHErrorInvalidInput');
 		}
 
 		return {
-			'__LCHTokenLibraryD3__': exports._LCHBoomarkletReplacementForLibraryD3(d3SelectionPackage),
+			'__LCHTokenLibraryD3__': d3LibraryContents,
 			'__LCHTokenLCHLogicFilter__': exports.LCHLogicFilter.toString(),
-			'__LCHTokenMemberObjects__': exports._LCHBoomarkletReplacementForMemberObjects(inputData),
+			'__LCHTokenMemberObjects__': exports._LCHBoomarkletReplacementForMemberObjects(memberObjects),
 		};
 	};
 

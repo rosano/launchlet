@@ -1,5 +1,6 @@
 const assert = require('assert');
 
+const fsPackage = require('fs');
 const d3SelectionPackage = require('d3-selection');
 
 const LCHCompile = require('./main.js');
@@ -159,8 +160,9 @@ describe('LCHBoomarkletReplacementHashFor', function testLCHBoomarkletReplacemen
 	});
 
 	it('returns array', function() {
-		assert.deepEqual(LCHCompile.LCHBoomarkletReplacementHashFor([]), {
-			'__LCHTokenLibraryD3__': LCHCompile._LCHBoomarkletReplacementForLibraryD3(d3SelectionPackage),
+		let d3LibraryContents = fsPackage.readFileSync(`${ __dirname }/libraries/d3-selection/dist/d3-selection.min.js`, 'utf8');
+		assert.deepEqual(LCHCompile.LCHBoomarkletReplacementHashFor([], d3LibraryContents), {
+			'__LCHTokenLibraryD3__': d3LibraryContents,
 			'__LCHTokenLCHLogicFilter__': LCHCompile.LCHLogicFilter.toString(),
 			'__LCHTokenMemberObjects__': LCHCompile._LCHBoomarkletReplacementForMemberObjects([]),
 		});
