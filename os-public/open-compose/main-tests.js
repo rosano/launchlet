@@ -268,16 +268,16 @@ describe('_LCHTokenMemberObjectsReplacementFor', function test_LCHTokenMemberObj
 
 });
 
-describe('LCHBookmarkletTextForReplacementHash', function testLCHBookmarkletTextForReplacementHash() {
+describe('LCHBookmarkletTextForTokenHash', function testLCHBookmarkletTextForTokenHash() {
 
 	it('throws error if not object', function() {
 		assert.throws(function() {
-			LCHCompile.LCHBookmarkletTextForReplacementHash(null);
+			LCHCompile.LCHBookmarkletTextForTokenHash(null);
 		}, /LCHErrorInvalidInput/);
 	});
 
 	it('replaces tokens', function() {
-		assert.deepEqual(LCHCompile.LCHBookmarkletTextForReplacementHash({
+		assert.deepEqual(LCHCompile.LCHBookmarkletTextForTokenHash({
 			LCHToken: 'alfa',
 		}), LCHCompile.LCHBoomarkletTemplate.toString().replace('LCHToken', 'alfa'));
 	});

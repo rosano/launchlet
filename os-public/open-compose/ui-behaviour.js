@@ -283,7 +283,7 @@
 
 			return obj;
 		});
-		let bookmarklet = LCHCompile.LCHBookmarkletTextForReplacementHash(LCHCompile.LCHTokenHashFor({
+		let bookmarklet = LCHCompile.LCHBookmarkletTextForTokenHash(LCHCompile.LCHTokenHashFor({
 			LCHInputMemberObjects: sanitizedMemberObjects.filter(function (e) {
 				return !!e.fnbody;
 			}).map(LCHCompile.LCHWrappedMemberObjectFor),

@@ -486,9 +486,9 @@
 		})).replace(/("__LCHClosureOpen__)|(__LCHClosureClose__")/g, '');
 	};
 
-	//_ LCHBookmarkletTextForReplacementHash
+	//_ LCHBookmarkletTextForTokenHash
 
-	exports.LCHBookmarkletTextForReplacementHash = function (inputData) {
+	exports.LCHBookmarkletTextForTokenHash = function (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('LCHErrorInvalidInput');
 		}
