@@ -435,7 +435,7 @@
 			'__LCHTokenStyle__': inputData.LCHInputStyleContent,
 			'__LCHTokenLibraryD3__': inputData.LCHInputLibraryD3Content,
 			'__LCHTokenLCHLogicFilter__': exports.LCHLogicFilter.toString(),
-			'__LCHTokenMemberObjects__': exports._LCHBoomarkletReplacementForMemberObjects(inputData.LCHInputMemberObjects),
+			'__LCHTokenMemberObjects__': exports._LCHTokenMemberObjectsReplacementFor(inputData.LCHInputMemberObjects),
 		};
 	};
 
@@ -464,9 +464,9 @@
 		}, replacement).replace(/("__LCHClosureOpen__)|(__LCHClosureClose__")/g, '');
 	};
 
-	//_ _LCHBoomarkletReplacementForMemberObjects
+	//_ _LCHTokenMemberObjectsReplacementFor
 
-	exports._LCHBoomarkletReplacementForMemberObjects = function (inputData) {
+	exports._LCHTokenMemberObjectsReplacementFor = function (inputData) {
 		if (!Array.isArray(inputData)) {
 			throw new Error('LCHErrorInvalidInput');
 		}
