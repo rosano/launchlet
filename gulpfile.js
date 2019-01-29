@@ -50,4 +50,21 @@ gulpPackage.task('default', gulpPackage.series(function (completionHandler) {
 	}));
 
 	return completionHandler();
+}, function (completionHandler) {
+	gulpPackage.src([
+		'd3-selection',
+		].map(function(e) {
+		return [
+			pathPackage.join('node_modules', e, '**/*.js'),
+			pathPackage.join('!node_modules/OLSK*/*-tests.js'),
+			pathPackage.join('node_modules', e, '**/*.map'),
+			pathPackage.join('node_modules', e, '**/*.css'),
+		];
+	}).reduce(function(collection, e) {
+		return collection.concat(e);
+	}), []).pipe(gulpPackage.dest(function(vinylFile) {
+		return pathPackage.join('os-public/open-compose/libraries', vinylFile.path.replace(pathPackage.join(__dirname, 'node_modules'), '').split('/').slice(1).shift());
+	}));
+
+	return completionHandler();
 }));

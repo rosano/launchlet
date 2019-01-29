@@ -15,4 +15,6 @@ os-public/shared-assets/internal
 .env.staging
 .env.test
 
+# COMPOSE
+os-public/open-compose/libraries
 os-public/open-compose/sample-d3.js
