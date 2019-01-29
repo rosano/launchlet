@@ -424,6 +424,10 @@
 	//_ _LCHBoomarkletReplacementForMemberObjects
 
 	exports._LCHBoomarkletReplacementForMemberObjects = function (inputData) {
+		if (!Array.isArray(inputData)) {
+			throw new Error('LCHErrorInvalidInput');
+		}
+
 		return JSON.stringify(inputData.map(function (e) {
 			return Object.keys(e).reduce(function (coll, key) {
 				if (key === 'fnclosure') {
@@ -458,7 +462,7 @@
 			throw new Error('LCHErrorInvalidInput');
 		}
 
-		return `javascript:(${encodeURIComponent(inputData)})()`;
+		return `javascript:(${encodeURIComponent(inputData)})();`;
 	};
 
 	Object.defineProperty(exports, '__esModule', { value: true });

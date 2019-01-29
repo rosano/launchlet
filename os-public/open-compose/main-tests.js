@@ -172,7 +172,7 @@ describe('_LCHBoomarkletReplacementForMemberObjects', function test_LCHBoomarkle
 
 	it('throws error if not array', function() {
 		assert.throws(function() {
-			LCHCompile.LCHBookmarkletTextForReplacementHash(null);
+			LCHCompile._LCHBoomarkletReplacementForMemberObjects(null);
 		}, /LCHErrorInvalidInput/);
 	});
 
@@ -211,7 +211,7 @@ describe('LCHBookmarkletBinaryFor', function testLCHBookmarkletBinaryFor() {
 	});
 
 	it('returns bookmarklet binary', function() {
-		assert.deepEqual(LCHCompile.LCHBookmarkletBinaryFor('function() { return; }'), 'javascript:(function()%20%7B%20return%3B%20%7D)()');
+		assert.deepEqual(LCHCompile.LCHBookmarkletBinaryFor('function() { return; }'), 'javascript:(function()%20%7B%20return%3B%20%7D)();');
 	});
 
 });
