@@ -160,6 +160,8 @@
 					// 	return;
 					// }
 
+					obj.fnbody = obj.LCHComposeEditor.getValue();
+
 					moi.reactModelChanged();
 				});
 			});
