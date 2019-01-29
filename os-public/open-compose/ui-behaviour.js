@@ -226,15 +226,19 @@
 	//_ reactModelChanged
 
 	moi.reactModelChanged = function () {
-		let bookmarklet = LCHCompile.LCHBookmarkletTextForReplacementHash(LCHCompile.LCHBoomarkletReplacementHashFor(moi.propertiesCustomMemberObjects().filter(function (e) {
-			return !!e.fnbody;
-		}).map(function (e) {
-			let sanitized = Object.assign({}, e);
+		let bookmarklet = LCHCompile.LCHBookmarkletTextForReplacementHash(LCHCompile.LCHBoomarkletReplacementHashFor({
+			LCHInputMemberObjects: moi.propertiesCustomMemberObjects().filter(function (e) {
+				return !!e.fnbody;
+			}).map(function (e) {
+				let sanitized = Object.assign({}, e);
 
-			delete sanitized.LCHComposeEditor;
+				delete sanitized.LCHComposeEditor;
 
-			return LCHCompile.LCHWrappedMemberObjectFor(sanitized);
-		}), d3.select('#LCHComposeLibraryD3Content').text()));
+				return LCHCompile.LCHWrappedMemberObjectFor(sanitized);
+			}),
+			LCHInputStyleContent: d3.select('#LCHComposeStyleContent').text(),
+			LCHInputLibraryD3Content: d3.select('#LCHComposeLibraryD3Content').text(),
+		}));
 
 		d3.select('#LCHComposeComposedSample')
 			.property('value', bookmarklet);

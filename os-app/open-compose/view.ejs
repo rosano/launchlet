@@ -13,10 +13,6 @@ locals.OLSKPageAssets = [
 	'main.js',
 	'ui-style.css',
 	'ui-behaviour.js',
-	// 'ui-logic.js',
-	// 'sample-d3.js',
-	// 'sample.css',
-	// 'sample.js',
 ];
 %>
 
@@ -34,6 +30,7 @@ locals.OLSKPageAssets = [
 	<div id="LCHComposeList"></div>
 
 	<p>
+		<textarea id="LCHComposeStyleContent" style="display: none;"><%= LCHComposeStyleContent %></textarea>
 		<textarea id="LCHComposeLibraryD3Content" style="display: none;"><%= LCHComposeLibraryD3Content %></textarea>
 		<textarea id="LCHComposeComposedSample" onclick="this.select()"></textarea>
 		<script type="text/javascript">
