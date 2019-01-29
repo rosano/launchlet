@@ -8,6 +8,16 @@
 
 	//# PROPERTIES
 
+	//_ propertiesLocalStorageCustomMemberObjects
+
+	moi.propertiesLocalStorageCustomMemberObjects = function (inputData) {
+		if (typeof inputData === 'undefined') {
+			return JSON.parse(localStorage.getItem('lch_compose_behaviour_custom_member_objects'));
+		}
+
+		localStorage.setItem('lch_compose_behaviour_custom_member_objects', JSON.stringify(inputData));
+	};
+
 	//_ propertiesCustomMemberObjects
 
 	let LCHComposeBehaviourCustomMemberObjects;
@@ -226,15 +236,16 @@
 	//_ reactModelChanged
 
 	moi.reactModelChanged = function () {
+		let sanitizedMemberObjects = moi.propertiesCustomMemberObjects().map(function (e) {
+			let obj = Object.assign({}, e);
+
+			delete obj.LCHComposeEditor;
+
+			return obj;
+		});
 		let bookmarklet = LCHCompile.LCHBookmarkletTextForReplacementHash(LCHCompile.LCHBoomarkletReplacementHashFor({
-			LCHInputMemberObjects: moi.propertiesCustomMemberObjects().filter(function (e) {
+			LCHInputMemberObjects: sanitizedMemberObjects.filter(function (e) {
 				return !!e.fnbody;
-			}).map(function (e) {
-				let sanitized = Object.assign({}, e);
-
-				delete sanitized.LCHComposeEditor;
-
-				return LCHCompile.LCHWrappedMemberObjectFor(sanitized);
 			}),
 			LCHInputStyleContent: d3.select('#LCHComposeStyleContent').text(),
 			LCHInputLibraryD3Content: d3.select('#LCHComposeLibraryD3Content').text(),
@@ -252,6 +263,8 @@
 		d3.select('#LCHComposeBuildScript script').remove();
 		d3.select('#LCHComposeBuildScript').append('script')
 			.html(`LCHComposeBuildScript = ${ bookmarklet }`);
+
+		moi.propertiesLocalStorageCustomMemberObjects(sanitizedMemberObjects);
 
 		return;
 
@@ -288,7 +301,7 @@
 	//_ setupListItems
 
 	moi.setupListItems = function () {
-		moi.propertiesCustomMemberObjects([
+		moi.propertiesCustomMemberObjects(moi.propertiesLocalStorageCustomMemberObjects() || [
 			{
 				id: OLSKLocalized('LCHComposeSampleMemberID'),
 				fnbody: OLSKLocalized('LCHComposeSampleMemberFNBody'),
