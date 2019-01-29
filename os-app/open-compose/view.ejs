@@ -34,14 +34,14 @@ locals.OLSKPageAssets = [
 	<div id="LCHComposeList"></div>
 
 	<p>
-		<textarea id="LCHComposeComposedSample"></textarea>
+		<textarea id="LCHComposeComposedSample" onclick="this.select()"></textarea>
 		<script type="text/javascript">
 			// d3.select('#LCHComposeComposedSample').property('value', LCHComposeSample.composedSample.toString());
 		</script>
 	</p>
 
 	<p>
-		<textarea id="LCHComposeBinary"></textarea>
+		<textarea id="LCHComposeBinary" onclick="this.select()"></textarea>
 		<script type="text/javascript">
 			d3.select('#LCHComposeBinary').property('value', `javascript:(${encodeURIComponent(d3.select('#LCHComposeComposedSample').property('value'))})()`);
 		</script>
@@ -51,6 +51,9 @@ locals.OLSKPageAssets = [
 		<a id="LCHComposeBuildLink" href="javascript:LCHComposeSample.composedSample()">Try it</a>
 	</p>
 </div>
+
+<script type="text/javascript" id="LCHComposeBuildScript"></script>
+<button accesskey="r" onclick="LCHComposeBuildScript()">run</button>
 
 <script type="text/javascript">
 	LCHComposeBehaviour.lifecyclePageWillLoad();
