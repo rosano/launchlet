@@ -12,6 +12,13 @@ const kTesting = {
 			fnbody: 'return;',
 		};
 	},
+	kTestingValidInputHash: function() {
+		return {
+			LCHInputMemberObjects: [],
+			LCHInputStyleContent: '',
+			LCHInputLibraryD3Content: '',
+		};
+	},
 };
 
 describe('LCHModelErrorsForUnwrappedMemberObject', function testLCHModelErrorsForUnwrappedMemberObject() {
@@ -144,7 +151,7 @@ describe('LCHWrappedMemberObjectFor', function testLCHWrappedMemberObjectFor() {
 describe('LCHBoomarkletTemplate', function testLCHBoomarkletTemplate() {
 
 	it('contains LCHTokens', function() {
-		assert.deepEqual(Object.keys(LCHCompile.LCHBoomarkletReplacementHashFor([])).filter(function (e) {
+		assert.deepEqual(Object.keys(LCHCompile.LCHBoomarkletReplacementHashFor(kTesting.kTestingValidInputHash())).filter(function (e) {
 			return !LCHCompile.LCHBoomarkletTemplate.toString().match(e);
 		}), []);
 	});
@@ -153,18 +160,42 @@ describe('LCHBoomarkletTemplate', function testLCHBoomarkletTemplate() {
 
 describe('LCHBoomarkletReplacementHashFor', function testLCHBoomarkletReplacementHashFor() {	
 
-	it('throws error if not array', function() {
+	it('throws error if not object', function() {
 		assert.throws(function() {
 			LCHCompile.LCHBoomarkletReplacementHashFor(null);
 		}, /LCHErrorInvalidInput/);
 	});
 
+	it('throws error if LCHInputMemberObjects not array', function() {
+		assert.throws(function() {
+			LCHCompile.LCHBoomarkletReplacementHashFor(Object.assign(kTesting.kTestingValidInputHash(), {
+				LCHInputMemberObjects: null,
+			}));
+		}, /LCHErrorInvalidInput/);
+	});
+
+	it('throws error if LCHInputStyleContent not string', function() {
+		assert.throws(function() {
+			LCHCompile.LCHBoomarkletReplacementHashFor(Object.assign(kTesting.kTestingValidInputHash(), {
+				LCHInputStyleContent: null,
+			}));
+		}, /LCHErrorInvalidInput/);
+	});
+
+	it('throws error if LCHInputLibraryD3Content not string', function() {
+		assert.throws(function() {
+			LCHCompile.LCHBoomarkletReplacementHashFor(Object.assign(kTesting.kTestingValidInputHash(), {
+				LCHInputLibraryD3Content: null,
+			}));
+		}, /LCHErrorInvalidInput/);
+	});
+
 	it('returns array', function() {
-		let d3LibraryContents = fsPackage.readFileSync(`${ __dirname }/libraries/d3-selection/dist/d3-selection.min.js`, 'utf8');
-		assert.deepEqual(LCHCompile.LCHBoomarkletReplacementHashFor([], d3LibraryContents), {
-			'__LCHTokenLibraryD3__': d3LibraryContents,
+		assert.deepEqual(LCHCompile.LCHBoomarkletReplacementHashFor(kTesting.kTestingValidInputHash()), {
+			'__LCHTokenStyle__': kTesting.kTestingValidInputHash().LCHInputStyleContent,
+			'__LCHTokenLibraryD3__': kTesting.kTestingValidInputHash().LCHInputLibraryD3Content,
 			'__LCHTokenLCHLogicFilter__': LCHCompile.LCHLogicFilter.toString(),
-			'__LCHTokenMemberObjects__': LCHCompile._LCHBoomarkletReplacementForMemberObjects([]),
+			'__LCHTokenMemberObjects__': LCHCompile._LCHBoomarkletReplacementForMemberObjects(kTesting.kTestingValidInputHash().LCHInputMemberObjects),
 		});
 	});
 
