@@ -439,9 +439,9 @@
 		};
 	};
 
-	//_ _LCHBoomarkletReplacementForLibraryD3
+	//_ _LCHTokenLibraryD3ReplacementFor
 
-	exports._LCHBoomarkletReplacementForLibraryD3 = function (inputData) {
+	exports._LCHTokenLibraryD3ReplacementFor = function (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('LCHErrorInvalidInput');
 		}
