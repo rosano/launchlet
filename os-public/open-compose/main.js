@@ -75,7 +75,7 @@
 	exports.LCHBoomarkletTemplate = function () {
 		let LCHLaunchletPropertyListSelectedItemIndex = 0;
 		let LCHLaunchletPropertyShortcutListener;
-		
+
 		const api = {
 			functionObjects: function () {
 				return [
@@ -415,10 +415,35 @@
 		}
 
 		return {
-			'__LCHTokenLibraryD3__': d3SelectionPackage.toString(),
+			'__LCHTokenLibraryD3__': exports._LCHBoomarkletReplacementForLibraryD3(d3SelectionPackage),
 			'__LCHTokenLCHLogicFilter__': exports.LCHLogicFilter.toString(),
 			'__LCHTokenMemberObjects__': exports._LCHBoomarkletReplacementForMemberObjects(inputData),
 		};
+	};
+
+	//_ _LCHBoomarkletReplacementForLibraryD3
+
+	exports._LCHBoomarkletReplacementForLibraryD3 = function (inputData) {
+		if (typeof inputData !== 'object' || inputData === null) {
+			throw new Error('LCHErrorInvalidInput');
+		}
+
+		let replacementHash = {};
+		let replacement = JSON.stringify(inputData, function(key, val) {
+			if (typeof val !== 'function') {
+				return val;
+			}
+
+			key = `__LCHClosureD3_${key}__`;
+
+			replacementHash[key] = val.toString();
+
+			return `__LCHClosureOpen__${ key }__LCHClosureClose__`;
+		});
+
+		return Object.keys(replacementHash).reduce(function (coll, e) {
+			return coll.replace(e, replacementHash[e]);
+		}, replacement).replace(/("__LCHClosureOpen__)|(__LCHClosureClose__")/g, '');
 	};
 
 	//_ _LCHBoomarkletReplacementForMemberObjects

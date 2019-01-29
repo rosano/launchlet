@@ -160,10 +160,27 @@ describe('LCHBoomarkletReplacementHashFor', function testLCHBoomarkletReplacemen
 
 	it('returns array', function() {
 		assert.deepEqual(LCHCompile.LCHBoomarkletReplacementHashFor([]), {
-			'__LCHTokenLibraryD3__': d3SelectionPackage.toString(),
+			'__LCHTokenLibraryD3__': LCHCompile._LCHBoomarkletReplacementForLibraryD3(d3SelectionPackage),
 			'__LCHTokenLCHLogicFilter__': LCHCompile.LCHLogicFilter.toString(),
 			'__LCHTokenMemberObjects__': LCHCompile._LCHBoomarkletReplacementForMemberObjects([]),
 		});
+	});
+
+});
+
+describe('_LCHBoomarkletReplacementForLibraryD3', function test_LCHBoomarkletReplacementForLibraryD3() {
+
+	it('throws error if not object', function() {
+		assert.throws(function() {
+			LCHCompile._LCHBoomarkletReplacementForLibraryD3(null);
+		}, /LCHErrorInvalidInput/);
+	});
+
+	it('returns stringified', function() {
+		let item = {
+			alfa: function () { return; },
+		};
+		assert.deepEqual(LCHCompile._LCHBoomarkletReplacementForLibraryD3(item), '{"alfa":function () { return; }}');
 	});
 
 });
