@@ -154,7 +154,28 @@
 					moi.reactModelChanged();
 				});
 
-			contentElement.append('textarea')
+			let commandElement = contentElement.append('div')
+				.attr('class', 'LCHComposeListItemFormCommand');
+
+			let headElement = commandElement.append('div')
+				.attr('class', 'LCHComposeListItemFormCommandHead');
+
+			headElement.append('span')
+				.text('function (')
+
+			headElement.append('input')
+				.attr('class', 'LCHComposeListItemFormCommandHeadArgsInput')
+				.attr('placeholder', 'undefined')
+				.on('input', function (obj) {
+					obj.args = this.value;
+
+					moi.reactModelChanged();
+				});
+
+			headElement.append('span')
+				.text(') {')
+
+			commandElement.append('textarea')
 				.attr('class', 'LCHComposeListItemFormInputFunctionBody')
 				.each(function (obj) {
 					obj.LCHComposeEditor = CodeMirror.fromTextArea(this, {
@@ -181,6 +202,11 @@
 						moi.reactModelChanged();
 					});
 				});
+
+			commandElement.append('div')
+				.attr('class', 'LCHComposeListItemFormCommandTail')
+				.append('span')
+					.text('}');
 		})();
 
 		parentElement = parentElement.merge(selection);
@@ -214,6 +240,11 @@
 			parentElement.select('.LCHComposeListItemFormInputName')
 				.property('value', function (obj) {
 					return obj.name;
+				});
+
+			parentElement.select('.LCHComposeListItemFormCommandHeadArgsInput')
+				.property('value', function (obj) {
+					return obj.args;
 				});
 
 			parentElement.select('.LCHComposeListItemFormInputFunctionBody')
@@ -255,7 +286,7 @@
 		let bookmarklet = LCHCompile.LCHBookmarkletTextForReplacementHash(LCHCompile.LCHBoomarkletReplacementHashFor({
 			LCHInputMemberObjects: sanitizedMemberObjects.filter(function (e) {
 				return !!e.fnbody;
-			}),
+			}).map(LCHCompile.LCHWrappedMemberObjectFor),
 			LCHInputStyleContent: d3.select('#LCHComposeStyleContent').text(),
 			LCHInputLibraryD3Content: d3.select('#LCHComposeLibraryD3Content').text(),
 		}));
