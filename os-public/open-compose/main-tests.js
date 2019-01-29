@@ -46,6 +46,14 @@ describe('LCHModelErrorsForUnwrappedMemberObject', function testLCHModelErrorsFo
 		assert.strictEqual(LCHCompile.LCHModelErrorsForUnwrappedMemberObject(kTesting.kTestingValidMemberObject()), null);
 	});
 
+	it('returns error if args not string', function() {
+		assert.deepEqual(LCHCompile.LCHModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.kTestingValidMemberObject(), {
+			args: null,
+		})), {
+			args: new Error('LCHErrorNotString'),
+		});
+	});
+
 	it('returns error if name not string', function() {
 		assert.deepEqual(LCHCompile.LCHModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.kTestingValidMemberObject(), {
 			name: null,

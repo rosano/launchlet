@@ -27,6 +27,12 @@
 			}
 		}
 
+		if (inputData.args !== undefined) {
+			if (typeof inputData.args !== 'string') {
+				errorsHash.args = new Error('LCHErrorNotString');
+			}
+		}
+
 		return Object.keys(errorsHash).length ? errorsHash : null;
 	};
 
