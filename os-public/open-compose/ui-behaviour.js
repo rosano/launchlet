@@ -124,12 +124,19 @@
 			.attr('autofocus', moi.propertiesIdentifiersVisible() ? '' : undefined)
 			.on('input', function (obj) {
 				obj.id = this.value;
+
+				moi.reactModelChanged();
 			});
 
 		contentElement.append('input')
 			.attr('class', 'LCHComposeListItemInput LCHComposeListItemInputName')
 			.attr('autofocus', !moi.propertiesIdentifiersVisible() ? '' : undefined)
-			.attr('placeholder', OLSKLocalized('LCHComposeListItemInputNamePlaceholder'));
+			.attr('placeholder', OLSKLocalized('LCHComposeListItemInputNamePlaceholder'))
+			.on('input', function (obj) {
+				obj.name = this.value;
+
+				moi.reactModelChanged();
+			});
 
 		contentElement.append('textarea')
 			.attr('class', 'LCHComposeListItemInputFunctionBody')
@@ -146,14 +153,14 @@
 						// 	return document.querySelector('button').focus();
 						// },
 					},
-				})
+				});
 
 				obj.LCHComposeEditor.on('change', function (instance, changeObject) {
 					// if (changeObject.origin === 'setValue') {
 					// 	return;
 					// }
 
-					// moi.actionsConvertData(instance.getValue());
+					moi.reactModelChanged();
 				});
 			});
 
@@ -259,7 +266,9 @@
 	//_ setupDragAndDrop
 
 	moi.setupDragAndDrop = function () {
-		dragula([document.getElementById('LCHComposeList')]);
+		dragula([document.getElementById('LCHComposeList')]).on('drop', function () {
+			moi.reactModelChanged();
+		});
 	};
 
 	//# LIFECYCLE
