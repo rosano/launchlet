@@ -6,9 +6,9 @@ LCHComposeListItemToolbarCollapseButtonText: Collapse
 LCHComposeListItemToolbarRevealButtonText: Reveal
 LCHComposeListItemToolbarDeleteButtonText: Delete
 LCHComposeListItemDeletePromptText: Are you sure?
-LCHComposeListItemInputIDPlaceholder: Identifier (e.g. XYZGreet)
-LCHComposeListItemInputNamePlaceholder: Name (e.g. Say Hello)
-LCHComposeListItemInputFunctionBodyPlaceholder: Function Body (e.g. window.prompt('Hello');)
+LCHComposeListItemFormInputIDPlaceholder: Identifier (e.g. XYZGreet)
+LCHComposeListItemFormInputNamePlaceholder: Name (e.g. Say Hello)
+LCHComposeListItemFormInputFunctionBodyPlaceholder: Function Body (e.g. window.prompt('Hello');)
 LCHComposeSampleMemberID: XYZGreet
 LCHComposeSampleMemberName: Say Hello
 LCHComposeSampleMemberFNBody: window.prompt('Hello');

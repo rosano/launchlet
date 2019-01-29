@@ -261,6 +261,11 @@ describe('_LCHBoomarkletReplacementForMemberObjects', function test_LCHBoomarkle
 		assert.deepEqual(LCHCompile._LCHBoomarkletReplacementForMemberObjects([LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMemberObject())]), JSON.stringify([LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMemberObject())]).replace('"fnclosure"', '"fn"').replace('"function () { return; }"', 'function () { return; }'));
 	});
 
+	it('returns stringified if single', function() {
+		let item = LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMemberObject());
+		assert.deepEqual(LCHCompile._LCHBoomarkletReplacementForMemberObjects([item]), JSON.stringify([item]).replace('"fnclosure"', '"fn"').replace('"function () { return; }"', 'function () { return; }'));
+	});
+
 });
 
 describe('LCHBookmarkletTextForReplacementHash', function testLCHBookmarkletTextForReplacementHash() {

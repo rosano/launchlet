@@ -2,11 +2,11 @@ body {
 	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
 }
 
-#LCHComposeList .LCHComposeListItemInputID {
+#LCHComposeList .LCHComposeListItemFormInputID {
 	display: none;
 }
 
-.LCHComposeListIdentifiersVisible .LCHComposeListItemInputID {
+.LCHComposeListIdentifiersVisible .LCHComposeListItemFormInputID {
 	display: inline-block !important;
 }
 
@@ -52,7 +52,7 @@ body {
 	flex-direction: column;
 }
 
-.LCHComposeListItemForm .LCHComposeListItemInput {
+.LCHComposeListItemForm .LCHComposeListItemFormInput {
 	margin: 5px 0;
 }
 

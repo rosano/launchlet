@@ -135,8 +135,8 @@
 				.attr('class', 'LCHComposeListItemForm');
 
 			contentElement.append('input')
-				.attr('class', 'LCHComposeListItemInput LCHComposeListItemInputID')
-				.attr('placeholder', OLSKLocalized('LCHComposeListItemInputIDPlaceholder'))
+				.attr('class', 'LCHComposeListItemFormInput LCHComposeListItemFormInputID')
+				.attr('placeholder', OLSKLocalized('LCHComposeListItemFormInputIDPlaceholder'))
 				.attr('autofocus', moi.propertiesIdentifiersVisible() ? '' : undefined)
 				.on('input', function (obj) {
 					obj.id = this.value;
@@ -145,9 +145,9 @@
 				});
 
 			contentElement.append('input')
-				.attr('class', 'LCHComposeListItemInput LCHComposeListItemInputName')
+				.attr('class', 'LCHComposeListItemFormInput LCHComposeListItemFormInputName')
 				.attr('autofocus', !moi.propertiesIdentifiersVisible() ? '' : undefined)
-				.attr('placeholder', OLSKLocalized('LCHComposeListItemInputNamePlaceholder'))
+				.attr('placeholder', OLSKLocalized('LCHComposeListItemFormInputNamePlaceholder'))
 				.on('input', function (obj) {
 					obj.name = this.value;
 
@@ -155,14 +155,14 @@
 				});
 
 			contentElement.append('textarea')
-				.attr('class', 'LCHComposeListItemInputFunctionBody')
+				.attr('class', 'LCHComposeListItemFormInputFunctionBody')
 				.each(function (obj) {
 					obj.LCHComposeEditor = CodeMirror.fromTextArea(this, {
 						mode: 'javascript',
 						lineNumbers: true,
 						lineWrapping: true,
 
-						placeholder: OLSKLocalized('LCHComposeListItemInputFunctionBodyPlaceholder'),
+						placeholder: OLSKLocalized('LCHComposeListItemFormInputFunctionBodyPlaceholder'),
 						
 						extraKeys: {
 							// Esc: function () {
@@ -206,17 +206,17 @@
 
 			// Form
 
-			parentElement.select('.LCHComposeListItemInputID')
+			parentElement.select('.LCHComposeListItemFormInputID')
 				.property('value', function (obj) {
 					return obj.id;
 				});
 
-			parentElement.select('.LCHComposeListItemInputName')
+			parentElement.select('.LCHComposeListItemFormInputName')
 				.property('value', function (obj) {
 					return obj.name;
 				});
 
-			parentElement.select('.LCHComposeListItemInputFunctionBody')
+			parentElement.select('.LCHComposeListItemFormInputFunctionBody')
 				.each(function (obj) {
 					obj.LCHComposeEditor.setValue((obj.fnbody || '').toString());
 				});
