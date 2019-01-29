@@ -151,6 +151,28 @@ describe('LCHWrappedMemberObjectFor', function testLCHWrappedMemberObjectFor() {
 		});
 	});
 
+	context('id', function () {
+
+		it('copies', function() {
+			assert.deepEqual(LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMemberObject()).id, kTesting.kTestingValidMemberObject().id);
+		});
+
+	});
+
+	context('fnclosure', function () {
+
+		it('wraps fnbody', function() {
+			assert.deepEqual(LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMemberObject()).fnclosure, `function () { ${ kTesting.kTestingValidMemberObject().fnbody } }`);
+		});
+
+		it('wraps args', function() {
+			assert.deepEqual(LCHCompile.LCHWrappedMemberObjectFor(Object.assign(kTesting.kTestingValidMemberObject(), {
+				args: 'alfa',
+			})).fnclosure, `function (alfa) { ${ kTesting.kTestingValidMemberObject().fnbody } }`);
+		});
+
+	});
+
 });
 
 describe('LCHBoomarkletTemplate', function testLCHBoomarkletTemplate() {

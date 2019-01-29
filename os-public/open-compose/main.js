@@ -62,9 +62,13 @@
 		}
 
 		return Object.keys(inputData).reduce(function (coll, e) {
+			if (e === 'args') {
+				return coll;
+			}
+
 			if (e === 'fnbody') {
 				return Object.assign(coll, {
-					fnclosure: `function () { ${inputData.fnbody} }`,
+					fnclosure: `function (${ inputData.args || '' }) { ${ inputData.fnbody } }`,
 				});
 			}
 
