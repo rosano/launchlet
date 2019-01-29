@@ -439,31 +439,6 @@
 		};
 	};
 
-	//_ _LCHTokenLibraryD3ReplacementFor
-
-	exports._LCHTokenLibraryD3ReplacementFor = function (inputData) {
-		if (typeof inputData !== 'object' || inputData === null) {
-			throw new Error('LCHErrorInvalidInput');
-		}
-
-		let replacementHash = {};
-		let replacement = JSON.stringify(inputData, function(key, val) {
-			if (typeof val !== 'function') {
-				return val;
-			}
-
-			key = `__LCHClosureD3_${key}__`;
-
-			replacementHash[key] = val.toString();
-
-			return `__LCHClosureOpen__${ key }__LCHClosureClose__`;
-		});
-
-		return Object.keys(replacementHash).reduce(function (coll, e) {
-			return coll.replace(e, replacementHash[e]);
-		}, replacement).replace(/("__LCHClosureOpen__)|(__LCHClosureClose__")/g, '');
-	};
-
 	//_ _LCHTokenMemberObjectsReplacementFor
 
 	exports._LCHTokenMemberObjectsReplacementFor = function (inputData) {

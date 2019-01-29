@@ -228,23 +228,6 @@ describe('LCHTokenHashFor', function testLCHTokenHashFor() {
 
 });
 
-describe('_LCHTokenLibraryD3ReplacementFor', function test_LCHTokenLibraryD3ReplacementFor() {
-
-	it('throws error if not object', function() {
-		assert.throws(function() {
-			LCHCompile._LCHTokenLibraryD3ReplacementFor(null);
-		}, /LCHErrorInvalidInput/);
-	});
-
-	it('returns stringified', function() {
-		let item = {
-			alfa: function () { return; },
-		};
-		assert.deepEqual(LCHCompile._LCHTokenLibraryD3ReplacementFor(item), '{"alfa":function () { return; }}');
-	});
-
-});
-
 describe('_LCHTokenMemberObjectsReplacementFor', function test_LCHTokenMemberObjectsReplacementFor() {
 
 	it('throws error if not array', function() {
