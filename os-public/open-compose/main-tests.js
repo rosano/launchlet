@@ -178,24 +178,24 @@ describe('LCHWrappedMemberObjectFor', function testLCHWrappedMemberObjectFor() {
 describe('LCHBoomarkletTemplate', function testLCHBoomarkletTemplate() {
 
 	it('contains LCHTokens', function() {
-		assert.deepEqual(Object.keys(LCHCompile.LCHBoomarkletReplacementHashFor(kTesting.kTestingValidInputHash())).filter(function (e) {
+		assert.deepEqual(Object.keys(LCHCompile.LCHTokenHashFor(kTesting.kTestingValidInputHash())).filter(function (e) {
 			return !LCHCompile.LCHBoomarkletTemplate.toString().match(e);
 		}), []);
 	});
 
 });
 
-describe('LCHBoomarkletReplacementHashFor', function testLCHBoomarkletReplacementHashFor() {	
+describe('LCHTokenHashFor', function testLCHTokenHashFor() {	
 
 	it('throws error if not object', function() {
 		assert.throws(function() {
-			LCHCompile.LCHBoomarkletReplacementHashFor(null);
+			LCHCompile.LCHTokenHashFor(null);
 		}, /LCHErrorInvalidInput/);
 	});
 
 	it('throws error if LCHInputMemberObjects not array', function() {
 		assert.throws(function() {
-			LCHCompile.LCHBoomarkletReplacementHashFor(Object.assign(kTesting.kTestingValidInputHash(), {
+			LCHCompile.LCHTokenHashFor(Object.assign(kTesting.kTestingValidInputHash(), {
 				LCHInputMemberObjects: null,
 			}));
 		}, /LCHErrorInvalidInput/);
@@ -203,7 +203,7 @@ describe('LCHBoomarkletReplacementHashFor', function testLCHBoomarkletReplacemen
 
 	it('throws error if LCHInputStyleContent not string', function() {
 		assert.throws(function() {
-			LCHCompile.LCHBoomarkletReplacementHashFor(Object.assign(kTesting.kTestingValidInputHash(), {
+			LCHCompile.LCHTokenHashFor(Object.assign(kTesting.kTestingValidInputHash(), {
 				LCHInputStyleContent: null,
 			}));
 		}, /LCHErrorInvalidInput/);
@@ -211,14 +211,14 @@ describe('LCHBoomarkletReplacementHashFor', function testLCHBoomarkletReplacemen
 
 	it('throws error if LCHInputLibraryD3Content not string', function() {
 		assert.throws(function() {
-			LCHCompile.LCHBoomarkletReplacementHashFor(Object.assign(kTesting.kTestingValidInputHash(), {
+			LCHCompile.LCHTokenHashFor(Object.assign(kTesting.kTestingValidInputHash(), {
 				LCHInputLibraryD3Content: null,
 			}));
 		}, /LCHErrorInvalidInput/);
 	});
 
 	it('returns array', function() {
-		assert.deepEqual(LCHCompile.LCHBoomarkletReplacementHashFor(kTesting.kTestingValidInputHash()), {
+		assert.deepEqual(LCHCompile.LCHTokenHashFor(kTesting.kTestingValidInputHash()), {
 			'__LCHTokenStyle__': kTesting.kTestingValidInputHash().LCHInputStyleContent,
 			'__LCHTokenLibraryD3__': kTesting.kTestingValidInputHash().LCHInputLibraryD3Content,
 			'__LCHTokenLCHLogicFilter__': LCHCompile.LCHLogicFilter.toString(),

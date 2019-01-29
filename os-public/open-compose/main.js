@@ -412,9 +412,9 @@
 		api.fn('LCHLifecycleInitialize')();
 	};
 
-	//_ LCHBoomarkletReplacementHashFor
+	//_ LCHTokenHashFor
 
-	exports.LCHBoomarkletReplacementHashFor = function (inputData) {
+	exports.LCHTokenHashFor = function (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('LCHErrorInvalidInput');
 		}
