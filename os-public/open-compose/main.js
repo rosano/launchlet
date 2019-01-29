@@ -471,11 +471,17 @@
 			throw new Error('LCHErrorInvalidInput');
 		}
 
-		return JSON.stringify(inputData.map(function (e) {
+		let tokenHash = {};
+
+		let outputData = JSON.stringify(inputData.map(function (e) {
 			return Object.keys(e).reduce(function (coll, key) {
 				if (key === 'fnclosure') {
+					key = `__LCHMemberObjectClosure_${ e.id }__`;
+
+					tokenHash[key] = e.fnclosure;
+
 					return Object.assign(coll, {
-						fn: `__LCHClosureOpen__${ e.fnclosure }__LCHClosureClose__`,
+						fn: `__LCHClosureOpen__${ key }__LCHClosureClose__`,
 					});
 				}
 
@@ -483,7 +489,11 @@
 
 				return coll;
 			}, {});
-		})).replace(/("__LCHClosureOpen__)|(__LCHClosureClose__")/g, '');
+		}));
+		
+		return Object.keys(tokenHash).reduce(function (coll, e) {
+			return coll.replace(e, tokenHash[e]);
+		}, outputData).replace(/("__LCHClosureOpen__)|(__LCHClosureClose__")/g, '');
 	};
 
 	//_ LCHBookmarkletTextForTokenHash

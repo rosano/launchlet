@@ -257,13 +257,19 @@ describe('_LCHTokenMemberObjectsReplacementFor', function test_LCHTokenMemberObj
 		assert.deepEqual(LCHCompile._LCHTokenMemberObjectsReplacementFor([]), '[]');
 	});
 
-	it('returns stringified if single', function() {
-		assert.deepEqual(LCHCompile._LCHTokenMemberObjectsReplacementFor([LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMemberObject())]), JSON.stringify([LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMemberObject())]).replace('"fnclosure"', '"fn"').replace('"function () { return; }"', 'function () { return; }'));
+	it('returns stringified if single line', function() {
+		let item = LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMemberObject());
+		assert.deepEqual(LCHCompile._LCHTokenMemberObjectsReplacementFor([item]), JSON.stringify([item]).replace('"fnclosure"', '"fn"').replace(`"${ item.fnclosure }"`, item.fnclosure));
 	});
 
-	it('returns stringified if single', function() {
-		let item = LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMemberObject());
-		assert.deepEqual(LCHCompile._LCHTokenMemberObjectsReplacementFor([item]), JSON.stringify([item]).replace('"fnclosure"', '"fn"').replace('"function () { return; }"', 'function () { return; }'));
+	it('returns stringified if multi line', function() {
+		let item = LCHCompile.LCHWrappedMemberObjectFor(Object.assign(kTesting.kTestingValidMemberObject(), {
+			fnbody: `
+return;
+`,
+		}));
+
+		assert.deepEqual(LCHCompile._LCHTokenMemberObjectsReplacementFor([item]), JSON.stringify([item]).replace('"fnclosure"', '"fn"').replace(/\\n/g, '\n').replace(`"${ item.fnclosure }"`, item.fnclosure));
 	});
 
 });
