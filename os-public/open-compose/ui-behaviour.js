@@ -102,124 +102,133 @@
 
 	//_ reactMemberObjects
 
-	moi.reactMemberObjects = function LCHComposeBehaviourMembersJoin(memberObjects) {
+	moi.reactMemberObjects = function (memberObjects) {
 		let selection = d3.select('#LCHComposeList').selectAll('.LCHComposeListItem').data(memberObjects);
 		
 		let parentElement = selection.enter().append('div')
 			.attr('class', 'LCHComposeListItem');
 
-		let toolbarElement = parentElement.append('div')
-			.attr('class', 'LCHComposeListItemToolbar');
+		(function joinEnter () {
 
-		toolbarElement.append('hr')
+			// Toolbar
 
-		toolbarElement.append('button')
-			.attr('class', 'LCHComposeListItemToolbarCollapseButton')
-			.text(OLSKLocalized('LCHComposeListItemToolbarCollapseButtonText'));
+			let toolbarElement = parentElement.append('div')
+				.attr('class', 'LCHComposeListItemToolbar');
 
-		toolbarElement.append('button')
-			.attr('class', 'LCHComposeListItemToolbarRevealButton')
-			.text(OLSKLocalized('LCHComposeListItemToolbarRevealButtonText'));
+			toolbarElement.append('hr')
 
-		toolbarElement.append('button')
-			.attr('class', 'LCHComposeListItemToolbarDeleteButton')
-			.text(OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText'));
+			toolbarElement.append('button')
+				.attr('class', 'LCHComposeListItemToolbarCollapseButton')
+				.text(OLSKLocalized('LCHComposeListItemToolbarCollapseButtonText'));
 
-		let contentElement = parentElement.append('div')
-			.attr('class', 'LCHComposeListItemForm');
+			toolbarElement.append('button')
+				.attr('class', 'LCHComposeListItemToolbarRevealButton')
+				.text(OLSKLocalized('LCHComposeListItemToolbarRevealButtonText'));
 
-		contentElement.append('input')
-			.attr('class', 'LCHComposeListItemInput LCHComposeListItemInputID')
-			.attr('placeholder', OLSKLocalized('LCHComposeListItemInputIDPlaceholder'))
-			.attr('autofocus', moi.propertiesIdentifiersVisible() ? '' : undefined)
-			.on('input', function (obj) {
-				obj.id = this.value;
+			toolbarElement.append('button')
+				.attr('class', 'LCHComposeListItemToolbarDeleteButton')
+				.text(OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText'));
 
-				moi.reactModelChanged();
-			});
+			// Form
 
-		contentElement.append('input')
-			.attr('class', 'LCHComposeListItemInput LCHComposeListItemInputName')
-			.attr('autofocus', !moi.propertiesIdentifiersVisible() ? '' : undefined)
-			.attr('placeholder', OLSKLocalized('LCHComposeListItemInputNamePlaceholder'))
-			.on('input', function (obj) {
-				obj.name = this.value;
+			let contentElement = parentElement.append('div')
+				.attr('class', 'LCHComposeListItemForm');
 
-				moi.reactModelChanged();
-			});
-
-		contentElement.append('textarea')
-			.attr('class', 'LCHComposeListItemInputFunctionBody')
-			.each(function (obj) {
-				obj.LCHComposeEditor = CodeMirror.fromTextArea(this, {
-					mode: 'javascript',
-					lineNumbers: true,
-					lineWrapping: true,
-
-					placeholder: OLSKLocalized('LCHComposeListItemInputFunctionBodyPlaceholder'),
-					
-					extraKeys: {
-						// Esc: function () {
-						// 	return document.querySelector('button').focus();
-						// },
-					},
-				});
-
-				obj.LCHComposeEditor.on('change', function (instance, changeObject) {
-					// if (changeObject.origin === 'setValue') {
-					// 	return;
-					// }
-
-					obj.fnbody = obj.LCHComposeEditor.getValue();
+			contentElement.append('input')
+				.attr('class', 'LCHComposeListItemInput LCHComposeListItemInputID')
+				.attr('placeholder', OLSKLocalized('LCHComposeListItemInputIDPlaceholder'))
+				.attr('autofocus', moi.propertiesIdentifiersVisible() ? '' : undefined)
+				.on('input', function (obj) {
+					obj.id = this.value;
 
 					moi.reactModelChanged();
 				});
-			});
+
+			contentElement.append('input')
+				.attr('class', 'LCHComposeListItemInput LCHComposeListItemInputName')
+				.attr('autofocus', !moi.propertiesIdentifiersVisible() ? '' : undefined)
+				.attr('placeholder', OLSKLocalized('LCHComposeListItemInputNamePlaceholder'))
+				.on('input', function (obj) {
+					obj.name = this.value;
+
+					moi.reactModelChanged();
+				});
+
+			contentElement.append('textarea')
+				.attr('class', 'LCHComposeListItemInputFunctionBody')
+				.each(function (obj) {
+					obj.LCHComposeEditor = CodeMirror.fromTextArea(this, {
+						mode: 'javascript',
+						lineNumbers: true,
+						lineWrapping: true,
+
+						placeholder: OLSKLocalized('LCHComposeListItemInputFunctionBodyPlaceholder'),
+						
+						extraKeys: {
+							// Esc: function () {
+							// 	return document.querySelector('button').focus();
+							// },
+						},
+					});
+
+					obj.LCHComposeEditor.on('change', function (instance, changeObject) {
+						// if (changeObject.origin === 'setValue') {
+						// 	return;
+						// }
+
+						obj.fnbody = obj.LCHComposeEditor.getValue();
+
+						moi.reactModelChanged();
+					});
+				});
+		})();
 
 		parentElement = parentElement.merge(selection);
 
-		parentElement.select('.LCHComposeListItemToolbarRevealButton')
-			.on('click', function (obj) {
-				moi.actionMembersReveal(obj);
-			});
+		(function joinUpdate () {
 
-		parentElement.select('.LCHComposeListItemToolbarCollapseButton')
-			.on('click', function (obj) {
-				moi.actionMembersCollapse(obj);
-			});
+			// Toolbar
+			
+			parentElement.select('.LCHComposeListItemToolbarRevealButton')
+				.on('click', function (obj) {
+					moi.actionMembersReveal(obj);
+				});
 
-		parentElement.select('.LCHComposeListItemToolbarDeleteButton')
-			.on('click', function (obj) {
-				moi.actionMembersDelete(obj);
-			});
+			parentElement.select('.LCHComposeListItemToolbarCollapseButton')
+				.on('click', function (obj) {
+					moi.actionMembersCollapse(obj);
+				});
 
-		parentElement.select('.LCHComposeListItemInputID')
-			.property('value', function (obj) {
-				return obj.id;
-			});
+			parentElement.select('.LCHComposeListItemToolbarDeleteButton')
+				.on('click', function (obj) {
+					moi.actionMembersDelete(obj);
+				});
 
-		parentElement.select('.LCHComposeListItemInputName')
-			.property('value', function (obj) {
-				return obj.name;
-			});
+			// Form
 
-		parentElement.select('.LCHComposeListItemInputFunctionBody')
-			.each(function (obj) {
-				obj.LCHComposeEditor.setValue((obj.fnbody || '').toString());
-			});
+			parentElement.select('.LCHComposeListItemInputID')
+				.property('value', function (obj) {
+					return obj.id;
+				});
 
-		parentElement.select('.LCHComposeListItemToolbarDeleteButton')
-			.on('click', function (obj) {
-				// d3.selectAll('.LCHComposeListItem').filter(function (obj2) {
-				// 	return obj2 === obj;
-				// }).classed('LCHComposeListItemExit', true);
-				moi.actionMembersDelete(obj);
-			});
+			parentElement.select('.LCHComposeListItemInputName')
+				.property('value', function (obj) {
+					return obj.name;
+				});
 
-		// parentElement
-		// 	.text(function(obj) {
-		// 		return obj.name;
-		// 	});
+			parentElement.select('.LCHComposeListItemInputFunctionBody')
+				.each(function (obj) {
+					obj.LCHComposeEditor.setValue((obj.fnbody || '').toString());
+				});
+
+			parentElement.select('.LCHComposeListItemToolbarDeleteButton')
+				.on('click', function (obj) {
+					// d3.selectAll('.LCHComposeListItem').filter(function (obj2) {
+					// 	return obj2 === obj;
+					// }).classed('LCHComposeListItemExit', true);
+					moi.actionMembersDelete(obj);
+				});
+		})();
 
 		selection.exit().remove();
 	};
