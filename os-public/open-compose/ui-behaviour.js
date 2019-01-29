@@ -234,7 +234,7 @@
 			delete sanitized.LCHComposeEditor;
 
 			return LCHCompile.LCHWrappedMemberObjectFor(sanitized);
-		}), d3.select('#LCHComposeD3LibraryContents').text()));
+		}), d3.select('#LCHComposeLibraryD3Content').text()));
 
 		d3.select('#LCHComposeComposedSample')
 			.property('value', bookmarklet);

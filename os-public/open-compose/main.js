@@ -320,9 +320,9 @@
 		id: 'LCHSetupStyle',
 		fn: function LCHSetupStyle () {
 	d3.select('body').append('style').node().outerHTML = `
-	<style type="text/css" class="__Launchlet">
-	// paste styles
-	</style>
+<style type="text/css" class="__Launchlet">
+__LCHTokenStyle__
+</style>
 	`;
 
 	  },

@@ -1,12 +1,9 @@
 const assert = require('assert');
 
-const fsPackage = require('fs');
-const d3SelectionPackage = require('d3-selection');
-
 const LCHCompile = require('./main.js');
 
 const kTesting = {
-	kTestingValidMember: function() {
+	kTestingValidMemberObject: function() {
 		return {
 			id: 'alfa',
 			fnbody: 'return;',
@@ -30,7 +27,7 @@ describe('LCHModelErrorsForUnwrappedMemberObject', function testLCHModelErrorsFo
 	});
 
 	it('returns error if id not string', function() {
-		assert.deepEqual(LCHCompile.LCHModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.kTestingValidMember(), {
+		assert.deepEqual(LCHCompile.LCHModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.kTestingValidMemberObject(), {
 			id: null,
 		})), {
 			id: new Error('LCHErrorNotString'),
@@ -38,7 +35,7 @@ describe('LCHModelErrorsForUnwrappedMemberObject', function testLCHModelErrorsFo
 	});
 
 	it('returns error if fnbody not string', function() {
-		assert.deepEqual(LCHCompile.LCHModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.kTestingValidMember(), {
+		assert.deepEqual(LCHCompile.LCHModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.kTestingValidMemberObject(), {
 			fnbody: null,
 		})), {
 			fnbody: new Error('LCHErrorNotString'),
@@ -46,11 +43,11 @@ describe('LCHModelErrorsForUnwrappedMemberObject', function testLCHModelErrorsFo
 	});
 
 	it('returns empty array', function() {
-		assert.strictEqual(LCHCompile.LCHModelErrorsForUnwrappedMemberObject(kTesting.kTestingValidMember()), null);
+		assert.strictEqual(LCHCompile.LCHModelErrorsForUnwrappedMemberObject(kTesting.kTestingValidMemberObject()), null);
 	});
 
 	it('returns error if name not string', function() {
-		assert.deepEqual(LCHCompile.LCHModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.kTestingValidMember(), {
+		assert.deepEqual(LCHCompile.LCHModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.kTestingValidMemberObject(), {
 			name: null,
 		})), {
 			name: new Error('LCHErrorNotString'),
@@ -140,8 +137,8 @@ describe('LCHWrappedMemberObjectFor', function testLCHWrappedMemberObjectFor() {
 	});
 
 	it('returns WrappedMemberObject', function() {
-		assert.deepEqual(LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMember()), {
-			id: kTesting.kTestingValidMember().id,
+		assert.deepEqual(LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMemberObject()), {
+			id: kTesting.kTestingValidMemberObject().id,
 			fnclosure: 'function () { return; }',
 		});
 	});
@@ -231,7 +228,7 @@ describe('_LCHBoomarkletReplacementForMemberObjects', function test_LCHBoomarkle
 	});
 
 	it('returns stringified if single', function() {
-		assert.deepEqual(LCHCompile._LCHBoomarkletReplacementForMemberObjects([LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMember())]), JSON.stringify([LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMember())]).replace('"fnclosure"', '"fn"').replace('"function () { return; }"', 'function () { return; }'));
+		assert.deepEqual(LCHCompile._LCHBoomarkletReplacementForMemberObjects([LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMemberObject())]), JSON.stringify([LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMemberObject())]).replace('"fnclosure"', '"fn"').replace('"function () { return; }"', 'function () { return; }'));
 	});
 
 });

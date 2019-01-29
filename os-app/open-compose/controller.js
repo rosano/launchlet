@@ -19,7 +19,7 @@ exports.OLSKControllerRoutes = function() {
 						'LCHComposeListItemInputNamePlaceholder',
 						'LCHComposeListItemInputFunctionBodyPlaceholder',
 					],
-					LCHComposeD3LibraryContents: require('fs').readFileSync(req.OLSKLive.OLSKLivePathJoin(req.OLSKLive.OLSKLivePublicDirectoryAbsolutePath(), res.locals.OLSKSharedPageControllerSlug, 'libraries/d3-selection/dist/d3-selection.min.js'), 'utf8'),
+					LCHComposeLibraryD3Content: require('fs').readFileSync(req.OLSKLive.OLSKLivePathJoin(req.OLSKLive.OLSKLivePublicDirectoryAbsolutePath(), res.locals.OLSKSharedPageControllerSlug, 'libraries/d3-selection/dist/d3-selection.min.js'), 'utf8'),
 				});
 			},
 			OLSKRouteLanguages: ['en'],
