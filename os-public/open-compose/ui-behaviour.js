@@ -262,6 +262,8 @@
 		})();
 
 		selection.exit().remove();
+
+		moi.reactMemberCollapsed();
 	};
 
 	//_ reactMemberCollapsed
