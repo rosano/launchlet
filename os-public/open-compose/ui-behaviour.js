@@ -139,7 +139,7 @@
 			contentElement.append('input')
 				.attr('class', 'LCHComposeListItemFormInput LCHComposeListItemFormInputID')
 				.attr('placeholder', OLSKLocalized('LCHComposeListItemFormInputIDPlaceholder'))
-				.attr('autofocus', moi.propertiesIdentifiersVisible() ? '' : undefined)
+				// .attr('autofocus', moi.propertiesIdentifiersVisible() ? '' : undefined)
 				.on('input', function (obj) {
 					obj.id = this.value;
 
@@ -148,7 +148,7 @@
 
 			contentElement.append('input')
 				.attr('class', 'LCHComposeListItemFormInput LCHComposeListItemFormInputName')
-				.attr('autofocus', !moi.propertiesIdentifiersVisible() ? '' : undefined)
+				// .attr('autofocus', !moi.propertiesIdentifiersVisible() ? '' : undefined)
 				.attr('placeholder', OLSKLocalized('LCHComposeListItemFormInputNamePlaceholder'))
 				.on('input', function (obj) {
 					obj.name = this.value;
