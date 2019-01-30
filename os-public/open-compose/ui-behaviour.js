@@ -86,9 +86,9 @@
 		moi.reactMemberCollapsed(inputData);
 	};
 
-	//_ actionMembersDelete
+	//_ actionMembersDeleteWithConfirmation
 
-	moi.actionMembersDelete = function (inputData) {
+	moi.actionMembersDeleteWithConfirmation = function (inputData) {
 		if (!window.confirm(OLSKLocalized('LCHComposeListItemDeletePromptText'))) {
 			return;
 		}
@@ -218,19 +218,13 @@
 			// Toolbar
 			
 			parentElement.select('.LCHComposeListItemToolbarRevealButton')
-				.on('click', function (obj) {
-					moi.actionMembersReveal(obj);
-				});
+				.on('click', moi.actionMembersReveal);
 
 			parentElement.select('.LCHComposeListItemToolbarCollapseButton')
-				.on('click', function (obj) {
-					moi.actionMembersCollapse(obj);
-				});
+				.on('click', moi.actionMembersCollapse);
 
 			parentElement.select('.LCHComposeListItemToolbarDeleteButton')
-				.on('click', function (obj) {
-					moi.actionMembersDelete(obj);
-				});
+				.on('click', moi.actionMembersDeleteWithConfirmation);
 
 			// Form
 
@@ -255,12 +249,7 @@
 				});
 
 			parentElement.select('.LCHComposeListItemToolbarDeleteButton')
-				.on('click', function (obj) {
-					// d3x.selectAll('.LCHComposeListItem').filter(function (obj2) {
-					// 	return obj2 === obj;
-					// }).classed('LCHComposeListItemExit', true);
-					moi.actionMembersDelete(obj);
-				});
+				.on('click', moi.actionMembersDeleteWithConfirmation);
 		})();
 
 		selection.exit().remove();
