@@ -20,16 +20,18 @@
 
 	//_ propertiesCustomMemberObjects
 
-	let LCHComposeBehaviourCustomMemberObjects;
+	// let LCHComposeBehaviourCustomMemberObjects;
 
 	moi.propertiesCustomMemberObjects = function (inputData) {
 		if (typeof inputData === 'undefined') {
+			return d3x.selectAll('.LCHComposeListItem').data();
 			return LCHComposeBehaviourCustomMemberObjects;
 		}
 
-		LCHComposeBehaviourCustomMemberObjects = inputData;
+		// LCHComposeBehaviourCustomMemberObjects = inputData;
 
-		moi.reactMemberObjects(LCHComposeBehaviourCustomMemberObjects);
+		moi.reactMemberObjects(inputData);
+		// moi.reactMemberObjects(LCHComposeBehaviourCustomMemberObjects);
 		moi.reactModelChanged();
 	};
 
