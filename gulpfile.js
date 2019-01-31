@@ -15,7 +15,7 @@ const NODE_MODULE_NAMES = [
 
 const INTERNAL_PATHS = [];
 
-gulpPackage.task('default', gulpPackage.series(function (completionHandler) {
+gulpPackage.task('default', gulpPackage.series(function(completionHandler) {
 	if (!NODE_MODULE_NAMES.length) {
 		return completionHandler();
 	}
@@ -36,7 +36,7 @@ gulpPackage.task('default', gulpPackage.series(function (completionHandler) {
 	}));
 
 	return completionHandler();
-}, function (completionHandler) {
+}, function(completionHandler) {
 	if (!INTERNAL_PATHS.length) {
 		return completionHandler();
 	}
@@ -50,10 +50,10 @@ gulpPackage.task('default', gulpPackage.series(function (completionHandler) {
 	}));
 
 	return completionHandler();
-}, function (completionHandler) {
+}, function(completionHandler) {
 	gulpPackage.src([
 		'd3-selection',
-		].map(function(e) {
+	].map(function(e) {
 		return [
 			pathPackage.join('node_modules', e, '**/*.js'),
 			pathPackage.join('!node_modules/OLSK*/*-tests.js'),
