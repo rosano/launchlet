@@ -338,7 +338,7 @@
 	{
 		id: 'LCHSetupShortcuts',
 		fn: function LCHSetupShortcuts () {
-			document.body.addEventListener('keydown', LCHLaunchletPropertyShortcutListener = this.api.fn('LCHInterfaceDocumentDidKeyDown'));
+			document.getElementById('__Launchlet').addEventListener('keydown', LCHLaunchletPropertyShortcutListener = this.api.fn('LCHInterfaceDocumentDidKeyDown'));
 	  },
 	},
 
@@ -360,7 +360,11 @@
 	{
 		id: 'LCHUnbuildShortcuts',
 		fn: function LCHUnbuildShortcuts () {
-			document.body.removeEventListener('keydown', LCHLaunchletPropertyShortcutListener);
+			if (!document.getElementById('__Launchlet')) {
+				return;
+			}
+			
+			document.getElementById('__Launchlet').removeEventListener('keydown', LCHLaunchletPropertyShortcutListener);
 	  },
 	},
 
