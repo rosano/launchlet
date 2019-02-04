@@ -133,8 +133,12 @@
 	{
 		id: 'LCHInterfaceDocumentDidKeyDown',
 		fn: function LCHInterfaceDocumentDidKeyDown (event) {
-			if (event.code === 'Escape') {
+			if (event.code === 'Escape' && d3.select('#__LaunchletInput').property('value').length) {
 				return this.api.fn('LCHCommandsResetInput')('');
+			}
+
+			if (event.code === 'Escape') {
+				return this.api.fn('LCHCommandsExit')();
 			}
 
 			if (event.code === 'ArrowUp') {
