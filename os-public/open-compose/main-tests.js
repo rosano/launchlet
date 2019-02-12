@@ -23,7 +23,7 @@ describe('LCHModelErrorsForUnwrappedMemberObject', function testLCHModelErrorsFo
 	it('throws error if not object', function() {
 		assert.throws(function() {
 			LCHCompile.LCHModelErrorsForUnwrappedMemberObject(null);
-		}, /LCHErrorInvalidInput/);
+		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns error if id not string', function() {
@@ -69,7 +69,7 @@ describe('LCHLogicFilter', function testLCHLogicFilter() {
 	it('throws error if not string', function() {
 		assert.throws(function() {
 			LCHCompile.LCHLogicFilter(null);
-		}, /LCHErrorInvalidInput/);
+		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns function', function() {
@@ -141,7 +141,7 @@ describe('LCHWrappedMemberObjectFor', function testLCHWrappedMemberObjectFor() {
 	it('throws error if not UnwrappedMemberObject', function() {
 		assert.throws(function() {
 			LCHCompile.LCHWrappedMemberObjectFor({});
-		}, /LCHErrorInvalidInput/);
+		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns WrappedMemberObject', function() {
@@ -190,7 +190,7 @@ describe('LCHTokenHashFor', function testLCHTokenHashFor() {
 	it('throws error if not object', function() {
 		assert.throws(function() {
 			LCHCompile.LCHTokenHashFor(null);
-		}, /LCHErrorInvalidInput/);
+		}, /LCHErrorInputInvalid/);
 	});
 
 	it('throws error if LCHInputMemberObjects not array', function() {
@@ -198,7 +198,7 @@ describe('LCHTokenHashFor', function testLCHTokenHashFor() {
 			LCHCompile.LCHTokenHashFor(Object.assign(kTesting.kTestingValidInputHash(), {
 				LCHInputMemberObjects: null,
 			}));
-		}, /LCHErrorInvalidInput/);
+		}, /LCHErrorInputInvalid/);
 	});
 
 	it('throws error if LCHInputStyleContent not string', function() {
@@ -206,7 +206,7 @@ describe('LCHTokenHashFor', function testLCHTokenHashFor() {
 			LCHCompile.LCHTokenHashFor(Object.assign(kTesting.kTestingValidInputHash(), {
 				LCHInputStyleContent: null,
 			}));
-		}, /LCHErrorInvalidInput/);
+		}, /LCHErrorInputInvalid/);
 	});
 
 	it('throws error if LCHInputLibraryD3Content not string', function() {
@@ -214,7 +214,7 @@ describe('LCHTokenHashFor', function testLCHTokenHashFor() {
 			LCHCompile.LCHTokenHashFor(Object.assign(kTesting.kTestingValidInputHash(), {
 				LCHInputLibraryD3Content: null,
 			}));
-		}, /LCHErrorInvalidInput/);
+		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns array', function() {
@@ -233,7 +233,7 @@ describe('_LCHTokenMemberObjectsReplacementFor', function test_LCHTokenMemberObj
 	it('throws error if not array', function() {
 		assert.throws(function() {
 			LCHCompile._LCHTokenMemberObjectsReplacementFor(null);
-		}, /LCHErrorInvalidInput/);
+		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns empty if no objects', function() {
@@ -262,7 +262,7 @@ describe('LCHBookmarkletTextForTokenHash', function testLCHBookmarkletTextForTok
 	it('throws error if not object', function() {
 		assert.throws(function() {
 			LCHCompile.LCHBookmarkletTextForTokenHash(null);
-		}, /LCHErrorInvalidInput/);
+		}, /LCHErrorInputInvalid/);
 	});
 
 	it('replaces tokens', function() {
@@ -278,7 +278,7 @@ describe('LCHBookmarkletBinaryFor', function testLCHBookmarkletBinaryFor() {
 	it('throws error if not string', function() {
 		assert.throws(function() {
 			LCHCompile.LCHBookmarkletBinaryFor(null);
-		}, /LCHErrorInvalidInput/);
+		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns bookmarklet binary', function() {

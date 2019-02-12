@@ -7,7 +7,7 @@ describe('LCHComposeLogicFilter', function testLCHComposeLogicFilter() {
 	it('throws error if not string', function() {
 		assert.throws(function() {
 			LCHComposeLogic.LCHComposeLogicFilter(null);
-		}, /LCHErrorInvalidInput/);
+		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns function', function() {

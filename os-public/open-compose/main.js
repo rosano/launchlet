@@ -8,7 +8,7 @@
 
 	exports.LCHModelErrorsForUnwrappedMemberObject = function (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
-			throw new Error('LCHErrorInvalidInput');
+			throw new Error('LCHErrorInputInvalid');
 		}
 
 		let errorsHash = {};
@@ -40,7 +40,7 @@
 
 	exports.LCHLogicFilter = function (inputData) {
 		if (typeof inputData !== 'string') {
-			throw new Error('LCHErrorInvalidInput');
+			throw new Error('LCHErrorInputInvalid');
 		}
 
 		return function (e) {
@@ -58,7 +58,7 @@
 
 	exports.LCHWrappedMemberObjectFor = function (inputData) {
 		if (exports.LCHModelErrorsForUnwrappedMemberObject(inputData)) {
-			throw new Error('LCHErrorInvalidInput');
+			throw new Error('LCHErrorInputInvalid');
 		}
 
 		return Object.keys(inputData).reduce(function (coll, e) {
@@ -424,19 +424,19 @@
 
 	exports.LCHTokenHashFor = function (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
-			throw new Error('LCHErrorInvalidInput');
+			throw new Error('LCHErrorInputInvalid');
 		}
 
 		if (!Array.isArray(inputData.LCHInputMemberObjects)) {
-			throw new Error('LCHErrorInvalidInput');
+			throw new Error('LCHErrorInputInvalid');
 		}
 
 		if (typeof inputData.LCHInputStyleContent !== 'string') {
-			throw new Error('LCHErrorInvalidInput');
+			throw new Error('LCHErrorInputInvalid');
 		}
 
 		if (typeof inputData.LCHInputLibraryD3Content !== 'string') {
-			throw new Error('LCHErrorInvalidInput');
+			throw new Error('LCHErrorInputInvalid');
 		}
 
 		return {
@@ -451,7 +451,7 @@
 
 	exports._LCHTokenMemberObjectsReplacementFor = function (inputData) {
 		if (!Array.isArray(inputData)) {
-			throw new Error('LCHErrorInvalidInput');
+			throw new Error('LCHErrorInputInvalid');
 		}
 
 		let tokenHash = {};
@@ -483,7 +483,7 @@
 
 	exports.LCHBookmarkletTextForTokenHash = function (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
-			throw new Error('LCHErrorInvalidInput');
+			throw new Error('LCHErrorInputInvalid');
 		}
 
 		return Object.keys(inputData).reduce(function (coll, e) {
@@ -495,7 +495,7 @@
 
 	exports.LCHBookmarkletBinaryFor = function (inputData) {
 		if (typeof inputData !== 'string') {
-			throw new Error('LCHErrorInvalidInput');
+			throw new Error('LCHErrorInputInvalid');
 		}
 
 		return `javascript:(${encodeURIComponent(inputData)})();`;
