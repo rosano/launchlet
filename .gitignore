@@ -7,8 +7,7 @@ os-cache
 os-workspace-testing
 
 # BUILD
-os-public/shared-assets/external
-os-public/shared-assets/internal
+os-app/_shared/_external
 
 # LOCAL
 .env
@@ -16,5 +15,5 @@ os-public/shared-assets/internal
 .env.test
 
 # COMPOSE
-os-public/open-compose/libraries
 os-public/open-compose/sample-d3.js
+os-app/open-compose/libraries

@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "start": "node ./os-launch",
-    "postinstall": "gulp default"
+    "start": "node ./os-launch.js",
+    "postinstall": "node ./os-build.js"
   },
   "dependencies": {
     "// OLDSKOOL": null,
@@ -29,7 +29,6 @@
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {
-    "gulp": "4.0",
     "OLSKFilesystem": "olsk/OLSKFilesystem",
     "OLSKTesting": "olsk/OLSKTesting"
   }
