@@ -7,11 +7,8 @@
     "// OLDSKOOL": null,
     "OldSkool": "olsk/OldSkool",
 
-    "// NORMALIZE": null,
+    "// NORMALIZE CSS": null,
     "normalize.css": "latest",
-
-    "// GENERAL JAVASCRIPT": null,
-    "d3": "latest",
 
     "// I18N": null,
     "OLSKInternational": "olsk/OLSKInternational",
