@@ -15,5 +15,5 @@ os-app/_shared/_external
 .env.test
 
 # COMPOSE
-os-app/open-compose/libraries
+os-app/open-compose/_external
 os-app/open-compose/sample-d3.js

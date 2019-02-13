@@ -20,7 +20,7 @@ exports.OLSKControllerRoutes = function() {
 						'LCHComposeListItemFormInputFunctionBodyPlaceholder',
 					],
 					LCHComposeStyleContent: require('fs').readFileSync(req.OLSKLive.OLSKLivePathJoin(__dirname, 'sample.css'), 'utf8'),
-					LCHComposeLibraryD3Content: require('fs').readFileSync(req.OLSKLive.OLSKLivePathJoin(__dirname, 'libraries/d3-selection/dist/d3-selection.min.js'), 'utf8'),
+					LCHComposeLibraryD3Content: require('fs').readFileSync(req.OLSKLive.OLSKLivePathJoin(__dirname, '_external/d3-selection/dist/d3-selection.min.js'), 'utf8'),
 				});
 			},
 			OLSKRouteLanguages: ['en'],
