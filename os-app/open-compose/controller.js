@@ -19,11 +19,21 @@ exports.OLSKControllerRoutes = function() {
 						'LCHComposeListItemFormInputNamePlaceholder',
 						'LCHComposeListItemFormInputFunctionBodyPlaceholder',
 					],
-					LCHComposeStyleContent: require('fs').readFileSync(req.OLSKLive.OLSKLivePathJoin(req.OLSKLive.OLSKLivePublicDirectoryAbsolutePath(), res.locals.OLSKSharedPageControllerSlug, 'sample.css'), 'utf8'),
-					LCHComposeLibraryD3Content: require('fs').readFileSync(req.OLSKLive.OLSKLivePathJoin(req.OLSKLive.OLSKLivePublicDirectoryAbsolutePath(), res.locals.OLSKSharedPageControllerSlug, 'libraries/d3-selection/dist/d3-selection.min.js'), 'utf8'),
+					LCHComposeStyleContent: require('fs').readFileSync(req.OLSKLive.OLSKLivePathJoin(__dirname, 'sample.css'), 'utf8'),
+					LCHComposeLibraryD3Content: require('fs').readFileSync(req.OLSKLive.OLSKLivePathJoin(__dirname, 'libraries/d3-selection/dist/d3-selection.min.js'), 'utf8'),
 				});
 			},
 			OLSKRouteLanguages: ['en'],
 		},
 	};
 };
+
+//_ OLSKControllerStaticAssetFiles
+
+exports.OLSKControllerStaticAssetFiles = function() {
+	return [
+		'main.js',
+		'sample.js',
+	];
+};
+
