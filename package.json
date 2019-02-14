@@ -26,7 +26,7 @@
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {
-    "OLSKFilesystem": "olsk/OLSKFilesystem",
+    "OLSKDisk": "olsk/OLSKDisk",
     "OLSKTesting": "olsk/OLSKTesting"
   }
 }
