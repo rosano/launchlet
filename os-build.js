@@ -1,10 +1,10 @@
 //# OLSKStartExternalAssets
 
 (function OLSKStartExternalAssets() {
-	const OLSKExternalAssets = require('./node_modules/OldSkool/modules/OLSKExternalAssets/main.js');
+	const OLSKAssets = require('./node_modules/OldSkool/modules/OLSKAssets/main.js');
 	const pathPackage = require('path');
 
-	OLSKExternalAssets.OLSKExternalAssetsCopyAssetsFromTo([
+	OLSKAssets.OLSKAssetsCopyAssetsFromTo([
 		'normalize.css',
 		'd3',
 		'OLSKInternational',
@@ -14,7 +14,7 @@
 		'd3-selection',
 	], pathPackage.join(__dirname, 'node_modules'), pathPackage.join(__dirname, 'os-app/_shared/_external'));
 
-	OLSKExternalAssets.OLSKExternalAssetsCopyAssetsFromTo([
+	OLSKAssets.OLSKAssetsCopyAssetsFromTo([
 		'd3-selection',
 	], pathPackage.join(__dirname, 'node_modules'), pathPackage.join(__dirname, 'os-app/open-compose/_external'));
 })();
