@@ -2,7 +2,9 @@
 <html<%- locals.OLSKSharedPageCurrentLanguage ? [' lang="', OLSKSharedPageCurrentLanguage, '"'].join('') : ''; %>>
 
 <head>
-	<%- (function(outputData = []) {
+	<%- (function() {
+	let outputData = [];
+	
 	if (locals.OLSKPageTitle) {
 		outputData.push(`<title>${ locals.OLSKPageTitle }</title>`);
 	}
