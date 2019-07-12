@@ -10,6 +10,10 @@
     "// NORMALIZE CSS": null,
     "normalize.css": "latest",
 
+    "// REMOTE STORAGE": null,
+    "remotestoragejs": "latest",
+    "remotestorage-widget": "latest",
+
     "// I18N": null,
     "OLSKInternational": "olsk/OLSKInternational",
     "OLSKString": "olsk/OLSKString",
