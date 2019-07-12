@@ -8,12 +8,12 @@
 		'normalize.css',
 		'remotestoragejs',
 		'remotestorage-widget',
-		'd3',
-		'OLSKInternational',
-		'OLSKString',
 		'codemirror',
 		'dragula',
 		'd3-selection',
+		'OLSKInternational',
+		'OLSKString',
+		'OLSKRouting',
 	], pathPackage.join(__dirname, 'node_modules'), pathPackage.join(__dirname, 'os-app/_shared/_external'));
 
 	OLSKAssets.OLSKAssetsCopyAssetsFromTo([
