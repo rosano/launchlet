@@ -1,11 +1,13 @@
-//# OLSKStartExternalAssets
+//# OLSKBuildExternalAssets
 
-(function OLSKStartExternalAssets() {
+(function OLSKBuildExternalAssets() {
 	const OLSKAssets = require('./node_modules/OldSkool/modules/OLSKAssets/main.js');
 	const pathPackage = require('path');
 
 	OLSKAssets.OLSKAssetsCopyAssetsFromTo([
 		'normalize.css',
+		'remotestoragejs',
+		'remotestorage-widget',
 		'd3',
 		'OLSKInternational',
 		'OLSKString',
