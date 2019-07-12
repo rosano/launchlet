@@ -9,7 +9,7 @@ const uSerial = function (inputData) {
 };
 
 before(function(done) {
-	global.WKCTestingStorageClient = require('./os-app/_shared/LCHStorageClient/main.js').LCHStorageClientForChangeDelegateMap(moduleSlugs.reduce(function (coll, e) {
+	global.LCHTestingStorageClient = require('./os-app/_shared/LCHStorageClient/main.js').LCHStorageClientForChangeDelegateMap(moduleSlugs.reduce(function (coll, e) {
 		return (coll[e] = null) || coll;
 	}, {}));
 
@@ -18,7 +18,7 @@ before(function(done) {
 
 beforeEach(async function() {
 	await uSerial(moduleSlugs.map(async function (e) {
-		return await Promise.all(Object.keys(await global.WKCTestingStorageClient[e].listObjects()).map(global.WKCTestingStorageClient[e].deleteObject));
+		return await Promise.all(Object.keys(await global.LCHTestingStorageClient[e].listObjects()).map(global.LCHTestingStorageClient[e].deleteObject));
 	}));
 });
 

@@ -103,7 +103,11 @@ describe('LCHMembersModelPreJSONSchemaValidate', function testLCHMembersModelPre
 
 describe('LCHMembersModelPostJSONParse', function testLCHMembersModelPostJSONParse() {
 
-	it('returns input', function() {
+	it('returns input null', function() {
+		assert.deepEqual(mainModule.LCHMembersModelPostJSONParse(null), null);
+	});
+
+	it('returns input object', function() {
 		assert.deepEqual(mainModule.LCHMembersModelPostJSONParse({}), {});
 	});
 

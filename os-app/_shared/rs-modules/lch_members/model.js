@@ -52,6 +52,10 @@
 		return inputData;
 	},
 	LCHMembersModelPostJSONParse: function(inputData) {
+		if (!inputData) {
+			return inputData;
+		}
+
 		if (inputData.LCHMemberCreationDate) {
 			inputData.LCHMemberCreationDate = new Date(inputData.LCHMemberCreationDate);
 		}
