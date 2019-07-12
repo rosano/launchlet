@@ -51,9 +51,9 @@
 	};
 
 	before(function(done) {
-		global.LCHTestingStorageClient = require('./os-app/_shared/LCHStorageClient/main.js').LCHStorageClientForChangeDelegateMap(moduleSlugs.reduce(function (coll, e) {
-			return (coll[e] = null) || coll;
-		}, {}));
+		global.LCHTestingStorageClient = require('./os-app/_shared/LCHStorageClient/main.js').LCHStorageClientForModules(moduleSlugs.map(function (e) {
+			return require(`./os-app/_shared/rs-modules/${ e }/rs-module.js`).RSModuleProtocolModuleForChangeDelegate(null);
+		}));
 
 		done();
 	});

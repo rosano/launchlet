@@ -5,11 +5,7 @@ const RemoteStorage = typeof require === 'undefined' ? window.RemoteStorage : re
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
 	(factory((global.LCHStorageClient = global.LCHStorageClient || {})));
 }(this, (function (exports) { 'use strict'; Object.defineProperty(exports, '__esModule', { value: true }); Object.assign(exports, {
-	LCHStorageClientForChangeDelegateMap: function (changeDelegateMap) {
-		let modules = Object.entries(changeDelegateMap).map(function ([slug, delegate]) {
-			return (typeof require === 'undefined' ? window[`RSModuleProtocol_${ slug }`] : require(`../rs-modules/${ slug }/rs-module.js`)).RSModuleProtocolModuleForChangeDelegate(delegate);
-		});
-
+	LCHStorageClientForModules: function (modules) {
 		let remoteStorage = new RemoteStorage({
 			modules: modules,
 		});
