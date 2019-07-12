@@ -1,6 +1,6 @@
-const assert = require('assert');
+import * as assert from 'assert';
 
-const mainModule = require('./metal.js');
+import * as mainModule from './metal.js';
 
 const kTesting = {
 	StubMemberObjectValid: function() {

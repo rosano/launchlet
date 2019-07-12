@@ -1,6 +1,6 @@
-const assert = require('assert');
+import * as assert from 'assert';
 
-const mainModule = require('./main.js');
+import * as mainModule from './main.js';
 
 describe('RSModuleSharedJSONSchemaForErrors', function RSModuleSharedJSONSchemaForErrors() {
 

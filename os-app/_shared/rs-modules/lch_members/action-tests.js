@@ -1,6 +1,6 @@
-const assert = require('assert');
+import * as assert from 'assert';
 
-const mainModule = require('./action.js');
+import * as mainModule from './action.js';
 
 const kTesting = {
 	StubMemberObject: function() {
