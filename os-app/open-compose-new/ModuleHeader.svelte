@@ -4,7 +4,7 @@ import RCSLanguageSwitcher from '../_shared/RCSLanguageSwitcher/Main.svelte';
 
 <header class="Container">
 
-<h1>{ window.OLSKLocalized('LCHIdiomaticTitle') }</h1>
+<h1>{ window.OLSKLocalized('LCHComposeTitle') }</h1>
 
 <RCSLanguageSwitcher />
 	
