@@ -1,0 +1,27 @@
+<%
+locals.OLSKPageTitle = OLSKLocalized('LCHComposeTitle');
+locals.OLSKPageDescription = OLSKLocalized('LCHComposeDescription');
+locals.OLSKPageAssets = [
+	'/_shared/_external/OLSKRouting/main.js',
+	'/_shared/_external/normalize.css/normalize.css',
+	'_compiled/ui-style.css',
+];
+locals.OLSKPagePublicLocalizedStringKeys = [
+	'LCHComposeTitle',
+	'LCHComposeDescription',
+];
+locals.OLSKPagePublicRouteKeys = [
+	OLSKSharedActiveRouteConstant,
+];
+locals.OLSKPagePublicConstants = {
+	OLSKSharedActiveRouteConstant: OLSKSharedActiveRouteConstant,
+	OLSKSharedPageLanguagesAvailable: OLSKSharedPageLanguagesAvailable,
+	OLSKSharedPageCurrentLanguage: OLSKSharedPageCurrentLanguage,
+};
+%>
+
+<%- include('../_shared/common/layout-header.ejs') %>
+
+<script src="/<%= OLSKSharedPageControllerSlug %>/_compiled/ui-behaviour.js"></script>
+
+<%- include('../_shared/common/layout-footer.ejs') %>
