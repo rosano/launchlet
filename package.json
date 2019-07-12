@@ -1,7 +1,12 @@
 {
   "scripts": {
     "start": "node ./os-launch.js",
-    "postinstall": "node ./os-build.js"
+    "postinstall": "node ./os-build.js",
+
+    "svelte-build-manual": "rollup -c $ROLLUP_PATH",
+    "svelte-build": "rollup -w -c ./os-app/$PROJECT_PATH/rollup.config.js",
+    "svelt-dev": "sirv ./os-app/$PROJECT_PATH/_compiled --single --dev",
+    "svelte": "run-p svelt-dev svelte-build"
   },
   "dependencies": {
     "// OLDSKOOL": null,
@@ -34,6 +39,18 @@
   },
   "devDependencies": {
     "OLSKDisk": "olsk/OLSKDisk",
-    "OLSKTesting": "olsk/OLSKTesting"
+    "OLSKTesting": "olsk/OLSKTesting",
+
+    "npm-run-all": "^4.1.5",
+    "rollup": "^1.10.1",
+    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup-plugin-livereload": "^1.0.0",
+    "rollup-plugin-node-resolve": "^4.2.3",
+    "rollup-plugin-svelte": "^5.0.3",
+    "rollup-plugin-terser": "^4.0.4",
+    "sirv-cli": "^0.4.4",
+    "svelte": "^3.0.0",
+
+    "eslint-plugin-svelte3": "^2.6.0"
   }
 }
