@@ -7,25 +7,28 @@
     "// OLDSKOOL": null,
     "OldSkool": "olsk/OldSkool",
 
-    "// NORMALIZE CSS": null,
-    "normalize.css": "latest",
-
     "// REMOTE STORAGE": null,
     "remotestoragejs": "latest",
     "remotestorage-widget": "latest",
 
+    "// UNIQUE IDS": null,
+    "ulid": "latest",
+
     "// I18N": null,
     "OLSKInternational": "olsk/OLSKInternational",
     "OLSKString": "olsk/OLSKString",
-
-    "// EDITOR": null,
-    "codemirror": "rosano/CodeMirror#add-distribution",
 
     "// DRAG AND DROP": null,
     "dragula": "bevacqua/dragula",
 
     "// BOOKMARKLET LIBRARIES": null,
     "d3-selection": "latest",
+
+    "// FRONTEND NORMALIZE CSS": null,
+    "normalize.css": "latest",
+
+    "// FRONDEND EDITOR": null,
+    "codemirror": "rosano/CodeMirror#add-distribution",
 
     "// I sacrifice myself for the commas of others": null
   },
