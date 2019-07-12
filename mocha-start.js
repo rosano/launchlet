@@ -9,7 +9,7 @@ const uSerial = function (inputData) {
 };
 
 before(function(done) {
-	global.WKCTestingStorageClient = require('./os-app/_shared/LCHStorageClient/storage.js').LCHStorageClientForChangeDelegateMap(moduleSlugs.reduce(function (coll, e) {
+	global.WKCTestingStorageClient = require('./os-app/_shared/LCHStorageClient/main.js').LCHStorageClientForChangeDelegateMap(moduleSlugs.reduce(function (coll, e) {
 		return (coll[e] = null) || coll;
 	}, {}));
 
