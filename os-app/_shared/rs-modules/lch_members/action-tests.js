@@ -145,3 +145,17 @@ describe('LCHMembersActionDelete', function testLCHMembersActionDelete() {
 	});
 
 });
+
+describe('LCHMembersActionList', function testLCHMembersActionList() {
+
+	it('returns array', async function() {
+		assert.deepEqual(await mainModule.LCHMembersActionList(LCHTestingStorageClient), []);
+	});
+
+	it('returns array with existing LCHMembers', async function() {
+		let item = await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject());
+
+		assert.deepEqual(await mainModule.LCHMembersActionList(LCHTestingStorageClient), [item]);
+	});
+
+});

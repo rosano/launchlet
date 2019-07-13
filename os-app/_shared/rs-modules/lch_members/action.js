@@ -33,3 +33,7 @@ export const LCHMembersActionUpdate = async function(storageClient, inputData) {
 export const LCHMembersActionDelete = async function(storageClient, inputData) {
 	return await LCHMembersMetal.LCHMembersMetalDelete(storageClient, inputData);
 };
+
+export const LCHMembersActionList = async function(storageClient) {
+	return Object.values(await LCHMembersMetal.LCHMembersMetalList(storageClient));
+};
