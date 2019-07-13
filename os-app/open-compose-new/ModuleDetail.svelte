@@ -1,10 +1,9 @@
 <script>
 import * as LCHMembersAction from '../_shared/rs-modules/lch_members/action.js';
-import * as OLSKThrottle from '../_shared/_external/OLSKThrottle/main.js';
 
 import { storageClient, membersAll, memberSelected } from './persistence.js';
 
-let throttleMap = {};
+let editorInstance;
 
 let _memberSelected;
 memberSelected.subscribe(function (val) {
@@ -13,8 +12,49 @@ memberSelected.subscribe(function (val) {
 	}
 
 	_memberSelected = val;
+
+	if (!editorInstance) {
+		return
+	}
+
+	editorInstance.setValue(_memberSelected.LCHMemberBody);
 });
 
+let editorElement;
+import { afterUpdate } from 'svelte';
+afterUpdate(function () {
+	if (!editorElement) {
+		return;
+	}
+
+	if (editorInstance) {
+		return;
+	}
+
+	editorInstance = CodeMirror.fromTextArea(editorElement, {
+		mode: 'javascript',
+
+		lineNumbers: true,
+		lineWrapping: true,
+
+		placeholder: window.OLSKLocalized('LCHComposeListItemFormInputFunctionBodyPlaceholder'),
+	})
+
+	editorInstance.setValue(_memberSelected.LCHMemberBody);
+
+	editorInstance.on('change', function (instance, changeObject) {
+		if (changeObject.origin === 'setValue') {
+			return;
+		}
+
+		_memberSelected.LCHMemberBody = instance.getValue();
+
+		memberSave();
+	});
+});
+
+let throttleMap = {};
+import * as OLSKThrottle from '../_shared/_external/OLSKThrottle/main.js';
 async function memberSave() {
 	if (!throttleMap[_memberSelected.LCHMemberID]) {
 		throttleMap[_memberSelected.LCHMemberID] = {
@@ -47,7 +87,7 @@ async function memberDelete() {
 }
 </script>
 
-<div>
+<div class="Container">
 
 {#if _memberSelected}
 	<header>
@@ -55,6 +95,8 @@ async function memberDelete() {
 	</header>
 	<div>
 		<input type="text" bind:value={ _memberSelected.LCHMemberName } on:input={ memberSave } placeholder="{ window.OLSKLocalized('LCHComposeListItemFormInputNamePlaceholder') }" autofocus />
+
+		<textarea bind:this={ editorElement }></textarea>
 	</div>
 {/if}
 
@@ -67,4 +109,7 @@ async function memberDelete() {
 </div>
 
 <style>
+.Container :global(.CodeMirror-empty) {
+	color: #999999;
+}
 </style>
