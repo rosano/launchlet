@@ -9,6 +9,10 @@ memberSelected.subscribe(function (val) {
 });
 
 async function memberDelete() {
+	if (!window.confirm(OLSKLocalized('LCHComposeListItemDeletePromptText'))) {
+		return;
+	}
+	
 	membersAll.update(function (val) {
 		return val.filter(function(e) {
 			return e !== _memberSelected;
@@ -21,14 +25,22 @@ async function memberDelete() {
 }
 </script>
 
-<div class="Container">
-
-<header>
-	<button on:click={ memberDelete }>{ window.OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }</button>
-</header>
 <div>
-	{ (_memberSelected || {}).LCHMemberID }
-</div>
+
+{#if _memberSelected}
+	<header>
+		<button on:click={ memberDelete }>{ window.OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }</button>
+	</header>
+	<div>
+		{ (_memberSelected || {}).LCHMemberID }
+	</div>
+{/if}
+
+{#if !_memberSelected}
+	<div>
+		{ window.OLSKLocalized('LCHComposeDetailPlaceholderText') }
+	</div>
+{/if}
 
 </div>
 
