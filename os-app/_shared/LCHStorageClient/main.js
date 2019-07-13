@@ -1,4 +1,4 @@
-import * as RemoteStorage from 'remotestoragejs';
+import RemoteStorage from 'remotestoragejs';
 
 export const LCHStorageClientForModules = function (modules) {
 	let remoteStorage = new RemoteStorage({

@@ -1,6 +1,6 @@
 <script>
-import LCHStorageClient from '../_shared/LCHStorageClient/main.js';
-import RSModuleProtocol_lch_members from '../_shared/rs-modules/lch_members/rs-module.js';
+import * as LCHStorageClient from '../_shared/LCHStorageClient/main.js';
+import * as RSModuleProtocol_lch_members from '../_shared/rs-modules/lch_members/rs-module.js';
 import Widget from '../_shared/_external/remotestorage-widget/build/widget.js';
 import Header from './ModuleHeader.svelte';
 
