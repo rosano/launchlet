@@ -8,7 +8,7 @@ membersAll.subscribe(function (val) {
 	_membersAll = val;
 });
 
-async function createMember() {
+async function memberCreate() {
 	return membersAll.update(async function (val) {
 		return val.concat(await LCHMembersAction.LCHMembersActionCreate(storageClient, {
 			LCHMemberBody: '',
@@ -16,7 +16,7 @@ async function createMember() {
 	});
 }
 
-async function selectMember(inputData) {
+async function memberSelect(inputData) {
 	return memberSelected.set(inputData);
 }
 </script>
@@ -24,11 +24,11 @@ async function selectMember(inputData) {
 <div class="Container">
 
 <header>
-	<button on:click={ createMember }>{ window.OLSKLocalized('LCHComposeToolbarAddButtonText') }</button>
+	<button on:click={ memberCreate }>{ window.OLSKLocalized('LCHComposeToolbarAddButtonText') }</button>
 </header>
 <div>
 	{#each _membersAll as e}
-		<div on:click={ () => selectMember(e) }>{ e.LCHMemberID }</div>
+		<div on:click={ () => memberSelect(e) }>{ e.LCHMemberID }</div>
 	{/each}
 </div>
 
