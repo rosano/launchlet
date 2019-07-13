@@ -69,6 +69,21 @@
 	</script>`);
 	}
 
+	if (locals.OLSKPagePublicRouteKeys) {
+		outputData.push(...[
+			'/_shared/_external/OLSKRouting/main.js',
+			].map(pathToTag));
+		
+		outputData.push(`<script type="text/javascript">
+		window.OLSKCanonicalFor = function(routeConstant, optionalParams) {
+			return OLSKRouting.OLSKRoutingCanonicalPathWithRoutePathAndOptionalParams((${ JSON.stringify(OLSKPagePublicRouteKeys.reduce(function (map, e) {
+				map[e] = OLSKRouteObjectFor(e).OLSKRoutePath;
+				return map;
+			}, {})) })[routeConstant], optionalParams);
+		};
+	</script>`);
+	}
+
 	outputData.push(...(locals.OLSKPageAssets || []).map(pathToTag));
 
 	return outputData.join('\n\t');
