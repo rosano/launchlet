@@ -96,7 +96,11 @@ async function memberDelete() {
 	<div>
 		<input type="text" bind:value={ _memberSelected.LCHMemberName } on:input={ memberSave } placeholder="{ window.OLSKLocalized('LCHComposeListItemFormInputNamePlaceholder') }" autofocus />
 
+		<span>function (</span>
+		<input type="text" bind:value={ _memberSelected.LCHMemberArgs } placeholder="undefined" on:input={ memberSave } />
+		<span>) &#123;</span>
 		<textarea bind:this={ editorElement }></textarea>
+		<span>&#125;</span>
 	</div>
 {/if}
 
