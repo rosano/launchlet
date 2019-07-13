@@ -68,8 +68,8 @@
 //# OLSKMochaErrors
 
 (function OLSKMochaErrors() {
-	process.on('unhandledRejection', (reason, promise) => {
-		// console.log('Unhandledd Rejection at:', reason, promise)
+	process.on('unhandledRejection', () => {
+		// console.log('Unhandledd Rejection at:', arguments)
 		// Recommended: send the information to sentry.io
 		// or whatever crash reporting service you use
 	});

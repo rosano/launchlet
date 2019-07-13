@@ -32,7 +32,7 @@ describe('LCHMembersActionCreate', function testLCHMembersActionCreate() {
 			LCHMemberBody: [
 				'LCHErrorNotString',
 			],
-		})
+		});
 	});
 
 	it('returns LCHMember', async function() {
@@ -94,7 +94,7 @@ describe('LCHMembersActionUpdate', function testLCHMembersActionUpdate() {
 			LCHMemberID: [
 				'LCHErrorNotString',
 			],
-		})
+		});
 	});
 
 	it('returns LCHMember', async function() {

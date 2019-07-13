@@ -26,7 +26,7 @@ describe('LCHMembersMetalWrite', function testLCHMembersMetalWrite() {
 			LCHMemberID: [
 				'LCHErrorNotString',
 			],
-		})
+		});
 	});
 
 	it('returns LCHMember', async function() {

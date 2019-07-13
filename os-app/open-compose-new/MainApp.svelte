@@ -1,8 +1,8 @@
 <script>
-import LCHStorageClient from '../_shared/LCHStorageClient/main.js'
-import RSModuleProtocol_lch_members from '../_shared/rs-modules/lch_members/rs-module.js'
-import Widget from '../_shared/_external/remotestorage-widget/build/widget.js'
-import Header from './ModuleHeader.svelte'
+import LCHStorageClient from '../_shared/LCHStorageClient/main.js';
+import RSModuleProtocol_lch_members from '../_shared/rs-modules/lch_members/rs-module.js';
+import Widget from '../_shared/_external/remotestorage-widget/build/widget.js';
+import Header from './ModuleHeader.svelte';
 
 import { onMount } from 'svelte';
 
@@ -25,7 +25,7 @@ let storageClient = LCHStorageClient.LCHStorageClientForModules([
 			// }));
 		},
 	}),
-	]);
+]);
 
 let remoteStorage = storageClient.remoteStorage;
 
@@ -39,39 +39,39 @@ remoteStorage.on('ready', async () => {
 
 (function SetupStorageClientLogging() {
 	remoteStorage.on('not-connected', () => {
-		console.debug(`not-connected`, arguments);
+		console.debug('not-connected', arguments);
 	});
 
 	remoteStorage.on('disconnected', () => {
-		console.debug(`disconnected`, arguments);
+		console.debug('disconnected', arguments);
 	});
 
 	remoteStorage.on('error', () => {
-		console.debug(`error`, arguments);
+		console.debug('error', arguments);
 	});
 
 	remoteStorage.on('connected', () => {
-		console.debug(`connected`, arguments);
+		console.debug('connected', arguments);
 	});
 
 	remoteStorage.on('connected', () => {
-		console.debug(`connected`, arguments);
+		console.debug('connected', arguments);
 	});
 
 	remoteStorage.on('error', () => {
-		console.debug(`error`, arguments);
+		console.debug('error', arguments);
 	});
 
 	remoteStorage.on('network-offline', () => {
-		console.debug(`network-offline`, arguments);
+		console.debug('network-offline', arguments);
 	});
 
 	remoteStorage.on('network-online', () => {
-		console.debug(`network-online`, arguments);
+		console.debug('network-online', arguments);
 	});
 
 	remoteStorage.on('sync-done', () => {
-		console.debug(`sync-done`, arguments);
+		console.debug('sync-done', arguments);
 	});
 })();
 
