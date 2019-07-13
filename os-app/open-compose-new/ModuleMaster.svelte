@@ -33,7 +33,7 @@ async function memberSelect(inputData) {
 </header>
 <div>
 	{#each _membersAll as e}
-		<div on:click={ () => memberSelect(e) }>{ e.LCHMemberID }</div>
+		<div on:click={ () => memberSelect(e) } class="LCHSharedElementTappable">{ e.LCHMemberID }</div>
 	{/each}
 </div>
 
