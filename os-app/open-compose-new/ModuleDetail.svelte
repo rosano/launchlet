@@ -2,7 +2,7 @@
 import * as LCHMembersAction from '../_shared/rs-modules/lch_members/action.js';
 import * as OLSKThrottle from '../_shared/_external/OLSKThrottle/main.js';
 
-import { storageClient, membersAll, memberSelected } from './persistance.js';
+import { storageClient, membersAll, memberSelected } from './persistence.js';
 
 let throttleMap = {};
 

@@ -1,7 +1,7 @@
 <script>
 import * as LCHMembersAction from '../_shared/rs-modules/lch_members/action.js';
 
-import { storageClient, membersAll, memberSelected } from './persistance.js';
+import { storageClient, membersAll, memberSelected } from './persistence.js';
 
 let _membersAll;
 membersAll.subscribe(function (val) {

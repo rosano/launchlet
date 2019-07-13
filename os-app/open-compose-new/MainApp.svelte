@@ -3,7 +3,7 @@ import ModuleHeader from './ModuleHeader.svelte';
 import ModuleMaster from './ModuleMaster.svelte';
 import ModuleDetail from './ModuleDetail.svelte';
 
-import { storageClient } from './persistance.js';
+import { storageClient } from './persistence.js';
 
 import Widget from '../_shared/_external/remotestorage-widget/build/widget.js';
 
