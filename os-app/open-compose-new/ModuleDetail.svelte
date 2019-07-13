@@ -101,6 +101,8 @@ async function memberDelete() {
 		<span>) &#123;</span>
 		<textarea bind:this={ editorElement }></textarea>
 		<span>&#125;</span>
+
+		<input type="text" bind:value={ _memberSelected.LCHMemberSignature } on:input={ memberSave } placeholder="{ window.OLSKLocalized('LCHComposeListItemFormInputSignaturePlaceholder') }" />
 	</div>
 {/if}
 
