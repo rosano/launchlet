@@ -9,10 +9,13 @@ membersAll.subscribe(function (val) {
 });
 
 async function memberCreate() {
-	return membersAll.update(async function (val) {
-		return val.concat(await LCHMembersAction.LCHMembersActionCreate(storageClient, {
-			LCHMemberBody: '',
-		}));
+	let item = await LCHMembersAction.LCHMembersActionCreate(storageClient, {
+		LCHMemberName: '',
+		LCHMemberBody: '',
+	});
+
+	return membersAll.update(function (val) {
+		return val.concat(item);
 	});
 }
 
