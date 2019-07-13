@@ -13,6 +13,11 @@ memberSelected.subscribe(function (val) {
 
 	_memberSelected = val;
 
+	if (!_memberSelected) {
+		editorInstance = null;
+		return
+	}
+
 	if (!editorInstance) {
 		return
 	}
