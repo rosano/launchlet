@@ -75,6 +75,20 @@ describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
 		assert.deepEqual(mainModule.LCHMembersModelErrorsFor(kTesting.StubMemberObjectValid()), null);
 	});
 
+	context('LCHMemberName', function() {
+
+		it('returns object if LCHMemberName not string', function() {
+			assert.deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
+				LCHMemberName: null,
+			})), {
+				LCHMemberName: [
+					'LCHErrorNotString',
+				],
+			});
+		});
+
+	});
+
 });
 
 describe('LCHMembersModelPreJSONSchemaValidate', function testLCHMembersModelPreJSONSchemaValidate() {

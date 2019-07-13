@@ -33,6 +33,14 @@ export const LCHMembersModelErrorsFor = function(inputData) {
 		];
 	}
 
+	if (inputData.LCHMemberName !== undefined) {
+		if (typeof inputData.LCHMemberName !== 'string') {
+			errors.LCHMemberName = [
+				'LCHErrorNotString',
+			];
+		}
+	}
+
 	return Object.entries(errors).length ? errors : null;
 };
 
