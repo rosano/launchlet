@@ -16,9 +16,11 @@ async function memberCreate() {
 		LCHMemberSignature: '',
 	});
 
-	return membersAll.update(function (val) {
+	membersAll.update(function (val) {
 		return val.concat(item);
 	});
+
+	return memberSelect(item)
 }
 
 async function memberSelect(inputData) {
