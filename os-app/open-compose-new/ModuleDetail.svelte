@@ -1,7 +1,7 @@
 <script>
 import * as LCHMembersAction from '../_shared/rs-modules/lch_members/action.js';
 
-import { storageClient, memberSelected } from './persistance.js';
+import { storageClient, membersAll, memberSelected } from './persistance.js';
 
 let _memberSelected;
 memberSelected.subscribe(function (val) {
@@ -9,7 +9,14 @@ memberSelected.subscribe(function (val) {
 });
 
 async function memberDelete() {
-	await LCHMembersAction.LCHMembersActionCreate(storageClient, memberSelected);
+	membersAll.update(function (val) {
+		return val.filter(function(e) {
+			return e !== _memberSelected;
+		});
+	});
+
+	await LCHMembersAction.LCHMembersActionDelete(storageClient, _memberSelected.LCHMemberID);
+
 	return memberSelected.set(null);
 }
 </script>
