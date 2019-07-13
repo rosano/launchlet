@@ -18,8 +18,10 @@ onMount(function () {
 
 <ModuleHeader />
 
-<ModuleMaster />
-<ModuleDetail />
+<div class="ContentContainer">
+	<ModuleMaster />
+	<ModuleDetail />
+</div>
 
 <div id="LCHStorageWidget"></div>
 
@@ -34,5 +36,10 @@ onMount(function () {
 	/* AppContainerFlexboxParent */
 	display: flex;
 	flex-direction: column;
+}
+
+.ContentContainer {
+	/* ContentContainerFlexboxParent */
+	display: flex;
 }
 </style>
