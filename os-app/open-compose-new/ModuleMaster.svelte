@@ -1,7 +1,7 @@
 <script>
 import * as LCHMembersAction from '../_shared/rs-modules/lch_members/action.js';
 
-import { storageClient, membersAll } from './persistance.js';
+import { storageClient, membersAll, memberSelected } from './persistance.js';
 
 let _membersAll;
 membersAll.subscribe(function (val) {
@@ -15,6 +15,10 @@ async function createMember() {
 		}));
 	});
 }
+
+async function selectMember(inputData) {
+	return memberSelected.set(inputData);
+}
 </script>
 
 <div class="Container">
@@ -24,7 +28,7 @@ async function createMember() {
 </header>
 <div>
 	{#each _membersAll as e}
-		<div>{ e.LCHMemberID }</div>
+		<div on:click={ () => selectMember(e) }>{ e.LCHMemberID }</div>
 	{/each}
 </div>
 

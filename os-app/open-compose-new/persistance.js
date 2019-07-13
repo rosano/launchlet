@@ -6,6 +6,7 @@ import * as LCHMembersAction from '../_shared/rs-modules/lch_members/action.js';
 import { writable } from 'svelte/store';
 
 export const membersAll = writable([]);
+export const memberSelected = writable(null);
 
 export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 	RSModuleProtocol_lch_members.RSModuleProtocolModuleForChangeDelegate({

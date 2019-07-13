@@ -1,6 +1,7 @@
 <script>
 import ModuleHeader from './ModuleHeader.svelte';
 import ModuleMaster from './ModuleMaster.svelte';
+import ModuleDetail from './ModuleDetail.svelte';
 
 import { storageClient } from './persistance.js';
 
@@ -15,9 +16,10 @@ onMount(function () {
 
 <div class="AppContainer">
 
-<ModuleHeader/>
+<ModuleHeader />
 
-<ModuleMaster/>
+<ModuleMaster />
+<ModuleDetail />
 
 <div id="LCHStorageWidget"></div>
 
