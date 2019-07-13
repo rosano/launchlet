@@ -5,7 +5,8 @@ import * as mainModule from './action.js';
 const kTesting = {
 	StubMemberObject: function() {
 		return {
-			LCHMemberBody: 'alfa',
+			LCHMemberArgs: 'alfa',
+			LCHMemberBody: 'bravo',
 		};
 	},
 	uSerial: function (inputData) {

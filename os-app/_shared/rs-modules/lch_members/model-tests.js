@@ -6,7 +6,8 @@ const kTesting = {
 	StubMemberObjectValid: function() {
 		return {
 			LCHMemberID: 'alfa',
-			LCHMemberBody: 'bravo',
+			LCHMemberArgs: 'bravo',
+			LCHMemberBody: 'charlie',
 			LCHMemberCreationDate: new Date('2019-02-23T13:56:36Z'),
 			LCHMemberModificationDate: new Date('2019-02-23T13:56:36Z'),
 		};
@@ -37,6 +38,16 @@ describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
 		})), {
 			LCHMemberID: [
 				'LCHErrorNotFilled',
+			],
+		});
+	});
+
+	it('returns object if LCHMemberArgs not string', function() {
+		assert.deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
+			LCHMemberArgs: null,
+		})), {
+			LCHMemberArgs: [
+				'LCHErrorNotString',
 			],
 		});
 	});

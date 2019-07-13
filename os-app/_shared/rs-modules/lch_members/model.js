@@ -15,6 +15,12 @@ export const LCHMembersModelErrorsFor = function(inputData) {
 		];
 	}
 
+	if (typeof inputData.LCHMemberArgs !== 'string') {
+		errors.LCHMemberArgs = [
+			'LCHErrorNotString',
+		];
+	}
+
 	if (typeof inputData.LCHMemberBody !== 'string') {
 		errors.LCHMemberBody = [
 			'LCHErrorNotString',
