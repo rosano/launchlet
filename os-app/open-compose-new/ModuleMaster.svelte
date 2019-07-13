@@ -11,7 +11,9 @@ membersAll.subscribe(function (val) {
 async function memberCreate() {
 	let item = await LCHMembersAction.LCHMembersActionCreate(storageClient, {
 		LCHMemberName: '',
+		LCHMemberArgs: '',
 		LCHMemberBody: '',
+		LCHMemberSignature: '',
 	});
 
 	return membersAll.update(function (val) {
