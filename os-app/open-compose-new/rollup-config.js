@@ -10,6 +10,11 @@ const production = !process.env.ROLLUP_WATCH;
 
 export default {
 	input: pathPackage.join(__dirname, 'Main.svelte.js'),
+	onwarn: (warning, handler) => {
+		if (warning.pluginCode === 'a11y-autofocus') return;
+
+		handler(warning);
+	},
 	output: {
 		sourcemap: true,
 		format: 'iife',
