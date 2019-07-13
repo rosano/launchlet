@@ -100,6 +100,20 @@ describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
 
 	});
 
+	context('LCHMemberSignature', function() {
+
+		it('returns object if LCHMemberSignature not string', function() {
+			assert.deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
+				LCHMemberSignature: null,
+			})), {
+				LCHMemberSignature: [
+					'LCHErrorNotString',
+				],
+			});
+		});
+
+	});
+
 });
 
 describe('LCHMembersModelPreJSONSchemaValidate', function testLCHMembersModelPreJSONSchemaValidate() {

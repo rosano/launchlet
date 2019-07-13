@@ -47,6 +47,14 @@ export const LCHMembersModelErrorsFor = function(inputData) {
 		}
 	}
 
+	if (inputData.LCHMemberSignature !== undefined) {
+		if (typeof inputData.LCHMemberSignature !== 'string') {
+			errors.LCHMemberSignature = [
+				'LCHErrorNotString',
+			];
+		}
+	}
+
 	return Object.entries(errors).length ? errors : null;
 };
 
