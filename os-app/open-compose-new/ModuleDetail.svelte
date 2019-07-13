@@ -120,6 +120,11 @@ async function memberDelete() {
 </div>
 
 <style>
+.Container {
+	/* AppContentContainerFlexboxChild */
+	flex-grow: 1;
+}
+
 .Container :global(.CodeMirror-empty) {
 	color: #999999;
 }

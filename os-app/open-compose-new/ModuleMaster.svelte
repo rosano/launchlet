@@ -33,13 +33,38 @@ async function memberSelect(inputData) {
 <header class="LCHSharedToolbar">
 	<button on:click={ memberCreate } class="LCHSharedButtonNoStyle">{ window.OLSKLocalized('LCHComposeToolbarCreateButtonText') }</button>
 </header>
-<div>
+<div class="List">
 	{#each _membersAll as e}
-		<div on:click={ () => memberSelect(e) } class="LCHSharedElementTappable">{ e.LCHMemberID }</div>
+		<div on:click={ () => memberSelect(e) } class="ListItem LCHSharedElementTappable">{ e.LCHMemberID }</div>
 	{/each}
 </div>
 
 </div>
 
 <style>
+.Container {
+	/* AppContentContainerFlexboxChild */
+	flex-basis: 300px;
+	flex-shrink: 0;
+
+	/* ContainerFlexboxParent */
+	display: flex;
+	flex-direction: column;
+}
+
+.LCHSharedToolbar {
+	border-right: var(--LCHBorderStyle);
+}
+
+.List {
+	border-right: var(--LCHBorderStyle);
+
+	/* ContainerFlexboxChild */
+	flex-grow: 1;
+}
+
+.ListItem {
+	min-height: 40px;
+	border-bottom: var(--LCHBorderStyle)
+}
 </style>

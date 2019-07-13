@@ -18,7 +18,7 @@ onMount(function () {
 
 <ModuleHeader />
 
-<div class="ContentContainer">
+<div class="AppContentContainer">
 	<ModuleMaster />
 	<ModuleDetail />
 </div>
@@ -38,8 +38,15 @@ onMount(function () {
 	flex-direction: column;
 }
 
-.ContentContainer {
-	/* ContentContainerFlexboxParent */
+.AppContentContainer {
+	/* AppContainerFlexboxChild */
+	flex-grow: 1;
+
+	/* AppContentContainerFlexboxParent */
 	display: flex;
+}
+
+.AppContentContainer ModuleDetail {
+	background: black;
 }
 </style>
