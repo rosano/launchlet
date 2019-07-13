@@ -1,3 +1,11 @@
+:root {
+	--LCHBorderStyle: 1px solid #ddd;
+}
+
+.LCHSharedToolbar {
+	border-bottom: var(--LCHBorderStyle);
+}
+
 .LCHSharedElementTappable {
 	cursor: pointer;
 
@@ -14,7 +22,4 @@
 	background: none;
 	border: none;
 	padding: 0;
-
-	padding: 4px;
-	border: 1px solid black;
 }

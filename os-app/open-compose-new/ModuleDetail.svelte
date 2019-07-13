@@ -95,7 +95,7 @@ async function memberDelete() {
 <div class="Container">
 
 {#if _memberSelected}
-	<header>
+	<header class="LCHSharedToolbar">
 		<button on:click={ memberDelete } class="LCHSharedButtonNoStyle">{ window.OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }</button>
 	</header>
 	<div>
