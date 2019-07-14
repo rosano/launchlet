@@ -1,5 +1,9 @@
 <script type="text/javascript">
 	(async function () {
+		<% if (process.env.OLSK_DISABLE_SERVICE_WORKER) { %>
+			console.log('Service worker disabled');
+			return;
+		<% } %>
 		if (!navigator.serviceWorker) {
 			return console.log('Service worker not available');
 		}
