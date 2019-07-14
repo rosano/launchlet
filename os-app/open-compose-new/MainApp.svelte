@@ -21,9 +21,10 @@ onMount(function () {
 	<ModuleDetail />
 </div>
 
-<div id="LCHStorageWidget"></div>
 
 </div>
+
+<div id="LCHStorageWidget"></div>
 
 <style>
 .AppContainer {
