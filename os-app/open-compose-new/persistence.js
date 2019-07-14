@@ -27,6 +27,11 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 		OLSKChangeDelegateRemove: function (inputData) {
 			console.log('OLSKChangeDelegateRemove', inputData);
 			modelDidChange.set(Date.now());
+
+			if (_memberSelected && (_memberSelected.LCHMemberID === inputData.LCHMemberID)) {
+				memberSelected.set(null);
+			}
+
 			return membersAll.update(function (val) {
 				return val.filter(function (e) {
 					return e.LCHMemberID !== inputData.LCHMemberID;
