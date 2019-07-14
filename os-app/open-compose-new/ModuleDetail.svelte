@@ -16,12 +16,9 @@ memberSelected.subscribe(function (val) {
 		_memberSelected = val;
 	}
 
-	if (val && (val === _memberSelected)) {
-		return;
-	}
-
 	if (!val) {
 		editorInstance = null;
+		
 		return;
 	}
 
@@ -59,7 +56,9 @@ afterUpdate(function () {
 			return;
 		}
 
-		$memberSelected.LCHMemberBody = instance.getValue();
+		Object.assign($memberSelected, {
+			LCHMemberBody: instance.getValue(),
+		}); // @DependancySvelteIgnoresMutableChanges
 
 		memberSave();
 	});
