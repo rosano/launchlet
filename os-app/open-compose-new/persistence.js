@@ -7,13 +7,14 @@ import { writable } from 'svelte/store';
 
 export const membersAll = writable([]);
 export const memberSelected = writable(null);
+import * as LCHComposeLogic from '../open-compose/ui-logic.js';
 
 export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 	RSModuleProtocol_lch_members.RSModuleProtocolModuleForChangeDelegate({
 	OLSKChangeDelegateAdd: function (inputData) {
 		console.log('OLSKChangeDelegateAdd', inputData);
 		return membersAll.update(function (val) {
-			return val.concat(inputData);
+			return val.concat(inputData).sort(LCHComposeLogic.default.LCHComposeLogicSort);
 		});
 	},
 	OLSKChangeDelegateRemove: function (inputData) {
