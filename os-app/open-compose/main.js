@@ -83,8 +83,9 @@
 	exports.LCHBoomarkletTemplate = function () {
 		let LCHLaunchletPropertyListSelectedItemIndex = 0;
 		let LCHLaunchletPropertyShortcutListener;
+		let _protectFromSvelteCompiler = console.log;
 
-		__LCHTokenLibraryD3__
+		_protectFromSvelteCompiler('__LCHTokenLibraryD3__')
 
 		const api = {
 			functionObjects: function () {
@@ -103,7 +104,7 @@
 
 	{
 		id: 'LCHLogicFilter',
-		fn: __LCHTokenLCHLogicFilter__,
+		fn: _protectFromSvelteCompiler('__LCHTokenLCHLogicFilter__'),
 	},
 
 	//# PROPERTIES
@@ -333,7 +334,7 @@
 	{
 		id: 'LCHSetupStyle',
 		fn: function LCHSetupStyle () {
-			d3.select('body').append('style').node().outerHTML = `<style type="text/css" class="__Launchlet">__LCHTokenStyle__</style>`;
+			d3.select('body').append('style').node().outerHTML = `<style type="text/css" class="__Launchlet">_protectFromSvelteCompiler('__LCHTokenStyle__')</style>`;
 	  },
 	},
 
@@ -380,7 +381,7 @@
 			this.api.fn('LCHSetupEverything')(true);
 	  },
 	},
-	].concat(__LCHTokenMemberObjects__);
+	].concat(_protectFromSvelteCompiler('__LCHTokenMemberObjects__'));
 			},
 			actionObjects: function () {
 				return api.functionObjects().filter(function (e) {
@@ -487,7 +488,7 @@
 		}
 
 		return Object.keys(inputData).reduce(function (coll, e) {
-			return coll.replace(e, inputData[e]);
+			return coll.replace(`_protectFromSvelteCompiler('${e}')`, inputData[e]);
 		}, exports.LCHBoomarkletTemplate.toString());
 	};
 

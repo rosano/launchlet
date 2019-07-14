@@ -267,8 +267,8 @@ describe('LCHBookmarkletTextForTokenHash', function testLCHBookmarkletTextForTok
 
 	it('replaces tokens', function() {
 		assert.deepEqual(LCHCompile.LCHBookmarkletTextForTokenHash({
-			LCHToken: 'alfa',
-		}), LCHCompile.LCHBoomarkletTemplate.toString().replace('LCHToken', 'alfa'));
+			__LCHTokenLibraryD3__: 'alfa',
+		}), LCHCompile.LCHBoomarkletTemplate.toString().replace("_protectFromSvelteCompiler('__LCHTokenLibraryD3__')", 'alfa'));
 	});
 
 });
