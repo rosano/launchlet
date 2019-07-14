@@ -9,7 +9,7 @@ import { storageClient } from './persistence.js';
 import { onMount } from 'svelte';
 import Widget from '../_shared/_external/remotestorage-widget/build/widget.js';
 onMount(function () {
-	(new Widget(storageClient.remoteStorage)).attach('LCHStorageWidget');	
+	(new Widget(storageClient.remoteStorage)).attach('LCHComposeStorageWidget');	
 });
 </script>
 
@@ -26,7 +26,10 @@ onMount(function () {
 
 </div>
 
-<div id="LCHStorageWidget"></div>
+<div id="LCHComposeStorageWidget"></div>
+<div class="LCHComposeDebug">
+	<button class="LCHSharedButtonNoStyle" onclick="location.reload();">{ window.OLSKLocalized('LCHUpdateReloadText') }</button>
+</div>
 
 <style>
 .AppContainer {
