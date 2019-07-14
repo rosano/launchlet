@@ -10,13 +10,13 @@ let editorUpdateValue = function () {
 
 let _memberSelected;
 memberSelected.subscribe(function (val) {
-	if (val && val !== _memberSelected) {
+	if (val && (val !== _memberSelected)) {
 		document.querySelector('input').focus();
 
 		_memberSelected = val;
 	}
 
-	if (val && val === _memberSelected) {
+	if (val && (val === _memberSelected)) {
 		return;
 	}
 
