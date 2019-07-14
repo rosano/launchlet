@@ -5,18 +5,15 @@ import { storageClient, membersAll, memberSelected } from './persistence.js';
 
 let editorInstance;
 let editorUpdateValue = function () {
-	editorInstance.setValue(_memberSelected.LCHMemberBody);
+	editorInstance.setValue($memberSelected.LCHMemberBody);
 }
 
-let _memberSelected;
 memberSelected.subscribe(function (val) {
 	if (document.querySelector('input')) {
 		document.querySelector('input').focus();
 	}
 
-	_memberSelected = val;
-
-	if (!_memberSelected) {
+	if (!val) {
 		editorInstance = null;
 		return;
 	}
@@ -48,7 +45,7 @@ afterUpdate(function () {
 		placeholder: window.OLSKLocalized('LCHComposeListItemFormInputFunctionBodyPlaceholder'),
 	});
 
-	editorInstance.setValue(_memberSelected.LCHMemberBody);
+	editorUpdateValue();
 
 	editorInstance.on('change', function (instance, changeObject) {
 		if (changeObject.origin === 'setValue') {
@@ -68,18 +65,19 @@ async function memberSave() {
 		return val;
 	});
 
-	if (!throttleMap[_memberSelected.LCHMemberID]) {
-		throttleMap[_memberSelected.LCHMemberID] = {
+
+	if (!throttleMap[$memberSelected.LCHMemberID]) {
+		throttleMap[$memberSelected.LCHMemberID] = {
 			OLSKThrottleDuration: 500,
 			OLSKThrottleCallback: async function () {
-				delete throttleMap[_memberSelected.LCHMemberID];
+				delete throttleMap[$memberSelected.LCHMemberID];
 
-				await LCHMembersAction.LCHMembersActionUpdate(storageClient, _memberSelected);
+				await LCHMembersAction.LCHMembersActionUpdate(storageClient, $memberSelected);
 			},
 		};	
 	}
 
-	OLSKThrottle.default.OLSKThrottleTimeoutFor(throttleMap[_memberSelected.LCHMemberID]);
+	OLSKThrottle.default.OLSKThrottleTimeoutFor(throttleMap[$memberSelected.LCHMemberID]);
 }
 
 async function memberDelete() {
@@ -89,11 +87,11 @@ async function memberDelete() {
 
 	membersAll.update(function (val) {
 		return val.filter(function(e) {
-			return e !== _memberSelected;
+			return e !== $memberSelected;
 		});
 	});
 
-	await LCHMembersAction.LCHMembersActionDelete(storageClient, _memberSelected.LCHMemberID);
+	await LCHMembersAction.LCHMembersActionDelete(storageClient, $memberSelected.LCHMemberID);
 
 	return memberSelected.set(null);
 }
@@ -101,17 +99,17 @@ async function memberDelete() {
 
 <div class="Container">
 
-{#if _memberSelected}
+{#if $memberSelected}
 	<header class="LCHSharedToolbar">
 		<button on:click={ memberDelete } class="LCHSharedButtonNoStyle">{ window.OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }</button>
 	</header>
 	<div class="FormContainer">
 		<p>
-			<input type="text" bind:value={ _memberSelected.LCHMemberName } on:input={ memberSave } placeholder="{ window.OLSKLocalized('LCHComposeListItemFormInputNamePlaceholder') }" autofocus />
+			<input type="text" bind:value={ $memberSelected.LCHMemberName } on:input={ memberSave } placeholder="{ window.OLSKLocalized('LCHComposeListItemFormInputNamePlaceholder') }" autofocus />
 		</p>
 
 		<span>function (</span>
-		<input type="text" bind:value={ _memberSelected.LCHMemberArgs } placeholder="undefined" on:input={ memberSave } />
+		<input type="text" bind:value={ $memberSelected.LCHMemberArgs } placeholder="undefined" on:input={ memberSave } />
 		<span>) &#123;</span>
 		<br>
 		<textarea bind:this={ editorElement }></textarea>
@@ -119,12 +117,12 @@ async function memberDelete() {
 		<br>
 
 		<p>
-			<input type="text" bind:value={ _memberSelected.LCHMemberSignature } on:input={ memberSave } placeholder="{ window.OLSKLocalized('LCHComposeListItemFormInputSignaturePlaceholder') }" />
+			<input type="text" bind:value={ $memberSelected.LCHMemberSignature } on:input={ memberSave } placeholder="{ window.OLSKLocalized('LCHComposeListItemFormInputSignaturePlaceholder') }" />
 		</p>
 	</div>
 {/if}
 
-{#if !_memberSelected}
+{#if !$memberSelected}
 	<div class="PlaceholderContainer">
 		<span>{ window.OLSKLocalized('LCHComposeDetailPlaceholderText') }</span>
 	</div>

@@ -4,11 +4,6 @@ import * as LCHComposeLogic from '../open-compose/ui-logic.js';
 
 import { storageClient, membersAll, memberSelected } from './persistence.js';
 
-let _membersAll;
-membersAll.subscribe(function (val) {
-	_membersAll = val;
-});
-
 async function memberCreate() {
 	let item = await LCHMembersAction.LCHMembersActionCreate(storageClient, {
 		LCHMemberName: '',
@@ -36,7 +31,7 @@ async function memberSelect(inputData) {
 	<button on:click={ memberCreate } class="LCHSharedButtonNoStyle" accesskey="n">{ window.OLSKLocalized('LCHComposeToolbarCreateButtonText') }</button>
 </header>
 <div class="List">
-	{#each _membersAll as e}
+	{#each $membersAll as e}
 		<div on:click={ () => memberSelect(e) } class="ListItem LCHSharedElementTappable">
 			<strong>{ e.LCHMemberName || e.LCHMemberSignature || e.LCHMemberID }</strong>
 		</div>
