@@ -23,9 +23,6 @@ onMount(function () {
 
 		d3.select('#LCHComposeBuildLink')
 			.property('href', d3.select('#LCHComposeBinary').property('value'));
-
-		d3.select('#LCHComposeBuildScript script')
-			.html(`LCHComposeBuildScript = ${ bookmarklet }`);
 	});
 });
 </script>
@@ -41,13 +38,8 @@ onMount(function () {
 </p>
 
 <p>
-	<a id="LCHComposeBuildLink" href="javascript:LCHComposeSample.composedSample()">Try it</a>
+	<a id="LCHComposeBuildLink" href="#"  accesskey="r">Try it</a>
 </p>
-
-<div id="LCHComposeBuildScript">
-	<script></script>
-</div>
-<button accesskey="r" onclick="LCHComposeBuildScript()">run</button>
 
 </div>
 
