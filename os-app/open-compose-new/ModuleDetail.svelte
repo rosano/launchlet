@@ -48,6 +48,8 @@ afterUpdate(function () {
 		lineWrapping: true,
 
 		placeholder: window.OLSKLocalized('LCHComposeListItemFormInputFunctionBodyPlaceholder'),
+		
+	  keyMap: 'sublime',
 	});
 
 	editorInitializeValue();
