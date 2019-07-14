@@ -33,7 +33,7 @@ async function memberSelect(inputData) {
 <div class="Container">
 
 <header class="LCHSharedToolbar">
-	<button on:click={ memberCreate } class="LCHSharedButtonNoStyle">{ window.OLSKLocalized('LCHComposeToolbarCreateButtonText') }</button>
+	<button on:click={ memberCreate } class="LCHSharedButtonNoStyle" accesskey="n">{ window.OLSKLocalized('LCHComposeToolbarCreateButtonText') }</button>
 </header>
 <div class="List">
 	{#each _membersAll as e}
