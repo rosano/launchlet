@@ -18,43 +18,44 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 	RSModuleProtocol_lch_members.RSModuleProtocolModuleForChangeDelegate({
 		OLSKChangeDelegateAdd: function (inputData) {
 			// console.log('OLSKChangeDelegateAdd', inputData);
-			modelDidChange.set(Date.now());
-
-			return membersAll.update(function (val) {
+			membersAll.update(function (val) {
 				return val.filter(function (e) { // @Hotfix Dropbox sending DelegateAdd
 					return e.LCHMemberID !== inputData.LCHMemberID;
 				}).concat(inputData).sort(LCHComposeLogic.default.LCHComposeLogicSort);
 			});
+
+			modelDidChange.set(Date.now());
 		},
 		OLSKChangeDelegateRemove: function (inputData) {
 			// console.log('OLSKChangeDelegateRemove', inputData);
-			modelDidChange.set(Date.now());
 
 			if (_memberSelected && (_memberSelected.LCHMemberID === inputData.LCHMemberID)) {
 				memberSelected.set(null);
 			}
 
-			return membersAll.update(function (val) {
+			membersAll.update(function (val) {
 				return val.filter(function (e) {
 					return e.LCHMemberID !== inputData.LCHMemberID;
 				});
 			});
+
+			modelDidChange.set(Date.now());
 		},
 		OLSKChangeDelegateUpdate: function (inputData) {
 			// console.log('OLSKChangeDelegateUpdate', inputData);
-			modelDidChange.set(Date.now());
-
 			if (_memberSelected && (_memberSelected.LCHMemberID === inputData.LCHMemberID)) {
 				memberSelected.update(function (val) {
 					return Object.assign(val, inputData);
 				});
 			}
 
-			return membersAll.update(function (val) {
+			membersAll.update(function (val) {
 				return val.map(function (e) {
 					return Object.assign(e, e.LCHMemberID === inputData.LCHMemberID ? inputData : {});
 				});
 			});
+
+			modelDidChange.set(Date.now());
 		},
 	}),
 ]);
