@@ -24,6 +24,14 @@ locals.OLSKPagePublicConstants = {
 
 <%- include('../_shared/common/layout-header.ejs') %>
 
+<textarea id="LCHComposeStyleContent" style="display: none;"><%= LCHComposeStyleContent %></textarea>
+<textarea id="LCHComposeLibraryD3Content" style="display: none;"><%= LCHComposeLibraryD3Content %></textarea>
+
+<script type="text/javascript">
+	window.LCHComposeStyleContent = document.querySelector('#LCHComposeStyleContent').textContent;
+	window.LCHComposeLibraryD3Content = document.querySelector('#LCHComposeLibraryD3Content').textContent;
+</script>
+
 <script src="/<%= OLSKSharedPageControllerSlug %>/_compiled/ui-behaviour.js"></script>
 
 <%- include('../_shared/common/layout-footer.ejs') %>

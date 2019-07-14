@@ -2,6 +2,7 @@
 import ModuleHeader from './ModuleHeader.svelte';
 import ModuleMaster from './ModuleMaster.svelte';
 import ModuleDetail from './ModuleDetail.svelte';
+import ModuleCompile from './ModuleCompile.svelte';
 
 import { storageClient } from './persistence.js';
 
@@ -21,6 +22,7 @@ onMount(function () {
 	<ModuleDetail />
 </div>
 
+<ModuleCompile />
 
 </div>
 
