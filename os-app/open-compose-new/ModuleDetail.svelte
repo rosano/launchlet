@@ -61,6 +61,10 @@ afterUpdate(function () {
 let throttleMap = {};
 import * as OLSKThrottle from '../_shared/_external/OLSKThrottle/main.js';
 async function memberSave() {
+	membersAll.update(function (val) {
+		return val;
+	});
+
 	if (!throttleMap[_memberSelected.LCHMemberID]) {
 		throttleMap[_memberSelected.LCHMemberID] = {
 			OLSKThrottleDuration: 500,
