@@ -4,8 +4,9 @@ import * as LCHMembersAction from '../_shared/rs-modules/lch_members/action.js';
 import { storageClient, membersAll, memberSelected, modelDidChange } from './persistence.js';
 
 let editorInstance;
-let editorUpdateValue = function () {
+let editorInitializeValue = function () {
 	editorInstance.setValue($memberSelected.LCHMemberBody);
+	editorInstance.getDoc().clearHistory();
 }
 
 let _memberSelected;
@@ -18,7 +19,7 @@ memberSelected.subscribe(function (val) {
 
 	if (!val) {
 		editorInstance = null;
-		
+
 		return;
 	}
 
@@ -26,7 +27,7 @@ memberSelected.subscribe(function (val) {
 		return;
 	}
 
-	editorUpdateValue();
+	editorInitializeValue();
 });
 
 let editorElement;
@@ -49,7 +50,7 @@ afterUpdate(function () {
 		placeholder: window.OLSKLocalized('LCHComposeListItemFormInputFunctionBodyPlaceholder'),
 	});
 
-	editorUpdateValue();
+	editorInitializeValue();
 
 	editorInstance.on('change', function (instance, changeObject) {
 		if (changeObject.origin === 'setValue') {
