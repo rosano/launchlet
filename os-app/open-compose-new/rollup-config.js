@@ -11,7 +11,7 @@ const production = !process.env.ROLLUP_WATCH;
 export default {
 	input: pathPackage.join(__dirname, 'Main.svelte.js'),
 	onwarn: (warning, handler) => {
-		if (warning.pluginCode === 'a11y-autofocus') return;
+		if (['a11y-accesskey', 'a11y-autofocus'].indexOf(warning.pluginCode) !== -1) return;
 
 		handler(warning);
 	},
