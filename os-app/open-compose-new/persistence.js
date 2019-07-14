@@ -25,7 +25,7 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 			});
 		},
 		OLSKChangeDelegateRemove: function (inputData) {
-			console.log('OLSKChangeDelegateRemove', inputData);
+			// console.log('OLSKChangeDelegateRemove', inputData);
 			modelDidChange.set(Date.now());
 
 			if (_memberSelected && (_memberSelected.LCHMemberID === inputData.LCHMemberID)) {
@@ -39,11 +39,20 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 			});
 		},
 		OLSKChangeDelegateUpdate: function (inputData) {
-			console.log('OLSKChangeDelegateUpdate', inputData);
+			// console.log('OLSKChangeDelegateUpdate', inputData);
 			modelDidChange.set(Date.now());
-		// return membersAll = membersAll.map(function (e) {
-		// 	return Object.assign(e, e.LCHMemberID === inputData.LCHMemberID ? inputData : {});
-		// }));
+
+			if (_memberSelected && (_memberSelected.LCHMemberID === inputData.LCHMemberID)) {
+				memberSelected.update(function (val) {
+					return Object.assign(val, inputData);
+				});
+			}
+
+			return membersAll.update(function (val) {
+				return val.map(function (e) {
+					return Object.assign(e, e.LCHMemberID === inputData.LCHMemberID ? inputData : {});
+				});
+			});
 		},
 	}),
 ]);
