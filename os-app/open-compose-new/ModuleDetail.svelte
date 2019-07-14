@@ -99,15 +99,21 @@ async function memberDelete() {
 		<button on:click={ memberDelete } class="LCHSharedButtonNoStyle">{ window.OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }</button>
 	</header>
 	<div class="FormContainer">
-		<input type="text" bind:value={ _memberSelected.LCHMemberName } on:input={ memberSave } placeholder="{ window.OLSKLocalized('LCHComposeListItemFormInputNamePlaceholder') }" autofocus />
+		<p>
+			<input type="text" bind:value={ _memberSelected.LCHMemberName } on:input={ memberSave } placeholder="{ window.OLSKLocalized('LCHComposeListItemFormInputNamePlaceholder') }" autofocus />
+		</p>
 
 		<span>function (</span>
 		<input type="text" bind:value={ _memberSelected.LCHMemberArgs } placeholder="undefined" on:input={ memberSave } />
 		<span>) &#123;</span>
+		<br>
 		<textarea bind:this={ editorElement }></textarea>
 		<span>&#125;</span>
+		<br>
 
-		<input type="text" bind:value={ _memberSelected.LCHMemberSignature } on:input={ memberSave } placeholder="{ window.OLSKLocalized('LCHComposeListItemFormInputSignaturePlaceholder') }" />
+		<p>
+			<input type="text" bind:value={ _memberSelected.LCHMemberSignature } on:input={ memberSave } placeholder="{ window.OLSKLocalized('LCHComposeListItemFormInputSignaturePlaceholder') }" />
+		</p>
 	</div>
 {/if}
 
@@ -133,7 +139,38 @@ async function memberDelete() {
 	padding: 5px;
 }
 
-.Container :global(.CodeMirror-empty) {
+p:nth-child(1) {
+	margin-top: 0;
+}
+
+.FormContainer hr {
+	width: 100%;
+	height: 1px;
+	border: none;
+
+	background: #e6e6e6;
+}
+
+input {
+	width: 50%;
+	border: var(--LCHBorderStyle);
+	border-radius: 5px;
+	padding: 5px;
+}
+
+.FormContainer :global(.CodeMirror) {
+	margin: 10px 0;
+
+	/* CodeMirrorAdjustHeightToContent */
+	height: auto;
+}
+
+.FormContainer :global(.CodeMirror-scroll) {
+	/* CodeMirrorAdjustHeightToContent */
+	max-height: 350px;
+}
+
+.FormContainer :global(.CodeMirror-empty) {
 	color: #999999;
 }
 
