@@ -1,5 +1,6 @@
 <script>
 import * as LCHMembersAction from '../_shared/rs-modules/lch_members/action.js';
+import * as LCHComposeLogic from '../open-compose/ui-logic.js';
 
 import { storageClient, membersAll, memberSelected } from './persistence.js';
 
@@ -14,13 +15,14 @@ async function memberCreate() {
 		LCHMemberArgs: '',
 		LCHMemberBody: '',
 		LCHMemberSignature: '',
+		LCHMemberModificationDate: new Date(),
 	});
 
 	membersAll.update(function (val) {
-		return val.concat(item);
+		return val.concat(item).sort(LCHComposeLogic.default.LCHComposeLogicSort);
 	});
 
-	return memberSelect(item)
+	return memberSelect(item);
 }
 
 async function memberSelect(inputData) {

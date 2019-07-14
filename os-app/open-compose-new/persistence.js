@@ -1,5 +1,6 @@
 import * as LCHStorageClient from '../_shared/LCHStorageClient/main.js';
 import * as RSModuleProtocol_lch_members from '../_shared/rs-modules/lch_members/rs-module.js';
+import * as LCHComposeLogic from '../open-compose/ui-logic.js';
 
 import * as LCHMembersAction from '../_shared/rs-modules/lch_members/action.js';
 
@@ -7,7 +8,6 @@ import { writable } from 'svelte/store';
 
 export const membersAll = writable([]);
 export const memberSelected = writable(null);
-import * as LCHComposeLogic from '../open-compose/ui-logic.js';
 
 export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 	RSModuleProtocol_lch_members.RSModuleProtocolModuleForChangeDelegate({
