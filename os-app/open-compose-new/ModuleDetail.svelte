@@ -4,6 +4,9 @@ import * as LCHMembersAction from '../_shared/rs-modules/lch_members/action.js';
 import { storageClient, membersAll, memberSelected } from './persistence.js';
 
 let editorInstance;
+let editorUpdateValue = function () {
+	editorInstance.setValue(_memberSelected.LCHMemberBody);
+}
 
 let _memberSelected;
 memberSelected.subscribe(function (val) {
@@ -22,7 +25,7 @@ memberSelected.subscribe(function (val) {
 		return;
 	}
 
-	editorInstance.setValue(_memberSelected.LCHMemberBody);
+	editorUpdateValue();
 });
 
 let editorElement;
@@ -52,7 +55,7 @@ afterUpdate(function () {
 			return;
 		}
 
-		_memberSelected.LCHMemberBody = instance.getValue();
+		$memberSelected.LCHMemberBody = instance.getValue();
 
 		memberSave();
 	});
