@@ -1,7 +1,7 @@
 <script>
 import * as LCHMembersAction from '../_shared/rs-modules/lch_members/action.js';
 
-import { storageClient, membersAll, memberSelected } from './persistence.js';
+import { storageClient, membersAll, memberSelected, modelDidChange } from './persistence.js';
 
 let editorInstance;
 let editorUpdateValue = function () {
@@ -65,6 +65,7 @@ async function memberSave() {
 		return val;
 	});
 
+	modelDidChange.set(Date.now());
 
 	if (!throttleMap[$memberSelected.LCHMemberID]) {
 		throttleMap[$memberSelected.LCHMemberID] = {

@@ -8,23 +8,27 @@ import { writable } from 'svelte/store';
 
 export const membersAll = writable([]);
 export const memberSelected = writable(null);
+export const modelDidChange = writable(null);
 
 export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 	RSModuleProtocol_lch_members.RSModuleProtocolModuleForChangeDelegate({
 		OLSKChangeDelegateAdd: function (inputData) {
-			console.log('OLSKChangeDelegateAdd', inputData);
+			// console.log('OLSKChangeDelegateAdd', inputData);
+			modelDidChange.set(Date.now());
 			return membersAll.update(function (val) {
 				return val.concat(inputData).sort(LCHComposeLogic.default.LCHComposeLogicSort);
 			});
 		},
 		OLSKChangeDelegateRemove: function (inputData) {
 			console.log('OLSKChangeDelegateRemove', inputData);
+			modelDidChange.set(Date.now());
 		// return membersAll = membersAll.filter(function (e) {
 		// 	return e.LCHNoteID !== inputData.LCHNoteID;
 		// })
 		},
 		OLSKChangeDelegateUpdate: function (inputData) {
 			console.log('OLSKChangeDelegateUpdate', inputData);
+			modelDidChange.set(Date.now());
 		// return membersAll = membersAll.map(function (e) {
 		// 	return Object.assign(e, e.LCHNoteID === inputData.LCHNoteID ? inputData : {});
 		// }));
