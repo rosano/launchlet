@@ -112,7 +112,9 @@ async function memberDelete() {
 {/if}
 
 {#if !_memberSelected}
-	<div class="PlaceholderContainer">{ window.OLSKLocalized('LCHComposeDetailPlaceholderText') }</div>
+	<div class="PlaceholderContainer">
+		<span>{ window.OLSKLocalized('LCHComposeDetailPlaceholderText') }</span>
+	</div>
 {/if}
 
 </div>
@@ -124,6 +126,7 @@ async function memberDelete() {
 
 	/* ContainerFlexboxParent */
 	display: flex;
+	flex-direction: column;
 }
 
 .FormContainer {
@@ -135,12 +138,15 @@ async function memberDelete() {
 }
 
 .PlaceholderContainer {
-	width: 100%;
-	
 	opacity: 0.5;
 	text-align: center;
 
 	/* ContainerFlexboxChild */
-	align-self: center;
+	flex-grow: 1;
+
+	/* PlaceholderContainerFlexboxParent */
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 </style>
