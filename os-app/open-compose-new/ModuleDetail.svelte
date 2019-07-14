@@ -8,18 +8,18 @@ let editorInstance;
 let _memberSelected;
 memberSelected.subscribe(function (val) {
 	if (document.querySelector('input')) {
-		document.querySelector('input').focus()
+		document.querySelector('input').focus();
 	}
 
 	_memberSelected = val;
 
 	if (!_memberSelected) {
 		editorInstance = null;
-		return
+		return;
 	}
 
 	if (!editorInstance) {
-		return
+		return;
 	}
 
 	editorInstance.setValue(_memberSelected.LCHMemberBody);
@@ -43,7 +43,7 @@ afterUpdate(function () {
 		lineWrapping: true,
 
 		placeholder: window.OLSKLocalized('LCHComposeListItemFormInputFunctionBodyPlaceholder'),
-	})
+	});
 
 	editorInstance.setValue(_memberSelected.LCHMemberBody);
 
@@ -71,7 +71,7 @@ async function memberSave() {
 			OLSKThrottleCallback: async function () {
 				delete throttleMap[_memberSelected.LCHMemberID];
 
-				await LCHMembersAction.LCHMembersActionUpdate(storageClient, _memberSelected)
+				await LCHMembersAction.LCHMembersActionUpdate(storageClient, _memberSelected);
 			},
 		};	
 	}

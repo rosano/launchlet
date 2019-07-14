@@ -11,25 +11,25 @@ export const memberSelected = writable(null);
 
 export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 	RSModuleProtocol_lch_members.RSModuleProtocolModuleForChangeDelegate({
-	OLSKChangeDelegateAdd: function (inputData) {
-		console.log('OLSKChangeDelegateAdd', inputData);
-		return membersAll.update(function (val) {
-			return val.concat(inputData).sort(LCHComposeLogic.default.LCHComposeLogicSort);
-		});
-	},
-	OLSKChangeDelegateRemove: function (inputData) {
-		console.log('OLSKChangeDelegateRemove', inputData);
+		OLSKChangeDelegateAdd: function (inputData) {
+			console.log('OLSKChangeDelegateAdd', inputData);
+			return membersAll.update(function (val) {
+				return val.concat(inputData).sort(LCHComposeLogic.default.LCHComposeLogicSort);
+			});
+		},
+		OLSKChangeDelegateRemove: function (inputData) {
+			console.log('OLSKChangeDelegateRemove', inputData);
 		// return membersAll = membersAll.filter(function (e) {
 		// 	return e.LCHNoteID !== inputData.LCHNoteID;
 		// })
-	},
-	OLSKChangeDelegateUpdate: function (inputData) {
-		console.log('OLSKChangeDelegateUpdate', inputData);
+		},
+		OLSKChangeDelegateUpdate: function (inputData) {
+			console.log('OLSKChangeDelegateUpdate', inputData);
 		// return membersAll = membersAll.map(function (e) {
 		// 	return Object.assign(e, e.LCHNoteID === inputData.LCHNoteID ? inputData : {});
 		// }));
-	},
-}),
+		},
+	}),
 ]);
 
 let remoteStorage = storageClient.remoteStorage;
