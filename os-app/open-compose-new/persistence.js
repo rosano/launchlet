@@ -80,20 +80,12 @@ remoteStorage.on('ready', async () => {
 		console.debug('disconnected', arguments);
 	});
 
-	remoteStorage.on('error', () => {
-		console.debug('error', arguments);
-	});
-
 	remoteStorage.on('connected', () => {
 		console.debug('connected', arguments);
 	});
 
-	remoteStorage.on('connected', () => {
-		console.debug('connected', arguments);
-	});
-
-	remoteStorage.on('error', () => {
-		console.debug('error', arguments);
+	remoteStorage.on('error', (error) => {
+		console.debug('error', error);
 	});
 
 	remoteStorage.on('network-offline', () => {
