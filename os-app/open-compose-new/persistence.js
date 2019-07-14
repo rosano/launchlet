@@ -59,9 +59,9 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 
 let remoteStorage = storageClient.remoteStorage;
 
-// remoteStorage.setApiKeys({
-// 	dropbox: window.atob(window.OLSKPublicConstants('LCHDropboxAPIToken')),
-// })
+remoteStorage.setApiKeys({
+	dropbox: window.atob(window.OLSKPublicConstants('LCHDropboxAppKey')),
+})
 
 remoteStorage.on('ready', async () => {
 	console.debug('ready', arguments);
