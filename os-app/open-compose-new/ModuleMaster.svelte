@@ -65,6 +65,7 @@ async function memberSelect(inputData) {
 
 	/* ContainerFlexboxChild */
 	flex-grow: 1;
+	overflow: auto;
 }
 
 .ListItem {
