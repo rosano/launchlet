@@ -35,7 +35,9 @@ async function memberSelect(inputData) {
 </header>
 <div class="List">
 	{#each _membersAll as e}
-		<div on:click={ () => memberSelect(e) } class="ListItem LCHSharedElementTappable">{ e.LCHMemberID }</div>
+		<div on:click={ () => memberSelect(e) } class="ListItem LCHSharedElementTappable">
+			<strong>{ e.LCHMemberName || e.LCHMemberSignature || e.LCHMemberID }</strong>
+		</div>
 	{/each}
 </div>
 
@@ -65,6 +67,7 @@ async function memberSelect(inputData) {
 
 .ListItem {
 	min-height: 40px;
+	padding: 5px;
 	border-bottom: var(--LCHBorderStyle)
 }
 </style>

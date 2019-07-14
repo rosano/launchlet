@@ -1,8 +1,11 @@
 :root {
 	--LCHBorderStyle: 1px solid #ddd;
+
+	font-size: 9pt;
 }
 
 .LCHSharedToolbar {
+	padding: 5px;
 	border-bottom: var(--LCHBorderStyle);
 }
 

@@ -98,7 +98,7 @@ async function memberDelete() {
 	<header class="LCHSharedToolbar">
 		<button on:click={ memberDelete } class="LCHSharedButtonNoStyle">{ window.OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }</button>
 	</header>
-	<div>
+	<div class="FormContainer">
 		<input type="text" bind:value={ _memberSelected.LCHMemberName } on:input={ memberSave } placeholder="{ window.OLSKLocalized('LCHComposeListItemFormInputNamePlaceholder') }" autofocus />
 
 		<span>function (</span>
@@ -124,6 +124,10 @@ async function memberDelete() {
 
 	/* ContainerFlexboxParent */
 	display: flex;
+}
+
+.FormContainer {
+	padding: 5px;
 }
 
 .Container :global(.CodeMirror-empty) {
