@@ -10,11 +10,16 @@ export const membersAll = writable([]);
 export const memberSelected = writable(null);
 export const modelDidChange = writable(null);
 
+let _memberSelected;
+memberSelected.subscribe(function (val) {
+	_memberSelected = val;
+});
 export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 	RSModuleProtocol_lch_members.RSModuleProtocolModuleForChangeDelegate({
 		OLSKChangeDelegateAdd: function (inputData) {
 			// console.log('OLSKChangeDelegateAdd', inputData);
 			modelDidChange.set(Date.now());
+
 			return membersAll.update(function (val) {
 				return val.concat(inputData).sort(LCHComposeLogic.default.LCHComposeLogicSort);
 			});
@@ -22,15 +27,17 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 		OLSKChangeDelegateRemove: function (inputData) {
 			console.log('OLSKChangeDelegateRemove', inputData);
 			modelDidChange.set(Date.now());
-		// return membersAll = membersAll.filter(function (e) {
-		// 	return e.LCHNoteID !== inputData.LCHNoteID;
-		// })
+			return membersAll.update(function (val) {
+				return val.filter(function (e) {
+					return e.LCHMemberID !== inputData.LCHMemberID;
+				});
+			});
 		},
 		OLSKChangeDelegateUpdate: function (inputData) {
 			console.log('OLSKChangeDelegateUpdate', inputData);
 			modelDidChange.set(Date.now());
 		// return membersAll = membersAll.map(function (e) {
-		// 	return Object.assign(e, e.LCHNoteID === inputData.LCHNoteID ? inputData : {});
+		// 	return Object.assign(e, e.LCHMemberID === inputData.LCHMemberID ? inputData : {});
 		// }));
 		},
 	}),
