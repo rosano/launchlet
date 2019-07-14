@@ -8,9 +8,16 @@ let editorUpdateValue = function () {
 	editorInstance.setValue($memberSelected.LCHMemberBody);
 }
 
+let _memberSelected;
 memberSelected.subscribe(function (val) {
-	if (document.querySelector('input')) {
+	if (val && val !== _memberSelected) {
 		document.querySelector('input').focus();
+
+		_memberSelected = val;
+	}
+
+	if (val && val === _memberSelected) {
+		return;
 	}
 
 	if (!val) {
