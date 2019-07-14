@@ -21,7 +21,9 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 			modelDidChange.set(Date.now());
 
 			return membersAll.update(function (val) {
-				return val.concat(inputData).sort(LCHComposeLogic.default.LCHComposeLogicSort);
+				return val.filter(function (e) { // @Hotfix Dropbox sending DelegateAdd
+					return e.LCHMemberID !== inputData.LCHMemberID;
+				}).concat(inputData).sort(LCHComposeLogic.default.LCHComposeLogicSort);
 			});
 		},
 		OLSKChangeDelegateRemove: function (inputData) {
