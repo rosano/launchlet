@@ -9,7 +9,7 @@ const pathPackage = require('path');
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
-	input: pathPackage.join(__dirname, 'Main.svelte.js'),
+	input: pathPackage.join(__dirname, 'svelte-start.js'),
 	onwarn: (warning, handler) => {
 		if (['a11y-accesskey', 'a11y-autofocus'].indexOf(warning.pluginCode) !== -1) return;
 
