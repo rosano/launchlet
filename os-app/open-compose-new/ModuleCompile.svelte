@@ -1,7 +1,7 @@
 <script>
 import { membersAll, modelDidChange } from './persistence.js';
 import * as LCHMembersModel from '../_shared/rs-modules/lch_members/model.js';
-import LCHCompile from '../open-compose/main.js';
+import LCHCompile from '../open-pendext/main.js';
 import d3 from '../_shared/_external/d3-selection/dist/d3-selection.min.js';
 
 import { onMount } from 'svelte';

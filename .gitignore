@@ -16,5 +16,5 @@ os-app/**/_compiled
 .env.test
 
 # COMPOSE
-os-app/open-compose/_external
-os-app/open-compose/sample-d3.js
+os-app/open-pendext/_external
+os-app/open-pendext/sample-d3.js

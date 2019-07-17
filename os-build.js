@@ -19,5 +19,5 @@
 
 	OLSKAssets.OLSKAssetsCopyAssetsFromTo([
 		'd3-selection',
-	], pathPackage.join(__dirname, 'node_modules'), pathPackage.join(__dirname, 'os-app/open-compose/_external'));
+	], pathPackage.join(__dirname, 'node_modules'), pathPackage.join(__dirname, 'os-app/open-pendext/_external'));
 })();
