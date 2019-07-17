@@ -3,7 +3,7 @@
 exports.OLSKControllerRoutes = function() {
 	return {
 		LCHComposeRoute: {
-			OLSKRoutePath: '/',
+			OLSKRoutePath: '/pendext',
 			OLSKRouteMethod: 'get',
 			OLSKRouteFunction: function(req, res, next) {
 				return res.render(req.OLSKLive.OLSKLivePathJoin(__dirname, 'view'), {
