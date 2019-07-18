@@ -1,0 +1,21 @@
+<%
+locals.OLSKPageTitle = OLSKLocalized('LCHComposeTitle');
+locals.OLSKPageDescription = OLSKLocalized('LCHComposeDescription');
+locals.OLSKPageAssets = [
+	'/_shared/_external/normalize.css/normalize.css',
+	'/_shared/common/ui-style.css',
+	'_compiled/ui-behaviour.js',
+	'_compiled/ui-style.css',
+	'ui-behaviour.js',
+];
+%>
+
+<%- include('../_shared/common/layout-header.ejs') %>
+
+<div id="LCHBookmarkletTarget"></div>
+
+<script type="text/javascript">
+LCHBookmarkletBehaviour.lifecyclePageWillLoad();
+</script>
+
+<%- include('../_shared/common/layout-footer.ejs') %>
