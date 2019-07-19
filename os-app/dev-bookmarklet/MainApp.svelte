@@ -1,11 +1,29 @@
 <script>
 import { OLSKLocalized } from '../_shared/common/global.js'
+
+import LCHComposeLogic from '../open-pendext/ui-logic.js'
 export let memberObjects;
+
+let filterText = '';
+
+let visibleMemberObjects = [];
+let filterTextDidChange = function (val) {
+	visibleMemberObjects = !val ? [] : memberObjects.filter(LCHComposeLogic.LCHComposeLogicFilter(val))
+};
+$: filterTextDidChange(filterText.trim());
+
 </script>
 
 <div id="__Launchlet">
 	<div id="__LaunchletBezel">
-		<input id="__LaunchletInput" placeholder="{ OLSKLocalized('LCHBookmarkletInputPlaceholder')}" autofocus>
+		<input id="__LaunchletInput" placeholder="{ OLSKLocalized('LCHBookmarkletInputPlaceholder')}" autofocus bind:value={ filterText }>
+		{#if visibleMemberObjects.length }
+			<div id="__LaunchletList">
+				{#each visibleMemberObjects as e}
+					<div class="__LaunchletListItem">{ e.name }</div>
+				{/each}
+			</div>
+		{/if}
 	</div>
 </div>
 
