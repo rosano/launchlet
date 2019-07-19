@@ -88,7 +88,7 @@
 		let app = new MainApp({
 			target: document.getElementById('LCHBookmarkletTarget'),
 			props: {
-				memberObjects: '__LCHTokenMemberObjects__',
+				memberObjects: _protectFromSvelteCompiler('__LCHTokenMemberObjects__'),
 				workflowDidTerminate () {
 					return (app.$destroy() || true) && (app = null);
 				},
@@ -517,6 +517,18 @@
 		return Object.keys(tokenHash).reduce(function (coll, e) {
 			return coll.replace(e, tokenHash[e]);
 		}, outputData).replace(/("__LCHClosureOpen__)|(__LCHClosureClose__")/g, '');
+	};
+
+	//_ LCHBookmarkletTextForTokenHashNew
+
+	exports.LCHBookmarkletTextForTokenHashNew = function (inputData) {
+		if (typeof inputData !== 'object' || inputData === null) {
+			throw new Error('LCHErrorInputInvalid');
+		}
+
+		return Object.keys(inputData).reduce(function (coll, e) {
+			return coll.replace(`_protectFromSvelteCompiler('${e}')`, inputData[e]);
+		}, exports.LCHBoomarkletTemplateNew.toString());
 	};
 
 	//_ LCHBookmarkletTextForTokenHash

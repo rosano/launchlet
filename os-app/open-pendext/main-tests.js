@@ -219,6 +219,22 @@ describe('LCHTokenHashForNew', function testLCHTokenHashForNew() {
 
 });
 
+describe('LCHBookmarkletTextForTokenHashNew', function testLCHBookmarkletTextForTokenHashNew() {
+
+	it('throws error if not object', function() {
+		assert.throws(function() {
+			LCHCompile.LCHBookmarkletTextForTokenHashNew(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('replaces tokens', function() {
+		assert.deepEqual(LCHCompile.LCHBookmarkletTextForTokenHashNew({
+			__LCHTokenMainApp__: 'alfa',
+		}), LCHCompile.LCHBoomarkletTemplateNew.toString().replace("_protectFromSvelteCompiler('__LCHTokenMainApp__')", 'alfa'));
+	});
+
+});
+
 describe('LCHBoomarkletTemplate', function testLCHBoomarkletTemplate() {
 
 	it('contains LCHTokens', function() {
