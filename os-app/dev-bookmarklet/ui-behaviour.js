@@ -37,11 +37,7 @@
 					},
 				],
 				workflowDidTerminate () {
-					app.$destroy()
-
-					app = null;
-
-					return;
+					return (app.$destroy() || true) && (app = null);
 				},
 			},
 		});
