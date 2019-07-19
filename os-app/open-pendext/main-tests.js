@@ -11,7 +11,8 @@ const kTesting = {
 	},
 	kTestingValidInputHash: function() {
 		return {
-			LCHInputMainApp: '',
+			LCHInputAppBehaviour: '',
+			LCHInputAppStyle: '',
 			LCHInputMemberObjects: [],
 			LCHInputStyleContent: '',
 			LCHInputLibraryD3Content: '',
@@ -202,17 +203,26 @@ describe('LCHTokenHashForNew', function testLCHTokenHashForNew() {
 		}, /LCHErrorInputInvalid/);
 	});
 
-	it('throws error if LCHInputMainApp not string', function() {
+	it('throws error if LCHInputAppBehaviour not string', function() {
 		assert.throws(function() {
 			LCHCompile.LCHTokenHashForNew(Object.assign(kTesting.kTestingValidInputHash(), {
-				LCHInputMainApp: null,
+				LCHInputAppBehaviour: null,
+			}));
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('throws error if LCHInputAppStyle not string', function() {
+		assert.throws(function() {
+			LCHCompile.LCHTokenHashForNew(Object.assign(kTesting.kTestingValidInputHash(), {
+				LCHInputAppStyle: null,
 			}));
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns array', function() {
 		assert.deepEqual(LCHCompile.LCHTokenHashForNew(kTesting.kTestingValidInputHash()), {
-			'__LCHTokenMainApp__': kTesting.kTestingValidInputHash().LCHInputMainApp,
+			'__LCHTokenAppBehaviour__': kTesting.kTestingValidInputHash().LCHInputAppBehaviour,
+			'__LCHTokenAppStyle__': kTesting.kTestingValidInputHash().LCHInputAppBehaviour,
 			'__LCHTokenMemberObjects__': LCHCompile._LCHTokenMemberObjectsReplacementFor(kTesting.kTestingValidInputHash().LCHInputMemberObjects),
 		});
 	});

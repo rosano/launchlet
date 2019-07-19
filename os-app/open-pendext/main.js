@@ -83,7 +83,8 @@
 	exports.LCHBoomarkletTemplateNew = function () {
 		let _protectFromSvelteCompiler = console.log;
 
-		_protectFromSvelteCompiler('__LCHTokenMainApp__')
+		_protectFromSvelteCompiler('__LCHTokenAppBehaviour__')
+		// _protectFromSvelteCompiler('__LCHTokenAppStyle__')
 
 		let app = new MainApp({
 			target: _protectFromSvelteCompiler(`document.body`),
@@ -107,12 +108,17 @@
 			throw new Error('LCHErrorInputInvalid');
 		}
 
-		if (typeof inputData.LCHInputMainApp !== 'string') {
+		if (typeof inputData.LCHInputAppBehaviour !== 'string') {
+			throw new Error('LCHErrorInputInvalid');
+		}
+
+		if (typeof inputData.LCHInputAppStyle !== 'string') {
 			throw new Error('LCHErrorInputInvalid');
 		}
 
 		return {
-			'__LCHTokenMainApp__': inputData.LCHInputMainApp,
+			'__LCHTokenAppBehaviour__': inputData.LCHInputAppBehaviour,
+			'__LCHTokenAppStyle__': inputData.LCHInputAppStyle,
 			'__LCHTokenMemberObjects__': exports._LCHTokenMemberObjectsReplacementFor(inputData.LCHInputMemberObjects),
 		};
 	};
