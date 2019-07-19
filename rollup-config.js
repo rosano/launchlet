@@ -2,12 +2,13 @@ import svelte from 'rollup-plugin-svelte';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
+import i18n from 'rollup-plugin-i18n';
 import { terser } from 'rollup-plugin-terser';
 
 const production = !process.env.ROLLUP_WATCH;
 
-const pathPackage = require('path');
-const globPackage = require('glob');
+import pathPackage from 'path';
+import globPackage from 'glob';
 
 export default globPackage.sync(['os-app/**/svelte-start.js'], {
 	matchBase: true,
@@ -47,6 +48,9 @@ export default globPackage.sync(['os-app/**/svelte-start.js'], {
   			browser: true
   		}),
   		commonjs(),
+      i18n({
+        baseDirectory: 'os-app',
+      }),
 
   		// Watch the `public` directory and refresh the
   		// browser on changes when not in production
