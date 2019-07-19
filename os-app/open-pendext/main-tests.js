@@ -227,10 +227,14 @@ describe('LCHBookmarkletTextForTokenHashNew', function testLCHBookmarkletTextFor
 		}, /LCHErrorInputInvalid/);
 	});
 
+	it('replaces wraps', function() {
+		assert.deepEqual(LCHCompile.LCHBookmarkletTextForTokenHashNew({}), LCHCompile.LCHBoomarkletTemplateNew.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\)/g, '$1'));
+	});
+
 	it('replaces tokens', function() {
 		assert.deepEqual(LCHCompile.LCHBookmarkletTextForTokenHashNew({
 			__LCHTokenMainApp__: 'alfa',
-		}), LCHCompile.LCHBoomarkletTemplateNew.toString().replace("_protectFromSvelteCompiler('__LCHTokenMainApp__')", 'alfa'));
+		}), LCHCompile.LCHBoomarkletTemplateNew.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\)/g, '$1').replace("_protectFromSvelteCompiler('__LCHTokenMainApp__')", 'alfa'));
 	});
 
 });

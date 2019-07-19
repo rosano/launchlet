@@ -86,7 +86,7 @@
 		_protectFromSvelteCompiler('__LCHTokenMainApp__')
 
 		let app = new MainApp({
-			target: document.getElementById('LCHBookmarkletTarget'),
+			target: _protectFromSvelteCompiler(`document.body`),
 			props: {
 				memberObjects: _protectFromSvelteCompiler('__LCHTokenMemberObjects__'),
 				workflowDidTerminate () {
@@ -528,7 +528,7 @@
 
 		return Object.keys(inputData).reduce(function (coll, e) {
 			return coll.replace(`_protectFromSvelteCompiler('${e}')`, inputData[e]);
-		}, exports.LCHBoomarkletTemplateNew.toString());
+		}, exports.LCHBoomarkletTemplateNew.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\)/g, '$1'));
 	};
 
 	//_ LCHBookmarkletTextForTokenHash
