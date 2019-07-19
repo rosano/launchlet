@@ -11,6 +11,7 @@ const kTesting = {
 	},
 	kTestingValidInputHash: function() {
 		return {
+			LCHInputMainApp: '',
 			LCHInputMemberObjects: [],
 			LCHInputStyleContent: '',
 			LCHInputLibraryD3Content: '',
@@ -171,6 +172,49 @@ describe('LCHWrappedMemberObjectFor', function testLCHWrappedMemberObjectFor() {
 			})).fnclosure, `function (alfa) { ${ kTesting.kTestingValidMemberObject().fnbody } }`);
 		});
 
+	});
+
+});
+
+describe('LCHBoomarkletTemplateNew', function testLCHBoomarkletTemplateNew() {
+
+	it('contains LCHTokens', function() {
+		assert.deepEqual(Object.keys(LCHCompile.LCHTokenHashForNew(kTesting.kTestingValidInputHash())).filter(function (e) {
+			return !LCHCompile.LCHBoomarkletTemplateNew.toString().match(e);
+		}), []);
+	});
+
+});
+
+describe('LCHTokenHashForNew', function testLCHTokenHashForNew() {	
+
+	it('throws error if not object', function() {
+		assert.throws(function() {
+			LCHCompile.LCHTokenHashForNew(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('throws error if LCHInputMemberObjects not array', function() {
+		assert.throws(function() {
+			LCHCompile.LCHTokenHashForNew(Object.assign(kTesting.kTestingValidInputHash(), {
+				LCHInputMemberObjects: null,
+			}));
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('throws error if LCHInputMainApp not string', function() {
+		assert.throws(function() {
+			LCHCompile.LCHTokenHashForNew(Object.assign(kTesting.kTestingValidInputHash(), {
+				LCHInputMainApp: null,
+			}));
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns array', function() {
+		assert.deepEqual(LCHCompile.LCHTokenHashForNew(kTesting.kTestingValidInputHash()), {
+			'__LCHTokenMainApp__': kTesting.kTestingValidInputHash().LCHInputMainApp,
+			'__LCHTokenMemberObjects__': LCHCompile._LCHTokenMemberObjectsReplacementFor(kTesting.kTestingValidInputHash().LCHInputMemberObjects),
+		});
 	});
 
 });

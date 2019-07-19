@@ -78,6 +78,45 @@
 		}, {});
 	};
 
+	//_ LCHBoomarkletTemplateNew
+
+	exports.LCHBoomarkletTemplateNew = function () {
+		let _protectFromSvelteCompiler = console.log;
+
+		_protectFromSvelteCompiler('__LCHTokenMainApp__')
+
+		let app = new MainApp({
+			target: document.getElementById('LCHBookmarkletTarget'),
+			props: {
+				memberObjects: '__LCHTokenMemberObjects__',
+				workflowDidTerminate () {
+					return (app.$destroy() || true) && (app = null);
+				},
+			},
+		});
+	};
+
+	//_ LCHTokenHashForNew
+
+	exports.LCHTokenHashForNew = function (inputData) {
+		if (typeof inputData !== 'object' || inputData === null) {
+			throw new Error('LCHErrorInputInvalid');
+		}
+
+		if (!Array.isArray(inputData.LCHInputMemberObjects)) {
+			throw new Error('LCHErrorInputInvalid');
+		}
+
+		if (typeof inputData.LCHInputMainApp !== 'string') {
+			throw new Error('LCHErrorInputInvalid');
+		}
+
+		return {
+			'__LCHTokenMainApp__': inputData.LCHInputMainApp,
+			'__LCHTokenMemberObjects__': exports._LCHTokenMemberObjectsReplacementFor(inputData.LCHInputMemberObjects),
+		};
+	};
+
 	//_ LCHBoomarkletTemplate
 
 	exports.LCHBoomarkletTemplate = function () {
