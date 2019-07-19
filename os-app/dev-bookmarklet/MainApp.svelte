@@ -6,9 +6,11 @@ export let memberObjects;
 
 let filterText = '';
 
+let memberObjectSelected;
 let visibleMemberObjects = [];
 let filterTextDidChange = function (val) {
 	visibleMemberObjects = !val ? [] : memberObjects.filter(LCHComposeLogic.LCHComposeLogicFilter(val))
+	memberObjectSelected = visibleMemberObjects[0];
 };
 $: filterTextDidChange(filterText.trim());
 
@@ -20,7 +22,7 @@ $: filterTextDidChange(filterText.trim());
 		{#if visibleMemberObjects.length }
 			<div id="__LaunchletList">
 				{#each visibleMemberObjects as e}
-					<div class="__LaunchletListItem">{ e.name }</div>
+					<div class="__LaunchletListItem" class:__LaunchletListItemSelected={ e === memberObjectSelected }>{ e.name }</div>
 				{/each}
 			</div>
 		{/if}
