@@ -2,7 +2,7 @@
 import { OLSKLocalized } from '../_shared/common/global.js'
 
 import LCHComposeLogic from '../open-pendext/ui-logic.js'
-export let memberObjects;
+export let memberObjects, workflowDidTerminate;
 
 const api = {
 	functionObjects () {
@@ -66,7 +66,11 @@ onMount(function () {
 		
 		api.fn(inputData.id)();
 
-		// api.fn('LCHCommandsExit')();
+		if (!workflowDidTerminate) {
+			return;
+		}
+		
+		workflowDidTerminate();
 	}
 
 	rootElement.addEventListener('keydown', function (event) {

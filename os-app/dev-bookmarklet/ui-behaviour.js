@@ -11,7 +11,7 @@
 	},
 
 	setupBookmarklet: function () {
-		new MainApp({
+		let app = new MainApp({
 			target: document.getElementById('LCHBookmarkletTarget'),
 			props: {
 				memberObjects: [
@@ -36,6 +36,9 @@
 						labels: ['alfa'],
 					},
 				],
+				workflowDidTerminate () {
+					return app.$destroy();
+				},
 			},
 		});
 	},
