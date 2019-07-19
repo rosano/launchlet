@@ -14,9 +14,33 @@ let filterTextDidChange = function (val) {
 };
 $: filterTextDidChange(filterText.trim());
 
+let rootElement;
+import { onMount } from 'svelte';
+onMount(function () {
+	function setElementAtIndex(inputData) {
+		memberObjectSelected = visibleMemberObjects[Math.max(0, Math.min(visibleMemberObjects.length, inputData))];
+	}
+
+	rootElement.addEventListener('keydown', function (event) {
+		if (event.code === 'Escape' && filterText.length) {
+			filterText = '';
+			return event.preventDefault();
+		}
+
+		if (event.code === 'ArrowUp') {
+			setElementAtIndex(visibleMemberObjects.indexOf(memberObjectSelected) - 1)
+			return event.preventDefault();
+		};
+
+		if (event.code === 'ArrowDown') {
+			setElementAtIndex(visibleMemberObjects.indexOf(memberObjectSelected) + 1)
+			return event.preventDefault();
+		};
+	});
+});
 </script>
 
-<div id="__Launchlet">
+<div id="__Launchlet" bind:this={ rootElement }>
 	<div id="__LaunchletBezel">
 		<input id="__LaunchletInput" placeholder="{ OLSKLocalized('LCHBookmarkletInputPlaceholder')}" autofocus bind:value={ filterText }>
 		{#if visibleMemberObjects.length }
