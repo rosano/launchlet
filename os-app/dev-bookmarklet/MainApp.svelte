@@ -1,8 +1,11 @@
 <script>
+import { OLSKLocalized } from '../_shared/common/global.js'
 export let name;
 </script>
 
-<div>Hello {name}</div>
+<div>
+	<input placeholder="{ OLSKLocalized('LCHBookmarkletInputPlaceholder')}" autofocus>
+</div>
 
 <style>
 </style>
