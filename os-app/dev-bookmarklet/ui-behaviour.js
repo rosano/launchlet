@@ -37,7 +37,11 @@
 					},
 				],
 				workflowDidTerminate () {
-					return app.$destroy();
+					app.$destroy()
+
+					app = null;
+
+					return;
 				},
 			},
 		});
