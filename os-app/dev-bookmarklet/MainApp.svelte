@@ -9,7 +9,7 @@ let filterText = '';
 let memberObjectSelected;
 let visibleMemberObjects = [];
 let filterTextDidChange = function (val) {
-	visibleMemberObjects = !val ? [] : memberObjects.filter(LCHComposeLogic.LCHComposeLogicFilter(val))
+	visibleMemberObjects = !val ? [] : memberObjects.filter(LCHComposeLogic.LCHComposeLogicFilter(val)).sort(LCHComposeLogic.LCHComposeLogicSort)
 	memberObjectSelected = visibleMemberObjects[0];
 };
 $: filterTextDidChange(filterText.trim());
