@@ -4,6 +4,42 @@ import { OLSKLocalized } from '../_shared/common/global.js'
 import LCHComposeLogic from '../open-pendext/ui-logic.js'
 export let memberObjects;
 
+const api = {
+	functionObjects () {
+		return memberObjects;
+	},
+	actionObjects () {
+		return api.functionObjects().filter(function (e) {
+			return !!e.name;
+		});
+	},
+	fn (inputData) {
+		if (typeof inputData !== 'string') {
+			throw new Error('LCHBookmarkletErrorIdentifierNotString');
+		}
+
+		if (inputData === '') {
+			throw new Error('LCHBookmarkletErrorIdentifierBlank');
+		}
+
+		if (inputData.trim() !== inputData) {
+			throw new Error('LCHBookmarkletErrorIdentifierContainsUntrimmedWhitespace');
+		}
+
+		let functionObject = api.functionObjects().filter(function (e) {
+			return e.id === inputData;
+		}).shift();
+
+		if (!functionObject) {
+			throw new Error('LCHBookmarkletErrorIdentifierNotDefined');
+		}
+
+		return functionObject.fn.bind({
+			api: api,
+		});
+	},
+};
+
 let filterText = '';
 
 let memberObjectSelected;
@@ -21,6 +57,18 @@ onMount(function () {
 		memberObjectSelected = visibleMemberObjects[Math.max(0, Math.min(visibleMemberObjects.length, inputData))];
 	}
 
+	function launchElement(inputData) {
+		if (!inputData || !inputData.fn) {
+			return;
+		}
+
+		filterText = inputData.name;
+		
+		api.fn(inputData.id)();
+
+		// api.fn('LCHCommandsExit')();
+	}
+
 	rootElement.addEventListener('keydown', function (event) {
 		if (event.code === 'Escape' && filterText.length) {
 			filterText = '';
@@ -35,6 +83,10 @@ onMount(function () {
 		if (event.code === 'ArrowDown') {
 			setElementAtIndex(visibleMemberObjects.indexOf(memberObjectSelected) + 1)
 			return event.preventDefault();
+		};
+
+		if (event.code === 'Enter') {
+			return launchElement(memberObjectSelected);
 		};
 	});
 });
