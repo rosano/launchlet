@@ -2,7 +2,8 @@
 import { OLSKLocalized } from '../_shared/common/global.js'
 
 import LCHComposeLogic from '../open-pendext/ui-logic.js'
-export let memberObjects, workflowDidTerminate;
+export let memberObjects = [];
+export let workflowDidTerminate = function () {};
 
 const api = {
 	functionObjects () {
@@ -65,17 +66,20 @@ onMount(function () {
 		filterText = inputData.name;
 		
 		api.fn(inputData.id)();
-
-		if (!workflowDidTerminate) {
-			return;
-		}
 		
 		workflowDidTerminate();
 	}
 
 	rootElement.addEventListener('keydown', function (event) {
-		if (event.code === 'Escape' && filterText.length) {
-			filterText = '';
+		if (event.code === 'Escape') {
+			if (!filterText) {
+				workflowDidTerminate();
+			}
+
+			if (filterText) {
+				filterText = '';
+			}
+
 			return event.preventDefault();
 		}
 
