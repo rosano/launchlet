@@ -83,18 +83,46 @@
 	exports.LCHBoomarkletTemplateNew = function () {
 		let _protectFromSvelteCompiler = console.log;
 
-		_protectFromSvelteCompiler('__LCHTokenAppBehaviour__')
-		// _protectFromSvelteCompiler('__LCHTokenAppStyle__')
-
-		let app = new MainApp({
-			target: _protectFromSvelteCompiler(`document.body`),
-			props: {
-				memberObjects: _protectFromSvelteCompiler('__LCHTokenMemberObjects__'),
-				workflowDidTerminate () {
-					return (app.$destroy() || true) && (app = null);
-				},
+		window.bookmarklet = {
+			uiStyle: function () {
+				return `_protectFromSvelteCompiler('__LCHTokenAppStyle__')`;
 			},
-		});
+			uiBehaviour: function () {
+				_protectFromSvelteCompiler('__LCHTokenAppBehaviour__')
+
+				return MainApp;
+			},
+			instanceCreate: function () {
+				if (window.bookmarklet.AppInstance) {
+					window.bookmarklet.instanceDestroy();
+				}
+
+				let sandboxContainer = document.createElement('div');
+				sandboxContainer.className = 'ProofSvelteBookmarketSandbox'
+				document.body.appendChild(sandboxContainer);
+
+				sandboxContainer.appendChild(document.createElement('style')).innerHTML = window.bookmarklet.uiStyle();
+				
+				window.bookmarklet.AppInstance = new (window.bookmarklet.uiBehaviour())({
+					target: sandboxContainer,
+					props: {
+						memberObjects: _protectFromSvelteCompiler('__LCHTokenMemberObjects__'),
+						workflowDidTerminate () {
+							return window.bookmarklet.instanceDestroy();
+						},
+					}
+				});
+			},
+			instanceDestroy: function () {
+				window.bookmarklet.AppInstance.$destroy();
+				
+				delete window.bookmarklet.AppInstance;
+
+				[].slice.call(document.querySelectorAll('.ProofSvelteBookmarketSandbox')).forEach((e) => e.remove());
+			},
+		};
+
+		window.bookmarklet.instanceCreate()
 	};
 
 	//_ LCHTokenHashForNew
