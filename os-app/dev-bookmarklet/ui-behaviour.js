@@ -14,7 +14,28 @@
 		new MainApp({
 			target: document.getElementById('LCHBookmarkletTarget'),
 			props: {
-				name: 'world',
+				memberObjects: [
+					{
+						id: 'XYZAlfa',
+						fn: function XYZAlfa () {
+							alert('Alfa');
+						},
+						name: 'Alfa',
+					}, {
+						id: 'XYZBravo',
+						fn: function XYZBravo () {
+							alert('Bravo');
+						},
+						name: 'Bravo',
+					}, {
+						id: 'XYZCharlie',
+						fn: function XYZCharlie () {
+							alert('Charlie');
+						},
+						name: 'Charlie',
+						labels: ['alfa'],
+					},
+				],
 			},
 		});
 	},

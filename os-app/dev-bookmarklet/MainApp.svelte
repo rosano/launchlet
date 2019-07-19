@@ -1,6 +1,6 @@
 <script>
 import { OLSKLocalized } from '../_shared/common/global.js'
-export let name;
+export let memberObjects;
 </script>
 
 <div id="__Launchlet">
