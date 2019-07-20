@@ -243,8 +243,8 @@ describe('LCHBookmarkletTextForTokenHashNew', function testLCHBookmarkletTextFor
 
 	it('replaces tokens', function() {
 		assert.deepEqual(LCHCompile.LCHBookmarkletTextForTokenHashNew({
-			__LCHTokenMainApp__: 'alfa',
-		}), LCHCompile.LCHBoomarkletTemplateNew.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\)/g, '$1').replace("_protectFromSvelteCompiler('__LCHTokenMainApp__')", 'alfa'));
+			__LCHTokenMain__: 'alfa',
+		}), LCHCompile.LCHBoomarkletTemplateNew.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\)/g, '$1').replace("_protectFromSvelteCompiler('__LCHTokenMain__')", 'alfa'));
 	});
 
 });

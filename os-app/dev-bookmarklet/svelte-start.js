@@ -1,3 +1,3 @@
-import MainApp from './MainApp.svelte';
+import Main from './Main.svelte';
 
-export default MainApp;
+export default Main;

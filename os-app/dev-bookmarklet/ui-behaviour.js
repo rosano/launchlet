@@ -11,7 +11,7 @@
 	},
 
 	setupBookmarklet: function () {
-		let app = new MainApp({
+		let app = new Main({
 			target: document.getElementById('LCHBookmarkletTarget'),
 			props: {
 				memberObjects: [

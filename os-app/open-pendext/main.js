@@ -90,7 +90,7 @@
 			uiBehaviour: function () {
 				_protectFromSvelteCompiler('__LCHTokenAppBehaviour__')
 
-				return MainApp;
+				return Main;
 			},
 			instanceCreate: function () {
 				if (window.bookmarklet.AppInstance) {
