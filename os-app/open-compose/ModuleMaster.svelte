@@ -1,6 +1,6 @@
 <script>
 import * as LCHMembersAction from '../_shared/rs-modules/lch_members/action.js';
-import * as LCHComposeLogic from '../open-pendext/ui-logic.js';
+import LCHComposeLogic from '../open-pendext/ui-logic.js';
 
 import { OLSKLocalized } from '../_shared/common/global.js'
 import { storageClient, membersAll, memberSelected } from './persistence.js';
@@ -15,7 +15,7 @@ async function memberCreate() {
 	});
 
 	membersAll.update(function (val) {
-		return val.concat(item).sort(LCHComposeLogic.default.LCHComposeLogicSort);
+		return val.concat(item).sort(LCHComposeLogic.LCHComposeLogicSort);
 	});
 
 	return memberSelect(item);

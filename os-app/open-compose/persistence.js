@@ -1,6 +1,6 @@
 import * as LCHStorageClient from '../_shared/LCHStorageClient/main.js';
 import * as RSModuleProtocol_lch_members from '../_shared/rs-modules/lch_members/rs-module.js';
-import * as LCHComposeLogic from '../open-pendext/ui-logic.js';
+import LCHComposeLogic from '../open-pendext/ui-logic.js';
 
 import * as LCHMembersAction from '../_shared/rs-modules/lch_members/action.js';
 
@@ -21,7 +21,7 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 			membersAll.update(function (val) {
 				return val.filter(function (e) { // @Hotfix Dropbox sending DelegateAdd
 					return e.LCHMemberID !== inputData.LCHMemberID;
-				}).concat(inputData).sort(LCHComposeLogic.default.LCHComposeLogicSort);
+				}).concat(inputData).sort(LCHComposeLogic.LCHComposeLogicSort);
 			});
 
 			modelDidChange.set(Date.now());

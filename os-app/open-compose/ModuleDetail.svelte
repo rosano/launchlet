@@ -69,7 +69,7 @@ afterUpdate(function () {
 });
 
 let throttleMap = {};
-import * as OLSKThrottle from '../_shared/_external/OLSKThrottle/main.js';
+import OLSKThrottle from '../_shared/_external/OLSKThrottle/main.js';
 async function memberSave() {
 	membersAll.update(function (val) {
 		return val;
@@ -88,7 +88,7 @@ async function memberSave() {
 		};	
 	}
 
-	OLSKThrottle.default.OLSKThrottleTimeoutFor(throttleMap[$memberSelected.LCHMemberID]);
+	OLSKThrottle.OLSKThrottleTimeoutFor(throttleMap[$memberSelected.LCHMemberID]);
 }
 
 async function memberDelete() {
