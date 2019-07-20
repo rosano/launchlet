@@ -1,6 +1,7 @@
 <script>
 import * as LCHMembersAction from '../_shared/rs-modules/lch_members/action.js';
 
+import { OLSKLocalized } from '../_shared/common/global.js'
 import { storageClient, membersAll, memberSelected, modelDidChange } from './persistence.js';
 
 let editorInstance;
@@ -47,7 +48,7 @@ afterUpdate(function () {
 		lineNumbers: true,
 		lineWrapping: true,
 
-		placeholder: window.OLSKLocalized('LCHComposeListItemFormInputFunctionBodyPlaceholder'),
+		placeholder: OLSKLocalized('LCHComposeListItemFormInputFunctionBodyPlaceholder'),
 		
 	  keyMap: 'sublime',
 	});
@@ -111,11 +112,11 @@ async function memberDelete() {
 
 {#if $memberSelected}
 	<header class="LCHSharedToolbar">
-		<button on:click={ memberDelete } class="LCHSharedButtonNoStyle">{ window.OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }</button>
+		<button on:click={ memberDelete } class="LCHSharedButtonNoStyle">{ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }</button>
 	</header>
 	<div class="FormContainer">
 		<p>
-			<input type="text" bind:value={ $memberSelected.LCHMemberName } on:input={ memberSave } placeholder="{ window.OLSKLocalized('LCHComposeListItemFormInputNamePlaceholder') }" autofocus />
+			<input type="text" bind:value={ $memberSelected.LCHMemberName } on:input={ memberSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputNamePlaceholder') }" autofocus />
 		</p>
 
 		<span>function (</span>
@@ -127,14 +128,14 @@ async function memberDelete() {
 		<br>
 
 		<p>
-			<input type="text" bind:value={ $memberSelected.LCHMemberSignature } on:input={ memberSave } placeholder="{ window.OLSKLocalized('LCHComposeListItemFormInputSignaturePlaceholder') }" />
+			<input type="text" bind:value={ $memberSelected.LCHMemberSignature } on:input={ memberSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputSignaturePlaceholder') }" />
 		</p>
 	</div>
 {/if}
 
 {#if !$memberSelected}
 	<div class="PlaceholderContainer">
-		<span>{ window.OLSKLocalized('LCHComposeDetailPlaceholderText') }</span>
+		<span>{ OLSKLocalized('LCHComposeDetailPlaceholderText') }</span>
 	</div>
 {/if}
 

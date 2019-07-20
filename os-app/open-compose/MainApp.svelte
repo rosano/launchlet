@@ -4,6 +4,7 @@ import ModuleMaster from './ModuleMaster.svelte';
 import ModuleDetail from './ModuleDetail.svelte';
 import ModuleCompile from './ModuleCompile.svelte';
 
+import { OLSKLocalized } from '../_shared/common/global.js'
 import { storageClient } from './persistence.js';
 
 import { onMount } from 'svelte';
@@ -28,7 +29,7 @@ onMount(function () {
 
 <div id="LCHComposeStorageWidget"></div>
 <div class="LCHComposeDebug">
-	<button class="LCHSharedButtonNoStyle" onclick="location.reload();">{ window.OLSKLocalized('LCHUpdateReloadText') }</button>
+	<button class="LCHSharedButtonNoStyle" onclick="location.reload();">{ OLSKLocalized('LCHUpdateReloadText') }</button>
 </div>
 
 <style>

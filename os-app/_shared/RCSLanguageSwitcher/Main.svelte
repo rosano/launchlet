@@ -1,6 +1,7 @@
 <script>
+import { OLSKLocalized } from '../common/global.js'
 let titleLabel = function (inputData) {
-	return window.OLSKFormatted(window.OLSKLocalized('RCSLanguageSwitcherLinkTextFormat'), window.OLSKLocalized(['RCSLanguageSwitcherLinkTextLanguageName-', inputData].join('')));
+	return window.OLSKFormatted(OLSKLocalized('RCSLanguageSwitcherLinkTextFormat'), OLSKLocalized(['RCSLanguageSwitcherLinkTextLanguageName-', inputData].join('')));
 };
 </script>
 

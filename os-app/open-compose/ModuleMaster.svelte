@@ -2,6 +2,7 @@
 import * as LCHMembersAction from '../_shared/rs-modules/lch_members/action.js';
 import * as LCHComposeLogic from '../open-pendext/ui-logic.js';
 
+import { OLSKLocalized } from '../_shared/common/global.js'
 import { storageClient, membersAll, memberSelected } from './persistence.js';
 
 async function memberCreate() {
@@ -28,7 +29,7 @@ async function memberSelect(inputData) {
 <div class="Container">
 
 <header class="LCHSharedToolbar">
-	<button on:click={ memberCreate } class="LCHSharedButtonNoStyle" accesskey="n">{ window.OLSKLocalized('LCHComposeToolbarCreateButtonText') }</button>
+	<button on:click={ memberCreate } class="LCHSharedButtonNoStyle" accesskey="n">{ OLSKLocalized('LCHComposeToolbarCreateButtonText') }</button>
 </header>
 <div class="List">
 	{#each $membersAll as e}

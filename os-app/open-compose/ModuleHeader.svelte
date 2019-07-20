@@ -1,10 +1,11 @@
 <script>
+import { OLSKLocalized } from '../_shared/common/global.js'
 import RCSLanguageSwitcher from '../_shared/RCSLanguageSwitcher/Main.svelte';
 </script>
 
 <header class="Container">
 
-<h1>{ window.OLSKLocalized('LCHComposeTitle') }</h1>
+<h1>{ OLSKLocalized('LCHComposeTitle') }</h1>
 
 <RCSLanguageSwitcher />
 	
