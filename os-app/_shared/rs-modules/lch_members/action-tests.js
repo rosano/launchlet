@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+import { rejects, deepEqual } from 'assert';
 
 import * as mainModule from './action.js';
 
@@ -23,11 +23,11 @@ const kTesting = {
 describe('LCHMembersActionCreate', function testLCHMembersActionCreate() {
 
 	it('rejects if not object', async function() {
-		await assert.rejects(mainModule.LCHMembersActionCreate(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHMembersActionCreate(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
 	});
 
 	it('returns object with LCHErrors if not valid', async function() {
-		assert.deepEqual((await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, Object.assign(kTesting.StubMemberObject(), {
+		deepEqual((await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, Object.assign(kTesting.StubMemberObject(), {
 			LCHMemberBody: null,
 		}))).LCHErrors, {
 			LCHMemberBody: [
@@ -39,7 +39,7 @@ describe('LCHMembersActionCreate', function testLCHMembersActionCreate() {
 	it('returns LCHMember', async function() {
 		let item = await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject());
 
-		assert.deepEqual(item, Object.assign(kTesting.StubMemberObject(), {
+		deepEqual(item, Object.assign(kTesting.StubMemberObject(), {
 			LCHMemberID: item.LCHMemberID,
 			LCHMemberCreationDate: item.LCHMemberCreationDate,
 			LCHMemberModificationDate: item.LCHMemberModificationDate,
@@ -51,15 +51,15 @@ describe('LCHMembersActionCreate', function testLCHMembersActionCreate() {
 		let items = await kTesting.uSerial(Array.from(Array(10)).map(async function (e) {
 			return (await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject())).LCHMemberID;
 		}));
-		assert.deepEqual([...(new Set(items))], items);
+		deepEqual([...(new Set(items))], items);
 	});
 
 	it('sets LCHMemberCreationDate to now', async function() {
-		assert.strictEqual(new Date() - (await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject())).LCHMemberCreationDate < 100, true);
+		deepEqual(new Date() - (await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject())).LCHMemberCreationDate < 100, true);
 	});
 
 	it('sets LCHMemberModificationDate to now', async function() {
-		assert.strictEqual(new Date() - (await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject())).LCHMemberModificationDate < 100, true);
+		deepEqual(new Date() - (await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject())).LCHMemberModificationDate < 100, true);
 	});
 
 });
@@ -67,17 +67,17 @@ describe('LCHMembersActionCreate', function testLCHMembersActionCreate() {
 describe('LCHMembersActionRead', function testLCHMembersActionRead() {
 
 	it('rejects if not string', async function() {
-		await assert.rejects(mainModule.LCHMembersActionRead(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHMembersActionRead(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
 	});
 
 	it('returns null if not found', async function() {
-		assert.deepEqual(await mainModule.LCHMembersActionRead(LCHTestingStorageClient, 'alfa'), null);
+		deepEqual(await mainModule.LCHMembersActionRead(LCHTestingStorageClient, 'alfa'), null);
 	});
 
 	it('returns LCHMember', async function() {
 		let item = await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject());
 
-		assert.deepEqual(item, await mainModule.LCHMembersActionRead(LCHTestingStorageClient, item.LCHMemberID));
+		deepEqual(item, await mainModule.LCHMembersActionRead(LCHTestingStorageClient, item.LCHMemberID));
 	});
 
 });
@@ -85,11 +85,11 @@ describe('LCHMembersActionRead', function testLCHMembersActionRead() {
 describe('LCHMembersActionUpdate', function testLCHMembersActionUpdate() {
 
 	it('rejects if not object', async function() {
-		await assert.rejects(mainModule.LCHMembersActionUpdate(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHMembersActionUpdate(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
 	});
 
 	it('returns object with LCHErrors if not valid', async function() {
-		assert.deepEqual((await mainModule.LCHMembersActionUpdate(LCHTestingStorageClient, Object.assign(await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject()), {
+		deepEqual((await mainModule.LCHMembersActionUpdate(LCHTestingStorageClient, Object.assign(await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject()), {
 			LCHMemberID: null,
 		}))).LCHErrors, {
 			LCHMemberID: [
@@ -103,13 +103,13 @@ describe('LCHMembersActionUpdate', function testLCHMembersActionUpdate() {
 
 		let item = await mainModule.LCHMembersActionUpdate(LCHTestingStorageClient, itemCreated);
 
-		assert.deepEqual(item, Object.assign(itemCreated, {
+		deepEqual(item, Object.assign(itemCreated, {
 			LCHMemberModificationDate: item.LCHMemberModificationDate,
 		}));
 	});
 
 	it('sets LCHMemberModificationDate to now', async function() {
-		assert.strictEqual(new Date() - (await mainModule.LCHMembersActionUpdate(LCHTestingStorageClient, await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject()))).LCHMemberModificationDate < 100, true);
+		deepEqual(new Date() - (await mainModule.LCHMembersActionUpdate(LCHTestingStorageClient, await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject()))).LCHMemberModificationDate < 100, true);
 	});
 
 	it('writes inputData if not found', async function() {
@@ -117,7 +117,7 @@ describe('LCHMembersActionUpdate', function testLCHMembersActionUpdate() {
 			LCHMemberID: 'alfa',
 			LCHMemberCreationDate: new Date(),
 		}));
-		assert.deepEqual(item, Object.assign(kTesting.StubMemberObject(), {
+		deepEqual(item, Object.assign(kTesting.StubMemberObject(), {
 			LCHMemberID: item.LCHMemberID,
 			LCHMemberCreationDate: item.LCHMemberCreationDate,
 			LCHMemberModificationDate: item.LCHMemberModificationDate,
@@ -130,11 +130,11 @@ describe('LCHMembersActionUpdate', function testLCHMembersActionUpdate() {
 describe('LCHMembersActionDelete', function testLCHMembersActionDelete() {
 
 	it('rejects if not string', async function() {
-		await assert.rejects(mainModule.LCHMembersActionDelete(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHMembersActionDelete(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
 	});
 
 	it('returns statusCode', async function() {
-		assert.deepEqual(await mainModule.LCHMembersActionDelete(LCHTestingStorageClient, (await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject())).LCHMemberID), {
+		deepEqual(await mainModule.LCHMembersActionDelete(LCHTestingStorageClient, (await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject())).LCHMemberID), {
 			statusCode: 200,
 		});
 	});
@@ -142,7 +142,7 @@ describe('LCHMembersActionDelete', function testLCHMembersActionDelete() {
 	it('deletes LCHMember', async function() {
 		let itemID;
 		await mainModule.LCHMembersActionDelete(LCHTestingStorageClient, itemID = (await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject())).LCHMemberID);
-		assert.deepEqual(await mainModule.LCHMembersActionRead(LCHTestingStorageClient, itemID), null);
+		deepEqual(await mainModule.LCHMembersActionRead(LCHTestingStorageClient, itemID), null);
 	});
 
 });
@@ -150,13 +150,13 @@ describe('LCHMembersActionDelete', function testLCHMembersActionDelete() {
 describe('LCHMembersActionList', function testLCHMembersActionList() {
 
 	it('returns array', async function() {
-		assert.deepEqual(await mainModule.LCHMembersActionList(LCHTestingStorageClient), []);
+		deepEqual(await mainModule.LCHMembersActionList(LCHTestingStorageClient), []);
 	});
 
 	it('returns array with existing LCHMembers', async function() {
 		let item = await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject());
 
-		assert.deepEqual(await mainModule.LCHMembersActionList(LCHTestingStorageClient), [item]);
+		deepEqual(await mainModule.LCHMembersActionList(LCHTestingStorageClient), [item]);
 	});
 
 });

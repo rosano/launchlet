@@ -1,17 +1,17 @@
-import * as assert from 'assert';
+import { throws, deepEqual } from 'assert';
 
 import * as mainModule from './main.js';
 
 describe('RSModuleSharedJSONSchemaForErrors', function RSModuleSharedJSONSchemaForErrors() {
 
 	it('throws error if not object', function() {
-		assert.throws(function() {
+		throws(function() {
 			mainModule.RSModuleSharedJSONSchemaForErrors(null);
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns object', function() {
-		assert.deepEqual(mainModule.RSModuleSharedJSONSchemaForErrors({}), {
+		deepEqual(mainModule.RSModuleSharedJSONSchemaForErrors({}), {
 			type: 'object',
 			properties: {},
 			required: [],
@@ -21,7 +21,7 @@ describe('RSModuleSharedJSONSchemaForErrors', function RSModuleSharedJSONSchemaF
 	context('properties', function() {
 		
 		it('declares string', function() {
-			assert.deepEqual(mainModule.RSModuleSharedJSONSchemaForErrors({
+			deepEqual(mainModule.RSModuleSharedJSONSchemaForErrors({
 				alfa: ['LCHErrorNotString']
 			}), {
 				type: 'object',
@@ -37,7 +37,7 @@ describe('RSModuleSharedJSONSchemaForErrors', function RSModuleSharedJSONSchemaF
 		});
 		
 		it('declares boolean', function() {
-			assert.deepEqual(mainModule.RSModuleSharedJSONSchemaForErrors({
+			deepEqual(mainModule.RSModuleSharedJSONSchemaForErrors({
 				alfa: ['LCHErrorNotBoolean']
 			}), {
 				type: 'object',
@@ -53,7 +53,7 @@ describe('RSModuleSharedJSONSchemaForErrors', function RSModuleSharedJSONSchemaF
 		});
 		
 		it('declares date', function() {
-			assert.deepEqual(mainModule.RSModuleSharedJSONSchemaForErrors({
+			deepEqual(mainModule.RSModuleSharedJSONSchemaForErrors({
 				alfa: ['LCHErrorNotDate']
 			}), {
 				type: 'object',
@@ -70,7 +70,7 @@ describe('RSModuleSharedJSONSchemaForErrors', function RSModuleSharedJSONSchemaF
 		});
 		
 		it('declares filled', function() {
-			assert.deepEqual(mainModule.RSModuleSharedJSONSchemaForErrors({
+			deepEqual(mainModule.RSModuleSharedJSONSchemaForErrors({
 				alfa: ['LCHErrorNotFilled']
 			}), {
 				type: 'object',
@@ -90,7 +90,7 @@ describe('RSModuleSharedJSONSchemaForErrors', function RSModuleSharedJSONSchemaF
 	context('required', function() {
 		
 		it('declares if required', function() {
-			assert.deepEqual(mainModule.RSModuleSharedJSONSchemaForErrors({
+			deepEqual(mainModule.RSModuleSharedJSONSchemaForErrors({
 				alfa: ['LCHErrorNotString']
 			}), {
 				type: 'object',
@@ -106,7 +106,7 @@ describe('RSModuleSharedJSONSchemaForErrors', function RSModuleSharedJSONSchemaF
 		});
 
 		it('ignores', function() {
-			assert.deepEqual(mainModule.RSModuleSharedJSONSchemaForErrors({
+			deepEqual(mainModule.RSModuleSharedJSONSchemaForErrors({
 				alfa: ['LCHErrorNotString', '__RSOptional']
 			}), {
 				type: 'object',

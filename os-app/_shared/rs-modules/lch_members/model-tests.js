@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+import { throws, deepEqual } from 'assert';
 
 import * as mainModule from './model.js';
 
@@ -17,13 +17,13 @@ const kTesting = {
 describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
 
 	it('throws error if not object', function() {
-		assert.throws(function() {
+		throws(function() {
 			mainModule.LCHMembersModelErrorsFor(null);
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns object if LCHMemberID not string', function() {
-		assert.deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
+		deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
 			LCHMemberID: null,
 		})), {
 			LCHMemberID: [
@@ -33,7 +33,7 @@ describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
 	});
 
 	it('returns object if LCHMemberID not filled', function() {
-		assert.deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
+		deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
 			LCHMemberID: ' ',
 		})), {
 			LCHMemberID: [
@@ -43,7 +43,7 @@ describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
 	});
 
 	it('returns object if LCHMemberArgs not string', function() {
-		assert.deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
+		deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
 			LCHMemberArgs: null,
 		})), {
 			LCHMemberArgs: [
@@ -53,7 +53,7 @@ describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
 	});
 
 	it('returns object if LCHMemberBody not string', function() {
-		assert.deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
+		deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
 			LCHMemberBody: null,
 		})), {
 			LCHMemberBody: [
@@ -63,7 +63,7 @@ describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
 	});
 
 	it('returns object if LCHMemberCreationDate not date', function() {
-		assert.deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
+		deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
 			LCHMemberCreationDate: new Date('alfa'),
 		})), {
 			LCHMemberCreationDate: [
@@ -73,7 +73,7 @@ describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
 	});
 
 	it('returns object if LCHMemberModificationDate not date', function() {
-		assert.deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
+		deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
 			LCHMemberModificationDate: new Date('alfa'),
 		})), {
 			LCHMemberModificationDate: [
@@ -83,13 +83,13 @@ describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
 	});
 
 	it('returns null', function() {
-		assert.deepEqual(mainModule.LCHMembersModelErrorsFor(kTesting.StubMemberObjectValid()), null);
+		deepEqual(mainModule.LCHMembersModelErrorsFor(kTesting.StubMemberObjectValid()), null);
 	});
 
 	context('LCHMemberName', function() {
 
 		it('returns object if LCHMemberName not string', function() {
-			assert.deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
+			deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
 				LCHMemberName: null,
 			})), {
 				LCHMemberName: [
@@ -103,7 +103,7 @@ describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
 	context('LCHMemberSignature', function() {
 
 		it('returns object if LCHMemberSignature not string', function() {
-			assert.deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
+			deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
 				LCHMemberSignature: null,
 			})), {
 				LCHMemberSignature: [
@@ -119,11 +119,11 @@ describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
 describe('LCHMembersModelPreJSONSchemaValidate', function testLCHMembersModelPreJSONSchemaValidate() {
 
 	it('returns input', function() {
-		assert.deepEqual(mainModule.LCHMembersModelPreJSONSchemaValidate({}), {});
+		deepEqual(mainModule.LCHMembersModelPreJSONSchemaValidate({}), {});
 	});
 
 	it('returns input with LCHMemberCreationDate as string', function() {
-		assert.deepEqual(mainModule.LCHMembersModelPreJSONSchemaValidate({
+		deepEqual(mainModule.LCHMembersModelPreJSONSchemaValidate({
 			LCHMemberCreationDate: new Date('2018-12-09T19:07:01.902Z'),
 		}), {
 			LCHMemberCreationDate: '2018-12-09T19:07:01.902Z',
@@ -131,7 +131,7 @@ describe('LCHMembersModelPreJSONSchemaValidate', function testLCHMembersModelPre
 	});
 
 	it('returns input with LCHMemberModificationDate as string', function() {
-		assert.deepEqual(mainModule.LCHMembersModelPreJSONSchemaValidate({
+		deepEqual(mainModule.LCHMembersModelPreJSONSchemaValidate({
 			LCHMemberModificationDate: new Date('2018-12-09T19:07:01.902Z'),
 		}), {
 			LCHMemberModificationDate: '2018-12-09T19:07:01.902Z',
@@ -143,15 +143,15 @@ describe('LCHMembersModelPreJSONSchemaValidate', function testLCHMembersModelPre
 describe('LCHMembersModelPostJSONParse', function testLCHMembersModelPostJSONParse() {
 
 	it('returns input null', function() {
-		assert.deepEqual(mainModule.LCHMembersModelPostJSONParse(null), null);
+		deepEqual(mainModule.LCHMembersModelPostJSONParse(null), null);
 	});
 
 	it('returns input object', function() {
-		assert.deepEqual(mainModule.LCHMembersModelPostJSONParse({}), {});
+		deepEqual(mainModule.LCHMembersModelPostJSONParse({}), {});
 	});
 
 	it('returns input with LCHMemberCreationDate as date', function() {
-		assert.deepEqual(mainModule.LCHMembersModelPostJSONParse({
+		deepEqual(mainModule.LCHMembersModelPostJSONParse({
 			LCHMemberCreationDate: '2018-12-09T19:07:01.902Z',
 		}), {
 			LCHMemberCreationDate: new Date('2018-12-09T19:07:01.902Z'),
@@ -159,7 +159,7 @@ describe('LCHMembersModelPostJSONParse', function testLCHMembersModelPostJSONPar
 	});
 
 	it('returns input with LCHMemberModificationDate as date', function() {
-		assert.deepEqual(mainModule.LCHMembersModelPostJSONParse({
+		deepEqual(mainModule.LCHMembersModelPostJSONParse({
 			LCHMemberModificationDate: '2018-12-09T19:07:01.902Z',
 		}), {
 			LCHMemberModificationDate: new Date('2018-12-09T19:07:01.902Z'),

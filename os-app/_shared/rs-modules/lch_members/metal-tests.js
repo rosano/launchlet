@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+import { rejects, deepEqual } from 'assert';
 
 import * as mainModule from './metal.js';
 
@@ -17,11 +17,11 @@ const kTesting = {
 describe('LCHMembersMetalWrite', function testLCHMembersMetalWrite() {
 
 	it('rejects if not object', async function() {
-		await assert.rejects(mainModule.LCHMembersMetalWrite(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHMembersMetalWrite(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
 	});
 
 	it('returns object with LCHErrors if not valid', async function() {
-		assert.deepEqual((await mainModule.LCHMembersMetalWrite(LCHTestingStorageClient, Object.assign(kTesting.StubMemberObjectValid(), {
+		deepEqual((await mainModule.LCHMembersMetalWrite(LCHTestingStorageClient, Object.assign(kTesting.StubMemberObjectValid(), {
 			LCHMemberID: null,
 		}))).LCHErrors, {
 			LCHMemberID: [
@@ -33,7 +33,7 @@ describe('LCHMembersMetalWrite', function testLCHMembersMetalWrite() {
 	it('returns LCHMember', async function() {
 		let item = await mainModule.LCHMembersMetalWrite(LCHTestingStorageClient, kTesting.StubMemberObjectValid());
 
-		assert.deepEqual(item, Object.assign(kTesting.StubMemberObjectValid(), {
+		deepEqual(item, Object.assign(kTesting.StubMemberObjectValid(), {
 			'@context': item['@context'],
 		}));
 	});
@@ -43,17 +43,17 @@ describe('LCHMembersMetalWrite', function testLCHMembersMetalWrite() {
 describe('LCHMembersMetalRead', function testLCHMembersMetalRead() {
 
 	it('rejects if not string', async function() {
-		await assert.rejects(mainModule.LCHMembersMetalRead(LCHTestingStorageClient, 1), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHMembersMetalRead(LCHTestingStorageClient, 1), /LCHErrorInputInvalid/);
 	});
 
 	it('returns null if not found', async function() {
-		assert.deepEqual(await mainModule.LCHMembersMetalRead(LCHTestingStorageClient, 'alfa'), null);
+		deepEqual(await mainModule.LCHMembersMetalRead(LCHTestingStorageClient, 'alfa'), null);
 	});
 
 	it('returns LCHMember', async function() {
 		let item = await mainModule.LCHMembersMetalWrite(LCHTestingStorageClient, kTesting.StubMemberObjectValid());
 
-		assert.deepEqual(await mainModule.LCHMembersMetalRead(LCHTestingStorageClient, item.LCHMemberID), item);
+		deepEqual(await mainModule.LCHMembersMetalRead(LCHTestingStorageClient, item.LCHMemberID), item);
 	});
 
 });
@@ -61,13 +61,13 @@ describe('LCHMembersMetalRead', function testLCHMembersMetalRead() {
 describe('LCHMembersMetalList', function testLCHMembersMetalList() {
 
 	it('returns empty array if none', async function() {
-		assert.deepEqual(await mainModule.LCHMembersMetalList(LCHTestingStorageClient), {});
+		deepEqual(await mainModule.LCHMembersMetalList(LCHTestingStorageClient), {});
 	});
 
 	it('returns existing LCHMembers', async function() {
 		let item = await mainModule.LCHMembersMetalWrite(LCHTestingStorageClient, kTesting.StubMemberObjectValid());
-		assert.deepEqual(Object.values(await mainModule.LCHMembersMetalList(LCHTestingStorageClient)), [item]);
-		assert.deepEqual(Object.keys(await mainModule.LCHMembersMetalList(LCHTestingStorageClient)), [item.LCHMemberID]);
+		deepEqual(Object.values(await mainModule.LCHMembersMetalList(LCHTestingStorageClient)), [item]);
+		deepEqual(Object.keys(await mainModule.LCHMembersMetalList(LCHTestingStorageClient)), [item.LCHMemberID]);
 	});
 
 });
@@ -75,18 +75,18 @@ describe('LCHMembersMetalList', function testLCHMembersMetalList() {
 describe('LCHMembersMetalDelete', function testLCHMembersMetalDelete() {
 
 	it('rejects if not string', async function() {
-		await assert.rejects(mainModule.LCHMembersMetalDelete(LCHTestingStorageClient, 1), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHMembersMetalDelete(LCHTestingStorageClient, 1), /LCHErrorInputInvalid/);
 	});
 
 	it('returns statusCode', async function() {
-		assert.deepEqual(await mainModule.LCHMembersMetalDelete(LCHTestingStorageClient, (await mainModule.LCHMembersMetalWrite(LCHTestingStorageClient, kTesting.StubMemberObjectValid())).LCHMemberID), {
+		deepEqual(await mainModule.LCHMembersMetalDelete(LCHTestingStorageClient, (await mainModule.LCHMembersMetalWrite(LCHTestingStorageClient, kTesting.StubMemberObjectValid())).LCHMemberID), {
 			statusCode: 200,
 		});
 	});
 
 	it('deletes LCHMember', async function() {
 		await mainModule.LCHMembersMetalDelete(LCHTestingStorageClient, (await mainModule.LCHMembersMetalWrite(LCHTestingStorageClient, kTesting.StubMemberObjectValid())).LCHMemberID);
-		assert.deepEqual(await mainModule.LCHMembersMetalList(LCHTestingStorageClient), {});
+		deepEqual(await mainModule.LCHMembersMetalList(LCHTestingStorageClient), {});
 	});
 
 });
