@@ -11,7 +11,7 @@ onMount(function () {
 	modelDidChange.subscribe(function (val) {
 		javascriptComposed = LCHCompile.LCHComposeLogicBoomarkletStringFor({
 			LCHCompileToken_AppStyle: window.LCHComposeBookmarkletStyle,
-			LCHCompileToken_AppBehaviour: window.LCHComposeBookmarkletBehaviour.replace(`//# sourceMappingURL=ui-behaviour.js.map`, ''),
+			LCHCompileToken_AppBehaviour: window.LCHComposeBookmarkletBehaviour,
 			LCHCompileToken_MemberObjects: $membersAll.filter(function (e) {
 				return !!e.LCHMemberBody;
 			}).map(LCHMembersModel.LCHMembersModelConvertLegacy).map(LCHCompile.LCHMembersModelWrappedMemberObjectFor),
