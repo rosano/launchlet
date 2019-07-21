@@ -1,6 +1,6 @@
 <script>
 import ModuleList from './ModuleList.svelte'
-import { OLSKLocalized, languageCode } from './shared.js'
+import { OLSKLocalized, languageCode } from './_shared.js'
 import { LCHBookmarkletLogicFilter } from './ui-logic.js'
 
 export let memberObjects = [];
@@ -111,7 +111,7 @@ onMount(function () {
 
 <div class="Container" bind:this={ rootElement }>
 	<div class="Bezel">
-		<input placeholder="{ OLSKLocalized('LCHBookmarkletInputPlaceholder')}" autofocus bind:value={ filterText }>
+		<input placeholder="{ OLSKLocalized('LCHBookmarkletInputPlaceholder') }" autofocus bind:value={ filterText } />
 		<ModuleList items={ visibleMemberObjects } itemSelected={ memberObjectSelected } />
 	</div>
 </div>
