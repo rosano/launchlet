@@ -8,10 +8,6 @@ export let optionsObject = {};
 
 (function StartSetup() {
 	languageCode(optionsObject.localizationLanguageCode)
-
-	if (!optionsObject.workflowDidTerminate) {
-		optionsObject.workflowDidTerminate = function () {};
-	}
 })();
 
 const api = {
@@ -76,13 +72,15 @@ onMount(function () {
 		
 		api.fn(inputData.id)();
 		
-		optionsObject.workflowDidTerminate();
+		if (typeof optionsObject._didFinish === 'function') {
+			optionsObject._didFinish();
+		}
 	}
 
 	rootElement.addEventListener('keydown', function (event) {
 		if (event.code === 'Escape') {
-			if (!filterText) {
-				optionsObject.workflowDidTerminate();
+			if (!filterText && typeof optionsObject._didFinish === 'function') {
+				optionsObject._didFinish();
 			}
 
 			if (filterText) {

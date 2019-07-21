@@ -43,7 +43,7 @@ export const LCHComposeLogicBoomarkletTemplate = function () {
 				props: {
 					memberObjects: _protectFromSvelteCompiler(`LCHCompileToken_MemberObjects`),
 					optionsObject: {
-						workflowDidTerminate () {
+						_didFinish () {
 							return window.bookmarklet.instanceDestroy();
 						},
 						localizationLanguageCode: 'LCHCompileToken_AppLanguageCode',

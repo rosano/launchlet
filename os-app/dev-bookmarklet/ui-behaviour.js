@@ -37,7 +37,7 @@
 					},
 				],
 				optionsObject: {
-					workflowDidTerminate () {
+					_didFinish () {
 						return (app.$destroy() || true) && (app = null);
 					},
 				}
