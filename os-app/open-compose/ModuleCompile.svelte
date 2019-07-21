@@ -9,13 +9,13 @@ let javascriptComposed, javascriptBinary = '';
 import { onMount } from 'svelte';
 onMount(function () {
 	modelDidChange.subscribe(function (val) {
-		javascriptComposed = LCHCompile.LCHBookmarkletStringFor({
-			LCHToken_AppStyle: window.LCHComposeBookmarkletStyle,
-			LCHToken_AppBehaviour: window.LCHComposeBookmarkletBehaviour.replace(`//# sourceMappingURL=ui-behaviour.js.map`, ''),
-			LCHToken_MemberObjects: $membersAll.filter(function (e) {
+		javascriptComposed = LCHCompile.LCHComposeLogicBoomarkletStringFor({
+			LCHCompileToken_AppStyle: window.LCHComposeBookmarkletStyle,
+			LCHCompileToken_AppBehaviour: window.LCHComposeBookmarkletBehaviour.replace(`//# sourceMappingURL=ui-behaviour.js.map`, ''),
+			LCHCompileToken_MemberObjects: $membersAll.filter(function (e) {
 				return !!e.LCHMemberBody;
 			}).map(LCHMembersModel.LCHMembersModelConvertLegacy).map(LCHCompile.LCHMembersModelWrappedMemberObjectFor),
-			LCHToken_AppLanguageCode: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
+			LCHCompileToken_AppLanguageCode: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 
 		javascriptBinary = LCHComposeLogicBookmarkletBinaryFor(javascriptComposed);

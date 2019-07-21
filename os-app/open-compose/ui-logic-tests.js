@@ -2,6 +2,24 @@ import { throws, deepEqual } from 'assert';
 
 import * as mainModule from './ui-logic.js';
 
+const kTesting = {
+	kTestingValidInputHash: function() {
+		return {
+			LCHInputAppBehaviour: '',
+			LCHInputAppStyle: '',
+			LCHInputMemberObjects: [],
+			LCHInputStyleContent: '',
+			LCHInputLibraryD3Content: '',
+		};
+	},
+	StubWrappedMemberObjectValid: function() {
+		return {
+			id: 'alfa',
+			fnclosure: 'function () { return; }',
+		};
+	},
+};
+
 describe('LCHComposeLogicSort', function testLCHComposeLogicSort() {
 
 	it('sorts by LCHMemberModificationDate descending', function() {
@@ -24,6 +42,94 @@ describe('LCHComposeLogicSort', function testLCHComposeLogicSort() {
 		};
 
 		deepEqual([item1, item2].sort(mainModule.LCHComposeLogicSort), [item2, item1]);
+	});
+
+});
+
+describe('LCHComposeLogicValidCompileTokens', function testLCHComposeLogicValidCompileTokens() {
+
+	it('returns array', function() {
+		deepEqual(mainModule.LCHComposeLogicValidCompileTokens(), [
+			'LCHCompileToken_AppBehaviour',
+			'LCHCompileToken_AppStyle',
+			'LCHCompileToken_MemberObjects',
+			'LCHCompileToken_AppLanguageCode',
+			]);
+	});
+
+});
+
+describe('LCHComposeLogicBoomarkletTemplate', function testLCHComposeLogicBoomarkletTemplate() {
+
+	it('contains LCHComposeLogicValidCompileTokens', function() {
+		deepEqual(mainModule.LCHComposeLogicValidCompileTokens().filter(function (e) {
+			return mainModule.LCHComposeLogicBoomarkletTemplate.toString().match(e);
+		}), mainModule.LCHComposeLogicValidCompileTokens());
+	});
+
+});
+
+describe('LCHComposeLogicBoomarkletStringFor', function testLCHComposeLogicBoomarkletStringFor() {
+
+	it('throws error if not object', function() {
+		throws(function() {
+			mainModule.LCHComposeLogicBoomarkletStringFor(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('throws error if contains invalid token', function() {
+		throws(function() {
+			mainModule.LCHComposeLogicBoomarkletStringFor({
+				alfa: 'bravo',
+			});
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('replaces wraps', function() {
+		deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({}), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\);?/g, '$1'));
+	});
+
+	it('replaces tokens', function() {
+		deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
+			LCHCompileToken_AppBehaviour: 'alfa',
+			LCHCompileToken_AppStyle: 'bravo',
+			LCHCompileToken_MemberObjects: [],
+		}), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\);?/g, '$1').replace('LCHCompileToken_AppBehaviour', 'alfa').replace('LCHCompileToken_AppStyle', 'bravo').replace('LCHCompileToken_MemberObjects', '[]'));
+	});
+
+	it('strips livereload', function () {
+		deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
+			LCHCompileToken_AppBehaviour: `alfa(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':5000/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');bravo`,
+		}), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_AppBehaviour', 'alfabravo'));
+	});
+
+});
+
+describe('_LCHComposeLogicMemberObjectsReplacementFor', function test_LCHComposeLogicMemberObjectsReplacementFor() {
+
+	it('throws error if not array', function() {
+		throws(function() {
+			mainModule._LCHComposeLogicMemberObjectsReplacementFor(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns empty if no objects', function() {
+		deepEqual(mainModule._LCHComposeLogicMemberObjectsReplacementFor([]), '[]');
+	});
+
+	it('returns stringified if single line', function() {
+		let item = kTesting.StubWrappedMemberObjectValid();
+		deepEqual(mainModule._LCHComposeLogicMemberObjectsReplacementFor([item]), JSON.stringify([item]).replace('"fnclosure"', '"fn"').replace(`"${ item.fnclosure }"`, item.fnclosure));
+	});
+
+	it('returns stringified if multi line', function() {
+		let item = Object.assign(kTesting.StubWrappedMemberObjectValid(), {
+			fnclosure: `
+return;
+`,
+		});
+
+		deepEqual(mainModule._LCHComposeLogicMemberObjectsReplacementFor([item]), JSON.stringify([item]).replace('"fnclosure"', '"fn"').replace(/\\n/g, '\n').replace(`"${ item.fnclosure }"`, item.fnclosure));
 	});
 
 });
