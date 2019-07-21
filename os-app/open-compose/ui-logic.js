@@ -16,14 +16,14 @@ export const LCHComposeLogicValidCompileTokens = function (inputData) {
 };
 
 export const LCHComposeLogicBoomarkletTemplate = function () {
-	let _protectFromSvelteCompiler = console.log;
+	let _protectFromCompiler = console.log;
 
 	window.bookmarklet = {
 		uiStyle: function () {
 			return `LCHCompileToken_AppStyle`;
 		},
 		uiBehaviour: function () {
-			_protectFromSvelteCompiler(`LCHCompileToken_AppBehaviour`);
+			_protectFromCompiler(`LCHCompileToken_AppBehaviour`);
 
 			return Main;
 		},
@@ -41,12 +41,12 @@ export const LCHComposeLogicBoomarkletTemplate = function () {
 			window.bookmarklet.AppInstance = new (window.bookmarklet.uiBehaviour())({
 				target: sandboxContainer,
 				props: {
-					memberObjects: _protectFromSvelteCompiler(`LCHCompileToken_MemberObjects`),
+					memberObjects: _protectFromCompiler(`LCHCompileToken_MemberObjects`),
 					optionsObject: {
+						localizationLanguageCode: 'LCHCompileToken_AppLanguageCode',
 						_didFinish () {
 							return window.bookmarklet.instanceDestroy();
 						},
-						localizationLanguageCode: 'LCHCompileToken_AppLanguageCode',
 					},
 				}
 			});
@@ -76,7 +76,7 @@ export const LCHComposeLogicBoomarkletStringFor = function (inputData) {
 
 	return Object.keys(inputData).reduce(function (coll, item) {
 		return coll.replace(item, item === 'LCHCompileToken_MemberObjects' ? _LCHComposeLogicMemberObjectsReplacementFor(inputData[item]) : inputData[item]);
-	}, LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2'))
+	}, LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2'))
 			.replace(`(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':5000/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');`, '')
 			.replace(`//# sourceMappingURL=ui-behaviour.js.map`, '');
 };

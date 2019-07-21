@@ -86,7 +86,7 @@ describe('LCHComposeLogicBoomarkletStringFor', function testLCHComposeLogicBooma
 	});
 
 	it('replaces wraps', function() {
-		deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({}), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\);?/g, '$1'));
+		deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({}), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\);?/g, '$1'));
 	});
 
 	it('replaces tokens', function() {
@@ -94,19 +94,19 @@ describe('LCHComposeLogicBoomarkletStringFor', function testLCHComposeLogicBooma
 			LCHCompileToken_AppBehaviour: 'alfa',
 			LCHCompileToken_AppStyle: 'bravo',
 			LCHCompileToken_MemberObjects: [],
-		}), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\);?/g, '$1').replace('LCHCompileToken_AppBehaviour', 'alfa').replace('LCHCompileToken_AppStyle', 'bravo').replace('LCHCompileToken_MemberObjects', '[]'));
+		}), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\);?/g, '$1').replace('LCHCompileToken_AppBehaviour', 'alfa').replace('LCHCompileToken_AppStyle', 'bravo').replace('LCHCompileToken_MemberObjects', '[]'));
 	});
 
 	it('strips sourceMap js', function () {
 		deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
 			LCHCompileToken_AppBehaviour: `alfa//# sourceMappingURL=ui-behaviour.js.mapbravo`,
-		}), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_AppBehaviour', 'alfabravo'));
+		}), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_AppBehaviour', 'alfabravo'));
 	});
 
 	it('strips livereload', function () {
 		deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
 			LCHCompileToken_AppBehaviour: `alfa(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':5000/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');bravo`,
-		}), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_AppBehaviour', 'alfabravo'));
+		}), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_AppBehaviour', 'alfabravo'));
 	});
 
 });
