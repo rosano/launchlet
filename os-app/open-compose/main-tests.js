@@ -3,12 +3,6 @@ const assert = require('assert');
 const LCHCompile = require('./main.js');
 
 const kTesting = {
-	kTestingValidMemberObject: function() {
-		return {
-			id: 'alfa',
-			fnbody: 'return;',
-		};
-	},
 	kTestingValidInputHash: function() {
 		return {
 			LCHInputAppBehaviour: '',
@@ -18,92 +12,13 @@ const kTesting = {
 			LCHInputLibraryD3Content: '',
 		};
 	},
-};
-
-describe('LCHModelErrorsForUnwrappedMemberObject', function testLCHModelErrorsForUnwrappedMemberObject() {
-
-	it('throws error if not object', function() {
-		assert.throws(function() {
-			LCHCompile.LCHModelErrorsForUnwrappedMemberObject(null);
-		}, /LCHErrorInputInvalid/);
-	});
-
-	it('returns error if id not string', function() {
-		assert.deepEqual(LCHCompile.LCHModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.kTestingValidMemberObject(), {
-			id: null,
-		})), {
-			id: new Error('LCHErrorNotString'),
-		});
-	});
-
-	it('returns error if fnbody not string', function() {
-		assert.deepEqual(LCHCompile.LCHModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.kTestingValidMemberObject(), {
-			fnbody: null,
-		})), {
-			fnbody: new Error('LCHErrorNotString'),
-		});
-	});
-
-	it('returns empty array', function() {
-		assert.strictEqual(LCHCompile.LCHModelErrorsForUnwrappedMemberObject(kTesting.kTestingValidMemberObject()), null);
-	});
-
-	it('returns error if args not string', function() {
-		assert.deepEqual(LCHCompile.LCHModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.kTestingValidMemberObject(), {
-			args: null,
-		})), {
-			args: new Error('LCHErrorNotString'),
-		});
-	});
-
-	it('returns error if name not string', function() {
-		assert.deepEqual(LCHCompile.LCHModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.kTestingValidMemberObject(), {
-			name: null,
-		})), {
-			name: new Error('LCHErrorNotString'),
-		});
-	});
-
-});
-
-describe('LCHWrappedMemberObjectFor', function testLCHWrappedMemberObjectFor() {
-
-	it('throws error if not UnwrappedMemberObject', function() {
-		assert.throws(function() {
-			LCHCompile.LCHWrappedMemberObjectFor({});
-		}, /LCHErrorInputInvalid/);
-	});
-
-	it('returns WrappedMemberObject', function() {
-		assert.deepEqual(LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMemberObject()), {
-			id: kTesting.kTestingValidMemberObject().id,
+	StubWrappedMemberObjectValid: function() {
+		return {
+			id: 'alfa',
 			fnclosure: 'function () { return; }',
-		});
-	});
-
-	context('id', function () {
-
-		it('copies', function() {
-			assert.deepEqual(LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMemberObject()).id, kTesting.kTestingValidMemberObject().id);
-		});
-
-	});
-
-	context('fnclosure', function () {
-
-		it('wraps fnbody', function() {
-			assert.deepEqual(LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMemberObject()).fnclosure, `function () { ${ kTesting.kTestingValidMemberObject().fnbody } }`);
-		});
-
-		it('wraps args', function() {
-			assert.deepEqual(LCHCompile.LCHWrappedMemberObjectFor(Object.assign(kTesting.kTestingValidMemberObject(), {
-				args: 'alfa',
-			})).fnclosure, `function (alfa) { ${ kTesting.kTestingValidMemberObject().fnbody } }`);
-		});
-
-	});
-
-});
+		};
+	},
+};
 
 describe('LCHValidTokens', function testLCHValidTokens() {
 
@@ -177,16 +92,16 @@ describe('_LCHTokenMemberObjectsReplacementFor', function test_LCHTokenMemberObj
 	});
 
 	it('returns stringified if single line', function() {
-		let item = LCHCompile.LCHWrappedMemberObjectFor(kTesting.kTestingValidMemberObject());
+		let item = kTesting.StubWrappedMemberObjectValid();
 		assert.deepEqual(LCHCompile._LCHTokenMemberObjectsReplacementFor([item]), JSON.stringify([item]).replace('"fnclosure"', '"fn"').replace(`"${ item.fnclosure }"`, item.fnclosure));
 	});
 
 	it('returns stringified if multi line', function() {
-		let item = LCHCompile.LCHWrappedMemberObjectFor(Object.assign(kTesting.kTestingValidMemberObject(), {
-			fnbody: `
+		let item = Object.assign(kTesting.StubWrappedMemberObjectValid(), {
+			fnclosure: `
 return;
 `,
-		}));
+		});
 
 		assert.deepEqual(LCHCompile._LCHTokenMemberObjectsReplacementFor([item]), JSON.stringify([item]).replace('"fnclosure"', '"fn"').replace(/\\n/g, '\n').replace(`"${ item.fnclosure }"`, item.fnclosure));
 	});

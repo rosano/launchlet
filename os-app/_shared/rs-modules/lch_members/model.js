@@ -93,3 +93,55 @@ export const LCHMembersModelConvertLegacy = function(inputData) {
 		name: inputData.LCHMemberName,
 	};
 };
+
+export const LCHMembersModelErrorsForUnwrappedMemberObject = function (inputData) {
+	if (typeof inputData !== 'object' || inputData === null) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	let errorsHash = {};
+
+	if (typeof inputData.id !== 'string') {
+		errorsHash.id = new Error('LCHErrorNotString');
+	}
+
+	if (typeof inputData.fnbody !== 'string') {
+		errorsHash.fnbody = new Error('LCHErrorNotString');
+	}
+
+	if (inputData.name !== undefined) {
+		if (typeof inputData.name !== 'string') {
+			errorsHash.name = new Error('LCHErrorNotString');
+		}
+	}
+
+	if (inputData.args !== undefined) {
+		if (typeof inputData.args !== 'string') {
+			errorsHash.args = new Error('LCHErrorNotString');
+		}
+	}
+
+	return Object.keys(errorsHash).length ? errorsHash : null;
+};
+
+export const LCHMembersModelWrappedMemberObjectFor = function (inputData) {
+	if (exports.LCHMembersModelErrorsForUnwrappedMemberObject(inputData)) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	return Object.keys(inputData).reduce(function (coll, e) {
+		if (e === 'args') {
+			return coll;
+		}
+
+		if (e === 'fnbody') {
+			return Object.assign(coll, {
+				fnclosure: `function (${ inputData.args || '' }) { ${ inputData.fnbody } }`,
+			});
+		}
+
+		coll[e] = inputData[e];
+
+		return coll;
+	}, {});
+};

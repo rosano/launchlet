@@ -12,6 +12,12 @@ const kTesting = {
 			LCHMemberModificationDate: new Date('2019-02-23T13:56:36Z'),
 		};
 	},
+	StubUnwrappedMemberObjectValid: function() {
+		return {
+			id: 'alfa',
+			fnbody: 'return;',
+		};
+	},
 };
 
 describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
@@ -164,6 +170,91 @@ describe('LCHMembersModelPostJSONParse', function testLCHMembersModelPostJSONPar
 		}), {
 			LCHMemberModificationDate: new Date('2018-12-09T19:07:01.902Z'),
 		});
+	});
+
+});
+
+describe('LCHMembersModelErrorsForUnwrappedMemberObject', function testLCHMembersModelErrorsForUnwrappedMemberObject() {
+
+	it('throws error if not object', function() {
+		throws(function() {
+			mainModule.LCHMembersModelErrorsForUnwrappedMemberObject(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns error if id not string', function() {
+		deepEqual(mainModule.LCHMembersModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.StubUnwrappedMemberObjectValid(), {
+			id: null,
+		})), {
+			id: new Error('LCHErrorNotString'),
+		});
+	});
+
+	it('returns error if fnbody not string', function() {
+		deepEqual(mainModule.LCHMembersModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.StubUnwrappedMemberObjectValid(), {
+			fnbody: null,
+		})), {
+			fnbody: new Error('LCHErrorNotString'),
+		});
+	});
+
+	it('returns empty array', function() {
+		deepEqual(mainModule.LCHMembersModelErrorsForUnwrappedMemberObject(kTesting.StubUnwrappedMemberObjectValid()), null);
+	});
+
+	it('returns error if args not string', function() {
+		deepEqual(mainModule.LCHMembersModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.StubUnwrappedMemberObjectValid(), {
+			args: null,
+		})), {
+			args: new Error('LCHErrorNotString'),
+		});
+	});
+
+	it('returns error if name not string', function() {
+		deepEqual(mainModule.LCHMembersModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.StubUnwrappedMemberObjectValid(), {
+			name: null,
+		})), {
+			name: new Error('LCHErrorNotString'),
+		});
+	});
+
+});
+
+describe('LCHMembersModelWrappedMemberObjectFor', function testLCHMembersModelWrappedMemberObjectFor() {
+
+	it('throws error if not UnwrappedMemberObject', function() {
+		throws(function() {
+			mainModule.LCHMembersModelWrappedMemberObjectFor({});
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns WrappedMemberObject', function() {
+		deepEqual(mainModule.LCHMembersModelWrappedMemberObjectFor(kTesting.StubUnwrappedMemberObjectValid()), {
+			id: kTesting.StubUnwrappedMemberObjectValid().id,
+			fnclosure: 'function () { return; }',
+		});
+	});
+
+	context('id', function () {
+
+		it('copies', function() {
+			deepEqual(mainModule.LCHMembersModelWrappedMemberObjectFor(kTesting.StubUnwrappedMemberObjectValid()).id, kTesting.StubUnwrappedMemberObjectValid().id);
+		});
+
+	});
+
+	context('fnclosure', function () {
+
+		it('wraps fnbody', function() {
+			deepEqual(mainModule.LCHMembersModelWrappedMemberObjectFor(kTesting.StubUnwrappedMemberObjectValid()).fnclosure, `function () { ${ kTesting.StubUnwrappedMemberObjectValid().fnbody } }`);
+		});
+
+		it('wraps args', function() {
+			deepEqual(mainModule.LCHMembersModelWrappedMemberObjectFor(Object.assign(kTesting.StubUnwrappedMemberObjectValid(), {
+				args: 'alfa',
+			})).fnclosure, `function (alfa) { ${ kTesting.StubUnwrappedMemberObjectValid().fnbody } }`);
+		});
+
 	});
 
 });

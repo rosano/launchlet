@@ -14,7 +14,7 @@ onMount(function () {
 			LCHToken_AppBehaviour: window.LCHComposeBookmarkletBehaviour.replace(`//# sourceMappingURL=ui-behaviour.js.map`, ''),
 			LCHToken_MemberObjects: $membersAll.filter(function (e) {
 				return !!e.LCHMemberBody;
-			}).map(LCHMembersModel.LCHMembersModelConvertLegacy).map(LCHCompile.LCHWrappedMemberObjectFor),
+			}).map(LCHMembersModel.LCHMembersModelConvertLegacy).map(LCHCompile.LCHMembersModelWrappedMemberObjectFor),
 			LCHToken_AppLanguageCode: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 
