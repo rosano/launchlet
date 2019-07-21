@@ -560,8 +560,8 @@
 			throw new Error('LCHErrorInputInvalid');
 		}
 
-		return Object.keys(inputData).reduce(function (coll, e) {
-			return coll.replace(`_protectFromSvelteCompiler('${e}')`, inputData[e]);
+		return Object.keys(inputData).reduce(function (coll, item) {
+			return coll.replace(`_protectFromSvelteCompiler('${ item }')`, inputData[item]);
 		}, exports.LCHBoomarkletTemplateNew.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\)/g, '$1'));
 	};
 
