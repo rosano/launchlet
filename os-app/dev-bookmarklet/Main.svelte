@@ -1,17 +1,11 @@
 <script>
-import OLSKInternational from 'OLSKInternational';
-
-export let localizationLanguageCode = 'en';
-
-let localizationDictionary = JSON.parse(`{"PLUGIN_ALFA_SEARCH_REPLACE":"PLUGIN_ALFA_SEARCH_REPLACE"}`);
-
-export const OLSKLocalized = function(translationConstant) {
-	return OLSKInternational.OLSKInternationalLocalizedStringWithTranslationKeyAndTranslationDictionary(translationConstant, localizationDictionary[localizationLanguageCode]);
-};
-
+import { OLSKLocalized, languageCode } from './shared.js'
 import { LCHBookmarkletLogicFilter } from './ui-logic.js'
 export let memberObjects = [];
 export let workflowDidTerminate = function () {};
+export let optionsObject = {};
+
+$: languageCode(optionsObject.localizationLanguageCode);;
 
 const api = {
 	functionObjects () {
