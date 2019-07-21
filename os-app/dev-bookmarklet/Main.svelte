@@ -109,15 +109,15 @@ onMount(function () {
 });
 </script>
 
-<div id="__Launchlet" bind:this={ rootElement }>
-	<div id="__LaunchletBezel">
-		<input id="__LaunchletInput" placeholder="{ OLSKLocalized('LCHBookmarkletInputPlaceholder')}" autofocus bind:value={ filterText }>
+<div class="Container" bind:this={ rootElement }>
+	<div class="Bezel">
+		<input placeholder="{ OLSKLocalized('LCHBookmarkletInputPlaceholder')}" autofocus bind:value={ filterText }>
 		<ModuleList items={ visibleMemberObjects } itemSelected={ memberObjectSelected } />
 	</div>
 </div>
 
 <style>
-#__Launchlet {
+.Container {
 	--__LaunchletWidth: 400px;
 	--__LaunchletSharedPadding: 10px;
 
@@ -133,22 +133,20 @@ onMount(function () {
 	font-size: 16pt;
 }
 
-#__LaunchletBezel {
+.Bezel {
 	padding: var(--__LaunchletSharedPadding);
 	border: 1px solid #cccccc;
 	border-radius: 5px;
 	box-shadow: 0 0 10px 0px #e6e6e6;
 
 	background: #e6e6e6;
-	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
-	font-weight: bold;
 
 	/* __LaunchletBezelFlexboxParent */
 	display: flex;
 	flex-direction: column;
 }
 
-#__LaunchletInput {
+input {
 	padding: 6px;
 	border: 1px solid #cccccc;
 	border-radius: 5px;
@@ -156,10 +154,7 @@ onMount(function () {
 	background: #f3f3f3;
 	color: #3f3f3f;
 
-	/* browser defaults */
+	/* BrowserDefaultOutline */
 	outline: none;
-
-	/* __LaunchletBezelFlexboxChild */
-	/*flex-grow: 1;*/
 }
 </style>

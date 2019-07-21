@@ -20,6 +20,7 @@ export let items = [];
 
 .Item {
 	padding: 5px;
+	font-weight: bold;
 }
 
 .ItemSelected {
