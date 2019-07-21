@@ -30,6 +30,9 @@
     "// FRONTEND THROTTLE": null,
     "OLSKThrottle": "olsk/OLSKThrottle",
 
+    "// FRONTEND ROUTING": null,
+    "OLSKRouting": "olsk/OLSKThrottle",
+
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {
