@@ -96,10 +96,10 @@
 
 		window.bookmarklet = {
 			uiStyle: function () {
-				return `_protectFromSvelteCompiler('LCHToken_AppStyle')`;
+				return `LCHToken_AppStyle`;
 			},
 			uiBehaviour: function () {
-				_protectFromSvelteCompiler('LCHToken_AppBehaviour')
+				_protectFromSvelteCompiler(`LCHToken_AppBehaviour`);
 
 				return Main;
 			},
@@ -117,11 +117,11 @@
 				window.bookmarklet.AppInstance = new (window.bookmarklet.uiBehaviour())({
 					target: sandboxContainer,
 					props: {
-						memberObjects: _protectFromSvelteCompiler('LCHToken_MemberObjects'),
+						memberObjects: `LCHToken_MemberObjects`,
 						workflowDidTerminate () {
 							return window.bookmarklet.instanceDestroy();
 						},
-						localizationLanguageCode: _protectFromSvelteCompiler('LCHToken_AppLanguageCode'),
+						localizationLanguageCode: `LCHToken_AppLanguageCode`,
 					}
 				});
 			},
@@ -151,8 +151,8 @@
 		}
 
 		return Object.keys(inputData).reduce(function (coll, item) {
-			return coll.replace(`_protectFromSvelteCompiler('${ item }')`, item === 'LCHToken_MemberObjects' ? exports._LCHTokenMemberObjectsReplacementFor(inputData[item]) : inputData[item]);
-		}, exports.LCHBoomarkletTemplateNew.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\)/g, '$1')).replace(`(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':5000/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');`, '');
+			return coll.replace(item, item === 'LCHToken_MemberObjects' ? exports._LCHTokenMemberObjectsReplacementFor(inputData[item]) : inputData[item]);
+		}, exports.LCHBoomarkletTemplateNew.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\);/g, '$1')).replace(`(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':5000/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');`, '');
 	};
 
 	//_ LCHTokenHashForNew

@@ -217,7 +217,7 @@ describe('LCHBookmarkletStringFor', function testLCHBookmarkletStringFor() {
 	});
 
 	it('replaces wraps', function() {
-		assert.deepEqual(LCHCompile.LCHBookmarkletStringFor({}), LCHCompile.LCHBoomarkletTemplateNew.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\)/g, '$1'));
+		assert.deepEqual(LCHCompile.LCHBookmarkletStringFor({}), LCHCompile.LCHBoomarkletTemplateNew.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\);/g, '$1'));
 	});
 
 	it('replaces tokens', function() {
@@ -225,13 +225,13 @@ describe('LCHBookmarkletStringFor', function testLCHBookmarkletStringFor() {
 			LCHToken_AppBehaviour: 'alfa',
 			LCHToken_AppStyle: 'bravo',
 			LCHToken_MemberObjects: [],
-		}), LCHCompile.LCHBoomarkletTemplateNew.toString().replace("_protectFromSvelteCompiler('LCHToken_AppBehaviour')", 'alfa').replace("_protectFromSvelteCompiler('LCHToken_AppStyle')", 'bravo').replace("_protectFromSvelteCompiler('LCHToken_MemberObjects')", '[]'));
+		}), LCHCompile.LCHBoomarkletTemplateNew.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\);/g, '$1').replace('LCHToken_AppBehaviour', 'alfa').replace('LCHToken_AppStyle', 'bravo').replace('LCHToken_MemberObjects', '[]'));
 	});
 
 	it('strips livereload', function () {
 		assert.deepEqual(LCHCompile.LCHBookmarkletStringFor({
 			LCHToken_AppBehaviour: `alfa(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':5000/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');bravo`,
-		}), LCHCompile.LCHBoomarkletTemplateNew.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\)/g, '$1').replace("_protectFromSvelteCompiler('LCHToken_AppBehaviour')", 'alfabravo'));
+		}), LCHCompile.LCHBoomarkletTemplateNew.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\);/g, '$1').replace('LCHToken_AppBehaviour', 'alfabravo'));
 	});
 
 });
@@ -288,7 +288,7 @@ describe('LCHTokenHashForNew', function testLCHTokenHashForNew() {
 
 });
 
-describe('LCHBookmarkletTextForTokenHashNew', function testLCHBookmarkletTextForTokenHashNew() {
+describe.skip('LCHBookmarkletTextForTokenHashNew', function testLCHBookmarkletTextForTokenHashNew() {
 
 	it('throws error if not object', function() {
 		assert.throws(function() {
