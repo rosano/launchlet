@@ -31,7 +31,7 @@
     "OLSKThrottle": "olsk/OLSKThrottle",
 
     "// FRONTEND ROUTING": null,
-    "OLSKRouting": "olsk/OLSKThrottle",
+    "OLSKRouting": "olsk/OLSKRouting",
 
     "// I sacrifice myself for the commas of others": null
   },
