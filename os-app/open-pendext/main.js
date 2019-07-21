@@ -78,6 +78,19 @@
 		}, {});
 	};
 
+	//_ LCHValidTokens
+
+	exports.LCHValidTokens = function (inputData) {
+		return [
+			'LCHToken_AppBehaviour',
+			'LCHToken_AppStyle',
+			'LCHToken_MemberObjects',
+			'LCHToken_AppLanguageCode',
+			'LCHToken_StyleContent',
+			'LCHToken_LibraryD3Content',
+			];
+	};
+
 	//_ LCHBoomarkletTemplateNew
 
 	exports.LCHBoomarkletTemplateNew = function () {

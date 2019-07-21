@@ -177,6 +177,21 @@ describe('LCHWrappedMemberObjectFor', function testLCHWrappedMemberObjectFor() {
 
 });
 
+describe('LCHValidTokens', function testLCHValidTokens() {
+
+	it('returns array', function() {
+		assert.deepEqual(LCHCompile.LCHValidTokens(), [
+			'LCHToken_AppBehaviour',
+			'LCHToken_AppStyle',
+			'LCHToken_MemberObjects',
+			'LCHToken_AppLanguageCode',
+			'LCHToken_StyleContent',
+			'LCHToken_LibraryD3Content',
+			]);
+	});
+
+});
+
 describe('LCHBoomarkletTemplateNew', function testLCHBoomarkletTemplateNew() {
 
 	it('contains LCHTokens', function() {
