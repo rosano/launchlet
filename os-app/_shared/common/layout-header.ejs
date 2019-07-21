@@ -35,7 +35,9 @@
 	if (locals.OLSKPagePublicConstants) {
 		outputData.push(`<script type="text/javascript">
 		window.OLSKPublicConstants = function (inputData) {
-			return ${ JSON.stringify(OLSKPagePublicConstants) }[inputData];
+			return ${ JSON.stringify(Object.assign(OLSKPagePublicConstants, {
+				OLSKServiceWorkerDisabled: process.env.OLSK_DISABLE_SERVICE_WORKER,
+			})) }[inputData];
 		};
 	</script>`);
 	}

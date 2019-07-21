@@ -33,7 +33,7 @@ onMount(function () {
 	<button class="LCHSharedButtonNoStyle" onclick="location.reload();">{ OLSKLocalized('LCHUpdateReloadText') }</button>
 </div>
 
-<OLSKServiceWorker registrationRoute={ window.OLSKCanonicalFor('LCHServiceWorkerRoute') }/>
+<OLSKServiceWorker isDisabled={ window.OLSKPublicConstants('OLSKServiceWorkerDisabled') } registrationRoute={ window.OLSKCanonicalFor('LCHServiceWorkerRoute') } />
 
 <style>
 .AppContainer {

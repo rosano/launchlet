@@ -1,5 +1,5 @@
 <script>
-export const disableServiceWorker = false;
+export let isDisabled = false;
 export let registrationRoute = null;
 
 import { OLSKLocalized } from '../common/global.js'
@@ -28,7 +28,7 @@ function handleUpdateFound (event) {
 
 import { onMount, afterUpdate } from 'svelte';
 onMount(async function StartSetup() {
-	if (disableServiceWorker) {
+	if (isDisabled) {
 		return console.info('Service worker disabled');
 	}
 
