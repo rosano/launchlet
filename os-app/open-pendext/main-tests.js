@@ -249,6 +249,12 @@ describe('LCHBookmarkletTextForTokenHashNew', function testLCHBookmarkletTextFor
 		}))), LCHCompile.LCHBoomarkletTemplateNew.toString().replace("_protectFromSvelteCompiler('__LCHTokenAppBehaviour__')", 'alfa').replace("_protectFromSvelteCompiler('__LCHTokenAppStyle__')", 'bravo').replace("_protectFromSvelteCompiler('__LCHTokenMemberObjects__')", '[]'));
 	});
 
+	it('strips livereload', function () {
+		assert.deepEqual(LCHCompile.LCHBookmarkletTextForTokenHashNew({
+			__LCHTokenAppBehaviour__: `alfa(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':5000/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');bravo`,
+		}), LCHCompile.LCHBoomarkletTemplateNew.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\)/g, '$1').replace("_protectFromSvelteCompiler('__LCHTokenAppBehaviour__')", 'alfabravo'));
+	});
+
 });
 
 describe('LCHBoomarkletTemplate', function testLCHBoomarkletTemplate() {
