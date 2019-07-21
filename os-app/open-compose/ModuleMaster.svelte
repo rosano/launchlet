@@ -29,11 +29,11 @@ async function memberSelect(inputData) {
 <div class="Container">
 
 <header class="LCHSharedToolbar">
-	<button on:click={ memberCreate } class="LCHSharedButtonNoStyle" accesskey="n">{ OLSKLocalized('LCHComposeToolbarCreateButtonText') }</button>
+	<button on:click={ memberCreate } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" accesskey="n">{ OLSKLocalized('LCHComposeToolbarCreateButtonText') }</button>
 </header>
 <div class="List">
 	{#each $membersAll as e}
-		<div on:click={ () => memberSelect(e) } class="ListItem LCHSharedElementTappable">
+		<div on:click={ () => memberSelect(e) } class="ListItem OLSKLayoutElementTappable">
 			<strong>{ e.LCHMemberName || e.LCHMemberSignature || e.LCHMemberID }</strong>
 		</div>
 	{/each}

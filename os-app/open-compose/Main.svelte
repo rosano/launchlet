@@ -30,7 +30,7 @@ onMount(function () {
 
 <div id="LCHComposeStorageWidget"></div>
 <div class="LCHComposeDebug">
-	<button class="LCHSharedButtonNoStyle" onclick="location.reload();">{ OLSKLocalized('LCHUpdateReloadText') }</button>
+	<button class="OLSKLayoutButtonNoStyle" onclick="location.reload();">{ OLSKLocalized('LCHUpdateReloadText') }</button>
 </div>
 
 <OLSKServiceWorker isDisabled={ window.OLSKPublicConstants('OLSKServiceWorkerDisabled') } registrationRoute={ window.OLSKCanonicalFor('LCHServiceWorkerRoute') } />

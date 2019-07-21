@@ -112,7 +112,7 @@ async function memberDelete() {
 
 {#if $memberSelected}
 	<header class="LCHSharedToolbar">
-		<button on:click={ memberDelete } class="LCHSharedButtonNoStyle">{ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }</button>
+		<button on:click={ memberDelete } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable">{ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }</button>
 	</header>
 	<div class="FormContainer">
 		<p>

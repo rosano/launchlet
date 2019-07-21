@@ -23,6 +23,7 @@
 
     "// FRONTEND NORMALIZE CSS": null,
     "normalize.css": "latest",
+    "OLSKLayout": "olsk/OLSKLayout",
 
     "// FRONDEND EDITOR": null,
     "codemirror": "rosano/CodeMirror#add-distribution",
