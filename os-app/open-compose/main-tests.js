@@ -192,17 +192,3 @@ return;
 	});
 
 });
-
-describe('LCHBookmarkletBinaryFor', function testLCHBookmarkletBinaryFor() {
-
-	it('throws error if not string', function() {
-		assert.throws(function() {
-			LCHCompile.LCHBookmarkletBinaryFor(null);
-		}, /LCHErrorInputInvalid/);
-	});
-
-	it('returns bookmarklet binary', function() {
-		assert.deepEqual(LCHCompile.LCHBookmarkletBinaryFor('function() { return; }'), 'javascript:(function()%20%7B%20return%3B%20%7D)();');
-	});
-
-});

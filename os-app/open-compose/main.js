@@ -171,16 +171,6 @@
 		}, outputData).replace(/("__LCHClosureOpen__)|(__LCHClosureClose__")/g, '');
 	};
 
-	//_ LCHBookmarkletBinaryFor
-
-	exports.LCHBookmarkletBinaryFor = function (inputData) {
-		if (typeof inputData !== 'string') {
-			throw new Error('LCHErrorInputInvalid');
-		}
-
-		return `javascript:(${encodeURIComponent(inputData)})();`;
-	};
-
 	Object.defineProperty(exports, '__esModule', { value: true });
 
 })));

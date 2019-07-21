@@ -1,6 +1,6 @@
-const assert = require('assert');
+import { throws, deepEqual } from 'assert';
 
-const mainModule = require('./ui-logic.js');
+import * as mainModule from './ui-logic.js';
 
 describe('LCHComposeLogicSort', function testLCHComposeLogicSort() {
 
@@ -12,7 +12,7 @@ describe('LCHComposeLogicSort', function testLCHComposeLogicSort() {
 			LCHMemberModificationDate: new Date(1),
 		};
 
-		assert.deepEqual([item1, item2].sort(mainModule.LCHComposeLogicSort), [item2, item1]);
+		deepEqual([item1, item2].sort(mainModule.LCHComposeLogicSort), [item2, item1]);
 	});
 
 	it('sorts by LCHMemberCreationDate descending if no LCHMemberModificationDate', function() {
@@ -23,7 +23,21 @@ describe('LCHComposeLogicSort', function testLCHComposeLogicSort() {
 			LCHMemberCreationDate: new Date(1),
 		};
 
-		assert.deepEqual([item1, item2].sort(mainModule.LCHComposeLogicSort), [item2, item1]);
+		deepEqual([item1, item2].sort(mainModule.LCHComposeLogicSort), [item2, item1]);
+	});
+
+});
+
+describe('LCHComposeLogicBookmarkletBinaryFor', function testLCHComposeLogicBookmarkletBinaryFor() {
+
+	it('throws error if not string', function() {
+		throws(function() {
+			mainModule.LCHComposeLogicBookmarkletBinaryFor(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns bookmarklet binary', function() {
+		deepEqual(mainModule.LCHComposeLogicBookmarkletBinaryFor('function() { return; }'), 'javascript:(function()%20%7B%20return%3B%20%7D)();');
 	});
 
 });

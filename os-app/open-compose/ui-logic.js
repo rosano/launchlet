@@ -1,19 +1,15 @@
-(function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-	typeof define === 'function' && define.amd ? define(['exports'], factory) :
-	(factory((global.LCHComposeLogic = global.LCHComposeLogic || {})));
-}(this, (function (exports) { 'use strict';
+export const LCHComposeLogicSort = function (a, b) {
+	if (a.LCHMemberModificationDate && b.LCHMemberModificationDate) {
+		return b.LCHMemberModificationDate - a.LCHMemberModificationDate;
+	}
 
-	//_ LCHComposeLogicSort
+	return b.LCHMemberCreationDate - a.LCHMemberCreationDate;
+};
 
-	exports.LCHComposeLogicSort = function (a, b) {
-		if (a.LCHMemberModificationDate && b.LCHMemberModificationDate) {
-			return b.LCHMemberModificationDate - a.LCHMemberModificationDate;
-		}
+export const LCHComposeLogicBookmarkletBinaryFor = function (inputData) {
+	if (typeof inputData !== 'string') {
+		throw new Error('LCHErrorInputInvalid');
+	}
 
-		return b.LCHMemberCreationDate - a.LCHMemberCreationDate;
-	};
-
-	Object.defineProperty(exports, '__esModule', { value: true });
-
-})));
+	return `javascript:(${ encodeURIComponent(inputData) })();`;
+};

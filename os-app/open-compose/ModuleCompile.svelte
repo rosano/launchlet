@@ -2,6 +2,7 @@
 import { membersAll, modelDidChange } from './persistence.js';
 import * as LCHMembersModel from '../_shared/rs-modules/lch_members/model.js';
 import LCHCompile from './main.js';
+import { LCHComposeLogicBookmarkletBinaryFor } from './ui-logic.js';
 
 let javascriptComposed, javascriptBinary = '';
 
@@ -17,7 +18,7 @@ onMount(function () {
 			LCHToken_AppLanguageCode: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 
-		javascriptBinary = LCHCompile.LCHBookmarkletBinaryFor(javascriptComposed);
+		javascriptBinary = LCHComposeLogicBookmarkletBinaryFor(javascriptComposed);
 	});
 });
 </script>
