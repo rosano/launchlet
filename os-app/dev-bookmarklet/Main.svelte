@@ -9,7 +9,7 @@ export const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedStringWithTranslationKeyAndTranslationDictionary(translationConstant, localizationDictionary[localizationLanguageCode]);
 };
 
-import LCHComposeLogic from '../open-compose/ui-logic.js'
+import { LCHBookmarkletLogicFilter } from './ui-logic.js'
 export let memberObjects = [];
 export let workflowDidTerminate = function () {};
 
@@ -54,7 +54,7 @@ let filterText = '';
 let memberObjectSelected;
 let visibleMemberObjects = [];
 let filterTextDidChange = function (val) {
-	visibleMemberObjects = !val ? [] : memberObjects.filter(LCHComposeLogic.LCHComposeLogicFilter(val)).sort(LCHComposeLogic.LCHComposeLogicSort)
+	visibleMemberObjects = !val ? [] : memberObjects.filter(LCHBookmarkletLogicFilter(val))
 	memberObjectSelected = visibleMemberObjects[0];
 };
 $: filterTextDidChange(filterText.trim());
