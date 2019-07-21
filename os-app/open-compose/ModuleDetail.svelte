@@ -69,7 +69,7 @@ afterUpdate(function () {
 });
 
 let throttleMap = {};
-import OLSKThrottle from '../_shared/_external/OLSKThrottle/main.js';
+import OLSKThrottle from 'OLSKThrottle';
 async function memberSave() {
 	membersAll.update(function (val) {
 		return val;

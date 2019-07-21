@@ -52,23 +52,6 @@
 		}
 	};
 
-	if (locals.OLSKPagePublicLocalizedStringKeys) {
-		outputData.push(...[
-			'/_shared/_external/OLSKInternational/main.js',
-			'/_shared/_external/OLSKString/main.js',
-			].map(pathToTag));
-		
-		outputData.push(`<script type="text/javascript">
-		window.OLSKFormatted = OLSKString.OLSKStringWithFormat;
-		window.OLSKLocalized = function(translationConstant) {
-			return OLSKInternational.OLSKInternationalLocalizedStringWithTranslationKeyAndTranslationDictionary(translationConstant, ${ JSON.stringify(OLSKPagePublicLocalizedStringKeys.reduce(function(map, e) {
-					map[e] = OLSKLocalized(e);
-					return map;
-				}, {})) });
-		};
-	</script>`);
-	}
-
 	if (locals.OLSKPagePublicRouteKeys) {
 		outputData.push(...[
 			'/_shared/_external/OLSKRouting/main.js',

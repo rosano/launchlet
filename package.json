@@ -21,12 +21,6 @@
     "OLSKInternational": "olsk/OLSKInternational",
     "OLSKString": "olsk/OLSKString",
 
-    "// DRAG AND DROP": null,
-    "dragula": "bevacqua/dragula",
-
-    "// BOOKMARKLET LIBRARIES": null,
-    "d3-selection": "latest",
-
     "// FRONTEND NORMALIZE CSS": null,
     "normalize.css": "latest",
 
