@@ -200,6 +200,38 @@ describe('LCHBoomarkletTemplateNew', function testLCHBoomarkletTemplateNew() {
 
 });
 
+describe('LCHBookmarkletStringFor', function testLCHBookmarkletStringFor() {
+
+	it('throws error if not object', function() {
+		assert.throws(function() {
+			LCHCompile.LCHBookmarkletStringFor(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('throws error if contains invalid token', function() {
+		assert.throws(function() {
+			LCHCompile.LCHBookmarkletStringFor({
+				alfa: 'bravo',
+			});
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('replaces wraps', function() {
+		assert.deepEqual(LCHCompile.LCHBookmarkletStringFor({}), LCHCompile.LCHBoomarkletTemplateNew.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\)/g, '$1'));
+	});
+
+	it('replaces tokens', function() {
+		assert.deepEqual(LCHCompile.LCHBookmarkletStringFor({
+			LCHToken_AppBehaviour: 'alfa',
+			LCHToken_AppStyle: 'bravo',
+			LCHToken_MemberObjects: [],
+		}), LCHCompile.LCHBoomarkletTemplateNew.toString().replace("_protectFromSvelteCompiler('LCHToken_AppBehaviour')", 'alfa').replace("_protectFromSvelteCompiler('LCHToken_AppStyle')", 'bravo').replace("_protectFromSvelteCompiler('LCHToken_MemberObjects')", '[]'));
+	});
+
+	it('strips livereload', function () {
+		assert.deepEqual(LCHCompile.LCHBookmarkletStringFor({
+			LCHToken_AppBehaviour: `alfa(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':5000/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');bravo`,
+		}), LCHCompile.LCHBoomarkletTemplateNew.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\)/g, '$1').replace("_protectFromSvelteCompiler('LCHToken_AppBehaviour')", 'alfabravo'));
 	});
 
 });
