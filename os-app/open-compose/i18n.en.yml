@@ -14,3 +14,4 @@ LCHComposeListItemFormInputSignaturePlaceholder: Signature (e.g. XYZGreet)
 LCHComposeSampleMemberID: XYZGreet
 LCHComposeSampleMemberName: Say Hello
 LCHComposeSampleMemberFNBody: window.alert('Hello');
+LCHUpdateReloadText: Reload
