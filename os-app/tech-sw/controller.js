@@ -1,5 +1,7 @@
 const kLCHServiceWorkerVersionID = process.env.HEROKU_SLUG_COMMIT || Date.now();
 
+const OLSKServiceWorker = require('../_shared/OLSKServiceWorker/main.js')
+
 //_ OLSKControllerRoutes
 
 exports.OLSKControllerRoutes = function() {
@@ -8,9 +10,7 @@ exports.OLSKControllerRoutes = function() {
 			OLSKRoutePath: '/sw.js',
 			OLSKRouteMethod: 'get',
 			OLSKRouteFunction: function(req, res, next) {
-				return res.type('js').render(req.OLSKLive.OLSKLivePathJoin(__dirname, 'view.ejs'), {
-					LCHServiceWorkerVersionID: kLCHServiceWorkerVersionID,
-				});
+				return res.type('js').send(OLSKServiceWorker.OLSKServiceWorkerViewForVersionID(kLCHServiceWorkerVersionID.toString()));
 			},
 		},
 	};
