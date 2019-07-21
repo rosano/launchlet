@@ -60,7 +60,7 @@ export const LCHComposeLogicBoomarkletTemplate = function () {
 		},
 	};
 
-	window.bookmarklet.instanceCreate()
+	window.bookmarklet.instanceCreate();
 };
 
 export const LCHComposeLogicBoomarkletStringFor = function (inputData) {
@@ -69,14 +69,14 @@ export const LCHComposeLogicBoomarkletStringFor = function (inputData) {
 	}
 
 	if (Object.keys(inputData).filter(function (e) {
-		return exports.LCHComposeLogicValidCompileTokens().indexOf(e) === -1;
+		return LCHComposeLogicValidCompileTokens().indexOf(e) === -1;
 	}).length) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
 	return Object.keys(inputData).reduce(function (coll, item) {
-		return coll.replace(item, item === 'LCHCompileToken_MemberObjects' ? exports._LCHComposeLogicMemberObjectsReplacementFor(inputData[item]) : inputData[item]);
-	}, exports.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2'))
+		return coll.replace(item, item === 'LCHCompileToken_MemberObjects' ? _LCHComposeLogicMemberObjectsReplacementFor(inputData[item]) : inputData[item]);
+	}, LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromSvelteCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2'))
 			.replace(`(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':5000/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');`, '')
 			.replace(`//# sourceMappingURL=ui-behaviour.js.map`, '');
 };

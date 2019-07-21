@@ -125,7 +125,7 @@ export const LCHMembersModelErrorsForUnwrappedMemberObject = function (inputData
 };
 
 export const LCHMembersModelWrappedMemberObjectFor = function (inputData) {
-	if (exports.LCHMembersModelErrorsForUnwrappedMemberObject(inputData)) {
+	if (LCHMembersModelErrorsForUnwrappedMemberObject(inputData)) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
