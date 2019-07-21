@@ -34,6 +34,9 @@
     "// FRONTEND ROUTING": null,
     "OLSKRouting": "olsk/OLSKRouting",
 
+    "// FRONTEND SERVICE WORKER": null,
+    "OLSKServiceWorker": "olsk/OLSKServiceWorker",
+
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {
