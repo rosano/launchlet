@@ -5,11 +5,13 @@ import { LCHBookmarkletLogicFilter } from './ui-logic.js'
 export let memberObjects = [];
 export let optionsObject = {};
 
-$: languageCode(optionsObject.localizationLanguageCode);
+(function StartSetup() {
+	languageCode(optionsObject.localizationLanguageCode)
 
-if (!optionsObject.workflowDidTerminate) {
-	optionsObject.workflowDidTerminate = function () {};
-}
+	if (!optionsObject.workflowDidTerminate) {
+		optionsObject.workflowDidTerminate = function () {};
+	}
+})();
 
 const api = {
 	functionObjects () {
