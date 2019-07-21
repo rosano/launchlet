@@ -1,4 +1,5 @@
 <script>
+import ModuleList from './ModuleList.svelte'
 import { OLSKLocalized, languageCode } from './shared.js'
 import { LCHBookmarkletLogicFilter } from './ui-logic.js'
 
@@ -111,13 +112,7 @@ onMount(function () {
 <div id="__Launchlet" bind:this={ rootElement }>
 	<div id="__LaunchletBezel">
 		<input id="__LaunchletInput" placeholder="{ OLSKLocalized('LCHBookmarkletInputPlaceholder')}" autofocus bind:value={ filterText }>
-		{#if visibleMemberObjects.length }
-			<div id="__LaunchletList">
-				{#each visibleMemberObjects as e}
-					<div class="__LaunchletListItem" class:__LaunchletListItemSelected={ e === memberObjectSelected }>{ e.name }</div>
-				{/each}
-			</div>
-		{/if}
+		<ModuleList items={ visibleMemberObjects } itemSelected={ memberObjectSelected } />
 	</div>
 </div>
 
@@ -135,22 +130,7 @@ onMount(function () {
 	z-index: 999;
 
 	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
-	font-size: 22px;
-}
-
-@keyframes __LaunchletExit {
-	from {
-		opacity: 1;
-	}
-	to {
-		opacity: 0;
-	}
-}
-
-.__LaunchletExit {
-	animation-name: __LaunchletExit;
-	animation-duration: 0.235s;
-	opacity: 0;
+	font-size: 16pt;
 }
 
 #__LaunchletBezel {
@@ -181,23 +161,5 @@ onMount(function () {
 
 	/* __LaunchletBezelFlexboxChild */
 	/*flex-grow: 1;*/
-}
-
-#__LaunchletList {
-	margin-top: 10px;
-
-	font-size: 18px;
-}
-
-.__LaunchletListItem {
-	padding: 5px;
-}
-
-.__LaunchletListItemSelected {
-	background: #cccccc;
-}
-
-.__LaunchletHidden {
-	display: none;
 }
 </style>
