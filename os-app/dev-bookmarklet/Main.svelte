@@ -9,7 +9,7 @@ export const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedStringWithTranslationKeyAndTranslationDictionary(translationConstant, localizationDictionary[localizationLanguageCode]);
 };
 
-import LCHComposeLogic from '../open-pendext/ui-logic.js'
+import LCHComposeLogic from '../open-compose/ui-logic.js'
 export let memberObjects = [];
 export let workflowDidTerminate = function () {};
 

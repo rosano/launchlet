@@ -14,7 +14,3 @@ os-app/**/_compiled
 .env
 .env.staging
 .env.test
-
-# COMPOSE
-os-app/open-pendext/_external
-os-app/open-pendext/sample-d3.js

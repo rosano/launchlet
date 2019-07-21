@@ -1,7 +1,7 @@
 <script>
 import { membersAll, modelDidChange } from './persistence.js';
 import * as LCHMembersModel from '../_shared/rs-modules/lch_members/model.js';
-import LCHCompile from '../open-pendext/main.js';
+import LCHCompile from './main.js';
 
 let javascriptComposed, javascriptBinary = '';
 

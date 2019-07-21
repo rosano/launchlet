@@ -1,6 +1,6 @@
 <script>
 import * as LCHMembersAction from '../_shared/rs-modules/lch_members/action.js';
-import LCHComposeLogic from '../open-pendext/ui-logic.js';
+import LCHComposeLogic from './ui-logic.js';
 
 import { OLSKLocalized } from '../_shared/common/global.js'
 import { storageClient, membersAll, memberSelected } from './persistence.js';
