@@ -86,8 +86,6 @@
 			'LCHToken_AppStyle',
 			'LCHToken_MemberObjects',
 			'LCHToken_AppLanguageCode',
-			'LCHToken_StyleContent',
-			'LCHToken_LibraryD3Content',
 			];
 	};
 
@@ -98,10 +96,10 @@
 
 		window.bookmarklet = {
 			uiStyle: function () {
-				return `_protectFromSvelteCompiler('__LCHTokenAppStyle__')`;
+				return `_protectFromSvelteCompiler('LCHToken_AppStyle')`;
 			},
 			uiBehaviour: function () {
-				_protectFromSvelteCompiler('__LCHTokenAppBehaviour__')
+				_protectFromSvelteCompiler('LCHToken_AppBehaviour')
 
 				return Main;
 			},
@@ -119,11 +117,11 @@
 				window.bookmarklet.AppInstance = new (window.bookmarklet.uiBehaviour())({
 					target: sandboxContainer,
 					props: {
-						memberObjects: _protectFromSvelteCompiler('__LCHTokenMemberObjects__'),
+						memberObjects: _protectFromSvelteCompiler('LCHToken_MemberObjects'),
 						workflowDidTerminate () {
 							return window.bookmarklet.instanceDestroy();
 						},
-						localizationLanguageCode: _protectFromSvelteCompiler('__LCHTokenLanguageCode__'),
+						localizationLanguageCode: _protectFromSvelteCompiler('LCHToken_AppLanguageCode'),
 					}
 				});
 			},
@@ -163,7 +161,7 @@
 			'__LCHTokenAppStyle__': inputData.LCHInputAppStyle,
 			'__LCHTokenMemberObjects__': exports._LCHTokenMemberObjectsReplacementFor(inputData.LCHInputMemberObjects),
 		}, inputData.LCHInputAppLanguageCode ? {
-			__LCHTokenAppLanguageCode__: inputData.LCHInputAppLanguageCode,
+			'__LCHTokenAppLanguageCode__': inputData.LCHInputAppLanguageCode,
 		} : {});
 	};
 

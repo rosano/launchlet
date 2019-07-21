@@ -185,8 +185,6 @@ describe('LCHValidTokens', function testLCHValidTokens() {
 			'LCHToken_AppStyle',
 			'LCHToken_MemberObjects',
 			'LCHToken_AppLanguageCode',
-			'LCHToken_StyleContent',
-			'LCHToken_LibraryD3Content',
 			]);
 	});
 
@@ -194,10 +192,14 @@ describe('LCHValidTokens', function testLCHValidTokens() {
 
 describe('LCHBoomarkletTemplateNew', function testLCHBoomarkletTemplateNew() {
 
-	it('contains LCHTokens', function() {
-		assert.deepEqual(Object.keys(LCHCompile.LCHTokenHashForNew(kTesting.kTestingValidInputHash())).filter(function (e) {
-			return !LCHCompile.LCHBoomarkletTemplateNew.toString().match(e);
-		}), []);
+	it('contains LCHValidTokens', function() {
+		assert.deepEqual(LCHCompile.LCHValidTokens().filter(function (e) {
+			return LCHCompile.LCHBoomarkletTemplateNew.toString().match(e);
+		}), LCHCompile.LCHValidTokens());
+	});
+
+});
+
 	});
 
 });
