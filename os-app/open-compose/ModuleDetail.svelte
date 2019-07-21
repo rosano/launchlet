@@ -187,6 +187,7 @@ input {
 }
 
 .FormContainer :global(.CodeMirror-empty) {
+	/* CodeMirrorPlaceholderText */
 	color: #999999;
 }
 
