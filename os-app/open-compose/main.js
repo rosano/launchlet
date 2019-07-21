@@ -118,10 +118,12 @@
 					target: sandboxContainer,
 					props: {
 						memberObjects: _protectFromSvelteCompiler(`LCHToken_MemberObjects`),
-						workflowDidTerminate () {
-							return window.bookmarklet.instanceDestroy();
+						optionsObject: {
+							workflowDidTerminate () {
+								return window.bookmarklet.instanceDestroy();
+							},
+							localizationLanguageCode: 'LCHToken_AppLanguageCode',
 						},
-						localizationLanguageCode: 'LCHToken_AppLanguageCode',
 					}
 				});
 			},

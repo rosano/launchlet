@@ -1,11 +1,15 @@
 <script>
 import { OLSKLocalized, languageCode } from './shared.js'
 import { LCHBookmarkletLogicFilter } from './ui-logic.js'
+
 export let memberObjects = [];
-export let workflowDidTerminate = function () {};
 export let optionsObject = {};
 
-$: languageCode(optionsObject.localizationLanguageCode);;
+$: languageCode(optionsObject.localizationLanguageCode);
+
+if (!optionsObject.workflowDidTerminate) {
+	optionsObject.workflowDidTerminate = function () {};
+}
 
 const api = {
 	functionObjects () {
@@ -69,13 +73,13 @@ onMount(function () {
 		
 		api.fn(inputData.id)();
 		
-		workflowDidTerminate();
+		optionsObject.workflowDidTerminate();
 	}
 
 	rootElement.addEventListener('keydown', function (event) {
 		if (event.code === 'Escape') {
 			if (!filterText) {
-				workflowDidTerminate();
+				optionsObject.workflowDidTerminate();
 			}
 
 			if (filterText) {

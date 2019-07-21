@@ -36,9 +36,11 @@
 						labels: ['alfa'],
 					},
 				],
-				workflowDidTerminate () {
-					return (app.$destroy() || true) && (app = null);
-				},
+				optionsObject: {
+					workflowDidTerminate () {
+						return (app.$destroy() || true) && (app = null);
+					},
+				}
 			},
 		});
 	},
