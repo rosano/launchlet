@@ -83,6 +83,6 @@
 			throw new Error('OLSKrrorInputInvalid');
 		}
 
-		return mod._OLSKServiceWorkerTemplate.toString().replace('function () {', '').trim().slice(0, -1);
+		return mod._OLSKServiceWorkerTemplate.toString().replace('{ OLSKServiceWorkerVersionID }', inputData).replace('function () {', '').trim().slice(0, -1);
 	},
 }); })));

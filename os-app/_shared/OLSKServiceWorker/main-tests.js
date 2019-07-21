@@ -35,7 +35,7 @@ describe('OLSKServiceWorkerViewForVersionID', function testOLSKServiceWorkerView
 	});
 
 	it('returns function body', function() {
-		deepEqual(mainModule.OLSKServiceWorkerViewForVersionID('alfa'), mainModule._OLSKServiceWorkerTemplate.toString().replace('function () {', '').trim().slice(0, -1));
+		deepEqual(mainModule.OLSKServiceWorkerViewForVersionID('alfa'), mainModule._OLSKServiceWorkerTemplate.toString().replace('{ OLSKServiceWorkerVersionID }', 'alfa').replace('function () {', '').trim().slice(0, -1));
 	});
 
 });
