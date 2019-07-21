@@ -1,5 +1,13 @@
 <script>
-import { OLSKLocalized } from '../_shared/common/global.js'
+import OLSKInternational from 'OLSKInternational';
+
+export let localizationLanguageCode = 'en';
+
+let localizationDictionary = JSON.parse(`{"PLUGIN_ALFA_SEARCH_REPLACE":"PLUGIN_ALFA_SEARCH_REPLACE"}`);
+
+export const OLSKLocalized = function(translationConstant) {
+	return OLSKInternational.OLSKInternationalLocalizedStringWithTranslationKeyAndTranslationDictionary(translationConstant, localizationDictionary[localizationLanguageCode]);
+};
 
 import LCHComposeLogic from '../open-pendext/ui-logic.js'
 export let memberObjects = [];
