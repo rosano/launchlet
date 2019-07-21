@@ -110,6 +110,7 @@
 						workflowDidTerminate () {
 							return window.bookmarklet.instanceDestroy();
 						},
+						localizationLanguageCode: _protectFromSvelteCompiler('__LCHTokenLanguageCode__'),
 					}
 				});
 			},
@@ -144,11 +145,13 @@
 			throw new Error('LCHErrorInputInvalid');
 		}
 
-		return {
+		return Object.assign({
 			'__LCHTokenAppBehaviour__': inputData.LCHInputAppBehaviour,
 			'__LCHTokenAppStyle__': inputData.LCHInputAppStyle,
 			'__LCHTokenMemberObjects__': exports._LCHTokenMemberObjectsReplacementFor(inputData.LCHInputMemberObjects),
-		};
+		}, inputData.LCHInputAppLanguageCode ? {
+			__LCHTokenAppLanguageCode__: inputData.LCHInputAppLanguageCode,
+		} : {});
 	};
 
 	//_ LCHBoomarkletTemplate

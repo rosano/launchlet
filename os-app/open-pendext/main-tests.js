@@ -219,12 +219,22 @@ describe('LCHTokenHashForNew', function testLCHTokenHashForNew() {
 		}, /LCHErrorInputInvalid/);
 	});
 
-	it('returns array', function() {
+	it('returns object', function() {
 		assert.deepEqual(LCHCompile.LCHTokenHashForNew(kTesting.kTestingValidInputHash()), {
 			'__LCHTokenAppBehaviour__': kTesting.kTestingValidInputHash().LCHInputAppBehaviour,
 			'__LCHTokenAppStyle__': kTesting.kTestingValidInputHash().LCHInputAppBehaviour,
 			'__LCHTokenMemberObjects__': LCHCompile._LCHTokenMemberObjectsReplacementFor(kTesting.kTestingValidInputHash().LCHInputMemberObjects),
 		});
+	});
+
+	context('LCHInputAppLanguageCode', function () {
+
+		it('returns entry', function() {
+			assert.deepEqual(LCHCompile.LCHTokenHashForNew(Object.assign(kTesting.kTestingValidInputHash(), {
+				LCHInputAppLanguageCode: 'alfa',
+			})).__LCHTokenAppLanguageCode__, 'alfa');
+		});
+
 	});
 
 });
