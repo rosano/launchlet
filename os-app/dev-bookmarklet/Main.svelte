@@ -57,31 +57,24 @@ let filterTextDidChange = function (val) {
 $: filterTextDidChange(filterText.trim());
 
 let rootElement;
-import { onMount } from 'svelte';
-onMount(function () {
-	function setElementAtIndex(inputData) {
-		memberObjectSelected = visibleMemberObjects[Math.max(0, Math.min(visibleMemberObjects.length, inputData))];
+
+function setElementAtIndex(inputData) {
+	memberObjectSelected = visibleMemberObjects[Math.max(0, Math.min(visibleMemberObjects.length, inputData))];
+}
+
+function launchElement(inputData) {
+	if (!inputData || !inputData.fn) {
+		return;
 	}
 
-	function launchElement(inputData) {
-		if (!inputData || !inputData.fn) {
-			return;
-		}
-
-		filterText = inputData.name;
-		
-		api.fn(inputData.id)();
-		
-		if (typeof optionsObject._didFinish === 'function') {
-			optionsObject._didFinish();
-		}
+	filterText = inputData.name;
+	
+	api.fn(inputData.id)();
+	
+	if (typeof optionsObject._didFinish === 'function') {
+		optionsObject._didFinish();
 	}
-
-	rootElement.addEventListener('keydown', function (event) {
-		
-	});
-});
-
+}
 function handleKeydown(event) {
 	if (event.code === 'Escape') {
 		if (!filterText && typeof optionsObject._didFinish === 'function') {
