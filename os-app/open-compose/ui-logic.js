@@ -20,8 +20,11 @@ export const LCHComposeLogicBoomarkletTemplate = function () {
 	let _protectFromCompiler = console.log;
 
 	window.bookmarklet = {
+		normalizeStyle: function () {
+			return `LCHCompileToken_NormalizeStyle`;
+		},
 		uiStyle: function () {
-			return `LCHCompileToken_NormalizeStyle LCHCompileToken_AppStyle`;
+			return `LCHCompileToken_AppStyle`;
 		},
 		uiBehaviour: function () {
 			_protectFromCompiler(`LCHCompileToken_AppBehaviour`);
@@ -37,6 +40,8 @@ export const LCHComposeLogicBoomarkletTemplate = function () {
 			sandboxContainer.className = 'ProofSvelteBookmarketSandbox'
 			document.body.appendChild(sandboxContainer);
 
+			sandboxContainer.appendChild(document.createElement('style')).innerHTML = window.bookmarklet.normalizeStyle();
+			
 			sandboxContainer.appendChild(document.createElement('style')).innerHTML = window.bookmarklet.uiStyle();
 			
 			window.bookmarklet.AppInstance = new (window.bookmarklet.uiBehaviour())({
