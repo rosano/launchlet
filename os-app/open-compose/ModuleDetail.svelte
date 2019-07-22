@@ -183,6 +183,7 @@ input {
 
 .FormContainer :global(.CodeMirror-scroll) {
 	/* CodeMirrorAdjustHeightToContent */
+	min-height: 100px;
 	max-height: 350px;
 }
 
