@@ -31,14 +31,9 @@ locals.OLSKPagePublicConstants = {
 
 <%- include('../_shared/common/layout-header.ejs') %>
 
+<textarea id="LCHComposeNormalizeStyle" style="display: none;"><%= LCHComposeNormalizeStyle %></textarea>
 <textarea id="LCHComposeBookmarkletStyle" style="display: none;"><%= LCHComposeBookmarkletStyle %></textarea>
 <textarea id="LCHComposeBookmarkletBehaviour" style="display: none;"><%= LCHComposeBookmarkletBehaviour %></textarea>
-<script type="text/javascript">
-	Object.assign(window, {
-		LCHComposeBookmarkletStyle: document.querySelector('#LCHComposeBookmarkletStyle').textContent,
-		LCHComposeBookmarkletBehaviour: document.querySelector('#LCHComposeBookmarkletBehaviour').textContent,
-	});
-</script>
 
 <script src="/<%= OLSKSharedPageControllerSlug %>/_compiled/ui-behaviour.js"></script>
 

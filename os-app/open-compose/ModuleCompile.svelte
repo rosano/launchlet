@@ -9,8 +9,9 @@ import { onMount } from 'svelte';
 onMount(function () {
 	modelDidChange.subscribe(function (val) {
 		javascriptComposed = LCHComposeLogicBoomarkletStringFor({
-			LCHCompileToken_AppStyle: window.LCHComposeBookmarkletStyle,
-			LCHCompileToken_AppBehaviour: window.LCHComposeBookmarkletBehaviour,
+			LCHCompileToken_AppStyle: window.LCHComposeBookmarkletStyle.textContent,
+			LCHCompileToken_AppBehaviour: window.LCHComposeBookmarkletBehaviour.textContent,
+			LCHCompileToken_NormalizeStyle: window.LCHComposeNormalizeStyle.textContent,
 			LCHCompileToken_MemberObjects: $membersAll.filter(function (e) {
 				return !!e.LCHMemberBody;
 			}).map(LCHMembersModel.LCHMembersModelConvertLegacy).map(LCHMembersModel.LCHMembersModelWrappedMemberObjectFor),
