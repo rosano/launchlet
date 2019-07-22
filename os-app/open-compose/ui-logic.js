@@ -87,7 +87,7 @@ export const LCHComposeLogicBoomarkletStringFor = function (inputData, OLSK_TEST
 	}
 
 	if (inputData.LCHCompileToken_AppStyle && inputData.LCHCompileToken_NormalizeStyle && match) {
-		inputData.LCHCompileToken_NormalizeStyle = inputData.LCHCompileToken_NormalizeStyle.replace(/\n(.*)\{/g, `\n${ match[1] } $1{`);
+		inputData.LCHCompileToken_NormalizeStyle = inputData.LCHCompileToken_NormalizeStyle.replace(/\n(.*)\{/g, `\n${ match[1] } $1{`).replace(/body|html/, '');
 	}
 
 	return Object.keys(inputData).reduce(function (coll, item) {

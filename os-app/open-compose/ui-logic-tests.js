@@ -161,6 +161,28 @@ describe('LCHComposeLogicBoomarkletStringFor', function testLCHComposeLogicBooma
 }`).replace('LCHCompileToken_AppStyle', '.Container.svelte-alfa123{bravo'));
 		});
 
+		it('strips body', function() {
+			deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
+				LCHCompileToken_AppStyle: '.Container.svelte-alfa123{bravo',
+				LCHCompileToken_NormalizeStyle: `\nbody {
+  display: none;
+}`,
+			}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_NormalizeStyle', `\n.Container.svelte-alfa123  {
+  display: none;
+}`).replace('LCHCompileToken_AppStyle', '.Container.svelte-alfa123{bravo'));
+		});
+
+		it('strips html', function() {
+			deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
+				LCHCompileToken_AppStyle: '.Container.svelte-alfa123{bravo',
+				LCHCompileToken_NormalizeStyle: `\nhtml {
+  display: none;
+}`,
+			}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_NormalizeStyle', `\n.Container.svelte-alfa123  {
+  display: none;
+}`).replace('LCHCompileToken_AppStyle', '.Container.svelte-alfa123{bravo'));
+		});
+
 		it('escapes backtick', function() {
 			deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
 				LCHCompileToken_AppStyle: '',
