@@ -89,6 +89,7 @@ export const LCHMembersModelPostJSONParse = function(inputData) {
 export const LCHMembersModelConvertLegacy = function(inputData) {
 	return {
 		id: inputData.LCHMemberSignature || inputData.LCHMemberID,
+		args: inputData.LCHMemberArgs,
 		fnbody: inputData.LCHMemberBody,
 		name: inputData.LCHMemberName,
 	};
