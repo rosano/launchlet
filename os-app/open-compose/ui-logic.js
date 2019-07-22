@@ -10,6 +10,7 @@ export const LCHComposeLogicValidCompileTokens = function (inputData) {
 	return [
 		'LCHCompileToken_AppBehaviour',
 		'LCHCompileToken_AppStyle',
+		'LCHCompileToken_NormalizeStyle',
 		'LCHCompileToken_MemberObjects',
 		'LCHCompileToken_AppLanguageCode',
 		];
@@ -20,7 +21,7 @@ export const LCHComposeLogicBoomarkletTemplate = function () {
 
 	window.bookmarklet = {
 		uiStyle: function () {
-			return `LCHCompileToken_AppStyle`;
+			return `LCHCompileToken_NormalizeStyle LCHCompileToken_AppStyle`;
 		},
 		uiBehaviour: function () {
 			_protectFromCompiler(`LCHCompileToken_AppBehaviour`);
@@ -63,13 +64,13 @@ export const LCHComposeLogicBoomarkletTemplate = function () {
 	window.bookmarklet.instanceCreate();
 };
 
-export const LCHComposeLogicBoomarkletStringFor = function (inputData) {
+export const LCHComposeLogicBoomarkletStringFor = function (inputData, OLSK_TESTING) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	if (Object.keys(inputData).filter(function (e) {
-		return LCHComposeLogicValidCompileTokens().indexOf(e) === -1;
+	if (!OLSK_TESTING && LCHComposeLogicValidCompileTokens().filter(function (e) {
+		return typeof inputData[e] === 'undefined';
 	}).length) {
 		throw new Error('LCHErrorInputInvalid');
 	}
