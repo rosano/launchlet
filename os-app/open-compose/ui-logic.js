@@ -86,6 +86,10 @@ export const LCHComposeLogicBoomarkletStringFor = function (inputData, OLSK_TEST
 	}
 
 	return Object.keys(inputData).reduce(function (coll, item) {
+		if (item === 'LCHCompileToken_NormalizeStyle') {
+			// inputData[item] = inputData[item].replace(/\/\*[.\p\s\w\u0060]*\*\//g, '');
+			inputData[item] = inputData[item].replace(/\u0060/g, '\\`');
+		}
 		return coll.replace(item, item === 'LCHCompileToken_MemberObjects' ? _LCHComposeLogicMemberObjectsReplacementFor(inputData[item]) : inputData[item]);
 	}, LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2'))
 			.replace(`(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':5000/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');`, '')

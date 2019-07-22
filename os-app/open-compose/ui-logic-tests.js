@@ -161,6 +161,27 @@ describe('LCHComposeLogicBoomarkletStringFor', function testLCHComposeLogicBooma
 }`).replace('LCHCompileToken_AppStyle', '.Container.svelte-alfa123{bravo'));
 		});
 
+		it('escapes backtick', function() {
+			deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
+				LCHCompileToken_AppStyle: '',
+				LCHCompileToken_NormalizeStyle: '/* `main` */',
+			}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_AppStyle', '').replace('LCHCompileToken_NormalizeStyle', '/* \\`main\\` */'));
+		});
+
+		it.skip('strips comments', function() {
+			deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
+				LCHCompileToken_AppStyle: '',
+				LCHCompileToken_NormalizeStyle: `/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+/* Document: \`main\`
+   ===================
+ * alfa
+ */\nbravo {charlie: delta;}`,
+			}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_NormalizeStyle', '\nbravo {charlie: delta;}').replace('LCHCompileToken_AppStyle', ''));
+		});
+
+	});
+
 });
 
 describe('_LCHComposeLogicMemberObjectsReplacementFor', function test_LCHComposeLogicMemberObjectsReplacementFor() {
