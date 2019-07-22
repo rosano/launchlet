@@ -78,34 +78,41 @@ onMount(function () {
 	}
 
 	rootElement.addEventListener('keydown', function (event) {
-		if (event.code === 'Escape') {
-			if (!filterText && typeof optionsObject._didFinish === 'function') {
-				optionsObject._didFinish();
-			}
-
-			if (filterText) {
-				filterText = '';
-			}
-
-			return event.preventDefault();
-		}
-
-		if (event.code === 'ArrowUp') {
-			setElementAtIndex(visibleMemberObjects.indexOf(memberObjectSelected) - 1)
-			return event.preventDefault();
-		};
-
-		if (event.code === 'ArrowDown') {
-			setElementAtIndex(visibleMemberObjects.indexOf(memberObjectSelected) + 1)
-			return event.preventDefault();
-		};
-
-		if (event.code === 'Enter') {
-			return launchElement(memberObjectSelected);
-		};
+		
 	});
 });
+
+function handleKeydown(event) {
+	if (event.code === 'Escape') {
+		if (!filterText && typeof optionsObject._didFinish === 'function') {
+			optionsObject._didFinish();
+		}
+
+		if (filterText) {
+			filterText = '';
+		}
+
+		return event.preventDefault();
+	}
+
+	if (event.code === 'ArrowUp') {
+		setElementAtIndex(visibleMemberObjects.indexOf(memberObjectSelected) - 1)
+		return event.preventDefault();
+	};
+
+	if (event.code === 'ArrowDown') {
+		setElementAtIndex(visibleMemberObjects.indexOf(memberObjectSelected) + 1)
+		return event.preventDefault();
+	};
+
+	if (event.code === 'Enter') {
+		launchElement(memberObjectSelected);
+		return event.preventDefault();;
+	};
+}
 </script>
+<!-- Bind to window to avoit triggering external events on page -->
+<svelte:window on:keydown={ handleKeydown }/>
 
 <div class="Container" bind:this={ rootElement }>
 	<div class="Bezel">
