@@ -132,10 +132,14 @@ function handleKeydown(event) {
 	top: 0;
 	left: 50%;
 	margin: 0 0 0 calc(var(--__LaunchletWidth) / -2);
-	z-index: 999;
+	z-index: 9999;
 
 	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
 	font-size: 16pt;
+	color: black;
+
+	/* CompensateExternalStyles */
+	text-align: initial;
 }
 
 .Bezel {
