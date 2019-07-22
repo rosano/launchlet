@@ -98,8 +98,8 @@ describe('LCHComposeLogicBoomarkletStringFor', function testLCHComposeLogicBooma
 
 	it('replaces LCHCompileToken_AppStyle', function() {
 		deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
-			LCHCompileToken_AppStyle: 'alfa',
-		}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_AppStyle', 'alfa'));
+			LCHCompileToken_AppStyle: '.Container.svelte-alfa{bravo',
+		}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_AppStyle', '.Container.svelte-alfa{bravo'));
 	});
 
 	it('replaces LCHCompileToken_NormalizeStyle', function() {
@@ -131,6 +131,35 @@ describe('LCHComposeLogicBoomarkletStringFor', function testLCHComposeLogicBooma
 			LCHCompileToken_AppBehaviour: `alfa(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':5000/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');bravo`,
 		}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_AppBehaviour', 'alfabravo'));
 	});
+
+	context('LCHCompileToken_NormalizeStyle', function () {
+
+		it('throws error if without identifier', function() {
+			throws(function() {
+				mainModule.LCHComposeLogicBoomarkletStringFor({
+					LCHCompileToken_AppStyle: '.Containerr.svelte-alfa123{',
+				}, 'OLSK_TESTING');
+			}, /LCHErrorInputInvalid/);
+		});
+
+		it('prefixes with identifier', function() {
+			deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
+				LCHCompileToken_AppStyle: '.Container.svelte-alfa123{bravo',
+				LCHCompileToken_NormalizeStyle: `\ntemplate {
+  display: none;
+}
+
+[hidden] {
+  display: none;
+}`,
+			}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_NormalizeStyle', `\n.Container.svelte-alfa123 template {
+  display: none;
+}
+
+.Container.svelte-alfa123 [hidden] {
+  display: none;
+}`).replace('LCHCompileToken_AppStyle', '.Container.svelte-alfa123{bravo'));
+		});
 
 });
 

@@ -75,6 +75,16 @@ export const LCHComposeLogicBoomarkletStringFor = function (inputData, OLSK_TEST
 		throw new Error('LCHErrorInputInvalid');
 	}
 
+	let match;
+
+	if (inputData.LCHCompileToken_AppStyle && !(match = inputData.LCHCompileToken_AppStyle.match(/(\.Container\.svelte-\w+){/))) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	if (inputData.LCHCompileToken_AppStyle && inputData.LCHCompileToken_NormalizeStyle && match) {
+		inputData.LCHCompileToken_NormalizeStyle = inputData.LCHCompileToken_NormalizeStyle.replace(/\n(.*)\{/g, `\n${ match[1] } $1{`);
+	}
+
 	return Object.keys(inputData).reduce(function (coll, item) {
 		return coll.replace(item, item === 'LCHCompileToken_MemberObjects' ? _LCHComposeLogicMemberObjectsReplacementFor(inputData[item]) : inputData[item]);
 	}, LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2'))
