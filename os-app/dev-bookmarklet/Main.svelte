@@ -2,12 +2,29 @@
 import ModuleList from './ModuleList.svelte'
 import { OLSKLocalized, languageCode } from './_shared.js'
 import { LCHBookmarkletLogicFilter } from './ui-logic.js'
+import { LCHMembersModelErrorsForFormulaObject } from '../_shared/rs-modules/lch_members/model.js';
 
 export let memberObjects = [];
 export let optionsObject = {};
 
 (function StartSetup() {
 	languageCode(optionsObject.localizationLanguageCode)
+})();
+
+(function StartPageFormulas() {
+	if (typeof window.LCHPageFormulas !== 'function') {
+		return;
+	}
+
+	let formulas = window.LCHPageFormulas();
+
+	if (!Array.isArray(formulas)) {
+		return;
+	}
+
+	memberObjects.push(...formulas.filter(function(e) {
+		return !LCHMembersModelErrorsForFormulaObject(e);
+	}));
 })();
 
 const api = {
