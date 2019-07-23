@@ -1,5 +1,4 @@
 <script>
-import ModuleList from './ModuleList.svelte'
 import { OLSKLocalized, languageCode } from './_shared.js'
 import { LCHBookmarkletLogicFilter } from './ui-logic.js'
 import { LCHMembersModelErrorsForFormulaObject } from '../_shared/rs-modules/lch_members/model.js';
@@ -134,7 +133,13 @@ function handleKeydown(event) {
 <div class="Container" bind:this={ rootElement }>
 	<div class="Bezel">
 		<input placeholder="{ OLSKLocalized('LCHBookmarkletInputPlaceholder') }" bind:value={ filterText } bind:this={ inputElement } />
-		<ModuleList items={ visibleMemberObjects } itemSelected={ memberObjectSelected } />
+		{#if visibleMemberObjects.length }
+		<div class="ListContainer">
+			{#each visibleMemberObjects as e, index}
+				<div class="ListItem" class:ListItemSelected={ e === memberObjectSelected } on:mouseover={ () => setElementAtIndex(index) } >{ e.name }</div>
+			{/each}
+		</div>
+		{/if}
 	</div>
 </div>
 
@@ -182,5 +187,24 @@ input {
 
 	/* BrowserDefaultOutline */
 	outline: none;
+}
+
+.ListContainer {
+	margin-top: 10px;
+
+	font-size: 13.5pt;
+}
+
+.ListItem {
+	padding: 5px;
+
+	font-weight: bold;
+
+	/* Behaviour */
+	cursor: pointer;
+}
+
+.ListItemSelected {
+	background: #cccccc;
 }
 </style>
