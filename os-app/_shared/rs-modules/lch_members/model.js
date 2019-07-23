@@ -146,3 +146,21 @@ export const LCHMembersModelWrappedMemberObjectFor = function (inputData) {
 		return coll;
 	}, {});
 };
+
+export const LCHMembersModelErrorsForFormulaObject = function (inputData) {
+	if (typeof inputData !== 'object' || inputData === null) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	let errorsHash = {};
+
+	if (typeof inputData.id !== 'string') {
+		errorsHash.id = new Error('LCHErrorNotString');
+	}
+
+	if (typeof inputData.fn !== 'function') {
+		errorsHash.fn = new Error('LCHErrorNotFunction');
+	}
+
+	return Object.keys(errorsHash).length ? errorsHash : null;
+};

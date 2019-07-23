@@ -18,6 +18,12 @@ const kTesting = {
 			fnbody: 'return;',
 		};
 	},
+	StubWrappedMemberObjectValid: function() {
+		return {
+			id: 'alfa',
+			fn () {},
+		};
+	},
 };
 
 describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
@@ -255,6 +261,36 @@ describe('LCHMembersModelWrappedMemberObjectFor', function testLCHMembersModelWr
 			})).fnclosure, `function (alfa) { ${ kTesting.StubUnwrappedMemberObjectValid().fnbody } }`);
 		});
 
+	});
+
+});
+
+describe('LCHMembersModelErrorsForFormulaObject', function testLCHMembersModelErrorsForFormulaObject() {
+
+	it('throws error if not object', function() {
+		throws(function() {
+			mainModule.LCHMembersModelErrorsForFormulaObject(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns error if id not string', function() {
+		deepEqual(mainModule.LCHMembersModelErrorsForFormulaObject(Object.assign(kTesting.StubWrappedMemberObjectValid(), {
+			id: null,
+		})), {
+			id: new Error('LCHErrorNotString'),
+		});
+	});
+
+	it('returns error if fn not function', function() {
+		deepEqual(mainModule.LCHMembersModelErrorsForFormulaObject(Object.assign(kTesting.StubWrappedMemberObjectValid(), {
+			fn: null,
+		})), {
+			fn: new Error('LCHErrorNotFunction'),
+		});
+	});
+
+	it('returns empty array', function() {
+		deepEqual(mainModule.LCHMembersModelErrorsForFormulaObject(kTesting.StubWrappedMemberObjectValid()), null);
 	});
 
 });
