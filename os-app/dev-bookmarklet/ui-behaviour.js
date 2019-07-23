@@ -6,34 +6,34 @@
 
 	//# SETUP
 
-	setupEverything: function () {
+	setupEverything() {
+		moi.setupFormulas();
 		moi.setupBookmarklet();
 	},
-
-	setupBookmarklet: function () {
+	setupFormulas() {
+		window.LCHPageFormulas = function () {
+			return [
+				{
+					id: 'XYZAlfa',
+					fn: function XYZAlfa () {
+						alert('Alfa');
+					},
+					name: 'Alfa',
+				},
+			];
+		};
+	},
+	setupBookmarklet() {
 		let app = new Main({
 			target: document.getElementById('LCHBookmarkletTarget'),
 			props: {
 				memberObjects: [
 					{
-						id: 'XYZAlfa',
-						fn: function XYZAlfa () {
-							alert('Alfa');
-						},
-						name: 'Alfa',
-					}, {
 						id: 'XYZBravo',
 						fn: function XYZBravo () {
 							alert('Bravo');
 						},
 						name: 'Bravo',
-					}, {
-						id: 'XYZCharlie',
-						fn: function XYZCharlie () {
-							alert('Charlie');
-						},
-						name: 'Charlie',
-						labels: ['alfa'],
 					},
 				],
 				optionsObject: {
@@ -47,7 +47,7 @@
 
 	//# LIFECYCLE
 
-	lifecyclePageWillLoad: function () {
+	lifecyclePageWillLoad () {
 		moi.setupEverything();
 	},
 }); })));
