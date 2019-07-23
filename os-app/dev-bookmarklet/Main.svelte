@@ -75,6 +75,13 @@ function launchElement(inputData) {
 		optionsObject._didFinish();
 	}
 }
+
+let inputElement;
+import { onMount } from 'svelte';
+onMount(function () {
+	inputElement.focus();
+});
+
 function handleKeydown(event) {
 	if (event.code === 'Escape') {
 		if (!filterText && typeof optionsObject._didFinish === 'function') {
@@ -109,7 +116,7 @@ function handleKeydown(event) {
 
 <div class="Container" bind:this={ rootElement }>
 	<div class="Bezel">
-		<input placeholder="{ OLSKLocalized('LCHBookmarkletInputPlaceholder') }" autofocus bind:value={ filterText } />
+		<input placeholder="{ OLSKLocalized('LCHBookmarkletInputPlaceholder') }" bind:value={ filterText } bind:this={ inputElement } />
 		<ModuleList items={ visibleMemberObjects } itemSelected={ memberObjectSelected } />
 	</div>
 </div>
