@@ -135,8 +135,8 @@ function handleKeydown(event) {
 		<input placeholder="{ OLSKLocalized('LCHBookmarkletInputPlaceholder') }" bind:value={ filterText } bind:this={ inputElement } />
 		{#if visibleMemberObjects.length }
 		<div class="ListContainer">
-			{#each visibleMemberObjects as e, index}
-				<div class="ListItem" class:ListItemSelected={ e === memberObjectSelected } on:mouseover={ () => setElementAtIndex(index) } >{ e.name }</div>
+			{#each visibleMemberObjects as e}
+				<div class="ListItem" class:ListItemSelected={ e === memberObjectSelected } on:mouseover={ () => memberObjectSelected = e } on:click={ () => launchElement(e) }>{ e.name }</div>
 			{/each}
 		</div>
 		{/if}
