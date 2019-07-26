@@ -12,22 +12,26 @@ describe('LCHRollupGrabContainerSelector', function testLCHRollupGrabContainerSe
 
 	it('throws error if no identifier', function() {
 		throws(function() {
-			mainModule.LCHRollupGrabContainerSelector('.Containerr.svelte-alfa123');
+			mainModule.LCHRollupGrabContainerSelector('.Containerr {');
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('throws error if no bracket', function() {
 		throws(function() {
-			mainModule.LCHRollupGrabContainerSelector('alfa');
+			mainModule.LCHRollupGrabContainerSelector('.Container');
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHRollupGrabContainerSelector('.Container.svelte-alfa {'), '.Container.svelte-alfa');
+		deepEqual(mainModule.LCHRollupGrabContainerSelector('.Container {'), '.Container');
 	});
 
-	it('matches without space', function() {
-		deepEqual(mainModule.LCHRollupGrabContainerSelector('.Container.svelte-alfa{'), '.Container.svelte-alfa');
+	it('matches if leading space', function() {
+		deepEqual(mainModule.LCHRollupGrabContainerSelector(' .Container {'), '.Container');
+	});
+
+	it('matches if no bracket space', function() {
+		deepEqual(mainModule.LCHRollupGrabContainerSelector('.Container{'), '.Container');
 	});
 
 });
@@ -53,11 +57,11 @@ display: none;
 
 [hidden] {
 display: none;
-}`), `\nalfa template {
+}`), `\nalfa :global(template ) {
 display: none;
 }
 
-alfa [hidden] {
+alfa :global([hidden] ) {
 display: none;
 }`);
 	});
@@ -65,7 +69,7 @@ display: none;
 	it('strips body', function() {
 		deepEqual(mainModule.LCHRollupPrefixSelector('alfa', `\nbody {
 display: none;
-}`), `\nalfa  {
+}`), `\nalfa {
 display: none;
 }`);
 	});
@@ -73,7 +77,7 @@ display: none;
 	it('strips html', function() {
 		deepEqual(mainModule.LCHRollupPrefixSelector('alfa', `\nhtml {
 display: none;
-}`), `\nalfa  {
+}`), `\nalfa {
 display: none;
 }`);
 	});

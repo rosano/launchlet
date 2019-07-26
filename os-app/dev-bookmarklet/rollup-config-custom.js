@@ -11,7 +11,7 @@
 
 		let match;
 
-		if (!(match = inputData.match(/(\.Container\.svelte-\w+) ?{/))) {
+		if (!(match = inputData.trim().match(/^(\.Container) ?{/))) {
 			throw new Error('LCHErrorInputInvalid');
 		}
 
@@ -27,7 +27,7 @@
 			throw new Error('LCHErrorInputInvalid');
 		}
 
-		return param2.replace(/\n(.*)\{/g, `\n${ param1 } $1{`).replace(/body|html/g, '');
+		return param2.replace(/\n(.*)\{/g, `\n${ param1 } :global($1) {`).replace(/body|html/g, '').replace(/ \:global\( \)/g, '');
 	},
 	
 	OLSKRollupConfigCustomFor (inputData) {
