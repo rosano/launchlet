@@ -17,6 +17,18 @@
 
 		return match[1];
 	},
+
+	LCHRollupPrefixSelector (param1, param2) {
+		if (typeof param1 !== 'string') {
+			throw new Error('LCHErrorInputInvalid');
+		}
+
+		if (typeof param2 !== 'string') {
+			throw new Error('LCHErrorInputInvalid');
+		}
+
+		return param2.replace(/\n(.*)\{/g, `\n${ param1 } $1{`).replace(/body|html/g, '');
+	},
 	
 	OLSKRollupConfigCustomFor (inputData) {
 		return inputData;
