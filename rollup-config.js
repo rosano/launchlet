@@ -21,7 +21,11 @@ export default globPackage.sync(['os-app/**/svelte-start.js'], {
 
 	try {
 		outputFunction = require(pathPackage.join(__dirname, pathPackage.dirname(e), 'rollup-config-custom.js')).OLSKRollupConfigCustomFor;
-	} catch(e) {}
+	} catch(e) {
+		if (!e.message.match("Cannot find module '/Users/rozano/Sync/lch/lch.site/os-app/open-compose/rollup-config-custom.js'")) {
+			throw e;
+		}
+	}
 
 	return outputFunction({
 		input: pathPackage.join(pathPackage.dirname(e), 'svelte-start.js'),
