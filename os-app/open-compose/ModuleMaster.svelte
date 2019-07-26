@@ -2,7 +2,7 @@
 import * as LCHMembersAction from '../_shared/rs-modules/lch_members/action.js';
 import { LCHComposeLogicSort } from './ui-logic.js';
 
-import { OLSKLocalized } from '../_shared/common/global.js'
+import { OLSKLocalized } from '../_shared/common/global.js';
 import { storageClient, membersAll, memberSelected } from './persistence.js';
 
 async function memberCreate() {

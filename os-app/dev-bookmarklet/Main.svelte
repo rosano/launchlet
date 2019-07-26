@@ -1,13 +1,13 @@
 <script>
-import { OLSKLocalized, languageCode } from './_shared.js'
-import { LCHBookmarkletLogicFilter } from './ui-logic.js'
+import { OLSKLocalized, languageCode } from './_shared.js';
+import { LCHBookmarkletLogicFilter } from './ui-logic.js';
 import { LCHMembersModelErrorsForFormulaObject } from '../_shared/rs-modules/lch_members/model.js';
 
 export let memberObjects = [];
 export let optionsObject = {};
 
 (function StartSetup() {
-	languageCode(optionsObject.localizationLanguageCode)
+	languageCode(optionsObject.localizationLanguageCode);
 })();
 
 (function StartPageFormulas() {
@@ -67,7 +67,7 @@ let filterText = '';
 let memberObjectSelected;
 let visibleMemberObjects = [];
 let filterTextDidChange = function (val) {
-	visibleMemberObjects = !val ? [] : memberObjects.filter(LCHBookmarkletLogicFilter(val))
+	visibleMemberObjects = !val ? [] : memberObjects.filter(LCHBookmarkletLogicFilter(val));
 	memberObjectSelected = visibleMemberObjects[0];
 };
 $: filterTextDidChange(filterText.trim());
@@ -112,19 +112,19 @@ function handleKeydown(event) {
 	}
 
 	if (event.code === 'ArrowUp') {
-		setElementAtIndex(visibleMemberObjects.indexOf(memberObjectSelected) - 1)
+		setElementAtIndex(visibleMemberObjects.indexOf(memberObjectSelected) - 1);
 		return event.preventDefault();
-	};
+	}
 
 	if (event.code === 'ArrowDown') {
-		setElementAtIndex(visibleMemberObjects.indexOf(memberObjectSelected) + 1)
+		setElementAtIndex(visibleMemberObjects.indexOf(memberObjectSelected) + 1);
 		return event.preventDefault();
-	};
+	}
 
 	if (event.code === 'Enter') {
 		launchElement(memberObjectSelected);
-		return event.preventDefault();;
-	};
+		return event.preventDefault();
+	}
 }
 </script>
 <!-- Bind to window to avoit triggering external events on page -->

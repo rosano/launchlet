@@ -5,7 +5,7 @@ import ModuleDetail from './ModuleDetail.svelte';
 import ModuleCompile from './ModuleCompile.svelte';
 import OLSKServiceWorker from '../_shared/_external/OLSKServiceWorker/Main.svelte';
 
-import { OLSKLocalized } from '../_shared/common/global.js'
+import { OLSKLocalized } from '../_shared/common/global.js';
 import { storageClient } from './persistence.js';
 
 import { onMount } from 'svelte';

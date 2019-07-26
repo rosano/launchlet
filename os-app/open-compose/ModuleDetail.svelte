@@ -1,14 +1,14 @@
 <script>
 import * as LCHMembersAction from '../_shared/rs-modules/lch_members/action.js';
 
-import { OLSKLocalized } from '../_shared/common/global.js'
+import { OLSKLocalized } from '../_shared/common/global.js';
 import { storageClient, membersAll, memberSelected, modelDidChange } from './persistence.js';
 
 let editorInstance;
 let editorInitializeValue = function () {
 	editorInstance.setValue($memberSelected.LCHMemberBody);
 	editorInstance.getDoc().clearHistory();
-}
+};
 
 let _memberSelected;
 memberSelected.subscribe(function (val) {

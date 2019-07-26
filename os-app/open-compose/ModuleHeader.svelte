@@ -1,5 +1,5 @@
 <script>
-import { OLSKLocalized } from '../_shared/common/global.js'
+import { OLSKLocalized } from '../_shared/common/global.js';
 import RCSLanguageSwitcher from '../_shared/RCSLanguageSwitcher/Main.svelte';
 </script>
 
