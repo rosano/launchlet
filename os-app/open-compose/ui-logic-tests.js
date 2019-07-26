@@ -43,7 +43,6 @@ describe('LCHComposeLogicValidCompileTokens', function testLCHComposeLogicValidC
 		deepEqual(mainModule.LCHComposeLogicValidCompileTokens(), [
 			'LCHCompileToken_AppBehaviour',
 			'LCHCompileToken_AppStyle',
-			'LCHCompileToken_NormalizeStyle',
 			'LCHCompileToken_MemberObjects',
 			'LCHCompileToken_AppLanguageCode',
 			]);
@@ -73,7 +72,6 @@ describe('LCHComposeLogicBoomarkletStringFor', function testLCHComposeLogicBooma
 		throws(function() {
 			mainModule.LCHComposeLogicBoomarkletStringFor({
 				LCHCompileToken_AppStyle: '',
-				LCHCompileToken_NormalizeStyle: '',
 				LCHCompileToken_MemberObjects: [],
 				LCHCompileToken_AppLanguageCode: '',
 			});
@@ -94,18 +92,6 @@ describe('LCHComposeLogicBoomarkletStringFor', function testLCHComposeLogicBooma
 		deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
 			LCHCompileToken_AppBehaviour: 'alfa',
 		}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_AppBehaviour', 'alfa'));
-	});
-
-	it('replaces LCHCompileToken_AppStyle', function() {
-		deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
-			LCHCompileToken_AppStyle: '.Container.svelte-alfa{bravo',
-		}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_AppStyle', '.Container.svelte-alfa{bravo'));
-	});
-
-	it('replaces LCHCompileToken_NormalizeStyle', function() {
-		deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
-			LCHCompileToken_NormalizeStyle: 'alfa',
-		}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_NormalizeStyle', 'alfa'));
 	});
 
 	it('replaces LCHCompileToken_MemberObjects', function() {
@@ -130,78 +116,6 @@ describe('LCHComposeLogicBoomarkletStringFor', function testLCHComposeLogicBooma
 		deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
 			LCHCompileToken_AppBehaviour: `alfa(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':5000/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');bravo`,
 		}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_AppBehaviour', 'alfabravo'));
-	});
-
-	context('LCHCompileToken_NormalizeStyle', function () {
-
-		it('throws error if without identifier', function() {
-			throws(function() {
-				mainModule.LCHComposeLogicBoomarkletStringFor({
-					LCHCompileToken_AppStyle: '.Containerr.svelte-alfa123{',
-				}, 'OLSK_TESTING');
-			}, /LCHErrorInputInvalid/);
-		});
-
-		it('prefixes with identifier', function() {
-			deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
-				LCHCompileToken_AppStyle: '.Container.svelte-alfa123{bravo',
-				LCHCompileToken_NormalizeStyle: `\ntemplate {
-  display: none;
-}
-
-[hidden] {
-  display: none;
-}`,
-			}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_NormalizeStyle', `\n.Container.svelte-alfa123 template {
-  display: none;
-}
-
-.Container.svelte-alfa123 [hidden] {
-  display: none;
-}`).replace('LCHCompileToken_AppStyle', '.Container.svelte-alfa123{bravo'));
-		});
-
-		it('strips body', function() {
-			deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
-				LCHCompileToken_AppStyle: '.Container.svelte-alfa123{bravo',
-				LCHCompileToken_NormalizeStyle: `\nbody {
-  display: none;
-}`,
-			}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_NormalizeStyle', `\n.Container.svelte-alfa123  {
-  display: none;
-}`).replace('LCHCompileToken_AppStyle', '.Container.svelte-alfa123{bravo'));
-		});
-
-		it('strips html', function() {
-			deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
-				LCHCompileToken_AppStyle: '.Container.svelte-alfa123{bravo',
-				LCHCompileToken_NormalizeStyle: `\nhtml {
-  display: none;
-}`,
-			}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_NormalizeStyle', `\n.Container.svelte-alfa123  {
-  display: none;
-}`).replace('LCHCompileToken_AppStyle', '.Container.svelte-alfa123{bravo'));
-		});
-
-		it('escapes backtick', function() {
-			deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
-				LCHCompileToken_AppStyle: '',
-				LCHCompileToken_NormalizeStyle: '/* `main` */',
-			}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_AppStyle', '').replace('LCHCompileToken_NormalizeStyle', '/* \\`main\\` */'));
-		});
-
-		it.skip('strips comments', function() {
-			deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
-				LCHCompileToken_AppStyle: '',
-				LCHCompileToken_NormalizeStyle: `/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
-
-/* Document: \`main\`
-   ===================
- * alfa
- */\nbravo {charlie: delta;}`,
-			}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_NormalizeStyle', '\nbravo {charlie: delta;}').replace('LCHCompileToken_AppStyle', ''));
-		});
-
 	});
 
 });

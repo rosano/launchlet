@@ -10,7 +10,6 @@ export const LCHComposeLogicValidCompileTokens = function (inputData) {
 	return [
 		'LCHCompileToken_AppBehaviour',
 		'LCHCompileToken_AppStyle',
-		'LCHCompileToken_NormalizeStyle',
 		'LCHCompileToken_MemberObjects',
 		'LCHCompileToken_AppLanguageCode',
 		];
@@ -20,9 +19,6 @@ export const LCHComposeLogicBoomarkletTemplate = function () {
 	let _protectFromCompiler = console.log;
 
 	window.bookmarklet = {
-		normalizeStyle: function () {
-			return `LCHCompileToken_NormalizeStyle`;
-		},
 		uiStyle: function () {
 			return `LCHCompileToken_AppStyle`;
 		},
@@ -39,8 +35,6 @@ export const LCHComposeLogicBoomarkletTemplate = function () {
 			let sandboxContainer = document.createElement('div');
 			sandboxContainer.className = 'ProofSvelteBookmarketSandbox'
 			document.body.appendChild(sandboxContainer);
-
-			sandboxContainer.appendChild(document.createElement('style')).innerHTML = window.bookmarklet.normalizeStyle();
 			
 			sandboxContainer.appendChild(document.createElement('style')).innerHTML = window.bookmarklet.uiStyle();
 			
@@ -80,21 +74,7 @@ export const LCHComposeLogicBoomarkletStringFor = function (inputData, OLSK_TEST
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	let match;
-
-	if (inputData.LCHCompileToken_AppStyle && !(match = inputData.LCHCompileToken_AppStyle.match(/(\.Container\.svelte-\w+){/))) {
-		throw new Error('LCHErrorInputInvalid');
-	}
-
-	if (inputData.LCHCompileToken_AppStyle && inputData.LCHCompileToken_NormalizeStyle && match) {
-		inputData.LCHCompileToken_NormalizeStyle = inputData.LCHCompileToken_NormalizeStyle.replace(/\n(.*)\{/g, `\n${ match[1] } $1{`).replace(/body|html/g, '');
-	}
-
 	return Object.keys(inputData).reduce(function (coll, item) {
-		if (item === 'LCHCompileToken_NormalizeStyle') {
-			// inputData[item] = inputData[item].replace(/\/\*[.\p\s\w\u0060]*\*\//g, '');
-			inputData[item] = inputData[item].replace(/\u0060/g, '\\`');
-		}
 		return coll.replace(item, item === 'LCHCompileToken_MemberObjects' ? _LCHComposeLogicMemberObjectsReplacementFor(inputData[item]) : inputData[item]);
 	}, LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2'))
 			.replace(`(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':5000/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');`, '')
