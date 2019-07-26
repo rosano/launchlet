@@ -15,7 +15,15 @@ export default globPackage.sync(['os-app/**/svelte-start.js'], {
 }).filter(function (e) {
 	return !e.match(/node_modules|_external/ig);
 }).map(function (e, i) {
-	return {
+  let outputFunction = function (inputData) {
+    return inputData;
+  };
+
+  try {
+    outputFunction = require(pathPackage.join(__dirname, pathPackage.dirname(e), 'rollup-config-custom.js')).OLSKRollupConfigCustomFor;
+  } catch(e) {}
+
+	return outputFunction({
 	  input: pathPackage.join(pathPackage.dirname(e), 'svelte-start.js'),
 	  output: {
 	  	sourcemap: true,
@@ -63,5 +71,5 @@ export default globPackage.sync(['os-app/**/svelte-start.js'], {
   		// instead of npm run dev), minify
   		production && terser()
   	],
-  };
+  });
 });
