@@ -37,10 +37,6 @@ const production = !process.env.ROLLUP_WATCH;
 	},
 	
 	OLSKRollupConfigCustomFor (inputData) {
-		(function SetModuleFormat() {
-			inputData.output.format = 'umd';
-		})();
-		
 		inputData.plugins.splice(0, 1, svelte({
 
 			preprocess: {
