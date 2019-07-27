@@ -1,7 +1,7 @@
 import MainApp from '../dev-bookmarklet/_compiled/ui-behaviour.js'
 
 const mod = {
-	instanceCreate: function (inputData) {
+	instanceCreate: function (inputData = []) {
 		if (mod.AppInstance) {
 			mod.instanceDestroy();
 		}
@@ -13,7 +13,12 @@ const mod = {
 		mod.AppInstance = new MainApp({
 			target: sandboxContainer,
 			props: {
-				name: inputData,
+				memberObjects: [].concat(inputData),
+				optionsObject: {
+					_didFinish () {
+						return mod.instanceDestroy();
+					},
+				}
 			},
 		});
 	},
