@@ -1,6 +1,6 @@
 {
   "name": "launchlet",
   "files": [
-    "dist"
+  	"launchlet*"
   ]
 }
