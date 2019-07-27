@@ -7,7 +7,8 @@ os-cache
 os-workspace-testing
 
 # BUILD
-dist
+dist/*
+!dist/package.json
 os-app/_shared/_external
 os-app/**/_compiled
 
