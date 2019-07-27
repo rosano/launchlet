@@ -1,0 +1,22 @@
+<%
+locals.OLSKPageTitle = OLSKLocalized('LCHComposeTitle');
+locals.OLSKPageDescription = OLSKLocalized('LCHComposeDescription');
+locals.OLSKPageAssets = [
+	'_compiled/dist/launchlet.css',
+	'_compiled/dist/launchlet.js',
+	'ui-behaviour.js',
+];
+locals.OLSKPagePublicConstants = {
+	OLSKSharedPageCurrentLanguage: OLSKSharedPageCurrentLanguage,
+};
+%>
+
+<%- include('../_shared/common/layout-header.ejs') %>
+
+<h1>Package</h1>
+
+<script type="text/javascript">
+LCHPackageBehaviour.lifecyclePageWillLoad();
+</script>
+
+<%- include('../_shared/common/layout-footer.ejs') %>
