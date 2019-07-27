@@ -2,7 +2,7 @@ import MainApp from '../dev-bookmarklet/svelte-start.js'
 
 const mod = {
 	instanceCreate: function (inputData = []) {
-		if (mod.AppInstance) {
+		if (mod.instanceExists()) {
 			mod.instanceDestroy();
 		}
 
@@ -21,6 +21,9 @@ const mod = {
 				}
 			},
 		});
+	},
+	instanceExists: function () {
+		return !!mod.AppInstance;
 	},
 	instanceDestroy: function () {
 		mod.AppInstance.$destroy();
