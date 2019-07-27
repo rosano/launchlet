@@ -1,4 +1,4 @@
-import MainApp from '../dev-bookmarklet/svelte-start.js'
+import MainApp from '../dev-bookmarklet/_compiled/ui-behaviour.js'
 
 const mod = {
 	instanceCreate: function (inputData) {

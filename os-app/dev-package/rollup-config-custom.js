@@ -20,6 +20,7 @@
 				return e.name === 'svelte';
 			}).pop()), 1, svelte({
 				css (css) {
+					css.code = require('fs').readFileSync(pathPackage.join(__dirname, '../dev-bookmarklet/_compiled/ui-style.css'), 'utf8').replace('ui-style', 'launchlet');
 					return css.write(pathPackage.join(__dirname, '../../dist/launchlet.css'));
 				},
 

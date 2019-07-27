@@ -37,6 +37,10 @@ const production = !process.env.ROLLUP_WATCH;
 	},
 	
 	OLSKRollupConfigCustomFor (inputData) {
+		(function SetModuleFormat() {
+			inputData.output.format = 'umd';
+		})();
+		
 		inputData.plugins.splice(0, 1, svelte({
 
 			preprocess: {
@@ -55,8 +59,6 @@ const production = !process.env.ROLLUP_WATCH;
 
 			// extract component CSS into separate file for better performance
 			css: function (css) {
-				// console.log(mod.LCHRollupPrefixSelector(mod.LCHRollupGrabContainerSelector(css.code), require('fs').readFileSync(pathPackage.join(__dirname, '../_shared/_external/normalize.css/normalize.css'), 'utf8')));
-				// css.code = 'hello { alfa: bravo; } ' + css.code
 				return css.write(pathPackage.join(pathPackage.dirname(inputData.input), '_compiled/ui-style.css'));
 			},
 		}));
