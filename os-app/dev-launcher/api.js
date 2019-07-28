@@ -5,8 +5,8 @@ export const LCHRecipesModelErrorsFor = function(inputData) {
 
 	const errors = {};
 
-	if (typeof inputData.callback !== 'function') {
-		errors.callback = [
+	if (typeof inputData.LCHRecipeCallback !== 'function') {
+		errors.LCHRecipeCallback = [
 			'LCHErrorNotFunction',
 		];
 	}
@@ -63,7 +63,7 @@ export const LCHAPIObjectFor = function(inputData) {
 				throw new Error('LCHErrorIdentifierNotDefined');
 			}
 
-			return functionObject.callback.bind({
+			return functionObject.LCHRecipeCallback.bind({
 				api: api,
 			});
 		},

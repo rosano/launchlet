@@ -5,7 +5,7 @@ import * as mainModule from './api.js';
 const kTesting = {
 	StubRecipeObjectValid: function() {
 		return {
-			callback () {},
+			LCHRecipeCallback () {},
 		};
 	},
 };
@@ -18,11 +18,11 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 		}, /LCHErrorInputInvalid/);
 	});
 
-	it('returns object if callback not function', function() {
+	it('returns object if LCHRecipeCallback not function', function() {
 		deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
-			callback: null,
+			LCHRecipeCallback: null,
 		})), {
-			callback: [
+			LCHRecipeCallback: [
 				'LCHErrorNotFunction',
 			],
 		});
@@ -132,9 +132,9 @@ describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 			}, /LCHErrorIdentifierNotDefined/);
 		});
 
-		it('returns callback output', function() {
+		it('returns LCHRecipeCallback output', function() {
 			deepEqual(mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
-				callback() {
+				LCHRecipeCallback() {
 					return 'bravo';
 				},
 				signature: 'alfa',
@@ -143,12 +143,12 @@ describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 
 		it('populates this.api.fn', function() {
 			deepEqual(mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
-				callback(inputData) {
+				LCHRecipeCallback(inputData) {
 					return `hello ${ inputData }`;
 				},
 				signature: 'alfa',
 			}), Object.assign(kTesting.StubRecipeObjectValid(), {
-				callback() {
+				LCHRecipeCallback() {
 					return this.api.fn('alfa')('bravo');
 				},
 				signature: 'charlie',
