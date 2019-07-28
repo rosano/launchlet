@@ -6,12 +6,11 @@ const mod = {
 			mod.instanceDestroy();
 		}
 
-		let sandboxContainer = document.createElement('div');
-		sandboxContainer.className = 'ProofSvelteBookmarketSandbox'
-		document.body.appendChild(sandboxContainer);
+		mod.SandboxContainer = document.createElement('div');
+		document.body.appendChild(mod.SandboxContainer);
 		
 		mod.AppInstance = new MainApp({
-			target: sandboxContainer,
+			target: mod.SandboxContainer,
 			props: {
 				formulaObjects: [].concat(inputData),
 				optionsObject: {
@@ -27,10 +26,10 @@ const mod = {
 	},
 	instanceDestroy: function () {
 		mod.AppInstance.$destroy();
-		
 		delete mod.AppInstance;
 
-		[].slice.call(document.querySelectorAll('.ProofSvelteBookmarketSandbox')).forEach((e) => e.remove());
+		mod.SandboxContainer.remove();
+		delete mod.SandboxContainer;
 	},
 };
 
