@@ -73,3 +73,14 @@ describe('LCHBookmarkletLogicFilter', function testLCHBookmarkletLogicFilter() {
 	});
 
 });
+
+describe('LCHLauncherModes', function testLCHLauncherModes() {
+
+	it('returns array', function() {
+		deepEqual(mainModule.LCHLauncherModes(), [
+			'default',
+			'jump',
+			]);
+	});
+
+});

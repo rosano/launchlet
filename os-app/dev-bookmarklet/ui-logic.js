@@ -13,3 +13,10 @@ export const LCHBookmarkletLogicFilter = function (inputData) {
 		}).length > 0;
 	};
 };
+
+export const LCHLauncherModes = function () {
+	return [
+		'default',
+		'jump',
+	];
+}
