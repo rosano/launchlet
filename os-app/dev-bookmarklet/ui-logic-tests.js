@@ -6,8 +6,8 @@ describe('LCHLauncherModes', function testLCHLauncherModes() {
 
 	it('returns array', function() {
 		deepEqual(mainModule.LCHLauncherModes(), [
-			'default',
-			'jump',
+			mainModule.LCHLauncherModeDefault,
+			mainModule.LCHLauncherModeJump,
 			]);
 	});
 
