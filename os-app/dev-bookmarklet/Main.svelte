@@ -87,9 +87,7 @@ function launchElement(inputData) {
 	
 	api.fn(inputData.id)();
 	
-	if (typeof optionsObject._didFinish === 'function') {
-		optionsObject._didFinish();
-	}
+	handleDidFinish();
 }
 
 let inputElement;
@@ -98,10 +96,18 @@ onMount(function () {
 	inputElement.focus();
 });
 
+function handleDidFinish() {
+	if (typeof optionsObject._didFinish !== 'function') {
+		return;
+	}
+
+	return optionsObject._didFinish();
+}
+
 function handleKeydown(event) {
 	if (event.code === 'Escape') {
-		if (!filterText && typeof optionsObject._didFinish === 'function') {
-			optionsObject._didFinish();
+		if (!filterText) {
+			handleDidFinish()
 		}
 
 		if (filterText) {
