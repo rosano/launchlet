@@ -1,15 +1,15 @@
 import * as RSModuleShared from '../_shared/main.js';
-import * as LCHMembersModel from './model.js';
+import * as LCHFormulasModel from './model.js';
 
 export const RSModuleProtocolModuleForChangeDelegate = function (changeDelegate) {
 	return {
 		name: 'lch_members',
 		builder: function(privateClient, publicClient) {
-			privateClient.declareType('lch_member', RSModuleShared.RSModuleSharedJSONSchemaForErrors(LCHMembersModel.LCHMembersModelErrorsFor({})));
+			privateClient.declareType('lch_member', RSModuleShared.RSModuleSharedJSONSchemaForErrors(LCHFormulasModel.LCHFormulasModelErrorsFor({})));
 
 			!changeDelegate ? null : privateClient.on('change', function (event) {
 				if (typeof event.oldValue === 'undefined') {
-					return typeof changeDelegate.OLSKChangeDelegateAdd === 'function' ? changeDelegate.OLSKChangeDelegateAdd(LCHMembersModel.LCHMembersModelPostJSONParse(event.newValue)) : console.warn('OLSKChangeDelegateAdd not function');
+					return typeof changeDelegate.OLSKChangeDelegateAdd === 'function' ? changeDelegate.OLSKChangeDelegateAdd(LCHFormulasModel.LCHFormulasModelPostJSONParse(event.newValue)) : console.warn('OLSKChangeDelegateAdd not function');
 				}
 
 				if (typeof event.newValue === 'undefined') {
@@ -17,7 +17,7 @@ export const RSModuleProtocolModuleForChangeDelegate = function (changeDelegate)
 				}
 
 				if (JSON.stringify(event.oldValue) !== JSON.stringify(event.newValue)) {
-					return typeof changeDelegate.OLSKChangeDelegateUpdate === 'function' ? changeDelegate.OLSKChangeDelegateUpdate(LCHMembersModel.LCHMembersModelPostJSONParse(event.newValue)) : console.warn('OLSKChangeDelegateUpdate not function');
+					return typeof changeDelegate.OLSKChangeDelegateUpdate === 'function' ? changeDelegate.OLSKChangeDelegateUpdate(LCHFormulasModel.LCHFormulasModelPostJSONParse(event.newValue)) : console.warn('OLSKChangeDelegateUpdate not function');
 				}
 
 				console.info(event);
@@ -32,8 +32,8 @@ export const RSModuleProtocolModuleForChangeDelegate = function (changeDelegate)
 						return privateClient.getAll('');
 					},
 					writeObject: async function (param1, param2) {
-						await privateClient.storeObject('lch_member', param1, LCHMembersModel.LCHMembersModelPreJSONSchemaValidate(param2));
-						return LCHMembersModel.LCHMembersModelPostJSONParse(param2);
+						await privateClient.storeObject('lch_member', param1, LCHFormulasModel.LCHFormulasModelPreJSONSchemaValidate(param2));
+						return LCHFormulasModel.LCHFormulasModelPostJSONParse(param2);
 					},
 					readObject: function (inputData) {
 						return privateClient.getObject(inputData);

@@ -43,7 +43,7 @@ describe('LCHComposeLogicValidCompileTokens', function testLCHComposeLogicValidC
 		deepEqual(mainModule.LCHComposeLogicValidCompileTokens(), [
 			'LCHCompileToken_AppBehaviour',
 			'LCHCompileToken_AppStyle',
-			'LCHCompileToken_MemberObjects',
+			'LCHCompileToken_FormulaObjects',
 			'LCHCompileToken_AppLanguageCode',
 			]);
 	});
@@ -72,7 +72,7 @@ describe('LCHComposeLogicBoomarkletStringFor', function testLCHComposeLogicBooma
 		throws(function() {
 			mainModule.LCHComposeLogicBoomarkletStringFor({
 				LCHCompileToken_AppStyle: '',
-				LCHCompileToken_MemberObjects: [],
+				LCHCompileToken_FormulaObjects: [],
 				LCHCompileToken_AppLanguageCode: '',
 			});
 		}, /LCHErrorInputInvalid/);
@@ -94,10 +94,10 @@ describe('LCHComposeLogicBoomarkletStringFor', function testLCHComposeLogicBooma
 		}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_AppBehaviour', 'alfa'));
 	});
 
-	it('replaces LCHCompileToken_MemberObjects', function() {
+	it('replaces LCHCompileToken_FormulaObjects', function() {
 		deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
-			LCHCompileToken_MemberObjects: [],
-		}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_MemberObjects', '[]'));
+			LCHCompileToken_FormulaObjects: [],
+		}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_FormulaObjects', '[]'));
 	});
 
 	it('replaces LCHCompileToken_AppLanguageCode', function() {
@@ -120,21 +120,21 @@ describe('LCHComposeLogicBoomarkletStringFor', function testLCHComposeLogicBooma
 
 });
 
-describe('_LCHComposeLogicMemberObjectsReplacementFor', function test_LCHComposeLogicMemberObjectsReplacementFor() {
+describe('_LCHComposeLogicFormulaObjectsReplacementFor', function test_LCHComposeLogicFormulaObjectsReplacementFor() {
 
 	it('throws error if not array', function() {
 		throws(function() {
-			mainModule._LCHComposeLogicMemberObjectsReplacementFor(null);
+			mainModule._LCHComposeLogicFormulaObjectsReplacementFor(null);
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns empty if no objects', function() {
-		deepEqual(mainModule._LCHComposeLogicMemberObjectsReplacementFor([]), '[]');
+		deepEqual(mainModule._LCHComposeLogicFormulaObjectsReplacementFor([]), '[]');
 	});
 
 	it('returns stringified if single line', function() {
 		let item = kTesting.StubWrappedMemberObjectValid();
-		deepEqual(mainModule._LCHComposeLogicMemberObjectsReplacementFor([item]), JSON.stringify([item]).replace('"fnclosure"', '"fn"').replace(`"${ item.fnclosure }"`, item.fnclosure));
+		deepEqual(mainModule._LCHComposeLogicFormulaObjectsReplacementFor([item]), JSON.stringify([item]).replace('"fnclosure"', '"fn"').replace(`"${ item.fnclosure }"`, item.fnclosure));
 	});
 
 	it('returns stringified if multi line', function() {
@@ -144,7 +144,7 @@ return;
 `,
 		});
 
-		deepEqual(mainModule._LCHComposeLogicMemberObjectsReplacementFor([item]), JSON.stringify([item]).replace('"fnclosure"', '"fn"').replace(/\\n/g, '\n').replace(`"${ item.fnclosure }"`, item.fnclosure));
+		deepEqual(mainModule._LCHComposeLogicFormulaObjectsReplacementFor([item]), JSON.stringify([item]).replace('"fnclosure"', '"fn"').replace(/\\n/g, '\n').replace(`"${ item.fnclosure }"`, item.fnclosure));
 	});
 
 });

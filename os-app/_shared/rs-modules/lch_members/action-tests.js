@@ -3,7 +3,7 @@ import { rejects, deepEqual } from 'assert';
 import * as mainModule from './action.js';
 
 const kTesting = {
-	StubMemberObject: function() {
+	StubFormulaObject: function() {
 		return {
 			LCHMemberArgs: 'alfa',
 			LCHMemberBody: 'bravo',
@@ -20,14 +20,14 @@ const kTesting = {
 	},
 };
 
-describe('LCHMembersActionCreate', function testLCHMembersActionCreate() {
+describe('LCHFormulasActionCreate', function testLCHFormulasActionCreate() {
 
 	it('rejects if not object', async function() {
-		await rejects(mainModule.LCHMembersActionCreate(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
 	});
 
 	it('returns object with LCHErrors if not valid', async function() {
-		deepEqual((await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, Object.assign(kTesting.StubMemberObject(), {
+		deepEqual((await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, Object.assign(kTesting.StubFormulaObject(), {
 			LCHMemberBody: null,
 		}))).LCHErrors, {
 			LCHMemberBody: [
@@ -37,9 +37,9 @@ describe('LCHMembersActionCreate', function testLCHMembersActionCreate() {
 	});
 
 	it('returns LCHMember', async function() {
-		let item = await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject());
+		let item = await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject());
 
-		deepEqual(item, Object.assign(kTesting.StubMemberObject(), {
+		deepEqual(item, Object.assign(kTesting.StubFormulaObject(), {
 			LCHMemberID: item.LCHMemberID,
 			LCHMemberCreationDate: item.LCHMemberCreationDate,
 			LCHMemberModificationDate: item.LCHMemberModificationDate,
@@ -49,47 +49,47 @@ describe('LCHMembersActionCreate', function testLCHMembersActionCreate() {
 
 	it('sets LCHMemberID to unique value', async function() {
 		let items = await kTesting.uSerial(Array.from(Array(10)).map(async function (e) {
-			return (await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject())).LCHMemberID;
+			return (await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject())).LCHMemberID;
 		}));
 		deepEqual([...(new Set(items))], items);
 	});
 
 	it('sets LCHMemberCreationDate to now', async function() {
-		deepEqual(new Date() - (await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject())).LCHMemberCreationDate < 100, true);
+		deepEqual(new Date() - (await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject())).LCHMemberCreationDate < 100, true);
 	});
 
 	it('sets LCHMemberModificationDate to now', async function() {
-		deepEqual(new Date() - (await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject())).LCHMemberModificationDate < 100, true);
+		deepEqual(new Date() - (await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject())).LCHMemberModificationDate < 100, true);
 	});
 
 });
 
-describe('LCHMembersActionRead', function testLCHMembersActionRead() {
+describe('LCHFormulasActionRead', function testLCHFormulasActionRead() {
 
 	it('rejects if not string', async function() {
-		await rejects(mainModule.LCHMembersActionRead(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHFormulasActionRead(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
 	});
 
 	it('returns null if not found', async function() {
-		deepEqual(await mainModule.LCHMembersActionRead(LCHTestingStorageClient, 'alfa'), null);
+		deepEqual(await mainModule.LCHFormulasActionRead(LCHTestingStorageClient, 'alfa'), null);
 	});
 
 	it('returns LCHMember', async function() {
-		let item = await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject());
+		let item = await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject());
 
-		deepEqual(item, await mainModule.LCHMembersActionRead(LCHTestingStorageClient, item.LCHMemberID));
+		deepEqual(item, await mainModule.LCHFormulasActionRead(LCHTestingStorageClient, item.LCHMemberID));
 	});
 
 });
 
-describe('LCHMembersActionUpdate', function testLCHMembersActionUpdate() {
+describe('LCHFormulasActionUpdate', function testLCHFormulasActionUpdate() {
 
 	it('rejects if not object', async function() {
-		await rejects(mainModule.LCHMembersActionUpdate(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHFormulasActionUpdate(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
 	});
 
 	it('returns object with LCHErrors if not valid', async function() {
-		deepEqual((await mainModule.LCHMembersActionUpdate(LCHTestingStorageClient, Object.assign(await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject()), {
+		deepEqual((await mainModule.LCHFormulasActionUpdate(LCHTestingStorageClient, Object.assign(await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject()), {
 			LCHMemberID: null,
 		}))).LCHErrors, {
 			LCHMemberID: [
@@ -99,9 +99,9 @@ describe('LCHMembersActionUpdate', function testLCHMembersActionUpdate() {
 	});
 
 	it('returns LCHMember', async function() {
-		let itemCreated = await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject());
+		let itemCreated = await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject());
 
-		let item = await mainModule.LCHMembersActionUpdate(LCHTestingStorageClient, itemCreated);
+		let item = await mainModule.LCHFormulasActionUpdate(LCHTestingStorageClient, itemCreated);
 
 		deepEqual(item, Object.assign(itemCreated, {
 			LCHMemberModificationDate: item.LCHMemberModificationDate,
@@ -109,15 +109,15 @@ describe('LCHMembersActionUpdate', function testLCHMembersActionUpdate() {
 	});
 
 	it('sets LCHMemberModificationDate to now', async function() {
-		deepEqual(new Date() - (await mainModule.LCHMembersActionUpdate(LCHTestingStorageClient, await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject()))).LCHMemberModificationDate < 100, true);
+		deepEqual(new Date() - (await mainModule.LCHFormulasActionUpdate(LCHTestingStorageClient, await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject()))).LCHMemberModificationDate < 100, true);
 	});
 
 	it('writes inputData if not found', async function() {
-		let item = await mainModule.LCHMembersActionUpdate(LCHTestingStorageClient, Object.assign(kTesting.StubMemberObject(), {
+		let item = await mainModule.LCHFormulasActionUpdate(LCHTestingStorageClient, Object.assign(kTesting.StubFormulaObject(), {
 			LCHMemberID: 'alfa',
 			LCHMemberCreationDate: new Date(),
 		}));
-		deepEqual(item, Object.assign(kTesting.StubMemberObject(), {
+		deepEqual(item, Object.assign(kTesting.StubFormulaObject(), {
 			LCHMemberID: item.LCHMemberID,
 			LCHMemberCreationDate: item.LCHMemberCreationDate,
 			LCHMemberModificationDate: item.LCHMemberModificationDate,
@@ -127,36 +127,36 @@ describe('LCHMembersActionUpdate', function testLCHMembersActionUpdate() {
 
 });
 
-describe('LCHMembersActionDelete', function testLCHMembersActionDelete() {
+describe('LCHFormulasActionDelete', function testLCHFormulasActionDelete() {
 
 	it('rejects if not string', async function() {
-		await rejects(mainModule.LCHMembersActionDelete(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHFormulasActionDelete(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
 	});
 
 	it('returns statusCode', async function() {
-		deepEqual(await mainModule.LCHMembersActionDelete(LCHTestingStorageClient, (await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject())).LCHMemberID), {
+		deepEqual(await mainModule.LCHFormulasActionDelete(LCHTestingStorageClient, (await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject())).LCHMemberID), {
 			statusCode: 200,
 		});
 	});
 
 	it('deletes LCHMember', async function() {
 		let itemID;
-		await mainModule.LCHMembersActionDelete(LCHTestingStorageClient, itemID = (await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject())).LCHMemberID);
-		deepEqual(await mainModule.LCHMembersActionRead(LCHTestingStorageClient, itemID), null);
+		await mainModule.LCHFormulasActionDelete(LCHTestingStorageClient, itemID = (await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject())).LCHMemberID);
+		deepEqual(await mainModule.LCHFormulasActionRead(LCHTestingStorageClient, itemID), null);
 	});
 
 });
 
-describe('LCHMembersActionList', function testLCHMembersActionList() {
+describe('LCHFormulasActionList', function testLCHFormulasActionList() {
 
 	it('returns array', async function() {
-		deepEqual(await mainModule.LCHMembersActionList(LCHTestingStorageClient), []);
+		deepEqual(await mainModule.LCHFormulasActionList(LCHTestingStorageClient), []);
 	});
 
 	it('returns array with existing LCHMembers', async function() {
-		let item = await mainModule.LCHMembersActionCreate(LCHTestingStorageClient, kTesting.StubMemberObject());
+		let item = await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject());
 
-		deepEqual(await mainModule.LCHMembersActionList(LCHTestingStorageClient), [item]);
+		deepEqual(await mainModule.LCHFormulasActionList(LCHTestingStorageClient), [item]);
 	});
 
 });

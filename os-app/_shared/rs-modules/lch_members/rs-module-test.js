@@ -18,7 +18,7 @@ const kTesting = {
 
 		return outputData;
 	},
-	StubMemberObjectValid: function() {
+	StubFormulaObjectValid: function() {
 		return {
 			LCHMemberID: 'alfa',
 			LCHMemberBody: 'bravo',
@@ -38,7 +38,7 @@ describe('OLSKChangeDelegateProtocol', function testOLSKChangeDelegateProtocol()
 	it('calls OLSKChangeDelegateAdd on create', function(done) {
 		kTesting.StubRemoteStorage({
 			OLSKChangeDelegateAdd: function (inputData) {
-				assert.deepEqual(inputData, Object.assign(kTesting.StubMemberObjectValid(), {
+				assert.deepEqual(inputData, Object.assign(kTesting.StubFormulaObjectValid(), {
 					LCHMemberCreationDate: inputData.LCHMemberCreationDate,
 					LCHMemberModificationDate: inputData.LCHMemberModificationDate,
 					'@context': inputData['@context'],
@@ -46,7 +46,7 @@ describe('OLSKChangeDelegateProtocol', function testOLSKChangeDelegateProtocol()
 
 				done();
 			},
-		}).lch_members.writeObject('alfa', kTesting.StubMemberObjectValid());
+		}).lch_members.writeObject('alfa', kTesting.StubFormulaObjectValid());
 	});
 
 	it('calls OLSKChangeDelegateUpdate on update', async function(done) {
@@ -58,7 +58,7 @@ describe('OLSKChangeDelegateProtocol', function testOLSKChangeDelegateProtocol()
 			},
 		});
 
-		let item = remoteStorage.lch_members.writeObject('alfa', kTesting.StubMemberObjectValid());
+		let item = remoteStorage.lch_members.writeObject('alfa', kTesting.StubFormulaObjectValid());
 
 		remoteStorage.lch_members.writeObject(item.LCHMemberID, Object.assign(item, {
 			LCHMemberBody: 'charlie',
@@ -74,7 +74,7 @@ describe('OLSKChangeDelegateProtocol', function testOLSKChangeDelegateProtocol()
 			},
 		});
 
-		remoteStorage.lch_members.deleteObject((await remoteStorage.lch_members.writeObject('alfa', kTesting.StubMemberObjectValid())).LCHMemberID);
+		remoteStorage.lch_members.deleteObject((await remoteStorage.lch_members.writeObject('alfa', kTesting.StubFormulaObjectValid())).LCHMemberID);
 	});
 
 });

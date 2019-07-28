@@ -1,4 +1,4 @@
-export const LCHMembersModelErrorsFor = function(inputData) {
+export const LCHFormulasModelErrorsFor = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
 	}
@@ -58,7 +58,7 @@ export const LCHMembersModelErrorsFor = function(inputData) {
 	return Object.entries(errors).length ? errors : null;
 };
 
-export const LCHMembersModelPreJSONSchemaValidate = function(inputData) {
+export const LCHFormulasModelPreJSONSchemaValidate = function(inputData) {
 	if (inputData.LCHMemberCreationDate) {
 		inputData.LCHMemberCreationDate = inputData.LCHMemberCreationDate.toISOString();
 	}
@@ -70,7 +70,7 @@ export const LCHMembersModelPreJSONSchemaValidate = function(inputData) {
 	return inputData;
 };
 
-export const LCHMembersModelPostJSONParse = function(inputData) {
+export const LCHFormulasModelPostJSONParse = function(inputData) {
 	if (!inputData) {
 		return inputData;
 	}
@@ -86,7 +86,7 @@ export const LCHMembersModelPostJSONParse = function(inputData) {
 	return inputData;
 };
 
-export const LCHMembersModelConvertLegacy = function(inputData) {
+export const LCHFormulasModelConvertLegacy = function(inputData) {
 	return {
 		id: inputData.LCHMemberSignature || inputData.LCHMemberID,
 		args: inputData.LCHMemberArgs,
@@ -95,7 +95,7 @@ export const LCHMembersModelConvertLegacy = function(inputData) {
 	};
 };
 
-export const LCHMembersModelErrorsForUnwrappedMemberObject = function (inputData) {
+export const LCHFormulasModelErrorsForUnwrappedMemberObject = function (inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
 	}
@@ -125,8 +125,8 @@ export const LCHMembersModelErrorsForUnwrappedMemberObject = function (inputData
 	return Object.keys(errorsHash).length ? errorsHash : null;
 };
 
-export const LCHMembersModelWrappedMemberObjectFor = function (inputData) {
-	if (LCHMembersModelErrorsForUnwrappedMemberObject(inputData)) {
+export const LCHFormulasModelWrappedMemberObjectFor = function (inputData) {
+	if (LCHFormulasModelErrorsForUnwrappedMemberObject(inputData)) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
@@ -147,7 +147,7 @@ export const LCHMembersModelWrappedMemberObjectFor = function (inputData) {
 	}, {});
 };
 
-export const LCHMembersModelErrorsForFormulaObject = function (inputData) {
+export const LCHFormulasModelErrorsForFormulaObject = function (inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
 	}

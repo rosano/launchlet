@@ -1,6 +1,6 @@
 <script>
 import { membersAll, modelDidChange } from './persistence.js';
-import * as LCHMembersModel from '../_shared/rs-modules/lch_members/model.js';
+import * as LCHFormulasModel from '../_shared/rs-modules/lch_members/model.js';
 import { LCHComposeLogicBoomarkletStringFor, LCHComposeLogicBookmarkletBinaryFor } from './ui-logic.js';
 
 let javascriptComposed, javascriptBinary = '';
@@ -11,9 +11,9 @@ onMount(function () {
 		javascriptComposed = LCHComposeLogicBoomarkletStringFor({
 			LCHCompileToken_AppStyle: window.LCHComposeBookmarkletStyle.textContent,
 			LCHCompileToken_AppBehaviour: window.LCHComposeBookmarkletBehaviour.textContent,
-			LCHCompileToken_MemberObjects: $membersAll.filter(function (e) {
+			LCHCompileToken_FormulaObjects: $membersAll.filter(function (e) {
 				return !!e.LCHMemberBody;
-			}).map(LCHMembersModel.LCHMembersModelConvertLegacy).map(LCHMembersModel.LCHMembersModelWrappedMemberObjectFor),
+			}).map(LCHFormulasModel.LCHFormulasModelConvertLegacy).map(LCHFormulasModel.LCHFormulasModelWrappedMemberObjectFor),
 			LCHCompileToken_AppLanguageCode: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 

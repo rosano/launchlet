@@ -1,7 +1,7 @@
 <script>
 import { LCHOptionsObject, OLSKLocalized, formulaSelected } from './_shared.js';
 import { LCHLauncherModeJump, LCHBookmarkletLogicFilter } from './ui-logic.js';
-import { LCHMembersModelErrorsForFormulaObject } from '../_shared/rs-modules/lch_members/model.js';
+import { LCHFormulasModelErrorsForFormulaObject } from '../_shared/rs-modules/lch_members/model.js';
 
 export let formulaObjects = [];
 export let optionsObject = {};
@@ -22,7 +22,7 @@ export let optionsObject = {};
 	}
 
 	formulaObjects.push(...pageFormulas.filter(function(e) {
-		return !LCHMembersModelErrorsForFormulaObject(e);
+		return !LCHFormulasModelErrorsForFormulaObject(e);
 	}));
 })();
 

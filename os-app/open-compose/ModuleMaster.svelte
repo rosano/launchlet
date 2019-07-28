@@ -1,12 +1,12 @@
 <script>
-import * as LCHMembersAction from '../_shared/rs-modules/lch_members/action.js';
+import * as LCHFormulasAction from '../_shared/rs-modules/lch_members/action.js';
 import { LCHComposeLogicSort } from './ui-logic.js';
 
 import { OLSKLocalized } from '../_shared/common/global.js';
 import { storageClient, membersAll, memberSelected } from './persistence.js';
 
 async function memberCreate() {
-	let item = await LCHMembersAction.LCHMembersActionCreate(storageClient, {
+	let item = await LCHFormulasAction.LCHFormulasActionCreate(storageClient, {
 		LCHMemberName: '',
 		LCHMemberArgs: '',
 		LCHMemberBody: '',

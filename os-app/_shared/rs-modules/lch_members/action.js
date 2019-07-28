@@ -1,39 +1,39 @@
-import * as LCHMembersModel from './model.js';
-import * as LCHMembersMetal from './metal.js';
+import * as LCHFormulasModel from './model.js';
+import * as LCHFormulasMetal from './metal.js';
 import * as ULIDPackage from 'ulid';
 
-export const LCHMembersActionCreate = async function(storageClient, inputData) {
+export const LCHFormulasActionCreate = async function(storageClient, inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		return Promise.reject(new Error('LCHErrorInputInvalid'));
 	}
 
 	let creationDate = new Date();
 
-	return await LCHMembersMetal.LCHMembersMetalWrite(storageClient, Object.assign(inputData, {
+	return await LCHFormulasMetal.LCHFormulasMetalWrite(storageClient, Object.assign(inputData, {
 		LCHMemberID: ULIDPackage.ulid(),
 		LCHMemberCreationDate: creationDate,
 		LCHMemberModificationDate: creationDate,
 	}));
 };
 
-export const LCHMembersActionRead = async function(storageClient, inputData) {
-	return await LCHMembersMetal.LCHMembersMetalRead(storageClient, inputData);
+export const LCHFormulasActionRead = async function(storageClient, inputData) {
+	return await LCHFormulasMetal.LCHFormulasMetalRead(storageClient, inputData);
 };
 
-export const LCHMembersActionUpdate = async function(storageClient, inputData) {
+export const LCHFormulasActionUpdate = async function(storageClient, inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		return Promise.reject(new Error('LCHErrorInputInvalid'));
 	}
 
-	return await LCHMembersMetal.LCHMembersMetalWrite(storageClient, Object.assign(inputData, {
+	return await LCHFormulasMetal.LCHFormulasMetalWrite(storageClient, Object.assign(inputData, {
 		LCHMemberModificationDate: new Date(),
 	}));
 };
 
-export const LCHMembersActionDelete = async function(storageClient, inputData) {
-	return await LCHMembersMetal.LCHMembersMetalDelete(storageClient, inputData);
+export const LCHFormulasActionDelete = async function(storageClient, inputData) {
+	return await LCHFormulasMetal.LCHFormulasMetalDelete(storageClient, inputData);
 };
 
-export const LCHMembersActionList = async function(storageClient) {
-	return Object.values(await LCHMembersMetal.LCHMembersMetalList(storageClient));
+export const LCHFormulasActionList = async function(storageClient) {
+	return Object.values(await LCHFormulasMetal.LCHFormulasMetalList(storageClient));
 };

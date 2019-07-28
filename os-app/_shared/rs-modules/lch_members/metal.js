@@ -1,11 +1,11 @@
-import * as LCHMembersModel from './model.js';
+import * as LCHFormulasModel from './model.js';
 
-export const LCHMembersMetalWrite = async function(storageClient, inputData) {
+export const LCHFormulasMetalWrite = async function(storageClient, inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		return Promise.reject(new Error('LCHErrorInputInvalid'));
 	}
 
-	let errors = LCHMembersModel.LCHMembersModelErrorsFor(inputData);
+	let errors = LCHFormulasModel.LCHFormulasModelErrorsFor(inputData);
 	if (errors) {
 		return Promise.resolve({
 			LCHErrors: errors,
@@ -15,25 +15,25 @@ export const LCHMembersMetalWrite = async function(storageClient, inputData) {
 	return await storageClient.lch_members.writeObject(inputData.LCHMemberID, inputData);
 };
 
-export const LCHMembersMetalRead = async function(storageClient, inputData) {
+export const LCHFormulasMetalRead = async function(storageClient, inputData) {
 	if (typeof inputData !== 'string') {
 		return Promise.reject(new Error('LCHErrorInputInvalid'));
 	}
 
-	return LCHMembersModel.LCHMembersModelPostJSONParse(await storageClient.lch_members.readObject(inputData));
+	return LCHFormulasModel.LCHFormulasModelPostJSONParse(await storageClient.lch_members.readObject(inputData));
 };
 
-export const LCHMembersMetalList = async function(storageClient) {
+export const LCHFormulasMetalList = async function(storageClient) {
 	let outputData = await storageClient.lch_members.listObjects();
 
 	for (let key in outputData) {
-		LCHMembersModel.LCHMembersModelPostJSONParse(outputData[key]);
+		LCHFormulasModel.LCHFormulasModelPostJSONParse(outputData[key]);
 	}
 	
 	return outputData;
 };
 
-export const LCHMembersMetalDelete = async function(storageClient, inputData) {
+export const LCHFormulasMetalDelete = async function(storageClient, inputData) {
 	if (typeof inputData !== 'string') {
 		return Promise.reject(new Error('LCHErrorInputInvalid'));
 	}

@@ -3,7 +3,7 @@ import { throws, deepEqual } from 'assert';
 import * as mainModule from './model.js';
 
 const kTesting = {
-	StubMemberObjectValid: function() {
+	StubFormulaObjectValid: function() {
 		return {
 			LCHMemberID: 'alfa',
 			LCHMemberArgs: 'bravo',
@@ -26,16 +26,16 @@ const kTesting = {
 	},
 };
 
-describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
+describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mainModule.LCHMembersModelErrorsFor(null);
+			mainModule.LCHFormulasModelErrorsFor(null);
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns object if LCHMemberID not string', function() {
-		deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
+		deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 			LCHMemberID: null,
 		})), {
 			LCHMemberID: [
@@ -45,7 +45,7 @@ describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
 	});
 
 	it('returns object if LCHMemberID not filled', function() {
-		deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
+		deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 			LCHMemberID: ' ',
 		})), {
 			LCHMemberID: [
@@ -55,7 +55,7 @@ describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
 	});
 
 	it('returns object if LCHMemberArgs not string', function() {
-		deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
+		deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 			LCHMemberArgs: null,
 		})), {
 			LCHMemberArgs: [
@@ -65,7 +65,7 @@ describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
 	});
 
 	it('returns object if LCHMemberBody not string', function() {
-		deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
+		deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 			LCHMemberBody: null,
 		})), {
 			LCHMemberBody: [
@@ -75,7 +75,7 @@ describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
 	});
 
 	it('returns object if LCHMemberCreationDate not date', function() {
-		deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
+		deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 			LCHMemberCreationDate: new Date('alfa'),
 		})), {
 			LCHMemberCreationDate: [
@@ -85,7 +85,7 @@ describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
 	});
 
 	it('returns object if LCHMemberModificationDate not date', function() {
-		deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
+		deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 			LCHMemberModificationDate: new Date('alfa'),
 		})), {
 			LCHMemberModificationDate: [
@@ -95,13 +95,13 @@ describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
 	});
 
 	it('returns null', function() {
-		deepEqual(mainModule.LCHMembersModelErrorsFor(kTesting.StubMemberObjectValid()), null);
+		deepEqual(mainModule.LCHFormulasModelErrorsFor(kTesting.StubFormulaObjectValid()), null);
 	});
 
 	context('LCHMemberName', function() {
 
 		it('returns object if LCHMemberName not string', function() {
-			deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
+			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 				LCHMemberName: null,
 			})), {
 				LCHMemberName: [
@@ -115,7 +115,7 @@ describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
 	context('LCHMemberSignature', function() {
 
 		it('returns object if LCHMemberSignature not string', function() {
-			deepEqual(mainModule.LCHMembersModelErrorsFor(Object.assign(kTesting.StubMemberObjectValid(), {
+			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 				LCHMemberSignature: null,
 			})), {
 				LCHMemberSignature: [
@@ -128,14 +128,14 @@ describe('LCHMembersModelErrorsFor', function testLCHMembersModelErrorsFor() {
 
 });
 
-describe('LCHMembersModelPreJSONSchemaValidate', function testLCHMembersModelPreJSONSchemaValidate() {
+describe('LCHFormulasModelPreJSONSchemaValidate', function testLCHFormulasModelPreJSONSchemaValidate() {
 
 	it('returns input', function() {
-		deepEqual(mainModule.LCHMembersModelPreJSONSchemaValidate({}), {});
+		deepEqual(mainModule.LCHFormulasModelPreJSONSchemaValidate({}), {});
 	});
 
 	it('returns input with LCHMemberCreationDate as string', function() {
-		deepEqual(mainModule.LCHMembersModelPreJSONSchemaValidate({
+		deepEqual(mainModule.LCHFormulasModelPreJSONSchemaValidate({
 			LCHMemberCreationDate: new Date('2018-12-09T19:07:01.902Z'),
 		}), {
 			LCHMemberCreationDate: '2018-12-09T19:07:01.902Z',
@@ -143,7 +143,7 @@ describe('LCHMembersModelPreJSONSchemaValidate', function testLCHMembersModelPre
 	});
 
 	it('returns input with LCHMemberModificationDate as string', function() {
-		deepEqual(mainModule.LCHMembersModelPreJSONSchemaValidate({
+		deepEqual(mainModule.LCHFormulasModelPreJSONSchemaValidate({
 			LCHMemberModificationDate: new Date('2018-12-09T19:07:01.902Z'),
 		}), {
 			LCHMemberModificationDate: '2018-12-09T19:07:01.902Z',
@@ -152,18 +152,18 @@ describe('LCHMembersModelPreJSONSchemaValidate', function testLCHMembersModelPre
 
 });
 
-describe('LCHMembersModelPostJSONParse', function testLCHMembersModelPostJSONParse() {
+describe('LCHFormulasModelPostJSONParse', function testLCHFormulasModelPostJSONParse() {
 
 	it('returns input null', function() {
-		deepEqual(mainModule.LCHMembersModelPostJSONParse(null), null);
+		deepEqual(mainModule.LCHFormulasModelPostJSONParse(null), null);
 	});
 
 	it('returns input object', function() {
-		deepEqual(mainModule.LCHMembersModelPostJSONParse({}), {});
+		deepEqual(mainModule.LCHFormulasModelPostJSONParse({}), {});
 	});
 
 	it('returns input with LCHMemberCreationDate as date', function() {
-		deepEqual(mainModule.LCHMembersModelPostJSONParse({
+		deepEqual(mainModule.LCHFormulasModelPostJSONParse({
 			LCHMemberCreationDate: '2018-12-09T19:07:01.902Z',
 		}), {
 			LCHMemberCreationDate: new Date('2018-12-09T19:07:01.902Z'),
@@ -171,7 +171,7 @@ describe('LCHMembersModelPostJSONParse', function testLCHMembersModelPostJSONPar
 	});
 
 	it('returns input with LCHMemberModificationDate as date', function() {
-		deepEqual(mainModule.LCHMembersModelPostJSONParse({
+		deepEqual(mainModule.LCHFormulasModelPostJSONParse({
 			LCHMemberModificationDate: '2018-12-09T19:07:01.902Z',
 		}), {
 			LCHMemberModificationDate: new Date('2018-12-09T19:07:01.902Z'),
@@ -180,16 +180,16 @@ describe('LCHMembersModelPostJSONParse', function testLCHMembersModelPostJSONPar
 
 });
 
-describe('LCHMembersModelErrorsForUnwrappedMemberObject', function testLCHMembersModelErrorsForUnwrappedMemberObject() {
+describe('LCHFormulasModelErrorsForUnwrappedMemberObject', function testLCHFormulasModelErrorsForUnwrappedMemberObject() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mainModule.LCHMembersModelErrorsForUnwrappedMemberObject(null);
+			mainModule.LCHFormulasModelErrorsForUnwrappedMemberObject(null);
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns error if id not string', function() {
-		deepEqual(mainModule.LCHMembersModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.StubUnwrappedMemberObjectValid(), {
+		deepEqual(mainModule.LCHFormulasModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.StubUnwrappedMemberObjectValid(), {
 			id: null,
 		})), {
 			id: new Error('LCHErrorNotString'),
@@ -197,7 +197,7 @@ describe('LCHMembersModelErrorsForUnwrappedMemberObject', function testLCHMember
 	});
 
 	it('returns error if fnbody not string', function() {
-		deepEqual(mainModule.LCHMembersModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.StubUnwrappedMemberObjectValid(), {
+		deepEqual(mainModule.LCHFormulasModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.StubUnwrappedMemberObjectValid(), {
 			fnbody: null,
 		})), {
 			fnbody: new Error('LCHErrorNotString'),
@@ -205,11 +205,11 @@ describe('LCHMembersModelErrorsForUnwrappedMemberObject', function testLCHMember
 	});
 
 	it('returns empty array', function() {
-		deepEqual(mainModule.LCHMembersModelErrorsForUnwrappedMemberObject(kTesting.StubUnwrappedMemberObjectValid()), null);
+		deepEqual(mainModule.LCHFormulasModelErrorsForUnwrappedMemberObject(kTesting.StubUnwrappedMemberObjectValid()), null);
 	});
 
 	it('returns error if args not string', function() {
-		deepEqual(mainModule.LCHMembersModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.StubUnwrappedMemberObjectValid(), {
+		deepEqual(mainModule.LCHFormulasModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.StubUnwrappedMemberObjectValid(), {
 			args: null,
 		})), {
 			args: new Error('LCHErrorNotString'),
@@ -217,7 +217,7 @@ describe('LCHMembersModelErrorsForUnwrappedMemberObject', function testLCHMember
 	});
 
 	it('returns error if name not string', function() {
-		deepEqual(mainModule.LCHMembersModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.StubUnwrappedMemberObjectValid(), {
+		deepEqual(mainModule.LCHFormulasModelErrorsForUnwrappedMemberObject(Object.assign(kTesting.StubUnwrappedMemberObjectValid(), {
 			name: null,
 		})), {
 			name: new Error('LCHErrorNotString'),
@@ -226,16 +226,16 @@ describe('LCHMembersModelErrorsForUnwrappedMemberObject', function testLCHMember
 
 });
 
-describe('LCHMembersModelWrappedMemberObjectFor', function testLCHMembersModelWrappedMemberObjectFor() {
+describe('LCHFormulasModelWrappedMemberObjectFor', function testLCHFormulasModelWrappedMemberObjectFor() {
 
 	it('throws error if not UnwrappedMemberObject', function() {
 		throws(function() {
-			mainModule.LCHMembersModelWrappedMemberObjectFor({});
+			mainModule.LCHFormulasModelWrappedMemberObjectFor({});
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns WrappedMemberObject', function() {
-		deepEqual(mainModule.LCHMembersModelWrappedMemberObjectFor(kTesting.StubUnwrappedMemberObjectValid()), {
+		deepEqual(mainModule.LCHFormulasModelWrappedMemberObjectFor(kTesting.StubUnwrappedMemberObjectValid()), {
 			id: kTesting.StubUnwrappedMemberObjectValid().id,
 			fnclosure: 'function () { return; }',
 		});
@@ -244,7 +244,7 @@ describe('LCHMembersModelWrappedMemberObjectFor', function testLCHMembersModelWr
 	context('id', function () {
 
 		it('copies', function() {
-			deepEqual(mainModule.LCHMembersModelWrappedMemberObjectFor(kTesting.StubUnwrappedMemberObjectValid()).id, kTesting.StubUnwrappedMemberObjectValid().id);
+			deepEqual(mainModule.LCHFormulasModelWrappedMemberObjectFor(kTesting.StubUnwrappedMemberObjectValid()).id, kTesting.StubUnwrappedMemberObjectValid().id);
 		});
 
 	});
@@ -252,11 +252,11 @@ describe('LCHMembersModelWrappedMemberObjectFor', function testLCHMembersModelWr
 	context('fnclosure', function () {
 
 		it('wraps fnbody', function() {
-			deepEqual(mainModule.LCHMembersModelWrappedMemberObjectFor(kTesting.StubUnwrappedMemberObjectValid()).fnclosure, `function () { ${ kTesting.StubUnwrappedMemberObjectValid().fnbody } }`);
+			deepEqual(mainModule.LCHFormulasModelWrappedMemberObjectFor(kTesting.StubUnwrappedMemberObjectValid()).fnclosure, `function () { ${ kTesting.StubUnwrappedMemberObjectValid().fnbody } }`);
 		});
 
 		it('wraps args', function() {
-			deepEqual(mainModule.LCHMembersModelWrappedMemberObjectFor(Object.assign(kTesting.StubUnwrappedMemberObjectValid(), {
+			deepEqual(mainModule.LCHFormulasModelWrappedMemberObjectFor(Object.assign(kTesting.StubUnwrappedMemberObjectValid(), {
 				args: 'alfa',
 			})).fnclosure, `function (alfa) { ${ kTesting.StubUnwrappedMemberObjectValid().fnbody } }`);
 		});
@@ -265,16 +265,16 @@ describe('LCHMembersModelWrappedMemberObjectFor', function testLCHMembersModelWr
 
 });
 
-describe('LCHMembersModelErrorsForFormulaObject', function testLCHMembersModelErrorsForFormulaObject() {
+describe('LCHFormulasModelErrorsForFormulaObject', function testLCHFormulasModelErrorsForFormulaObject() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mainModule.LCHMembersModelErrorsForFormulaObject(null);
+			mainModule.LCHFormulasModelErrorsForFormulaObject(null);
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns error if id not string', function() {
-		deepEqual(mainModule.LCHMembersModelErrorsForFormulaObject(Object.assign(kTesting.StubWrappedMemberObjectValid(), {
+		deepEqual(mainModule.LCHFormulasModelErrorsForFormulaObject(Object.assign(kTesting.StubWrappedMemberObjectValid(), {
 			id: null,
 		})), {
 			id: new Error('LCHErrorNotString'),
@@ -282,7 +282,7 @@ describe('LCHMembersModelErrorsForFormulaObject', function testLCHMembersModelEr
 	});
 
 	it('returns error if fn not function', function() {
-		deepEqual(mainModule.LCHMembersModelErrorsForFormulaObject(Object.assign(kTesting.StubWrappedMemberObjectValid(), {
+		deepEqual(mainModule.LCHFormulasModelErrorsForFormulaObject(Object.assign(kTesting.StubWrappedMemberObjectValid(), {
 			fn: null,
 		})), {
 			fn: new Error('LCHErrorNotFunction'),
@@ -290,7 +290,7 @@ describe('LCHMembersModelErrorsForFormulaObject', function testLCHMembersModelEr
 	});
 
 	it('returns empty array', function() {
-		deepEqual(mainModule.LCHMembersModelErrorsForFormulaObject(kTesting.StubWrappedMemberObjectValid()), null);
+		deepEqual(mainModule.LCHFormulasModelErrorsForFormulaObject(kTesting.StubWrappedMemberObjectValid()), null);
 	});
 
 });

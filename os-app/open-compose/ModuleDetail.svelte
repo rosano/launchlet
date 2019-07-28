@@ -1,5 +1,5 @@
 <script>
-import * as LCHMembersAction from '../_shared/rs-modules/lch_members/action.js';
+import * as LCHFormulasAction from '../_shared/rs-modules/lch_members/action.js';
 
 import { OLSKLocalized } from '../_shared/common/global.js';
 import { storageClient, membersAll, memberSelected, modelDidChange } from './persistence.js';
@@ -83,7 +83,7 @@ async function memberSave() {
 			OLSKThrottleCallback: async function () {
 				delete throttleMap[$memberSelected.LCHMemberID];
 
-				await LCHMembersAction.LCHMembersActionUpdate(storageClient, $memberSelected);
+				await LCHFormulasAction.LCHFormulasActionUpdate(storageClient, $memberSelected);
 			},
 		};	
 	}
@@ -102,7 +102,7 @@ async function memberDelete() {
 		});
 	});
 
-	await LCHMembersAction.LCHMembersActionDelete(storageClient, $memberSelected.LCHMemberID);
+	await LCHFormulasAction.LCHFormulasActionDelete(storageClient, $memberSelected.LCHMemberID);
 
 	return memberSelected.set(null);
 }
