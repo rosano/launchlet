@@ -13,6 +13,50 @@ describe('LCHLauncherModes', function testLCHLauncherModes() {
 
 });
 
+describe('LCHLauncherOptions', function testLCHLauncherOptions() {
+
+	it('throws error if not object', function() {
+		throws(function() {
+			mainModule.LCHBookmarkletLogicFilter(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	context('languageCode', function () {
+
+		it('returns en', function() {
+			deepEqual(mainModule.LCHLauncherOptions({}).languageCode, 'en');
+		});
+
+		it('returns inputData', function() {
+			deepEqual(mainModule.LCHLauncherOptions({
+				languageCode: 'alfa'
+			}).languageCode, 'alfa');
+		});
+		
+	});
+
+	context('runMode', function () {
+
+		it('returns en', function() {
+			deepEqual(mainModule.LCHLauncherOptions({}).runMode, 'default');
+		});
+
+		it('ignores if not valid', function() {
+			deepEqual(mainModule.LCHLauncherOptions({
+				runMode: 'alfa'
+			}).runMode, 'default');
+		});
+
+		it('returns inputData', function() {
+			deepEqual(mainModule.LCHLauncherOptions({
+				runMode: 'jump'
+			}).runMode, 'jump');
+		});
+		
+	});
+
+});
+
 describe('LCHBookmarkletLogicFilter', function testLCHBookmarkletLogicFilter() {
 
 	it('throws error if not string', function() {
