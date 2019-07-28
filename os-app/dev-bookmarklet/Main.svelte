@@ -1,6 +1,6 @@
 <script>
 import { LCHOptionsObject, OLSKLocalized } from './_shared.js';
-import { LCHBookmarkletLogicFilter } from './ui-logic.js';
+import { LCHLauncherModeJump, LCHBookmarkletLogicFilter } from './ui-logic.js';
 import { LCHMembersModelErrorsForFormulaObject } from '../_shared/rs-modules/lch_members/model.js';
 
 export let memberObjects = [];
@@ -146,7 +146,7 @@ function handleClick(event) {
 
 <div class="Container" bind:this={ rootElement }>
 	<div class="Bezel">
-		<input placeholder="{ OLSKLocalized('LCHBookmarkletInputPlaceholder') }" bind:value={ filterText } bind:this={ inputElement } />
+		<input placeholder="{ OLSKLocalized(LCHOptionsObject().runMode === LCHLauncherModeJump ? 'LCHBookmarkletInputPlaceholderJump' : 'LCHBookmarkletInputPlaceholderDefault') }" bind:value={ filterText } bind:this={ inputElement } />
 		{#if visibleMemberObjects.length }
 		<div class="ListContainer">
 			{#each visibleMemberObjects as e}
