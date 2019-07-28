@@ -43,7 +43,7 @@ export const LCHComposeLogicBoomarkletTemplate = function () {
 				props: {
 					memberObjects: _protectFromCompiler(`LCHCompileToken_MemberObjects`),
 					optionsObject: {
-						localizationLanguageCode: 'LCHCompileToken_AppLanguageCode',
+						languageCode: 'LCHCompileToken_AppLanguageCode',
 						_didFinish () {
 							return window.bookmarklet.instanceDestroy();
 						},

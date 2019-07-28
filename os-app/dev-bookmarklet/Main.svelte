@@ -1,5 +1,5 @@
 <script>
-import { OLSKLocalized, languageCode, runMode } from './_shared.js';
+import { LCHOptionsObject, OLSKLocalized } from './_shared.js';
 import { LCHBookmarkletLogicFilter } from './ui-logic.js';
 import { LCHMembersModelErrorsForFormulaObject } from '../_shared/rs-modules/lch_members/model.js';
 
@@ -7,8 +7,7 @@ export let memberObjects = [];
 export let optionsObject = {};
 
 (function StartSetup() {
-	languageCode(optionsObject.localizationLanguageCode);
-	runMode(optionsObject.runMode);
+	LCHOptionsObject(optionsObject);
 })();
 
 (function StartPageFormulas() {
