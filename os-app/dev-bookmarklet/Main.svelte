@@ -230,6 +230,11 @@ input {
 
 	/* Behaviour */
 	cursor: pointer;
+
+	/* CapWidth */
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .ListItemSelected {
