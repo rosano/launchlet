@@ -1,7 +1,7 @@
 <script>
 import { LCHOptionsObject, OLSKLocalized, formulaSelected } from './_shared.js';
 import { LCHLauncherModeJump, LCHLauncherLogicFilter } from './ui-logic.js';
-import { LCHFormulasModelErrorsForFormulaObject } from '../_shared/rs-modules/lch_members/model.js';
+import { LCHRecipesModelErrorsFor } from './api.js';
 
 export let formulaObjects = [];
 export let optionsObject = {};

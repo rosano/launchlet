@@ -8,12 +8,6 @@ const kTesting = {
 			LCHClosureString: 'alfa',
 		};
 	},
-	StubWrappedMemberObjectValid () {
-		return {
-			id: 'alfa',
-			fnclosure: 'function () { return; }',
-		};
-	},
 };
 
 describe('LCHComposeLogicSort', function testLCHComposeLogicSort() {
