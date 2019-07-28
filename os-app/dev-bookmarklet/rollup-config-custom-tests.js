@@ -50,7 +50,7 @@ describe('LCHRollupPrefixSelector', function testLCHRollupPrefixSelector() {
 		}, /LCHErrorInputInvalid/);
 	});
 
-	it('prefixes with identifier', function() {
+	it('prefixes with identifier single', function() {
 		deepEqual(mainModule.LCHRollupPrefixSelector('alfa', `\ntemplate {
 display: none;
 }
@@ -62,6 +62,22 @@ display: none;
 }
 
 alfa :global([hidden] ) {
+display: none;
+}`);
+	});
+
+	it('prefixes with identifier multiple', function() {
+		deepEqual(mainModule.LCHRollupPrefixSelector('alfa', `\ntemplate, sidebar {
+display: none;
+}
+
+[hidden], [disabled] {
+display: none;
+}`), `\nalfa :global(template, sidebar ) {
+display: none;
+}
+
+alfa :global([hidden], [disabled] ) {
 display: none;
 }`);
 	});
