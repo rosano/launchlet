@@ -3,6 +3,11 @@ import { throws, doesNotThrow, deepEqual } from 'assert';
 import * as mainModule from './ui-logic.js';
 
 const kTesting = {
+	StubClosureObjectValid: function() {
+		return {
+			LCHClosureString: '',
+		};
+	},
 	StubWrappedMemberObjectValid () {
 		return {
 			id: 'alfa',
@@ -116,6 +121,87 @@ describe('LCHComposeLogicBoomarkletStringFor', function testLCHComposeLogicBooma
 		deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
 			LCHCompileToken_AppBehaviour: `alfa(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':5000/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');bravo`,
 		}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_AppBehaviour', 'alfabravo'));
+	});
+
+});
+
+describe('LCHClosuresModelErrorsFor', function testLCHClosuresModelErrorsFor() {
+
+	it('throws error if not object', function() {
+		throws(function() {
+			mainModule.LCHClosuresModelErrorsFor(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns object if LCHClosureCallback not string', function() {
+		deepEqual(mainModule.LCHClosuresModelErrorsFor(Object.assign(kTesting.StubClosureObjectValid(), {
+			LCHClosureString: null,
+		})), {
+			LCHClosureString: [
+				'LCHErrorNotString',
+			],
+		});
+	});
+
+	it('returns null', function() {
+		deepEqual(mainModule.LCHClosuresModelErrorsFor(kTesting.StubClosureObjectValid()), null);
+	});
+
+	context('LCHClosureName', function() {
+
+		it('returns object if LCHClosureName not string', function() {
+			deepEqual(mainModule.LCHClosuresModelErrorsFor(Object.assign(kTesting.StubClosureObjectValid(), {
+				LCHClosureName: null,
+			})), {
+				LCHClosureName: [
+					'LCHErrorNotString',
+				],
+			});
+		});
+
+		it('returns object if LCHClosureName contains untrimmed whitespace', function() {
+			deepEqual(mainModule.LCHClosuresModelErrorsFor(Object.assign(kTesting.StubClosureObjectValid(), {
+				LCHClosureName: ' alfa',
+			})), {
+				LCHClosureName: [
+					'LCHErrorNotTrimmed',
+				],
+			});
+			deepEqual(mainModule.LCHClosuresModelErrorsFor(Object.assign(kTesting.StubClosureObjectValid(), {
+				LCHClosureName: 'alfa ',
+			})), {
+				LCHClosureName: [
+					'LCHErrorNotTrimmed',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.LCHClosuresModelErrorsFor(Object.assign(kTesting.StubClosureObjectValid(), {
+				LCHClosureName: 'alfa',
+			})), null);
+		});
+
+	});
+
+	context('LCHClosureSignature', function() {
+
+		it('returns object if LCHClosureSignature not string', function() {
+			deepEqual(mainModule.LCHClosuresModelErrorsFor(Object.assign(kTesting.StubClosureObjectValid(), {
+				LCHClosureSignature: null,
+			})), {
+				LCHClosureSignature: [
+					'LCHErrorNotString',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.LCHClosuresModelErrorsFor(Object.assign(kTesting.StubClosureObjectValid(), {
+				LCHClosureSignature: 'alfa',
+			})), null);
+		});
+
 	});
 
 });

@@ -81,6 +81,44 @@ export const LCHComposeLogicBoomarkletStringFor = function (inputData, OLSK_TEST
 			.replace(`//# sourceMappingURL=ui-behaviour.js.map`, '');
 };
 
+export const LCHClosuresModelErrorsFor = function(inputData) {
+	if (typeof inputData !== 'object' || inputData === null) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	const errors = {};
+
+	if (typeof inputData.LCHClosureString !== 'string') {
+		errors.LCHClosureString = [
+			'LCHErrorNotString',
+		];
+	}
+
+	if (inputData.LCHClosureName !== undefined) {
+		if (typeof inputData.LCHClosureName !== 'string') {
+			errors.LCHClosureName = [
+				'LCHErrorNotString',
+			];
+		}
+
+		if (typeof inputData.LCHClosureName === 'string' && inputData.LCHClosureName.trim() !== inputData.LCHClosureName) {
+			errors.LCHClosureName = [
+				'LCHErrorNotTrimmed',
+			];
+		}
+	}
+
+	if (inputData.LCHClosureSignature !== undefined) {
+		if (typeof inputData.LCHClosureSignature !== 'string') {
+			errors.LCHClosureSignature = [
+				'LCHErrorNotString',
+			];
+		}
+	}
+
+	return Object.entries(errors).length ? errors : null;
+};
+
 export const _LCHComposeLogicFormulaObjectsReplacementFor = function (inputData) {
 	if (!Array.isArray(inputData)) {
 		throw new Error('LCHErrorInputInvalid');
