@@ -91,9 +91,11 @@ function launchElement(inputData) {
 		return;
 	}
 
-	filterText = inputData.name;
-	
-	api.fn(inputData.id)();
+	if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
+		filterText = inputData.name;
+
+		api.fn(inputData.id)();
+	}
 	
 	handleDidFinish();
 }
