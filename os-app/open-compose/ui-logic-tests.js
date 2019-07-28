@@ -157,7 +157,7 @@ describe('LCHComposeLogicBookmarkletBinaryFor', function testLCHComposeLogicBook
 		}, /LCHErrorInputInvalid/);
 	});
 
-	it('returns bookmarklet binary', function() {
+	it('returns string', function() {
 		deepEqual(mainModule.LCHComposeLogicBookmarkletBinaryFor('function() { return; }'), 'javascript:(function()%20%7B%20return%3B%20%7D)();');
 	});
 

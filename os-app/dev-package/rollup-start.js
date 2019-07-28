@@ -1,4 +1,4 @@
-import MainApp from '../dev-bookmarklet/rollup-start.js'
+import MainApp from '../dev-launcher/rollup-start.js'
 
 const mod = {
 	instanceCreate: function (inputData = []) {

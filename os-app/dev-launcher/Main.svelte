@@ -1,6 +1,6 @@
 <script>
 import { LCHOptionsObject, OLSKLocalized, formulaSelected } from './_shared.js';
-import { LCHLauncherModeJump, LCHBookmarkletLogicFilter } from './ui-logic.js';
+import { LCHLauncherModeJump, LCHLauncherLogicFilter } from './ui-logic.js';
 import { LCHFormulasModelErrorsForFormulaObject } from '../_shared/rs-modules/lch_members/model.js';
 
 export let formulaObjects = [];
@@ -37,15 +37,15 @@ const api = {
 	},
 	fn (inputData) {
 		if (typeof inputData !== 'string') {
-			throw new Error('LCHBookmarkletErrorIdentifierNotString');
+			throw new Error('LCHLauncherErrorIdentifierNotString');
 		}
 
 		if (inputData === '') {
-			throw new Error('LCHBookmarkletErrorIdentifierBlank');
+			throw new Error('LCHLauncherErrorIdentifierBlank');
 		}
 
 		if (inputData.trim() !== inputData) {
-			throw new Error('LCHBookmarkletErrorIdentifierContainsUntrimmedWhitespace');
+			throw new Error('LCHLauncherErrorIdentifierContainsUntrimmedWhitespace');
 		}
 
 		let functionObject = api.functionObjects().filter(function (e) {
@@ -53,7 +53,7 @@ const api = {
 		}).shift();
 
 		if (!functionObject) {
-			throw new Error('LCHBookmarkletErrorIdentifierNotDefined');
+			throw new Error('LCHLauncherErrorIdentifierNotDefined');
 		}
 
 		return functionObject.fn.bind({
@@ -78,7 +78,7 @@ let filterText = '';
 let formulasVisible = [];
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump ? formulaObjects : [];
 let filterTextDidChange = function (val) {
-	formulasVisible = !val ? formulasDefault : formulaObjects.filter(LCHBookmarkletLogicFilter(val));
+	formulasVisible = !val ? formulasDefault : formulaObjects.filter(LCHLauncherLogicFilter(val));
 
 	formulaSelected.set(!val ? null : formulasVisible[0]);
 };
@@ -156,7 +156,7 @@ function handleClick(event) {
 
 <div class="Container" bind:this={ rootElement }>
 	<div class="Bezel">
-		<input placeholder="{ OLSKLocalized(LCHOptionsObject().runMode === LCHLauncherModeJump ? 'LCHBookmarkletInputPlaceholderJump' : 'LCHBookmarkletInputPlaceholderDefault') }" bind:value={ filterText } bind:this={ inputElement } />
+		<input placeholder="{ OLSKLocalized(LCHOptionsObject().runMode === LCHLauncherModeJump ? 'LCHLauncherInputPlaceholderJump' : 'LCHLauncherInputPlaceholderDefault') }" bind:value={ filterText } bind:this={ inputElement } />
 		{#if formulasVisible.length }
 		<div class="ListContainer">
 			{#each formulasVisible as e}

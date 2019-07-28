@@ -18,7 +18,7 @@ export const LCHComposeLogicValidCompileTokens = function (inputData) {
 export const LCHComposeLogicBoomarkletTemplate = function () {
 	let _protectFromCompiler = console.log;
 
-	window.bookmarklet = {
+	window.LCHBookmarklet = {
 		uiStyle: function () {
 			return `LCHCompileToken_AppStyle`;
 		},
@@ -28,39 +28,39 @@ export const LCHComposeLogicBoomarkletTemplate = function () {
 			return Main;
 		},
 		instanceCreate: function () {
-			if (window.bookmarklet.AppInstance) {
-				window.bookmarklet.instanceDestroy();
+			if (window.LCHBookmarklet.AppInstance) {
+				window.LCHBookmarklet.instanceDestroy();
 			}
 
 			let sandboxContainer = document.createElement('div');
 			sandboxContainer.className = 'ProofSvelteBookmarketSandbox'
 			document.body.appendChild(sandboxContainer);
 			
-			sandboxContainer.appendChild(document.createElement('style')).innerHTML = window.bookmarklet.uiStyle();
+			sandboxContainer.appendChild(document.createElement('style')).innerHTML = window.LCHBookmarklet.uiStyle();
 			
-			window.bookmarklet.AppInstance = new (window.bookmarklet.uiBehaviour())({
+			window.LCHBookmarklet.AppInstance = new (window.LCHBookmarklet.uiBehaviour())({
 				target: sandboxContainer,
 				props: {
 					formulaObjects: _protectFromCompiler(`LCHCompileToken_FormulaObjects`),
 					optionsObject: {
 						languageCode: 'LCHCompileToken_AppLanguageCode',
 						_didFinish () {
-							return window.bookmarklet.instanceDestroy();
+							return window.LCHBookmarklet.instanceDestroy();
 						},
 					},
 				}
 			});
 		},
 		instanceDestroy: function () {
-			window.bookmarklet.AppInstance.$destroy();
+			window.LCHBookmarklet.AppInstance.$destroy();
 			
-			delete window.bookmarklet.AppInstance;
+			delete window.LCHBookmarklet.AppInstance;
 
 			[].slice.call(document.querySelectorAll('.ProofSvelteBookmarketSandbox')).forEach((e) => e.remove());
 		},
 	};
 
-	window.bookmarklet.instanceCreate();
+	window.LCHBookmarklet.instanceCreate();
 };
 
 export const LCHComposeLogicBoomarkletStringFor = function (inputData, OLSK_TESTING) {

@@ -1,14 +1,14 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 		typeof define === 'function' && define.amd ? define(['exports'], factory) :
-			(factory((global.LCHBookmarkletBehaviour = global.LCHBookmarkletBehaviour || {})));
+			(factory((global.LCHLauncherBehaviour = global.LCHLauncherBehaviour || {})));
 }(this, (function (exports) { 'use strict'; Object.defineProperty(exports, '__esModule', { value: true }); let moi = {}; Object.assign(exports, moi = {
 
 	//# SETUP
 
 	setupEverything() {
 		moi.setupFormulas();
-		moi.setupBookmarklet();
+		moi.setupLauncher();
 	},
 	setupFormulas() {
 		window.LCHPageFormulas = function () {
@@ -23,9 +23,9 @@
 			];
 		};
 	},
-	setupBookmarklet() {
+	setupLauncher() {
 		let app = new Main({
-			target: document.getElementById('LCHBookmarkletTarget'),
+			target: document.getElementById('LCHLauncherTarget'),
 			props: {
 				formulaObjects: [
 					{

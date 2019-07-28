@@ -17,7 +17,7 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mainModule.LCHBookmarkletLogicFilter(null);
+			mainModule.LCHLauncherLogicFilter(null);
 		}, /LCHErrorInputInvalid/);
 	});
 
@@ -57,28 +57,28 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 
 });
 
-describe('LCHBookmarkletLogicFilter', function testLCHBookmarkletLogicFilter() {
+describe('LCHLauncherLogicFilter', function testLCHLauncherLogicFilter() {
 
 	it('throws error if not string', function() {
 		throws(function() {
-			mainModule.LCHBookmarkletLogicFilter(null);
+			mainModule.LCHLauncherLogicFilter(null);
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns function', function() {
-		deepEqual(typeof mainModule.LCHBookmarkletLogicFilter('alfa'), 'function');
+		deepEqual(typeof mainModule.LCHLauncherLogicFilter('alfa'), 'function');
 	});
 
 	context('function', function () {
 
 		it('returns false if match id', function() {
-			deepEqual(mainModule.LCHBookmarkletLogicFilter('alfa')({
+			deepEqual(mainModule.LCHLauncherLogicFilter('alfa')({
 				id: 'alfa',
 			}), false);
 		});
 
 		it('returns false if match fn', function() {
-			deepEqual(mainModule.LCHBookmarkletLogicFilter('alfa')({
+			deepEqual(mainModule.LCHLauncherLogicFilter('alfa')({
 				fn: function () {
 					return 'alfa';
 				},
@@ -86,13 +86,13 @@ describe('LCHBookmarkletLogicFilter', function testLCHBookmarkletLogicFilter() {
 		});
 
 		it('returns false if no match name', function() {
-			deepEqual(mainModule.LCHBookmarkletLogicFilter('alfa')({
+			deepEqual(mainModule.LCHLauncherLogicFilter('alfa')({
 				name: 'bravo',
 			}), false);
 		});
 
 		it('returns false if no match labels', function() {
-			deepEqual(mainModule.LCHBookmarkletLogicFilter('alfa')({
+			deepEqual(mainModule.LCHLauncherLogicFilter('alfa')({
 				labels: [
 					'bravo',
 				],
@@ -100,13 +100,13 @@ describe('LCHBookmarkletLogicFilter', function testLCHBookmarkletLogicFilter() {
 		});
 
 		it('returns true if match name', function() {
-			deepEqual(mainModule.LCHBookmarkletLogicFilter('alfa')({
+			deepEqual(mainModule.LCHLauncherLogicFilter('alfa')({
 				name: 'alfa',
 			}), true);
 		});
 
 		it('returns true if match labels', function() {
-			deepEqual(mainModule.LCHBookmarkletLogicFilter('alfa')({
+			deepEqual(mainModule.LCHLauncherLogicFilter('alfa')({
 				labels: [
 					'alfa',
 				],
@@ -114,13 +114,13 @@ describe('LCHBookmarkletLogicFilter', function testLCHBookmarkletLogicFilter() {
 		});
 
 		it('returns true if match partial', function() {
-			deepEqual(mainModule.LCHBookmarkletLogicFilter('alf')({
+			deepEqual(mainModule.LCHLauncherLogicFilter('alf')({
 				name: 'alfa',
 			}), true);
 		});
 
 		it('returns true if alternate case', function() {
-			deepEqual(mainModule.LCHBookmarkletLogicFilter('ALF')({
+			deepEqual(mainModule.LCHLauncherLogicFilter('ALF')({
 				name: 'alfa',
 			}), true);
 		});

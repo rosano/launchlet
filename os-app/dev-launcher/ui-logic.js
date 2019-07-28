@@ -18,7 +18,7 @@ export const LCHLauncherModes = function () {
 	];
 }
 
-export const LCHBookmarkletLogicFilter = function (inputData) {
+export const LCHLauncherLogicFilter = function (inputData) {
 	if (typeof inputData !== 'string') {
 		throw new Error('LCHErrorInputInvalid');
 	}
