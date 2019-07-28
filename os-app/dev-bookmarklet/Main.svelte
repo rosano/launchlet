@@ -132,9 +132,17 @@ function handleKeydown(event) {
 		return event.preventDefault();
 	}
 }
+
+function handleClick(event) { 
+  if (rootElement.contains(event.target)) {
+  	return;
+  }
+
+  handleDidFinish();
+};
 </script>
 <!-- Bind to window to avoit triggering external events on page -->
-<svelte:window on:keydown={ handleKeydown }/>
+<svelte:window on:keydown={ handleKeydown } on:click={ handleClick }/>
 
 <div class="Container" bind:this={ rootElement }>
 	<div class="Bezel">
