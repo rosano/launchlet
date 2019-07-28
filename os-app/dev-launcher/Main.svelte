@@ -26,41 +26,8 @@ export let optionsObject = {};
 	}));
 })();
 
-const api = {
-	functionObjects () {
-		return formulaObjects;
-	},
-	actionObjects () {
-		return api.functionObjects().filter(function (e) {
-			return !!e.name;
-		});
-	},
-	fn (inputData) {
-		if (typeof inputData !== 'string') {
-			throw new Error('LCHLauncherErrorIdentifierNotString');
-		}
-
-		if (inputData === '') {
-			throw new Error('LCHLauncherErrorIdentifierBlank');
-		}
-
-		if (inputData.trim() !== inputData) {
-			throw new Error('LCHLauncherErrorIdentifierContainsUntrimmedWhitespace');
-		}
-
-		let functionObject = api.functionObjects().filter(function (e) {
-			return e.id === inputData;
-		}).shift();
-
-		if (!functionObject) {
-			throw new Error('LCHLauncherErrorIdentifierNotDefined');
-		}
-
-		return functionObject.fn.bind({
-			api: api,
-		});
-	},
-};
+import { LCHAPIObjectFor } from './api.js';
+const api = LCHAPIObjectFor(formulaObjects);
 
 formulaSelected.subscribe(function (val) {
 	if (!val) {
@@ -71,7 +38,7 @@ formulaSelected.subscribe(function (val) {
 		return;
 	}
 
-	api.fn(val.id)();
+	api.fn(val.signature)();
 });
 
 let filterText = '';
@@ -94,7 +61,7 @@ function launchElement(inputData) {
 	if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
 		filterText = inputData.name;
 
-		api.fn(inputData.id)();
+		api.fn(inputData.signature)();
 	}
 	
 	handleDidFinish();
