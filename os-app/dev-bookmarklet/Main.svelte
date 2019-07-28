@@ -79,7 +79,8 @@ let formulasVisible = [];
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump ? formulaObjects : [];
 let filterTextDidChange = function (val) {
 	formulasVisible = !val ? formulasDefault : formulaObjects.filter(LCHBookmarkletLogicFilter(val));
-	formulaSelected.set(formulasVisible[0]);
+
+	formulaSelected.set(!val ? null : formulasVisible[0]);
 };
 $: filterTextDidChange(filterText.trim());
 
