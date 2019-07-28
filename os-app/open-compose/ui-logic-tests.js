@@ -291,12 +291,32 @@ describe('_LCHComposeLogicRecipeStubFor', function test_LCHComposeLogicRecipeStu
 		deepEqual(mainModule._LCHComposeLogicRecipeStubFor(kTesting.StubClosureObjectValid()), `{"LCHRecipeCallback":alfa}`);
 	});
 
-	it('returns stringified if multi line', function() {
+	it('prints line breaks', function() {
 		deepEqual(mainModule._LCHComposeLogicRecipeStubFor(Object.assign(kTesting.StubClosureObjectValid(), {
 			LCHClosureString: `
 bravo
 `,
 		})), `{"LCHRecipeCallback":\nbravo\n}`);
+	});
+
+	context('LCHClosureName', function() {
+
+		it('prints LCHRecipeName', function() {
+			deepEqual(mainModule._LCHComposeLogicRecipeStubFor(Object.assign(kTesting.StubClosureObjectValid(), {
+				LCHClosureName: 'bravo',
+			})), `{"LCHRecipeCallback":alfa,"LCHRecipeName":"bravo"}`);
+		});
+
+	});
+
+	context('LCHClosureSignature', function() {
+
+		it('prints LCHRecipeSignature', function() {
+			deepEqual(mainModule._LCHComposeLogicRecipeStubFor(Object.assign(kTesting.StubClosureObjectValid(), {
+				LCHClosureSignature: 'bravo',
+			})), `{"LCHRecipeCallback":alfa,"LCHRecipeSignature":"bravo"}`);
+		});
+
 	});
 
 });
@@ -309,23 +329,12 @@ describe('_LCHComposeLogicFormulaObjectsReplacementFor', function test_LCHCompos
 		}, /LCHErrorInputInvalid/);
 	});
 
-	it('returns empty if no objects', function() {
+	it('returns string', function() {
 		deepEqual(mainModule._LCHComposeLogicFormulaObjectsReplacementFor([]), '[]');
 	});
 
-	it('returns stringified if single line', function() {
-		let item = kTesting.StubWrappedMemberObjectValid();
-		deepEqual(mainModule._LCHComposeLogicFormulaObjectsReplacementFor([item]), JSON.stringify([item]).replace('"fnclosure"', '"fn"').replace(`"${ item.fnclosure }"`, item.fnclosure));
-	});
-
-	it('returns stringified if multi line', function() {
-		let item = Object.assign(kTesting.StubWrappedMemberObjectValid(), {
-			fnclosure: `
-return;
-`,
-		});
-
-		deepEqual(mainModule._LCHComposeLogicFormulaObjectsReplacementFor([item]), JSON.stringify([item]).replace('"fnclosure"', '"fn"').replace(/\\n/g, '\n').replace(`"${ item.fnclosure }"`, item.fnclosure));
+	it('includes recipe stubs', function() {
+		deepEqual(mainModule._LCHComposeLogicFormulaObjectsReplacementFor([kTesting.StubClosureObjectValid()]), '[{"LCHRecipeCallback":alfa}]');
 	});
 
 });

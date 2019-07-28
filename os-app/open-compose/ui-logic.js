@@ -150,6 +150,14 @@ export const _LCHComposeLogicRecipeStubFor = function (inputData) {
 		LCHRecipeCallback: '__LCHRecipeCallback__',
 	};
 
+	if (inputData.LCHClosureName) {
+		outputData.LCHRecipeName = inputData.LCHClosureName;
+	}
+
+	if (inputData.LCHClosureSignature) {
+		outputData.LCHRecipeSignature = inputData.LCHClosureSignature;
+	}
+
 	return JSON.stringify(outputData).replace('"__LCHRecipeCallback__"', inputData.LCHClosureString);
 };
 
@@ -158,29 +166,7 @@ export const _LCHComposeLogicFormulaObjectsReplacementFor = function (inputData)
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	let tokenHash = {};
-
-	let outputData = JSON.stringify(inputData.map(function (e) {
-		return Object.keys(e).reduce(function (coll, key) {
-			if (key === 'fnclosure') {
-				key = `__LCHMemberObjectClosure_${ e.id }__`;
-
-				tokenHash[key] = e.fnclosure;
-
-				return Object.assign(coll, {
-					fn: `__LCHClosureOpen__${ key }__LCHClosureClose__`,
-				});
-			}
-
-			coll[key] = e[key];
-
-			return coll;
-		}, {});
-	}));
-	
-	return Object.keys(tokenHash).reduce(function (coll, e) {
-		return coll.replace(e, tokenHash[e]);
-	}, outputData).replace(/("__LCHClosureOpen__)|(__LCHClosureClose__")/g, '');
+	return `[${ inputData.map(_LCHComposeLogicRecipeStubFor) }]`;
 };
 
 export const LCHComposeLogicBookmarkletBinaryFor = function (inputData) {
