@@ -208,6 +208,10 @@ input {
 	margin-top: 10px;
 
 	font-size: 13.5pt;
+
+	/* CapHeight */
+	max-height: 165px;
+	overflow: scroll;
 }
 
 .ListItem {
