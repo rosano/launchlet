@@ -2,6 +2,17 @@ import { throws, deepEqual } from 'assert';
 
 import * as mainModule from './ui-logic.js';
 
+describe('LCHLauncherModes', function testLCHLauncherModes() {
+
+	it('returns array', function() {
+		deepEqual(mainModule.LCHLauncherModes(), [
+			'default',
+			'jump',
+			]);
+	});
+
+});
+
 describe('LCHBookmarkletLogicFilter', function testLCHBookmarkletLogicFilter() {
 
 	it('throws error if not string', function() {
@@ -70,17 +81,6 @@ describe('LCHBookmarkletLogicFilter', function testLCHBookmarkletLogicFilter() {
 			}), true);
 		});
 		
-	});
-
-});
-
-describe('LCHLauncherModes', function testLCHLauncherModes() {
-
-	it('returns array', function() {
-		deepEqual(mainModule.LCHLauncherModes(), [
-			'default',
-			'jump',
-			]);
 	});
 
 });

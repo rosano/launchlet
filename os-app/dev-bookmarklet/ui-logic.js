@@ -1,3 +1,10 @@
+export const LCHLauncherModes = function () {
+	return [
+		'default',
+		'jump',
+	];
+}
+
 export const LCHBookmarkletLogicFilter = function (inputData) {
 	if (typeof inputData !== 'string') {
 		throw new Error('LCHErrorInputInvalid');
@@ -13,10 +20,3 @@ export const LCHBookmarkletLogicFilter = function (inputData) {
 		}).length > 0;
 	};
 };
-
-export const LCHLauncherModes = function () {
-	return [
-		'default',
-		'jump',
-	];
-}
