@@ -69,13 +69,13 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 
 	});
 
-	context('signature', function() {
+	context('LCHRecipeSignature', function() {
 
-		it('returns object if signature not string', function() {
+		it('returns object if LCHRecipeSignature not string', function() {
 			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
-				signature: null,
+				LCHRecipeSignature: null,
 			})), {
-				signature: [
+				LCHRecipeSignature: [
 					'LCHErrorNotString',
 				],
 			});
@@ -83,7 +83,7 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 
 		it('returns null', function() {
 			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
-				signature: 'alfa',
+				LCHRecipeSignature: 'alfa',
 			})), null);
 		});
 
@@ -137,7 +137,7 @@ describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 				LCHRecipeCallback() {
 					return 'bravo';
 				},
-				signature: 'alfa',
+				LCHRecipeSignature: 'alfa',
 			})]).fn('alfa')(), 'bravo');
 		});
 
@@ -146,12 +146,12 @@ describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 				LCHRecipeCallback(inputData) {
 					return `hello ${ inputData }`;
 				},
-				signature: 'alfa',
+				LCHRecipeSignature: 'alfa',
 			}), Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeCallback() {
 					return this.api.fn('alfa')('bravo');
 				},
-				signature: 'charlie',
+				LCHRecipeSignature: 'charlie',
 			})]).fn('charlie')(), 'hello bravo');
 		});
 

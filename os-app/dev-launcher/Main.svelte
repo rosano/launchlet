@@ -38,7 +38,7 @@ formulaSelected.subscribe(function (val) {
 		return;
 	}
 
-	api.fn(val.signature)();
+	api.fn(val.LCHRecipeSignature)();
 });
 
 let filterText = '';
@@ -61,7 +61,7 @@ function launchElement(inputData) {
 	if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
 		filterText = inputData.name;
 
-		api.fn(inputData.signature)();
+		api.fn(inputData.LCHRecipeSignature)();
 	}
 	
 	handleDidFinish();

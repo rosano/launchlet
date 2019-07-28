@@ -25,9 +25,9 @@ export const LCHRecipesModelErrorsFor = function(inputData) {
 		}
 	}
 
-	if (inputData.signature !== undefined) {
-		if (typeof inputData.signature !== 'string') {
-			errors.signature = [
+	if (inputData.LCHRecipeSignature !== undefined) {
+		if (typeof inputData.LCHRecipeSignature !== 'string') {
+			errors.LCHRecipeSignature = [
 				'LCHErrorNotString',
 			];
 		}
@@ -56,7 +56,7 @@ export const LCHAPIObjectFor = function(inputData) {
 			}
 
 			let functionObject = inputData.filter(function (e) {
-				return e.signature === signature;
+				return e.LCHRecipeSignature === signature;
 			}).shift();
 
 			if (!functionObject) {
