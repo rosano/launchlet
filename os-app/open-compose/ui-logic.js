@@ -141,6 +141,18 @@ export const LCHClosuresModelErrorsFor = function(inputData) {
 	return Object.entries(errors).length ? errors : null;
 };
 
+export const _LCHComposeLogicRecipeStubFor = function (inputData) {
+	if (LCHClosuresModelErrorsFor(inputData)) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	const outputData = {
+		LCHRecipeCallback: '__LCHRecipeCallback__',
+	};
+
+	return JSON.stringify(outputData).replace('"__LCHRecipeCallback__"', inputData.LCHClosureString);
+};
+
 export const _LCHComposeLogicFormulaObjectsReplacementFor = function (inputData) {
 	if (!Array.isArray(inputData)) {
 		throw new Error('LCHErrorInputInvalid');

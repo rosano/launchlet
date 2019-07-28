@@ -5,7 +5,7 @@ import * as mainModule from './ui-logic.js';
 const kTesting = {
 	StubClosureObjectValid: function() {
 		return {
-			LCHClosureString: '',
+			LCHClosureString: 'alfa',
 		};
 	},
 	StubWrappedMemberObjectValid () {
@@ -275,6 +275,28 @@ describe('LCHClosuresModelErrorsFor', function testLCHClosuresModelErrorsFor() {
 			})), null);
 		});
 
+	});
+
+});
+
+describe('_LCHComposeLogicRecipeStubFor', function test_LCHComposeLogicRecipeStubFor() {
+
+	it('throws error if not valid LCHClosureObject', function() {
+		throws(function() {
+			mainModule._LCHComposeLogicRecipeStubFor({});
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns string', function() {
+		deepEqual(mainModule._LCHComposeLogicRecipeStubFor(kTesting.StubClosureObjectValid()), `{"LCHRecipeCallback":alfa}`);
+	});
+
+	it('returns stringified if multi line', function() {
+		deepEqual(mainModule._LCHComposeLogicRecipeStubFor(Object.assign(kTesting.StubClosureObjectValid(), {
+			LCHClosureString: `
+bravo
+`,
+		})), `{"LCHRecipeCallback":\nbravo\n}`);
 	});
 
 });
