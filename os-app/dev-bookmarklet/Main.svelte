@@ -1,5 +1,5 @@
 <script>
-import { LCHOptionsObject, OLSKLocalized } from './_shared.js';
+import { LCHOptionsObject, OLSKLocalized, formulaSelected } from './_shared.js';
 import { LCHLauncherModeJump, LCHBookmarkletLogicFilter } from './ui-logic.js';
 import { LCHMembersModelErrorsForFormulaObject } from '../_shared/rs-modules/lch_members/model.js';
 
@@ -63,21 +63,15 @@ const api = {
 };
 
 let filterText = '';
-
-let formulaSelected;
 let formulasVisible = [];
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump ? formulaObjects : [];
 let filterTextDidChange = function (val) {
 	formulasVisible = !val ? formulasDefault : formulaObjects.filter(LCHBookmarkletLogicFilter(val));
-	formulaSelected = formulasVisible[0];
+	formulaSelected.set(formulasVisible[0]);
 };
 $: filterTextDidChange(filterText.trim());
 
 let rootElement;
-
-function setElementAtIndex(inputData) {
-	formulaSelected = formulasVisible[Math.max(0, Math.min(formulasVisible.length, inputData))];
-}
 
 function launchElement(inputData) {
 	if (!inputData || !inputData.fn) {
@@ -119,17 +113,17 @@ function handleKeydown(event) {
 	}
 
 	if (event.code === 'ArrowUp') {
-		setElementAtIndex(formulasVisible.indexOf(formulaSelected) - 1);
+		formulaSelected.set(formulasVisible[Math.max(0, Math.min(formulasVisible.length, formulasVisible.indexOf($formulaSelected) - 1))]);
 		return event.preventDefault();
 	}
 
 	if (event.code === 'ArrowDown') {
-		setElementAtIndex(formulasVisible.indexOf(formulaSelected) + 1);
+		formulaSelected.set(formulasVisible[Math.max(0, Math.min(formulasVisible.length, formulasVisible.indexOf($formulaSelected) + 1))]);
 		return event.preventDefault();
 	}
 
 	if (event.code === 'Enter') {
-		launchElement(formulaSelected);
+		launchElement($formulaSelected);
 		return event.preventDefault();
 	}
 }
@@ -151,7 +145,7 @@ function handleClick(event) {
 		{#if formulasVisible.length }
 		<div class="ListContainer">
 			{#each formulasVisible as e}
-				<div class="ListItem" class:ListItemSelected={ e === formulaSelected } on:mouseover={ () => formulaSelected = e } on:click={ () => launchElement(e) }>{ e.name }</div>
+				<div class="ListItem" class:ListItemSelected={ e === $formulaSelected } on:mouseover={ () => formulaSelected.set(e) } on:click={ () => launchElement(e) }>{ e.name }</div>
 			{/each}
 		</div>
 		{/if}
