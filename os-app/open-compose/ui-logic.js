@@ -10,7 +10,7 @@ export const LCHComposeLogicValidCompileTokens = function (inputData) {
 	return [
 		'LCHCompileToken_AppBehaviour',
 		'LCHCompileToken_AppStyle',
-		'LCHCompileToken_FormulaObjects',
+		'LCHCompileToken_ClosureObjects',
 		'LCHCompileToken_AppLanguageCode',
 		];
 };
@@ -41,7 +41,7 @@ export const LCHComposeLogicBoomarkletTemplate = function () {
 			window.LCHBookmarklet.AppInstance = new (window.LCHBookmarklet.uiBehaviour())({
 				target: sandboxContainer,
 				props: {
-					formulaObjects: _protectFromCompiler(`LCHCompileToken_FormulaObjects`),
+					formulaObjects: _protectFromCompiler(`LCHCompileToken_ClosureObjects`),
 					optionsObject: {
 						languageCode: 'LCHCompileToken_AppLanguageCode',
 						_didFinish () {
@@ -75,7 +75,7 @@ export const LCHComposeLogicBoomarkletStringFor = function (inputData, OLSK_TEST
 	}
 
 	return Object.keys(inputData).reduce(function (coll, item) {
-		return coll.replace(item, item === 'LCHCompileToken_FormulaObjects' ? _LCHComposeLogicFormulaObjectsReplacementFor(inputData[item]) : inputData[item]);
+		return coll.replace(item, item === 'LCHCompileToken_ClosureObjects' ? _LCHComposeLogicFormulaObjectsReplacementFor(inputData[item]) : inputData[item]);
 	}, LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2'))
 			.replace(`(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':5000/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');`, '')
 			.replace(`//# sourceMappingURL=ui-behaviour.js.map`, '');
