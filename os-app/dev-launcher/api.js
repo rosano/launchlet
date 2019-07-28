@@ -36,3 +36,38 @@ export const LCHRecipesModelErrorsFor = function(inputData) {
 	return Object.entries(errors).length ? errors : null;
 };
 
+export const LCHAPIObjectFor = function(inputData) {
+	if (!Array.isArray(inputData)) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	const api = {
+		fn (signature) {
+			if (typeof signature !== 'string') {
+				throw new Error('LCHErrorIdentifierNotString');
+			}
+
+			if (signature === '') {
+				throw new Error('LCHErrorIdentifierBlank');
+			}
+
+			if (signature.trim() !== signature) {
+				throw new Error('LCHErrorIdentifierContainsUntrimmedWhitespace');
+			}
+
+			let functionObject = inputData.filter(function (e) {
+				return e.signature === signature;
+			}).shift();
+
+			if (!functionObject) {
+				throw new Error('LCHErrorIdentifierNotDefined');
+			}
+
+			return functionObject.callback.bind({
+				api: api,
+			});
+		},
+	};
+
+	return api;
+};
