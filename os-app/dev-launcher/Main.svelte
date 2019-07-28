@@ -22,12 +22,18 @@ export let optionsObject = {};
 	}
 
 	formulaObjects.push(...pageFormulas.filter(function(e) {
-		return !LCHFormulasModelErrorsForFormulaObject(e);
+		return !LCHRecipesModelErrorsFor(e);
 	}));
 })();
 
 import { LCHAPIObjectFor } from './api.js';
 const api = LCHAPIObjectFor(formulaObjects);
+
+function apiStart(inputData) {
+	return inputData.LCHRecipeCallback.bind({
+		api: api,
+	})();
+};
 
 formulaSelected.subscribe(function (val) {
 	if (!val) {
@@ -38,7 +44,7 @@ formulaSelected.subscribe(function (val) {
 		return;
 	}
 
-	api.fn(val.LCHRecipeSignature)();
+	apiStart(val);
 });
 
 let filterText = '';
@@ -57,9 +63,7 @@ function launchElement(inputData) {
 	if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
 		filterText = inputData.LCHRecipeTitle;
 
-		inputData.LCHRecipeCallback.bind({
-			api: api,
-		})();
+		apiStart(inputData);
 	}
 	
 	handleDidFinish();

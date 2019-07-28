@@ -1,7 +1,7 @@
 import MainApp from '../dev-launcher/rollup-start.js'
 
 const mod = {
-	instanceCreate: function (inputData = []) {
+	instanceCreate: function (param1 = [], param2 = {}) {
 		if (mod.instanceExists()) {
 			mod.instanceDestroy();
 		}
@@ -12,12 +12,12 @@ const mod = {
 		mod.AppInstance = new MainApp({
 			target: mod.SandboxContainer,
 			props: {
-				formulaObjects: [].concat(inputData),
-				optionsObject: {
+				formulaObjects: Array.isArray(param1) ? param1 : [],
+				optionsObject: Object.assign(param2, {
 					_didFinish () {
 						return mod.instanceDestroy();
 					},
-				}
+				}),
 			},
 		});
 	},
