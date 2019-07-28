@@ -13,7 +13,7 @@ const mod = {
 		mod.AppInstance = new MainApp({
 			target: sandboxContainer,
 			props: {
-				memberObjects: [].concat(inputData),
+				formulaObjects: [].concat(inputData),
 				optionsObject: {
 					_didFinish () {
 						return mod.instanceDestroy();

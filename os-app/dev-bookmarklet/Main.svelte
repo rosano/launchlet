@@ -3,7 +3,7 @@ import { LCHOptionsObject, OLSKLocalized } from './_shared.js';
 import { LCHLauncherModeJump, LCHBookmarkletLogicFilter } from './ui-logic.js';
 import { LCHMembersModelErrorsForFormulaObject } from '../_shared/rs-modules/lch_members/model.js';
 
-export let formulasAll = [];
+export let formulaObjects = [];
 export let optionsObject = {};
 
 (function StartSetup() {
@@ -15,20 +15,20 @@ export let optionsObject = {};
 		return;
 	}
 
-	let formulas = window.LCHPageFormulas();
+	let pageFormulas = window.LCHPageFormulas();
 
-	if (!Array.isArray(formulas)) {
+	if (!Array.isArray(pageFormulas)) {
 		return;
 	}
 
-	formulasAll.push(...formulas.filter(function(e) {
+	formulaObjects.push(...pageFormulas.filter(function(e) {
 		return !LCHMembersModelErrorsForFormulaObject(e);
 	}));
 })();
 
 const api = {
 	functionObjects () {
-		return formulasAll;
+		return formulaObjects;
 	},
 	actionObjects () {
 		return api.functionObjects().filter(function (e) {
@@ -67,7 +67,7 @@ let filterText = '';
 let formulaSelected;
 let formulasVisible = [];
 let filterTextDidChange = function (val) {
-	formulasVisible = !val ? [] : formulasAll.filter(LCHBookmarkletLogicFilter(val));
+	formulasVisible = !val ? formulasDefault : formulaObjects.filter(LCHBookmarkletLogicFilter(val));
 	formulaSelected = formulasVisible[0];
 };
 $: filterTextDidChange(filterText.trim());

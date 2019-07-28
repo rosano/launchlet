@@ -27,7 +27,7 @@
 		let app = new Main({
 			target: document.getElementById('LCHBookmarkletTarget'),
 			props: {
-				memberObjects: [
+				formulaObjects: [
 					{
 						id: 'XYZBravo',
 						fn: function XYZBravo () {

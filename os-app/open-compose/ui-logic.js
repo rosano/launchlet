@@ -41,7 +41,7 @@ export const LCHComposeLogicBoomarkletTemplate = function () {
 			window.bookmarklet.AppInstance = new (window.bookmarklet.uiBehaviour())({
 				target: sandboxContainer,
 				props: {
-					memberObjects: _protectFromCompiler(`LCHCompileToken_MemberObjects`),
+					formulaObjects: _protectFromCompiler(`LCHCompileToken_MemberObjects`),
 					optionsObject: {
 						languageCode: 'LCHCompileToken_AppLanguageCode',
 						_didFinish () {
