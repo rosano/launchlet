@@ -55,7 +55,7 @@ let rootElement;
 
 function launchElement(inputData) {
 	if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
-		filterText = inputData.LCHRecipeName;
+		filterText = inputData.LCHRecipeTitle;
 
 		inputData.LCHRecipeCallback.bind({
 			api: api,
@@ -125,7 +125,7 @@ function handleClick(event) {
 		{#if formulasVisible.length }
 		<div class="ListContainer">
 			{#each formulasVisible as e}
-				<div class="ListItem" class:ListItemSelected={ e === $formulaSelected } on:mouseover={ () => formulaSelected.set(e) } on:click={ () => launchElement(e) }>{ e.LCHRecipeName }</div>
+				<div class="ListItem" class:ListItemSelected={ e === $formulaSelected } on:mouseover={ () => formulaSelected.set(e) } on:click={ () => launchElement(e) }>{ e.LCHRecipeTitle }</div>
 			{/each}
 		</div>
 		{/if}

@@ -295,10 +295,10 @@ bravo
 
 	context('LCHClosureName', function() {
 
-		it('prints LCHRecipeName', function() {
+		it('prints LCHRecipeTitle', function() {
 			deepEqual(mainModule._LCHComposeLogicRecipeStubFor(Object.assign(kTesting.StubClosureObjectValid(), {
 				LCHClosureName: 'bravo',
-			})), `{"LCHRecipeCallback":alfa,"LCHRecipeName":"bravo"}`);
+			})), `{"LCHRecipeCallback":alfa,"LCHRecipeTitle":"bravo"}`);
 		});
 
 	});

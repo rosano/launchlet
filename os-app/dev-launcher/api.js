@@ -11,15 +11,15 @@ export const LCHRecipesModelErrorsFor = function(inputData) {
 		];
 	}
 
-	if (inputData.LCHRecipeName !== undefined) {
-		if (typeof inputData.LCHRecipeName !== 'string') {
-			errors.LCHRecipeName = [
+	if (inputData.LCHRecipeTitle !== undefined) {
+		if (typeof inputData.LCHRecipeTitle !== 'string') {
+			errors.LCHRecipeTitle = [
 				'LCHErrorNotString',
 			];
 		}
 
-		if (typeof inputData.LCHRecipeName === 'string' && inputData.LCHRecipeName.trim() !== inputData.LCHRecipeName) {
-			errors.LCHRecipeName = [
+		if (typeof inputData.LCHRecipeTitle === 'string' && inputData.LCHRecipeTitle.trim() !== inputData.LCHRecipeTitle) {
+			errors.LCHRecipeTitle = [
 				'LCHErrorNotTrimmed',
 			];
 		}

@@ -151,7 +151,7 @@ export const _LCHComposeLogicRecipeStubFor = function (inputData) {
 	};
 
 	if (inputData.LCHClosureName) {
-		outputData.LCHRecipeName = inputData.LCHClosureName;
+		outputData.LCHRecipeTitle = inputData.LCHClosureName;
 	}
 
 	if (inputData.LCHClosureSignature) {

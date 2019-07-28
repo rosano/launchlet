@@ -32,30 +32,30 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 		deepEqual(mainModule.LCHRecipesModelErrorsFor(kTesting.StubRecipeObjectValid()), null);
 	});
 
-	context('LCHRecipeName', function() {
+	context('LCHRecipeTitle', function() {
 
-		it('returns object if LCHRecipeName not string', function() {
+		it('returns object if LCHRecipeTitle not string', function() {
 			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeName: null,
+				LCHRecipeTitle: null,
 			})), {
-				LCHRecipeName: [
+				LCHRecipeTitle: [
 					'LCHErrorNotString',
 				],
 			});
 		});
 
-		it('returns object if LCHRecipeName contains untrimmed whitespace', function() {
+		it('returns object if LCHRecipeTitle contains untrimmed whitespace', function() {
 			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeName: ' alfa',
+				LCHRecipeTitle: ' alfa',
 			})), {
-				LCHRecipeName: [
+				LCHRecipeTitle: [
 					'LCHErrorNotTrimmed',
 				],
 			});
 			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeName: 'alfa ',
+				LCHRecipeTitle: 'alfa ',
 			})), {
-				LCHRecipeName: [
+				LCHRecipeTitle: [
 					'LCHErrorNotTrimmed',
 				],
 			});
@@ -63,7 +63,7 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 
 		it('returns null', function() {
 			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeName: 'alfa',
+				LCHRecipeTitle: 'alfa',
 			})), null);
 		});
 

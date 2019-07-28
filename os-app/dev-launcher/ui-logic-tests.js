@@ -85,27 +85,27 @@ describe('LCHLauncherLogicFilter', function testLCHLauncherLogicFilter() {
 			}), false);
 		});
 
-		it('returns false if LCHRecipeName not match', function() {
+		it('returns false if LCHRecipeTitle not match', function() {
 			deepEqual(mainModule.LCHLauncherLogicFilter('alfa')({
-				LCHRecipeName: 'bravo',
+				LCHRecipeTitle: 'bravo',
 			}), false);
 		});
 
-		it('returns true if match LCHRecipeName', function() {
+		it('returns true if match LCHRecipeTitle', function() {
 			deepEqual(mainModule.LCHLauncherLogicFilter('alfa')({
-				LCHRecipeName: 'alfa',
+				LCHRecipeTitle: 'alfa',
 			}), true);
 		});
 
 		it('returns true if match partial', function() {
 			deepEqual(mainModule.LCHLauncherLogicFilter('alf')({
-				LCHRecipeName: 'alfa',
+				LCHRecipeTitle: 'alfa',
 			}), true);
 		});
 
 		it('returns true if alternate case', function() {
 			deepEqual(mainModule.LCHLauncherLogicFilter('ALF')({
-				LCHRecipeName: 'alfa',
+				LCHRecipeTitle: 'alfa',
 			}), true);
 		});
 		
