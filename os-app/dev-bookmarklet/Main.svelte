@@ -62,6 +62,18 @@ const api = {
 	},
 };
 
+formulaSelected.subscribe(function (val) {
+	if (!val) {
+		return;
+	}
+
+	if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
+		return;
+	}
+
+	api.fn(val.id)();
+});
+
 let filterText = '';
 let formulasVisible = [];
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump ? formulaObjects : [];
