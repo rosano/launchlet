@@ -65,17 +65,17 @@ const api = {
 let filterText = '';
 
 let memberObjectSelected;
-let visibleMemberObjects = [];
+let visibleFormulas = [];
 let filterTextDidChange = function (val) {
-	visibleMemberObjects = !val ? [] : memberObjects.filter(LCHBookmarkletLogicFilter(val));
-	memberObjectSelected = visibleMemberObjects[0];
+	visibleFormulas = !val ? [] : memberObjects.filter(LCHBookmarkletLogicFilter(val));
+	memberObjectSelected = visibleFormulas[0];
 };
 $: filterTextDidChange(filterText.trim());
 
 let rootElement;
 
 function setElementAtIndex(inputData) {
-	memberObjectSelected = visibleMemberObjects[Math.max(0, Math.min(visibleMemberObjects.length, inputData))];
+	memberObjectSelected = visibleFormulas[Math.max(0, Math.min(visibleFormulas.length, inputData))];
 }
 
 function launchElement(inputData) {
@@ -118,12 +118,12 @@ function handleKeydown(event) {
 	}
 
 	if (event.code === 'ArrowUp') {
-		setElementAtIndex(visibleMemberObjects.indexOf(memberObjectSelected) - 1);
+		setElementAtIndex(visibleFormulas.indexOf(memberObjectSelected) - 1);
 		return event.preventDefault();
 	}
 
 	if (event.code === 'ArrowDown') {
-		setElementAtIndex(visibleMemberObjects.indexOf(memberObjectSelected) + 1);
+		setElementAtIndex(visibleFormulas.indexOf(memberObjectSelected) + 1);
 		return event.preventDefault();
 	}
 
@@ -147,9 +147,9 @@ function handleClick(event) {
 <div class="Container" bind:this={ rootElement }>
 	<div class="Bezel">
 		<input placeholder="{ OLSKLocalized(LCHOptionsObject().runMode === LCHLauncherModeJump ? 'LCHBookmarkletInputPlaceholderJump' : 'LCHBookmarkletInputPlaceholderDefault') }" bind:value={ filterText } bind:this={ inputElement } />
-		{#if visibleMemberObjects.length }
+		{#if visibleFormulas.length }
 		<div class="ListContainer">
-			{#each visibleMemberObjects as e}
+			{#each visibleFormulas as e}
 				<div class="ListItem" class:ListItemSelected={ e === memberObjectSelected } on:mouseover={ () => memberObjectSelected = e } on:click={ () => launchElement(e) }>{ e.name }</div>
 			{/each}
 		</div>
