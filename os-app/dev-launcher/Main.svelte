@@ -54,12 +54,8 @@ $: filterTextDidChange(filterText.trim());
 let rootElement;
 
 function launchElement(inputData) {
-	if (!inputData || !inputData.fn) {
-		return;
-	}
-
 	if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
-		filterText = inputData.name;
+		filterText = inputData.LCHRecipeName;
 
 		api.fn(inputData.LCHRecipeSignature)();
 	}
@@ -127,7 +123,7 @@ function handleClick(event) {
 		{#if formulasVisible.length }
 		<div class="ListContainer">
 			{#each formulasVisible as e}
-				<div class="ListItem" class:ListItemSelected={ e === $formulaSelected } on:mouseover={ () => formulaSelected.set(e) } on:click={ () => launchElement(e) }>{ e.name }</div>
+				<div class="ListItem" class:ListItemSelected={ e === $formulaSelected } on:mouseover={ () => formulaSelected.set(e) } on:click={ () => launchElement(e) }>{ e.LCHRecipeName }</div>
 			{/each}
 		</div>
 		{/if}

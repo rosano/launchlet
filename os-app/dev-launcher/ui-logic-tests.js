@@ -71,57 +71,41 @@ describe('LCHLauncherLogicFilter', function testLCHLauncherLogicFilter() {
 
 	context('function', function () {
 
-		it('returns false if match id', function() {
+		it('returns false if LCHRecipeSignature match', function() {
 			deepEqual(mainModule.LCHLauncherLogicFilter('alfa')({
-				id: 'alfa',
+				LCHRecipeSignature: 'alfa',
 			}), false);
 		});
 
-		it('returns false if match fn', function() {
+		it('returns false if LCHRecipeCallback match', function() {
 			deepEqual(mainModule.LCHLauncherLogicFilter('alfa')({
-				fn: function () {
+				LCHRecipeCallback () {
 					return 'alfa';
 				},
 			}), false);
 		});
 
-		it('returns false if no match name', function() {
+		it('returns false if LCHRecipeName not match', function() {
 			deepEqual(mainModule.LCHLauncherLogicFilter('alfa')({
-				name: 'bravo',
+				LCHRecipeName: 'bravo',
 			}), false);
 		});
 
-		it('returns false if no match labels', function() {
+		it('returns true if match LCHRecipeName', function() {
 			deepEqual(mainModule.LCHLauncherLogicFilter('alfa')({
-				labels: [
-					'bravo',
-				],
-			}), false);
-		});
-
-		it('returns true if match name', function() {
-			deepEqual(mainModule.LCHLauncherLogicFilter('alfa')({
-				name: 'alfa',
-			}), true);
-		});
-
-		it('returns true if match labels', function() {
-			deepEqual(mainModule.LCHLauncherLogicFilter('alfa')({
-				labels: [
-					'alfa',
-				],
+				LCHRecipeName: 'alfa',
 			}), true);
 		});
 
 		it('returns true if match partial', function() {
 			deepEqual(mainModule.LCHLauncherLogicFilter('alf')({
-				name: 'alfa',
+				LCHRecipeName: 'alfa',
 			}), true);
 		});
 
 		it('returns true if alternate case', function() {
 			deepEqual(mainModule.LCHLauncherLogicFilter('ALF')({
-				name: 'alfa',
+				LCHRecipeName: 'alfa',
 			}), true);
 		});
 		
