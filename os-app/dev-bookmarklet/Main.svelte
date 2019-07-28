@@ -3,7 +3,7 @@ import { LCHOptionsObject, OLSKLocalized } from './_shared.js';
 import { LCHLauncherModeJump, LCHBookmarkletLogicFilter } from './ui-logic.js';
 import { LCHMembersModelErrorsForFormulaObject } from '../_shared/rs-modules/lch_members/model.js';
 
-export let memberObjects = [];
+export let formulasAll = [];
 export let optionsObject = {};
 
 (function StartSetup() {
@@ -21,14 +21,14 @@ export let optionsObject = {};
 		return;
 	}
 
-	memberObjects.push(...formulas.filter(function(e) {
+	formulasAll.push(...formulas.filter(function(e) {
 		return !LCHMembersModelErrorsForFormulaObject(e);
 	}));
 })();
 
 const api = {
 	functionObjects () {
-		return memberObjects;
+		return formulasAll;
 	},
 	actionObjects () {
 		return api.functionObjects().filter(function (e) {
@@ -64,18 +64,18 @@ const api = {
 
 let filterText = '';
 
-let memberObjectSelected;
-let visibleFormulas = [];
+let formulaSelected;
+let formulasVisible = [];
 let filterTextDidChange = function (val) {
-	visibleFormulas = !val ? [] : memberObjects.filter(LCHBookmarkletLogicFilter(val));
-	memberObjectSelected = visibleFormulas[0];
+	formulasVisible = !val ? [] : formulasAll.filter(LCHBookmarkletLogicFilter(val));
+	formulaSelected = formulasVisible[0];
 };
 $: filterTextDidChange(filterText.trim());
 
 let rootElement;
 
 function setElementAtIndex(inputData) {
-	memberObjectSelected = visibleFormulas[Math.max(0, Math.min(visibleFormulas.length, inputData))];
+	formulaSelected = formulasVisible[Math.max(0, Math.min(formulasVisible.length, inputData))];
 }
 
 function launchElement(inputData) {
@@ -118,17 +118,17 @@ function handleKeydown(event) {
 	}
 
 	if (event.code === 'ArrowUp') {
-		setElementAtIndex(visibleFormulas.indexOf(memberObjectSelected) - 1);
+		setElementAtIndex(formulasVisible.indexOf(formulaSelected) - 1);
 		return event.preventDefault();
 	}
 
 	if (event.code === 'ArrowDown') {
-		setElementAtIndex(visibleFormulas.indexOf(memberObjectSelected) + 1);
+		setElementAtIndex(formulasVisible.indexOf(formulaSelected) + 1);
 		return event.preventDefault();
 	}
 
 	if (event.code === 'Enter') {
-		launchElement(memberObjectSelected);
+		launchElement(formulaSelected);
 		return event.preventDefault();
 	}
 }
@@ -147,10 +147,10 @@ function handleClick(event) {
 <div class="Container" bind:this={ rootElement }>
 	<div class="Bezel">
 		<input placeholder="{ OLSKLocalized(LCHOptionsObject().runMode === LCHLauncherModeJump ? 'LCHBookmarkletInputPlaceholderJump' : 'LCHBookmarkletInputPlaceholderDefault') }" bind:value={ filterText } bind:this={ inputElement } />
-		{#if visibleFormulas.length }
+		{#if formulasVisible.length }
 		<div class="ListContainer">
-			{#each visibleFormulas as e}
-				<div class="ListItem" class:ListItemSelected={ e === memberObjectSelected } on:mouseover={ () => memberObjectSelected = e } on:click={ () => launchElement(e) }>{ e.name }</div>
+			{#each formulasVisible as e}
+				<div class="ListItem" class:ListItemSelected={ e === formulaSelected } on:mouseover={ () => formulaSelected = e } on:click={ () => launchElement(e) }>{ e.name }</div>
 			{/each}
 		</div>
 		{/if}
