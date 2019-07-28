@@ -57,7 +57,9 @@ function launchElement(inputData) {
 	if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
 		filterText = inputData.LCHRecipeName;
 
-		api.fn(inputData.LCHRecipeSignature)();
+		inputData.LCHRecipeCallback.bind({
+			api: api,
+		})();
 	}
 	
 	handleDidFinish();
