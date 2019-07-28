@@ -81,6 +81,28 @@ export const LCHComposeLogicBoomarkletStringFor = function (inputData, OLSK_TEST
 			.replace(`//# sourceMappingURL=ui-behaviour.js.map`, '');
 };
 
+export const _LCHClosureObjectFor = function(inputData) {
+	if (typeof inputData !== 'object' || inputData === null) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	if (typeof inputData.LCHMemberBody !== 'string') {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	if (!inputData.LCHMemberBody.length) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	return Object.assign({
+		LCHClosureString: `function (${ inputData.LCHMemberArgs || '' }) { ${ inputData.LCHMemberBody } }`,
+	}, inputData.LCHMemberSignature ? {
+		LCHClosureSignature: inputData.LCHMemberSignature,
+	} : undefined, inputData.LCHMemberName ? {
+		LCHClosureName: inputData.LCHMemberName,
+	} : undefined);
+};
+
 export const LCHClosuresModelErrorsFor = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');

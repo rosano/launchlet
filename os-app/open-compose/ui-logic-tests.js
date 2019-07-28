@@ -125,6 +125,79 @@ describe('LCHComposeLogicBoomarkletStringFor', function testLCHComposeLogicBooma
 
 });
 
+describe('_LCHClosureObjectFor', function test_LCHClosureObjectFor() {
+
+	it('throws error if not object', function() {
+		throws(function() {
+			mainModule._LCHClosureObjectFor(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('throws error if LCHMemberBody not string', function() {
+		throws(function() {
+			mainModule._LCHClosureObjectFor({});
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('throws error if LCHMemberBody not filled', function() {
+		throws(function() {
+			mainModule._LCHClosureObjectFor({
+				LCHMemberBody: '',
+			});
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns object', function() {
+		deepEqual(mainModule._LCHClosureObjectFor({
+			LCHMemberBody: 'alfa',
+		}), {
+			LCHClosureString: 'function () { alfa }',
+		});
+	});
+
+	context('LCHMemberArgs', function() {
+
+		it('populates LCHClosureString', function() {
+			deepEqual(mainModule._LCHClosureObjectFor({
+				LCHMemberBody: 'alfa',
+				LCHMemberArgs: 'bravo',
+			}), {
+				LCHClosureString: 'function (bravo) { alfa }',
+			});
+		});
+
+	});
+
+	context('LCHClosureSignature', function() {
+
+		it('populates LCHClosureSignature', function() {
+			deepEqual(mainModule._LCHClosureObjectFor({
+				LCHMemberBody: 'alfa',
+				LCHMemberSignature: 'bravo',
+			}), {
+				LCHClosureString: 'function () { alfa }',
+				LCHClosureSignature: 'bravo',
+			});
+		});
+
+	});
+
+	context('LCHClosureName', function() {
+
+		it('populates LCHClosureName', function() {
+			deepEqual(mainModule._LCHClosureObjectFor({
+				LCHMemberBody: 'alfa',
+				LCHMemberName: 'bravo',
+			}), {
+				LCHClosureString: 'function () { alfa }',
+				LCHClosureName: 'bravo',
+			});
+		});
+
+	});
+
+});
+
 describe('LCHClosuresModelErrorsFor', function testLCHClosuresModelErrorsFor() {
 
 	it('throws error if not object', function() {
