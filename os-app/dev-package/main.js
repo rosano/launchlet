@@ -22,10 +22,16 @@ export const instanceCreate = function (param1 = [], param2 = {}) {
 		target: sandboxContainer,
 		props: {
 			dataObjects: Array.isArray(param1) ? param1 : [],
+			optionsObject: param2,
 			completionHandler () {
 				instanceDestroy();
+
+				if (!param2.completionHandler) {
+					return;
+				}
+
+				param2.completionHandler();
 			},
-			optionsObject: param2,
 		},
 	});
 };
