@@ -23,7 +23,7 @@ export const instanceCreate = function (param1 = [], param2 = {}) {
 		props: {
 			dataObjects: Array.isArray(param1) ? param1 : [],
 			completionHandler () {
-				return (app.$destroy() || true) && (app = null);
+				instanceDestroy();
 			},
 			optionsObject: param2,
 		},
