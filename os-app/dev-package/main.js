@@ -21,7 +21,7 @@ export const instanceCreate = function (param1 = [], param2 = {}) {
 	appInstance = new _AppClass({
 		target: sandboxContainer,
 		props: {
-			formulaObjects: Array.isArray(param1) ? param1 : [],
+			dataObjects: Array.isArray(param1) ? param1 : [],
 			completionHandler () {
 				return (app.$destroy() || true) && (app = null);
 			},

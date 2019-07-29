@@ -26,7 +26,7 @@
 		let app = new Main({
 			target: document.getElementById('LCHLauncherTarget'),
 			props: {
-				formulaObjects: [
+				dataObjects: [
 					{
 						LCHRecipeTitle: 'Bravo',
 						LCHRecipeCallback: function () {

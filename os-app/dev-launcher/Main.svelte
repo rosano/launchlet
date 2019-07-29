@@ -3,7 +3,7 @@ import { LCHOptionsObject, OLSKLocalized, formulaSelected } from './_shared.js';
 import { LCHLauncherModeJump, LCHLauncherLogicFilter } from './ui-logic.js';
 import { LCHRecipesModelErrorsFor } from './api.js';
 
-export let formulaObjects = [];
+export let dataObjects = [];
 export let completionHandler;
 export let optionsObject = {};
 
@@ -22,13 +22,13 @@ export let optionsObject = {};
 		return;
 	}
 
-	formulaObjects.push(...pageFormulas.filter(function(e) {
+	dataObjects.push(...pageFormulas.filter(function(e) {
 		return !LCHRecipesModelErrorsFor(e);
 	}));
 })();
 
 import { LCHAPIObjectFor } from './api.js';
-const api = LCHAPIObjectFor(formulaObjects);
+const api = LCHAPIObjectFor(dataObjects);
 
 function apiStart(inputData) {
 	inputData.LCHRecipeCallback.bind({
@@ -44,9 +44,9 @@ function apiStart(inputData) {
 
 let filterText = '';
 let formulasVisible = [];
-let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump ? formulaObjects : [];
+let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump ? dataObjects : [];
 let filterTextDidChange = function (val) {
-	formulasVisible = !val ? formulasDefault : formulaObjects.filter(LCHLauncherLogicFilter(val));
+	formulasVisible = !val ? formulasDefault : dataObjects.filter(LCHLauncherLogicFilter(val));
 
 	formulaSelected.set(!val ? null : formulasVisible[0]);
 };
