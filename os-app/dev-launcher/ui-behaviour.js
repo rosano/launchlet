@@ -14,11 +14,10 @@
 		window.LCHPageFormulas = function () {
 			return [
 				{
-					id: 'XYZAlfa',
-					fn: function XYZAlfa () {
+					LCHRecipeTitle: 'Alfa',
+					LCHRecipeCallback: function () {
 						alert('Alfa');
 					},
-					name: 'Alfa',
 				},
 			];
 		};
@@ -29,11 +28,10 @@
 			props: {
 				formulaObjects: [
 					{
-						id: 'XYZBravo',
-						fn: function XYZBravo () {
+						LCHRecipeTitle: 'Bravo',
+						LCHRecipeCallback: function () {
 							alert('Bravo');
 						},
-						name: 'Bravo',
 					},
 				],
 				optionsObject: {
