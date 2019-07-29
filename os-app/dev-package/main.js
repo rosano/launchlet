@@ -8,18 +8,18 @@ export const AppClass = function (inputData) {
 export const kRunModeDefault = LCHLauncherModeDefault;
 export const kRunModeJump = LCHLauncherModeJump;
 
-let sandboxContainer, appInstance;
+let appContainer, appInstance;
 
 export const instanceCreate = function (param1 = [], param2 = {}) {
 	if (instanceExists()) {
 		instanceDestroy();
 	}
 
-	sandboxContainer = document.createElement('div');
-	document.body.appendChild(sandboxContainer);
+	appContainer = document.createElement('div');
+	document.body.appendChild(appContainer);
 	
 	appInstance = new _AppClass({
-		target: sandboxContainer,
+		target: appContainer,
 		props: {
 			dataObjects: Array.isArray(param1) ? param1 : [],
 			optionsObject: param2,
@@ -44,6 +44,6 @@ export const instanceDestroy = function () {
 	appInstance.$destroy();
 	appInstance = undefined;
 
-	sandboxContainer.remove();
-	sandboxContainer = undefined;
+	appContainer.remove();
+	appContainer = undefined;
 };
