@@ -1,37 +1,44 @@
-const mod = {
-	_SetMainApp (inputData) {
-		mod.MainApp = inputData;
-	},
-	instanceCreate (param1 = [], param2 = {}) {
-		if (mod.instanceExists()) {
-			mod.instanceDestroy();
-		}
+import { LCHLauncherModeDefault, LCHLauncherModeJump } from '../dev-launcher/ui-logic.js';
 
-		mod.SandboxContainer = document.createElement('div');
-		document.body.appendChild(mod.SandboxContainer);
-		
-		mod.AppInstance = new mod.MainApp({
-			target: mod.SandboxContainer,
-			props: {
-				formulaObjects: Array.isArray(param1) ? param1 : [],
-				optionsObject: Object.assign(param2, {
-					_didFinish () {
-						return mod.instanceDestroy();
-					},
-				}),
-			},
-		});
-	},
-	instanceExists () {
-		return !!mod.AppInstance;
-	},
-	instanceDestroy () {
-		mod.AppInstance.$destroy();
-		delete mod.AppInstance;
-
-		mod.SandboxContainer.remove();
-		delete mod.SandboxContainer;
-	},
+let _AppClass;
+export const AppClass = function (inputData) {
+	_AppClass = inputData;
 };
 
-export default mod;
+export const kRunModeDefault = LCHLauncherModeDefault;
+export const kRunModeJump = LCHLauncherModeJump;
+
+let SandboxContainer, AppInstance;
+
+export const instanceCreate = function (param1 = [], param2 = {}) {
+	if (instanceExists()) {
+		instanceDestroy();
+	}
+
+	SandboxContainer = document.createElement('div');
+	document.body.appendChild(SandboxContainer);
+	
+	AppInstance = new _AppClass({
+		target: SandboxContainer,
+		props: {
+			formulaObjects: Array.isArray(param1) ? param1 : [],
+			optionsObject: Object.assign(param2, {
+				_didFinish () {
+					return instanceDestroy();
+				},
+			}),
+		},
+	});
+};
+
+export const instanceExists = function () {
+	return !!AppInstance;
+};
+
+export const instanceDestroy = function () {
+	AppInstance.$destroy();
+	AppInstance = undefined;
+
+	SandboxContainer.remove();
+	SandboxContainer = undefined;
+};
