@@ -211,4 +211,39 @@ input {
 .ListItemSelected {
 	background: #cccccc;
 }
+
+@media screen and (max-width: 760px) {
+
+.Container {
+	width: 100%;
+
+	left: 0;
+	margin: 0;
+}
+
+.Bezel {
+	padding: 0;
+	border: none;
+	border-radius: 0;
+}
+
+input {
+	padding: 10px;
+	border: none;
+	border-radius: 0;
+	border-bottom: 1px solid #cccccc;
+}
+
+.ListContainer {
+	margin-top: 0;
+	
+  /* MobileSafariSmoothScrolling */
+	-webkit-overflow-scrolling: touch;
+}
+
+.ListItem {
+	padding: 10px;
+}
+
+}
 </style>
