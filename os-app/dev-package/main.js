@@ -1,4 +1,4 @@
-import { LCHLauncherModeDefault, LCHLauncherModeJump } from '../dev-launcher/ui-logic.js';
+import { LCHLauncherModeDefault, LCHLauncherModeJump, LCHLauncherModes } from '../dev-launcher/ui-logic.js';
 
 let _AppClass;
 export const AppClass = function (inputData) {
@@ -10,13 +10,47 @@ export const kRunModeJump = LCHLauncherModeJump;
 
 let appContainer, appInstance;
 
+const LCHPackageValidateOptionsObject = function (inputData) {
+	if (typeof inputData !== 'object' || inputData === null) {
+		throw new Error('LCHErrorInputNotObject');
+	}
+
+	if (inputData.completionHandler) {
+		if (typeof inputData.completionHandler !== 'function') {
+			throw new Error('LCHErrorInputNotFunction');
+		}
+	}
+
+	if (inputData.runMode) {
+		if (LCHLauncherModes().indexOf(inputData.runMode) === -1) {
+			throw new Error('LCHErrorInputNotValidRunMode');
+		}
+	}
+
+	return true;
+};
+
 export const instanceCreate = function (param1 = [], param2 = {}) {
 	if (instanceExists()) {
 		instanceDestroy();
 	}
 
-	appContainer = document.createElement('div');
-	document.body.appendChild(appContainer);
+	if (param1 && !Array.isArray(param1)) {
+		throw new Error('LCHErrorInputNotArray');
+	}
+
+	if (param2) {
+		try {
+			LCHPackageValidateOptionsObject(param2)
+		} catch(e) {
+			throw e;
+		}
+	}
+
+	if (typeof document !== 'undefined') {
+		appContainer = document.createElement('div');
+		document.body.appendChild(appContainer);
+	}
 	
 	appInstance = new _AppClass({
 		target: appContainer,
@@ -43,6 +77,10 @@ export const instanceExists = function () {
 export const instanceDestroy = function () {
 	appInstance.$destroy();
 	appInstance = undefined;
+
+	if (typeof document === 'undefined') {
+		return;
+	}
 
 	appContainer.remove();
 	appContainer = undefined;
