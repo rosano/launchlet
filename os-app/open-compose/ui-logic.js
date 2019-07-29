@@ -20,7 +20,7 @@ export const LCHComposeLogicBoomarkletTemplate = function () {
 
 	window.LCHBookmarklet = {
 		uiStyle: function () {
-			return `LCHCompileToken_AppStyle`;
+			return _protectFromCompiler(`LCHCompileToken_AppStyle`);
 		},
 		uiBehaviour: function () {
 			_protectFromCompiler(`LCHCompileToken_AppBehaviour`);
@@ -75,7 +75,18 @@ export const LCHComposeLogicBoomarkletStringFor = function (inputData, OLSK_TEST
 	}
 
 	return Object.keys(inputData).reduce(function (coll, item) {
-		return coll.replace(item, item === 'LCHCompileToken_ClosureObjects' ? _LCHComposeLogicFormulaObjectsReplacementFor(inputData[item]) : inputData[item]);
+		let itemReplacement = inputData[item];
+
+		if (item === 'LCHCompileToken_ClosureObjects') {
+			itemReplacement = _LCHComposeLogicFormulaObjectsReplacementFor(inputData[item]);
+		}
+
+		if (item === 'LCHCompileToken_AppStyle') {
+			itemReplacement = `\`${ inputData[item] }\``;
+		}
+
+
+		return coll.replace(item,  itemReplacement);
 	}, LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2'))
 			.replace(`(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':5000/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');`, '')
 			.replace(`//# sourceMappingURL=ui-behaviour.js.map`, '');
