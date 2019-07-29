@@ -4,6 +4,7 @@ import { LCHLauncherModeJump, LCHLauncherLogicFilter } from './ui-logic.js';
 import { LCHRecipesModelErrorsFor } from './api.js';
 
 export let formulaObjects = [];
+export let completionHandler;
 export let optionsObject = {};
 
 (function StartSetup() {
@@ -60,11 +61,11 @@ onMount(function () {
 });
 
 function handleDidFinish() {
-	if (typeof optionsObject._didFinish !== 'function') {
+	if (typeof completionHandler !== 'function') {
 		return;
 	}
 
-	return optionsObject._didFinish();
+	return completionHandler();
 }
 
 function handleKeydown(event) {

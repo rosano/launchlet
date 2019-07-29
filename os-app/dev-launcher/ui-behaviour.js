@@ -34,11 +34,10 @@
 						},
 					},
 				],
-				optionsObject: {
-					_didFinish () {
-						return (app.$destroy() || true) && (app = null);
-					},
-				}
+				completionHandler () {
+					return (app.$destroy() || true) && (app = null);
+				},
+				optionsObject: {}
 			},
 		});
 	},
