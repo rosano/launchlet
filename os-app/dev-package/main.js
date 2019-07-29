@@ -8,18 +8,18 @@ export const AppClass = function (inputData) {
 export const kRunModeDefault = LCHLauncherModeDefault;
 export const kRunModeJump = LCHLauncherModeJump;
 
-let SandboxContainer, AppInstance;
+let sandboxContainer, appInstance;
 
 export const instanceCreate = function (param1 = [], param2 = {}) {
 	if (instanceExists()) {
 		instanceDestroy();
 	}
 
-	SandboxContainer = document.createElement('div');
-	document.body.appendChild(SandboxContainer);
+	sandboxContainer = document.createElement('div');
+	document.body.appendChild(sandboxContainer);
 	
-	AppInstance = new _AppClass({
-		target: SandboxContainer,
+	appInstance = new _AppClass({
+		target: sandboxContainer,
 		props: {
 			formulaObjects: Array.isArray(param1) ? param1 : [],
 			completionHandler () {
@@ -31,13 +31,13 @@ export const instanceCreate = function (param1 = [], param2 = {}) {
 };
 
 export const instanceExists = function () {
-	return !!AppInstance;
+	return !!appInstance;
 };
 
 export const instanceDestroy = function () {
-	AppInstance.$destroy();
-	AppInstance = undefined;
+	appInstance.$destroy();
+	appInstance = undefined;
 
-	SandboxContainer.remove();
-	SandboxContainer = undefined;
+	sandboxContainer.remove();
+	sandboxContainer = undefined;
 };

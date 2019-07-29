@@ -9,11 +9,10 @@
 	setupEverything() {
 		Launchlet.instanceCreate([
 			{
-				id: 'XYZAlfa',
-				fn: function XYZAlfa () {
+				LCHRecipeTitle: 'Alfa',
+				LCHRecipeCallback () {
 					alert('Alfa');
 				},
-				name: 'Alfa',
 			},
 		]);
 	},
