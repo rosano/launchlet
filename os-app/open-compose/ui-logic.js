@@ -41,12 +41,12 @@ export const LCHComposeLogicBoomarkletTemplate = function () {
 			window.LCHBookmarklet.AppInstance = new (window.LCHBookmarklet.uiBehaviour())({
 				target: sandboxContainer,
 				props: {
-					formulaObjects: _protectFromCompiler(`LCHCompileToken_ClosureObjects`),
+					dataObjects: _protectFromCompiler(`LCHCompileToken_ClosureObjects`),
+					completionHandler () {
+						return window.LCHBookmarklet.instanceDestroy();
+					},
 					optionsObject: {
 						languageCode: 'LCHCompileToken_AppLanguageCode',
-						_didFinish () {
-							return window.LCHBookmarklet.instanceDestroy();
-						},
 					},
 				}
 			});
