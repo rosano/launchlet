@@ -104,6 +104,8 @@ function handleKeydown(event) {
 	if (event.code === 'Enter') {
 		apiStart($formulaSelected);
 
+		handleDidFinish();
+
 		return event.preventDefault();
 	}
 }
@@ -236,7 +238,7 @@ input {
 
 .ListContainer {
 	margin-top: 0;
-	
+
   /* MobileSafariSmoothScrolling */
 	-webkit-overflow-scrolling: touch;
 }
