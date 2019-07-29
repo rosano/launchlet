@@ -30,22 +30,16 @@ import { LCHAPIObjectFor } from './api.js';
 const api = LCHAPIObjectFor(formulaObjects);
 
 function apiStart(inputData) {
-	return inputData.LCHRecipeCallback.bind({
+	inputData.LCHRecipeCallback.bind({
 		api: api,
 	})();
+
+	if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
+		return;
+	}
+
+	handleDidFinish();
 };
-
-formulaSelected.subscribe(function (val) {
-	if (!val) {
-		return;
-	}
-
-	if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
-		return;
-	}
-
-	apiStart(val);
-});
 
 let filterText = '';
 let formulasVisible = [];
@@ -58,16 +52,6 @@ let filterTextDidChange = function (val) {
 $: filterTextDidChange(filterText.trim());
 
 let rootElement;
-
-function launchElement(inputData) {
-	if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
-		filterText = inputData.LCHRecipeTitle;
-
-		apiStart(inputData);
-	}
-	
-	handleDidFinish();
-}
 
 let inputElement;
 import { onMount } from 'svelte';
@@ -98,16 +82,27 @@ function handleKeydown(event) {
 
 	if (event.code === 'ArrowUp') {
 		formulaSelected.set(formulasVisible[Math.max(0, Math.min(formulasVisible.length, formulasVisible.indexOf($formulaSelected) - 1))]);
+
+		if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
+			apiStart($formulaSelected);
+		}
+
 		return event.preventDefault();
 	}
 
 	if (event.code === 'ArrowDown') {
 		formulaSelected.set(formulasVisible[Math.max(0, Math.min(formulasVisible.length, formulasVisible.indexOf($formulaSelected) + 1))]);
+		
+		if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
+			apiStart($formulaSelected);
+		}
+
 		return event.preventDefault();
 	}
 
 	if (event.code === 'Enter') {
-		launchElement($formulaSelected);
+		apiStart($formulaSelected);
+
 		return event.preventDefault();
 	}
 }
@@ -118,7 +113,13 @@ function handleClick(event) {
   }
 
   handleDidFinish();
-};
+}
+
+function itemDidClick(event, item) {
+	apiStart(item);
+
+	handleDidFinish();
+}
 </script>
 <!-- Bind to window to avoit triggering external events on page -->
 <svelte:window on:keydown={ handleKeydown } on:click={ handleClick }/>
@@ -129,7 +130,7 @@ function handleClick(event) {
 		{#if formulasVisible.length }
 		<div class="ListContainer">
 			{#each formulasVisible as e}
-				<div class="ListItem" class:ListItemSelected={ e === $formulaSelected } on:mouseover={ () => formulaSelected.set(e) } on:click={ () => launchElement(e) }>{ e.LCHRecipeTitle }</div>
+				<div class="ListItem" class:ListItemSelected={ e === $formulaSelected } on:mouseover={ () => formulaSelected.set(e) } on:click={ (event) => itemDidClick(event, e) }>{ e.LCHRecipeTitle }</div>
 			{/each}
 		</div>
 		{/if}
