@@ -191,7 +191,7 @@ input {
 
 	font-size: 13.5pt;
 
-	/* CapHeight */
+	/* @CapHeight */
 	max-height: 165px;
 	overflow: scroll;
 }
@@ -239,6 +239,9 @@ input {
 
 .ListContainer {
 	margin-top: 0;
+
+	/* @CapHeight */
+	max-height: 220px;
 
   /* MobileSafariSmoothScrolling */
 	-webkit-overflow-scrolling: touch;
