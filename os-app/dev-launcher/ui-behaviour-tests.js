@@ -1,4 +1,5 @@
 import { throws, deepEqual } from 'assert';
+import { LCHLauncherModeDefault, LCHLauncherModeJump } from './ui-logic.js'
 
 const Browser = require('zombie');
 
@@ -25,35 +26,51 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
+const browser = new Browser();
+
 describe('LCHLauncher', function() {
 
 describe('Discovery', function testDiscovery() {
 
-	const browser = new Browser();
+	context('LCHLauncherModeDefault', function () {
 
-	before(function() {
-		return browser.visit('/launcher');
-	});
-
-	it('on startup', function() {
-		browser.assert.elements(LCHLauncherFilterInput, 1);
+		before(function() {
+			return browser.visit(`/launcher?runMode=${ LCHLauncherModeDefault }`);
+		});
 		
-		browser.assert.elements(LCHLauncherListItem, 0);
-	});
-
-	it('on filter', async function() {
-		browser.fill(LCHLauncherFilterInput, 'a');
-		await browser.wait();
-
-		browser.assert.elements(LCHLauncherListItem, 5);
-	});
-
-	context.skip('jump', function () {
-		
-		it('', async function() {
+		it('on startup', function() {
+			browser.assert.elements(LCHLauncherFilterInput, 1);
+			
+			browser.assert.elements(LCHLauncherListItem, 0);
 		});
 
-	})
+		it('on filter', async function() {
+			browser.fill(LCHLauncherFilterInput, 'a');
+			await browser.wait({element: LCHLauncherListItem});
+
+			browser.assert.elements(LCHLauncherListItem, 5);
+		});
+
+	});
+
+	context('LCHLauncherModeJump', function () {
+
+		before(function() {
+			return browser.visit(`/launcher?runMode=${ LCHLauncherModeJump }`);
+		});
+		
+		it('on startup', function() {
+			browser.assert.elements(LCHLauncherListItem, 13);
+		});
+
+		it('on filter', async function() {
+			browser.fill(LCHLauncherFilterInput, 'a');
+			await browser.wait({element: LCHLauncherListItem});
+
+			browser.assert.elements(LCHLauncherListItem, 5);
+		});
+
+	});
 
 });
 
@@ -63,7 +80,7 @@ describe('Language', function testLanguage() {
 
 		context(languageCode, function () {
 			
-			const browser = new Browser();
+			// const browser = new Browser();
 			const uLocalized = function (inputData) {
 				return OLSKTestingLocalized(inputData, languageCode);
 			};
@@ -78,7 +95,7 @@ describe('Language', function testLanguage() {
 
 			it.skip('on filter', async function() {
 				browser.fill(LCHLauncherFilterInput, 'a');
-				await browser.wait();
+				await browser.wait({element: LCHLauncherListItem});
 
 				// browser.assert.elements(LCHLauncherListItem, 1);
 			});
@@ -90,7 +107,7 @@ describe('Language', function testLanguage() {
 
 describe('Interaction', function testInteraction() {
 
-	const browser = new Browser();
+	// const browser = new Browser();
 
 	before(function() {
 		return browser.visit('/launcher');
@@ -110,7 +127,7 @@ describe('Interaction', function testInteraction() {
 
 		it('shows items if filter and match', async function() {
 			browser.fill(LCHLauncherFilterInput, 'a');
-			await browser.wait();
+			await browser.wait({element: LCHLauncherListItem});
 			
 			browser.assert.elements(LCHLauncherListItem, 5);
 		});
@@ -121,40 +138,46 @@ describe('Interaction', function testInteraction() {
 
 		it('selects item on mouseover', async function() {
 			browser.fire(browser.queryAll(LCHLauncherListItem)[1], 'mouseover');
-			await browser.wait();
+			await browser.wait({element: LCHLauncherListItem});
 
 			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[1], 'ListItemSelected');
 		});
 
+		it('runs item on click', async function() {
+			browser.fire(browser.queryAll(LCHLauncherListItem)[0], 'click');
+			await browser.wait({element: LCHLauncherListItem});
+
+			browser.assert.elements(LCHLauncherListItem, 0);
+		});
+
 	});
 
-	context('shortcut ArrowUp', function () {
+	context('shortcuts', function () {
 
-		it('selects previous item', async function() {
+		before(function() {
+			return browser.visit('/launcher');
+		});
+
+		it('selects next item on ArrowDown', async function() {
+			browser.fill(LCHLauncherFilterInput, 'a');
+			await browser.wait({element: LCHLauncherListItem});
+
+			browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
+			await browser.wait({element: LCHLauncherListItem});
+
+			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[1], 'ListItemSelected');
+		});
+
+		it('selects previous item on ArrowUp', async function() {
 			browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
-			await browser.wait();
+			await browser.wait({element: LCHLauncherListItem});
 
 			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[0], 'ListItemSelected');
 		});
 
-	});
-
-	context('shortcut ArrowDown', function () {
-
-		it('selects next item', async function() {
-			browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
-			await browser.wait();
-
-			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[1], 'ListItemSelected');
-		});
-
-	});
-
-	context('shortcut Enter', function () {
-
-		it('runs item', async function() {
+		it('runs item on Enter', async function() {
 			browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
-			await browser.wait();
+			await browser.wait({element: LCHLauncherListItem});
 
 			browser.assert.elements(LCHLauncherListItem, 0);
 		});
