@@ -34,12 +34,6 @@ function apiStart(inputData) {
 	inputData.LCHRecipeCallback.bind({
 		api: api,
 	})();
-
-	if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
-		return;
-	}
-
-	handleDidFinish();
 };
 
 let filterText = '';
@@ -100,7 +94,9 @@ function handleKeydown(event) {
 			return event.preventDefault();
 		},
 		Enter () {
-			apiStart($formulaSelected);
+			if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
+				apiStart($formulaSelected);
+			}
 
 			handleDidFinish();
 
