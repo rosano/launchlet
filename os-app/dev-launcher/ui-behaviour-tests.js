@@ -3,6 +3,19 @@ import { throws, deepEqual } from 'assert';
 const Browser = require('zombie');
 
 Browser.localhost('loc.tests', 3000);
+Browser.prototype.OLSKKeyDown = function(target, keyCode) {
+	const event = this.window.document.createEvent('HTMLEvents');
+	event.initEvent('keydown', true, true);
+	event.which = event.keyCode = event.code = keyCode;
+
+	target = typeof target === 'string' ? this.query(target) : target;
+
+	if (!target) {
+		throw new Error('no target')
+	}
+
+	target.dispatchEvent(event);
+};
 
 Object.entries({
 	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
@@ -106,6 +119,20 @@ describe('Interaction', function testInteraction() {
 			await browser.wait();
 			
 			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[0], 'ListItemSelected');
+		});
+
+	});
+
+	context('shortcut ArrowDown', function () {
+
+		it('selects next item', async function() {
+			browser.fill(LCHLauncherFilterInput, 'a');
+			await browser.wait();
+			
+			browser.OLSKKeyDown(browser.window, 'ArrowDown');
+			await browser.wait();
+
+			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[1], 'ListItemSelected');
 		});
 
 	});
