@@ -50,7 +50,9 @@
 				completionHandler () {
 					return (app.$destroy() || true) && (app = null);
 				},
-				optionsObject: {}
+				optionsObject: Object.assign({}, {
+					runMode: (new URLSearchParams(window.location.search)).get('runMode') || undefined,
+				}),
 			},
 		});
 	},
