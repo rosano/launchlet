@@ -119,12 +119,8 @@ describe('Interaction', function testInteraction() {
 			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[0], 'ListItemSelected');
 		});
 
-	});
-
-	context('shortcut ArrowDown', function () {
-
-		it('selects next item', async function() {
-			browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
+		it('selects item on mouseover', async function() {
+			browser.fire(browser.queryAll(LCHLauncherListItem)[1], 'mouseover');
 			await browser.wait();
 
 			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[1], 'ListItemSelected');
@@ -134,11 +130,22 @@ describe('Interaction', function testInteraction() {
 
 	context('shortcut ArrowUp', function () {
 
-		it('selects next item', async function() {
+		it('selects previous item', async function() {
 			browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
 			await browser.wait();
 
 			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[0], 'ListItemSelected');
+		});
+
+	});
+
+	context('shortcut ArrowDown', function () {
+
+		it('selects next item', async function() {
+			browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
+			await browser.wait();
+
+			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[1], 'ListItemSelected');
 		});
 
 	});
