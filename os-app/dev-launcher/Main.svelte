@@ -69,45 +69,50 @@ function handleDidFinish() {
 }
 
 function handleKeydown(event) {
-	if (event.code === 'Escape') {
-		if (!filterText) {
-			handleDidFinish()
-		}
+	const handlerFunctions = {
+		Escape () {
+			if (!filterText) {
+				handleDidFinish()
+			}
 
-		if (filterText) {
-			filterText = '';
-		}
+			if (filterText) {
+				filterText = '';
+			}
 
-		return event.preventDefault();
-	}
+			return event.preventDefault();
+		},
+		ArrowUp () {
+			formulaSelected.set(formulasVisible[Math.max(0, Math.min(formulasVisible.length, formulasVisible.indexOf($formulaSelected) - 1))]);
 
-	if (event.code === 'ArrowUp') {
-		formulaSelected.set(formulasVisible[Math.max(0, Math.min(formulasVisible.length, formulasVisible.indexOf($formulaSelected) - 1))]);
+			if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
+				apiStart($formulaSelected);
+			}
 
-		if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
+			return event.preventDefault();
+		},
+		ArrowDown () {
+			formulaSelected.set(formulasVisible[Math.max(0, Math.min(formulasVisible.length, formulasVisible.indexOf($formulaSelected) + 1))]);
+			
+			if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
+				apiStart($formulaSelected);
+			}
+
+			return event.preventDefault();
+		},
+		Enter () {
 			apiStart($formulaSelected);
-		}
 
-		return event.preventDefault();
+			handleDidFinish();
+
+			return event.preventDefault();
+		},
+	};
+
+	if (Object.keys(handlerFunctions).indexOf(event.code) === -1) {
+		return;
 	}
 
-	if (event.code === 'ArrowDown') {
-		formulaSelected.set(formulasVisible[Math.max(0, Math.min(formulasVisible.length, formulasVisible.indexOf($formulaSelected) + 1))]);
-		
-		if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
-			apiStart($formulaSelected);
-		}
-
-		return event.preventDefault();
-	}
-
-	if (event.code === 'Enter') {
-		apiStart($formulaSelected);
-
-		handleDidFinish();
-
-		return event.preventDefault();
-	}
+	handlerFunctions[event.code]();
 }
 
 function handleClick(event) { 
