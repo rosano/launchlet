@@ -82,10 +82,10 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 				return OLSKTestingLocalized(inputData, languageCode);
 			};
 
-			context('LCHLauncherModeDefault', function () {
+			context('shared', function () {
 
 				before(function() {
-					return browser.visit(`${ languageCode }/launcher?runMode=${ LCHLauncherModeDefault }`);
+					return browser.visit('/launcher');
 				});
 
 				it('on startup', function() {
@@ -167,7 +167,6 @@ describe('LCHLauncherUITestInteraction', function testInteraction() {
 			browser.assert.elements(LCHLauncherFilterInput, 0);
 		});
 
-
 		context('shortcuts', function () {
 
 			before(function() {
@@ -195,7 +194,7 @@ describe('LCHLauncherUITestInteraction', function testInteraction() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
 				await browser.wait({element: LCHLauncherListItem});
 
-				browser.assert.elements(LCHLauncherListItem, 0);
+				browser.assert.elements(LCHLauncherFilterInput, 0);
 			});
 
 		});
@@ -264,7 +263,7 @@ describe('LCHLauncherUITestInteraction', function testInteraction() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
 				await browser.wait({element: LCHLauncherListItem});
 
-				browser.assert.elements(LCHLauncherListItem, 0);
+				browser.assert.elements(LCHLauncherFilterInput, 0);
 			});
 
 		});
