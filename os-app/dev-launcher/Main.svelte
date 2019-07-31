@@ -43,6 +43,16 @@ let filterTextDidChange = function (val) {
 	formulasVisible = !val ? formulasDefault : dataObjects.filter(LCHLauncherLogicFilter(val));
 
 	formulaSelected.set(!val ? null : formulasVisible[0]);
+
+	if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
+		return;
+	}
+
+	if (!val) {
+		return;
+	}
+
+	apiStart($formulaSelected);
 };
 $: filterTextDidChange(filterText.trim());
 
