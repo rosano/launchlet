@@ -83,7 +83,7 @@ describe('Interaction', function testInteraction() {
 		return browser.visit('/launcher');
 	});
 
-	context('command', function () {
+	context('mode command', function () {
 		
 		it('shows no items on startup', function() {
 			browser.assert.elements(LCHLauncherListItem, 0);
@@ -100,7 +100,7 @@ describe('Interaction', function testInteraction() {
 			browser.fill(LCHLauncherFilterInput, 'a');
 			await browser.wait({ element: LCHLauncherListItem });
 			
-			browser.assert.hasClass(browser.query(LCHLauncherListItem), 'ListItemSelected');
+			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[0], 'ListItemSelected');
 		});
 
 	});
