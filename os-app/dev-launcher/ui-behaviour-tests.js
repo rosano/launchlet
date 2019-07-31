@@ -198,6 +198,65 @@ describe('Interaction', function testInteraction() {
 
 	});
 
+	context('LCHLauncherModeJump', function () {
+
+		before(function() {
+			return browser.visit(`/launcher?runMode=${ LCHLauncherModeJump }`);
+		});
+		
+		it.skip('shows no items if no filter', function() {
+			browser.assert.elements(LCHLauncherListItem, 0);
+		});
+		
+		it.skip('shows no items if no match', function() {
+			browser.fill(LCHLauncherFilterInput, 'alfabravo');
+
+			browser.assert.elements(LCHLauncherListItem, 0);
+		});
+
+		it.skip('shows items if filter and match', async function() {
+			browser.fill(LCHLauncherFilterInput, 'a');
+			await browser.wait({element: LCHLauncherListItem});
+			
+			browser.assert.elements(LCHLauncherListItem, 5);
+		});
+
+		it('selects no items', async function() {
+			browser.assert.elements('.ListItemSelected', 0);
+		});
+
+		it.skip('selects item on mouseover', async function() {
+			browser.fire(browser.queryAll(LCHLauncherListItem)[1], 'mouseover');
+			await browser.wait({element: LCHLauncherListItem});
+
+			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[1], 'ListItemSelected');
+		});
+
+		it.skip('runs item and closes on click', async function() {
+			browser.fire(browser.queryAll(LCHLauncherListItem)[0], 'click');
+			await browser.wait({element: LCHLauncherListItem});
+
+			browser.assert.elements(LCHLauncherListItem, 0);
+		});
+
+
+		context.skip('shortcuts', function () {
+
+			before(function() {
+				return browser.visit(`/launcher?runMode=${ LCHLauncherModeJump }`);
+			});
+
+			it('closes on Enter', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
+				await browser.wait({element: LCHLauncherListItem});
+
+				browser.assert.elements(LCHLauncherListItem, 0);
+			});
+
+		});
+
+	});
+
 });
 
 });
