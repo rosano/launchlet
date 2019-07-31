@@ -143,6 +143,17 @@ describe('Interaction', function testInteraction() {
 
 	});
 
+	context('shortcut Enter', function () {
+
+		it('runs item', async function() {
+			browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
+			await browser.wait();
+
+			browser.assert.elements(LCHLauncherListItem, 0);
+		});
+
+	});
+
 });
 
 });
