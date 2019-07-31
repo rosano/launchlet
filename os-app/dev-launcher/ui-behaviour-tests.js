@@ -154,11 +154,17 @@ describe('LCHLauncherUITestInteraction', function testInteraction() {
 			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[1], 'ListItemSelected');
 		});
 
-		it('runs item on click', async function() {
+		it('does not run item on select', async function() {
+			browser.assert.input('textarea', '');
+		});
+
+		it('runs item and closes on click', async function() {
 			browser.fire(browser.queryAll(LCHLauncherListItem)[0], 'click');
 			await browser.wait({element: LCHLauncherListItem});
 
-			browser.assert.elements(LCHLauncherListItem, 0);
+			browser.assert.input('textarea', 'Alfa');
+
+			browser.assert.elements(LCHLauncherFilterInput, 0);
 		});
 
 
@@ -185,7 +191,7 @@ describe('LCHLauncherUITestInteraction', function testInteraction() {
 				browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[0], 'ListItemSelected');
 			});
 
-			it('runs item on Enter', async function() {
+			it('runs item and closes on Enter', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
 				await browser.wait({element: LCHLauncherListItem});
 
@@ -201,47 +207,57 @@ describe('LCHLauncherUITestInteraction', function testInteraction() {
 		before(function() {
 			return browser.visit(`/launcher?runMode=${ LCHLauncherModeJump }`);
 		});
-		
-		it.skip('shows no items if no filter', function() {
-			browser.assert.elements(LCHLauncherListItem, 0);
-		});
-		
-		it.skip('shows no items if no match', function() {
-			browser.fill(LCHLauncherFilterInput, 'alfabravo');
-
-			browser.assert.elements(LCHLauncherListItem, 0);
-		});
-
-		it.skip('shows items if filter and match', async function() {
-			browser.fill(LCHLauncherFilterInput, 'a');
-			await browser.wait({element: LCHLauncherListItem});
-			
-			browser.assert.elements(LCHLauncherListItem, 5);
-		});
 
 		it('selects no items', async function() {
 			browser.assert.elements('.ListItemSelected', 0);
 		});
 
-		it.skip('selects item on mouseover', async function() {
+		it('selects item on mouseover', async function() {
 			browser.fire(browser.queryAll(LCHLauncherListItem)[1], 'mouseover');
 			await browser.wait({element: LCHLauncherListItem});
 
 			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[1], 'ListItemSelected');
 		});
 
-		it.skip('runs item and closes on click', async function() {
-			browser.fire(browser.queryAll(LCHLauncherListItem)[0], 'click');
+		it('does not run item on mouseover', async function() {
+			browser.assert.input('textarea', '');
+		});
+
+		it('runs first item if filter and match', async function() {
+			browser.fill(LCHLauncherFilterInput, 'a');
+			await browser.wait({element: LCHLauncherListItem});
+			
+			browser.assert.input('textarea', 'Alfa');
+		});
+
+		it('runs item and closes on click', async function() {
+			browser.fire(browser.queryAll(LCHLauncherListItem)[1], 'click');
 			await browser.wait({element: LCHLauncherListItem});
 
-			browser.assert.elements(LCHLauncherListItem, 0);
+			browser.assert.input('textarea', 'Bravo');
+
+			browser.assert.elements(LCHLauncherFilterInput, 0);
 		});
 
 
-		context.skip('shortcuts', function () {
+		context('shortcuts', function () {
 
 			before(function() {
 				return browser.visit(`/launcher?runMode=${ LCHLauncherModeJump }`);
+			});
+
+			it('runs item on ArrowDown', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
+				await browser.wait({element: LCHLauncherListItem});
+
+				browser.assert.input('textarea', 'Alfa');
+			});
+
+			it('runs item on ArrowUp', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
+				await browser.wait({element: LCHLauncherListItem});
+
+				browser.assert.input('textarea', 'Hello');
 			});
 
 			it('closes on Enter', async function() {
