@@ -98,7 +98,7 @@ describe('Interaction', function testInteraction() {
 
 	context('mode command', function () {
 		
-		it('shows no items', function() {
+		it('shows no items if no filter', function() {
 			browser.assert.elements(LCHLauncherListItem, 0);
 		});
 		
@@ -108,7 +108,7 @@ describe('Interaction', function testInteraction() {
 			browser.assert.elements(LCHLauncherListItem, 0);
 		});
 
-		it('shows items if match', async function() {
+		it('shows items if filter and match', async function() {
 			browser.fill(LCHLauncherFilterInput, 'a');
 			await browser.wait();
 			
