@@ -88,15 +88,15 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 					return browser.visit(`${ languageCode }/launcher?runMode=${ LCHLauncherModeDefault }`);
 				});
 
-				it('localizes interface', function() {
+				it('on startup', function() {
 					deepEqual(browser.query(LCHLauncherFilterInput).placeholder, uLocalized('LCHLauncherInputPlaceholderDefault'));
 				});
 
-				it.skip('on filter', async function() {
+				it('on filter', async function() {
 					browser.fill(LCHLauncherFilterInput, 'a');
 					await browser.wait({element: LCHLauncherListItem});
 
-					// browser.assert.elements(LCHLauncherListItem, 1);
+					deepEqual(browser.queryAll(LCHLauncherListItem)[0].textContent, 'Alfa');
 				});
 
 			});
