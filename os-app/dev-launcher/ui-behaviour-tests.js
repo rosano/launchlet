@@ -107,7 +107,7 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 					return browser.visit(`${ languageCode }/launcher?runMode=${ LCHLauncherModeJump }`);
 				});
 
-				it('localizes interface', function() {
+				it('on startup', function() {
 					deepEqual(browser.query(LCHLauncherFilterInput).placeholder, uLocalized('LCHLauncherInputPlaceholderJump'));
 				});
 
