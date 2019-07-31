@@ -112,3 +112,31 @@ describe('LCHLauncherLogicFilter', function testLCHLauncherLogicFilter() {
 	});
 
 });
+
+describe('LCHLauncherLogicConstrainIndex', function testLCHLauncherLogicConstrainIndex() {
+
+	it('throws error if param1 not array', function() {
+		throws(function() {
+			mainModule.LCHLauncherLogicConstrainIndex(null, 0);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('throws error if param2 not number', function() {
+		throws(function() {
+			mainModule.LCHLauncherLogicConstrainIndex([], null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns last if param2 below 0', function() {
+		deepEqual(mainModule.LCHLauncherLogicConstrainIndex(['alfa', 'bravo', 'charlie'], -1), 2);
+	});
+
+	it('returns first if param2 above length', function() {
+		deepEqual(mainModule.LCHLauncherLogicConstrainIndex(['alfa', 'bravo', 'charlie'], 3), 0);
+	});
+
+	it('returns param2', function() {
+		deepEqual(mainModule.LCHLauncherLogicConstrainIndex([], 0), 0);
+	});
+
+});

@@ -1,6 +1,6 @@
 <script>
 import { LCHOptionsObject, OLSKLocalized, formulaSelected } from './_shared.js';
-import { LCHLauncherModeJump, LCHLauncherLogicFilter } from './ui-logic.js';
+import { LCHLauncherModeJump, LCHLauncherLogicFilter, LCHLauncherLogicConstrainIndex } from './ui-logic.js';
 import { LCHRecipesModelErrorsFor } from './api.js';
 
 export let dataObjects = [];
@@ -76,7 +76,7 @@ function handleKeydown(event) {
 			return event.preventDefault();
 		},
 		ArrowUp () {
-			formulaSelected.set(formulasVisible[Math.max(0, Math.min(formulasVisible.length, formulasVisible.indexOf($formulaSelected) - 1))]);
+			formulaSelected.set(formulasVisible[LCHLauncherLogicConstrainIndex(formulasVisible, formulasVisible.indexOf($formulaSelected) - 1)]);
 
 			if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
 				apiStart($formulaSelected);
@@ -85,7 +85,7 @@ function handleKeydown(event) {
 			return event.preventDefault();
 		},
 		ArrowDown () {
-			formulaSelected.set(formulasVisible[Math.max(0, Math.min(formulasVisible.length, formulasVisible.indexOf($formulaSelected) + 1))]);
+			formulaSelected.set(formulasVisible[LCHLauncherLogicConstrainIndex(formulasVisible, formulasVisible.indexOf($formulaSelected) + 1)]);
 			
 			if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
 				apiStart($formulaSelected);
