@@ -16,7 +16,7 @@
 				{
 					LCHRecipeTitle: 'Hello',
 					LCHRecipeCallback: function () {
-						console.log('Hello');
+						document.querySelector('pre').innerText = 'Hello';
 					},
 				},
 			];
@@ -43,7 +43,7 @@
 					return {
 						LCHRecipeTitle: e,
 						LCHRecipeCallback: function () {
-							console.log(e);
+							document.querySelector('pre').innerText = e;
 						},
 					};
 				}),
