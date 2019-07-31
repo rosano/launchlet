@@ -96,6 +96,13 @@ describe('Interaction', function testInteraction() {
 			browser.assert.elements(LCHLauncherListItem, 6);
 		});
 
+		it('selects first item', async function() {
+			browser.fill(LCHLauncherFilterInput, 'a');
+			await browser.wait({ element: LCHLauncherListItem });
+			
+			browser.assert.hasClass(browser.query(LCHLauncherListItem), 'ListItemSelected');
+		});
+
 	});
 
 });
