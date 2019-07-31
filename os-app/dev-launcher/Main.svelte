@@ -129,7 +129,7 @@ function itemDidClick(event, item) {
 
 <div class="Container" bind:this={ rootElement }>
 	<div class="Bezel">
-		<input placeholder="{ OLSKLocalized(LCHOptionsObject().runMode === LCHLauncherModeJump ? 'LCHLauncherInputPlaceholderJump' : 'LCHLauncherInputPlaceholderDefault') }" bind:value={ filterText } bind:this={ inputElement } />
+		<input placeholder="{ OLSKLocalized(LCHOptionsObject().runMode === LCHLauncherModeJump ? 'LCHLauncherInputPlaceholderJump' : 'LCHLauncherInputPlaceholderDefault') }" bind:value={ filterText } bind:this={ inputElement } id="LCHLauncherFilterInput" />
 		{#if formulasVisible.length }
 		<div class="ListContainer">
 			{#each formulasVisible as e}

@@ -14,9 +14,9 @@
 		window.LCHPageFormulas = function () {
 			return [
 				{
-					LCHRecipeTitle: 'Alfa',
+					LCHRecipeTitle: 'Hello',
 					LCHRecipeCallback: function () {
-						alert('Alfa');
+						console.log('Hello');
 					},
 				},
 			];
@@ -27,13 +27,26 @@
 			target: document.getElementById('LCHLauncherTarget'),
 			props: {
 				dataObjects: [
-					{
-						LCHRecipeTitle: 'Bravo',
+					'Alfa',
+					'Bravo',
+					'Charlie',
+					'Delta',
+					'Echo',
+					'Foxtrot',
+					'Golf',
+					'Hotel',
+					'Indigo',
+					'Juliet',
+					'Kilo',
+					'Llama',
+				].map(function (e) {
+					return {
+						LCHRecipeTitle: e,
 						LCHRecipeCallback: function () {
-							alert('Bravo');
+							console.log(e);
 						},
-					},
-				],
+					};
+				}),
 				completionHandler () {
 					return (app.$destroy() || true) && (app = null);
 				},
