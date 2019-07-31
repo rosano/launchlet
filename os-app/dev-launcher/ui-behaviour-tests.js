@@ -30,7 +30,7 @@ describe('Discovery', function testDiscovery() {
 
 	it('on filter', async function() {
 		browser.fill(LCHLauncherFilterInput, 'a');
-		await browser.wait({ element: LCHLauncherListItem });
+		await browser.wait();
 
 		browser.assert.elements(LCHLauncherListItem, 5);
 	});
@@ -65,7 +65,7 @@ describe('Language', function testLanguage() {
 
 			it.skip('on filter', async function() {
 				browser.fill(LCHLauncherFilterInput, 'a');
-				await browser.wait({ element: LCHLauncherListItem });
+				await browser.wait();
 
 				// browser.assert.elements(LCHLauncherListItem, 1);
 			});
@@ -85,20 +85,25 @@ describe('Interaction', function testInteraction() {
 
 	context('mode command', function () {
 		
-		it('shows no items on startup', function() {
+		it('shows no items', function() {
+			browser.assert.elements(LCHLauncherListItem, 0);
+		});
+		
+		it('shows no items if no match', function() {
+			browser.fill(LCHLauncherFilterInput, 'alfabravo');
 			browser.assert.elements(LCHLauncherListItem, 0);
 		});
 
-		it('shows filtered items', async function() {
-			browser.fill(LCHLauncherFilterInput, 'e');
-			await browser.wait({ element: LCHLauncherListItem });
+		it('shows items if match', async function() {
+			browser.fill(LCHLauncherFilterInput, 'a');
+			await browser.wait();
 			
-			browser.assert.elements(LCHLauncherListItem, 6);
+			browser.assert.elements(LCHLauncherListItem, 5);
 		});
 
 		it('selects first item', async function() {
 			browser.fill(LCHLauncherFilterInput, 'a');
-			await browser.wait({ element: LCHLauncherListItem });
+			await browser.wait();
 			
 			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[0], 'ListItemSelected');
 		});
