@@ -79,25 +79,40 @@ describe('Language', function testLanguage() {
 	['en'].forEach(function (languageCode) {
 
 		context(languageCode, function () {
-			
-			// const browser = new Browser();
+
 			const uLocalized = function (inputData) {
 				return OLSKTestingLocalized(inputData, languageCode);
 			};
 
-			before(function() {
-				return browser.visit(`${ languageCode }/launcher`);
+			context('LCHLauncherModeDefault', function () {
+
+				before(function() {
+					return browser.visit(`${ languageCode }/launcher?runMode=${ LCHLauncherModeDefault }`);
+				});
+
+				it('localizes interface', function() {
+					deepEqual(browser.query(LCHLauncherFilterInput).placeholder, uLocalized('LCHLauncherInputPlaceholderDefault'));
+				});
+
+				it.skip('on filter', async function() {
+					browser.fill(LCHLauncherFilterInput, 'a');
+					await browser.wait({element: LCHLauncherListItem});
+
+					// browser.assert.elements(LCHLauncherListItem, 1);
+				});
+
 			});
 
-			it('localizes interface', function() {
-				deepEqual(browser.query(LCHLauncherFilterInput).placeholder, uLocalized('LCHLauncherInputPlaceholderDefault'));
-			});
+			context('LCHLauncherModeJump', function () {
 
-			it.skip('on filter', async function() {
-				browser.fill(LCHLauncherFilterInput, 'a');
-				await browser.wait({element: LCHLauncherListItem});
+				before(function() {
+					return browser.visit(`${ languageCode }/launcher?runMode=${ LCHLauncherModeJump }`);
+				});
 
-				// browser.assert.elements(LCHLauncherListItem, 1);
+				it('localizes interface', function() {
+					deepEqual(browser.query(LCHLauncherFilterInput).placeholder, uLocalized('LCHLauncherInputPlaceholderJump'));
+				});
+
 			});
 
 		});
@@ -106,8 +121,6 @@ describe('Language', function testLanguage() {
 });
 
 describe('Interaction', function testInteraction() {
-
-	// const browser = new Browser();
 
 	before(function() {
 		return browser.visit('/launcher');
