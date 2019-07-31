@@ -28,9 +28,7 @@ Object.entries({
 
 const browser = new Browser();
 
-describe('LCHLauncher', function() {
-
-describe('Discovery', function testDiscovery() {
+describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 
 	context('LCHLauncherModeDefault', function () {
 
@@ -74,7 +72,7 @@ describe('Discovery', function testDiscovery() {
 
 });
 
-describe('Language', function testLanguage() {
+describe('LCHLauncherUITestLanguage', function testLanguage() {
 
 	['en'].forEach(function (languageCode) {
 
@@ -120,7 +118,7 @@ describe('Language', function testLanguage() {
 	});
 });
 
-describe('Interaction', function testInteraction() {
+describe('LCHLauncherUITestInteraction', function testInteraction() {
 
 	context('LCHLauncherModeDefault', function () {
 
@@ -256,7 +254,5 @@ describe('Interaction', function testInteraction() {
 		});
 
 	});
-
-});
 
 });
