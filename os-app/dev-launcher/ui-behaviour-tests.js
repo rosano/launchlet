@@ -270,5 +270,20 @@ describe('LCHLauncherUITestInteraction', function testInteraction() {
 		});
 
 	});
+		
+	context('shared', function () {
+
+		before(function() {
+			return browser.visit('/launcher');
+		});
+
+		it('closes on Escape', async function() {
+			browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+			await browser.wait({element: LCHLauncherListItem});
+
+			browser.assert.elements(LCHLauncherFilterInput, 0);
+		});
+
+	});
 
 });
