@@ -105,6 +105,26 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 
 	});
 
+	context('LCHRecipeURLFilter', function() {
+
+		it('returns object if LCHRecipeURLFilter not string', function() {
+			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeURLFilter: null,
+			})), {
+				LCHRecipeURLFilter: [
+					'LCHErrorNotString',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeURLFilter: 'alfa',
+			})), null);
+		});
+
+	});
+
 });
 
 describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {

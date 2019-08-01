@@ -39,6 +39,14 @@ export const LCHRecipesModelErrorsFor = function(inputData) {
 		}
 	}
 
+	if (inputData.LCHRecipeURLFilter !== undefined) {
+		if (typeof inputData.LCHRecipeURLFilter !== 'string') {
+			errors.LCHRecipeURLFilter = [
+				'LCHErrorNotString',
+			];
+		}
+	}
+
 	return Object.entries(errors).length ? errors : null;
 };
 
