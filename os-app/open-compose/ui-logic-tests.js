@@ -226,6 +226,16 @@ describe('LCHClosuresModelErrorsFor', function testLCHClosuresModelErrorsFor() {
 			});
 		});
 
+		it('returns object if LCHClosureName not filled', function() {
+			deepEqual(mainModule.LCHClosuresModelErrorsFor(Object.assign(kTesting.StubClosureObjectValid(), {
+				LCHClosureName: '',
+			})), {
+				LCHClosureName: [
+					'LCHErrorNotFilled',
+				],
+			});
+		});
+
 		it('returns object if LCHClosureName contains untrimmed whitespace', function() {
 			deepEqual(mainModule.LCHClosuresModelErrorsFor(Object.assign(kTesting.StubClosureObjectValid(), {
 				LCHClosureName: ' alfa',

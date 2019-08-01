@@ -134,6 +134,12 @@ export const LCHClosuresModelErrorsFor = function(inputData) {
 			];
 		}
 
+		if (typeof inputData.LCHClosureName === 'string' && !inputData.LCHClosureName) {
+			errors.LCHClosureName = [
+				'LCHErrorNotFilled',
+			];
+		}
+
 		if (typeof inputData.LCHClosureName === 'string' && inputData.LCHClosureName.trim() !== inputData.LCHClosureName) {
 			errors.LCHClosureName = [
 				'LCHErrorNotTrimmed',
