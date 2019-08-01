@@ -54,7 +54,8 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 					};
 				}),
 				completionHandler () {
-					return (app.$destroy() || true) && (app = null);
+					app.$destroy();
+					app = null;
 				},
 				optionsObject: Object.assign({}, {
 					runMode: (new URLSearchParams(window.location.search)).get('runMode') || undefined,
