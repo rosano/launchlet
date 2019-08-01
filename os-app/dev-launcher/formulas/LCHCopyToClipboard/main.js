@@ -13,21 +13,21 @@ export const LCHCopyToClipboard = function(inputData) {
 		})();
 	}
 
-	if (typeof document !== 'undefined') {
-		(function () {
-			const el = document.createElement('textarea');
+	// if (typeof document !== 'undefined') {
+	// 	(function () {
+	// 		const el = document.createElement('textarea');
 			
-			el.value = inputData;
+	// 		el.value = inputData;
 			
-			el.setAttribute('readonly', '');
-			el.style.position = 'fixed';
-			el.style.top = 0;
+	// 		el.setAttribute('readonly', '');
+	// 		el.style.position = 'fixed';
+	// 		el.style.top = 0;
 			
-			document.body.appendChild(el);
-			el.select();
-			document.execCommand('copy');
+	// 		document.body.appendChild(el);
+	// 		el.select();
+	// 		document.execCommand('copy');
 			
-			el.remove();
-		})();
-	}
+	// 		el.remove();
+	// 	})();
+	// }
 };
