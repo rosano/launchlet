@@ -26,7 +26,7 @@ export const LCHLauncherLogicFilterFor = function (inputData) {
 	}
 
 	return function (e) {
-		return [].concat([e.LCHRecipeTitle]).filter(function (e) {
+		return [e.LCHRecipeTitle].filter(function (e) {
 			if (!e) {
 				return false;
 			}
