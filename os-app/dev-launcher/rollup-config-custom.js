@@ -42,7 +42,7 @@ const production = !process.env.ROLLUP_WATCH;
 			preprocess: {
 				style({ content, filename }) {
 					return {
-						code: mod.LCHRollupPrefixSelector(mod.LCHRollupGrabContainerSelector(content), require('fs').readFileSync(pathPackage.join(__dirname, '../_shared/_external/normalize.css/normalize.css'), 'utf8')) + content,
+						code: (filename.match(pathPackage.join(__dirname, 'Main.svelte')) ? mod.LCHRollupPrefixSelector(mod.LCHRollupGrabContainerSelector(content), require('fs').readFileSync(pathPackage.join(__dirname, '../_shared/_external/normalize.css/normalize.css'), 'utf8')) : '') + content,
 						map: ''
 					};
 				},
