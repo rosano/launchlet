@@ -114,6 +114,20 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 
 	});
 
+	context('LCHMemberURLFilter', function() {
+
+		it('returns object if LCHMemberURLFilter not string', function() {
+			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+				LCHMemberURLFilter: null,
+			})), {
+				LCHMemberURLFilter: [
+					'LCHErrorNotString',
+				],
+			});
+		});
+
+	});
+
 });
 
 describe('LCHFormulasModelPreJSONSchemaValidate', function testLCHFormulasModelPreJSONSchemaValidate() {
