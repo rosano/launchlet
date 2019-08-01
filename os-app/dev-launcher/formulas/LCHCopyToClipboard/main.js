@@ -8,9 +8,9 @@ export const LCHCopyToClipboard = function(inputData) {
 	}
 
 	if (typeof navigator !== 'undefined' && navigator.clipboard) {
-		return (async function () {
+		return Promise.resolve((async function () {
 			return await navigator.clipboard.writeText(inputData);
-		})();
+		})());
 	}
 
 	// if (typeof document !== 'undefined') {
@@ -30,4 +30,12 @@ export const LCHCopyToClipboard = function(inputData) {
 	// 		el.remove();
 	// 	})();
 	// }
+
+	return {
+		LCHComponentDescriptorName: 'LCHCopyToClipboard',
+		LCHComponentDescriptorProps: {
+			inputData: inputData,
+		},
+		LCHComponentDescriptorCompletionHandler: 'completionHandler',
+	};
 };

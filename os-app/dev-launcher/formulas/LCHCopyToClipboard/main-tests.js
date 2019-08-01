@@ -22,8 +22,14 @@ describe('LCHCopyToClipboard', function testLCHCopyToClipboard() {
 		}, /LCHErrorInputInvalid/);
 	});
 
-	it('returns undefined', function() {
-		deepEqual(mainModule.LCHCopyToClipboard('alfa'), undefined);
+	it('returns LCHComponentDescriptor', async function() {
+		deepEqual(mainModule.LCHCopyToClipboard('alfa'), {
+			LCHComponentDescriptorName: 'LCHCopyToClipboard',
+			LCHComponentDescriptorCompletionHandler: 'completionHandler',
+			LCHComponentDescriptorProps: {
+				inputData: 'alfa',
+			},
+		});
 	});
 
 });
