@@ -1,6 +1,6 @@
 <script>
 import { LCHOptionsObject, OLSKLocalized, formulaSelected, secondaryComponent } from './_shared.js';
-import { LCHLauncherModeJump, LCHLauncherLogicFilterFor, LCHLauncherLogicConstrainIndex, LCHLauncherRecipes } from './ui-logic.js';
+import { LCHLauncherModeJump, LCHLauncherLogicFilterFor, LCHLauncherLogicConstrainIndex, LCHLauncherRecipes, LCHLauncherLogicPatternMatchesURL } from './ui-logic.js';
 import { LCHRecipesModelErrorsFor, LCHComponentDescriptorsModelErrorsFor } from './api.js';
 
 export let dataObjects = [];
@@ -9,6 +9,12 @@ export let optionsObject = {};
 
 (function StartSetup() {
 	LCHOptionsObject(optionsObject);
+})();
+
+(function StartFilterDataObjects() {
+	dataObjects = dataObjects.filter(function (e) {
+		return LCHLauncherLogicPatternMatchesURL(e.LCHRecipeURLFilter || '', window.location.href);
+	});
 })();
 
 (function StartPageFormulas() {
