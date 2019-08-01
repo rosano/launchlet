@@ -1,4 +1,6 @@
 <script>
+import { OLSKLocalized } from '../../_shared.js';
+
 export let inputData = '';
 export let completionHandler = null;
 
@@ -41,7 +43,7 @@ onMount(function () {
 });
 </script>
 
-<button data-clipboard-text={ inputData } bind:this={ clipboardButton }>Copy to clipboard</button>
+<button data-clipboard-text={ inputData } bind:this={ clipboardButton } id="LCHCopyToClipboardButton">{ OLSKLocalized('LCHCopyToClipboardButtonText') }</button>
 
 <style>
 </style>

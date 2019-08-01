@@ -38,3 +38,32 @@ describe('LCHCopyToClipboardUITestDiscovery', function testDiscovery() {
 
 });
 
+describe('LCHCopyToClipboardUITestLanguage', function testLanguage() {
+
+	['en'].forEach(function (languageCode) {
+
+		context(languageCode, function () {
+
+			const uLocalized = function (inputData) {
+				return OLSKTestingLocalized(inputData, languageCode);
+			};
+
+			before(function() {
+				return browser.visit('/launcher?loadModules=LCHCopyToClipboard');
+			});
+
+			it('on run', async function() {
+				browser.fill(LCHLauncherFilterInput, 'LCHCopyToClipboardTest');
+				await browser.wait({element: LCHLauncherListItem});
+
+				browser.click(LCHLauncherListItem);
+				await browser.wait({element: LCHCopyToClipboardButton});
+
+				deepEqual(browser.query(LCHCopyToClipboardButton).textContent, uLocalized('LCHCopyToClipboardButtonText'));
+			});
+
+		});
+		
+	});
+});
+
