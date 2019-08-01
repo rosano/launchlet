@@ -80,6 +80,20 @@ onMount(function () {
 	inputElement.focus();
 });
 
+import { afterUpdate } from 'svelte';
+afterUpdate(function () {
+	let element = document.querySelector('.ListItemSelected');
+
+	if (!element) {
+		return;
+	}
+
+	element.scrollIntoView({
+		block: 'nearest',
+		inline: 'nearest',
+	});
+});
+
 function handleDidFinish() {
 	if (typeof completionHandler !== 'function') {
 		return;
