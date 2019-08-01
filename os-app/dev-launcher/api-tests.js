@@ -50,6 +50,16 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 			});
 		});
 
+		it('returns object if LCHRecipeTitle not filled', function() {
+			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeTitle: '',
+			})), {
+				LCHRecipeTitle: [
+					'LCHErrorNotFilled',
+				],
+			});
+		});
+
 		it('returns object if LCHRecipeTitle contains untrimmed whitespace', function() {
 			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeTitle: ' alfa',
