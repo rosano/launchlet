@@ -8,6 +8,12 @@ const kTesting = {
 			LCHRecipeCallback () {},
 		};
 	},
+	StubComponentDescriptorObjectValid: function() {
+		return {
+			LCHComponentDescriptorName: 'alfa',
+			LCHComponentDescriptorCompletionHandler: 'bravo',
+		};
+	},
 };
 
 describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
@@ -153,6 +159,114 @@ describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 				},
 				LCHRecipeSignature: 'charlie',
 			})]).fn('charlie')(), 'hello bravo');
+		});
+
+	});
+
+});
+
+describe('LCHComponentDescriptorsModelErrorsFor', function testLCHComponentDescriptorsModelErrorsFor() {
+
+	it('throws error if not object', function() {
+		throws(function() {
+			mainModule.LCHComponentDescriptorsModelErrorsFor(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns object if LCHComponentDescriptorName not string', function() {
+		deepEqual(mainModule.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
+			LCHComponentDescriptorName: null,
+		})), {
+			LCHComponentDescriptorName: [
+				'LCHErrorNotString',
+			],
+		});
+	});
+
+	it('returns object if LCHComponentDescriptorName empty', function() {
+		deepEqual(mainModule.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
+			LCHComponentDescriptorName: '',
+		})), {
+			LCHComponentDescriptorName: [
+				'LCHErrorNotFilled',
+			],
+		});
+	});
+
+	it('returns object if LCHComponentDescriptorName contains untrimmed whitespace', function() {
+		deepEqual(mainModule.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
+			LCHComponentDescriptorName: ' alfa',
+		})), {
+			LCHComponentDescriptorName: [
+				'LCHErrorNotTrimmed',
+			],
+		});
+		deepEqual(mainModule.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
+			LCHComponentDescriptorName: 'alfa ',
+		})), {
+			LCHComponentDescriptorName: [
+				'LCHErrorNotTrimmed',
+			],
+		});
+	});
+
+	it('returns object if LCHComponentDescriptorCompletionHandler not string', function() {
+		deepEqual(mainModule.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
+			LCHComponentDescriptorCompletionHandler: null,
+		})), {
+			LCHComponentDescriptorCompletionHandler: [
+				'LCHErrorNotString',
+			],
+		});
+	});
+
+	it('returns object if LCHComponentDescriptorCompletionHandler empty', function() {
+		deepEqual(mainModule.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
+			LCHComponentDescriptorCompletionHandler: '',
+		})), {
+			LCHComponentDescriptorCompletionHandler: [
+				'LCHErrorNotFilled',
+			],
+		});
+	});
+
+	it('returns object if LCHComponentDescriptorCompletionHandler contains untrimmed whitespace', function() {
+		deepEqual(mainModule.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
+			LCHComponentDescriptorCompletionHandler: ' alfa',
+		})), {
+			LCHComponentDescriptorCompletionHandler: [
+				'LCHErrorNotTrimmed',
+			],
+		});
+		deepEqual(mainModule.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
+			LCHComponentDescriptorCompletionHandler: 'alfa ',
+		})), {
+			LCHComponentDescriptorCompletionHandler: [
+				'LCHErrorNotTrimmed',
+			],
+		});
+	});
+
+	it('returns null', function() {
+		deepEqual(mainModule.LCHComponentDescriptorsModelErrorsFor(kTesting.StubComponentDescriptorObjectValid()), null);
+	});
+
+	context('LCHComponentDescriptorProps', function() {
+
+		it('returns object if LCHComponentDescriptorProps not object', function() {
+			deepEqual(mainModule.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
+				LCHComponentDescriptorProps: null,
+			})), {
+				LCHComponentDescriptorProps: [
+					'LCHErrorNotObject',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
+				LCHComponentDescriptorProps: {},
+			})), null);
 		});
 
 	});

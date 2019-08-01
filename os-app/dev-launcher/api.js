@@ -71,3 +71,59 @@ export const LCHAPIObjectFor = function(inputData) {
 
 	return api;
 };
+
+export const LCHComponentDescriptorsModelErrorsFor = function(inputData) {
+	if (typeof inputData !== 'object' || inputData === null) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	const errors = {};
+
+	if (typeof inputData.LCHComponentDescriptorName !== 'string') {
+		errors.LCHComponentDescriptorName = [
+			'LCHErrorNotString',
+		];
+	}
+
+	if (typeof inputData.LCHComponentDescriptorName === 'string' && !inputData.LCHComponentDescriptorName) {
+		errors.LCHComponentDescriptorName = [
+			'LCHErrorNotFilled',
+		];
+	}
+
+	if (typeof inputData.LCHComponentDescriptorName === 'string' && inputData.LCHComponentDescriptorName.trim() !== inputData.LCHComponentDescriptorName) {
+		errors.LCHComponentDescriptorName = [
+			'LCHErrorNotTrimmed',
+		];
+	}
+
+	if (typeof inputData.LCHComponentDescriptorCompletionHandler !== 'string') {
+		errors.LCHComponentDescriptorCompletionHandler = [
+			'LCHErrorNotString',
+		];
+	}
+
+	if (typeof inputData.LCHComponentDescriptorCompletionHandler === 'string' && !inputData.LCHComponentDescriptorCompletionHandler) {
+		errors.LCHComponentDescriptorCompletionHandler = [
+			'LCHErrorNotFilled',
+		];
+	}
+
+	if (typeof inputData.LCHComponentDescriptorCompletionHandler === 'string' && inputData.LCHComponentDescriptorCompletionHandler.trim() !== inputData.LCHComponentDescriptorCompletionHandler) {
+		errors.LCHComponentDescriptorCompletionHandler = [
+			'LCHErrorNotTrimmed',
+		];
+	}
+
+	if (inputData.LCHComponentDescriptorProps !== undefined) {
+		if (typeof inputData.LCHComponentDescriptorProps !== 'object' || inputData.LCHComponentDescriptorProps === null) {
+			errors.LCHComponentDescriptorProps = [
+				'LCHErrorNotObject',
+			];
+		}
+	}
+
+	return Object.entries(errors).length ? errors : null;
+};
+
+
