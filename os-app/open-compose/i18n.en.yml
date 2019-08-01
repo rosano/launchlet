@@ -11,6 +11,7 @@ LCHComposeListItemFormInputIDPlaceholder: Identifier (e.g. XYZGreet)
 LCHComposeListItemFormInputNamePlaceholder: Name (e.g. Say Hello)
 LCHComposeListItemFormInputFunctionBodyPlaceholder: Function Body (e.g. window.alert('Hello');)
 LCHComposeListItemFormInputSignaturePlaceholder: Signature (e.g. XYZGreet)
+LCHComposeListItemFormInputURLFilterPlaceholder: 'URL Filter (e.g. google.com or /https?://(.*\\.)?google\\.com/i)'
 LCHComposeSampleMemberID: XYZGreet
 LCHComposeSampleMemberName: Say Hello
 LCHComposeSampleMemberFNBody: window.alert('Hello');

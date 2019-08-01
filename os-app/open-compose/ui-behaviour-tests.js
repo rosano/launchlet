@@ -19,6 +19,7 @@ Object.entries({
 	LCHComposeListItemFormInputName: '#LCHComposeListItemFormInputName',
 	LCHComposeListItemFormInputInputData: '#LCHComposeListItemFormInputInputData',
 	LCHComposeListItemFormInputSignature: '#LCHComposeListItemFormInputSignature',
+	LCHComposeListItemFormInputURLFilter: '#LCHComposeListItemFormInputURLFilter',
 
 	LCHComposeReloadButton: '#LCHComposeReloadButton',
 
@@ -64,6 +65,7 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 			browser.assert.elements(LCHComposeListItemFormInputInputData, 1);
 			// editor
 			browser.assert.elements(LCHComposeListItemFormInputSignature, 1);
+			browser.assert.elements(LCHComposeListItemFormInputURLFilter, 1);
 		});
 
 	});

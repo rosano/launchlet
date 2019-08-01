@@ -11,6 +11,7 @@ async function memberCreate() {
 		LCHMemberArgs: '',
 		LCHMemberBody: '',
 		LCHMemberSignature: '',
+		LCHMemberURLFilter: '',
 		LCHMemberModificationDate: new Date(),
 	});
 
