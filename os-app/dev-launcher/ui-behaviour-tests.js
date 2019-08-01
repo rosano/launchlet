@@ -3,8 +3,8 @@ import { LCHLauncherModeDefault, LCHLauncherModeJump } from './ui-logic.js'
 
 const Browser = require('zombie');
 
-Browser.localhost('loc.tests', 3000, eventName = 'keydown');
-Browser.prototype.OLSKFireKeyboardEvent = function(target, keyCode) {
+Browser.localhost('loc.tests', 3000);
+Browser.prototype.OLSKFireKeyboardEvent = function(target, keyCode, eventName = 'keydown') {
 	const event = this.window.document.createEvent('HTMLEvents');
 	event.initEvent(eventName, true, true);
 	event.which = event.keyCode = event.code = keyCode;
