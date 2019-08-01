@@ -111,16 +111,16 @@ async function memberDelete() {
 <div class="Container">
 
 {#if $memberSelected}
-	<header class="LCHSharedToolbar">
-		<button on:click={ memberDelete } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable">{ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }</button>
+	<header class="LCHSharedToolbar" id="LCHComposeDetailToolbar">
+		<button on:click={ memberDelete } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" id="LCHComposeDetailToolbarDiscardButton" title={ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }>{ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }</button>
 	</header>
 	<div class="FormContainer">
 		<p>
-			<input type="text" bind:value={ $memberSelected.LCHMemberName } on:input={ memberSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputNamePlaceholder') }" autofocus />
+			<input type="text" bind:value={ $memberSelected.LCHMemberName } on:input={ memberSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputNamePlaceholder') }" autofocus id="LCHComposeListItemFormInputName" />
 		</p>
 
 		<span>function (</span>
-		<input type="text" bind:value={ $memberSelected.LCHMemberArgs } placeholder="undefined" on:input={ memberSave } />
+		<input type="text" bind:value={ $memberSelected.LCHMemberArgs } placeholder="undefined" on:input={ memberSave } id="LCHComposeListItemFormInputInputData" />
 		<span>) &#123;</span>
 		<br>
 		<textarea bind:this={ editorElement }></textarea>
@@ -128,7 +128,7 @@ async function memberDelete() {
 		<br>
 
 		<p>
-			<input type="text" bind:value={ $memberSelected.LCHMemberSignature } on:input={ memberSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputSignaturePlaceholder') }" />
+			<input type="text" bind:value={ $memberSelected.LCHMemberSignature } on:input={ memberSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputSignaturePlaceholder') }" id="LCHComposeListItemFormInputSignature" />
 		</p>
 	</div>
 {/if}

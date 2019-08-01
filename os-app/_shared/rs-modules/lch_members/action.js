@@ -1,5 +1,6 @@
 import * as LCHFormulasMetal from './metal.js';
-import * as ULIDPackage from 'ulid';
+import { factory, detectPrng } from 'ulid'
+const uniqueID = typeof require === 'undefined' && navigator.appName === 'Zombie' ? factory(detectPrng(true)) : factory();
 
 export const LCHFormulasActionCreate = async function(storageClient, inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
@@ -9,7 +10,7 @@ export const LCHFormulasActionCreate = async function(storageClient, inputData) 
 	let creationDate = new Date();
 
 	return await LCHFormulasMetal.LCHFormulasMetalWrite(storageClient, Object.assign(inputData, {
-		LCHMemberID: ULIDPackage.ulid(),
+		LCHMemberID: uniqueID(),
 		LCHMemberCreationDate: creationDate,
 		LCHMemberModificationDate: creationDate,
 	}));
