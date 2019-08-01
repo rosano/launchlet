@@ -176,3 +176,50 @@ describe('LCHLauncherRecipes', function testLCHLauncherRecipes() {
 	});
 
 });
+
+describe('LCHLauncherLogicPatternMatchesURL', function testLCHLauncherLogicPatternMatchesURL() {
+
+	it('throws error if param1 not string', function() {
+		throws(function() {
+			mainModule.LCHLauncherLogicPatternMatchesURL(null, '');
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('throws error if param2 not string', function() {
+		throws(function() {
+			mainModule.LCHLauncherLogicPatternMatchesURL('', null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('throws error if param2 not filled', function() {
+		throws(function() {
+			mainModule.LCHLauncherLogicPatternMatchesURL('', '');
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns true if param1 empty', function() {
+		deepEqual(mainModule.LCHLauncherLogicPatternMatchesURL('', 'alfa'), true);
+	});
+
+
+	it('returns false if no match', function() {
+		deepEqual(mainModule.LCHLauncherLogicPatternMatchesURL('bravo', 'alfa'), false);
+	});
+
+	it('returns true if match', function() {
+		deepEqual(mainModule.LCHLauncherLogicPatternMatchesURL('alfa', 'alfa'), true);
+	});
+
+	it('matches as string', function() {
+		deepEqual(mainModule.LCHLauncherLogicPatternMatchesURL('al', 'alfa'), true);
+		deepEqual(mainModule.LCHLauncherLogicPatternMatchesURL('br', 'alfa'), false);
+	});
+
+	it('matches as regex', function() {
+		deepEqual(mainModule.LCHLauncherLogicPatternMatchesURL('/\\w/', 'alfa'), true);
+		deepEqual(mainModule.LCHLauncherLogicPatternMatchesURL('/\\d/', 'alfa'), false);
+		deepEqual(mainModule.LCHLauncherLogicPatternMatchesURL('/A/', 'alfa'), false);
+		deepEqual(mainModule.LCHLauncherLogicPatternMatchesURL('/A/i', 'alfa'), true);
+	});
+
+});

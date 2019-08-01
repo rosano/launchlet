@@ -68,3 +68,26 @@ export const LCHLauncherRecipes = function() {
 		});
 	}));
 };
+
+export const LCHLauncherLogicPatternMatchesURL = function (param1, param2) {
+	if (typeof param1 !== 'string') {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	if (typeof param2 !== 'string') {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	if (!param2) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	let pattern = param1;
+
+	let match = param1.match(/^\/(.*)\/(\w*)/i)
+	if (match && match.shift()) {
+		pattern = new RegExp(match[0], match[1]);
+	}
+
+	return !!param2.match(pattern);
+};
