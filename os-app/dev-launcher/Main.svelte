@@ -1,7 +1,7 @@
 <script>
 import { LCHOptionsObject, OLSKLocalized, formulaSelected, secondaryComponent } from './_shared.js';
 import { LCHLauncherModeJump, LCHLauncherLogicFilter, LCHLauncherLogicConstrainIndex, LCHLauncherRecipes } from './ui-logic.js';
-import { LCHRecipesModelErrorsFor } from './api.js';
+import { LCHRecipesModelErrorsFor, LCHComponentDescriptorsModelErrorsFor } from './api.js';
 
 export let dataObjects = [];
 export let completionHandler;
@@ -34,7 +34,22 @@ const api = LCHAPIObjectFor(LCHLauncherRecipes().concat(dataObjects));
 async function apiStart(inputData) {
 	return Promise.resolve(inputData.LCHRecipeCallback.bind({
 		api: api,
-	})());
+	})()).then(function (inputData) {
+		if (!inputData || LCHComponentDescriptorsModelErrorsFor(inputData)) {
+			return Promise.resolve(inputData);
+		}
+
+		return new Promise(function (resolve, reject) {
+			return secondaryComponent.set({
+				LCHInstanceClass: apiComponents[inputData.LCHComponentDescriptorName],
+				LCHInstanceOptions: Object.assign(inputData.LCHComponentDescriptorProps, {
+					completionHandler: function () {
+						secondaryComponent.set(null);
+					},
+				}),
+			});
+		});
+	});
 };
 
 let filterText = '';
@@ -150,7 +165,9 @@ async function itemDidClick(event, item) {
 		</div>
 		{/if}
 	</div>
-	<svelte:component this={ $secondaryComponent }/>
+	{#if $secondaryComponent}
+		<svelte:component this={ $secondaryComponent.LCHInstanceClass } {...$secondaryComponent.LCHInstanceOptions} />
+	{/if}
 </div>
 
 <style>
