@@ -28,6 +28,7 @@ export let optionsObject = {};
 })();
 
 import { LCHAPIObjectFor } from './api.js';
+import * as apiComponents from './api-components.js';
 const api = LCHAPIObjectFor(LCHLauncherRecipes().concat(dataObjects));
 
 async function apiStart(inputData) {
