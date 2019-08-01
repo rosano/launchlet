@@ -30,10 +30,10 @@ export let optionsObject = {};
 import { LCHAPIObjectFor } from './api.js';
 const api = LCHAPIObjectFor(LCHLauncherRecipes().concat(dataObjects));
 
-function apiStart(inputData) {
-	inputData.LCHRecipeCallback.bind({
+async function apiStart(inputData) {
+	return Promise.resolve(inputData.LCHRecipeCallback.bind({
 		api: api,
-	})();
+	})());
 };
 
 let filterText = '';
@@ -103,9 +103,9 @@ function handleKeydown(event) {
 
 			return event.preventDefault();
 		},
-		Enter () {
+		async Enter () {
 			if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
-				apiStart($formulaSelected);
+				await apiStart($formulaSelected);
 			}
 
 			handleDidFinish();
@@ -129,8 +129,8 @@ function handleClick(event) {
   handleDidFinish();
 }
 
-function itemDidClick(event, item) {
-	apiStart(item);
+async function itemDidClick(event, item) {
+	await apiStart(item);
 
 	handleDidFinish();
 }
