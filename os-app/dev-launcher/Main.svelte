@@ -1,5 +1,5 @@
 <script>
-import { LCHOptionsObject, OLSKLocalized, formulaSelected } from './_shared.js';
+import { LCHOptionsObject, OLSKLocalized, formulaSelected, secondaryComponent } from './_shared.js';
 import { LCHLauncherModeJump, LCHLauncherLogicFilter, LCHLauncherLogicConstrainIndex, LCHLauncherRecipes } from './ui-logic.js';
 import { LCHRecipesModelErrorsFor } from './api.js';
 
@@ -149,6 +149,7 @@ async function itemDidClick(event, item) {
 		</div>
 		{/if}
 	</div>
+	<svelte:component this={ $secondaryComponent }/>
 </div>
 
 <style>
