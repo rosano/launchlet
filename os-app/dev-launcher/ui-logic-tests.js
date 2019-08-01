@@ -140,3 +140,21 @@ describe('LCHLauncherLogicConstrainIndex', function testLCHLauncherLogicConstrai
 	});
 
 });
+
+describe('LCHLauncherRecipes', function testLCHLauncherRecipes() {
+
+	it('returns LCHFormulaObject for each folder', function() {
+		deepEqual(mainModule.LCHLauncherRecipes(), [].concat.apply([], require('glob').sync('*main.js', {
+		  matchBase: true,
+		  cwd: require('path').join(__dirname, 'formulas'),
+		}).map(function (e) {
+			return Object.entries(require(require('path').join(__dirname, 'formulas', e))).map(function (e) {
+				return {
+					LCHRecipeSignature: e.shift(),
+					LCHRecipeCallback: e.pop(),
+				};
+			});
+		})));
+	});
+
+});

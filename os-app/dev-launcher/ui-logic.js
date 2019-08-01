@@ -1,3 +1,5 @@
+import * as LCHCopyToClipboard from './formulas/LCHCopyToClipboard/main.js';
+
 export const LCHLauncherOptions = function (inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
@@ -52,4 +54,15 @@ export const LCHLauncherLogicConstrainIndex = function (param1, param2) {
 	}
 
 	return param2;
+};
+
+export const LCHLauncherRecipes = function() {
+	return [].concat.apply([], [LCHCopyToClipboard].map(function (e) {
+		return Object.entries(e).map(function (e) {
+			return {
+				LCHRecipeSignature: e.shift(),
+				LCHRecipeCallback: e.pop(),
+			};
+		});
+	}));
 };
