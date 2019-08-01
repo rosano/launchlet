@@ -37,6 +37,9 @@
     "// FRONTEND SERVICE WORKER": null,
     "OLSKServiceWorker": "olsk/OLSKServiceWorker",
 
+    "// FRONTEND RECIPE LCHCopyToClipboard": null,
+    "clipboard": "latest",
+
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {
