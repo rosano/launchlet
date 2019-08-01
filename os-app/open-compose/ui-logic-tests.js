@@ -176,6 +176,20 @@ describe('_LCHClosureObjectFor', function test_LCHClosureObjectFor() {
 
 	});
 
+	context('LCHClosureURLFilter', function() {
+
+		it('populates LCHClosureURLFilter', function() {
+			deepEqual(mainModule._LCHClosureObjectFor({
+				LCHMemberBody: 'alfa',
+				LCHMemberURLFilter: 'bravo',
+			}), {
+				LCHClosureString: 'function () { alfa }',
+				LCHClosureURLFilter: 'bravo',
+			});
+		});
+
+	});
+
 	context('LCHClosureName', function() {
 
 		it('populates LCHClosureName', function() {
@@ -276,6 +290,26 @@ describe('LCHClosuresModelErrorsFor', function testLCHClosuresModelErrorsFor() {
 		it('returns null', function() {
 			deepEqual(mainModule.LCHClosuresModelErrorsFor(Object.assign(kTesting.StubClosureObjectValid(), {
 				LCHClosureSignature: 'alfa',
+			})), null);
+		});
+
+	});
+
+	context('LCHClosureURLFilter', function() {
+
+		it('returns object if LCHClosureURLFilter not string', function() {
+			deepEqual(mainModule.LCHClosuresModelErrorsFor(Object.assign(kTesting.StubClosureObjectValid(), {
+				LCHClosureURLFilter: null,
+			})), {
+				LCHClosureURLFilter: [
+					'LCHErrorNotString',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.LCHClosuresModelErrorsFor(Object.assign(kTesting.StubClosureObjectValid(), {
+				LCHClosureURLFilter: 'alfa',
 			})), null);
 		});
 

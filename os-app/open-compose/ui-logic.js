@@ -109,6 +109,8 @@ export const _LCHClosureObjectFor = function(inputData) {
 		LCHClosureString: `function (${ inputData.LCHMemberArgs || '' }) { ${ inputData.LCHMemberBody } }`,
 	}, inputData.LCHMemberSignature ? {
 		LCHClosureSignature: inputData.LCHMemberSignature,
+	} : undefined, inputData.LCHMemberURLFilter ? {
+		LCHClosureURLFilter: inputData.LCHMemberURLFilter,
 	} : undefined, inputData.LCHMemberName ? {
 		LCHClosureName: inputData.LCHMemberName,
 	} : undefined);
@@ -155,6 +157,14 @@ export const LCHClosuresModelErrorsFor = function(inputData) {
 		}
 	}
 
+	if (inputData.LCHClosureURLFilter !== undefined) {
+		if (typeof inputData.LCHClosureURLFilter !== 'string') {
+			errors.LCHClosureURLFilter = [
+				'LCHErrorNotString',
+			];
+		}
+	}
+
 	return Object.entries(errors).length ? errors : null;
 };
 
@@ -173,6 +183,10 @@ export const _LCHComposeLogicRecipeStubFor = function (inputData) {
 
 	if (inputData.LCHClosureSignature) {
 		outputData.LCHRecipeSignature = inputData.LCHClosureSignature;
+	}
+
+	if (inputData.LCHClosureURLFilter) {
+		outputData.LCHRecipeURLFilter = inputData.LCHClosureURLFilter;
 	}
 
 	return JSON.stringify(outputData).replace('"__LCHRecipeCallback__"', inputData.LCHClosureString);
