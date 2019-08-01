@@ -1,6 +1,6 @@
 <script>
 import { LCHOptionsObject, OLSKLocalized, formulaSelected, secondaryComponent } from './_shared.js';
-import { LCHLauncherModeJump, LCHLauncherLogicFilter, LCHLauncherLogicConstrainIndex, LCHLauncherRecipes } from './ui-logic.js';
+import { LCHLauncherModeJump, LCHLauncherLogicFilterFor, LCHLauncherLogicConstrainIndex, LCHLauncherRecipes } from './ui-logic.js';
 import { LCHRecipesModelErrorsFor, LCHComponentDescriptorsModelErrorsFor } from './api.js';
 
 export let dataObjects = [];
@@ -56,7 +56,7 @@ let filterText = '';
 let formulasVisible = [];
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump ? dataObjects : [];
 let filterTextDidChange = function (val) {
-	formulasVisible = !val ? formulasDefault : dataObjects.filter(LCHLauncherLogicFilter(val));
+	formulasVisible = !val ? formulasDefault : dataObjects.filter(LCHLauncherLogicFilterFor(val));
 
 	formulaSelected.set(!val ? null : formulasVisible[0]);
 

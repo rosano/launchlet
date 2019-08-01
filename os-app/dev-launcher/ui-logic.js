@@ -20,7 +20,7 @@ export const LCHLauncherModes = function () {
 	];
 }
 
-export const LCHLauncherLogicFilter = function (inputData) {
+export const LCHLauncherLogicFilterFor = function (inputData) {
 	if (typeof inputData !== 'string') {
 		throw new Error('LCHErrorInputInvalid');
 	}

@@ -17,7 +17,7 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mainModule.LCHLauncherLogicFilter(null);
+			mainModule.LCHLauncherLogicFilterFor(null);
 		}, /LCHErrorInputInvalid/);
 	});
 
@@ -57,28 +57,28 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 
 });
 
-describe('LCHLauncherLogicFilter', function testLCHLauncherLogicFilter() {
+describe('LCHLauncherLogicFilterFor', function testLCHLauncherLogicFilterFor() {
 
 	it('throws error if not string', function() {
 		throws(function() {
-			mainModule.LCHLauncherLogicFilter(null);
+			mainModule.LCHLauncherLogicFilterFor(null);
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns function', function() {
-		deepEqual(typeof mainModule.LCHLauncherLogicFilter('alfa'), 'function');
+		deepEqual(typeof mainModule.LCHLauncherLogicFilterFor('alfa'), 'function');
 	});
 
 	context('function', function () {
 
 		it('returns false if LCHRecipeSignature match', function() {
-			deepEqual(mainModule.LCHLauncherLogicFilter('alfa')({
+			deepEqual(mainModule.LCHLauncherLogicFilterFor('alfa')({
 				LCHRecipeSignature: 'alfa',
 			}), false);
 		});
 
 		it('returns false if LCHRecipeCallback match', function() {
-			deepEqual(mainModule.LCHLauncherLogicFilter('alfa')({
+			deepEqual(mainModule.LCHLauncherLogicFilterFor('alfa')({
 				LCHRecipeCallback () {
 					return 'alfa';
 				},
@@ -86,25 +86,25 @@ describe('LCHLauncherLogicFilter', function testLCHLauncherLogicFilter() {
 		});
 
 		it('returns false if LCHRecipeTitle not match', function() {
-			deepEqual(mainModule.LCHLauncherLogicFilter('alfa')({
+			deepEqual(mainModule.LCHLauncherLogicFilterFor('alfa')({
 				LCHRecipeTitle: 'bravo',
 			}), false);
 		});
 
 		it('returns true if match LCHRecipeTitle', function() {
-			deepEqual(mainModule.LCHLauncherLogicFilter('alfa')({
+			deepEqual(mainModule.LCHLauncherLogicFilterFor('alfa')({
 				LCHRecipeTitle: 'alfa',
 			}), true);
 		});
 
 		it('returns true if match partial', function() {
-			deepEqual(mainModule.LCHLauncherLogicFilter('alf')({
+			deepEqual(mainModule.LCHLauncherLogicFilterFor('alf')({
 				LCHRecipeTitle: 'alfa',
 			}), true);
 		});
 
 		it('returns true if alternate case', function() {
-			deepEqual(mainModule.LCHLauncherLogicFilter('ALF')({
+			deepEqual(mainModule.LCHLauncherLogicFilterFor('ALF')({
 				LCHRecipeTitle: 'alfa',
 			}), true);
 		});
