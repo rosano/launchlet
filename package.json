@@ -37,6 +37,9 @@
     "// FRONTEND SERVICE WORKER": null,
     "OLSKServiceWorker": "olsk/OLSKServiceWorker",
 
+    "// FRONTEND FUZZY SEARCH": null,
+    "fuzzysearch": "latest",
+
     "// FRONTEND RECIPE LCHCopyToClipboard": null,
     "clipboard": "latest",
 
