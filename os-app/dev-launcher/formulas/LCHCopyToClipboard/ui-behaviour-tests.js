@@ -36,6 +36,13 @@ describe('LCHCopyToClipboardUITestDiscovery', function testDiscovery() {
 		browser.assert.elements(LCHCopyToClipboardButton, 1);
 	});
 
+	it('on click', async function() {
+		browser.pressButton(LCHCopyToClipboardButton);
+		await browser.wait({element: LCHLauncherListItem});
+
+		browser.assert.elements(LCHCopyToClipboardButton, 0);
+	});
+
 });
 
 describe('LCHCopyToClipboardUITestLanguage', function testLanguage() {
@@ -67,3 +74,27 @@ describe('LCHCopyToClipboardUITestLanguage', function testLanguage() {
 	});
 });
 
+describe('LCHCopyToClipboardUITestInteraction', function testInteraction() {
+
+	before(function() {
+		return browser.visit('/launcher?loadModules=LCHCopyToClipboard');
+	});
+	
+	it('focuses button', async function() {
+		browser.fill(LCHLauncherFilterInput, 'LCHCopyToClipboardTest');
+		await browser.wait({element: LCHLauncherListItem});
+
+		browser.click(LCHLauncherListItem);
+		await browser.wait({element: LCHCopyToClipboardButton});
+
+		deepEqual(browser.document.activeElement, browser.query(LCHCopyToClipboardButton));
+	});
+	
+	it.skip('closes on click', async function() {
+		browser.pressButton(LCHCopyToClipboardButton);
+		await browser.wait({element: LCHCopyToClipboardButton});
+
+		browser.assert.elements(LCHLauncherFilterInput, 0);
+	});
+
+});
