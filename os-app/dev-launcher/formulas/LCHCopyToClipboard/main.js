@@ -7,11 +7,11 @@ export const LCHCopyToClipboard = function(inputData) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	if (typeof navigator !== 'undefined' && navigator.clipboard) {
-		return Promise.resolve((async function () {
-			return await navigator.clipboard.writeText(inputData);
-		})());
-	}
+	// if (typeof navigator !== 'undefined' && navigator.clipboard) {
+	// 	return Promise.resolve((async function () {
+	// 		return await navigator.clipboard.writeText(inputData);
+	// 	})());
+	// }
 
 	// if (typeof document !== 'undefined') {
 	// 	(function () {
