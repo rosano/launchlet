@@ -1,3 +1,8 @@
+const _LCHLauncherRecipes = [];
+window.LCHLauncherRecipesAdd = function (inputData) {
+	_LCHLauncherRecipes.push(...inputData);
+};
+
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 		typeof define === 'function' && define.amd ? define(['exports'], factory) :
@@ -12,7 +17,7 @@
 	},
 	setupFormulas() {
 		window.LCHPageFormulas = function () {
-			return [
+			return _LCHLauncherRecipes.concat([
 				{
 					LCHRecipeTitle: 'Hello',
 					LCHRecipeCallback: function () {
@@ -20,7 +25,7 @@
 						return this.api.fn('LCHCopyToClipboard')((new Date()).toLocaleString());
 					},
 				},
-			];
+			]);
 		};
 	},
 	setupLauncher() {
