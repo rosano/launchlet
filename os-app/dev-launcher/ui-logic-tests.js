@@ -84,26 +84,44 @@ describe('LCHLauncherLogicFilterFor', function testLCHLauncherLogicFilterFor() {
 				},
 			}), false);
 		});
-
-		it('returns false if LCHRecipeTitle not match', function() {
-			deepEqual(mainModule.LCHLauncherLogicFilterFor('alfa')({
-				LCHRecipeTitle: 'bravo',
-			}), false);
-		});
-
+		
 		it('returns true if match LCHRecipeTitle', function() {
 			deepEqual(mainModule.LCHLauncherLogicFilterFor('alfa')({
 				LCHRecipeTitle: 'alfa',
 			}), true);
 		});
 
-		it('returns true if match partial', function() {
+		it('returns false if no match', function() {
+			deepEqual(mainModule.LCHLauncherLogicFilterFor('alfa')({
+				LCHRecipeTitle: 'bravo',
+			}), false);
+		});
+
+		it('matches partial head', function() {
 			deepEqual(mainModule.LCHLauncherLogicFilterFor('alf')({
 				LCHRecipeTitle: 'alfa',
 			}), true);
 		});
 
-		it('returns true if alternate case', function() {
+		it('matches partial tail', function() {
+			deepEqual(mainModule.LCHLauncherLogicFilterFor('lfa')({
+				LCHRecipeTitle: 'alfa',
+			}), true);
+		});
+
+		it('matches partial body', function() {
+			deepEqual(mainModule.LCHLauncherLogicFilterFor('lf')({
+				LCHRecipeTitle: 'alfa',
+			}), true);
+		});
+
+		it('matches partial multi', function() {
+			deepEqual(mainModule.LCHLauncherLogicFilterFor('af')({
+				LCHRecipeTitle: 'alfa',
+			}), true);
+		});
+
+		it('matches alternate case', function() {
 			deepEqual(mainModule.LCHLauncherLogicFilterFor('ALF')({
 				LCHRecipeTitle: 'alfa',
 			}), true);

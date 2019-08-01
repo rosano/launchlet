@@ -20,6 +20,8 @@ export const LCHLauncherModes = function () {
 	];
 }
 
+import * as _fuzzysearch from 'fuzzysearch';
+const fuzzysearch = typeof _fuzzysearch === 'function' ? _fuzzysearch : _fuzzysearch.default;
 export const LCHLauncherLogicFilterFor = function (inputData) {
 	if (typeof inputData !== 'string') {
 		throw new Error('LCHErrorInputInvalid');
@@ -31,7 +33,7 @@ export const LCHLauncherLogicFilterFor = function (inputData) {
 				return false;
 			}
 
-			return e.match(new RegExp(inputData, 'i'));
+			return fuzzysearch(inputData.toLowerCase(), e.toLowerCase());
 		}).length > 0;
 	};
 };
