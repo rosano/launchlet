@@ -22,7 +22,6 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 					LCHRecipeTitle: 'Hello',
 					LCHRecipeCallback: function () {
 						document.querySelector('textarea').value = 'Hello';
-						return this.api.fn('LCHCopyToClipboard')((new Date()).toLocaleString());
 					},
 				},
 			]);
