@@ -23,7 +23,7 @@ Object.entries({
 
 	LCHComposeReloadButton: '#LCHComposeReloadButton',
 
-	uCreateFormula: async function (browser) {
+	async uCreateFormula (browser) {
 		browser.pressButton(LCHComposeCreateButton);
 		await browser.wait({ element: LCHComposeListItem });
 	},
