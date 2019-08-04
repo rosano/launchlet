@@ -43,6 +43,7 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 	
 	it('on startup', function() {
 		browser.assert.elements(LCHComposeCreateButton, 1);
+		browser.assert.attribute(LCHComposeCreateButton, 'accesskey', 'n');
 
 		browser.assert.elements(LCHComposeListItem, 0);
 		
@@ -51,6 +52,7 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 		browser.assert.elements(LCHComposeDetailToolbar, 0);
 
 		browser.assert.elements(LCHComposeBuildLink, 1);
+		browser.assert.attribute(LCHComposeBuildLink, 'accesskey', 'r');
 	});
 
 	it('on create', async function() {
