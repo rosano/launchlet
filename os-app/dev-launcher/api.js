@@ -59,6 +59,14 @@ export const LCHRecipesModelErrorsFor = function(inputData) {
 		}
 	}
 
+	if (inputData.LCHRecipeOutputType !== undefined && inputData.LCHRecipeOutputType === 'Bool') {
+		if (!inputData.LCHRecipeOutputTypeCanonicalExampleCallback) {
+			errors.LCHRecipeOutputTypeCanonicalExampleCallback = [
+				'LCHErrorNotPresent',
+			];
+		}
+	}
+
 	if (inputData.LCHRecipeOutputTypeCanonicalExampleCallback !== undefined) {
 		if (typeof inputData.LCHRecipeOutputTypeCanonicalExampleCallback !== 'function') {
 			errors.LCHRecipeOutputTypeCanonicalExampleCallback = [

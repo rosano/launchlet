@@ -153,6 +153,16 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 			})), null);
 		});
 
+		it('returns object if Bool', function() {
+			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeOutputType: 'Bool',
+			})), {
+				LCHRecipeOutputTypeCanonicalExampleCallback: [
+					'LCHErrorNotPresent',
+				],
+			});
+		});
+
 	});
 
 	context('LCHRecipeOutputTypeCanonicalExampleCallback', function() {
