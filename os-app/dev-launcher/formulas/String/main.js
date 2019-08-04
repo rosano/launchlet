@@ -7,5 +7,6 @@ export const LCHTypeStringRecipe = function() {
 		LCHRecipeName: 'String',
 		LCHRecipeSignature: 'String',
 		LCHRecipeCallback: LCHTypeStringCallback,
+		LCHRecipeOutputType: 'Bool',
 	};
 };

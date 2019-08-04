@@ -17,5 +17,6 @@ export const LCHTypeURLRecipe = function() {
 		LCHRecipeName: 'URL',
 		LCHRecipeSignature: 'URL',
 		LCHRecipeCallback: LCHTypeURLCallback,
+		LCHRecipeOutputType: 'Bool',
 	};
 };

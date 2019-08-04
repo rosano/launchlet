@@ -21,6 +21,7 @@ describe('LCHTypeStringRecipe', function testLCHTypeStringRecipe() {
 			LCHRecipeName: 'String',
 			LCHRecipeSignature: 'String',
 			LCHRecipeCallback: mainModule.LCHTypeStringCallback,
+			LCHRecipeOutputType: 'Bool',
 		});
 	});
 

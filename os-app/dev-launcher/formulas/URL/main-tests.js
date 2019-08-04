@@ -63,6 +63,7 @@ describe('LCHTypeURLRecipe', function testLCHTypeURLRecipe() {
 			LCHRecipeName: 'URL',
 			LCHRecipeSignature: 'URL',
 			LCHRecipeCallback: mainModule.LCHTypeURLCallback,
+			LCHRecipeOutputType: 'Bool',
 		});
 	});
 
