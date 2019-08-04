@@ -14,6 +14,20 @@ const kTesting = {
 			LCHComponentDescriptorCompletionHandler: 'bravo',
 		};
 	},
+	StubRecipeObjectType() {
+		return Object.assign(kTesting.StubRecipeObjectValid(), {
+			LCHRecipeSignature: 'alfa',
+			LCHRecipeCallback (inputData) {
+				return typeof inputData.bravo === 'string';
+			},
+			LCHRecipeOutputType: 'Bool',
+			LCHRecipeOutputTypeCanonicalExampleCallback () {
+				return {
+					bravo: 'charlie',
+				};
+			},
+		});
+	},
 };
 
 describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
@@ -203,6 +217,109 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 			})), null);
 		});
 
+	});
+
+});
+
+describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenceMapForRecipes() {
+
+	it('throws error if not array', function() {
+		throws(function() {
+			mainModule.LCHAPITypeEquivalenceMapForRecipes(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns object', function() {
+		deepEqual(typeof mainModule.LCHAPITypeEquivalenceMapForRecipes([]), 'object');
+	});
+
+	it('excludes if no LCHRecipeOutputType', function() {
+		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([Object.assign(kTesting.StubRecipeObjectType(), {
+				LCHRecipeOutputType: undefined,
+			})]), {});
+	});
+
+	it('excludes if not valid', function() {
+		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([Object.assign(kTesting.StubRecipeObjectType(), {
+				LCHRecipeOutputTypeCanonicalExampleCallback: undefined,
+			})]), {});
+	});
+
+	it('excludes if LCHRecipeOutputTypeCanonicalExampleCallback fails', function() {
+		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([Object.assign(kTesting.StubRecipeObjectType(), {
+			LCHRecipeOutputTypeCanonicalExampleCallback () {
+				return {
+					delta: 'charlie',
+				};
+			},
+		})]), {});
+	});
+
+	it('creates map for single', function() {
+		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([kTesting.StubRecipeObjectType()]), {
+			alfa: ['alfa'],
+		});
+	});
+
+	it('creates map for multiple', function() {
+		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([kTesting.StubRecipeObjectType(), Object.assign(kTesting.StubRecipeObjectType(), {
+			LCHRecipeSignature: 'echo',
+		})]), {
+			alfa: ['alfa', 'echo'],
+			echo: ['alfa', 'echo'],
+		});
+	});
+
+	it('maps if equivalent', function() {
+		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([kTesting.StubRecipeObjectType(), Object.assign(kTesting.StubRecipeObjectType(), {
+			LCHRecipeSignature: 'echo',
+		})]), {
+			alfa: ['alfa', 'echo'],
+			echo: ['alfa', 'echo'],
+		});
+	});
+
+	it('maps if not equivalent', function() {
+		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([kTesting.StubRecipeObjectType(), Object.assign(kTesting.StubRecipeObjectType(), {
+			LCHRecipeSignature: 'echo',
+			LCHRecipeCallback (inputData) {
+				return typeof inputData.foxtrot === 'string';
+			},
+			LCHRecipeOutputTypeCanonicalExampleCallback () {
+				return {
+					foxtrot: 'golf',
+				};
+			},
+		})]), {
+			alfa: ['alfa'],
+			echo: ['echo'],
+		});
+	});
+
+	it('excludes if duplicate', function() {
+		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([Object.assign(kTesting.StubRecipeObjectType(), {
+			LCHRecipeCallback (inputData) {
+				return typeof inputData.foxtrot === 'string';
+			},
+			LCHRecipeOutputTypeCanonicalExampleCallback () {
+				return {
+					foxtrot: 'charlie',
+				};
+			},
+		}), kTesting.StubRecipeObjectType(), Object.assign(kTesting.StubRecipeObjectType(), {
+			LCHRecipeSignature: 'echo',
+			LCHRecipeCallback (inputData) {
+				return typeof inputData.foxtrot === 'string';
+			},
+			LCHRecipeOutputTypeCanonicalExampleCallback () {
+				return {
+					foxtrot: 'golf',
+				};
+			},
+		})]), {
+			alfa: ['alfa', 'echo'],
+			echo: ['alfa', 'echo'],
+		});
 	});
 
 });

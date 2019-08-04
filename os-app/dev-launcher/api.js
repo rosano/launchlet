@@ -86,6 +86,45 @@ export const LCHRecipesModelErrorsFor = function(inputData) {
 	return Object.entries(errors).length ? errors : null;
 };
 
+export const LCHAPITypeEquivalenceMapForRecipes = function(inputData) {
+	if (!Array.isArray(inputData)) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	const uniqueSignatures = [];
+	const validRecipes = inputData.filter(function (e) {
+		if (LCHRecipesModelErrorsFor(e)) {
+			return false;
+		}
+
+		if (!e.LCHRecipeOutputType) {
+			return false;
+		}
+
+		if (!e.LCHRecipeCallback(e.LCHRecipeOutputTypeCanonicalExampleCallback())) {
+			return false;
+		}
+
+		if (uniqueSignatures.indexOf(e.LCHRecipeSignature) !== -1) {
+			return false;
+		}
+
+		uniqueSignatures.push(e.LCHRecipeSignature);
+
+		return true;
+	});
+
+	return validRecipes.reduce(function (coll, item) {
+		coll[item.LCHRecipeSignature] = validRecipes.filter(function (e) {
+			return item.LCHRecipeCallback(e.LCHRecipeOutputTypeCanonicalExampleCallback());
+		}).map(function (e) {
+			return e.LCHRecipeSignature;
+		});
+
+		return coll;
+	}, {});
+};
+
 export const LCHAPIObjectFor = function(inputData) {
 	if (!Array.isArray(inputData)) {
 		throw new Error('LCHErrorInputInvalid');
@@ -175,5 +214,3 @@ export const LCHComponentDescriptorsModelErrorsFor = function(inputData) {
 
 	return Object.entries(errors).length ? errors : null;
 };
-
-
