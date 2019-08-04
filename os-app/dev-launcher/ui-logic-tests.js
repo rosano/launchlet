@@ -13,10 +13,10 @@ describe('LCHLauncherModes', function testLCHLauncherModes() {
 
 });
 
-describe('LCHLauncherRecipes', function testLCHLauncherRecipes() {
+describe('LCHLauncherStandardRecipes', function testLCHLauncherStandardRecipes() {
 
 	it('returns LCHFormulaObject for each folder', function() {
-		deepEqual(mainModule.LCHLauncherRecipes(), [].concat.apply([], require('glob').sync('*main.js', {
+		deepEqual(mainModule.LCHLauncherStandardRecipes(), [].concat.apply([], require('glob').sync('*main.js', {
 		  matchBase: true,
 		  cwd: require('path').join(__dirname, 'formulas'),
 		}).map(function (e) {

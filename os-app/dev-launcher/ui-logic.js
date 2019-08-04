@@ -20,7 +20,7 @@ export const LCHLauncherModes = function () {
 	];
 };
 
-export const LCHLauncherRecipes = function() {
+export const LCHLauncherStandardRecipes = function() {
 	return [].concat.apply([], [LCHCopyToClipboard].map(function (e) {
 		return Object.entries(e).map(function (e) {
 			return {

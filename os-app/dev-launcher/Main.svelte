@@ -1,6 +1,6 @@
 <script>
 import { LCHOptionsObject, OLSKLocalized, formulaSelected, secondaryComponent } from './_shared.js';
-import { LCHLauncherModeJump, LCHLauncherFilterForText, LCHLauncherConstrainIndex, LCHLauncherRecipes, LCHLauncherPatternMatchesURL } from './ui-logic.js';
+import { LCHLauncherModeJump, LCHLauncherFilterForText, LCHLauncherConstrainIndex, LCHLauncherStandardRecipes, LCHLauncherPatternMatchesURL } from './ui-logic.js';
 import { LCHRecipesModelErrorsFor, LCHComponentDescriptorsModelErrorsFor } from './api.js';
 
 export let dataObjects = [];
@@ -35,7 +35,7 @@ export let optionsObject = {};
 
 import { LCHAPIObjectFor } from './api.js';
 import * as apiComponents from './api-components.js';
-const api = LCHAPIObjectFor(LCHLauncherRecipes().concat(dataObjects));
+const api = LCHAPIObjectFor(LCHLauncherStandardRecipes().concat(dataObjects));
 
 async function apiStart(inputData) {
 	return Promise.resolve(inputData.LCHRecipeCallback.bind({
