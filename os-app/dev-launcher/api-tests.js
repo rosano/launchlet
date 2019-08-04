@@ -122,7 +122,7 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 	context('LCHRecipeOutputType', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectType(), {
 				LCHRecipeOutputType: null,
 			})), {
 				LCHRecipeOutputType: [
@@ -132,7 +132,7 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 		});
 
 		it('returns object if not filled', function() {
-			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectType(), {
 				LCHRecipeOutputType: '',
 			})), {
 				LCHRecipeOutputType: [
@@ -142,7 +142,7 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 		});
 
 		it('returns object if not trimmed', function() {
-			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectType(), {
 				LCHRecipeOutputType: ' alfa ',
 			})), {
 				LCHRecipeOutputType: [
@@ -152,7 +152,7 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 		});
 
 		it('returns object if only whitespace', function() {
-			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectType(), {
 				LCHRecipeOutputType: ' ',
 			})), {
 				LCHRecipeOutputType: [
@@ -162,16 +162,26 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectType(), {
 				LCHRecipeOutputType: 'alfa',
 			})), null);
 		});
 
-		it('returns object if Bool', function() {
-			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeOutputType: 'Bool',
+		it('returns object if Bool and no LCHRecipeOutputTypeCanonicalExampleCallback', function() {
+			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectType(), {
+				LCHRecipeOutputTypeCanonicalExampleCallback: undefined,
 			})), {
 				LCHRecipeOutputTypeCanonicalExampleCallback: [
+					'LCHErrorNotPresent',
+				],
+			});
+		});
+
+		it('returns object if Bool and no LCHRecipeSignature', function() {
+			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectType(), {
+				LCHRecipeSignature: undefined,
+			})), {
+				LCHRecipeSignature: [
 					'LCHErrorNotPresent',
 				],
 			});
