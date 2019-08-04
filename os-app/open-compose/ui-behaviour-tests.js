@@ -35,39 +35,35 @@ const browser = new Browser();
 
 describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 
-	context('LCHLauncherModeDefault', function () {
+	before(function() {
+		return browser.visit('/');
+	});
+	
+	it('on startup', function() {
+		browser.assert.elements(LCHComposeCreateButton, 1);
 
-		before(function() {
-			return browser.visit('/');
-		});
+		browser.assert.elements(LCHComposeListItem, 0);
 		
-		it('on startup', function() {
-			browser.assert.elements(LCHComposeCreateButton, 1);
+		browser.assert.elements(LCHComposeDetailPlaceholderContainer, 1);
 
-			browser.assert.elements(LCHComposeListItem, 0);
-			
-			browser.assert.elements(LCHComposeDetailPlaceholderContainer, 1);
+		browser.assert.elements(LCHComposeDetailToolbar, 0);
+	});
 
-			browser.assert.elements(LCHComposeDetailToolbar, 0);
-		});
+	it('on create', async function() {
+		await uCreateFormula(browser);
 
-		it('on create', async function() {
-			await uCreateFormula(browser);
+		browser.assert.elements(LCHComposeListItem, 1);
 
-			browser.assert.elements(LCHComposeListItem, 1);
+		browser.assert.elements(LCHComposeDetailPlaceholderContainer, 0);
 
-			browser.assert.elements(LCHComposeDetailPlaceholderContainer, 0);
+		browser.assert.elements(LCHComposeDetailToolbar, 1);
+		browser.assert.elements(LCHComposeDetailToolbarDiscardButton, 1);
 
-			browser.assert.elements(LCHComposeDetailToolbar, 1);
-			browser.assert.elements(LCHComposeDetailToolbarDiscardButton, 1);
-
-			browser.assert.elements(LCHComposeListItemFormInputName, 1);
-			browser.assert.elements(LCHComposeListItemFormInputInputData, 1);
-			// editor
-			browser.assert.elements(LCHComposeListItemFormInputSignature, 1);
-			browser.assert.elements(LCHComposeListItemFormInputURLFilter, 1);
-		});
-
+		browser.assert.elements(LCHComposeListItemFormInputName, 1);
+		browser.assert.elements(LCHComposeListItemFormInputInputData, 1);
+		// editor
+		browser.assert.elements(LCHComposeListItemFormInputSignature, 1);
+		browser.assert.elements(LCHComposeListItemFormInputURLFilter, 1);
 	});
 
 });
@@ -95,18 +91,22 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 			it('on create', async function() {
 				await uCreateFormula(browser);
 
-				// browser.assert.elements(LCHComposeListItem, 1);
+				deepEqual(browser.query(LCHComposeListItem).textContent.length, 27);
 
 				// deepEqual(browser.query(LCHComposeDetailToolbarBackButton).title, uLocalized('LCHComposeDetailToolbarBackButtonText'));
 				deepEqual(browser.query(LCHComposeDetailToolbarDiscardButton).title, uLocalized('LCHComposeListItemToolbarDeleteButtonText'));
 
 				deepEqual(browser.query(LCHComposeListItemFormInputName).placeholder, uLocalized('LCHComposeListItemFormInputNamePlaceholder'));
+				deepEqual(browser.query(LCHComposeListItemFormInputName).value, '');
 				deepEqual(browser.query(LCHComposeListItemFormInputInputData).placeholder, 'undefined');
+				deepEqual(browser.query(LCHComposeListItemFormInputInputData).value, '');
 				// editor
 				deepEqual(browser.query(LCHComposeListItemFormInputSignature).placeholder, uLocalized('LCHComposeListItemFormInputSignaturePlaceholder'));
+				deepEqual(browser.query(LCHComposeListItemFormInputSignature).value, '');
 			});
 
 		});
 		
 	});
+
 });
