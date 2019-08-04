@@ -9,7 +9,7 @@ locals.OLSKPageAssets = [
 
 if (LCHLauncherQuery.loadModules) {
 	locals.OLSKPageAssets.push(...LCHLauncherQuery.loadModules.split(',').map(function (e) {
-		return `formulas/${ e }/ui-data.js`;
+		return `recipes/${ e }/ui-data.js`;
 	}));
 }
 
