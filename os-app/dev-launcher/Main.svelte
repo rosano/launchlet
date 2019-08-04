@@ -1,6 +1,6 @@
 <script>
 import { LCHOptionsObject, OLSKLocalized, formulaSelected, secondaryComponent } from './_shared.js';
-import { LCHLauncherModeJump, LCHLauncherLogicFilterFor, LCHLauncherLogicConstrainIndex, LCHLauncherRecipes, LCHLauncherLogicPatternMatchesURL } from './ui-logic.js';
+import { LCHLauncherModeJump, LCHLauncherFilterForText, LCHLauncherConstrainIndex, LCHLauncherRecipes, LCHLauncherPatternMatchesURL } from './ui-logic.js';
 import { LCHRecipesModelErrorsFor, LCHComponentDescriptorsModelErrorsFor } from './api.js';
 
 export let dataObjects = [];
@@ -13,7 +13,7 @@ export let optionsObject = {};
 
 (function StartFilterDataObjects() {
 	dataObjects = dataObjects.filter(function (e) {
-		return LCHLauncherLogicPatternMatchesURL(e.LCHRecipeURLFilter || '', window.location.href);
+		return LCHLauncherPatternMatchesURL(e.LCHRecipeURLFilter || '', window.location.href);
 	});
 })();
 
@@ -62,7 +62,7 @@ let filterText = '';
 let formulasVisible = [];
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump ? dataObjects : [];
 let filterTextDidChange = function (val) {
-	formulasVisible = !val ? formulasDefault : dataObjects.filter(LCHLauncherLogicFilterFor(val));
+	formulasVisible = !val ? formulasDefault : dataObjects.filter(LCHLauncherFilterForText(val));
 
 	formulaSelected.set(!val ? null : formulasVisible[0]);
 
@@ -126,7 +126,7 @@ function handleKeydown(event) {
 			return event.preventDefault();
 		},
 		ArrowUp () {
-			formulaSelected.set(formulasVisible[LCHLauncherLogicConstrainIndex(formulasVisible, formulasVisible.indexOf($formulaSelected) - 1)]);
+			formulaSelected.set(formulasVisible[LCHLauncherConstrainIndex(formulasVisible, formulasVisible.indexOf($formulaSelected) - 1)]);
 
 			if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
 				apiStart($formulaSelected);
@@ -135,7 +135,7 @@ function handleKeydown(event) {
 			return event.preventDefault();
 		},
 		ArrowDown () {
-			formulaSelected.set(formulasVisible[LCHLauncherLogicConstrainIndex(formulasVisible, formulasVisible.indexOf($formulaSelected) + 1)]);
+			formulaSelected.set(formulasVisible[LCHLauncherConstrainIndex(formulasVisible, formulasVisible.indexOf($formulaSelected) + 1)]);
 			
 			if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
 				apiStart($formulaSelected);

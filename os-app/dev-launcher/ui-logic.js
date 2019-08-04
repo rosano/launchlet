@@ -18,11 +18,22 @@ export const LCHLauncherModes = function () {
 		LCHLauncherModeDefault,
 		LCHLauncherModeJump,
 	];
-}
+};
+
+export const LCHLauncherRecipes = function() {
+	return [].concat.apply([], [LCHCopyToClipboard].map(function (e) {
+		return Object.entries(e).map(function (e) {
+			return {
+				LCHRecipeSignature: e.shift(),
+				LCHRecipeCallback: e.pop(),
+			};
+		});
+	}));
+};
 
 import * as _fuzzysearch from 'fuzzysearch';
 const fuzzysearch = typeof _fuzzysearch === 'function' ? _fuzzysearch : _fuzzysearch.default;
-export const LCHLauncherLogicFilterFor = function (inputData) {
+export const LCHLauncherFilterForText = function (inputData) {
 	if (typeof inputData !== 'string') {
 		throw new Error('LCHErrorInputInvalid');
 	}
@@ -38,7 +49,7 @@ export const LCHLauncherLogicFilterFor = function (inputData) {
 	};
 };
 
-export const LCHLauncherLogicConstrainIndex = function (param1, param2) {
+export const LCHLauncherConstrainIndex = function (param1, param2) {
 	if (!Array.isArray(param1)) {
 		throw new Error('LCHErrorInputInvalid');
 	}
@@ -58,18 +69,7 @@ export const LCHLauncherLogicConstrainIndex = function (param1, param2) {
 	return param2;
 };
 
-export const LCHLauncherRecipes = function() {
-	return [].concat.apply([], [LCHCopyToClipboard].map(function (e) {
-		return Object.entries(e).map(function (e) {
-			return {
-				LCHRecipeSignature: e.shift(),
-				LCHRecipeCallback: e.pop(),
-			};
-		});
-	}));
-};
-
-export const LCHLauncherLogicPatternMatchesURL = function (param1, param2) {
+export const LCHLauncherPatternMatchesURL = function (param1, param2) {
 	if (typeof param1 !== 'string') {
 		throw new Error('LCHErrorInputInvalid');
 	}
