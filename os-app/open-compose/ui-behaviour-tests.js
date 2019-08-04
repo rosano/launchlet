@@ -163,6 +163,8 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 				// editor
 				deepEqual(browser.query(LCHComposeListItemFormInputSignature).placeholder, uLocalized('LCHComposeListItemFormInputSignaturePlaceholder'));
 				deepEqual(browser.query(LCHComposeListItemFormInputSignature).value, '');
+
+				browser.fill(LCHComposeListItemFormInputInputData, 'charlie');
 			});
 
 			it('on edit signature', async function() {
@@ -190,6 +192,8 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 				await browser.wait({ element: LCHComposeListItem });
 
 				deepEqual(browser.query(LCHComposeListItemFormInputName).value, 'bravo');
+				deepEqual(browser.query(LCHComposeListItemFormInputSignature).value, 'alfa');
+				deepEqual(browser.query(LCHComposeListItemFormInputInputData).value, 'charlie');
 			});
 
 			it('on delete', async function() {
