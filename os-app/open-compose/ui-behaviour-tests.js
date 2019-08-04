@@ -25,6 +25,8 @@ Object.entries({
 
 	LCHComposeBuildLink: '#LCHComposeBuildLink',
 
+	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
+
 	async uCreateFormula (browser) {
 		browser.pressButton(LCHComposeCreateButton);
 		await browser.wait({ element: LCHComposeListItem });
@@ -53,6 +55,8 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 
 		browser.assert.elements(LCHComposeBuildLink, 1);
 		browser.assert.attribute(LCHComposeBuildLink, 'accesskey', 'r');
+
+		browser.assert.elements(LCHLauncherFilterInput, 0);
 	});
 
 	it('on create', async function() {
@@ -78,6 +82,13 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 		browser.assert.elements(LCHComposeListItem, 2);
 
 		browser.assert.elements(LCHComposeDetailToolbar, 1);
+	});
+
+	it.skip('on run', async function() {
+		browser.click(LCHComposeBuildLink);
+		await browser.wait({ element: LCHLauncherFilterInput });
+
+		browser.assert.elements(LCHLauncherFilterInput, 1);
 	});
 
 	context('delete', function () {
