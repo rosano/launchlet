@@ -1,10 +1,12 @@
 import * as Bool from './Bool/main.js';
+import * as String from './String/main.js';
 
 import * as LCHCopyToClipboard from './LCHCopyToClipboard/main.js';
 
 export const LCHLauncherStandardRecipes = function() {
 	return [].concat.apply([], [
 		Bool,
+		String,
 		
 		LCHCopyToClipboard,
 		].map(function (e) {
@@ -12,6 +14,8 @@ export const LCHLauncherStandardRecipes = function() {
 			return e.shift().includes('Recipe');
 		}).map(function (e) {
 			return e.pop()();
+		}).map(function (e) {
+			return e;
 		});
 	}));
 };
