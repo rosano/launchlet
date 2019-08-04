@@ -59,6 +59,14 @@ export const LCHRecipesModelErrorsFor = function(inputData) {
 		}
 	}
 
+	if (inputData.LCHRecipeOutputTypeCanonicalExampleCallback !== undefined) {
+		if (typeof inputData.LCHRecipeOutputTypeCanonicalExampleCallback !== 'function') {
+			errors.LCHRecipeOutputTypeCanonicalExampleCallback = [
+				'LCHErrorNotFunction',
+			];
+		}
+	}
+
 	if (inputData.LCHRecipeURLFilter !== undefined) {
 		if (typeof inputData.LCHRecipeURLFilter !== 'string') {
 			errors.LCHRecipeURLFilter = [

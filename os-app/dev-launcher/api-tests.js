@@ -155,6 +155,26 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 
 	});
 
+	context('LCHRecipeOutputTypeCanonicalExampleCallback', function() {
+
+		it('returns object if LCHRecipeOutputTypeCanonicalExampleCallback not function', function() {
+			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeOutputTypeCanonicalExampleCallback: null,
+			})), {
+				LCHRecipeOutputTypeCanonicalExampleCallback: [
+					'LCHErrorNotFunction',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeOutputTypeCanonicalExampleCallback () {},
+			})), null);
+		});
+
+	});
+
 	context('LCHRecipeURLFilter', function() {
 
 		it('returns object if LCHRecipeURLFilter not string', function() {
