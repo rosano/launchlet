@@ -39,3 +39,10 @@ export const LCHCopyToClipboardCallback = function(inputData) {
 		LCHComponentDescriptorCompletionHandler: 'completionHandler',
 	};
 };
+
+export const LCHCopyToClipboardRecipe = function() {
+	return {
+		LCHRecipeSignature: 'LCHCopyToClipboard',
+		LCHRecipeCallback: LCHCopyToClipboardCallback,
+	};
+};

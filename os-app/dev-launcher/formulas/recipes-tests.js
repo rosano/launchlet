@@ -9,11 +9,10 @@ describe('LCHLauncherStandardRecipes', function testLCHLauncherStandardRecipes()
 		  matchBase: true,
 		  cwd: __dirname,
 		}).map(function (e) {
-			return Object.entries(require(`./${ e }`)).map(function (e) {
-				return {
-					LCHRecipeSignature: e.shift(),
-					LCHRecipeCallback: e.pop(),
-				};
+			return Object.entries(require(`./${ e }`)).filter(function (e) {
+				return e.shift().includes('Recipe');
+			}).map(function (e) {
+				return e.pop()();
 			});
 		})));
 	});

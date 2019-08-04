@@ -33,3 +33,14 @@ describe('LCHCopyToClipboardCallback', function testLCHCopyToClipboardCallback()
 	});
 
 });
+
+describe('LCHCopyToClipboardRecipe', function testLCHCopyToClipboardRecipe() {
+
+	it('returns LCHRecipe', async function() {
+		deepEqual(mainModule.LCHCopyToClipboardRecipe(), {
+			LCHRecipeSignature: 'LCHCopyToClipboard',
+			LCHRecipeCallback: mainModule.LCHCopyToClipboardCallback,
+		});
+	});
+
+});
