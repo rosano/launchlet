@@ -167,6 +167,7 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 				deepEqual(browser.query(LCHComposeListItemFormInputURLFilter).value, '');
 
 				browser.fill(LCHComposeListItemFormInputInputData, 'charlie');
+				browser.fill(LCHComposeListItemFormInputURLFilter, '/https?://(.*\.)?google\.com/i');
 			});
 
 			it('on edit signature', async function() {
@@ -196,6 +197,7 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 				deepEqual(browser.query(LCHComposeListItemFormInputName).value, 'bravo');
 				deepEqual(browser.query(LCHComposeListItemFormInputSignature).value, 'alfa');
 				deepEqual(browser.query(LCHComposeListItemFormInputInputData).value, 'charlie');
+				deepEqual(browser.query(LCHComposeListItemFormInputURLFilter).value, '/https?://(.*\.)?google\.com/i');
 			});
 
 			it('on delete', async function() {
