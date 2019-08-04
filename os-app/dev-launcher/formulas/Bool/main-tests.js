@@ -4,7 +4,7 @@ import * as mainModule from './main.js';
 
 describe('LCHTypeBoolCallback', function testLCHTypeBoolCallback() {
 
-	it('returns false', function() {
+	it('returns false if not present', function() {
 		deepEqual(mainModule.LCHTypeBoolCallback(), false);
 	});
 
