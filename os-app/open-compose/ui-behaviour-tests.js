@@ -66,6 +66,14 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 		browser.assert.elements(LCHComposeListItemFormInputURLFilter, 1);
 	});
 
+	it('on create nth item', async function() {
+		await uCreateFormula(browser);
+
+		browser.assert.elements(LCHComposeListItem, 2);
+
+		browser.assert.elements(LCHComposeDetailToolbar, 1);
+	});
+
 });
 
 describe('LCHLauncherUITestLanguage', function testLanguage() {
@@ -117,6 +125,12 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 				await browser.wait({ element: LCHComposeListItem });
 
 				deepEqual(browser.query(LCHComposeListItem).textContent.trim(), 'bravo');
+			});
+
+			it('on create nth item', async function() {
+				await uCreateFormula(browser);
+
+				deepEqual(browser.query(LCHComposeListItemFormInputName).value, '');
 			});
 
 		});
