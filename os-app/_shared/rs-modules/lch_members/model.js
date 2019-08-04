@@ -77,6 +77,14 @@ export const LCHFormulasModelErrorsFor = function(inputData) {
 		}
 	}
 
+	if (inputData.LCHMemberOutputTypeCanonicalExampleBody !== undefined) {
+		if (typeof inputData.LCHMemberOutputTypeCanonicalExampleBody !== 'string') {
+			errors.LCHMemberOutputTypeCanonicalExampleBody = [
+				'LCHErrorNotString',
+			];
+		}
+	}
+
 	if (inputData.LCHMemberURLFilter !== undefined) {
 		if (typeof inputData.LCHMemberURLFilter !== 'string') {
 			errors.LCHMemberURLFilter = [

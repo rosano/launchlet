@@ -167,6 +167,26 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 
 	});
 
+	context('LCHMemberOutputTypeCanonicalExampleBody', function() {
+
+		it('returns object if not string', function() {
+			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+				LCHMemberOutputTypeCanonicalExampleBody: null,
+			})), {
+				LCHMemberOutputTypeCanonicalExampleBody: [
+					'LCHErrorNotString',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+				LCHMemberOutputTypeCanonicalExampleBody: '',
+			})), null);
+		});
+
+	});
+
 	context('LCHMemberURLFilter', function() {
 
 		it('returns object if not string', function() {
