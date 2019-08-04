@@ -1,5 +1,6 @@
 import * as Bool from './Bool/main.js';
 import * as String from './String/main.js';
+import * as URL from './URL/main.js';
 
 import * as LCHCopyToClipboard from './LCHCopyToClipboard/main.js';
 
@@ -7,6 +8,7 @@ export const LCHLauncherStandardRecipes = function() {
 	return [].concat.apply([], [
 		Bool,
 		String,
+		URL,
 		
 		LCHCopyToClipboard,
 		].map(function (e) {

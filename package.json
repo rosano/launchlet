@@ -21,6 +21,9 @@
     "OLSKInternational": "olsk/OLSKInternational",
     "OLSKString": "olsk/OLSKString",
 
+    "// RECIPE URL": null,
+    "url-parse": "latest",
+
     "// FRONTEND NORMALIZE CSS": null,
     "normalize.css": "latest",
     "OLSKLayout": "olsk/OLSKLayout",
