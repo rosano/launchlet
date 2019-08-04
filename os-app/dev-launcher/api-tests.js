@@ -3,12 +3,12 @@ import { throws, deepEqual } from 'assert';
 import * as mainModule from './api.js';
 
 const kTesting = {
-	StubRecipeObjectValid: function() {
+	StubRecipeObjectValid() {
 		return {
 			LCHRecipeCallback () {},
 		};
 	},
-	StubComponentDescriptorObjectValid: function() {
+	StubComponentDescriptorObjectValid() {
 		return {
 			LCHComponentDescriptorName: 'alfa',
 			LCHComponentDescriptorCompletionHandler: 'bravo',
