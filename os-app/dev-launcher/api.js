@@ -39,6 +39,26 @@ export const LCHRecipesModelErrorsFor = function(inputData) {
 		}
 	}
 
+	if (inputData.LCHRecipeOutputType !== undefined) {
+		if (typeof inputData.LCHRecipeOutputType !== 'string') {
+			errors.LCHRecipeOutputType = [
+				'LCHErrorNotString',
+			];
+		} else {
+			if (inputData.LCHRecipeOutputType.trim() !== inputData.LCHRecipeOutputType) {
+				errors.LCHRecipeOutputType = [
+					'LCHErrorNotTrimmed',
+				];
+			}
+
+			if (inputData.LCHRecipeOutputType.trim() === '') {
+				errors.LCHRecipeOutputType = [
+					'LCHErrorNotFilled',
+				];
+			}
+		}
+	}
+
 	if (inputData.LCHRecipeURLFilter !== undefined) {
 		if (typeof inputData.LCHRecipeURLFilter !== 'string') {
 			errors.LCHRecipeURLFilter = [
