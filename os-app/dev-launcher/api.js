@@ -65,7 +65,7 @@ export const LCHRecipesModelErrorsFor = function(inputData) {
 				'LCHErrorNotPresent',
 			];
 		}
-		
+
 		if (!inputData.LCHRecipeSignature) {
 			errors.LCHRecipeSignature = [
 				'LCHErrorNotPresent',
@@ -103,7 +103,7 @@ export const LCHAPITypeEquivalenceMapForRecipes = function(inputData) {
 			return false;
 		}
 
-		if (!e.LCHRecipeOutputType) {
+		if (e.LCHRecipeOutputType !== 'Bool') {
 			return false;
 		}
 

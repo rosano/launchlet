@@ -255,6 +255,12 @@ describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenc
 			})]), {});
 	});
 
+	it('excludes if LCHRecipeOutputType not bool', function() {
+		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([Object.assign(kTesting.StubRecipeObjectType(), {
+				LCHRecipeOutputType: 'alfa',
+			})]), {});
+	});
+
 	it('excludes if LCHRecipeOutputTypeCanonicalExampleCallback fails', function() {
 		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([Object.assign(kTesting.StubRecipeObjectType(), {
 			LCHRecipeOutputTypeCanonicalExampleCallback () {
