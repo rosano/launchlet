@@ -280,43 +280,50 @@ describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenc
 	});
 
 	it('maps if not equivalent', function() {
-		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([kTesting.StubRecipeObjectType(), Object.assign(kTesting.StubRecipeObjectType(), {
-			LCHRecipeSignature: 'echo',
-			LCHRecipeCallback (inputData) {
-				return typeof inputData.foxtrot === 'string';
-			},
-			LCHRecipeOutputTypeCanonicalExampleCallback () {
-				return {
-					foxtrot: 'golf',
-				};
-			},
-		})]), {
+		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([
+			kTesting.StubRecipeObjectType(),
+			Object.assign(kTesting.StubRecipeObjectType(), {
+				LCHRecipeSignature: 'echo',
+				LCHRecipeCallback (inputData) {
+					return typeof inputData.foxtrot === 'string';
+				},
+				LCHRecipeOutputTypeCanonicalExampleCallback () {
+					return {
+						foxtrot: 'golf',
+					};
+				},
+			}),
+			]), {
 			alfa: ['alfa'],
 			echo: ['echo'],
 		});
 	});
 
 	it('excludes if duplicate', function() {
-		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([Object.assign(kTesting.StubRecipeObjectType(), {
-			LCHRecipeCallback (inputData) {
-				return typeof inputData.foxtrot === 'string';
-			},
-			LCHRecipeOutputTypeCanonicalExampleCallback () {
-				return {
-					foxtrot: 'charlie',
-				};
-			},
-		}), kTesting.StubRecipeObjectType(), Object.assign(kTesting.StubRecipeObjectType(), {
-			LCHRecipeSignature: 'echo',
-			LCHRecipeCallback (inputData) {
-				return typeof inputData.foxtrot === 'string';
-			},
-			LCHRecipeOutputTypeCanonicalExampleCallback () {
-				return {
-					foxtrot: 'golf',
-				};
-			},
-		})]), {
+		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([
+			Object.assign(kTesting.StubRecipeObjectType(), {
+				LCHRecipeCallback (inputData) {
+					return typeof inputData.foxtrot === 'string';
+				},
+				LCHRecipeOutputTypeCanonicalExampleCallback () {
+					return {
+						foxtrot: 'charlie',
+					};
+				},
+			}),
+			kTesting.StubRecipeObjectType(),
+			Object.assign(kTesting.StubRecipeObjectType(), {
+				LCHRecipeSignature: 'echo',
+				LCHRecipeCallback (inputData) {
+					return typeof inputData.foxtrot === 'string';
+				},
+				LCHRecipeOutputTypeCanonicalExampleCallback () {
+					return {
+						foxtrot: 'golf',
+					};
+				},
+			}),
+			]), {
 			alfa: ['alfa', 'echo'],
 			echo: ['alfa', 'echo'],
 		});
