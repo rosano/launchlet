@@ -112,6 +112,13 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 				deepEqual(browser.query(LCHComposeListItem).textContent.trim(), 'alfa');
 			});
 
+			it('on edit name', async function() {
+				browser.fill(LCHComposeListItemFormInputName, 'bravo');
+				await browser.wait({ element: LCHComposeListItem });
+
+				deepEqual(browser.query(LCHComposeListItem).textContent.trim(), 'bravo');
+			});
+
 		});
 		
 	});
