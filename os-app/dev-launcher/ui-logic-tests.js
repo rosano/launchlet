@@ -13,24 +13,6 @@ describe('LCHLauncherModes', function testLCHLauncherModes() {
 
 });
 
-describe('LCHLauncherStandardRecipes', function testLCHLauncherStandardRecipes() {
-
-	it('returns LCHFormulaObject for each folder', function() {
-		deepEqual(mainModule.LCHLauncherStandardRecipes(), [].concat.apply([], require('glob').sync('*main.js', {
-		  matchBase: true,
-		  cwd: require('path').join(__dirname, 'formulas'),
-		}).map(function (e) {
-			return Object.entries(require(require('path').join(__dirname, 'formulas', e))).map(function (e) {
-				return {
-					LCHRecipeSignature: e.shift(),
-					LCHRecipeCallback: e.pop(),
-				};
-			});
-		})));
-	});
-
-});
-
 describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 
 	it('throws error if not object', function() {
