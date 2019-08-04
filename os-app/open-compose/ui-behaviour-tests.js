@@ -124,3 +124,21 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 	});
 
 });
+
+describe('LCHLauncherUITestDiscovery', function testDiscovery() {
+
+	before(function() {
+		return browser.visit('/');
+	});
+
+	context('on create', async function() {
+
+		it('focuses LCHComposeListItemFormInputName', async function() {
+			await uCreateFormula(browser);
+
+			deepEqual(browser.document.activeElement, browser.query(LCHComposeListItemFormInputName));
+		});
+
+	});
+
+});
