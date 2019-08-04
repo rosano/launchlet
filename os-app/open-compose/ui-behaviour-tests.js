@@ -163,6 +163,8 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 				// editor
 				deepEqual(browser.query(LCHComposeListItemFormInputSignature).placeholder, uLocalized('LCHComposeListItemFormInputSignaturePlaceholder'));
 				deepEqual(browser.query(LCHComposeListItemFormInputSignature).value, '');
+				deepEqual(browser.query(LCHComposeListItemFormInputURLFilter).placeholder, uLocalized('LCHComposeListItemFormInputURLFilterPlaceholder').replace(/\\\\/g, '\\'));
+				deepEqual(browser.query(LCHComposeListItemFormInputURLFilter).value, '');
 
 				browser.fill(LCHComposeListItemFormInputInputData, 'charlie');
 			});
