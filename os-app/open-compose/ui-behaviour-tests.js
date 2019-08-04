@@ -74,6 +74,58 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 		browser.assert.elements(LCHComposeDetailToolbar, 1);
 	});
 
+	context('delete', function () {
+
+		it('on cancel', async function() {
+			const browser = new Browser();
+
+			await browser.visit('/');
+
+			await uCreateFormula(browser);
+
+			await new Promise(async function (resolve, reject) {
+				browser.on('confirm', function (dialog) {
+					dialog.response = false;
+
+					return resolve(dialog);
+				});
+
+				browser.pressButton(LCHComposeDetailToolbarDiscardButton);
+				await browser.wait({ element: LCHComposeListItem });
+			});
+
+			await browser.wait({ element: LCHComposeListItem });
+
+			browser.assert.elements(LCHComposeDetailPlaceholderContainer, 0);
+
+			browser.assert.elements(LCHComposeDetailToolbar, 1);
+		});
+
+		it('on confirm', async function() {
+			const browser = new Browser();
+
+			await browser.visit('/');
+
+			await uCreateFormula(browser);
+
+			await new Promise(async function (resolve, reject) {
+				browser.on('confirm', function (dialog) {
+					return resolve(dialog);
+				});
+
+				browser.pressButton(LCHComposeDetailToolbarDiscardButton);
+				await browser.wait({ element: LCHComposeListItem });
+			});
+
+			await browser.wait({ element: LCHComposeListItem });
+
+			browser.assert.elements(LCHComposeDetailPlaceholderContainer, 1);
+
+			browser.assert.elements(LCHComposeDetailToolbar, 0);
+		});
+		
+	});
+
 });
 
 describe('LCHLauncherUITestLanguage', function testLanguage() {
@@ -138,6 +190,23 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 				await browser.wait({ element: LCHComposeListItem });
 
 				deepEqual(browser.query(LCHComposeListItemFormInputName).value, 'bravo');
+			});
+
+			it('on delete', async function() {
+				const browser = new Browser();
+
+				await browser.visit(`${ languageCode }/`);
+
+				await uCreateFormula(browser);
+
+				deepEqual((await new Promise(async function (resolve, reject) {
+					browser.on('confirm', function (dialog) {
+						resolve(dialog);
+					});
+
+					browser.pressButton(LCHComposeDetailToolbarDiscardButton);
+					await browser.wait({ element: LCHComposeListItem });
+				})).question, uLocalized('LCHComposeListItemDeletePromptText'));
 			});
 
 		});
