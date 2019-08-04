@@ -30,10 +30,10 @@ describe('LCHTypeBoolCallback', function testLCHTypeBoolCallback() {
 
 });
 
-describe('LCHTypeBool', function testLCHTypeBool() {
+describe('LCHTypeBoolRecipe', function testLCHTypeBoolRecipe() {
 
 	it('returns LCHRecipe', async function() {
-		deepEqual(mainModule.LCHTypeBool(), {
+		deepEqual(mainModule.LCHTypeBoolRecipe(), {
 			LCHRecipeName: 'Boolean',
 			LCHRecipeSignature: 'Bool',
 			LCHRecipeCallback: mainModule.LCHTypeBoolCallback,

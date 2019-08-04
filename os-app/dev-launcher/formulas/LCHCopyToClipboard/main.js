@@ -1,4 +1,4 @@
-export const LCHCopyToClipboard = function(inputData) {
+export const LCHCopyToClipboardCallback = function(inputData) {
 	if (typeof inputData !== 'string') {
 		throw new Error('LCHErrorInputInvalid');
 	}
