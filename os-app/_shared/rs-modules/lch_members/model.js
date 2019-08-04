@@ -15,12 +15,6 @@ export const LCHFormulasModelErrorsFor = function(inputData) {
 		];
 	}
 
-	if (typeof inputData.LCHMemberArgs !== 'string') {
-		errors.LCHMemberArgs = [
-			'LCHErrorNotString',
-		];
-	}
-
 	if (typeof inputData.LCHMemberBody !== 'string') {
 		errors.LCHMemberBody = [
 			'LCHErrorNotString',
@@ -50,6 +44,14 @@ export const LCHFormulasModelErrorsFor = function(inputData) {
 	if (inputData.LCHMemberSignature !== undefined) {
 		if (typeof inputData.LCHMemberSignature !== 'string') {
 			errors.LCHMemberSignature = [
+				'LCHErrorNotString',
+			];
+		}
+	}
+
+	if (inputData.LCHMemberArgs !== undefined) {
+		if (typeof inputData.LCHMemberArgs !== 'string') {
+			errors.LCHMemberArgs = [
 				'LCHErrorNotString',
 			];
 		}
