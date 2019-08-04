@@ -91,7 +91,7 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 			it('on create', async function() {
 				await uCreateFormula(browser);
 
-				deepEqual(browser.query(LCHComposeListItem).textContent.length, 27);
+				deepEqual(browser.query(LCHComposeListItem).textContent.trim().length, 26);
 
 				// deepEqual(browser.query(LCHComposeDetailToolbarBackButton).title, uLocalized('LCHComposeDetailToolbarBackButtonText'));
 				deepEqual(browser.query(LCHComposeDetailToolbarDiscardButton).title, uLocalized('LCHComposeListItemToolbarDeleteButtonText'));
@@ -103,6 +103,13 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 				// editor
 				deepEqual(browser.query(LCHComposeListItemFormInputSignature).placeholder, uLocalized('LCHComposeListItemFormInputSignaturePlaceholder'));
 				deepEqual(browser.query(LCHComposeListItemFormInputSignature).value, '');
+			});
+
+			it('on edit signature', async function() {
+				browser.fill(LCHComposeListItemFormInputSignature, 'alfa');
+				await browser.wait({ element: LCHComposeListItem });
+
+				deepEqual(browser.query(LCHComposeListItem).textContent.trim(), 'alfa');
 			});
 
 		});
