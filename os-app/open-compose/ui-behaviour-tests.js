@@ -23,6 +23,8 @@ Object.entries({
 
 	LCHComposeReloadButton: '#LCHComposeReloadButton',
 
+	LCHComposeBuildLink: '#LCHComposeBuildLink',
+
 	async uCreateFormula (browser) {
 		browser.pressButton(LCHComposeCreateButton);
 		await browser.wait({ element: LCHComposeListItem });
@@ -47,6 +49,8 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 		browser.assert.elements(LCHComposeDetailPlaceholderContainer, 1);
 
 		browser.assert.elements(LCHComposeDetailToolbar, 0);
+
+		browser.assert.elements(LCHComposeBuildLink, 1);
 	});
 
 	it('on create', async function() {
@@ -146,6 +150,10 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 				deepEqual(browser.query(LCHComposeCreateButton).title, uLocalized('LCHComposeToolbarCreateButtonText'));
 
 				deepEqual(browser.query(LCHComposeDetailPlaceholderContainer).textContent, uLocalized('LCHComposeDetailPlaceholderText'));
+
+				deepEqual(browser.query(LCHComposeBuildLink).textContent, 'Try it');
+				deepEqual(browser.query(LCHComposeBuildLink).href.indexOf('javascript:'), 0);
+				deepEqual(browser.query(LCHComposeBuildLink).href.includes('Launchlet'), true);
 			});
 
 			it('on create', async function() {
