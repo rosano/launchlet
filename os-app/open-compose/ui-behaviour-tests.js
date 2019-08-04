@@ -133,6 +133,13 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 				deepEqual(browser.query(LCHComposeListItemFormInputName).value, '');
 			});
 
+			it('on select 1st item', async function() {
+				browser.click(`${ LCHComposeListItem }:nth-child(2)`);
+				await browser.wait({ element: LCHComposeListItem });
+
+				deepEqual(browser.query(LCHComposeListItemFormInputName).value, 'bravo');
+			});
+
 		});
 		
 	});
