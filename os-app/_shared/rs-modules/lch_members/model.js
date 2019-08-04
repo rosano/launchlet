@@ -57,6 +57,26 @@ export const LCHFormulasModelErrorsFor = function(inputData) {
 		}
 	}
 
+	if (inputData.LCHMemberOutputType !== undefined) {
+		if (typeof inputData.LCHMemberOutputType !== 'string') {
+			errors.LCHMemberOutputType = [
+				'LCHErrorNotString',
+			];
+		} else {
+			if (inputData.LCHMemberOutputType.trim() !== inputData.LCHMemberOutputType) {
+				errors.LCHMemberOutputType = [
+					'LCHErrorNotTrimmed',
+				];
+			}
+
+			if (inputData.LCHMemberOutputType.trim() === '') {
+				errors.LCHMemberOutputType = [
+					'LCHErrorNotFilled',
+				];
+			}
+		}
+	}
+
 	if (inputData.LCHMemberURLFilter !== undefined) {
 		if (typeof inputData.LCHMemberURLFilter !== 'string') {
 			errors.LCHMemberURLFilter = [

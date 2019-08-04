@@ -117,6 +117,50 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 
 	});
 
+	context('LCHMemberOutputType', function() {
+
+		it('returns object if not string', function() {
+			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+				LCHMemberOutputType: null,
+			})), {
+				LCHMemberOutputType: [
+					'LCHErrorNotString',
+				],
+			});
+		});
+
+		it('returns object if not filled', function() {
+			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+				LCHMemberOutputType: '',
+			})), {
+				LCHMemberOutputType: [
+					'LCHErrorNotFilled',
+				],
+			});
+		});
+
+		it('returns object if not trimmed', function() {
+			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+				LCHMemberOutputType: ' alfa ',
+			})), {
+				LCHMemberOutputType: [
+					'LCHErrorNotTrimmed',
+				],
+			});
+		});
+
+		it('returns object if only whitespace', function() {
+			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+				LCHMemberOutputType: ' ',
+			})), {
+				LCHMemberOutputType: [
+					'LCHErrorNotFilled',
+				],
+			});
+		});
+
+	});
+
 	context('LCHMemberURLFilter', function() {
 
 		it('returns object if not string', function() {
