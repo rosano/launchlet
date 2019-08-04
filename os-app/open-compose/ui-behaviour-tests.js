@@ -153,14 +153,14 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 
 				deepEqual(browser.query(LCHComposeListItem).textContent.trim().length, 26);
 
-				// deepEqual(browser.query(LCHComposeDetailToolbarBackButton).title, uLocalized('LCHComposeDetailToolbarBackButtonText'));
 				deepEqual(browser.query(LCHComposeDetailToolbarDiscardButton).title, uLocalized('LCHComposeListItemToolbarDeleteButtonText'));
 
 				deepEqual(browser.query(LCHComposeListItemFormInputName).placeholder, uLocalized('LCHComposeListItemFormInputNamePlaceholder'));
 				deepEqual(browser.query(LCHComposeListItemFormInputName).value, '');
 				deepEqual(browser.query(LCHComposeListItemFormInputInputData).placeholder, 'undefined');
 				deepEqual(browser.query(LCHComposeListItemFormInputInputData).value, '');
-				// editor
+				// editor placeholder
+				// editor value
 				deepEqual(browser.query(LCHComposeListItemFormInputSignature).placeholder, uLocalized('LCHComposeListItemFormInputSignaturePlaceholder'));
 				deepEqual(browser.query(LCHComposeListItemFormInputSignature).value, '');
 				deepEqual(browser.query(LCHComposeListItemFormInputURLFilter).placeholder, uLocalized('LCHComposeListItemFormInputURLFilterPlaceholder').replace(/\\\\/g, '\\'));
@@ -196,6 +196,7 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 
 				deepEqual(browser.query(LCHComposeListItemFormInputName).value, 'bravo');
 				deepEqual(browser.query(LCHComposeListItemFormInputSignature).value, 'alfa');
+				// editor value
 				deepEqual(browser.query(LCHComposeListItemFormInputInputData).value, 'charlie');
 				deepEqual(browser.query(LCHComposeListItemFormInputURLFilter).value, '/https?://(.*\.)?google\.com/i');
 			});
