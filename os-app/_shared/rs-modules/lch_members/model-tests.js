@@ -159,6 +159,12 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 			});
 		});
 
+		it('returns null', function() {
+			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+				LCHMemberOutputType: 'alfa',
+			})), null);
+		});
+
 	});
 
 	context('LCHMemberURLFilter', function() {
