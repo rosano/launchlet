@@ -492,10 +492,19 @@ describe('LCHRecipesModelVerbTakesParams', function testLCHRecipesModelVerbTakes
 		})), true);
 	});
 
-	// allows two arguments
-	// allows one argument
-	// spec argument split with trim
-	// input types csv
+	it('accepts two arguments', function() {
+		deepEqual(mainModule.LCHRecipesModelVerbTakesParams(Object.assign(kTesting.StubRecipeObjectVerb(), {
+				LCHRecipeInputTypes: 'alfa, Object',
+				LCHRecipeCallback (charlie, echo) {},
+		})), true);
+	});
+
+	it('accepts one argument', function() {
+		deepEqual(mainModule.LCHRecipesModelVerbTakesParams(Object.assign(kTesting.StubRecipeObjectVerb(), {
+				LCHRecipeInputTypes: 'Object',
+				LCHRecipeCallback (echo) {},
+		})), true);
+	});
 
 });
 
