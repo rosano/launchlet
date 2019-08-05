@@ -130,6 +130,52 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 
 	});
 
+	context('LCHRecipeInputTypes', function() {
+
+		it('returns object if not string', function() {
+			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectType(), {
+				LCHRecipeInputTypes: null,
+			})), {
+				LCHRecipeInputTypes: [
+					'LCHErrorNotString',
+				],
+			});
+		});
+
+		it('returns object if not filled', function() {
+			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectType(), {
+				LCHRecipeInputTypes: '',
+			})), {
+				LCHRecipeInputTypes: [
+					'LCHErrorNotFilled',
+				],
+			});
+		});
+
+		it('returns object if only whitespace', function() {
+			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectType(), {
+				LCHRecipeInputTypes: ' ',
+			})), {
+				LCHRecipeInputTypes: [
+					'LCHErrorNotFilled',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectType(), {
+				LCHRecipeInputTypes: 'alfa',
+			})), null);
+		});
+
+		it('allows comma', function() {
+			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectType(), {
+				LCHRecipeInputTypes: 'alfa,bravo',
+			})), null);
+		});
+
+	});
+
 	context('LCHRecipeOutputType', function() {
 
 		it('returns object if not string', function() {
