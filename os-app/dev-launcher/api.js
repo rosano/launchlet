@@ -253,6 +253,32 @@ export const LCHAPIVerbsForType = function(param1, param2) {
 	})
 };
 
+export const LCHAPISubjectsForType = function(param1, param2) {
+	if (typeof param1 !== 'string') {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	if (!Array.isArray(param2)) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	return param2.filter(function (e) {
+		if (LCHRecipesModelErrorsFor(e)) {
+			return false;
+		}
+
+		if (!LCHRecipesModelIsSubject(e)) {
+			return false;
+		}
+
+		if (e.LCHRecipeOutputType !== param1) {
+			return false;
+		}
+
+		return true;;
+	})
+};
+
 export const LCHAPIObjectFor = function(inputData) {
 	if (!Array.isArray(inputData)) {
 		throw new Error('LCHErrorInputInvalid');

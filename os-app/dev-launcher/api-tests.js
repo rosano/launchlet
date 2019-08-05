@@ -582,6 +582,45 @@ describe('LCHAPIVerbsForType', function testLCHAPIVerbsForType() {
 
 });
 
+describe('LCHAPISubjectsForType', function testLCHAPISubjectsForType() {
+
+	it('throws error if param1 not string', function() {
+		throws(function() {
+			mainModule.LCHAPISubjectsForType(null, []);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('throws error if param2 not array', function() {
+		throws(function() {
+			mainModule.LCHAPISubjectsForType('', null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns array', function() {
+		deepEqual(mainModule.LCHAPISubjectsForType('', []), []);
+	});
+
+	it('excludes if not valid', function() {
+		deepEqual(mainModule.LCHAPISubjectsForType('', [Object.assign(kTesting.StubRecipeObjectValid(), {
+			LCHRecipeCallback: undefined,
+		})]), []);
+	});
+
+	it('excludes if not Subject', function() {
+		deepEqual(mainModule.LCHAPISubjectsForType('', [kTesting.StubRecipeObjectValid()]), []);
+	});
+
+	it('excludes if LCHRecipeOutputType not match', function() {
+		deepEqual(mainModule.LCHAPISubjectsForType('alfa', [kTesting.StubRecipeObjectSubject()]), []);
+	});
+
+	it('includes if LCHRecipeOutputType match', function() {
+		let item = kTesting.StubRecipeObjectSubject();
+		deepEqual(mainModule.LCHAPISubjectsForType('bravo', [item]), [item]);
+	});
+
+});
+
 describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 
 	it('throws error if not array', function() {
