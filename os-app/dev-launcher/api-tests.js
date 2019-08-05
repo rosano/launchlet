@@ -423,6 +423,40 @@ describe('LCHRecipesModelIsType', function testLCHRecipesModelIsType() {
 
 });
 
+describe('LCHRecipesModelVerbTakesObject', function testLCHRecipesModelVerbTakesObject() {
+
+	it('throws error if not valid', function() {
+		throws(function() {
+			mainModule.LCHRecipesModelVerbTakesObject({});
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('throws error if not Verb', function() {
+		throws(function() {
+			mainModule.LCHRecipesModelVerbTakesObject(Object.assign(kTesting.StubRecipeObjectVerb(), {
+			LCHRecipeTitle: undefined,
+		}));
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns false if less than two LCHRecipeInputTypes', function() {
+		deepEqual(mainModule.LCHRecipesModelVerbTakesObject(Object.assign(kTesting.StubRecipeObjectVerb(), {
+			LCHRecipeInputTypes: 'alfa',
+		})), false);
+	});
+
+	it('returns false if less than two arguments', function() {
+		deepEqual(mainModule.LCHRecipesModelVerbTakesObject(Object.assign(kTesting.StubRecipeObjectVerb(), {
+			LCHRecipeCallback (alfa) {},
+		})), false);
+	});
+
+	it('returns true', function() {
+		deepEqual(mainModule.LCHRecipesModelVerbTakesObject(kTesting.StubRecipeObjectVerb()), true);
+	});
+
+});
+
 describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenceMapForRecipes() {
 
 	it('throws error if not array', function() {
