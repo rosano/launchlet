@@ -197,7 +197,7 @@ export const LCHRecipesModelVerbTakesObject = function(inputData) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 	
-	if (inputData.LCHRecipeInputTypes.split(',').length < 2) {
+	if (LCHRecipeInputTypesForString(inputData.LCHRecipeInputTypes).length < 2) {
 		return false;
 	}
 	
@@ -297,7 +297,7 @@ export const LCHAPIVerbsForType = function(param1, param2) {
 			return false;
 		}
 
-		if (e.LCHRecipeInputTypes.split(',').shift() !== param1) {
+		if (LCHRecipeInputTypesForString(e.LCHRecipeInputTypes).shift() !== param1) {
 			return false;
 		}
 
