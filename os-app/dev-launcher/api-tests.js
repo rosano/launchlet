@@ -457,6 +457,37 @@ describe('LCHRecipesModelVerbTakesObject', function testLCHRecipesModelVerbTakes
 
 });
 
+
+describe('LCHRecipeInputTypesForString', function testLCHRecipeInputTypesForString() {
+
+	it('throws error if not string', function() {
+		throws(function() {
+			mainModule.LCHRecipeInputTypesForString(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns array', function() {
+		deepEqual(mainModule.LCHRecipeInputTypesForString(''), []);
+	});
+
+	it('excludes if blank', function() {
+		deepEqual(mainModule.LCHRecipeInputTypesForString(','), []);
+	});
+
+	it('includes if single', function() {
+		deepEqual(mainModule.LCHRecipeInputTypesForString('alfa'), ['alfa']);
+	});
+
+	it('includes if multiple', function() {
+		deepEqual(mainModule.LCHRecipeInputTypesForString('alfa,bravo'), ['alfa', 'bravo']);
+	});
+
+	it('trims whitespace', function() {
+		deepEqual(mainModule.LCHRecipeInputTypesForString('alfa , bravo'), ['alfa', 'bravo']);
+	});
+
+});
+
 describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenceMapForRecipes() {
 
 	it('throws error if not array', function() {

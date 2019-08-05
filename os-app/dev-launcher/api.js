@@ -208,6 +208,18 @@ export const LCHRecipesModelVerbTakesObject = function(inputData) {
 	return true;
 };
 
+export const LCHRecipeInputTypesForString = function(inputData) {
+	if (typeof inputData !== 'string') {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	return inputData.split(',').map(function (e) {
+		return e.trim();
+	}).filter(function (e) {
+		return !!e;
+	});
+};
+
 export const LCHAPITypeEquivalenceMapForRecipes = function(inputData) {
 	if (!Array.isArray(inputData)) {
 		throw new Error('LCHErrorInputInvalid');
