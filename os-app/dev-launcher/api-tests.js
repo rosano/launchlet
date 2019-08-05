@@ -539,6 +539,49 @@ describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenc
 
 });
 
+describe('LCHAPIVerbsForType', function testLCHAPIVerbsForType() {
+
+	it('throws error if param1 not string', function() {
+		throws(function() {
+			mainModule.LCHAPIVerbsForType(null, []);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('throws error if param2 not array', function() {
+		throws(function() {
+			mainModule.LCHAPIVerbsForType('', null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns array', function() {
+		deepEqual(mainModule.LCHAPIVerbsForType('', []), []);
+	});
+
+	it('excludes if not valid', function() {
+		deepEqual(mainModule.LCHAPIVerbsForType('', [Object.assign(kTesting.StubRecipeObjectValid(), {
+			LCHRecipeCallback: undefined,
+		})]), []);
+	});
+
+	it('excludes if not Verb', function() {
+		deepEqual(mainModule.LCHAPIVerbsForType('', [kTesting.StubRecipeObjectValid()]), []);
+	});
+
+	it('excludes if LCHRecipeInputTypes not match', function() {
+		deepEqual(mainModule.LCHAPIVerbsForType('alfa', [kTesting.StubRecipeObjectVerb()]), []);
+	});
+
+	it('excludes if LCHRecipeInputTypes match second param', function() {
+		deepEqual(mainModule.LCHAPIVerbsForType('charlie', [kTesting.StubRecipeObjectVerb()]), []);
+	});
+
+	it('includes if LCHRecipeInputTypes match first param', function() {
+		let item = kTesting.StubRecipeObjectVerb();
+		deepEqual(mainModule.LCHAPIVerbsForType('bravo', [item]), [item]);
+	});
+
+});
+
 describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 
 	it('throws error if not array', function() {
