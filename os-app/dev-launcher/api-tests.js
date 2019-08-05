@@ -457,6 +457,47 @@ describe('LCHRecipesModelVerbTakesObject', function testLCHRecipesModelVerbTakes
 
 });
 
+describe('LCHRecipesModelVerbTakesParams', function testLCHRecipesModelVerbTakesParams() {
+
+	it('throws error if not valid', function() {
+		throws(function() {
+			mainModule.LCHRecipesModelVerbTakesParams({});
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('throws error if not Verb', function() {
+		throws(function() {
+			mainModule.LCHRecipesModelVerbTakesParams(Object.assign(kTesting.StubRecipeObjectVerb(), {
+			LCHRecipeTitle: undefined,
+		}));
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns false if last LCHRecipeInputTypes not Object', function() {
+		deepEqual(mainModule.LCHRecipesModelVerbTakesParams(Object.assign(kTesting.StubRecipeObjectVerb(), {
+			LCHRecipeInputTypes: 'alfa, bravo, charlie',
+		})), false);
+	});
+
+	it('returns false if arguments count not match LCHRecipeInputTypes', function() {
+		deepEqual(mainModule.LCHRecipesModelVerbTakesParams(Object.assign(kTesting.StubRecipeObjectVerb(), {
+			LCHRecipeCallback (alfa, bravo, charlie) {},
+		})), false);
+	});
+
+	it('returns true', function() {
+		deepEqual(mainModule.LCHRecipesModelVerbTakesParams(Object.assign(kTesting.StubRecipeObjectVerb(), {
+				LCHRecipeInputTypes: 'alfa, bravo, Object',
+				LCHRecipeCallback (charlie, delta, echo) {},
+		})), true);
+	});
+
+	// allows two arguments
+	// allows one argument
+	// spec argument split with trim
+	// input types csv
+
+});
 
 describe('LCHRecipeInputTypesForString', function testLCHRecipeInputTypesForString() {
 

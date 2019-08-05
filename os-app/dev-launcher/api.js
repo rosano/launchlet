@@ -208,6 +208,26 @@ export const LCHRecipesModelVerbTakesObject = function(inputData) {
 	return true;
 };
 
+export const LCHRecipesModelVerbTakesParams = function(inputData) {
+	if (LCHRecipesModelErrorsFor(inputData)) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	if (!LCHRecipesModelIsVerb(inputData)) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+	
+	if (LCHRecipeInputTypesForString(inputData.LCHRecipeInputTypes).pop() !== 'Object') {
+		return false;
+	}
+	
+	if (inputData.LCHRecipeCallback.length !== LCHRecipeInputTypesForString(inputData.LCHRecipeInputTypes).length) {
+		return false;
+	}
+
+	return true;
+};
+
 export const LCHRecipeInputTypesForString = function(inputData) {
 	if (typeof inputData !== 'string') {
 		throw new Error('LCHErrorInputInvalid');
