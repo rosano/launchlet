@@ -100,6 +100,10 @@ export const LCHRecipesModelIsCommand = function(inputData) {
 	if (!inputData.LCHRecipeTitle) {
 		return false;
 	}
+	
+	if (inputData.LCHRecipeCallback.length) {
+		return false;
+	}
 
 	return true;
 };
@@ -110,6 +114,10 @@ export const LCHRecipesModelIsSubject = function(inputData) {
 	}
 
 	if (!inputData.LCHRecipeTitle) {
+		return false;
+	}
+	
+	if (inputData.LCHRecipeCallback.length) {
 		return false;
 	}
 
