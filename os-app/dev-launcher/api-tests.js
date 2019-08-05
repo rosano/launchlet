@@ -33,6 +33,12 @@ const kTesting = {
 			LCHRecipeTitle: 'alfa',
 		});
 	},
+	StubRecipeObjectSubject() {
+		return Object.assign(kTesting.StubRecipeObjectValid(), {
+			LCHRecipeTitle: 'alfa',
+			LCHRecipeOutputType: 'bravo',
+		});
+	},
 };
 
 describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
@@ -252,6 +258,32 @@ describe('LCHRecipesModelIsCommand', function testLCHRecipesModelIsCommand() {
 
 	it('returns true', function() {
 		deepEqual(mainModule.LCHRecipesModelIsCommand(kTesting.StubRecipeObjectCommand()), true);
+	});
+
+});
+
+describe('LCHRecipesModelIsSubject', function testLCHRecipesModelIsSubject() {
+
+	it('throws error if not valid', function() {
+		throws(function() {
+			mainModule.LCHRecipesModelIsSubject({});
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns false if no LCHRecipeTitle', function() {
+		deepEqual(mainModule.LCHRecipesModelIsSubject(Object.assign(kTesting.StubRecipeObjectSubject(), {
+			LCHRecipeTitle: undefined,
+		})), false);
+	});
+
+	it('returns false if no LCHRecipeOutputType', function() {
+		deepEqual(mainModule.LCHRecipesModelIsSubject(Object.assign(kTesting.StubRecipeObjectSubject(), {
+			LCHRecipeOutputType: undefined,
+		})), false);
+	});
+
+	it('returns true', function() {
+		deepEqual(mainModule.LCHRecipesModelIsSubject(kTesting.StubRecipeObjectSubject()), true);
 	});
 
 });
