@@ -148,6 +148,26 @@ export const LCHRecipesModelIsSubject = function(inputData) {
 	return true;
 };
 
+export const LCHRecipesModelIsVerb = function(inputData) {
+	if (LCHRecipesModelErrorsFor(inputData)) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	if (!inputData.LCHRecipeTitle) {
+		return false;
+	}
+
+	if (!inputData.LCHRecipeInputTypes) {
+		return false;
+	}
+	
+	if (!inputData.LCHRecipeCallback.length) {
+		return false;
+	}
+
+	return true;
+};
+
 export const LCHAPITypeEquivalenceMapForRecipes = function(inputData) {
 	if (!Array.isArray(inputData)) {
 		throw new Error('LCHErrorInputInvalid');

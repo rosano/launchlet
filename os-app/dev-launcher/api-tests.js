@@ -39,6 +39,13 @@ const kTesting = {
 			LCHRecipeOutputType: 'bravo',
 		});
 	},
+	StubRecipeObjectVerb() {
+		return Object.assign(kTesting.StubRecipeObjectValid(), {
+			LCHRecipeTitle: 'alfa',
+			LCHRecipeInputTypes: 'bravo, charlie',
+			LCHRecipeCallback (delta, bravo) {},
+		});
+	},
 };
 
 describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
@@ -342,6 +349,38 @@ describe('LCHRecipesModelIsSubject', function testLCHRecipesModelIsSubject() {
 
 	it('returns true', function() {
 		deepEqual(mainModule.LCHRecipesModelIsSubject(kTesting.StubRecipeObjectSubject()), true);
+	});
+
+});
+
+describe('LCHRecipesModelIsVerb', function testLCHRecipesModelIsVerb() {
+
+	it('throws error if not valid', function() {
+		throws(function() {
+			mainModule.LCHRecipesModelIsVerb({});
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns false if no LCHRecipeTitle', function() {
+		deepEqual(mainModule.LCHRecipesModelIsCommand(Object.assign(kTesting.StubRecipeObjectCommand(), {
+			LCHRecipeTitle: undefined,
+		})), false);
+	});
+
+	it('returns false if no arguments', function() {
+		deepEqual(mainModule.LCHRecipesModelIsVerb(Object.assign(kTesting.StubRecipeObjectVerb(), {
+			LCHRecipeCallback () {},
+		})), false);
+	});
+
+	it('returns false if no LCHRecipeInputTypes', function() {
+		deepEqual(mainModule.LCHRecipesModelIsVerb(Object.assign(kTesting.StubRecipeObjectVerb(), {
+			LCHRecipeInputTypes: undefined,
+		})), false);
+	});
+
+	it('returns true', function() {
+		deepEqual(mainModule.LCHRecipesModelIsVerb(kTesting.StubRecipeObjectVerb()), true);
 	});
 
 });
