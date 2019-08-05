@@ -323,7 +323,7 @@ describe('LCHRecipesModelIsSubject', function testLCHRecipesModelIsSubject() {
 	});
 
 	it('returns false if no LCHRecipeTitle', function() {
-		deepEqual(mainModule.LCHRecipesModelIsCommand(Object.assign(kTesting.StubRecipeObjectCommand(), {
+		deepEqual(mainModule.LCHRecipesModelIsSubject(Object.assign(kTesting.StubRecipeObjectCommand(), {
 			LCHRecipeTitle: undefined,
 		})), false);
 	});
