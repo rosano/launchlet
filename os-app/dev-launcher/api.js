@@ -279,6 +279,14 @@ export const LCHAPISubjectsForType = function(param1, param2) {
 	})
 };
 
+Array.prototype._LCHIntersect = function() {
+	return this.map(function (e) {
+		return new Set(e);
+	}).reduce(function (a, b) {
+		return a.filter(i => b.has(i));
+	}, [...new Set([].concat.apply([], this))]);
+};
+
 export const LCHAPIObjectFor = function(inputData) {
 	if (!Array.isArray(inputData)) {
 		throw new Error('LCHErrorInputInvalid');

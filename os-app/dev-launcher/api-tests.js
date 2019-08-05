@@ -621,6 +621,34 @@ describe('LCHAPISubjectsForType', function testLCHAPISubjectsForType() {
 
 });
 
+describe('_LCHIntersect', function test_LCHIntersect() {
+
+	it('returns array', function() {
+		deepEqual([]._LCHIntersect(), []);
+	});
+
+	it('excludes if not array', function() {
+		deepEqual(['alfa']._LCHIntersect(), []);
+	});
+
+	it('includes if single', function() {
+		deepEqual([['alfa', 'bravo']]._LCHIntersect(), ['alfa', 'bravo']);
+	});
+
+	it('excludes if no match', function() {
+		deepEqual([['alfa'], ['bravo']]._LCHIntersect(), []);
+	});
+
+	it('includes if match', function() {
+		deepEqual([['alfa'], ['alfa']]._LCHIntersect(), ['alfa']);
+	});
+
+	it('includes if match duplicate', function() {
+		deepEqual([['alfa'], ['alfa', 'alfa']]._LCHIntersect(), ['alfa']);
+	});
+
+});
+
 describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 
 	it('throws error if not array', function() {
