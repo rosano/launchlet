@@ -447,7 +447,7 @@ describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenc
 			})]), {});
 	});
 
-	it('excludes if LCHRecipeOutputType not bool', function() {
+	it('excludes if not type', function() {
 		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([Object.assign(kTesting.StubRecipeObjectType(), {
 				LCHRecipeOutputType: 'alfa',
 			})]), {});

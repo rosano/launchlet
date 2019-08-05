@@ -199,7 +199,7 @@ export const LCHAPITypeEquivalenceMapForRecipes = function(inputData) {
 			return false;
 		}
 
-		if (e.LCHRecipeOutputType !== 'Bool') {
+		if (!LCHRecipesModelIsType(e)) {
 			return false;
 		}
 
