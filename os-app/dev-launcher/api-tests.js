@@ -14,20 +14,6 @@ const kTesting = {
 			LCHComponentDescriptorCompletionHandler: 'bravo',
 		};
 	},
-	StubRecipeObjectType() {
-		return Object.assign(kTesting.StubRecipeObjectValid(), {
-			LCHRecipeSignature: 'alfa',
-			LCHRecipeCallback (inputData) {
-				return typeof inputData.bravo === 'string';
-			},
-			LCHRecipeOutputType: 'Bool',
-			LCHRecipeOutputTypeCanonicalExampleCallback () {
-				return {
-					bravo: 'charlie',
-				};
-			},
-		});
-	},
 	StubRecipeObjectCommand() {
 		return Object.assign(kTesting.StubRecipeObjectValid(), {
 			LCHRecipeTitle: 'alfa',
@@ -44,6 +30,20 @@ const kTesting = {
 			LCHRecipeTitle: 'alfa',
 			LCHRecipeInputTypes: 'bravo, charlie',
 			LCHRecipeCallback (delta, bravo) {},
+		});
+	},
+	StubRecipeObjectType() {
+		return Object.assign(kTesting.StubRecipeObjectValid(), {
+			LCHRecipeSignature: 'alfa',
+			LCHRecipeCallback (inputData) {
+				return typeof inputData.bravo === 'string';
+			},
+			LCHRecipeOutputType: 'Bool',
+			LCHRecipeOutputTypeCanonicalExampleCallback () {
+				return {
+					bravo: 'charlie',
+				};
+			},
 		});
 	},
 };
@@ -381,6 +381,44 @@ describe('LCHRecipesModelIsVerb', function testLCHRecipesModelIsVerb() {
 
 	it('returns true', function() {
 		deepEqual(mainModule.LCHRecipesModelIsVerb(kTesting.StubRecipeObjectVerb()), true);
+	});
+
+});
+
+describe('LCHRecipesModelIsType', function testLCHRecipesModelIsType() {
+
+	it('throws error if not valid', function() {
+		throws(function() {
+			mainModule.LCHRecipesModelIsType({});
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns false if no LCHRecipeSignature', function() {
+		deepEqual(mainModule.LCHRecipesModelIsType(Object.assign(kTesting.StubRecipeObjectCommand(), {
+			LCHRecipeSignature: undefined,
+		})), false);
+	});
+
+	it('returns false if no arguments', function() {
+		deepEqual(mainModule.LCHRecipesModelIsType(Object.assign(kTesting.StubRecipeObjectType(), {
+			LCHRecipeCallback () {},
+		})), false);
+	});
+
+	it('returns false if more than one argument', function() {
+		deepEqual(mainModule.LCHRecipesModelIsType(Object.assign(kTesting.StubRecipeObjectType(), {
+			LCHRecipeCallback (alfa, bravo) {},
+		})), false);
+	});
+
+	it('returns false if LCHRecipeOutputType not Bool', function() {
+		deepEqual(mainModule.LCHRecipesModelIsType(Object.assign(kTesting.StubRecipeObjectType(), {
+			LCHRecipeOutputType: 'alfa',
+		})), false);
+	});
+
+	it('returns true', function() {
+		deepEqual(mainModule.LCHRecipesModelIsType(kTesting.StubRecipeObjectType()), true);
 	});
 
 });
