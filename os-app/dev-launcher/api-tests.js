@@ -362,7 +362,7 @@ describe('LCHRecipesModelIsVerb', function testLCHRecipesModelIsVerb() {
 	});
 
 	it('returns false if no LCHRecipeTitle', function() {
-		deepEqual(mainModule.LCHRecipesModelIsCommand(Object.assign(kTesting.StubRecipeObjectCommand(), {
+		deepEqual(mainModule.LCHRecipesModelIsVerb(Object.assign(kTesting.StubRecipeObjectCommand(), {
 			LCHRecipeTitle: undefined,
 		})), false);
 	});
