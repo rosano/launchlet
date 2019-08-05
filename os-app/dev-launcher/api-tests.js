@@ -28,6 +28,11 @@ const kTesting = {
 			},
 		});
 	},
+	StubRecipeObjectCommand() {
+		return Object.assign(kTesting.StubRecipeObjectValid(), {
+			LCHRecipeTitle: 'alfa',
+		});
+	},
 };
 
 describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
@@ -227,6 +232,26 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 			})), null);
 		});
 
+	});
+
+});
+
+describe('LCHRecipesModelIsCommand', function testLCHRecipesModelIsCommand() {
+
+	it('throws error if not valid', function() {
+		throws(function() {
+			mainModule.LCHRecipesModelIsCommand({});
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns false if no LCHRecipeTitle', function() {
+		deepEqual(mainModule.LCHRecipesModelIsCommand(Object.assign(kTesting.StubRecipeObjectCommand(), {
+			LCHRecipeTitle: undefined,
+		})), false);
+	});
+
+	it('returns true', function() {
+		deepEqual(mainModule.LCHRecipesModelIsCommand(kTesting.StubRecipeObjectCommand()), true);
 	});
 
 });

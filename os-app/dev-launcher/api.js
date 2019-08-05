@@ -92,6 +92,18 @@ export const LCHRecipesModelErrorsFor = function(inputData) {
 	return Object.entries(errors).length ? errors : null;
 };
 
+export const LCHRecipesModelIsCommand = function(inputData) {
+	if (LCHRecipesModelErrorsFor(inputData)) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	if (!inputData.LCHRecipeTitle) {
+		return false;
+	}
+
+	return true;
+};
+
 export const LCHAPITypeEquivalenceMapForRecipes = function(inputData) {
 	if (!Array.isArray(inputData)) {
 		throw new Error('LCHErrorInputInvalid');
