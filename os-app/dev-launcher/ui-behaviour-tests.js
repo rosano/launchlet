@@ -1,5 +1,5 @@
 import { throws, deepEqual } from 'assert';
-import { LCHLauncherModeDefault, LCHLauncherModeJump } from './ui-logic.js'
+import { LCHLauncherModeDefault, LCHLauncherModeJump } from './ui-logic.js';
 
 const Browser = require('zombie');
 
@@ -12,7 +12,7 @@ Browser.prototype.OLSKFireKeyboardEvent = function(target, keyCode, eventName = 
 	target = typeof target === 'string' ? this.query(target) : target;
 
 	if (!target) {
-		throw new Error('no target')
+		throw new Error('no target');
 	}
 
 	target.dispatchEvent(event);

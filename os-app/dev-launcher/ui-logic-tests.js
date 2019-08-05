@@ -8,7 +8,7 @@ describe('LCHLauncherModes', function testLCHLauncherModes() {
 		deepEqual(mainModule.LCHLauncherModes(), [
 			mainModule.LCHLauncherModeDefault,
 			mainModule.LCHLauncherModeJump,
-			]);
+		]);
 	});
 
 });

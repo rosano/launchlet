@@ -1,6 +1,6 @@
 <script>
 import { LCHOptionsObject, OLSKLocalized, formulaSelected, secondaryComponent } from './_shared.js';
-import { LCHLauncherStandardRecipes } from './recipes/recipes.js'
+import { LCHLauncherStandardRecipes } from './recipes/recipes.js';
 import { LCHLauncherModeJump, LCHLauncherFilterForText, LCHLauncherConstrainIndex, LCHLauncherPatternMatchesURL } from './ui-logic.js';
 import { LCHRecipesModelErrorsFor, LCHComponentDescriptorsModelErrorsFor } from './api.js';
 
@@ -57,7 +57,7 @@ async function apiStart(inputData) {
 			});
 		});
 	});
-};
+}
 
 let filterText = '';
 let formulasVisible = [];
@@ -117,7 +117,7 @@ function handleKeydown(event) {
 	const handlerFunctions = {
 		Escape () {
 			if (!filterText) {
-				handleDidFinish()
+				handleDidFinish();
 			}
 
 			if (filterText) {
@@ -163,11 +163,11 @@ function handleKeydown(event) {
 }
 
 function handleClick(event) { 
-  if (rootElement.contains(event.target)) {
+	if (rootElement.contains(event.target)) {
   	return;
-  }
+	}
 
-  handleDidFinish();
+	handleDidFinish();
 }
 
 async function itemDidClick(event, item) {

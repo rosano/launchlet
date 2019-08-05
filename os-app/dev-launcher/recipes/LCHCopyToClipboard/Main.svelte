@@ -19,7 +19,7 @@ function didComplete() {
 	completionHandler();
 
 	_didComplete = true;
-};
+}
 
 onMount(function () {
 	clipboard = new Clipboard(clipboardButton);
@@ -37,7 +37,7 @@ onMount(function () {
 	clipboardButton.addEventListener('click', function (e) {
 		// console.log('click', e);
 		didComplete();
-	})
+	});
 
 	clipboardButton.focus();
 });

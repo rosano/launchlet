@@ -9,8 +9,8 @@ export const LCHLauncherOptions = function (inputData) {
 	};
 };
 
-export const LCHLauncherModeDefault = 'default'
-export const LCHLauncherModeJump = 'jump'
+export const LCHLauncherModeDefault = 'default';
+export const LCHLauncherModeJump = 'jump';
 export const LCHLauncherModes = function () {
 	return [
 		LCHLauncherModeDefault,
@@ -71,7 +71,7 @@ export const LCHLauncherPatternMatchesURL = function (param1, param2) {
 
 	let pattern = param1;
 
-	let match = param1.match(/^\/(.*)\/(\w*)/i)
+	let match = param1.match(/^\/(.*)\/(\w*)/i);
 	if (match && match.shift()) {
 		pattern = new RegExp(match[0], match[1]);
 	}

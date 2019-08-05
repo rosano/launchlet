@@ -1,5 +1,5 @@
 import * as LCHFormulasMetal from './metal.js';
-import { factory, detectPrng } from 'ulid'
+import { factory, detectPrng } from 'ulid';
 const uniqueID = typeof require === 'undefined' && navigator.appName === 'Zombie' ? factory(detectPrng(true)) : factory();
 
 export const LCHFormulasActionCreate = async function(storageClient, inputData) {

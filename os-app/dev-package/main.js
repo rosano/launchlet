@@ -41,7 +41,7 @@ export const instanceCreate = function (param1 = [], param2 = {}) {
 
 	if (param2) {
 		try {
-			LCHPackageValidateOptionsObject(param2)
+			LCHPackageValidateOptionsObject(param2);
 		} catch(e) {
 			throw e;
 		}

@@ -301,8 +301,8 @@ export const LCHAPIVerbsForType = function(param1, param2) {
 			return false;
 		}
 
-		return true;;
-	})
+		return true;
+	});
 };
 
 export const LCHAPISubjectsForType = function(param1, param2) {
@@ -327,8 +327,8 @@ export const LCHAPISubjectsForType = function(param1, param2) {
 			return false;
 		}
 
-		return true;;
-	})
+		return true;
+	});
 };
 
 Array.prototype._LCHIntersect = function() {

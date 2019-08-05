@@ -1,6 +1,6 @@
-import MainApp from '../dev-launcher/rollup-start.js'
+import MainApp from '../dev-launcher/rollup-start.js';
 
-import * as mod from './main.js'
+import * as mod from './main.js';
 
 mod.AppClass(MainApp);
 

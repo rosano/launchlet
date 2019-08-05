@@ -434,8 +434,8 @@ describe('LCHRecipesModelVerbTakesObject', function testLCHRecipesModelVerbTakes
 	it('throws error if not Verb', function() {
 		throws(function() {
 			mainModule.LCHRecipesModelVerbTakesObject(Object.assign(kTesting.StubRecipeObjectVerb(), {
-			LCHRecipeTitle: undefined,
-		}));
+				LCHRecipeTitle: undefined,
+			}));
 		}, /LCHErrorInputInvalid/);
 	});
 
@@ -468,8 +468,8 @@ describe('LCHRecipesModelVerbTakesParams', function testLCHRecipesModelVerbTakes
 	it('throws error if not Verb', function() {
 		throws(function() {
 			mainModule.LCHRecipesModelVerbTakesParams(Object.assign(kTesting.StubRecipeObjectVerb(), {
-			LCHRecipeTitle: undefined,
-		}));
+				LCHRecipeTitle: undefined,
+			}));
 		}, /LCHErrorInputInvalid/);
 	});
 
@@ -487,22 +487,22 @@ describe('LCHRecipesModelVerbTakesParams', function testLCHRecipesModelVerbTakes
 
 	it('returns true', function() {
 		deepEqual(mainModule.LCHRecipesModelVerbTakesParams(Object.assign(kTesting.StubRecipeObjectVerb(), {
-				LCHRecipeInputTypes: 'alfa, bravo, Object',
-				LCHRecipeCallback (charlie, delta, echo) {},
+			LCHRecipeInputTypes: 'alfa, bravo, Object',
+			LCHRecipeCallback (charlie, delta, echo) {},
 		})), true);
 	});
 
 	it('accepts two arguments', function() {
 		deepEqual(mainModule.LCHRecipesModelVerbTakesParams(Object.assign(kTesting.StubRecipeObjectVerb(), {
-				LCHRecipeInputTypes: 'alfa, Object',
-				LCHRecipeCallback (charlie, echo) {},
+			LCHRecipeInputTypes: 'alfa, Object',
+			LCHRecipeCallback (charlie, echo) {},
 		})), true);
 	});
 
 	it('accepts one argument', function() {
 		deepEqual(mainModule.LCHRecipesModelVerbTakesParams(Object.assign(kTesting.StubRecipeObjectVerb(), {
-				LCHRecipeInputTypes: 'Object',
-				LCHRecipeCallback (echo) {},
+			LCHRecipeInputTypes: 'Object',
+			LCHRecipeCallback (echo) {},
 		})), true);
 	});
 
@@ -552,20 +552,20 @@ describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenc
 
 	it('excludes if no LCHRecipeOutputType', function() {
 		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([Object.assign(kTesting.StubRecipeObjectType(), {
-				LCHRecipeOutputType: undefined,
-			})]), {});
+			LCHRecipeOutputType: undefined,
+		})]), {});
 	});
 
 	it('excludes if not valid', function() {
 		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([Object.assign(kTesting.StubRecipeObjectType(), {
-				LCHRecipeOutputTypeCanonicalExampleCallback: undefined,
-			})]), {});
+			LCHRecipeOutputTypeCanonicalExampleCallback: undefined,
+		})]), {});
 	});
 
 	it('excludes if not type', function() {
 		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([Object.assign(kTesting.StubRecipeObjectType(), {
-				LCHRecipeOutputType: 'alfa',
-			})]), {});
+			LCHRecipeOutputType: 'alfa',
+		})]), {});
 	});
 
 	it('excludes if LCHRecipeOutputTypeCanonicalExampleCallback fails', function() {
@@ -616,7 +616,7 @@ describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenc
 					};
 				},
 			}),
-			]), {
+		]), {
 			alfa: ['alfa'],
 			echo: ['echo'],
 		});
@@ -646,7 +646,7 @@ describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenc
 					};
 				},
 			}),
-			]), {
+		]), {
 			alfa: ['alfa', 'echo'],
 			echo: ['alfa', 'echo'],
 		});
