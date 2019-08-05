@@ -5,6 +5,9 @@ const Browser = require('zombie');
 Browser.localhost('loc.tests', 3000);
 
 Object.entries({
+	browser: new Browser(),
+	DefaultRoutePath: '/',
+
 	LCHComposeCreateButton: '#LCHComposeCreateButton',
 
 	LCHComposeListItem: '.ListItem',
@@ -27,7 +30,7 @@ Object.entries({
 
 	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
 
-	async uCreateFormula (browser) {
+	async uCreateItem (browser) {
 		browser.pressButton(LCHComposeCreateButton);
 		await browser.wait({ element: LCHComposeListItem });
 	},
@@ -35,12 +38,10 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-const browser = new Browser();
-
 describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 
 	before(function() {
-		return browser.visit('/');
+		return browser.visit(DefaultRoutePath);
 	});
 	
 	it('on startup', function() {
@@ -60,7 +61,7 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 	});
 
 	it('on create', async function() {
-		await uCreateFormula(browser);
+		await uCreateItem(browser);
 
 		browser.assert.elements(LCHComposeListItem, 1);
 
@@ -77,7 +78,7 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 	});
 
 	it('on create nth item', async function() {
-		await uCreateFormula(browser);
+		await uCreateItem(browser);
 
 		browser.assert.elements(LCHComposeListItem, 2);
 
@@ -96,9 +97,9 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 		it('on cancel', async function() {
 			const browser = new Browser();
 
-			await browser.visit('/');
+			await browser.visit(DefaultRoutePath);
 
-			await uCreateFormula(browser);
+			await uCreateItem(browser);
 
 			await new Promise(async function (resolve, reject) {
 				browser.on('confirm', function (dialog) {
@@ -121,9 +122,9 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 		it('on confirm', async function() {
 			const browser = new Browser();
 
-			await browser.visit('/');
+			await browser.visit(DefaultRoutePath);
 
-			await uCreateFormula(browser);
+			await uCreateItem(browser);
 
 			await new Promise(async function (resolve, reject) {
 				browser.on('confirm', function (dialog) {
@@ -156,7 +157,7 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 			};
 
 			before(function() {
-				return browser.visit(`${ languageCode }/`);
+				return browser.visit(`${ languageCode }${ DefaultRoutePath }`);
 			});
 
 			it('localizes interface', function() {
@@ -170,7 +171,7 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 			});
 
 			it('on create', async function() {
-				await uCreateFormula(browser);
+				await uCreateItem(browser);
 
 				deepEqual(browser.query(LCHComposeListItem).textContent.trim().length, 26);
 
@@ -206,7 +207,7 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 			});
 
 			it('on create nth item', async function() {
-				await uCreateFormula(browser);
+				await uCreateItem(browser);
 
 				deepEqual(browser.query(LCHComposeListItemFormInputName).value, '');
 			});
@@ -225,9 +226,9 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 			it('on delete', async function() {
 				const browser = new Browser();
 
-				await browser.visit(`${ languageCode }/`);
+				await browser.visit(`${ languageCode }${ DefaultRoutePath }`);
 
-				await uCreateFormula(browser);
+				await uCreateItem(browser);
 
 				deepEqual((await new Promise(async function (resolve, reject) {
 					browser.on('confirm', function (dialog) {
@@ -248,13 +249,13 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 
 	before(function() {
-		return browser.visit('/');
+		return browser.visit(DefaultRoutePath);
 	});
 
 	context('on create', async function() {
 
 		it('focuses LCHComposeListItemFormInputName', async function() {
-			await uCreateFormula(browser);
+			await uCreateItem(browser);
 
 			deepEqual(browser.document.activeElement, browser.query(LCHComposeListItemFormInputName));
 		});
