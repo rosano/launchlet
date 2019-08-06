@@ -5,7 +5,9 @@ export let didClick = null;
 
 <div class="LCHLauncherZoneInput" class:LCHLauncherZoneInputSelected={ isSelected } on:click={ () => didClick && didClick() }>
 
+<slot>
 <span class="LCHLauncherZoneInputPlaceholder">Type to search</span>
+</slot>
 
 </div>
 
