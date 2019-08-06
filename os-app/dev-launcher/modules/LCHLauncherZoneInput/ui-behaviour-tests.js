@@ -7,7 +7,7 @@ Browser.localhost('loc.tests', 3000);
 
 const browser = new Browser();
 const kDefaultRoutePath = '/modules/LCHLauncherZoneInput';
-const LCHLauncherZoneInputText = '#LCHLauncherZoneInputText';
+const LCHLauncherZoneInputPlaceholder = '.LCHLauncherZoneInputPlaceholder';
 
 describe.only('LCHLauncherZoneInputDiscovery', function testLCHLauncherZoneInputDiscovery() {
 
@@ -16,7 +16,7 @@ describe.only('LCHLauncherZoneInputDiscovery', function testLCHLauncherZoneInput
 	});
 	
 	it('on startup', function() {
-		browser.assert.elements(LCHLauncherZoneInputText, 1);
+		browser.assert.elements(LCHLauncherZoneInputPlaceholder, 1);
 	});
 
 });
@@ -36,7 +36,7 @@ describe.only('LCHLauncherZoneInputLanguage', function testLCHLauncherZoneInputL
 			});
 
 			it('on startup', function() {
-				deepEqual(browser.query(LCHLauncherZoneInputText).textContent, 'Type to search');
+				deepEqual(browser.query(LCHLauncherZoneInputPlaceholder).textContent, 'Type to search');
 			});
 
 		});
