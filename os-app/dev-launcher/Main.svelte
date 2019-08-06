@@ -223,7 +223,7 @@ async function itemDidClick(event, item) {
 <style>
 .Container {
 	--__LaunchletWidth: 400px;
-	--__LaunchletSharedPadding: 10px;
+	--__LaunchletSharedPadding: 5px;
 
 	width: var(--__LaunchletWidth);
 
