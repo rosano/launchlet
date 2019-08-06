@@ -1,8 +1,9 @@
 <script>
 import LCHLauncherZoneInput from './modules/LCHLauncherZoneInput/main.svelte';
+import LCHLauncherPipeItem from './modules/LCHLauncherPipeItem/main.svelte';
 import { LCHOptionsObject, OLSKLocalized, formulaSelected, secondaryComponent } from './_shared.js';
 import { LCHLauncherStandardRecipes } from './recipes/recipes.js';
-import { LCHLauncherModeJump, LCHLauncherModePipe, LCHLauncherFilterForText, LCHLauncherConstrainIndex, LCHLauncherPatternMatchesURL } from './ui-logic.js';
+import { LCHLauncherModeJump, LCHLauncherModePipe, LCHLauncherFilterForText, LCHLauncherConstrainIndex, LCHLauncherPatternMatchesURL, LCHLauncherKeyboardEventIsTextInput } from './ui-logic.js';
 import { LCHRecipesModelErrorsFor, LCHComponentDescriptorsModelErrorsFor } from './api.js';
 
 export let dataObjects = [];
@@ -160,11 +161,16 @@ function handleKeydown(event) {
 		},
 	};
 
-	if (Object.keys(handlerFunctions).indexOf(event.code) === -1) {
+	if (Object.keys(handlerFunctions).indexOf(event.code) !== -1) {
+		return handlerFunctions[event.code]();
+	}
+
+	if (!LCHLauncherKeyboardEventIsTextInput(event)) {
 		return;
 	}
 
-	handlerFunctions[event.code]();
+
+	filterText += event.key;
 }
 
 function handleClick(event) { 
@@ -191,7 +197,14 @@ async function itemDidClick(event, item) {
 		{/if}
 
 		{#if LCHOptionsObject().runMode === LCHLauncherModePipe() }
-			<LCHLauncherZoneInput isSelected="true"></LCHLauncherZoneInput>
+			{#if filterText}
+				<LCHLauncherZoneInput isSelected="true">
+					<LCHLauncherPipeItem itemTitle={ filterText } />
+				</LCHLauncherZoneInput>
+			{:else}
+				<LCHLauncherZoneInput isSelected="true" />
+			{/if}
+			
 		{/if}
 
 		{#if formulasVisible.length }

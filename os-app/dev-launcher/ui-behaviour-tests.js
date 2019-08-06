@@ -7,7 +7,7 @@ Browser.localhost('loc.tests', 3000);
 Browser.prototype.OLSKFireKeyboardEvent = function(target, keyCode, eventName = 'keydown') {
 	const event = this.window.document.createEvent('HTMLEvents');
 	event.initEvent(eventName, true, true);
-	event.which = event.keyCode = event.code = keyCode;
+	event.which = event.keyCode = event.key = event.code = keyCode;
 
 	target = typeof target === 'string' ? this.query(target) : target;
 
@@ -27,6 +27,8 @@ Object.entries({
 
 	LCHLauncherList: '.ListContainer',
 	LCHLauncherListItem: '.ListItem',
+
+	LCHLauncherPipeItem: '.LCHLauncherPipeItem',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -87,6 +89,17 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 
 			browser.assert.elements(LCHLauncherListItem, 0);
 			browser.assert.elements(LCHLauncherList, 0);
+		});
+		
+		context('on filter', function() {
+			
+			it('presents LCHLauncherPipeItem', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'a');
+				await browser.wait({element: LCHLauncherPipeItem});
+
+				browser.assert.elements(LCHLauncherPipeItem, 1);
+			});
+			
 		});
 
 	});
