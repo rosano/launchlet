@@ -9,12 +9,17 @@ export const LCHLauncherOptions = function (inputData) {
 	};
 };
 
-export const LCHLauncherModeDefault = 'default';
-export const LCHLauncherModeJump = 'jump';
+export const LCHLauncherModeDefault = function () {
+	return 'default';
+};
+export const LCHLauncherModeJump = function () {
+	return 'jump';
+};
+
 export const LCHLauncherModes = function () {
 	return [
-		LCHLauncherModeDefault,
-		LCHLauncherModeJump,
+		LCHLauncherModeDefault(),
+		LCHLauncherModeJump(),
 	];
 };
 

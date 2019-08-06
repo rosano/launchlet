@@ -1,5 +1,5 @@
 import { throws, deepEqual } from 'assert';
-import { LCHLauncherModeDefault, LCHLauncherModeJump } from './ui-logic.js';
+import { LCHLauncherModeDefault(), LCHLauncherModeJump } from './ui-logic.js';
 
 const Browser = require('zombie');
 
@@ -33,7 +33,7 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 	context('LCHLauncherModeDefault', function () {
 
 		before(function() {
-			return browser.visit(`/launcher?runMode=${ LCHLauncherModeDefault }`);
+			return browser.visit(`/launcher?runMode=${ LCHLauncherModeDefault() }`);
 		});
 		
 		it('on startup', function() {
@@ -54,7 +54,7 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 	context('LCHLauncherModeJump', function () {
 
 		before(function() {
-			return browser.visit(`/launcher?runMode=${ LCHLauncherModeJump }`);
+			return browser.visit(`/launcher?runMode=${ LCHLauncherModeJump() }`);
 		});
 		
 		it('on startup', function() {
@@ -104,7 +104,7 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 			context('LCHLauncherModeJump', function () {
 
 				before(function() {
-					return browser.visit(`${ languageCode }/launcher?runMode=${ LCHLauncherModeJump }`);
+					return browser.visit(`${ languageCode }/launcher?runMode=${ LCHLauncherModeJump() }`);
 				});
 
 				it('on startup', function() {
@@ -123,7 +123,7 @@ describe('LCHLauncherUITestInteraction', function testInteraction() {
 	context('LCHLauncherModeDefault', function () {
 
 		before(function() {
-			return browser.visit(`/launcher?runMode=${ LCHLauncherModeDefault }`);
+			return browser.visit(`/launcher?runMode=${ LCHLauncherModeDefault() }`);
 		});
 		
 		it('shows no items if no filter', function() {
@@ -170,7 +170,7 @@ describe('LCHLauncherUITestInteraction', function testInteraction() {
 		context('shortcuts', function () {
 
 			before(function() {
-				return browser.visit(`/launcher?runMode=${ LCHLauncherModeDefault }`);
+				return browser.visit(`/launcher?runMode=${ LCHLauncherModeDefault() }`);
 			});
 
 			it('selects next item on ArrowDown', async function() {
@@ -204,7 +204,7 @@ describe('LCHLauncherUITestInteraction', function testInteraction() {
 	context('LCHLauncherModeJump', function () {
 
 		before(function() {
-			return browser.visit(`/launcher?runMode=${ LCHLauncherModeJump }`);
+			return browser.visit(`/launcher?runMode=${ LCHLauncherModeJump() }`);
 		});
 
 		it('selects no items', async function() {
@@ -242,7 +242,7 @@ describe('LCHLauncherUITestInteraction', function testInteraction() {
 		context('shortcuts', function () {
 
 			before(function() {
-				return browser.visit(`/launcher?runMode=${ LCHLauncherModeJump }`);
+				return browser.visit(`/launcher?runMode=${ LCHLauncherModeJump() }`);
 			});
 
 			it('runs item on ArrowDown', async function() {

@@ -2,12 +2,28 @@ import { throws, deepEqual } from 'assert';
 
 import * as mainModule from './ui-logic.js';
 
+describe('LCHLauncherModeDefault', function testLCHLauncherModeDefault() {
+
+	it('returns string', function() {
+		deepEqual(mainModule.LCHLauncherModeDefault(), 'default');
+	});
+
+});
+
+describe('LCHLauncherModeJump', function testLCHLauncherModeJump() {
+
+	it('returns string', function() {
+		deepEqual(mainModule.LCHLauncherModeJump(), 'jump');
+	});
+
+});
+
 describe('LCHLauncherModes', function testLCHLauncherModes() {
 
 	it('returns array', function() {
 		deepEqual(mainModule.LCHLauncherModes(), [
-			mainModule.LCHLauncherModeDefault,
-			mainModule.LCHLauncherModeJump,
+			mainModule.LCHLauncherModeDefault(),
+			mainModule.LCHLauncherModeJump(),
 		]);
 	});
 

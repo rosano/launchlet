@@ -61,13 +61,13 @@ async function apiStart(inputData) {
 
 let filterText = '';
 let formulasVisible = [];
-let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump ? dataObjects : [];
+let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump() ? dataObjects : [];
 let filterTextDidChange = function (val) {
 	formulasVisible = !val ? formulasDefault : dataObjects.filter(LCHLauncherFilterForText(val));
 
 	formulaSelected.set(!val ? null : formulasVisible[0]);
 
-	if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
+	if (LCHOptionsObject().runMode !== LCHLauncherModeJump()) {
 		return;
 	}
 
@@ -129,7 +129,7 @@ function handleKeydown(event) {
 		ArrowUp () {
 			formulaSelected.set(formulasVisible[LCHLauncherConstrainIndex(formulasVisible, formulasVisible.indexOf($formulaSelected) - 1)]);
 
-			if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
+			if (LCHOptionsObject().runMode === LCHLauncherModeJump()) {
 				apiStart($formulaSelected);
 			}
 
@@ -138,14 +138,14 @@ function handleKeydown(event) {
 		ArrowDown () {
 			formulaSelected.set(formulasVisible[LCHLauncherConstrainIndex(formulasVisible, formulasVisible.indexOf($formulaSelected) + 1)]);
 			
-			if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
+			if (LCHOptionsObject().runMode === LCHLauncherModeJump()) {
 				apiStart($formulaSelected);
 			}
 
 			return event.preventDefault();
 		},
 		async Enter () {
-			if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
+			if (LCHOptionsObject().runMode !== LCHLauncherModeJump()) {
 				await apiStart($formulaSelected);
 			}
 
@@ -181,7 +181,7 @@ async function itemDidClick(event, item) {
 
 <div class="Container" bind:this={ rootElement }>
 	<div class="Bezel">
-		<input placeholder="{ OLSKLocalized(LCHOptionsObject().runMode === LCHLauncherModeJump ? 'LCHLauncherInputPlaceholderJump' : 'LCHLauncherInputPlaceholderDefault') }" bind:value={ filterText } bind:this={ inputElement } id="LCHLauncherFilterInput" />
+		<input placeholder="{ OLSKLocalized(LCHOptionsObject().runMode === LCHLauncherModeJump() ? 'LCHLauncherInputPlaceholderJump' : 'LCHLauncherInputPlaceholderDefault') }" bind:value={ filterText } bind:this={ inputElement } id="LCHLauncherFilterInput" />
 		{#if formulasVisible.length }
 		<div class="ListContainer">
 			{#each formulasVisible as e}

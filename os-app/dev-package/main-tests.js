@@ -14,7 +14,7 @@ const kTesting = {
 describe('kRunModeDefault', function testkRunModeDefault() {
 
 	it('returns LCHLauncherModeDefault', function() {
-		deepEqual(mainModule.kRunModeDefault, LCHLauncherModeDefault);
+		deepEqual(mainModule.kRunModeDefault(), LCHLauncherModeDefault());
 	});
 
 });
@@ -22,7 +22,7 @@ describe('kRunModeDefault', function testkRunModeDefault() {
 describe('kRunModeJump', function testkRunModeJump() {
 
 	it('returns LCHLauncherModeJump', function() {
-		deepEqual(mainModule.kRunModeJump, LCHLauncherModeJump);
+		deepEqual(mainModule.kRunModeJump(), LCHLauncherModeJump());
 	});
 
 });
@@ -64,7 +64,9 @@ describe('instanceCreate', function testinstanceCreate() {
 			it('throws error if not valid', function() {
 				throws(function() {
 					mainModule.instanceCreate([], {
-						runMode: 'alfa',
+						runMode: function () {
+							return 'alfa';
+						},
 					});
 				}, /LCHErrorInputNotValidRunMode/);
 			});
