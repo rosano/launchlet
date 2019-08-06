@@ -24,4 +24,14 @@
 	justify-content: center;
 	align-items: center;
 }
+
+.LCHLauncherZoneInputPlaceholder {
+	/* DisableTextSelection */
+	pointer-events: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
 </style>
