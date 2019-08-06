@@ -9,7 +9,7 @@ const browser = new Browser();
 const kDefaultRoutePath = '/modules/LCHLauncherZoneInput';
 const LCHLauncherZoneInputText = '#LCHLauncherZoneInputText';
 
-describe.only('LCHLauncherUITestDiscovery', function testDiscovery() {
+describe.only('LCHLauncherZoneInputDiscovery', function testLCHLauncherZoneInputDiscovery() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);

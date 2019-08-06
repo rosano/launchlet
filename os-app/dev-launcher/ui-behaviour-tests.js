@@ -30,7 +30,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHLauncherUITestDiscovery', function testLCHLauncherUITestDiscovery() {
+describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 
 	context('LCHLauncherModeCommit', function () {
 
@@ -91,7 +91,7 @@ describe('LCHLauncherUITestDiscovery', function testLCHLauncherUITestDiscovery()
 
 });
 
-describe('LCHLauncherUITestLanguage', function testLCHLauncherUITestLanguage() {
+describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 
 	['en'].forEach(function (languageCode) {
 
@@ -137,7 +137,7 @@ describe('LCHLauncherUITestLanguage', function testLCHLauncherUITestLanguage() {
 	});
 });
 
-describe('LCHLauncherUITestInteraction', function testLCHLauncherUITestInteraction() {
+describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 
 	context('LCHLauncherModeCommit', function () {
 
