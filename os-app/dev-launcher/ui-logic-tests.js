@@ -18,12 +18,21 @@ describe('LCHLauncherModeJump', function testLCHLauncherModeJump() {
 
 });
 
+describe('LCHLauncherModePipe', function testLCHLauncherModePipe() {
+
+	it('returns string', function() {
+		deepEqual(mainModule.LCHLauncherModePipe(), 'Pipe');
+	});
+
+});
+
 describe('LCHLauncherModes', function testLCHLauncherModes() {
 
 	it('returns array', function() {
 		deepEqual(mainModule.LCHLauncherModes(), [
 			mainModule.LCHLauncherModeDefault(),
 			mainModule.LCHLauncherModeJump(),
+			mainModule.LCHLauncherModePipe(),
 		]);
 	});
 
