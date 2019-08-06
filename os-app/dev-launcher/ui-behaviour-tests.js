@@ -23,6 +23,7 @@ Object.entries({
 	kDefaultRoutePath: '/launcher',
 
 	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
+	LCHLauncherZoneInput: '.LCHLauncherZoneInput',
 
 	LCHLauncherList: '.ListContainer',
 	LCHLauncherListItem: '.ListItem',
@@ -82,6 +83,7 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 		
 		it('on startup', function() {
 			browser.assert.elements(LCHLauncherFilterInput, 0);
+			browser.assert.elements(LCHLauncherZoneInput, 1);
 
 			browser.assert.elements(LCHLauncherListItem, 0);
 			browser.assert.elements(LCHLauncherList, 0);

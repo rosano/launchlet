@@ -1,4 +1,5 @@
 <script>
+import LCHLauncherZoneInput from './modules/LCHLauncherZoneInput/main.svelte';
 import { LCHOptionsObject, OLSKLocalized, formulaSelected, secondaryComponent } from './_shared.js';
 import { LCHLauncherStandardRecipes } from './recipes/recipes.js';
 import { LCHLauncherModeJump, LCHLauncherModePipe, LCHLauncherFilterForText, LCHLauncherConstrainIndex, LCHLauncherPatternMatchesURL } from './ui-logic.js';
@@ -187,6 +188,11 @@ async function itemDidClick(event, item) {
 	<div class="Bezel">
 		{#if LCHOptionsObject().runMode !== LCHLauncherModePipe() }
 			<input placeholder="{ OLSKLocalized(LCHOptionsObject().runMode === LCHLauncherModeJump() ? 'LCHLauncherInputPlaceholderJump' : 'LCHLauncherInputPlaceholderDefault') }" bind:value={ filterText } bind:this={ inputElement } id="LCHLauncherFilterInput" />
+		{/if}
+
+		{#if LCHOptionsObject().runMode === LCHLauncherModePipe() }
+			<LCHLauncherZoneInput>
+			</LCHLauncherZoneInput>
 		{/if}
 
 		{#if formulasVisible.length }
