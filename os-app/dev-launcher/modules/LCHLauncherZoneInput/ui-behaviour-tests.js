@@ -10,7 +10,7 @@ const kDefaultRoutePath = '/modules/LCHLauncherZoneInput';
 const LCHLauncherZoneInput = '.LCHLauncherZoneInput';
 const LCHLauncherZoneInputPlaceholder = '.LCHLauncherZoneInputPlaceholder';
 
-describe.only('LCHLauncherZoneInputDiscovery', function testLCHLauncherZoneInputDiscovery() {
+describe('LCHLauncherZoneInputDiscovery', function testLCHLauncherZoneInputDiscovery() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
@@ -22,7 +22,7 @@ describe.only('LCHLauncherZoneInputDiscovery', function testLCHLauncherZoneInput
 
 });
 
-describe.only('LCHLauncherZoneInputLanguage', function testLCHLauncherZoneInputLanguage() {
+describe('LCHLauncherZoneInputLanguage', function testLCHLauncherZoneInputLanguage() {
 
 	['en'].forEach(function (languageCode) {
 
@@ -45,7 +45,7 @@ describe.only('LCHLauncherZoneInputLanguage', function testLCHLauncherZoneInputL
 	});
 });
 
-describe.only('LCHLauncherZoneInputInteraction', function testLCHLauncherZoneInputInteraction() {
+describe('LCHLauncherZoneInputInteraction', function testLCHLauncherZoneInputInteraction() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
