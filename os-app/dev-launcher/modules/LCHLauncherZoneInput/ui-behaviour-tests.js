@@ -7,6 +7,7 @@ Browser.localhost('loc.tests', 3000);
 
 const browser = new Browser();
 const kDefaultRoutePath = '/modules/LCHLauncherZoneInput';
+const LCHLauncherZoneInput = '.LCHLauncherZoneInput';
 const LCHLauncherZoneInputPlaceholder = '.LCHLauncherZoneInputPlaceholder';
 
 describe.only('LCHLauncherZoneInputDiscovery', function testLCHLauncherZoneInputDiscovery() {
@@ -44,3 +45,25 @@ describe.only('LCHLauncherZoneInputLanguage', function testLCHLauncherZoneInputL
 	});
 });
 
+describe.only('LCHLauncherZoneInputInteraction', function testLCHLauncherZoneInputInteraction() {
+
+	before(function() {
+		return browser.visit(kDefaultRoutePath);
+	});
+
+	context('isSelected', function () {
+
+		it('defaults to false', function() {
+			browser.assert.hasNoClass(LCHLauncherZoneInput, 'LCHLauncherZoneInputSelected');
+		});
+
+		it('adds class if true', async function() {
+			browser.pressButton('#LCHLauncherZoneInputTestSelect');
+			await browser.wait({ element: '.LCHLauncherZoneInputSelected' });
+
+			browser.assert.hasClass(LCHLauncherZoneInput, 'LCHLauncherZoneInputSelected');
+		});
+		
+	});
+
+});

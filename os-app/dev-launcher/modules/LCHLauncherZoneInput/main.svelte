@@ -1,14 +1,15 @@
 <script>
+export let isSelected = false;
 </script>
 
-<div class="LCHLauncherZoneInputContainer">
+<div class="LCHLauncherZoneInput" class:LCHLauncherZoneInputSelected={ isSelected }>
 
 <span class="LCHLauncherZoneInputPlaceholder">Type to search</span>
 
 </div>
 
 <style>
-.LCHLauncherZoneInputContainer {
+.LCHLauncherZoneInput {
 	height: 30px;
 	padding: 5px;
 	border: solid 1px hsl(0, 0%, 90%);
@@ -16,13 +17,17 @@
 
 	background: hsl(0, 0%, 95%);
 	font-family: 'Lucida Grande', 'Helvetica', sans-serif;
-	font-size: 9pt;
+	font-size: 8pt;
 	color: hsl(0, 0%, 30%);
 
-	/* @LCHLauncherZoneInputContainerFlexbox */
+	/* @LCHLauncherZoneInputFlexbox */
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.LCHLauncherZoneInputSelected {
+	background: #bcdaff;
 }
 
 .LCHLauncherZoneInputPlaceholder {
