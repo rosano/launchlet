@@ -2,10 +2,10 @@ import { throws, deepEqual } from 'assert';
 
 import * as mainModule from './ui-logic.js';
 
-describe('LCHLauncherModeDefault', function testLCHLauncherModeDefault() {
+describe('LCHLauncherModeCommit', function testLCHLauncherModeCommit() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHLauncherModeDefault(), 'default');
+		deepEqual(mainModule.LCHLauncherModeCommit(), 'Commit');
 	});
 
 });
@@ -30,7 +30,7 @@ describe('LCHLauncherModes', function testLCHLauncherModes() {
 
 	it('returns array', function() {
 		deepEqual(mainModule.LCHLauncherModes(), [
-			mainModule.LCHLauncherModeDefault(),
+			mainModule.LCHLauncherModeCommit(),
 			mainModule.LCHLauncherModeJump(),
 			mainModule.LCHLauncherModePipe(),
 		]);
@@ -48,34 +48,34 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 
 	context('languageCode', function () {
 
-		it('returns en', function() {
+		it('returns default if not set', function() {
 			deepEqual(mainModule.LCHLauncherOptions({}).languageCode, 'en');
 		});
-
+		
 		it('returns inputData', function() {
 			deepEqual(mainModule.LCHLauncherOptions({
 				languageCode: 'alfa'
 			}).languageCode, 'alfa');
 		});
-		
+
 	});
 
 	context('runMode', function () {
 
-		it('returns en', function() {
-			deepEqual(mainModule.LCHLauncherOptions({}).runMode, 'default');
+		it('returns default if not set', function() {
+			deepEqual(mainModule.LCHLauncherOptions({}).runMode, mainModule.LCHLauncherModeCommit());
 		});
 
 		it('ignores if not valid', function() {
 			deepEqual(mainModule.LCHLauncherOptions({
-				runMode: 'alfa'
-			}).runMode, 'default');
+				runMode: 'alfa',
+			}).runMode, mainModule.LCHLauncherModeCommit());
 		});
 
 		it('returns inputData', function() {
 			deepEqual(mainModule.LCHLauncherOptions({
-				runMode: 'jump'
-			}).runMode, 'jump');
+				runMode: mainModule.LCHLauncherModeJump(),
+			}).runMode, mainModule.LCHLauncherModeJump());
 		});
 		
 	});

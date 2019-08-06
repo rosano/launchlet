@@ -1,5 +1,5 @@
 import { throws, deepEqual } from 'assert';
-import { LCHLauncherModeDefault(), LCHLauncherModeJump } from './ui-logic.js';
+import { LCHLauncherModeCommit(), LCHLauncherModeJump } from './ui-logic.js';
 
 const Browser = require('zombie');
 
@@ -30,10 +30,10 @@ const browser = new Browser();
 
 describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 
-	context('LCHLauncherModeDefault', function () {
+	context('LCHLauncherModeCommit', function () {
 
 		before(function() {
-			return browser.visit(`/launcher?runMode=${ LCHLauncherModeDefault() }`);
+			return browser.visit(`/launcher?runMode=${ LCHLauncherModeCommit() }`);
 		});
 		
 		it('on startup', function() {
@@ -120,10 +120,10 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 
 describe('LCHLauncherUITestInteraction', function testInteraction() {
 
-	context('LCHLauncherModeDefault', function () {
+	context('LCHLauncherModeCommit', function () {
 
 		before(function() {
-			return browser.visit(`/launcher?runMode=${ LCHLauncherModeDefault() }`);
+			return browser.visit(`/launcher?runMode=${ LCHLauncherModeCommit() }`);
 		});
 		
 		it('shows no items if no filter', function() {
@@ -170,7 +170,7 @@ describe('LCHLauncherUITestInteraction', function testInteraction() {
 		context('shortcuts', function () {
 
 			before(function() {
-				return browser.visit(`/launcher?runMode=${ LCHLauncherModeDefault() }`);
+				return browser.visit(`/launcher?runMode=${ LCHLauncherModeCommit() }`);
 			});
 
 			it('selects next item on ArrowDown', async function() {

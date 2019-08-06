@@ -9,8 +9,8 @@ export const LCHLauncherOptions = function (inputData) {
 	};
 };
 
-export const LCHLauncherModeDefault = function () {
-	return 'default';
+export const LCHLauncherModeCommit = function () {
+	return 'Commit';
 };
 
 export const LCHLauncherModeJump = function () {
@@ -23,7 +23,7 @@ export const LCHLauncherModePipe = function () {
 
 export const LCHLauncherModes = function () {
 	return [
-		LCHLauncherModeDefault(),
+		LCHLauncherModeCommit(),
 		LCHLauncherModeJump(),
 		LCHLauncherModePipe(),
 	];

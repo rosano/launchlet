@@ -1,7 +1,7 @@
 import { throws, deepEqual } from 'assert';
 
 import * as mainModule from './main.js';
-import { LCHLauncherModeDefault, LCHLauncherModeJump } from '../dev-launcher/ui-logic.js';
+import { LCHLauncherModeCommit, LCHLauncherModeJump } from '../dev-launcher/ui-logic.js';
 
 const kTesting = {
 	StubAppClass: function() {
@@ -13,8 +13,8 @@ const kTesting = {
 
 describe('kRunModeDefault', function testkRunModeDefault() {
 
-	it('returns LCHLauncherModeDefault', function() {
-		deepEqual(mainModule.kRunModeDefault(), LCHLauncherModeDefault());
+	it('returns LCHLauncherModeCommit', function() {
+		deepEqual(mainModule.kRunModeDefault(), LCHLauncherModeCommit());
 	});
 
 });

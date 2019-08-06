@@ -1,11 +1,11 @@
-import { LCHLauncherModeDefault, LCHLauncherModeJump, LCHLauncherModes } from '../dev-launcher/ui-logic.js';
+import { LCHLauncherModeCommit, LCHLauncherModeJump, LCHLauncherModes } from '../dev-launcher/ui-logic.js';
 
 let _AppClass;
 export const AppClass = function (inputData) {
 	_AppClass = inputData;
 };
 
-export const kRunModeDefault = LCHLauncherModeDefault;
+export const kRunModeDefault = LCHLauncherModeCommit;
 export const kRunModeJump = LCHLauncherModeJump;
 
 let appContainer, appInstance;
