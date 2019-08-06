@@ -20,7 +20,7 @@ Browser.prototype.OLSKFireKeyboardEvent = function(target, keyCode, eventName = 
 
 Object.entries({
 	browser: new Browser(),
-	DefaultRoutePath: '/launcher',
+	kDefaultRoutePath: '/launcher',
 
 	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
 
@@ -34,7 +34,7 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 	context('LCHLauncherModeCommit', function () {
 
 		before(function() {
-			return browser.visit(`${ DefaultRoutePath }?runMode=${ LCHLauncherModeCommit() }`);
+			return browser.visit(`${ kDefaultRoutePath }?runMode=${ LCHLauncherModeCommit() }`);
 		});
 		
 		it('on startup', function() {
@@ -55,7 +55,7 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 	context('LCHLauncherModeJump', function () {
 
 		before(function() {
-			return browser.visit(`${ DefaultRoutePath }?runMode=${ LCHLauncherModeJump() }`);
+			return browser.visit(`${ kDefaultRoutePath }?runMode=${ LCHLauncherModeJump() }`);
 		});
 		
 		it('on startup', function() {
@@ -88,7 +88,7 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 			context('shared', function () {
 
 				before(function() {
-					return browser.visit(DefaultRoutePath);
+					return browser.visit(kDefaultRoutePath);
 				});
 
 				it('on startup', function() {
@@ -107,7 +107,7 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 			context('LCHLauncherModeJump', function () {
 
 				before(function() {
-					return browser.visit(`${ languageCode }${ DefaultRoutePath }?runMode=${ LCHLauncherModeJump() }`);
+					return browser.visit(`${ languageCode }${ kDefaultRoutePath }?runMode=${ LCHLauncherModeJump() }`);
 				});
 
 				it('on startup', function() {
@@ -126,7 +126,7 @@ describe('LCHLauncherUITestInteraction', function testInteraction() {
 	context('LCHLauncherModeCommit', function () {
 
 		before(function() {
-			return browser.visit(`${ DefaultRoutePath }?runMode=${ LCHLauncherModeCommit() }`);
+			return browser.visit(`${ kDefaultRoutePath }?runMode=${ LCHLauncherModeCommit() }`);
 		});
 		
 		it('shows no items if no filter', function() {
@@ -173,7 +173,7 @@ describe('LCHLauncherUITestInteraction', function testInteraction() {
 		context('shortcuts', function () {
 
 			before(function() {
-				return browser.visit(`${ DefaultRoutePath }?runMode=${ LCHLauncherModeCommit() }`);
+				return browser.visit(`${ kDefaultRoutePath }?runMode=${ LCHLauncherModeCommit() }`);
 			});
 
 			it('selects next item on ArrowDown', async function() {
@@ -207,7 +207,7 @@ describe('LCHLauncherUITestInteraction', function testInteraction() {
 	context('LCHLauncherModeJump', function () {
 
 		before(function() {
-			return browser.visit(`${ DefaultRoutePath }?runMode=${ LCHLauncherModeJump() }`);
+			return browser.visit(`${ kDefaultRoutePath }?runMode=${ LCHLauncherModeJump() }`);
 		});
 
 		it('selects no items', async function() {
@@ -245,7 +245,7 @@ describe('LCHLauncherUITestInteraction', function testInteraction() {
 		context('shortcuts', function () {
 
 			before(function() {
-				return browser.visit(`${ DefaultRoutePath }?runMode=${ LCHLauncherModeJump() }`);
+				return browser.visit(`${ kDefaultRoutePath }?runMode=${ LCHLauncherModeJump() }`);
 			});
 
 			it('runs item on ArrowDown', async function() {
@@ -276,7 +276,7 @@ describe('LCHLauncherUITestInteraction', function testInteraction() {
 	context('shared', function () {
 
 		before(function() {
-			return browser.visit(DefaultRoutePath);
+			return browser.visit(kDefaultRoutePath);
 		});
 
 		it('closes on Escape', async function() {
