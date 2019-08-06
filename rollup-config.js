@@ -22,7 +22,7 @@ export default globPackage.sync(['os-app/**/rollup-start.js'], {
 	try {
 		outputFunction = require(pathPackage.join(__dirname, pathPackage.dirname(e), 'rollup-config-custom.js')).OLSKRollupConfigCustomFor;
 	} catch(e) {
-		if (!e.message.match("Cannot find module '/Users/rozano/Sync/lch/lch.site/os-app/open-compose/rollup-config-custom.js'")) {
+		if (!e.message.match(/Cannot find module .*rollup-config-custom\.js/)) {
 			throw e;
 		}
 	}
