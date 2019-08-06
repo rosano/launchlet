@@ -290,6 +290,21 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 		});
 
 	});
+
+	context('LCHLauncherModePipe', function () {
+
+		before(function() {
+			return browser.visit(`${ kDefaultRoutePath }?runMode=${ LCHLauncherModePipe() }`);
+		});
+		
+		context('on startup', function() {
+			
+			it('selects LCHLauncherZoneInput', function() {
+				browser.assert.hasClass(LCHLauncherZoneInput, 'LCHLauncherZoneInputSelected');
+			});
+		});
+
+	});
 		
 	context('shared', function () {
 

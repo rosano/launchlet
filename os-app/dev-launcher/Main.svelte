@@ -191,8 +191,7 @@ async function itemDidClick(event, item) {
 		{/if}
 
 		{#if LCHOptionsObject().runMode === LCHLauncherModePipe() }
-			<LCHLauncherZoneInput>
-			</LCHLauncherZoneInput>
+			<LCHLauncherZoneInput isSelected="true"></LCHLauncherZoneInput>
 		{/if}
 
 		{#if formulasVisible.length }
