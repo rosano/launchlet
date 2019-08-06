@@ -20,3 +20,27 @@ describe.only('LCHLauncherZoneInputDiscovery', function testLCHLauncherZoneInput
 	});
 
 });
+
+describe.only('LCHLauncherZoneInputLanguage', function testLCHLauncherZoneInputLanguage() {
+
+	['en'].forEach(function (languageCode) {
+
+		context(languageCode, function () {
+
+			const uLocalized = function (inputData) {
+				return OLSKTestingLocalized(inputData, languageCode);
+			};
+
+			before(function() {
+				return browser.visit(kDefaultRoutePath);
+			});
+
+			it('on startup', function() {
+				deepEqual(browser.query(LCHLauncherZoneInputText).textContent, 'hello');
+			});
+
+		});
+		
+	});
+});
+
