@@ -1,4 +1,3 @@
-'use strict'
 import { throws, deepEqual } from 'assert';
 
 const Browser = require('zombie');
