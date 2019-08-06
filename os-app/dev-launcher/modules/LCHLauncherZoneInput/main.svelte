@@ -5,31 +5,47 @@ export let didClick = null;
 
 <div class="LCHLauncherZoneInput" class:LCHLauncherZoneInputSelected={ isSelected } on:click={ () => didClick && didClick() }>
 
+<div class="Container">
+
 <slot>
 <span class="LCHLauncherZoneInputPlaceholder">Type to search</span>
 </slot>
 
 </div>
 
+</div>
+
 <style>
 .LCHLauncherZoneInput {
-	height: 30px;
-	padding: 5px;
+	padding: 4px;
 	border: solid 1px hsl(0, 0%, 90%);
-	border-radius: 5px;
+	border-radius: 4px;
 
 	background: hsl(0, 0%, 95%);
 	font-family: 'Lucida Grande', 'Helvetica', sans-serif;
 	font-size: 8pt;
 	color: hsl(0, 0%, 30%);
 
-	/* @LCHLauncherZoneInputFlexbox */
+	/* @LCHLauncherZoneInputFlexbox:Parent */
+	display: flex;
+}
+
+.Container {
+	height: 30px;
+	
+	padding: 4px;
+	border-radius: 4px;
+
+	/* @LCHLauncherZoneInputFlexbox:Child */
+	flex-grow: 1;
+
+	/* @ContainerFlexbox Parent */
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-.LCHLauncherZoneInputSelected {
+.LCHLauncherZoneInputSelected .Container {
 	background: #bcdaff;
 }
 
