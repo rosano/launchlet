@@ -19,6 +19,7 @@ Browser.prototype.OLSKFireKeyboardEvent = function(target, keyCode, eventName = 
 };
 
 Object.entries({
+	browser: new Browser(),
 	DefaultRoutePath: '/launcher',
 
 	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
@@ -27,8 +28,6 @@ Object.entries({
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
-
-const browser = new Browser();
 
 describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 
