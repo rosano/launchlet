@@ -1,5 +1,5 @@
 import { throws, deepEqual } from 'assert';
-import { LCHLauncherModeCommit(), LCHLauncherModeJump } from './ui-logic.js';
+import { LCHLauncherModeCommit, LCHLauncherModeJump } from './ui-logic.js';
 
 const Browser = require('zombie');
 
