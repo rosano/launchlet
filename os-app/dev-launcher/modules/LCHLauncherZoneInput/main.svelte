@@ -17,9 +17,9 @@ export let didClick = null;
 
 <style>
 .LCHLauncherZoneInput {
-	padding: 4px;
+	padding: 3px;
 	border: solid 1px hsl(0, 0%, 90%);
-	border-radius: 4px;
+	border-radius: 6px;
 
 	background: hsl(0, 0%, 95%);
 	font-family: 'Lucida Grande', 'Helvetica', sans-serif;
