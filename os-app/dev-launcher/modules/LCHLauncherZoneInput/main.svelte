@@ -1,4 +1,4 @@
 <script>
 </script>
 
-<div id="LCHLauncherZoneInputText">hello</div>
+<div id="LCHLauncherZoneInputText">Type to search</div>
