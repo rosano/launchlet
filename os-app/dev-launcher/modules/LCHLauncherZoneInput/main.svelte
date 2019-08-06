@@ -1,8 +1,9 @@
 <script>
 export let isSelected = false;
+export let didClick = null;
 </script>
 
-<div class="LCHLauncherZoneInput" class:LCHLauncherZoneInputSelected={ isSelected }>
+<div class="LCHLauncherZoneInput" class:LCHLauncherZoneInputSelected={ isSelected } on:click={ () => didClick && didClick() }>
 
 <span class="LCHLauncherZoneInputPlaceholder">Type to search</span>
 

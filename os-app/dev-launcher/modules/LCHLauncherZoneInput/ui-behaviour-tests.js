@@ -66,4 +66,17 @@ describe.only('LCHLauncherZoneInputInteraction', function testLCHLauncherZoneInp
 		
 	});
 
+	context('didClick', function () {
+
+		it('runs callback on click', async function() {
+			deepEqual(browser.query('#LCHLauncherZoneInputTestClick').textContent, '0');
+
+			browser.click(LCHLauncherZoneInput);
+			await browser.wait({ element: '.LCHLauncherZoneInputSelected' });
+
+			deepEqual(browser.query('#LCHLauncherZoneInputTestClick').textContent, '1');
+		});
+		
+	});
+
 });
