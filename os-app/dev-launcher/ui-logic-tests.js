@@ -5,7 +5,7 @@ import * as mainModule from './ui-logic.js';
 describe('LCHLauncherModeCommit', function testLCHLauncherModeCommit() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHLauncherModeCommit(), 'Commit');
+		deepEqual(mainModule.LCHLauncherModeCommit(), 'kLCHLauncherModeCommit');
 	});
 
 });
@@ -13,7 +13,7 @@ describe('LCHLauncherModeCommit', function testLCHLauncherModeCommit() {
 describe('LCHLauncherModeJump', function testLCHLauncherModeJump() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHLauncherModeJump(), 'jump');
+		deepEqual(mainModule.LCHLauncherModeJump(), 'kLCHLauncherModeJump');
 	});
 
 });
@@ -21,7 +21,7 @@ describe('LCHLauncherModeJump', function testLCHLauncherModeJump() {
 describe('LCHLauncherModePipe', function testLCHLauncherModePipe() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHLauncherModePipe(), 'Pipe');
+		deepEqual(mainModule.LCHLauncherModePipe(), 'kLCHLauncherModePipe');
 	});
 
 });

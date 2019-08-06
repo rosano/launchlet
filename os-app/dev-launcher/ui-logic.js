@@ -10,15 +10,15 @@ export const LCHLauncherOptions = function (inputData) {
 };
 
 export const LCHLauncherModeCommit = function () {
-	return 'Commit';
+	return 'kLCHLauncherModeCommit';
 };
 
 export const LCHLauncherModeJump = function () {
-	return 'jump';
+	return 'kLCHLauncherModeJump';
 };
 
 export const LCHLauncherModePipe = function () {
-	return 'Pipe';
+	return 'kLCHLauncherModePipe';
 };
 
 export const LCHLauncherModes = function () {
