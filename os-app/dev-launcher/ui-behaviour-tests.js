@@ -1,5 +1,5 @@
 import { throws, deepEqual } from 'assert';
-import { LCHLauncherModeCommit, LCHLauncherModeJump } from './ui-logic.js';
+import { LCHLauncherModeCommit, LCHLauncherModeJump, LCHLauncherModePipe } from './ui-logic.js';
 
 const Browser = require('zombie');
 
@@ -24,6 +24,7 @@ Object.entries({
 
 	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
 
+	LCHLauncherList: '.ListContainer',
 	LCHLauncherListItem: '.ListItem',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
@@ -69,6 +70,21 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 			await browser.wait({element: LCHLauncherListItem});
 
 			browser.assert.elements(LCHLauncherListItem, 5);
+		});
+
+	});
+
+	context('LCHLauncherModePipe', function () {
+
+		before(function() {
+			return browser.visit(`${ kDefaultRoutePath }?runMode=${ LCHLauncherModePipe() }`);
+		});
+		
+		it('on startup', function() {
+			browser.assert.elements(LCHLauncherFilterInput, 0);
+
+			browser.assert.elements(LCHLauncherListItem, 0);
+			browser.assert.elements(LCHLauncherList, 0);
 		});
 
 	});

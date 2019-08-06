@@ -1,7 +1,7 @@
 <script>
 import { LCHOptionsObject, OLSKLocalized, formulaSelected, secondaryComponent } from './_shared.js';
 import { LCHLauncherStandardRecipes } from './recipes/recipes.js';
-import { LCHLauncherModeJump, LCHLauncherFilterForText, LCHLauncherConstrainIndex, LCHLauncherPatternMatchesURL } from './ui-logic.js';
+import { LCHLauncherModeJump, LCHLauncherModePipe, LCHLauncherFilterForText, LCHLauncherConstrainIndex, LCHLauncherPatternMatchesURL } from './ui-logic.js';
 import { LCHRecipesModelErrorsFor, LCHComponentDescriptorsModelErrorsFor } from './api.js';
 
 export let dataObjects = [];
@@ -84,6 +84,10 @@ let rootElement;
 let inputElement;
 import { onMount } from 'svelte';
 onMount(function () {
+	if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
+		return;
+	}
+	
 	inputElement.focus();
 });
 
@@ -181,7 +185,10 @@ async function itemDidClick(event, item) {
 
 <div class="Container" bind:this={ rootElement }>
 	<div class="Bezel">
-		<input placeholder="{ OLSKLocalized(LCHOptionsObject().runMode === LCHLauncherModeJump() ? 'LCHLauncherInputPlaceholderJump' : 'LCHLauncherInputPlaceholderDefault') }" bind:value={ filterText } bind:this={ inputElement } id="LCHLauncherFilterInput" />
+		{#if LCHOptionsObject().runMode !== LCHLauncherModePipe() }
+			<input placeholder="{ OLSKLocalized(LCHOptionsObject().runMode === LCHLauncherModeJump() ? 'LCHLauncherInputPlaceholderJump' : 'LCHLauncherInputPlaceholderDefault') }" bind:value={ filterText } bind:this={ inputElement } id="LCHLauncherFilterInput" />
+		{/if}
+
 		{#if formulasVisible.length }
 		<div class="ListContainer">
 			{#each formulasVisible as e}
