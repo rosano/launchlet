@@ -230,3 +230,113 @@ describe('LCHLauncherPatternMatchesURL', function testLCHLauncherPatternMatchesU
 	});
 
 });
+
+describe('LCHLauncherKeyboardEventIsTextInput', function testLCHLauncherKeyboardEventIsTextInput() {
+
+	it('throws error if not object', function() {
+		throws(function() {
+			mainModule.LCHLauncherKeyboardEventIsTextInput(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns false if metaKey true', function() {
+		deepEqual(mainModule.LCHLauncherKeyboardEventIsTextInput({
+			metaKey: true,
+		}), false);
+	});
+
+	it('returns false if shiftKey true', function() {
+		deepEqual(mainModule.LCHLauncherKeyboardEventIsTextInput({
+			shiftKey: true,
+		}), false);
+	});
+
+	it('returns false if ctrlKey true', function() {
+		deepEqual(mainModule.LCHLauncherKeyboardEventIsTextInput({
+			ctrlKey: true,
+		}), false);
+	});
+
+	it('returns false if altKey true', function() {
+		deepEqual(mainModule.LCHLauncherKeyboardEventIsTextInput({
+			metaKey: true,
+		}), false);
+	});
+
+	it('returns false if no key', function() {
+		deepEqual(mainModule.LCHLauncherKeyboardEventIsTextInput({}), false);
+	});
+
+	it('returns false if key Unidentified', function() {
+		deepEqual(mainModule.LCHLauncherKeyboardEventIsTextInput({
+			key: 'Unidentified',
+		}), false);
+	});
+
+	it('returns false if key Tab', function() {
+		deepEqual(mainModule.LCHLauncherKeyboardEventIsTextInput({
+			key: 'Tab',
+		}), false);
+	});
+
+	it('returns false if key CapsLock', function() {
+		deepEqual(mainModule.LCHLauncherKeyboardEventIsTextInput({
+			key: 'CapsLock',
+		}), false);
+	});
+
+	it('returns false if key ArrowRight', function() {
+		deepEqual(mainModule.LCHLauncherKeyboardEventIsTextInput({
+			key: 'ArrowRight',
+		}), false);
+	});
+
+	it('returns false if key ArrowLeft', function() {
+		deepEqual(mainModule.LCHLauncherKeyboardEventIsTextInput({
+			key: 'ArrowLeft',
+		}), false);
+	});
+
+	it('returns false if key Backspace', function() {
+		deepEqual(mainModule.LCHLauncherKeyboardEventIsTextInput({
+			key: 'Backspace',
+		}), false);
+	});
+
+	it('returns false if key \\', function() {
+		deepEqual(mainModule.LCHLauncherKeyboardEventIsTextInput({
+			key: '\\',
+		}), false);
+	});
+
+	it('returns false if key .', function() {
+		deepEqual(mainModule.LCHLauncherKeyboardEventIsTextInput({
+			key: '.',
+		}), false);
+	});
+
+	it('returns false if key ,', function() {
+		deepEqual(mainModule.LCHLauncherKeyboardEventIsTextInput({
+			key: ',',
+		}), false);
+	});
+
+	it('returns true', function() {
+		deepEqual(mainModule.LCHLauncherKeyboardEventIsTextInput({
+			key: 'a',
+		}), true);
+	});
+
+	it('includes if not latin', function() {
+		deepEqual(mainModule.LCHLauncherKeyboardEventIsTextInput({
+			key: 'ا',
+		}), true);
+	});
+
+	it('includes if not alphanumeric', function() {
+		deepEqual(mainModule.LCHLauncherKeyboardEventIsTextInput({
+			key: '[',
+		}), true);
+	});
+
+});

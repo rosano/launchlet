@@ -89,3 +89,67 @@ export const LCHLauncherPatternMatchesURL = function (param1, param2) {
 
 	return !!param2.match(pattern);
 };
+
+export const LCHLauncherKeyboardEventIsTextInput = function (inputData) {
+	if (typeof inputData !== 'object' || inputData === null) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	if (inputData.metaKey) {
+		return false;
+	}
+
+	if (inputData.shiftKey) {
+		return false;
+	}
+
+	if (inputData.ctrlKey) {
+		return false;
+	}
+
+	if (inputData.altKey) {
+		return false;
+	}
+
+	if (!inputData.key) {
+		return false;
+	}
+
+	if (inputData.key === 'Unidentified') {
+		return false;
+	}
+
+	if (inputData.key === 'Tab') {
+		return false;
+	}
+
+	if (inputData.key === 'CapsLock') {
+		return false;
+	}
+
+	if (inputData.key === 'ArrowRight') {
+		return false;
+	}
+
+	if (inputData.key === 'ArrowLeft') {
+		return false;
+	}
+
+	if (inputData.key === 'Backspace') {
+		return false;
+	}
+
+	if (inputData.key === '\\') {
+		return false;
+	}
+
+	if (inputData.key === '.') {
+		return false;
+	}
+
+	if (inputData.key === ',') {
+		return false;
+	}
+
+	return true;
+};
