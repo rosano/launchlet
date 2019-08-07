@@ -107,7 +107,7 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 			});
 			
 			it('keeps previous results if match stops', async function() {
-				browser.OLSKFireKeyboardEvent(browser.window, 'av');
+				browser.OLSKFireKeyboardEvent(browser.window, 'x');
 				await browser.wait({element: LCHLauncherPipeItem});
 
 				browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
