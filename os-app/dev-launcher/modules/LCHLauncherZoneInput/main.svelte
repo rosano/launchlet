@@ -11,7 +11,7 @@ export let didClick = null;
 <div class="LCHLauncherZoneInput" class:LCHLauncherZoneInputSelected={ isSelected } on:click={ () => didClick && didClick() }>
 
 
-<div class="Container">
+<div class="LCHLauncherZoneInputBezel">
 
 <slot>
 <span class="LCHLauncherZoneInputPlaceholder">Type to search</span>
@@ -45,9 +45,10 @@ export let didClick = null;
 
 	/* @LCHLauncherZoneInputFlexbox:Parent */
 	display: flex;
+	justify-content: center;
 }
 
-.Container {
+.LCHLauncherZoneInputBezel {
 	height: 30px;
 	
 	padding: 4px;
@@ -56,17 +57,24 @@ export let didClick = null;
 	/* @LCHLauncherZoneInputFlexbox:Child */
 	flex-grow: 1;
 
-	/* @ContainerFlexbox Parent */
+	/* @LCHLauncherZoneInputBezelFlexbox:Parent */
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
-	align-items: center;
 }
 
-.LCHLauncherZoneInputSelected .Container {
+.LCHLauncherZoneInputBezel > :global(*) {
+	/* @LCHLauncherZoneInputBezelFlexbox:Child */
+	flex-grow: 1;
+}
+
+.LCHLauncherZoneInputSelected .LCHLauncherZoneInputBezel {
 	background: #bcdaff;
 }
 
 .LCHLauncherZoneInputPlaceholder {
+	display: inline-block;
+
 	/* DisableTextSelection */
 	pointer-events: none;
 	-moz-user-select: none;
@@ -74,5 +82,9 @@ export let didClick = null;
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+
+	/* @LCHLauncherZoneInputBezelFlexbox:Child */
+	align-self: center;
+	flex-grow: 0;
 }
 </style>
