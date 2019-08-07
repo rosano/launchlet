@@ -4,7 +4,7 @@ import LCHLauncherPipeItem from './modules/LCHLauncherPipeItem/main.svelte';
 import { LCHOptionsObject, OLSKLocalized, formulaSelected, secondaryComponent } from './_shared.js';
 import { LCHLauncherStandardRecipes } from './recipes/recipes.js';
 import { LCHLauncherModeJump, LCHLauncherModePipe, LCHLauncherFilterForText, LCHLauncherConstrainIndex, LCHLauncherPatternMatchesURL, LCHLauncherKeyboardEventIsTextInput } from './ui-logic.js';
-import { LCHRecipesModelErrorsFor, LCHComponentDescriptorsModelErrorsFor } from './api.js';
+import { LCHRecipesModelErrorsFor, LCHRecipesModelIsSubject, LCHComponentDescriptorsModelErrorsFor } from './api.js';
 
 export let dataObjects = [];
 export let completionHandler;
@@ -65,6 +65,10 @@ let filterText = '';
 let formulasVisible = [];
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump() ? dataObjects : [];
 let filterTextDidChange = function (val) {
+	if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
+		formulasVisible = !val ? [] : dataObjects.filter(LCHRecipesModelIsSubject).filter(LCHLauncherFilterForText(val));
+		return;
+	}
 	formulasVisible = !val ? formulasDefault : dataObjects.filter(LCHLauncherFilterForText(val));
 
 	formulaSelected.set(!val ? null : formulasVisible[0]);
@@ -159,6 +163,9 @@ function handleKeydown(event) {
 
 			return event.preventDefault();
 		},
+		Backspace () {
+			filterText = filterText.slice(0, -1);
+		},
 	};
 
 	if (Object.keys(handlerFunctions).indexOf(event.code) !== -1) {
@@ -168,7 +175,6 @@ function handleKeydown(event) {
 	if (!LCHLauncherKeyboardEventIsTextInput(event)) {
 		return;
 	}
-
 
 	filterText += event.key;
 }
@@ -194,25 +200,25 @@ async function itemDidClick(event, item) {
 	<div class="Bezel">
 		{#if LCHOptionsObject().runMode !== LCHLauncherModePipe() }
 			<input placeholder="{ OLSKLocalized(LCHOptionsObject().runMode === LCHLauncherModeJump() ? 'LCHLauncherInputPlaceholderJump' : 'LCHLauncherInputPlaceholderDefault') }" bind:value={ filterText } bind:this={ inputElement } id="LCHLauncherFilterInput" />
+
+			{#if formulasVisible.length }
+			<div class="ListContainer">
+				{#each formulasVisible as e}
+					<div class="ListItem" class:ListItemSelected={ e === $formulaSelected } on:mouseover={ () => formulaSelected.set(e) } on:click={ (event) => itemDidClick(event, e) }>{ e.LCHRecipeTitle }</div>
+				{/each}
+			</div>
+			{/if}
 		{/if}
 
 		{#if LCHOptionsObject().runMode === LCHLauncherModePipe() }
-			{#if filterText}
-				<LCHLauncherZoneInput isSelected="true">
-					<LCHLauncherPipeItem itemTitle={ filterText } />
+			{#if formulasVisible.length}
+				<LCHLauncherZoneInput isSelected="true" NameText={ OLSKLocalized('LCHLauncherZoneHeadingSubject') } FilterText={ filterText }>
+					<LCHLauncherPipeItem itemTitle={ formulasVisible[0].LCHRecipeTitle } />
 				</LCHLauncherZoneInput>
 			{:else}
-				<LCHLauncherZoneInput isSelected="true" />
+				<LCHLauncherZoneInput isSelected="true" NameText={ OLSKLocalized('LCHLauncherZoneHeadingSubject') } FilterText={ filterText } />
 			{/if}
 			
-		{/if}
-
-		{#if formulasVisible.length }
-		<div class="ListContainer">
-			{#each formulasVisible as e}
-				<div class="ListItem" class:ListItemSelected={ e === $formulaSelected } on:mouseover={ () => formulaSelected.set(e) } on:click={ (event) => itemDidClick(event, e) }>{ e.LCHRecipeTitle }</div>
-			{/each}
-		</div>
 		{/if}
 	</div>
 	{#if $secondaryComponent}

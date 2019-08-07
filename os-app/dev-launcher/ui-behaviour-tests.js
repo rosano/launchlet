@@ -72,11 +72,26 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 
 			browser.assert.elements(LCHLauncherListItem, 0);
 			browser.assert.elements(LCHLauncherList, 0);
+			browser.assert.elements(LCHLauncherPipeItem, 0);
 		});
 		
-		context('on filter', function() {
+		context('on keydown', function() {
 			
-			it('presents LCHLauncherPipeItem', async function() {
+			it('does nothing if no match', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, '[');
+				await browser.wait({element: LCHLauncherPipeItem});
+
+				browser.assert.elements(LCHLauncherPipeItem, 0);
+			});
+			
+			it('removes last character if backspace', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
+				await browser.wait({element: LCHLauncherPipeItem});
+
+				browser.assert.elements(LCHLauncherPipeItem, 0);
+			});
+			
+			it('shows first item if match', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'a');
 				await browser.wait({element: LCHLauncherPipeItem});
 
