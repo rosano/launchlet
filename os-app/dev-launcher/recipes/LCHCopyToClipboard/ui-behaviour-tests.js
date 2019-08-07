@@ -12,10 +12,12 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
+const kDefaultRoutePath = '/launcher?loadRecipes=LCHCopyToClipboard';
+
 describe('LCHCopyToClipboardUITestDiscovery', function testDiscovery() {
 
 	before(function() {
-		return browser.visit('/launcher?loadRecipes=LCHCopyToClipboard');
+		return browser.visit(kDefaultRoutePath);
 	});
 	
 	it('on startup', function() {
@@ -52,7 +54,7 @@ describe('LCHCopyToClipboardUITestLanguage', function testLanguage() {
 			};
 
 			before(function() {
-				return browser.visit('/launcher?loadRecipes=LCHCopyToClipboard');
+				return browser.visit(kDefaultRoutePath);
 			});
 
 			it('on run', async function() {
@@ -73,7 +75,7 @@ describe('LCHCopyToClipboardUITestLanguage', function testLanguage() {
 describe('LCHCopyToClipboardUITestInteraction', function testInteraction() {
 
 	before(function() {
-		return browser.visit('/launcher?loadRecipes=LCHCopyToClipboard');
+		return browser.visit(kDefaultRoutePath);
 	});
 	
 	it('focuses button', async function() {
