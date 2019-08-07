@@ -368,6 +368,17 @@ async function itemDidClick(event, item) {
 	text-align: initial;
 }
 
+.LCHLauncherResultList {
+	width: 95%;
+	border: 1px solid hsl(0, 0%, 80%);
+	border-top: none;
+	border-bottom: none;
+
+	margin: auto;
+
+	background: hsl(0, 0%, 95%);
+}
+
 .Bezel {
 	padding: var(--__LaunchletSharedPadding);
 	border: 1px solid #cccccc;
