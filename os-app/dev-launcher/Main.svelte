@@ -46,7 +46,15 @@ async function apiStart(inputData) {
 	return Promise.resolve(inputData.LCHRecipeCallback.bind({
 		api: api,
 	})()).then(function (inputData) {
-		if (!inputData || LCHComponentDescriptorsModelErrorsFor(inputData)) {
+		if (!inputData) {
+			return Promise.resolve(inputData);
+		}
+
+		if (typeof inputData !== 'object') {
+			return Promise.resolve(inputData);
+		}
+
+		if (LCHComponentDescriptorsModelErrorsFor(inputData)) {
 			return Promise.resolve(inputData);
 		}
 
