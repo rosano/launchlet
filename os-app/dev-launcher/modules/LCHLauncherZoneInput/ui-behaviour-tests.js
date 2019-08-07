@@ -40,21 +40,43 @@ describe('LCHLauncherZoneInputLanguage', function testLCHLauncherZoneInputLangua
 				deepEqual(browser.query(LCHLauncherZoneInputPlaceholder).textContent, 'Type to search');
 			});
 
-			context('nameText', function () {
+			context('NameText', function () {
 
 				it('shows inputData if filled', async function() {
-					browser.pressButton('#LCHLauncherZoneInputTestSetNameTextFilled');
+					browser.fill('#LCHLauncherZoneInputTestSetNameText', 'alfa');
 					await browser.wait({ element: '.LCHLauncherZoneInputHeading' });
 
 					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, 'alfa');
 				});
 
 				it('shows default value if empty', async function() {
-					browser.pressButton('#LCHLauncherZoneInputTestSetNameTextEmpty');
+					browser.fill('#LCHLauncherZoneInputTestSetNameText', '');
 					await browser.wait({ element: '.LCHLauncherZoneInputHeading' });
 
 					// deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, uLocalized('LCHLauncherZoneInputHeadingTextDefault'));
 					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, 'Undefined');
+				});
+				
+			});
+
+			context('FilterText', function () {
+
+				before(function() {
+					browser.fill('#LCHLauncherZoneInputTestSetNameText', 'alfa');
+				});
+
+				it('shows FilterText if filled', async function() {
+					browser.fill('#LCHLauncherZoneInputTestSetFilterText', 'bravo');
+					await browser.wait({ element: '.LCHLauncherZoneInputHeading' });
+
+					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, 'BRAVO');
+				});
+
+				it('shows default value if empty', async function() {
+					browser.fill('#LCHLauncherZoneInputTestSetFilterText', '');
+					await browser.wait({ element: '.LCHLauncherZoneInputHeading' });
+					
+					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, 'alfa');
 				});
 				
 			});

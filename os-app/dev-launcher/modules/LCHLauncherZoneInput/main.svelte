@@ -1,10 +1,11 @@
 <script>
-export let nameText = '';
+export let NameText = '';
+export let FilterText = '';
 export let isSelected = false;
 export let didClick = null;
 </script>
 
-<strong class="LCHLauncherZoneInputHeading">{ nameText || 'Undefined' }</strong>
+<strong class="LCHLauncherZoneInputHeading">{ FilterText && FilterText.toUpperCase() || NameText || 'Undefined' }</strong>
 
 <div class="LCHLauncherZoneInput" class:LCHLauncherZoneInputSelected={ isSelected } on:click={ () => didClick && didClick() }>
 
