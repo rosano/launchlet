@@ -40,6 +40,25 @@ describe('LCHLauncherZoneInputLanguage', function testLCHLauncherZoneInputLangua
 				deepEqual(browser.query(LCHLauncherZoneInputPlaceholder).textContent, 'Type to search');
 			});
 
+			context('nameText', function () {
+
+				it('shows inputData if filled', async function() {
+					browser.pressButton('#LCHLauncherZoneInputTestSetNameTextFilled');
+					await browser.wait({ element: '.LCHLauncherZoneInputName' });
+
+					deepEqual(browser.query(LCHLauncherZoneInputName).textContent, 'alfa');
+				});
+
+				it('shows default value if empty', async function() {
+					browser.pressButton('#LCHLauncherZoneInputTestSetNameTextEmpty');
+					await browser.wait({ element: '.LCHLauncherZoneInputName' });
+
+					// deepEqual(browser.query(LCHLauncherZoneInputName).textContent, uLocalized('LCHLauncherZoneInputNameTextDefault'));
+					deepEqual(browser.query(LCHLauncherZoneInputName).textContent, 'Undefined');
+				});
+				
+			});
+
 		});
 		
 	});
@@ -49,24 +68,6 @@ describe('LCHLauncherZoneInputInteraction', function testLCHLauncherZoneInputInt
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
-	});
-
-	context('nameText', function () {
-
-		it('shows inputData if filled', async function() {
-			browser.pressButton('#LCHLauncherZoneInputTestSetNameTextFilled');
-			await browser.wait({ element: '.LCHLauncherZoneInputName' });
-
-			deepEqual(browser.query(LCHLauncherZoneInputName).textContent, 'alfa');
-		});
-
-		it('shows default value if empty', async function() {
-			browser.pressButton('#LCHLauncherZoneInputTestSetNameTextEmpty');
-			await browser.wait({ element: '.LCHLauncherZoneInputName' });
-
-			deepEqual(browser.query(LCHLauncherZoneInputName).textContent, 'Undefined');
-		});
-		
 	});
 
 	context('isSelected', function () {
