@@ -217,6 +217,13 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, uLocalized('LCHLauncherZoneInputHeadingSubject'));
 				});
 
+				it('on keydown', async function() {
+					browser.OLSKFireKeyboardEvent(browser.window, 'a');
+					await browser.wait({element: LCHLauncherPipeItem});
+
+					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, 'A');
+				});
+
 			});
 
 		});
