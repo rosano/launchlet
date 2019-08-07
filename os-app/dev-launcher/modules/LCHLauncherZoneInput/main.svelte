@@ -49,7 +49,7 @@ export let didClick = null;
 }
 
 .LCHLauncherZoneInputBezel {
-	height: 30px;
+	height: 20px;
 	
 	padding: 4px;
 	border-radius: 4px;
@@ -61,11 +61,6 @@ export let didClick = null;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-}
-
-.LCHLauncherZoneInputBezel > :global(*) {
-	/* @LCHLauncherZoneInputBezelFlexbox:Child */
-	flex-grow: 1;
 }
 
 .LCHLauncherZoneInputSelected .LCHLauncherZoneInputBezel {
@@ -85,6 +80,5 @@ export let didClick = null;
 
 	/* @LCHLauncherZoneInputBezelFlexbox:Child */
 	align-self: center;
-	flex-grow: 0;
 }
 </style>
