@@ -110,7 +110,7 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 				browser.assert.elements(LCHLauncherResultList, 0);
 				browser.assert.elements(LCHLauncherResultListItem, 0);
 
-				await browser.wait({duration: LCHLauncherThrottleDuration});
+				await browser.wait({duration: LCHLauncherThrottleDuration * 2});
 
 				browser.assert.elements(LCHLauncherResultList, 1);
 				browser.assert.elements(LCHLauncherResultListItem, 5);
@@ -120,6 +120,21 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'x');
 				await browser.wait({element: LCHLauncherPipeItem});
 
+				browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
+				browser.assert.elements(LCHLauncherResultList, 1);
+				browser.assert.elements(LCHLauncherResultListItem, 5);
+			});
+
+			it('skips throttle on ArrowDown', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
+				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
+				await browser.wait({element: LCHLauncherPipeItem});
+
+				browser.assert.elements(LCHLauncherPipeItem, 0);
+
+				browser.OLSKFireKeyboardEvent(browser.window, 'a');
+				browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
+				await browser.wait({element: LCHLauncherResultList});
 				browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
 				browser.assert.elements(LCHLauncherResultList, 1);
 				browser.assert.elements(LCHLauncherResultListItem, 5);

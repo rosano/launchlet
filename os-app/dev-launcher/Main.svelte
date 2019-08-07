@@ -100,7 +100,7 @@ let filterTextDidChange = function (val) {
 			if (!resultListThrottle) {
 				resultListThrottle = {
 					OLSKThrottleDuration: LCHLauncherThrottleDuration,
-					OLSKThrottleCallback: async function () {
+					OLSKThrottleCallback: function () {
 						resultListThrottle = false;
 					},
 				};	
@@ -189,6 +189,10 @@ function handleKeydown(event) {
 			return event.preventDefault();
 		},
 		ArrowDown () {
+			if (LCHOptionsObject().runMode === LCHLauncherModePipe() && resultListThrottle) {
+				return OLSKThrottle.OLSKThrottleSkip(resultListThrottle);
+			}
+
 			formulaSelected.set(formulasVisible[LCHLauncherConstrainIndex(formulasVisible, formulasVisible.indexOf($formulaSelected) + 1)]);
 			
 			if (LCHOptionsObject().runMode === LCHLauncherModeJump()) {
