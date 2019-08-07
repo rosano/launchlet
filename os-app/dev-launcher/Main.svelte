@@ -83,12 +83,14 @@ let filterTextDidChange = function (val) {
 
 			let results = dataObjects.filter(LCHRecipesModelIsSubject).filter(LCHLauncherFilterForText(val));
 
-			if (formulasVisible.length && !resuls.length) {
+			if (formulasVisible.length && !results.length) {
 				return formulasVisible;
 			}
 
 			return results;
 		})();
+		return;
+		
 	}
 	formulasVisible = !val ? formulasDefault : dataObjects.filter(LCHLauncherFilterForText(val));
 
