@@ -185,6 +185,10 @@ function handleKeydown(event) {
 		return handlerFunctions[event.code]();
 	}
 
+	if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
+		return;
+	}
+
 	if (!LCHLauncherKeyboardEventIsTextInput(event)) {
 		return;
 	}
