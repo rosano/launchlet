@@ -4,11 +4,13 @@ export let isSelected = false;
 export let didClick = null;
 </script>
 
+<strong class="LCHLauncherZoneInputName">{ nameText || 'Undefined' }</strong>
+
 <div class="LCHLauncherZoneInput" class:LCHLauncherZoneInputSelected={ isSelected } on:click={ () => didClick && didClick() }>
+
 
 <div class="Container">
 
-<strong class="LCHLauncherZoneInputName">{ nameText || 'Undefined' }</strong>
 <slot>
 <span class="LCHLauncherZoneInputPlaceholder">Type to search</span>
 </slot>
@@ -18,6 +20,13 @@ export let didClick = null;
 </div>
 
 <style>
+.LCHLauncherZoneInputName {
+	padding: 3px;
+
+	font-size: 8pt;
+	color: hsl(0, 0%, 60%);
+}
+
 .LCHLauncherZoneInput {
 	padding: 3px;
 	border: solid 1px hsl(0, 0%, 90%);
