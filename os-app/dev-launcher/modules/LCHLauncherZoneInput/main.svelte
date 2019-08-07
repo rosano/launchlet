@@ -1,4 +1,5 @@
 <script>
+export let nameText = '';
 export let isSelected = false;
 export let didClick = null;
 </script>
@@ -7,6 +8,7 @@ export let didClick = null;
 
 <div class="Container">
 
+<strong class="LCHLauncherZoneInputName">{ nameText || 'Undefined' }</strong>
 <slot>
 <span class="LCHLauncherZoneInputPlaceholder">Type to search</span>
 </slot>
