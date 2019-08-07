@@ -12,6 +12,8 @@ Object.entries({
 	LCHLauncherListItem: '.ListItem',
 
 	LCHLauncherPipeItem: '.LCHLauncherPipeItem',
+	LCHLauncherResultList: '.LCHLauncherResultList',
+	LCHLauncherResultListItem: '.LCHLauncherResultListItem',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -70,6 +72,7 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 			browser.assert.elements(LCHLauncherFilterInput, 0);
 			browser.assert.elements(LCHLauncherZoneInput, 1);
 
+			browser.assert.elements(LCHLauncherResultList, 0);
 			browser.assert.elements(LCHLauncherListItem, 0);
 			browser.assert.elements(LCHLauncherList, 0);
 			browser.assert.elements(LCHLauncherPipeItem, 0);
@@ -95,16 +98,21 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'a');
 				await browser.wait({element: LCHLauncherPipeItem});
 
-				browser.assert.elements(LCHLauncherPipeItem, 1);
+				browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
+			});
+
+			it('shows list after delay', async function() {
+				browser.assert.elements(LCHLauncherResultList, 1);
+				browser.assert.elements(LCHLauncherResultListItem, 5);
 			});
 			
 			it('keeps previous results if match stops', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'av');
 				await browser.wait({element: LCHLauncherPipeItem});
 
-				browser.assert.elements(LCHLauncherPipeItem, 1);
+				browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
 			});
-			
+
 		});
 
 	});

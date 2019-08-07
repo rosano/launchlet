@@ -222,6 +222,18 @@ async function itemDidClick(event, item) {
 <svelte:window on:keydown={ handleKeydown } on:click={ handleClick } on:touchstart={ handleClick }/>
 
 <div class="Container" bind:this={ rootElement }>
+	{#if LCHOptionsObject().runMode === LCHLauncherModePipe() }
+		{#if formulasVisible.length}
+			<div class="LCHLauncherResultList">
+				{#each formulasVisible as e}
+					<div class="LCHLauncherResultListItem">
+						<LCHLauncherPipeItem itemTitle={ e.LCHRecipeTitle } />
+					</div>
+				{/each}
+			</div>
+		{/if}
+	{/if}
+
 	<div class="Bezel">
 		{#if LCHOptionsObject().runMode !== LCHLauncherModePipe() }
 			<input placeholder="{ LCHOptionsObject().runMode === LCHLauncherModeJump() ? OLSKLocalized('LCHLauncherInputPlaceholderJump') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ filterText } bind:this={ inputElement } id="LCHLauncherFilterInput" />
@@ -243,7 +255,6 @@ async function itemDidClick(event, item) {
 			{:else}
 				<LCHLauncherZoneInput isSelected="true" NameText={ OLSKLocalized('LCHLauncherZoneHeadingSubject') } FilterText={ filterText } />
 			{/if}
-			
 		{/if}
 	</div>
 	{#if $secondaryComponent}
