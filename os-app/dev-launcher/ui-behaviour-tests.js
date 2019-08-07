@@ -102,6 +102,11 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 			});
 
 			it('shows list after delay', async function() {
+				browser.assert.elements(LCHLauncherResultList, 0);
+				browser.assert.elements(LCHLauncherResultListItem, 0);
+
+				await browser.wait({duration: 1000});
+
 				browser.assert.elements(LCHLauncherResultList, 1);
 				browser.assert.elements(LCHLauncherResultListItem, 5);
 			});
@@ -111,6 +116,8 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 				await browser.wait({element: LCHLauncherPipeItem});
 
 				browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
+				browser.assert.elements(LCHLauncherResultList, 1);
+				browser.assert.elements(LCHLauncherResultListItem, 5);
 			});
 
 		});

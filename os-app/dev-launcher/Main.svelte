@@ -74,6 +74,8 @@ async function apiStart(inputData) {
 let filterText = '';
 let formulasVisible = [];
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump() ? dataObjects : [];
+import OLSKThrottle from 'OLSKThrottle';
+let resultListThrottle;
 let filterTextDidChange = function (val) {
 	if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
 		formulasVisible = (function() {
@@ -86,6 +88,17 @@ let filterTextDidChange = function (val) {
 			if (formulasVisible.length && !results.length) {
 				return formulasVisible;
 			}
+
+			if (!resultListThrottle) {
+				resultListThrottle = {
+					OLSKThrottleDuration: 1000,
+					OLSKThrottleCallback: async function () {
+						resultListThrottle = false;
+					},
+				};	
+			}
+
+			OLSKThrottle.OLSKThrottleTimeoutFor(resultListThrottle);
 
 			return results;
 		})();
@@ -224,7 +237,7 @@ async function itemDidClick(event, item) {
 <svelte:window on:keydown={ handleKeydown } on:click={ handleClick } on:touchstart={ handleClick }/>
 
 <div class="Container" bind:this={ rootElement }>
-	{#if LCHOptionsObject().runMode === LCHLauncherModePipe() }
+	{#if LCHOptionsObject().runMode === LCHLauncherModePipe() && resultListThrottle === false }
 		{#if formulasVisible.length}
 			<div class="LCHLauncherResultList">
 				{#each formulasVisible as e}
