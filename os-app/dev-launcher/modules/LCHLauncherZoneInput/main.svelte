@@ -4,7 +4,7 @@ export let isSelected = false;
 export let didClick = null;
 </script>
 
-<strong class="LCHLauncherZoneInputName">{ nameText || 'Undefined' }</strong>
+<strong class="LCHLauncherZoneInputHeading">{ nameText || 'Undefined' }</strong>
 
 <div class="LCHLauncherZoneInput" class:LCHLauncherZoneInputSelected={ isSelected } on:click={ () => didClick && didClick() }>
 
@@ -20,7 +20,7 @@ export let didClick = null;
 </div>
 
 <style>
-.LCHLauncherZoneInputName {
+.LCHLauncherZoneInputHeading {
 	padding: 3px;
 
 	font-size: 8pt;
