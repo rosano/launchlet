@@ -83,6 +83,7 @@ let filterText = '';
 let formulasVisible = [];
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump() ? dataObjects : [];
 import OLSKThrottle from 'OLSKThrottle';
+let resultListThrottle, inputThrottle;
 let matchStop;
 let filterTextDidChange = function (val) {
 	formulasVisible = (function() {
@@ -255,7 +256,20 @@ function handleKeydown(event) {
 		return;
 	}
 
-	filterText = resultListThrottle === false ? event.key : filterText + event.key;
+	filterText = inputThrottle === false ? event.key : filterText + event.key;
+
+	(function ThrottleInput() {
+		if (!inputThrottle) {
+			inputThrottle = {
+				OLSKThrottleDuration: LCHLauncherThrottleDuration,
+				OLSKThrottleCallback: function () {
+					inputThrottle = false;
+				},
+			};	
+		}
+
+		OLSKThrottle.OLSKThrottleTimeoutFor(inputThrottle);
+	})();
 
 	(function ThrottleResults() {
 		if (!resultListThrottle) {

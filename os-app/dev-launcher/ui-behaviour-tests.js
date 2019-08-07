@@ -156,7 +156,6 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 			context('MatchStop', function() {
 
 				before(async function() {
-					browser.OLSKFireKeyboardEvent(browser.window, 'a');
 					browser.OLSKFireKeyboardEvent(browser.window, 'x');
 					await browser.wait({element: LCHLauncherPipeItem});
 				});
@@ -172,6 +171,16 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 
 				it('passes MatchStop to LCHLauncherZoneInput', async function() {
 					browser.assert.elements('.LCHLauncherZoneInputHeadingMatchStop', 1);
+				});
+
+				it('continues to throttle keydown', async function() {
+					browser.OLSKFireKeyboardEvent(browser.window, 'x');
+					await browser.wait({element: LCHLauncherPipeItem});
+
+					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, 'AXX');
+					browser.assert.elements(LCHLauncherResultList, 1);
+					browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
+					browser.assert.elements(LCHLauncherResultListItem, 5);
 				});
 				
 			});
@@ -216,28 +225,23 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 
 			});
 
-			context('on type after throttle', function() {
+			context('on type after inputThrottle', function() {
 
 				before(async function() {
 					browser.OLSKFireKeyboardEvent(browser.window, 'a');
-					browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
-					await browser.wait({element: LCHLauncherResultList});
+					await browser.wait({duration: LCHLauncherThrottleDuration * 2});
 
+					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, 'A');
 					browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
 					browser.assert.elements(LCHLauncherResultList, 1);
 					browser.assert.elements(LCHLauncherResultListItem, 5);
 
 					browser.OLSKFireKeyboardEvent(browser.window, 'b');
-					browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
 					await browser.wait({element: LCHLauncherResultList});
 				});
 				
 				it('replaces filter', function() {
 					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, 'B');
-
-					browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
-					browser.assert.elements(LCHLauncherResultList, 1);
-					browser.assert.elements(LCHLauncherResultListItem, 1);
 				});
 
 			});
