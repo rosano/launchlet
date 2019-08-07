@@ -1,6 +1,5 @@
 <script>
-import { OLSKLocalized } from '../../_shared.js';
-
+import { OLSKLocalized } from '../../../_shared/common/global.js';
 export let inputData = '';
 export let completionHandler = null;
 

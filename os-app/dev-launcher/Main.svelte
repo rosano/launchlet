@@ -1,7 +1,9 @@
 <script>
+import { OLSKLocalized } from '../_shared/common/global.js';
+
 import LCHLauncherZoneInput from './modules/LCHLauncherZoneInput/main.svelte';
 import LCHLauncherPipeItem from './modules/LCHLauncherPipeItem/main.svelte';
-import { LCHOptionsObject, OLSKLocalized, formulaSelected, secondaryComponent } from './_shared.js';
+import { LCHOptionsObject, formulaSelected, secondaryComponent } from './_shared.js';
 import { LCHLauncherStandardRecipes } from './recipes/recipes.js';
 import { LCHLauncherModeJump, LCHLauncherModePipe, LCHLauncherFilterForText, LCHLauncherConstrainIndex, LCHLauncherPatternMatchesURL, LCHLauncherKeyboardEventIsTextInput } from './ui-logic.js';
 import { LCHRecipesModelErrorsFor, LCHRecipesModelIsSubject, LCHComponentDescriptorsModelErrorsFor } from './api.js';
