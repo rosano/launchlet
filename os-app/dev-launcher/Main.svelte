@@ -379,6 +379,10 @@ async function itemDidClick(event, item) {
 	background: hsl(0, 0%, 95%);
 }
 
+.LCHLauncherResultListItemSelected {
+	background: #bcdaff;
+}
+
 .Bezel {
 	padding: var(--__LaunchletSharedPadding);
 	border: 1px solid #cccccc;
