@@ -257,16 +257,18 @@ function handleKeydown(event) {
 
 	filterText = resultListThrottle === false ? event.key : filterText + event.key;
 
-	if (!resultListThrottle) {
-		resultListThrottle = {
-			OLSKThrottleDuration: LCHLauncherThrottleDuration,
-			OLSKThrottleCallback: function () {
-				resultListThrottle = false;
-			},
-		};	
-	}
+	(function ThrottleResults() {
+		if (!resultListThrottle) {
+			resultListThrottle = {
+				OLSKThrottleDuration: LCHLauncherThrottleDuration,
+				OLSKThrottleCallback: function () {
+					resultListThrottle = false;
+				},
+			};	
+		}
 
-	OLSKThrottle.OLSKThrottleTimeoutFor(resultListThrottle);
+		OLSKThrottle.OLSKThrottleTimeoutFor(resultListThrottle);
+	})();
 }
 
 function handleClick(event) { 
