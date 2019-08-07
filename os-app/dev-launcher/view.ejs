@@ -7,8 +7,8 @@ locals.OLSKPageAssets = [
 	'ui-behaviour.js',
 ];
 
-if (LCHLauncherQuery.loadModules) {
-	locals.OLSKPageAssets.push(...LCHLauncherQuery.loadModules.split(',').map(function (e) {
+if (LCHLauncherQuery.loadRecipes) {
+	locals.OLSKPageAssets.push(...LCHLauncherQuery.loadRecipes.split(',').map(function (e) {
 		return `recipes/${ e }/ui-data.js`;
 	}));
 }

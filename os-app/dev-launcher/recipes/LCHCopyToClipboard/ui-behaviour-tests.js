@@ -15,7 +15,7 @@ Object.entries({
 describe('LCHCopyToClipboardUITestDiscovery', function testDiscovery() {
 
 	before(function() {
-		return browser.visit('/launcher?loadModules=LCHCopyToClipboard');
+		return browser.visit('/launcher?loadRecipes=LCHCopyToClipboard');
 	});
 	
 	it('on startup', function() {
@@ -52,7 +52,7 @@ describe('LCHCopyToClipboardUITestLanguage', function testLanguage() {
 			};
 
 			before(function() {
-				return browser.visit('/launcher?loadModules=LCHCopyToClipboard');
+				return browser.visit('/launcher?loadRecipes=LCHCopyToClipboard');
 			});
 
 			it('on run', async function() {
@@ -73,7 +73,7 @@ describe('LCHCopyToClipboardUITestLanguage', function testLanguage() {
 describe('LCHCopyToClipboardUITestInteraction', function testInteraction() {
 
 	before(function() {
-		return browser.visit('/launcher?loadModules=LCHCopyToClipboard');
+		return browser.visit('/launcher?loadRecipes=LCHCopyToClipboard');
 	});
 	
 	it('focuses button', async function() {
