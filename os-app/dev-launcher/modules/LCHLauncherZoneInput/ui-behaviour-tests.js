@@ -32,6 +32,7 @@ describe('LCHLauncherZoneInputLanguage', function testLCHLauncherZoneInputLangua
 			});
 
 			it('on startup', function() {
+				// deepEqual(browser.query(LCHLauncherZoneInputPlaceholder).textContent, uLocalized('LCHLauncherZoneInputPlaceholderText'));
 				deepEqual(browser.query(LCHLauncherZoneInputPlaceholder).textContent, 'Type to search');
 			});
 
