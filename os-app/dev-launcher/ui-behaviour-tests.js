@@ -123,7 +123,9 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 			});
 			
 			it('keeps previous results if match stops', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'a');
 				browser.OLSKFireKeyboardEvent(browser.window, 'x');
+				await browser.wait({duration: LCHLauncherThrottleDuration * 2});
 				await browser.wait({element: LCHLauncherPipeItem});
 
 				browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
@@ -171,7 +173,7 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 
 					browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
 					browser.assert.elements(LCHLauncherResultList, 1);
-					browser.assert.elements(LCHLauncherResultListItem, 2);
+					browser.assert.elements(LCHLauncherResultListItem, 5);
 
 					browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
 					await browser.wait({element: LCHLauncherPipeItem});
@@ -184,7 +186,7 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 				it('keeps results ', function() {
 					browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
 					browser.assert.elements(LCHLauncherResultList, 1);
-					browser.assert.elements(LCHLauncherResultListItem, 2);
+					browser.assert.elements(LCHLauncherResultListItem, 5);
 				});
 
 			});
@@ -196,8 +198,34 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 					await browser.wait({element: LCHLauncherPipeItem});
 				});
 				
-				it('clears results ', function() {
+				it('clears results', function() {
 					browser.assert.elements(LCHLauncherPipeItem, 0);
+				});
+
+			});
+
+			context('on type after throttle', function() {
+
+				before(async function() {
+					browser.OLSKFireKeyboardEvent(browser.window, 'a');
+					browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
+					await browser.wait({element: LCHLauncherResultList});
+
+					browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
+					browser.assert.elements(LCHLauncherResultList, 1);
+					browser.assert.elements(LCHLauncherResultListItem, 5);
+
+					browser.OLSKFireKeyboardEvent(browser.window, 'b');
+					browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
+					await browser.wait({element: LCHLauncherResultList});
+				});
+				
+				it('replaces filter', function() {
+					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, 'B');
+
+					browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
+					browser.assert.elements(LCHLauncherResultList, 1);
+					browser.assert.elements(LCHLauncherResultListItem, 1);
 				});
 
 			});

@@ -104,17 +104,6 @@ let filterTextDidChange = function (val) {
 			return formulasVisible;
 		}
 
-		if (!resultListThrottle) {
-			resultListThrottle = {
-				OLSKThrottleDuration: LCHLauncherThrottleDuration,
-				OLSKThrottleCallback: function () {
-					resultListThrottle = false;
-				},
-			};	
-		}
-
-		OLSKThrottle.OLSKThrottleTimeoutFor(resultListThrottle);
-
 		return results;
 	})();
 
@@ -259,7 +248,18 @@ function handleKeydown(event) {
 		return;
 	}
 
-	filterText += event.key;
+	filterText = resultListThrottle === false ? event.key : filterText + event.key;
+
+	if (!resultListThrottle) {
+		resultListThrottle = {
+			OLSKThrottleDuration: LCHLauncherThrottleDuration,
+			OLSKThrottleCallback: function () {
+				resultListThrottle = false;
+			},
+		};	
+	}
+
+	OLSKThrottle.OLSKThrottleTimeoutFor(resultListThrottle);
 }
 
 function handleClick(event) { 

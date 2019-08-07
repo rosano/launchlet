@@ -81,6 +81,7 @@ async function memberSave() {
 		throttleMap[$memberSelected.LCHMemberID] = {
 			OLSKThrottleDuration: 500,
 			OLSKThrottleCallback: async function () {
+				console.log('callback');
 				delete throttleMap[$memberSelected.LCHMemberID];
 
 				await LCHFormulasAction.LCHFormulasActionUpdate(storageClient, $memberSelected);
