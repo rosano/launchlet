@@ -212,7 +212,7 @@ async function itemDidClick(event, item) {
 <div class="Container" bind:this={ rootElement }>
 	<div class="Bezel">
 		{#if LCHOptionsObject().runMode !== LCHLauncherModePipe() }
-			<input placeholder="{ OLSKLocalized(LCHOptionsObject().runMode === LCHLauncherModeJump() ? 'LCHLauncherInputPlaceholderJump' : 'LCHLauncherInputPlaceholderDefault') }" bind:value={ filterText } bind:this={ inputElement } id="LCHLauncherFilterInput" />
+			<input placeholder="{ LCHOptionsObject().runMode === LCHLauncherModeJump() ? OLSKLocalized('LCHLauncherInputPlaceholderJump') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ filterText } bind:this={ inputElement } id="LCHLauncherFilterInput" />
 
 			{#if formulasVisible.length }
 			<div class="ListContainer">
