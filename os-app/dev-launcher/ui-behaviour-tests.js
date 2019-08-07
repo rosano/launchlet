@@ -1,5 +1,10 @@
 import { throws, deepEqual } from 'assert';
-import { LCHLauncherModeCommit, LCHLauncherModeJump, LCHLauncherModePipe } from './ui-logic.js';
+import {
+	LCHLauncherModeCommit,
+	LCHLauncherModeJump,
+	LCHLauncherModePipe,
+	LCHLauncherThrottleDuration,
+} from './ui-logic.js';
 
 Object.entries({
 	browser: new OLSKBrowser(),
@@ -105,7 +110,7 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 				browser.assert.elements(LCHLauncherResultList, 0);
 				browser.assert.elements(LCHLauncherResultListItem, 0);
 
-				await browser.wait({duration: 1000});
+				await browser.wait({duration: LCHLauncherThrottleDuration});
 
 				browser.assert.elements(LCHLauncherResultList, 1);
 				browser.assert.elements(LCHLauncherResultListItem, 5);

@@ -5,7 +5,15 @@ import LCHLauncherZoneInput from './modules/LCHLauncherZoneInput/main.svelte';
 import LCHLauncherPipeItem from './modules/LCHLauncherPipeItem/main.svelte';
 import { LCHOptionsObject, formulaSelected, secondaryComponent } from './_shared.js';
 import { LCHLauncherStandardRecipes } from './recipes/recipes.js';
-import { LCHLauncherModeJump, LCHLauncherModePipe, LCHLauncherFilterForText, LCHLauncherConstrainIndex, LCHLauncherPatternMatchesURL, LCHLauncherKeyboardEventIsTextInput } from './ui-logic.js';
+import {
+	LCHLauncherModeJump,
+	LCHLauncherModePipe,
+	LCHLauncherFilterForText,
+	LCHLauncherThrottleDuration,
+	LCHLauncherConstrainIndex,
+	LCHLauncherPatternMatchesURL,
+	LCHLauncherKeyboardEventIsTextInput,
+} from './ui-logic.js';
 import { LCHRecipesModelErrorsFor, LCHRecipesModelIsSubject, LCHComponentDescriptorsModelErrorsFor } from './api.js';
 
 export let dataObjects = [];
@@ -91,7 +99,7 @@ let filterTextDidChange = function (val) {
 
 			if (!resultListThrottle) {
 				resultListThrottle = {
-					OLSKThrottleDuration: 1000,
+					OLSKThrottleDuration: LCHLauncherThrottleDuration,
 					OLSKThrottleCallback: async function () {
 						resultListThrottle = false;
 					},

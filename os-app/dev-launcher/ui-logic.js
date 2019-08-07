@@ -47,6 +47,8 @@ export const LCHLauncherFilterForText = function (inputData) {
 	};
 };
 
+export const LCHLauncherThrottleDuration = 500;
+
 export const LCHLauncherConstrainIndex = function (param1, param2) {
 	if (!Array.isArray(param1)) {
 		throw new Error('LCHErrorInputInvalid');
