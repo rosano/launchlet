@@ -98,6 +98,13 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 				browser.assert.elements(LCHLauncherPipeItem, 1);
 			});
 			
+			it('keeps previous results if match stops', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'av');
+				await browser.wait({element: LCHLauncherPipeItem});
+
+				browser.assert.elements(LCHLauncherPipeItem, 1);
+			});
+			
 		});
 
 	});

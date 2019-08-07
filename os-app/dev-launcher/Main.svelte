@@ -66,8 +66,19 @@ let formulasVisible = [];
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump() ? dataObjects : [];
 let filterTextDidChange = function (val) {
 	if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
-		formulasVisible = !val ? [] : dataObjects.filter(LCHRecipesModelIsSubject).filter(LCHLauncherFilterForText(val));
-		return;
+		formulasVisible = (function() {
+			if (!val) {
+				return [];
+			}
+
+			let results = dataObjects.filter(LCHRecipesModelIsSubject).filter(LCHLauncherFilterForText(val));
+
+			if (formulasVisible.length && !resuls.length) {
+				return formulasVisible;
+			}
+
+			return results;
+		})();
 	}
 	formulasVisible = !val ? formulasDefault : dataObjects.filter(LCHLauncherFilterForText(val));
 
