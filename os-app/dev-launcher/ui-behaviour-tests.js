@@ -115,6 +115,11 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 				browser.assert.elements(LCHLauncherResultList, 1);
 				browser.assert.elements(LCHLauncherResultListItem, 5);
 			});
+
+			it.skip('selects first list item', async function() {
+				await browser.wait({element: '.LCHLauncherResultListItemSelected'});
+				browser.assert.hasClass(LCHLauncherResultListItem, 'LCHLauncherResultListItemSelected');
+			});
 			
 			it('keeps previous results if match stops', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'x');

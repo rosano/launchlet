@@ -85,34 +85,34 @@ let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump() ? dat
 import OLSKThrottle from 'OLSKThrottle';
 let resultListThrottle;
 let filterTextDidChange = function (val) {
-	if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
-		formulasVisible = (function() {
-			if (!val) {
-				return [];
-			}
+	formulasVisible = (function() {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
+			return !val ? formulasDefault : dataObjects.filter(LCHLauncherFilterForText(val));
+		}
+		
+		if (!val) {
+			return [];
+		}
 
-			let results = dataObjects.filter(LCHRecipesModelIsSubject).filter(LCHLauncherFilterForText(val));
+		let results = dataObjects.filter(LCHRecipesModelIsSubject).filter(LCHLauncherFilterForText(val));
 
-			if (formulasVisible.length && !results.length) {
-				return formulasVisible;
-			}
+		if (formulasVisible.length && !results.length) {
+			return formulasVisible;
+		}
 
-			if (!resultListThrottle) {
-				resultListThrottle = {
-					OLSKThrottleDuration: LCHLauncherThrottleDuration,
-					OLSKThrottleCallback: function () {
-						resultListThrottle = false;
-					},
-				};	
-			}
+		if (!resultListThrottle) {
+			resultListThrottle = {
+				OLSKThrottleDuration: LCHLauncherThrottleDuration,
+				OLSKThrottleCallback: function () {
+					resultListThrottle = false;
+				},
+			};	
+		}
 
-			OLSKThrottle.OLSKThrottleTimeoutFor(resultListThrottle);
+		OLSKThrottle.OLSKThrottleTimeoutFor(resultListThrottle);
 
-			return results;
-		})();
-		return;
-	}
-	formulasVisible = !val ? formulasDefault : dataObjects.filter(LCHLauncherFilterForText(val));
+		return results;
+	})();
 
 	formulaSelected.set(!val ? null : formulasVisible[0]);
 
@@ -256,7 +256,7 @@ async function itemDidClick(event, item) {
 		{#if formulasVisible.length}
 			<div class="LCHLauncherResultList">
 				{#each formulasVisible as e}
-					<div class="LCHLauncherResultListItem">
+					<div class="LCHLauncherResultListItem" class:LCHLauncherResultListItemSelected={ e === $formulaSelected }>
 						<LCHLauncherPipeItem itemTitle={ e.LCHRecipeTitle } />
 					</div>
 				{/each}
