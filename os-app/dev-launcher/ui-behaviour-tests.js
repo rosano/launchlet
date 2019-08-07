@@ -12,6 +12,7 @@ Object.entries({
 
 	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
 	LCHLauncherZoneInput: '.LCHLauncherZoneInput',
+	LCHLauncherZoneInputHeading: '.LCHLauncherZoneInputHeading',
 
 	LCHLauncherList: '.ListContainer',
 	LCHLauncherListItem: '.ListItem',
@@ -202,6 +203,18 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 
 				it('on startup', function() {
 					deepEqual(browser.query(LCHLauncherFilterInput).placeholder, uLocalized('LCHLauncherInputPlaceholderJump'));
+				});
+
+			});
+
+			context('LCHLauncherModePipe', function () {
+
+				before(function() {
+					return browser.visit(`${ languageCode }${ kDefaultRoutePath }?runMode=${ LCHLauncherModePipe() }`);
+				});
+
+				it('on startup', function() {
+					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, uLocalized('LCHLauncherZoneInputHeadingSubject'));
 				});
 
 			});
