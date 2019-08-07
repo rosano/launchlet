@@ -103,7 +103,6 @@ let filterTextDidChange = function (val) {
 			return results;
 		})();
 		return;
-		
 	}
 	formulasVisible = !val ? formulasDefault : dataObjects.filter(LCHLauncherFilterForText(val));
 

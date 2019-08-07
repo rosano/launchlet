@@ -101,7 +101,7 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 				browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
 			});
 
-			it('shows list after delay', async function() {
+			it('shows list after throttle', async function() {
 				browser.assert.elements(LCHLauncherResultList, 0);
 				browser.assert.elements(LCHLauncherResultListItem, 0);
 
