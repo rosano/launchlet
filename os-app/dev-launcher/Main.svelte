@@ -180,6 +180,10 @@ function handleKeydown(event) {
 			return event.preventDefault();
 		},
 		ArrowUp () {
+			if (LCHOptionsObject().runMode === LCHLauncherModePipe() && resultListThrottle) {
+				return OLSKThrottle.OLSKThrottleSkip(resultListThrottle);
+			}
+
 			formulaSelected.set(formulasVisible[LCHLauncherConstrainIndex(formulasVisible, formulasVisible.indexOf($formulaSelected) - 1)]);
 
 			if (LCHOptionsObject().runMode === LCHLauncherModeJump()) {
