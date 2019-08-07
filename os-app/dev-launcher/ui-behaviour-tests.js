@@ -182,12 +182,23 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 					browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
 					browser.assert.elements(LCHLauncherResultListItem, 5);
 				});
+
+				it('removes MatchStop on keydown', async function() {
+					await browser.wait({duration: LCHLauncherThrottleDuration * 2});
+					browser.OLSKFireKeyboardEvent(browser.window, 'a');
+					await browser.wait({element: LCHLauncherPipeItem});
+
+					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, 'A');
+					browser.assert.elements('.LCHLauncherZoneInputHeadingMatchStop', 0);
+				});
 				
 			});
 
 			context('on Backspace after throttle', function() {
 
 				before(async function() {
+					browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
+
 					browser.OLSKFireKeyboardEvent(browser.window, 'a');
 					browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
 					await browser.wait({element: LCHLauncherResultList});

@@ -258,6 +258,10 @@ function handleKeydown(event) {
 
 	filterText = inputThrottle === false ? event.key : filterText + event.key;
 
+	if (inputThrottle === false) {
+		matchStop = false;
+	}
+
 	(function ThrottleInput() {
 		if (!inputThrottle) {
 			inputThrottle = {
