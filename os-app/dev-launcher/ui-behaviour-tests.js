@@ -145,7 +145,7 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 				browser.assert.elements(LCHLauncherResultListItem, 5);
 			});
 
-			it('skips throttle on ArrowDown', async function() {
+			it('skips throttle on ArrowUp', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
 				await browser.wait({element: LCHLauncherPipeItem});
 

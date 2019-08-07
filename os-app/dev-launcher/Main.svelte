@@ -280,7 +280,7 @@ async function itemDidClick(event, item) {
 		{#if LCHOptionsObject().runMode === LCHLauncherModePipe() }
 			{#if formulasVisible.length}
 				<LCHLauncherZoneInput isSelected="true" NameText={ OLSKLocalized('LCHLauncherZoneHeadingSubject') } FilterText={ filterText }>
-					<LCHLauncherPipeItem itemTitle={ formulasVisible[0].LCHRecipeTitle } />
+					<LCHLauncherPipeItem itemTitle={ $formulaSelected.LCHRecipeTitle } />
 				</LCHLauncherZoneInput>
 			{:else}
 				<LCHLauncherZoneInput isSelected="true" NameText={ OLSKLocalized('LCHLauncherZoneHeadingSubject') } FilterText={ filterText } />
