@@ -83,7 +83,7 @@ let filterText = '';
 let formulasVisible = [];
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump() ? dataObjects : [];
 import OLSKThrottle from 'OLSKThrottle';
-let resultListThrottle;
+let matchStop;
 let filterTextDidChange = function (val) {
 	formulasVisible = (function() {
 		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
@@ -101,6 +101,12 @@ let filterTextDidChange = function (val) {
 		let results = dataObjects.filter(LCHRecipesModelIsSubject).filter(LCHLauncherFilterForText(val));
 
 		if (formulasVisible.length && !results.length) {
+			if (resultListThrottle) {
+				OLSKThrottle.OLSKThrottleSkip(resultListThrottle);
+			}
+
+			matchStop = true;
+
 			return formulasVisible;
 		}
 
@@ -226,6 +232,7 @@ function handleKeydown(event) {
 
 			if (filterText) {
 				filterText = '';
+				matchStop = false;
 
 				return;
 			}
@@ -307,7 +314,7 @@ async function itemDidClick(event, item) {
 
 		{#if LCHOptionsObject().runMode === LCHLauncherModePipe() }
 			{#if formulasVisible.length}
-				<LCHLauncherZoneInput isSelected="true" NameText={ OLSKLocalized('LCHLauncherZoneInputHeadingSubject') } FilterText={ filterText }>
+				<LCHLauncherZoneInput isSelected="true" NameText={ OLSKLocalized('LCHLauncherZoneInputHeadingSubject') } FilterText={ filterText } MatchStop={ matchStop }>
 					<LCHLauncherPipeItem itemTitle={ $formulaSelected.LCHRecipeTitle } />
 				</LCHLauncherZoneInput>
 			{:else}

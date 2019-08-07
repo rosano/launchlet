@@ -121,17 +121,6 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 				await browser.wait({element: '.LCHLauncherResultListItemSelected'});
 				browser.assert.hasClass(LCHLauncherResultListItem, 'LCHLauncherResultListItemSelected');
 			});
-			
-			it('keeps previous results if match stops', async function() {
-				browser.OLSKFireKeyboardEvent(browser.window, 'a');
-				browser.OLSKFireKeyboardEvent(browser.window, 'x');
-				await browser.wait({duration: LCHLauncherThrottleDuration * 2});
-				await browser.wait({element: LCHLauncherPipeItem});
-
-				browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
-				browser.assert.elements(LCHLauncherResultList, 1);
-				browser.assert.elements(LCHLauncherResultListItem, 5);
-			});
 
 			it('skips throttle on ArrowDown', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
@@ -162,6 +151,29 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 				browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
 				browser.assert.elements(LCHLauncherResultList, 1);
 				browser.assert.elements(LCHLauncherResultListItem, 5);
+			});
+
+			context('MatchStop', function() {
+
+				before(async function() {
+					browser.OLSKFireKeyboardEvent(browser.window, 'a');
+					browser.OLSKFireKeyboardEvent(browser.window, 'x');
+					await browser.wait({element: LCHLauncherPipeItem});
+				});
+
+				it('shows result list', async function() {
+					browser.assert.elements(LCHLauncherResultList, 1);
+				});
+
+				it('keeps matched results', async function() {
+					browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
+					browser.assert.elements(LCHLauncherResultListItem, 5);
+				});
+
+				it('passes MatchStop to LCHLauncherZoneInput', async function() {
+					browser.assert.elements('.LCHLauncherZoneInputHeadingMatchStop', 1);
+				});
+				
 			});
 
 			context('on Backspace after throttle', function() {

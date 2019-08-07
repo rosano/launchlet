@@ -2,10 +2,11 @@
 export let NameText = '';
 export let FilterText = '';
 export let isSelected = false;
+export let MatchStop = false;
 export let didClick = null;
 </script>
 
-<strong class="LCHLauncherZoneInputHeading">{ FilterText && FilterText.toUpperCase() || NameText || 'Undefined' }</strong>
+<strong class="LCHLauncherZoneInputHeading" class:LCHLauncherZoneInputHeadingMatchStop={ MatchStop }>{ FilterText && FilterText.toUpperCase() || NameText || 'Undefined' }</strong>
 
 <div class="LCHLauncherZoneInput" class:LCHLauncherZoneInputSelected={ isSelected } on:click={ () => didClick && didClick() }>
 
@@ -26,6 +27,10 @@ export let didClick = null;
 
 	font-size: 8pt;
 	color: hsl(0, 0%, 60%);
+}
+
+.LCHLauncherZoneInputHeadingMatchStop {
+	color: #fd6666;
 }
 
 .LCHLauncherZoneInput {

@@ -107,6 +107,28 @@ describe('LCHLauncherZoneInputInteraction', function testLCHLauncherZoneInputInt
 		
 	});
 
+	context('MatchStop', function () {
+
+		it('defaults to false', function() {
+			browser.assert.hasNoClass(LCHLauncherZoneInputHeading, 'LCHLauncherZoneInputHeadingMatchStop');
+		});
+
+		it('adds class if true', async function() {
+			browser.check('#LCHLauncherZoneInputTestSetMatchStop');
+			await browser.wait({ element: LCHLauncherZoneInputHeading });
+
+			browser.assert.hasClass(LCHLauncherZoneInputHeading, 'LCHLauncherZoneInputHeadingMatchStop');
+		});
+
+		it('removes class if false', async function() {
+			browser.uncheck('#LCHLauncherZoneInputTestSetMatchStop');
+			await browser.wait({ element: LCHLauncherZoneInputHeading });
+
+			browser.assert.hasNoClass(LCHLauncherZoneInputHeading, 'LCHLauncherZoneInputHeadingMatchStop');
+		});
+		
+	});
+
 	context('didClick', function () {
 
 		it('runs callback on click', async function() {
