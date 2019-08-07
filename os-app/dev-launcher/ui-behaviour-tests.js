@@ -134,6 +134,7 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 			it('skips throttle on ArrowDown', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
 				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
+				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
 				await browser.wait({element: LCHLauncherPipeItem});
 
 				browser.assert.elements(LCHLauncherPipeItem, 0);
@@ -148,6 +149,7 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 
 			it('skips throttle on ArrowUp', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
+				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
 				await browser.wait({element: LCHLauncherPipeItem});
 
 				browser.assert.elements(LCHLauncherPipeItem, 0);
@@ -158,6 +160,46 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 				browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
 				browser.assert.elements(LCHLauncherResultList, 1);
 				browser.assert.elements(LCHLauncherResultListItem, 5);
+			});
+
+			context('on Backspace after throttle', function() {
+
+				before(async function() {
+					browser.OLSKFireKeyboardEvent(browser.window, 'a');
+					browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
+					await browser.wait({element: LCHLauncherResultList});
+
+					browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
+					browser.assert.elements(LCHLauncherResultList, 1);
+					browser.assert.elements(LCHLauncherResultListItem, 2);
+
+					browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
+					await browser.wait({element: LCHLauncherPipeItem});
+				});
+				
+				it('clears filter ', function() {
+					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, 'Subject');
+				});
+				
+				it('keeps results ', function() {
+					browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
+					browser.assert.elements(LCHLauncherResultList, 1);
+					browser.assert.elements(LCHLauncherResultListItem, 2);
+				});
+
+			});
+
+			context('on Backspace after clear filter', function() {
+
+				before(async function() {
+					browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
+					await browser.wait({element: LCHLauncherPipeItem});
+				});
+				
+				it('clears results ', function() {
+					browser.assert.elements(LCHLauncherPipeItem, 0);
+				});
+
 			});
 
 		});

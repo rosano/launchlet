@@ -90,6 +90,10 @@ let filterTextDidChange = function (val) {
 			return !val ? formulasDefault : dataObjects.filter(LCHLauncherFilterForText(val));
 		}
 		
+		if (!val && resultListThrottle === false) {
+			return formulasVisible;
+		}
+		
 		if (!val) {
 			return [];
 		}
@@ -114,7 +118,13 @@ let filterTextDidChange = function (val) {
 		return results;
 	})();
 
-	formulaSelected.set(!val ? null : formulasVisible[0]);
+	formulaSelected.set((function() {
+		if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
+			return formulasVisible[0];
+		}
+
+		return !val ? null : formulasVisible[0];
+	})());
 
 	if (LCHOptionsObject().runMode !== LCHLauncherModeJump()) {
 		return;
@@ -215,7 +225,25 @@ function handleKeydown(event) {
 			return event.preventDefault();
 		},
 		Backspace () {
-			filterText = filterText.slice(0, -1);
+			if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
+				filterText = filterText.slice(0, -1);
+				return;
+			}
+
+			if (resultListThrottle !== false) {
+				filterText = filterText.slice(0, -1);
+				return;
+			}
+
+			if (filterText) {
+				filterText = '';
+
+				return;
+			}
+
+			resultListThrottle = undefined;
+			formulaSelected.set(null);
+			formulasVisible = [];
 		},
 	};
 
