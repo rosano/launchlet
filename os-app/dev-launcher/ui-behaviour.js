@@ -48,8 +48,9 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 					return {
 						LCHRecipeTitle: e,
 						LCHRecipeCallback: function () {
-							document.querySelector('textarea').value = e;
+							return document.querySelector('textarea').value = e;
 						},
+						LCHRecipeOutputType: 'String',
 					};
 				}),
 				completionHandler () {
