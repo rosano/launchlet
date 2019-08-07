@@ -320,6 +320,7 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 			it('selects LCHLauncherZoneInput', function() {
 				browser.assert.hasClass(LCHLauncherZoneInput, 'LCHLauncherZoneInputSelected');
 			});
+
 		});
 
 	});
