@@ -1,11 +1,7 @@
 import { throws, deepEqual } from 'assert';
 
-const Browser = require('zombie');
-
-Browser.localhost('loc.tests', 3000);
-
 Object.entries({
-	browser: new Browser(),
+	browser: new OLSKBrowser(),
 	DefaultRoutePath: '/',
 
 	LCHComposeCreateButton: '#LCHComposeCreateButton',
@@ -95,7 +91,7 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 	context('delete', function () {
 
 		it('on cancel', async function() {
-			const browser = new Browser();
+			const browser = new OLSKBrowser();
 
 			await browser.visit(DefaultRoutePath);
 
@@ -120,7 +116,7 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 		});
 
 		it('on confirm', async function() {
-			const browser = new Browser();
+			const browser = new OLSKBrowser();
 
 			await browser.visit(DefaultRoutePath);
 
@@ -224,7 +220,7 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 			});
 
 			it('on delete', async function() {
-				const browser = new Browser();
+				const browser = new OLSKBrowser();
 
 				await browser.visit(`${ languageCode }${ DefaultRoutePath }`);
 

@@ -1,10 +1,8 @@
 import { throws, deepEqual } from 'assert';
 
-const Browser = require('zombie');
-
-Browser.localhost('loc.tests', 3000);
-
 Object.entries({
+	browser: new OLSKBrowser(),
+
 	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
 
 	LCHLauncherListItem: '.ListItem',
@@ -13,8 +11,6 @@ Object.entries({
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
-
-const browser = new Browser();
 
 describe('LCHCopyToClipboardUITestDiscovery', function testDiscovery() {
 
