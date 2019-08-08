@@ -333,13 +333,15 @@ async function itemDidClick(event, item) {
 		{/if}
 
 		{#if LCHOptionsObject().runMode === LCHLauncherModePipe() }
-			{#if formulasVisible.length}
-				<LCHLauncherZoneInput isSelected="true" NameText={ OLSKLocalized('LCHLauncherZoneInputHeadingSubject') } FilterText={ filterText } MatchStop={ matchStop }>
-					<LCHLauncherPipeItem itemTitle={ $formulaSelected.LCHRecipeTitle } />
-				</LCHLauncherZoneInput>
-			{:else}
-				<LCHLauncherZoneInput isSelected="true" NameText={ OLSKLocalized('LCHLauncherZoneInputHeadingSubject') } FilterText={ filterText } />
-			{/if}
+			<div class="LCHLauncherSubjectZoneInput">
+				{#if formulasVisible.length}
+					<LCHLauncherZoneInput isSelected="true" NameText={ OLSKLocalized('LCHLauncherZoneInputHeadingSubject') } FilterText={ filterText } MatchStop={ matchStop }>
+						<LCHLauncherPipeItem itemTitle={ $formulaSelected.LCHRecipeTitle } />
+					</LCHLauncherZoneInput>
+				{:else}
+					<LCHLauncherZoneInput isSelected="true" NameText={ OLSKLocalized('LCHLauncherZoneInputHeadingSubject') } FilterText={ filterText } />
+				{/if}
+			</div>
 		{/if}
 	</div>
 	{#if $secondaryComponent}
@@ -434,6 +436,10 @@ input {
 
 .ListItemSelected {
 	background: #cccccc;
+}
+
+.LCHLauncherSubjectZoneInput {
+	/*display: inline;*/
 }
 
 @media screen and (max-width: 760px) {

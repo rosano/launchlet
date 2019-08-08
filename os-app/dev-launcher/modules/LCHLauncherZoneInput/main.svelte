@@ -27,6 +27,9 @@ export let didClick = null;
 
 	font-size: 8pt;
 	color: hsl(0, 0%, 60%);
+
+	/* ContainerDivSpacingHotfix */
+	display: block;
 }
 
 .LCHLauncherZoneInputHeadingMatchStop {

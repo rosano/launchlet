@@ -11,8 +11,8 @@ Object.entries({
 	kDefaultRoutePath: '/launcher',
 
 	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
-	LCHLauncherZoneInput: '.LCHLauncherZoneInput',
-	LCHLauncherZoneInputHeading: '.LCHLauncherZoneInputHeading',
+	LCHLauncherSubjectZoneInput: '.LCHLauncherSubjectZoneInput .LCHLauncherZoneInput',
+	LCHLauncherSubjectZoneInputHeading: '.LCHLauncherSubjectZoneInput .LCHLauncherZoneInputHeading',
 
 	LCHLauncherList: '.ListContainer',
 	LCHLauncherListItem: '.ListItem',
@@ -76,7 +76,7 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 		
 		it('on startup', function() {
 			browser.assert.elements(LCHLauncherFilterInput, 0);
-			browser.assert.elements(LCHLauncherZoneInput, 1);
+			browser.assert.elements(LCHLauncherSubjectZoneInput, 1);
 
 			browser.assert.elements(LCHLauncherResultList, 0);
 			browser.assert.elements(LCHLauncherListItem, 0);
@@ -104,7 +104,7 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'a');
 				await browser.wait({element: LCHLauncherPipeItem});
 
-				browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
+				browser.assert.elements(`${ LCHLauncherSubjectZoneInput } ${ LCHLauncherPipeItem }`, 1);
 			});
 
 			it('shows list after throttle', async function() {
@@ -133,7 +133,7 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'a');
 				browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
 				await browser.wait({element: LCHLauncherResultList});
-				browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
+				browser.assert.elements(`${ LCHLauncherSubjectZoneInput } ${ LCHLauncherPipeItem }`, 1);
 				browser.assert.elements(LCHLauncherResultList, 1);
 				browser.assert.elements(LCHLauncherResultListItem, 5);
 			});
@@ -148,7 +148,7 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'a');
 				browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
 				await browser.wait({element: LCHLauncherResultList});
-				browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
+				browser.assert.elements(`${ LCHLauncherSubjectZoneInput } ${ LCHLauncherPipeItem }`, 1);
 				browser.assert.elements(LCHLauncherResultList, 1);
 				browser.assert.elements(LCHLauncherResultListItem, 5);
 			});
@@ -165,11 +165,11 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 				});
 
 				it('keeps matched results', async function() {
-					browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
+					browser.assert.elements(`${ LCHLauncherSubjectZoneInput } ${ LCHLauncherPipeItem }`, 1);
 					browser.assert.elements(LCHLauncherResultListItem, 5);
 				});
 
-				it('passes MatchStop to LCHLauncherZoneInput', async function() {
+				it('passes MatchStop to LCHLauncherSubjectZoneInput', async function() {
 					browser.assert.elements('.LCHLauncherZoneInputHeadingMatchStop', 1);
 				});
 
@@ -177,9 +177,9 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 					browser.OLSKFireKeyboardEvent(browser.window, 'x');
 					await browser.wait({element: LCHLauncherPipeItem});
 
-					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, 'AXX');
+					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, 'AXX');
 					browser.assert.elements(LCHLauncherResultList, 1);
-					browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
+					browser.assert.elements(`${ LCHLauncherSubjectZoneInput } ${ LCHLauncherPipeItem }`, 1);
 					browser.assert.elements(LCHLauncherResultListItem, 5);
 				});
 
@@ -188,7 +188,7 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 					browser.OLSKFireKeyboardEvent(browser.window, 'a');
 					await browser.wait({element: LCHLauncherPipeItem});
 
-					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, 'A');
+					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, 'A');
 					browser.assert.elements('.LCHLauncherZoneInputHeadingMatchStop', 0);
 				});
 				
@@ -203,7 +203,7 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 					browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
 					await browser.wait({element: LCHLauncherResultList});
 
-					browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
+					browser.assert.elements(`${ LCHLauncherSubjectZoneInput } ${ LCHLauncherPipeItem }`, 1);
 					browser.assert.elements(LCHLauncherResultList, 1);
 					browser.assert.elements(LCHLauncherResultListItem, 5);
 
@@ -212,11 +212,11 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 				});
 				
 				it('clears filter ', function() {
-					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, 'Subject');
+					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, 'Subject');
 				});
 				
 				it('keeps results ', function() {
-					browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
+					browser.assert.elements(`${ LCHLauncherSubjectZoneInput } ${ LCHLauncherPipeItem }`, 1);
 					browser.assert.elements(LCHLauncherResultList, 1);
 					browser.assert.elements(LCHLauncherResultListItem, 5);
 				});
@@ -242,8 +242,8 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 					browser.OLSKFireKeyboardEvent(browser.window, 'a');
 					await browser.wait({duration: LCHLauncherThrottleDuration * 2});
 
-					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, 'A');
-					browser.assert.elements(`${ LCHLauncherZoneInput } ${ LCHLauncherPipeItem }`, 1);
+					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, 'A');
+					browser.assert.elements(`${ LCHLauncherSubjectZoneInput } ${ LCHLauncherPipeItem }`, 1);
 					browser.assert.elements(LCHLauncherResultList, 1);
 					browser.assert.elements(LCHLauncherResultListItem, 5);
 
@@ -252,7 +252,7 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 				});
 				
 				it('replaces filter', function() {
-					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, 'B');
+					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, 'B');
 				});
 
 			});
@@ -311,14 +311,14 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 				});
 
 				it('on startup', function() {
-					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, uLocalized('LCHLauncherZoneInputHeadingSubject'));
+					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, uLocalized('LCHLauncherZoneInputHeadingSubject'));
 				});
 
 				it('on keydown', async function() {
 					browser.OLSKFireKeyboardEvent(browser.window, 'a');
 					await browser.wait({element: LCHLauncherPipeItem});
 
-					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, 'A');
+					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, 'A');
 				});
 
 			});
@@ -488,8 +488,8 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 		
 		context('on startup', function() {
 			
-			it('selects LCHLauncherZoneInput', function() {
-				browser.assert.hasClass(LCHLauncherZoneInput, 'LCHLauncherZoneInputSelected');
+			it('selects LCHLauncherSubjectZoneInput', function() {
+				browser.assert.hasClass(LCHLauncherSubjectZoneInput, 'LCHLauncherZoneInputSelected');
 			});
 
 		});
