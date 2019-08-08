@@ -25,7 +25,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe('kLCHLauncherDiscovery', function testkLCHLauncherDiscovery() {
+describe('LCHLauncherAccess', function testkLCHLauncherAccess() {
 
 	context('LCHLauncherModeCommit', function () {
 
@@ -261,7 +261,7 @@ describe('kLCHLauncherDiscovery', function testkLCHLauncherDiscovery() {
 
 });
 
-describe('kLCHLauncherLanguage', function testkLCHLauncherLanguage() {
+describe('LCHLauncherLanguage', function testkLCHLauncherLanguage() {
 
 	['en'].forEach(function (languageCode) {
 
@@ -333,7 +333,7 @@ describe('kLCHLauncherLanguage', function testkLCHLauncherLanguage() {
 	});
 });
 
-describe('kLCHLauncherInteraction', function testkLCHLauncherInteraction() {
+describe('LCHLauncherInteraction', function testkLCHLauncherInteraction() {
 
 	context('LCHLauncherModeCommit', function () {
 
