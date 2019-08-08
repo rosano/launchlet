@@ -25,7 +25,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe.only('kLCHLauncherDiscovery', function testkLCHLauncherDiscovery() {
+describe('kLCHLauncherDiscovery', function testkLCHLauncherDiscovery() {
 
 	context('LCHLauncherModeCommit', function () {
 
@@ -302,7 +302,7 @@ describe('kLCHLauncherLanguage', function testkLCHLauncherLanguage() {
 
 			});
 
-			context.only('LCHLauncherModePipe', function () {
+			context('LCHLauncherModePipe', function () {
 
 				before(function() {
 					return browser.visit(`${ languageCode }${ kDefaultRoutePath }?runMode=${ LCHLauncherModePipe() }`);
