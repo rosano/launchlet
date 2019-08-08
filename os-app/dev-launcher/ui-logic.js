@@ -49,7 +49,7 @@ export const LCHLauncherFilterForText = function (inputData) {
 	};
 };
 
-export const LCHLauncherThrottleDuration = _LCHIsTestingBehaviour() ? 25 : 500;
+export const LCHLauncherThrottleDuration = _LCHIsTestingBehaviour() ? 25 : 1000;
 
 export const LCHLauncherConstrainIndex = function (param1, param2) {
 	if (!Array.isArray(param1)) {
