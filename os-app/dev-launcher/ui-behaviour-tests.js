@@ -514,6 +514,12 @@ describe('LCHLauncherInteraction', function testkLCHLauncherInteraction() {
 				await browser.wait({element: kLCHLauncherActionZoneInput});
 				browser.assert.hasClass(kLCHLauncherActionZoneInput, 'LCHLauncherZoneSelected');
 			});
+			
+			it('selects LCHLauncherSubjectZoneInput', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+				await browser.wait({element: kLCHLauncherSubjectZoneInput});
+				browser.assert.hasClass(kLCHLauncherSubjectZoneInput, 'LCHLauncherZoneSelected');
+			});
 
 		});
 

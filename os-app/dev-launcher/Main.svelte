@@ -224,9 +224,14 @@ function handleKeydown(event) {
 		},
 		Tab () {
 			if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
-				if (selectedZone === 'LCHLauncherSubjectZoneInput') {
-					selectedZone = 'LCHLauncherActionZoneInput';
-				}
+				(function() {
+					if (selectedZone === 'LCHLauncherSubjectZoneInput') {
+						selectedZone = 'LCHLauncherActionZoneInput';
+						return;
+					}
+
+					selectedZone = 'LCHLauncherSubjectZoneInput';
+				})();
 			}
 
 			return event.preventDefault();
