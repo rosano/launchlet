@@ -5,7 +5,7 @@ import ModuleDetail from './ModuleDetail.svelte';
 import ModuleCompile from './ModuleCompile.svelte';
 import OLSKServiceWorker from '../_shared/_external/OLSKServiceWorker/Main.svelte';
 
-import { OLSKLocalized } from '../_shared/common/global.js';
+import { OLSKLocalized, _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 import { storageClient } from './persistence.js';
 
 import { onMount } from 'svelte';
@@ -33,7 +33,9 @@ onMount(function () {
 	<button class="OLSKLayoutButtonNoStyle" onclick="location.reload();">{ OLSKLocalized('LCHUpdateReloadText') }</button>
 </div>
 
-<OLSKServiceWorker OLSKLocalized={ OLSKLocalized } registrationRoute={ window.OLSKCanonicalFor('LCHServiceWorkerRoute') } />
+{#if !_LCHIsTestingBehaviour()}
+	<OLSKServiceWorker OLSKLocalized={ OLSKLocalized } registrationRoute={ window.OLSKCanonicalFor('LCHServiceWorkerRoute') } />
+{/if}
 
 <style>
 .AppContainer {

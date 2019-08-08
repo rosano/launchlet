@@ -1,3 +1,5 @@
+import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
+
 import * as LCHStorageClient from '../_shared/LCHStorageClient/main.js';
 import * as RSModuleProtocol_lch_members from '../_shared/rs-modules/lch_members/rs-module.js';
 import { LCHComposeLogicSort } from './ui-logic.js';
@@ -67,7 +69,9 @@ remoteStorage.setApiKeys({
 });
 
 remoteStorage.on('ready', async () => {
-	console.debug('ready', arguments);
+	if (!_LCHIsTestingBehaviour()) {
+		console.debug('ready', arguments);
+	}
 
 	await remoteStorage.lch_members.init();
 
@@ -76,32 +80,46 @@ remoteStorage.on('ready', async () => {
 
 (function SetupStorageClientLogging() {
 	remoteStorage.on('not-connected', () => {
-		console.debug('not-connected', arguments);
+		if (!_LCHIsTestingBehaviour()) {
+			console.debug('not-connected', arguments);
+		}
 	});
 
 	remoteStorage.on('disconnected', () => {
-		console.debug('disconnected', arguments);
+		if (!_LCHIsTestingBehaviour()) {
+			console.debug('disconnected', arguments);
+		}
 	});
 
 	remoteStorage.on('connected', () => {
-		console.debug('connected', arguments);
+		if (!_LCHIsTestingBehaviour()) {
+			console.debug('connected', arguments);
+		}
 	});
 
 	remoteStorage.on('error', (error) => {
-		console.debug('error', error);
+		if (!_LCHIsTestingBehaviour()) {
+			console.debug('error', error);
+		}
 
 		document.querySelector('#LCHComposeStorageWidget').classList.add('remotestorage-widget-error-state');
 	});
 
 	remoteStorage.on('network-offline', () => {
-		console.debug('network-offline', arguments);
+		if (!_LCHIsTestingBehaviour()) {
+			console.debug('network-offline', arguments);
+		}
 	});
 
 	remoteStorage.on('network-online', () => {
-		console.debug('network-online', arguments);
+		if (!_LCHIsTestingBehaviour()) {
+			console.debug('network-online', arguments);
+		}
 	});
 
 	remoteStorage.on('sync-done', () => {
-		console.debug('sync-done', arguments);
+		if (!_LCHIsTestingBehaviour()) {
+			console.debug('sync-done', arguments);
+		}
 	});
 })();
