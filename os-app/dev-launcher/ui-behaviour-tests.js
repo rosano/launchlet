@@ -21,9 +21,10 @@ Object.entries({
 	kLCHLauncherListItem: '.ListItem',
 
 	kLCHLauncherPipeItem: '.LCHLauncherPipeItem',
-	kLCHLauncherSubjectPipeItem: '.LCHLauncherSubjectZoneInput .LCHLauncherPipeItem',
 	kLCHLauncherResultList: '.LCHLauncherResultList',
 	kLCHLauncherResultListItem: '.LCHLauncherResultListItem',
+	kLCHLauncherSubjectPipeItem: '.LCHLauncherSubjectZoneInput .LCHLauncherPipeItem',
+	kLCHLauncherActionPipeItem: '.LCHLauncherActionZoneInput .LCHLauncherPipeItem',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -106,6 +107,7 @@ describe('LCHLauncherAccess', function testkLCHLauncherAccess() {
 				await browser.wait({element: kLCHLauncherSubjectZoneInputHeading});
 
 				browser.assert.elements(kLCHLauncherSubjectPipeItem, 1);
+				browser.assert.elements(kLCHLauncherActionPipeItem, 1);
 			});
 			
 			it('hides list', async function() {
