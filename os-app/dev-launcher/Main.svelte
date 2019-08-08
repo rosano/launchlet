@@ -8,6 +8,7 @@ import {
 	formulaSelected,
 	formulasVisible,
 	actionsVisible,
+	actionSelected,
 	secondaryComponent,
 } from './_shared.js';
 import { LCHLauncherStandardRecipes } from './recipes/recipes.js';
@@ -113,6 +114,10 @@ if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
 
 			return true;
 		}));
+	});
+
+	actionsVisible.subscribe(function actionsVisibleDidChange(val) {
+		return actionSelected.set(val[0]);
 	});
 }
 
@@ -376,6 +381,9 @@ async function itemDidClick(event, item) {
 
 			<div class="LCHLauncherActionZoneInput">
 				<LCHLauncherZoneInput NameText={ OLSKLocalized('LCHLauncherZoneInputHeadingAction') }>
+					{#if $actionSelected}
+						<LCHLauncherPipeItem itemTitle={ $actionSelected.LCHRecipeTitle } />
+					{/if}
 				</LCHLauncherZoneInput>
 			</div>
 		{/if}
