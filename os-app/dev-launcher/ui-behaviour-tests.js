@@ -313,6 +313,7 @@ describe('LCHLauncherLanguage', function testkLCHLauncherLanguage() {
 
 				it('on startup', function() {
 					deepEqual(browser.query(kLCHLauncherSubjectZoneInputHeading).textContent, uLocalized('LCHLauncherZoneInputHeadingSubject'));
+					deepEqual(browser.query(kLCHLauncherVerbZoneInputHeading).textContent, uLocalized('LCHLauncherZoneInputHeadingVerb'));
 				});
 
 				it('on keydown', async function() {
