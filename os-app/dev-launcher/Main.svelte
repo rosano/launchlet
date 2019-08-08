@@ -18,6 +18,7 @@ import {
 	LCHRecipesModelErrorsFor,
 	LCHRecipesModelIsSubject,
 	LCHComponentDescriptorsModelErrorsFor,
+	LCHAPITypeEquivalenceMapForRecipes
 } from './api.js';
 
 export let dataObjects = [];
@@ -52,7 +53,9 @@ export let optionsObject = {};
 
 import { LCHAPIObjectFor } from './api.js';
 import * as apiComponents from './recipes/components.js';
-const api = LCHAPIObjectFor(LCHLauncherStandardRecipes().concat(dataObjects));
+const allRecipes = LCHLauncherStandardRecipes().concat(dataObjects);
+const api = LCHAPIObjectFor(allRecipes);
+const apiTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes)
 
 async function apiStart(inputData) {
 	return Promise.resolve(inputData.LCHRecipeCallback.bind({
