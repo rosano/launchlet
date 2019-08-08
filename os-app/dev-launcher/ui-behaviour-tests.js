@@ -12,9 +12,9 @@ const kDefaultRoutePath = '/launcher';
 
 Object.entries({
 	kLCHLauncherFilterInput: '#LCHLauncherFilterInput',
-	kLCHLauncherSubjectZoneInput: '.LCHLauncherSubjectZoneInput .LCHLauncherZoneInput',
+	kLCHLauncherSubjectZoneInput: '.LCHLauncherSubjectZoneInput',
 	kLCHLauncherSubjectZoneInputHeading: '.LCHLauncherSubjectZoneInput .LCHLauncherZoneInputHeading',
-	kLCHLauncherActionZoneInput: '.LCHLauncherActionZoneInput .LCHLauncherZoneInput',
+	kLCHLauncherActionZoneInput: '.LCHLauncherActionZoneInput',
 	kLCHLauncherActionZoneInputHeading: '.LCHLauncherActionZoneInput .LCHLauncherZoneInputHeading',
 
 	kLCHLauncherList: '.ListContainer',
@@ -502,7 +502,17 @@ describe('LCHLauncherInteraction', function testkLCHLauncherInteraction() {
 		context('on startup', function() {
 			
 			it('selects LCHLauncherSubjectZoneInput', function() {
-				browser.assert.hasClass(kLCHLauncherSubjectZoneInput, 'LCHLauncherZoneInputSelected');
+				browser.assert.hasClass(kLCHLauncherSubjectZoneInput, 'LCHLauncherZoneSelected');
+			});
+
+		});
+		
+		context('Tab', function() {
+			
+			it('selects LCHLauncherActionZoneInput if LCHLauncherSubjectZoneInput selected', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+				await browser.wait({element: kLCHLauncherActionZoneInput});
+				browser.assert.hasClass(kLCHLauncherActionZoneInput, 'LCHLauncherZoneSelected');
 			});
 
 		});

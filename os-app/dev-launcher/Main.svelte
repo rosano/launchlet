@@ -208,6 +208,7 @@ function handleDidFinish() {
 	return completionHandler();
 }
 
+let selectedZone = 'LCHLauncherSubjectZoneInput';
 function handleKeydown(event) {
 	const handlerFunctions = {
 		Escape () {
@@ -217,6 +218,15 @@ function handleKeydown(event) {
 
 			if (filterText) {
 				filterText = '';
+			}
+
+			return event.preventDefault();
+		},
+		Tab () {
+			if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
+				if (selectedZone === 'LCHLauncherSubjectZoneInput') {
+					selectedZone = 'LCHLauncherActionZoneInput';
+				}
 			}
 
 			return event.preventDefault();
@@ -369,7 +379,7 @@ async function itemDidClick(event, item) {
 		{/if}
 
 		{#if LCHOptionsObject().runMode === LCHLauncherModePipe() }
-			<div class="LCHLauncherSubjectZoneInput">
+			<div class="LCHLauncherSubjectZoneInput" class:LCHLauncherZoneSelected={ selectedZone === 'LCHLauncherSubjectZoneInput' }>
 				{#if $formulasVisible.length}
 					<LCHLauncherZoneInput NameText={ OLSKLocalized('LCHLauncherZoneInputHeadingSubject') } FilterText={ filterText } MatchStop={ matchStop }>
 						<LCHLauncherPipeItem itemTitle={ $formulaSelected.LCHRecipeTitle } />
@@ -379,7 +389,7 @@ async function itemDidClick(event, item) {
 				{/if}
 			</div>
 
-			<div class="LCHLauncherActionZoneInput">
+			<div class="LCHLauncherActionZoneInput" class:LCHLauncherZoneSelected={ selectedZone === 'LCHLauncherActionZoneInput' }>
 				<LCHLauncherZoneInput NameText={ OLSKLocalized('LCHLauncherZoneInputHeadingAction') }>
 					{#if $actionSelected}
 						<LCHLauncherPipeItem itemTitle={ $actionSelected.LCHRecipeTitle } />
@@ -482,8 +492,8 @@ input {
 	background: #cccccc;
 }
 
-.LCHLauncherSubjectZoneInput {
-	/*display: inline;*/
+.LCHLauncherZoneSelected :global(.LCHLauncherZoneInputBezel) {
+	background: #bcdaff;
 }
 
 @media screen and (max-width: 760px) {
