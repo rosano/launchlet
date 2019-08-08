@@ -42,7 +42,9 @@ export const LCHCopyToClipboardCallback = function(inputData) {
 
 export const LCHCopyToClipboardRecipe = function() {
 	return {
+		LCHRecipeTitle: 'Copy To Clipboard',
 		LCHRecipeSignature: 'LCHCopyToClipboard',
+		LCHRecipeInputTypes: 'String',
 		LCHRecipeCallback: LCHCopyToClipboardCallback,
 	};
 };

@@ -38,7 +38,9 @@ describe('LCHCopyToClipboardRecipe', function testLCHCopyToClipboardRecipe() {
 
 	it('returns LCHRecipe', async function() {
 		deepEqual(mainModule.LCHCopyToClipboardRecipe(), {
+			LCHRecipeTitle: 'Copy To Clipboard',
 			LCHRecipeSignature: 'LCHCopyToClipboard',
+			LCHRecipeInputTypes: 'String',
 			LCHRecipeCallback: mainModule.LCHCopyToClipboardCallback,
 		});
 	});
