@@ -342,6 +342,11 @@ async function itemDidClick(event, item) {
 					<LCHLauncherZoneInput isSelected="true" NameText={ OLSKLocalized('LCHLauncherZoneInputHeadingSubject') } FilterText={ filterText } />
 				{/if}
 			</div>
+
+			<div class="LCHLauncherVerbZoneInput">
+				<LCHLauncherZoneInput NameText={ OLSKLocalized('LCHLauncherZoneInputHeadingSubject') }>
+				</LCHLauncherZoneInput>
+			</div>
 		{/if}
 	</div>
 	{#if $secondaryComponent}

@@ -14,6 +14,8 @@ Object.entries({
 	kLCHLauncherFilterInput: '#LCHLauncherFilterInput',
 	kLCHLauncherSubjectZoneInput: '.LCHLauncherSubjectZoneInput .LCHLauncherZoneInput',
 	kLCHLauncherSubjectZoneInputHeading: '.LCHLauncherSubjectZoneInput .LCHLauncherZoneInputHeading',
+	kLCHLauncherVerbZoneInput: '.LCHLauncherVerbZoneInput .LCHLauncherZoneInput',
+	kLCHLauncherVerbZoneInputHeading: '.LCHLauncherVerbZoneInput .LCHLauncherZoneInputHeading',
 
 	kLCHLauncherList: '.ListContainer',
 	kLCHLauncherListItem: '.ListItem',
@@ -78,6 +80,7 @@ describe('LCHLauncherAccess', function testkLCHLauncherAccess() {
 		it('on startup', function() {
 			browser.assert.elements(kLCHLauncherFilterInput, 0);
 			browser.assert.elements(kLCHLauncherSubjectZoneInput, 1);
+			browser.assert.elements(kLCHLauncherVerbZoneInput, 1);
 
 			browser.assert.elements(kLCHLauncherResultList, 0);
 			browser.assert.elements(kLCHLauncherListItem, 0);
