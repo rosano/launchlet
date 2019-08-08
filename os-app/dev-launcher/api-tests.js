@@ -310,7 +310,7 @@ describe('LCHRecipesModelIsCommand', function testLCHRecipesModelIsCommand() {
 	});
 
 	it('returns false if arguments', function() {
-		deepEqual(mainModule.LCHRecipesModelIsSubject(Object.assign(kTesting.StubRecipeObjectSubject(), {
+		deepEqual(mainModule.LCHRecipesModelIsCommand(Object.assign(kTesting.StubRecipeObjectCommand(), {
 			LCHRecipeCallback (alfa) {},
 		})), false);
 	});
