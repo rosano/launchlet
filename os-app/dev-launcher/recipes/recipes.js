@@ -1,6 +1,7 @@
 import * as Bool from './Bool/main.js';
 import * as String from './String/main.js';
 import * as URL from './URL/main.js';
+import * as Command from './Command/main.js';
 
 import * as LCHCopyToClipboard from './LCHCopyToClipboard/main.js';
 import * as LCHLargeType from './LCHLargeType/main.js';
@@ -11,6 +12,7 @@ export const LCHLauncherStandardRecipes = function() {
 		Bool,
 		String,
 		URL,
+		Command,
 		
 		LCHCopyToClipboard,
 		LCHLargeType,
