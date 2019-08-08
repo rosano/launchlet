@@ -14,6 +14,14 @@ describe('LCHTypeStringCallback', function testLCHTypeStringCallback() {
 
 });
 
+describe('LCHTypeStringCanonicalExampleCallback', function testLCHTypeStringCanonicalExampleCallback() {
+
+	it('returns string', function() {
+		deepEqual(mainModule.LCHTypeStringCanonicalExampleCallback(), '');
+	});
+
+});
+
 describe('LCHTypeStringRecipe', function testLCHTypeStringRecipe() {
 
 	it('returns LCHRecipe', function() {
@@ -22,6 +30,7 @@ describe('LCHTypeStringRecipe', function testLCHTypeStringRecipe() {
 			LCHRecipeSignature: 'String',
 			LCHRecipeCallback: mainModule.LCHTypeStringCallback,
 			LCHRecipeOutputType: 'Bool',
+			LCHRecipeOutputTypeCanonicalExampleCallback: mainModule.LCHTypeStringCanonicalExampleCallback,
 		});
 	});
 
