@@ -83,7 +83,7 @@ describe('LCHLauncherZoneInputLanguage', function testLCHLauncherZoneInputLangua
 	});
 });
 
-describe('LCHLauncherZoneInputInteraction', function testLCHLauncherZoneInputInteraction() {
+describe.skip('LCHLauncherZoneInputInteraction', function testLCHLauncherZoneInputInteraction() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
