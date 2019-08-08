@@ -56,6 +56,14 @@ describe('LCHTypeURLCallback', function testLCHTypeURLCallback() {
 
 });
 
+describe('LCHTypeStringCanonicalExampleCallback', function testLCHTypeStringCanonicalExampleCallback() {
+
+	it('returns string', function() {
+		deepEqual(mainModule.LCHTypeStringCanonicalExampleCallback(), 'http://example.com');
+	});
+
+});
+
 describe('LCHTypeURLRecipe', function testLCHTypeURLRecipe() {
 
 	it('returns LCHRecipe', function() {
@@ -64,6 +72,7 @@ describe('LCHTypeURLRecipe', function testLCHTypeURLRecipe() {
 			LCHRecipeSignature: 'URL',
 			LCHRecipeCallback: mainModule.LCHTypeURLCallback,
 			LCHRecipeOutputType: 'Bool',
+			LCHRecipeOutputTypeCanonicalExampleCallback: mainModule.LCHTypeStringCanonicalExampleCallback,
 		});
 	});
 

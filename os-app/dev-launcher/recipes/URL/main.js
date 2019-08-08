@@ -12,11 +12,16 @@ export const LCHTypeURLCallback = function(inputData) {
 	return true;
 };
 
+export const LCHTypeStringCanonicalExampleCallback = function() {
+	return 'http://example.com';
+};
+
 export const LCHTypeURLRecipe = function() {
 	return {
 		LCHRecipeName: 'URL',
 		LCHRecipeSignature: 'URL',
 		LCHRecipeCallback: LCHTypeURLCallback,
 		LCHRecipeOutputType: 'Bool',
+		LCHRecipeOutputTypeCanonicalExampleCallback: LCHTypeStringCanonicalExampleCallback,
 	};
 };
