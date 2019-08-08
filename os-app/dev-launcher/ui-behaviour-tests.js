@@ -82,9 +82,10 @@ describe('LCHLauncherAccess', function testkLCHLauncherAccess() {
 			browser.assert.elements(kLCHLauncherSubjectZoneInput, 1);
 			browser.assert.elements(kLCHLauncherActionZoneInput, 1);
 
-			browser.assert.elements(kLCHLauncherResultList, 0);
-			browser.assert.elements(kLCHLauncherListItem, 0);
 			browser.assert.elements(kLCHLauncherList, 0);
+			browser.assert.elements(kLCHLauncherListItem, 0);
+			browser.assert.elements(kLCHLauncherResultList, 0);
+			browser.assert.elements(kLCHLauncherResultListItem, 0);
 			browser.assert.elements(kLCHLauncherPipeItem, 0);
 		});
 		
