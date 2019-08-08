@@ -1,11 +1,12 @@
-import * as Url from 'url-parse';
+import * as _URLParser from 'url-parse';
+const URLParser = typeof _URLParser === 'function' ? _URLParser : _URLParser.default;
 
 export const LCHTypeURLCallback = function(inputData) {
 	if (typeof inputData !== 'string') {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	if (!(new Url(inputData)).hostname) {
+	if (!(new URLParser(inputData)).hostname) {
 		return false;
 	}
 
