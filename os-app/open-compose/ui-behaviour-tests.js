@@ -34,7 +34,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHLauncherUITestDiscovery', function testDiscovery() {
+describe('LCHComposeDiscovery', function testLCHComposeDiscovery() {
 
 	before(function() {
 		return browser.visit(DefaultRoutePath);
@@ -91,21 +91,12 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 	context('delete', function () {
 
 		it('on cancel', async function() {
-			const browser = new OLSKBrowser();
-
-			await browser.visit(DefaultRoutePath);
-
-			await uCreateItem(browser);
-
-			await new Promise(async function (resolve, reject) {
-				browser.on('confirm', function (dialog) {
-					dialog.response = false;
-
-					return resolve(dialog);
-				});
-
+			await browser.OLSKConfirm(async function () {
 				browser.pressButton(LCHComposeDetailToolbarDiscardButton);
-				await browser.wait({ element: LCHComposeListItem });
+			}, function (dialog) {
+				dialog.response = false;
+
+				return dialog;
 			});
 
 			await browser.wait({ element: LCHComposeListItem });
@@ -116,19 +107,8 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 		});
 
 		it('on confirm', async function() {
-			const browser = new OLSKBrowser();
-
-			await browser.visit(DefaultRoutePath);
-
-			await uCreateItem(browser);
-
-			await new Promise(async function (resolve, reject) {
-				browser.on('confirm', function (dialog) {
-					return resolve(dialog);
-				});
-
+			await browser.OLSKConfirm(async function () {
 				browser.pressButton(LCHComposeDetailToolbarDiscardButton);
-				await browser.wait({ element: LCHComposeListItem });
 			});
 
 			await browser.wait({ element: LCHComposeListItem });
@@ -142,7 +122,7 @@ describe('LCHLauncherUITestDiscovery', function testDiscovery() {
 
 });
 
-describe('LCHLauncherUITestLanguage', function testLanguage() {
+describe('LCHComposeLanguage', function testLCHComposeLanguage() {
 
 	['en'].forEach(function (languageCode) {
 
@@ -157,13 +137,13 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 			});
 
 			it('localizes interface', function() {
-				deepEqual(browser.query(LCHComposeCreateButton).title, uLocalized('LCHComposeToolbarCreateButtonText'));
+				browser.assert.attribute(LCHComposeCreateButton, 'title', uLocalized('LCHComposeToolbarCreateButtonText'))
 
-				deepEqual(browser.query(LCHComposeDetailPlaceholderContainer).textContent, uLocalized('LCHComposeDetailPlaceholderText'));
+				browser.assert.text(LCHComposeDetailPlaceholderContainer, uLocalized('LCHComposeDetailPlaceholderText'))
 
-				deepEqual(browser.query(LCHComposeBuildLink).textContent, 'Try it');
-				deepEqual(browser.query(LCHComposeBuildLink).href.indexOf('javascript:'), 0);
-				deepEqual(browser.query(LCHComposeBuildLink).href.includes('Launchlet'), true);
+				browser.assert.text(LCHComposeBuildLink, 'Try it')
+				// deepEqual(browser.query(LCHComposeBuildLink).href.slice(0, 11), 'javascript:');
+				// deepEqual(item.href.includes('Launchlet'), true);
 			});
 
 			it('on create', async function() {
@@ -220,20 +200,9 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 			});
 
 			it('on delete', async function() {
-				const browser = new OLSKBrowser();
-
-				await browser.visit(`${ languageCode }${ DefaultRoutePath }`);
-
-				await uCreateItem(browser);
-
-				deepEqual((await new Promise(async function (resolve, reject) {
-					browser.on('confirm', function (dialog) {
-						resolve(dialog);
-					});
-
+				deepEqual((await browser.OLSKConfirm(async function () {
 					browser.pressButton(LCHComposeDetailToolbarDiscardButton);
-					await browser.wait({ element: LCHComposeListItem });
-				})).question, uLocalized('LCHComposeListItemDeletePromptText'));
+				})).question, uLocalized('LCHComposeListItemDeletePromptText'))
 			});
 
 		});
@@ -242,7 +211,7 @@ describe('LCHLauncherUITestLanguage', function testLanguage() {
 
 });
 
-describe('LCHLauncherUITestDiscovery', function testDiscovery() {
+describe('LCHComposeDiscovery', function testLCHComposeDiscovery() {
 
 	before(function() {
 		return browser.visit(DefaultRoutePath);
