@@ -89,21 +89,6 @@ describe('LCHLauncherZoneInputInteraction', function testLCHLauncherZoneInputInt
 		return browser.visit(kDefaultRoutePath);
 	});
 
-	context('isSelected', function () {
-
-		it('defaults to false', function() {
-			browser.assert.hasNoClass(LCHLauncherZoneInput, 'LCHLauncherZoneInputSelected');
-		});
-
-		it('adds class if true', async function() {
-			browser.pressButton('#LCHLauncherZoneInputTestSelect');
-			await browser.wait({ element: '.LCHLauncherZoneInputSelected' });
-
-			browser.assert.hasClass(LCHLauncherZoneInput, 'LCHLauncherZoneInputSelected');
-		});
-		
-	});
-
 	context('MatchStop', function () {
 
 		it('defaults to false', function() {
@@ -132,7 +117,7 @@ describe('LCHLauncherZoneInputInteraction', function testLCHLauncherZoneInputInt
 			deepEqual(browser.query('#LCHLauncherZoneInputTestClick').textContent, '0');
 
 			browser.click(LCHLauncherZoneInput);
-			await browser.wait({ element: '.LCHLauncherZoneInputSelected' });
+			await browser.wait({ element: '.LCHLauncherZoneInput' });
 
 			deepEqual(browser.query('#LCHLauncherZoneInputTestClick').textContent, '1');
 		});

@@ -1,14 +1,13 @@
 <script>
 export let NameText = '';
 export let FilterText = '';
-export let isSelected = false;
 export let MatchStop = false;
 export let didClick = null;
 </script>
 
 <strong class="LCHLauncherZoneInputHeading" class:LCHLauncherZoneInputHeadingMatchStop={ MatchStop }>{ FilterText && FilterText.toUpperCase() || NameText || 'Undefined' }</strong>
 
-<div class="LCHLauncherZoneInput" class:LCHLauncherZoneInputSelected={ isSelected } on:click={ () => didClick && didClick() }>
+<div class="LCHLauncherZoneInput" on:click={ () => didClick && didClick() }>
 
 
 <div class="LCHLauncherZoneInputBezel">
@@ -64,10 +63,6 @@ export let didClick = null;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-}
-
-.LCHLauncherZoneInputSelected .LCHLauncherZoneInputBezel {
-	background: #bcdaff;
 }
 
 .LCHLauncherZoneInputPlaceholder {
