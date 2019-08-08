@@ -1,3 +1,5 @@
+import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
+
 export const LCHLauncherOptions = function (inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
@@ -47,7 +49,7 @@ export const LCHLauncherFilterForText = function (inputData) {
 	};
 };
 
-export const LCHLauncherThrottleDuration = 500;
+export const LCHLauncherThrottleDuration = _LCHIsTestingBehaviour() ? 25 : 500;
 
 export const LCHLauncherConstrainIndex = function (param1, param2) {
 	if (!Array.isArray(param1)) {

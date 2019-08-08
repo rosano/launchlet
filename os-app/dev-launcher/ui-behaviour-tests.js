@@ -88,30 +88,27 @@ describe('LCHLauncherDiscovery', function testLCHLauncherDiscovery() {
 			
 			it('does nothing if no match', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, '[');
-				await browser.wait({element: LCHLauncherPipeItem});
-
-				browser.assert.elements(LCHLauncherPipeItem, 0);
-			});
-			
-			it('removes last character if backspace', async function() {
-				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
-				await browser.wait({element: LCHLauncherPipeItem});
+				await browser.wait({element: LCHLauncherSubjectZoneInputHeading});
+				deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, '[');
 
 				browser.assert.elements(LCHLauncherPipeItem, 0);
 			});
 			
 			it('shows first item if match', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
 				browser.OLSKFireKeyboardEvent(browser.window, 'a');
-				await browser.wait({element: LCHLauncherPipeItem});
+				await browser.wait({element: LCHLauncherSubjectZoneInputHeading});
 
 				browser.assert.elements(`${ LCHLauncherSubjectZoneInput } ${ LCHLauncherPipeItem }`, 1);
 			});
-
-			it('shows list after throttle', async function() {
+			
+			it('hides list', async function() {
 				browser.assert.elements(LCHLauncherResultList, 0);
 				browser.assert.elements(LCHLauncherResultListItem, 0);
+			});
 
-				await browser.wait({duration: LCHLauncherThrottleDuration * 2});
+			it('shows list after throttle', async function() {
+				await browser.wait({element: LCHLauncherResultList});
 
 				browser.assert.elements(LCHLauncherResultList, 1);
 				browser.assert.elements(LCHLauncherResultListItem, 5);
@@ -316,9 +313,16 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 
 				it('on keydown', async function() {
 					browser.OLSKFireKeyboardEvent(browser.window, 'a');
-					await browser.wait({element: LCHLauncherPipeItem});
+					await browser.wait({element: LCHLauncherSubjectZoneInputHeading});
 
 					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, 'A');
+				});
+				
+				it('on keydown Backspace', async function() {
+					browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
+					await browser.wait({element: LCHLauncherSubjectZoneInputHeading});
+					
+					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, uLocalized('LCHLauncherZoneInputHeadingSubject'));
 				});
 
 			});
