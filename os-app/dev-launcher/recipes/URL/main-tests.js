@@ -4,10 +4,14 @@ import * as mainModule from './main.js';
 
 describe('LCHTypeURLCallback', function testLCHTypeURLCallback() {
 
-	it('throws error if not string', function() {
+	it.skip('throws error if not string', function() {
 		throws(function() {
 			mainModule.LCHTypeURLCallback(null);
 		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns false if not string', function() {
+		deepEqual(mainModule.LCHTypeURLCallback(null), false);
 	});
 
 	it('returns false if no scheme', function() {
