@@ -358,18 +358,6 @@ async function itemDidClick(event, item) {
 <svelte:window on:keydown={ handleKeydown } on:click={ handleClick } on:touchstart={ handleClick }/>
 
 <div class="Container" bind:this={ rootElement }>
-	{#if LCHOptionsObject().runMode === LCHLauncherModePipe() && resultListThrottle === false }
-		{#if $formulasVisible.length}
-			<div class="LCHLauncherResultList">
-				{#each $formulasVisible as e}
-					<div class="LCHLauncherResultListItem" class:LCHLauncherResultListItemSelected={ e === $formulaSelected }>
-						<LCHLauncherPipeItem itemTitle={ e.LCHRecipeTitle } />
-					</div>
-				{/each}
-			</div>
-		{/if}
-	{/if}
-
 	<div class="Bezel">
 		{#if LCHOptionsObject().runMode !== LCHLauncherModePipe() }
 			<input placeholder="{ LCHOptionsObject().runMode === LCHLauncherModeJump() ? OLSKLocalized('LCHLauncherInputPlaceholderJump') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ filterText } bind:this={ inputElement } id="LCHLauncherFilterInput" />
@@ -393,6 +381,18 @@ async function itemDidClick(event, item) {
 					<LCHLauncherZoneInput NameText={ OLSKLocalized('LCHLauncherZoneInputHeadingSubject') } FilterText={ filterText } />
 				{/if}
 			</div>
+
+			{#if LCHOptionsObject().runMode === LCHLauncherModePipe() && resultListThrottle === false }
+				{#if $formulasVisible.length}
+					<div class="LCHLauncherResultList">
+						{#each $formulasVisible as e}
+							<div class="LCHLauncherResultListItem" class:LCHLauncherResultListItemSelected={ e === $formulaSelected }>
+								<LCHLauncherPipeItem itemTitle={ e.LCHRecipeTitle } />
+							</div>
+						{/each}
+					</div>
+				{/if}
+			{/if}
 
 			<div class="LCHLauncherActionZoneInput" class:LCHLauncherZoneSelected={ selectedZone === 'LCHLauncherActionZoneInput' }>
 				<LCHLauncherZoneInput NameText={ OLSKLocalized('LCHLauncherZoneInputHeadingAction') }>
@@ -432,10 +432,11 @@ async function itemDidClick(event, item) {
 .LCHLauncherResultList {
 	width: 95%;
 	border: 1px solid hsl(0, 0%, 80%);
-	border-top: none;
-	border-bottom: none;
+	border-radius: 5px 0 0 5px;
 
-	margin: auto;
+	margin: 5px;
+	margin-left: 4%;
+	margin-right: none;
 
 	background: hsl(0, 0%, 95%);
 }
