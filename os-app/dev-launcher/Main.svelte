@@ -3,7 +3,7 @@ import { OLSKLocalized } from '../_shared/common/global.js';
 
 import LCHLauncherZoneInput from './modules/LCHLauncherZoneInput/main.svelte';
 import LCHLauncherPipeItem from './modules/LCHLauncherPipeItem/main.svelte';
-import { LCHOptionsObject, formulaSelected, formulasVisible, secondaryComponent } from './_shared.js';
+import { LCHOptionsObject, formulaSelected, formulasVisible, actionsVisible, secondaryComponent } from './_shared.js';
 import { LCHLauncherStandardRecipes } from './recipes/recipes.js';
 import {
 	LCHLauncherModeJump,
@@ -17,6 +17,7 @@ import {
 import {
 	LCHRecipesModelErrorsFor,
 	LCHRecipesModelIsSubject,
+	LCHRecipesModelIsVerb,
 	LCHComponentDescriptorsModelErrorsFor,
 	LCHAPITypeEquivalenceMapForRecipes
 } from './api.js';
@@ -91,6 +92,24 @@ let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump() ? dat
 import OLSKThrottle from 'OLSKThrottle';
 let resultListThrottle, inputThrottle;
 let matchStop;
+if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
+	formulaSelected.subscribe(function formulaSelectedDidChange(val) {
+		return actionsVisible.set(!val ? [] : allRecipes.filter(function (e) {
+			if (!LCHRecipesModelIsVerb(e)) {
+				return false;
+			}
+
+			if (!apiTypeEquivalenceMap[val.LCHRecipeOutputType].filter(function (type) {
+				return e.LCHRecipeInputTypes.indexOf(type) !== -1
+			}).length) {
+				return false;
+			}
+
+			return true;
+		}));
+	});
+}
+
 let filterTextDidChange = function (val) {
 	formulasVisible.update(function(currentValue) {
 		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
