@@ -343,8 +343,8 @@ async function itemDidClick(event, item) {
 				{/if}
 			</div>
 
-			<div class="LCHLauncherVerbZoneInput">
-				<LCHLauncherZoneInput NameText={ OLSKLocalized('LCHLauncherZoneInputHeadingVerb') }>
+			<div class="LCHLauncherActionZoneInput">
+				<LCHLauncherZoneInput NameText={ OLSKLocalized('LCHLauncherZoneInputHeadingAction') }>
 				</LCHLauncherZoneInput>
 			</div>
 		{/if}

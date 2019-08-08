@@ -14,8 +14,8 @@ Object.entries({
 	kLCHLauncherFilterInput: '#LCHLauncherFilterInput',
 	kLCHLauncherSubjectZoneInput: '.LCHLauncherSubjectZoneInput .LCHLauncherZoneInput',
 	kLCHLauncherSubjectZoneInputHeading: '.LCHLauncherSubjectZoneInput .LCHLauncherZoneInputHeading',
-	kLCHLauncherVerbZoneInput: '.LCHLauncherVerbZoneInput .LCHLauncherZoneInput',
-	kLCHLauncherVerbZoneInputHeading: '.LCHLauncherVerbZoneInput .LCHLauncherZoneInputHeading',
+	kLCHLauncherActionZoneInput: '.LCHLauncherActionZoneInput .LCHLauncherZoneInput',
+	kLCHLauncherActionZoneInputHeading: '.LCHLauncherActionZoneInput .LCHLauncherZoneInputHeading',
 
 	kLCHLauncherList: '.ListContainer',
 	kLCHLauncherListItem: '.ListItem',
@@ -80,7 +80,7 @@ describe('LCHLauncherAccess', function testkLCHLauncherAccess() {
 		it('on startup', function() {
 			browser.assert.elements(kLCHLauncherFilterInput, 0);
 			browser.assert.elements(kLCHLauncherSubjectZoneInput, 1);
-			browser.assert.elements(kLCHLauncherVerbZoneInput, 1);
+			browser.assert.elements(kLCHLauncherActionZoneInput, 1);
 
 			browser.assert.elements(kLCHLauncherResultList, 0);
 			browser.assert.elements(kLCHLauncherListItem, 0);
@@ -313,7 +313,7 @@ describe('LCHLauncherLanguage', function testkLCHLauncherLanguage() {
 
 				it('on startup', function() {
 					deepEqual(browser.query(kLCHLauncherSubjectZoneInputHeading).textContent, uLocalized('LCHLauncherZoneInputHeadingSubject'));
-					deepEqual(browser.query(kLCHLauncherVerbZoneInputHeading).textContent, uLocalized('LCHLauncherZoneInputHeadingVerb'));
+					deepEqual(browser.query(kLCHLauncherActionZoneInputHeading).textContent, uLocalized('LCHLauncherZoneInputHeadingAction'));
 				});
 
 				it('on keydown', async function() {
