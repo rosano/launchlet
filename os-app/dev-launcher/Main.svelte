@@ -3,7 +3,13 @@ import { OLSKLocalized } from '../_shared/common/global.js';
 
 import LCHLauncherZoneInput from './modules/LCHLauncherZoneInput/main.svelte';
 import LCHLauncherPipeItem from './modules/LCHLauncherPipeItem/main.svelte';
-import { LCHOptionsObject, formulaSelected, formulasVisible, actionsVisible, secondaryComponent } from './_shared.js';
+import {
+	LCHOptionsObject,
+	formulaSelected,
+	formulasVisible,
+	actionsVisible,
+	secondaryComponent,
+} from './_shared.js';
 import { LCHLauncherStandardRecipes } from './recipes/recipes.js';
 import {
 	LCHLauncherModeJump,
