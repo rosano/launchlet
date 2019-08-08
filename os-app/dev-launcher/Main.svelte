@@ -14,7 +14,11 @@ import {
 	LCHLauncherPatternMatchesURL,
 	LCHLauncherKeyboardEventIsTextInput,
 } from './ui-logic.js';
-import { LCHRecipesModelErrorsFor, LCHRecipesModelIsSubject, LCHComponentDescriptorsModelErrorsFor } from './api.js';
+import {
+	LCHRecipesModelErrorsFor,
+	LCHRecipesModelIsSubject,
+	LCHComponentDescriptorsModelErrorsFor,
+} from './api.js';
 
 export let dataObjects = [];
 export let completionHandler;
