@@ -4,6 +4,7 @@ import * as URL from './URL/main.js';
 
 import * as LCHCopyToClipboard from './LCHCopyToClipboard/main.js';
 import * as LCHLargeType from './LCHLargeType/main.js';
+import * as LCHRunCommand from './LCHRunCommand/main.js';
 
 export const LCHLauncherStandardRecipes = function() {
 	return [].concat.apply([], [
@@ -13,6 +14,7 @@ export const LCHLauncherStandardRecipes = function() {
 		
 		LCHCopyToClipboard,
 		LCHLargeType,
+		LCHRunCommand,
 	].map(function (e) {
 		return Object.entries(e).filter(function (e) {
 			return e.shift().includes('Recipe');
