@@ -15,3 +15,25 @@ describe('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
 	});
 
 });
+
+describe('LCHLauncherPromptText', function testLCHLauncherPromptText() {
+
+	before(function() {
+		return browser.visit(kDefaultRoutePath);
+	});
+	
+	it.skip('on startup', function() {
+	});
+
+});
+
+describe('LCHLauncherPromptInteraction', function testLCHLauncherPromptInteraction() {
+
+	before(function() {
+		return browser.visit(kDefaultRoutePath);
+	});
+	
+	it.skip('on startup', function() {
+	});
+
+});
