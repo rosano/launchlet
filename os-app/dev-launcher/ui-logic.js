@@ -5,9 +5,15 @@ export const LCHLauncherOptions = function (inputData) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
+	// #mysterious Why doesn't function equivalency work here?
+	// LCHLauncherModes().indexOf(inputData.runMode) always returns -1
+	let runModeIndex = LCHLauncherModes().map(function (e) {
+		return e.toString();
+	}).indexOf(inputData.runMode.toString());
+
 	return {
 		languageCode: !inputData.languageCode ? 'en' : inputData.languageCode,
-		runMode: LCHLauncherModes().indexOf(inputData.runMode) === -1 ? LCHLauncherModes().shift() : inputData.runMode,
+		runMode: runModeIndex === -1 ? LCHLauncherModes().shift() : LCHLauncherModes()[runModeIndex],
 	};
 };
 
