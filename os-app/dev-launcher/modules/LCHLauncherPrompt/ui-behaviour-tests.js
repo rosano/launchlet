@@ -4,7 +4,7 @@ const browser = new OLSKBrowser();
 const kDefaultRoutePath = '/modules/LCHLauncherPrompt';
 const LCHLauncherPrompt = '.LCHLauncherPrompt';
 
-describe('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
+describe.only('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
@@ -16,7 +16,7 @@ describe('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
 
 });
 
-describe('LCHLauncherPromptText', function testLCHLauncherPromptText() {
+describe.only('LCHLauncherPromptText', function testLCHLauncherPromptText() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
@@ -27,7 +27,7 @@ describe('LCHLauncherPromptText', function testLCHLauncherPromptText() {
 
 });
 
-describe('LCHLauncherPromptInteraction', function testLCHLauncherPromptInteraction() {
+describe.only('LCHLauncherPromptInteraction', function testLCHLauncherPromptInteraction() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
