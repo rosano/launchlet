@@ -60,8 +60,6 @@ describe.only('LCHLauncherResultListText', function testLCHLauncherResultListTex
 
 describe.only('LCHLauncherResultListInteraction', function testLCHLauncherResultListInteraction() {
 
-	const browser = new OLSKBrowser();
-
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
 	});
