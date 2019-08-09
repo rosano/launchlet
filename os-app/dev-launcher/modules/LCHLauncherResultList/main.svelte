@@ -43,7 +43,7 @@ function keydownDidFire(event) {
 
 <div class="LCHLauncherResultList" use:LCHLauncherResultListInit={ ListItems }>
 	{#each ListItems as e,index}
-		<div class="LCHLauncherResultListItem" class:LCHLauncherResultListItemSelected={ index === SelectedIndex }>
+		<div class="LCHLauncherResultListItem" class:LCHLauncherResultListItemSelected={ index === SelectedIndex } on:click={ () => setSelectedIndex(index) }>
 			<slot LCHLauncherResultListItem={ e }></slot>
 		</div>
 	{/each}
