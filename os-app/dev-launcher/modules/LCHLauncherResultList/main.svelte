@@ -1,13 +1,18 @@
 <script>
 import { LCHLauncherResultListConstrainIndex } from './ui-logic.js';
-export let SelectedIndex = 0;
+
 export let ListItems = [];
+
+export let SelectedIndex = 0;
+function setSelectedIndex(inputData) {
+	SelectedIndex = LCHLauncherResultListConstrainIndex(ListItems, inputData);
+}
 
 function LCHLauncherResultListInit(node, ListItems) {
 	return {
 		update(ListItems) {
 			setTimeout(function () {
-				SelectedIndex = 0;
+				setSelectedIndex(0);
 			})
 		},
 	};
@@ -16,12 +21,12 @@ function LCHLauncherResultListInit(node, ListItems) {
 function keydownDidFire(event) {
 	const handlerFunctions = {
 		ArrowUp () {
-			SelectedIndex = LCHLauncherResultListConstrainIndex(ListItems, SelectedIndex - 1);
+			setSelectedIndex(SelectedIndex - 1);
 
 			return event.preventDefault();
 		},
 		ArrowDown () {
-			SelectedIndex = LCHLauncherResultListConstrainIndex(ListItems, SelectedIndex + 1);
+			setSelectedIndex(SelectedIndex + 1);
 			
 			return event.preventDefault();
 		},
