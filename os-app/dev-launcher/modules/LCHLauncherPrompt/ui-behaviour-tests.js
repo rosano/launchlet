@@ -5,6 +5,7 @@ const kDefaultRoutePath = '/modules/LCHLauncherPrompt';
 
 const kLCHLauncherPrompt = '.LCHLauncherPrompt';
 const kLCHLauncherZoneInput = '.LCHLauncherZoneInput';
+const kLCHLauncherResultList = '.LCHLauncherResultList';
 
 describe.only('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
 
@@ -16,6 +17,8 @@ describe.only('LCHLauncherPromptElements', function testLCHLauncherPromptElement
 		browser.assert.elements(kLCHLauncherPrompt, 1);
 
 		browser.assert.elements(kLCHLauncherZoneInput, 1);
+
+		browser.assert.elements(kLCHLauncherResultList, 1);
 	});
 
 });
