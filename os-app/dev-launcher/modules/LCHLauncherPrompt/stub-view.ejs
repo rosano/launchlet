@@ -16,6 +16,11 @@
 </p>
 
 <p>
+	<strong>FilterText</strong>
+	<input oninput="Main.$set({FilterText: this.value})" id="LCHLauncherPromptTestSetFilterText" />
+</p>
+
+<p>
 	<strong>PromptItems</strong>
 	<button onclick="Main.$set({PromptItems: []})" id="LCHLauncherPromptTestSetPromptItemsZero">Zero</button>
 	<button onclick="Main.$set({PromptItems: [{
