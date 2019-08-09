@@ -9,7 +9,7 @@ const LCHLauncherZoneInputPipeItem = '.LCHLauncherZoneInput .LCHLauncherPipeItem
 const LCHLauncherResultList = '.LCHLauncherResultList';
 const LCHLauncherResultListItem = '.LCHLauncherResultListItem';
 
-describe.only('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
+describe('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
@@ -58,7 +58,7 @@ describe.only('LCHLauncherPromptElements', function testLCHLauncherPromptElement
 
 });
 
-describe.only('LCHLauncherPromptText', function testLCHLauncherPromptText() {
+describe('LCHLauncherPromptText', function testLCHLauncherPromptText() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
@@ -91,7 +91,7 @@ describe.only('LCHLauncherPromptText', function testLCHLauncherPromptText() {
 
 });
 
-describe.only('LCHLauncherPromptInteraction', function testLCHLauncherPromptInteraction() {
+describe('LCHLauncherPromptInteraction', function testLCHLauncherPromptInteraction() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
