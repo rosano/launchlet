@@ -26,21 +26,21 @@ describe.only('LCHLauncherPromptElements', function testLCHLauncherPromptElement
 	});
 
 	it('on set single', async function() {
-		await browser.pressButton('#LCHLauncherZoneInputTestSetPromptItemsSingle');
+		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsSingle');
 
 		browser.assert.elements(kLCHLauncherResultListItem, 1);
 		browser.assert.elements(kLCHLauncherZoneInputPipeItem, 1);
 	});
 	
 	it('on set multiple', async function() {
-		await browser.pressButton('#LCHLauncherZoneInputTestSetPromptItemsMultiple');
+		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
 
 		browser.assert.elements(kLCHLauncherResultListItem, 3);
 		browser.assert.elements(kLCHLauncherZoneInputPipeItem, 1);
 	});
 	
 	it('on set zero', async function() {
-		await browser.pressButton('#LCHLauncherZoneInputTestSetPromptItemsZero');
+		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsZero');
 
 		browser.assert.elements(kLCHLauncherResultListItem, 0);
 		browser.assert.elements(kLCHLauncherZoneInputPipeItem, 0);
@@ -53,8 +53,16 @@ describe.only('LCHLauncherPromptText', function testLCHLauncherPromptText() {
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
 	});
-	
-	it.skip('on startup', function() {
+
+	it('on startup', function() {
+		browser.assert.text('.LCHLauncherZoneInputHeading', 'Undefined');
+	});
+
+	it('on update', async function() {
+		browser.fill('#LCHLauncherPromptTestSetHeaderText', 'alfa');
+		await browser.wait({ element: '.LCHLauncherZoneInputHeading' });
+
+		browser.assert.text('.LCHLauncherZoneInputHeading', 'alfa');
 	});
 
 });
