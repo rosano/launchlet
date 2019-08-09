@@ -5,5 +5,17 @@
 	<link rel="stylesheet" type="text/css" href="/<%= OLSKSharedPageControllerSlug %>/_compiled/ui-style.css">
 </head>
 <body>
+
+<script src="/<%= OLSKSharedPageControllerSlug %>/_compiled/ui-behaviour.js"></script>
+
+<hr>
+
+<p>
+	<strong>TestItems</strong>
+	<button onclick="Main.$set({TestItems: []})" id="LCHLauncherZoneInputTestSetTestItemsZero">Zero</button>
+	<button onclick="Main.$set({TestItems: ['alfa']})" id="LCHLauncherZoneInputTestSetTestItemsSingle">Single</button>
+	<button onclick="Main.$set({TestItems: ['alfa','bravo']})" id="LCHLauncherZoneInputTestSetTestItemsMultiple">Multiple</button>
+</p>
+
 </body>
 </html>
