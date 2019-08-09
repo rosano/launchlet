@@ -6,7 +6,7 @@ const LCHLauncherResultList = '.LCHLauncherResultList';
 const LCHLauncherResultListItem = '.LCHLauncherResultListItem';
 const LCHLauncherResultListEmpty = '.LCHLauncherResultListEmpty';
 
-describe.only('LCHLauncherResultListElements', function testLCHLauncherResultListElements() {
+describe('LCHLauncherResultListElements', function testLCHLauncherResultListElements() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
@@ -46,7 +46,7 @@ describe.only('LCHLauncherResultListElements', function testLCHLauncherResultLis
 
 });
 
-describe.only('LCHLauncherResultListText', function testLCHLauncherResultListText() {
+describe('LCHLauncherResultListText', function testLCHLauncherResultListText() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
@@ -58,7 +58,7 @@ describe.only('LCHLauncherResultListText', function testLCHLauncherResultListTex
 
 });
 
-describe.only('LCHLauncherResultListInteraction', function testLCHLauncherResultListInteraction() {
+describe('LCHLauncherResultListInteraction', function testLCHLauncherResultListInteraction() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
