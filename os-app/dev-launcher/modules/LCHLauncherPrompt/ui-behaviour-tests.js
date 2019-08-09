@@ -3,11 +3,11 @@ import { throws, deepEqual } from 'assert';
 const browser = new OLSKBrowser();
 const kDefaultRoutePath = '/modules/LCHLauncherPrompt';
 
-const kLCHLauncherPrompt = '.LCHLauncherPrompt';
-const kLCHLauncherZoneInput = '.LCHLauncherZoneInput';
-const kLCHLauncherZoneInputPipeItem = '.LCHLauncherZoneInput .LCHLauncherPipeItem';
-const kLCHLauncherResultList = '.LCHLauncherResultList';
-const kLCHLauncherResultListItem = '.LCHLauncherResultListItem';
+const LCHLauncherPrompt = '.LCHLauncherPrompt';
+const LCHLauncherZoneInput = '.LCHLauncherZoneInput';
+const LCHLauncherZoneInputPipeItem = '.LCHLauncherZoneInput .LCHLauncherPipeItem';
+const LCHLauncherResultList = '.LCHLauncherResultList';
+const LCHLauncherResultListItem = '.LCHLauncherResultListItem';
 
 describe.only('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
 
@@ -16,34 +16,34 @@ describe.only('LCHLauncherPromptElements', function testLCHLauncherPromptElement
 	});
 	
 	it('on startup', function() {
-		browser.assert.elements(kLCHLauncherPrompt, 1);
+		browser.assert.elements(LCHLauncherPrompt, 1);
 
-		browser.assert.elements(kLCHLauncherZoneInput, 1);
-		browser.assert.elements(kLCHLauncherZoneInputPipeItem, 0);
+		browser.assert.elements(LCHLauncherZoneInput, 1);
+		browser.assert.elements(LCHLauncherZoneInputPipeItem, 0);
 
-		browser.assert.elements(kLCHLauncherResultList, 1);
-		browser.assert.elements(kLCHLauncherResultListItem, 0);
+		browser.assert.elements(LCHLauncherResultList, 1);
+		browser.assert.elements(LCHLauncherResultListItem, 0);
 	});
 
 	it('on set single', async function() {
 		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsSingle');
 
-		browser.assert.elements(kLCHLauncherResultListItem, 1);
-		browser.assert.elements(kLCHLauncherZoneInputPipeItem, 1);
+		browser.assert.elements(LCHLauncherResultListItem, 1);
+		browser.assert.elements(LCHLauncherZoneInputPipeItem, 1);
 	});
 	
 	it('on set multiple', async function() {
 		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
 
-		browser.assert.elements(kLCHLauncherResultListItem, 3);
-		browser.assert.elements(kLCHLauncherZoneInputPipeItem, 1);
+		browser.assert.elements(LCHLauncherResultListItem, 3);
+		browser.assert.elements(LCHLauncherZoneInputPipeItem, 1);
 	});
 	
 	it('on set zero', async function() {
 		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsZero');
 
-		browser.assert.elements(kLCHLauncherResultListItem, 0);
-		browser.assert.elements(kLCHLauncherZoneInputPipeItem, 0);
+		browser.assert.elements(LCHLauncherResultListItem, 0);
+		browser.assert.elements(LCHLauncherZoneInputPipeItem, 0);
 	});
 
 });
