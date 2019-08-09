@@ -11,6 +11,11 @@
 <hr>
 
 <p>
+	<strong>HeaderText</strong>
+	<input oninput="Main.$set({HeaderText: this.value})" id="LCHLauncherPromptTestSetHeaderText" />
+</p>
+
+<p>
 	<strong>PromptItems</strong>
 	<button onclick="Main.$set({PromptItems: []})" id="LCHLauncherZoneInputTestSetPromptItemsZero">Zero</button>
 	<button onclick="Main.$set({PromptItems: [{

@@ -4,6 +4,7 @@ import LCHLauncherResultList from '../LCHLauncherResultList/main.svelte';
 import LCHLauncherPipeItem from '../LCHLauncherPipeItem/main.svelte';
 
 export let PromptItems = [];
+export let HeaderText = undefined;
 
 let ItemSelected = null;
 </script>
@@ -11,11 +12,11 @@ let ItemSelected = null;
 <div class="LCHLauncherPrompt">
 
 {#if ItemSelected}
-	<LCHLauncherZoneInput>
+	<LCHLauncherZoneInput HeadingText={ HeaderText }>
 		<LCHLauncherPipeItem itemTitle={ ItemSelected.LCHRecipeTitle } />
 	</LCHLauncherZoneInput>
 {:else}
-	<LCHLauncherZoneInput />
+	<LCHLauncherZoneInput HeadingText={ HeaderText } />
 {/if}
 <LCHLauncherResultList ListItems={ PromptItems } let:LCHLauncherResultListItem={ item } on:ItemSelectedDidChange={ (event) => ItemSelected = event.detail }>
 	<div>{ item.LCHRecipeTitle }</div>
