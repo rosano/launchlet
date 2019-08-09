@@ -8,5 +8,22 @@
 
 <script src="/<%= OLSKSharedPageControllerSlug %>/_compiled/ui-behaviour.js"></script>
 
+<hr>
+
+<p>
+	<strong>PromptItems</strong>
+	<button onclick="Main.$set({PromptItems: []})" id="LCHLauncherZoneInputTestSetPromptItemsZero">Zero</button>
+	<button onclick="Main.$set({PromptItems: [{
+		LCHRecipeTitle: 'alfa',
+	}]})" id="LCHLauncherZoneInputTestSetPromptItemsSingle">Single</button>
+	<button onclick="Main.$set({PromptItems: [{
+		LCHRecipeTitle: 'alfa',
+	},{
+		LCHRecipeTitle: 'bravo',
+	},{
+		LCHRecipeTitle: 'charlie',
+	}]})" id="LCHLauncherZoneInputTestSetPromptItemsMultiple">Multiple</button>
+</p>
+
 </body>
 </html>
