@@ -96,11 +96,11 @@ async function apiStart(inputData) {
 }
 
 let filterText = '';
-let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump() ? dataObjects : [];
+let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump ? dataObjects : [];
 import OLSKThrottle from 'OLSKThrottle';
 let resultListThrottle, inputThrottle;
 let matchStop;
-if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
+if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
 	formulaSelected.subscribe(function formulaSelectedDidChange(val) {
 		return actionsVisible.set(!val ? [] : allRecipes.filter(function (e) {
 			if (!LCHRecipesModelIsVerb(e)) {
@@ -124,7 +124,7 @@ if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
 
 let filterTextDidChange = function (val) {
 	formulasVisible.update(function(currentValue) {
-		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
 			return !val ? formulasDefault : dataObjects.filter(LCHLauncherFilterForText(val));
 		}
 		
@@ -152,14 +152,14 @@ let filterTextDidChange = function (val) {
 	});
 
 	formulaSelected.set((function() {
-		if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
+		if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
 			return $formulasVisible[0];
 		}
 
 		return !val ? null : $formulasVisible[0];
 	})());
 
-	if (LCHOptionsObject().runMode !== LCHLauncherModeJump()) {
+	if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
 		return;
 	}
 
@@ -176,7 +176,7 @@ let rootElement;
 let inputElement;
 import { onMount } from 'svelte';
 onMount(function () {
-	if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
+	if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
 		return;
 	}
 	
@@ -224,7 +224,7 @@ function handleKeydown(event) {
 			return event.preventDefault();
 		},
 		Tab () {
-			if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
+			if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
 				(function() {
 					if (selectedZone === 'LCHLauncherSubjectZoneInput') {
 						selectedZone = 'LCHLauncherActionZoneInput';
@@ -238,33 +238,33 @@ function handleKeydown(event) {
 			return event.preventDefault();
 		},
 		ArrowUp () {
-			if (LCHOptionsObject().runMode === LCHLauncherModePipe() && resultListThrottle) {
+			if (LCHOptionsObject().runMode === LCHLauncherModePipe && resultListThrottle) {
 				return OLSKThrottle.OLSKThrottleSkip(resultListThrottle);
 			}
 
 			formulaSelected.set($formulasVisible[LCHLauncherConstrainIndex($formulasVisible, $formulasVisible.indexOf($formulaSelected) - 1)]);
 
-			if (LCHOptionsObject().runMode === LCHLauncherModeJump()) {
+			if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
 				apiStart($formulaSelected);
 			}
 
 			return event.preventDefault();
 		},
 		ArrowDown () {
-			if (LCHOptionsObject().runMode === LCHLauncherModePipe() && resultListThrottle) {
+			if (LCHOptionsObject().runMode === LCHLauncherModePipe && resultListThrottle) {
 				return OLSKThrottle.OLSKThrottleSkip(resultListThrottle);
 			}
 
 			formulaSelected.set($formulasVisible[LCHLauncherConstrainIndex($formulasVisible, $formulasVisible.indexOf($formulaSelected) + 1)]);
 			
-			if (LCHOptionsObject().runMode === LCHLauncherModeJump()) {
+			if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
 				apiStart($formulaSelected);
 			}
 
 			return event.preventDefault();
 		},
 		async Enter () {
-			if (LCHOptionsObject().runMode !== LCHLauncherModeJump()) {
+			if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
 				await apiStart($formulaSelected);
 			}
 
@@ -273,7 +273,7 @@ function handleKeydown(event) {
 			return event.preventDefault();
 		},
 		Backspace () {
-			if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
+			if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
 				filterText = filterText.slice(0, -1);
 				return;
 			}
@@ -300,7 +300,7 @@ function handleKeydown(event) {
 		return handlerFunctions[event.code]();
 	}
 
-	if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
+	if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
 		return;
 	}
 
@@ -360,8 +360,8 @@ async function itemDidClick(event, item) {
 
 <div class="Container" bind:this={ rootElement }>
 	<div class="Bezel">
-		{#if LCHOptionsObject().runMode !== LCHLauncherModePipe() }
-			<input placeholder="{ LCHOptionsObject().runMode === LCHLauncherModeJump() ? OLSKLocalized('LCHLauncherInputPlaceholderJump') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ filterText } bind:this={ inputElement } id="LCHLauncherFilterInput" />
+		{#if LCHOptionsObject().runMode !== LCHLauncherModePipe }
+			<input placeholder="{ LCHOptionsObject().runMode === LCHLauncherModeJump ? OLSKLocalized('LCHLauncherInputPlaceholderJump') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ filterText } bind:this={ inputElement } id="LCHLauncherFilterInput" />
 
 			{#if $formulasVisible.length }
 			<div class="ListContainer">
@@ -372,7 +372,7 @@ async function itemDidClick(event, item) {
 			{/if}
 		{/if}
 
-		{#if LCHOptionsObject().runMode === LCHLauncherModePipe() }
+		{#if LCHOptionsObject().runMode === LCHLauncherModePipe }
 			<div class="LCHLauncherSubjectZoneInput" class:LCHLauncherZoneSelected={ selectedZone === 'LCHLauncherSubjectZoneInput' }>
 				{#if $formulasVisible.length}
 					<LCHLauncherZoneInput HeadingText={ OLSKLocalized('LCHLauncherZoneInputHeadingSubject') } FilterText={ filterText } MatchStop={ matchStop }>
@@ -383,7 +383,7 @@ async function itemDidClick(event, item) {
 				{/if}
 			</div>
 
-			{#if LCHOptionsObject().runMode === LCHLauncherModePipe() && resultListThrottle === false }
+			{#if LCHOptionsObject().runMode === LCHLauncherModePipe && resultListThrottle === false }
 				{#if $formulasVisible.length}
 					<div class="LCHLauncherResultList">
 						{#each $formulasVisible as e}
