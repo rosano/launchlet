@@ -2,7 +2,9 @@ import { throws, deepEqual } from 'assert';
 
 const browser = new OLSKBrowser();
 const kDefaultRoutePath = '/modules/LCHLauncherPrompt';
-const LCHLauncherPrompt = '.LCHLauncherPrompt';
+
+const kLCHLauncherPrompt = '.LCHLauncherPrompt';
+const kLCHLauncherZoneInput = '.LCHLauncherZoneInput';
 
 describe.only('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
 
@@ -11,7 +13,9 @@ describe.only('LCHLauncherPromptElements', function testLCHLauncherPromptElement
 	});
 	
 	it('on startup', function() {
-		browser.assert.elements(LCHLauncherPrompt, 1);
+		browser.assert.elements(kLCHLauncherPrompt, 1);
+
+		browser.assert.elements(kLCHLauncherZoneInput, 1);
 	});
 
 });
