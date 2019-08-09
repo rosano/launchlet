@@ -5,16 +5,25 @@ export const LCHLauncherOptions = function (inputData) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	// #mysterious Why doesn't function equivalency work here?
-	// LCHLauncherModes().indexOf(inputData.runMode) always returns -1
-	let runModeIndex = LCHLauncherModes().map(function (e) {
-		return e.toString();
-	}).indexOf(inputData.runMode.toString());
+	const outputData = {
+		runMode: LCHLauncherModes().shift(),
 
-	return {
-		languageCode: !inputData.languageCode ? 'en' : inputData.languageCode,
-		runMode: runModeIndex === -1 ? LCHLauncherModes().shift() : LCHLauncherModes()[runModeIndex],
+		languageCode: 'en',
 	};
+
+	if (inputData.runMode) {
+		// #mysterious Why doesn't function equivalency work here?
+		// LCHLauncherModes().indexOf(inputData.runMode) always returns -1
+		outputData.runMode = LCHLauncherModes()[LCHLauncherModes().map(function (e) {
+			return e.toString();
+		}).indexOf(inputData.runMode.toString())] || outputData.runMode;
+	}
+
+	if (inputData.languageCode) {
+		outputData.languageCode = inputData.languageCode;
+	}
+
+	return outputData;
 };
 
 export const LCHLauncherModeCommit = function () {
