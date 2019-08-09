@@ -1,4 +1,4 @@
-import App from './view.svelte';
+import App from './stub-view.svelte';
 
 const LCHLauncherResultList = new App({
 	target: document.body,
