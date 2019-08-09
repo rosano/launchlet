@@ -54,4 +54,7 @@ function keydownDidFire(event) {
 </div>
 
 <style>
+.LCHLauncherResultListItem {
+	cursor: pointer;
+}
 </style>
