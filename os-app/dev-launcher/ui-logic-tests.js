@@ -30,9 +30,9 @@ describe('LCHLauncherModes', function testLCHLauncherModes() {
 
 	it('returns array', function() {
 		deepEqual(mainModule.LCHLauncherModes(), [
-			mainModule.LCHLauncherModeCommit(),
-			mainModule.LCHLauncherModeJump(),
-			mainModule.LCHLauncherModePipe(),
+			mainModule.LCHLauncherModeCommit,
+			mainModule.LCHLauncherModeJump,
+			mainModule.LCHLauncherModePipe,
 		]);
 	});
 
@@ -63,19 +63,19 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 	context('runMode', function () {
 
 		it('returns default if not set', function() {
-			deepEqual(mainModule.LCHLauncherOptions({}).runMode, mainModule.LCHLauncherModeCommit());
+			deepEqual(mainModule.LCHLauncherOptions({}).runMode, mainModule.LCHLauncherModeCommit);
 		});
 
 		it('ignores if not valid', function() {
 			deepEqual(mainModule.LCHLauncherOptions({
 				runMode: 'alfa',
-			}).runMode, mainModule.LCHLauncherModeCommit());
+			}).runMode, mainModule.LCHLauncherModeCommit);
 		});
 
 		it('returns inputData', function() {
 			deepEqual(mainModule.LCHLauncherOptions({
-				runMode: mainModule.LCHLauncherModeJump(),
-			}).runMode, mainModule.LCHLauncherModeJump());
+				runMode: mainModule.LCHLauncherModeJump,
+			}).runMode, mainModule.LCHLauncherModeJump);
 		});
 		
 	});

@@ -25,9 +25,9 @@ export const LCHLauncherModePipe = function () {
 
 export const LCHLauncherModes = function () {
 	return [
-		LCHLauncherModeCommit(),
-		LCHLauncherModeJump(),
-		LCHLauncherModePipe(),
+		LCHLauncherModeCommit,
+		LCHLauncherModeJump,
+		LCHLauncherModePipe,
 	];
 };
 

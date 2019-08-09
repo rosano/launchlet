@@ -22,7 +22,7 @@ const LCHPackageValidateOptionsObject = function (inputData) {
 	}
 
 	if (inputData.runMode) {
-		if (LCHLauncherModes().indexOf(inputData.runMode()) === -1) {
+		if (LCHLauncherModes().indexOf(inputData.runMode) === -1) {
 			throw new Error('LCHErrorInputNotValidRunMode');
 		}
 	}
