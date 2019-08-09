@@ -21,6 +21,11 @@
 </p>
 
 <p>
+	<strong>MatchStop</strong>
+	<input type="checkbox" oninput="Main.$set({MatchStop: this.checked})" id="LCHLauncherPromptTestSetMatchStop" />
+</p>
+
+<p>
 	<strong>PromptItems</strong>
 	<button onclick="Main.$set({PromptItems: []})" id="LCHLauncherPromptTestSetPromptItemsZero">Zero</button>
 	<button onclick="Main.$set({PromptItems: [{

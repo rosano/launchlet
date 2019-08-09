@@ -74,13 +74,17 @@ describe.only('LCHLauncherPromptText', function testLCHLauncherPromptText() {
 
 });
 
-describe.skip('LCHLauncherPromptInteraction', function testLCHLauncherPromptInteraction() {
+describe.only('LCHLauncherPromptInteraction', function testLCHLauncherPromptInteraction() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
 	});
 	
-	it.skip('on startup', function() {
+	it('on update MatchStop', async function() {
+		browser.check('#LCHLauncherPromptTestSetMatchStop');
+		await browser.wait({ element: '.LCHLauncherZoneInputHeading' });
+
+		browser.assert.hasClass('.LCHLauncherZoneInputHeading', 'LCHLauncherZoneInputHeadingMatchStop');
 	});
 
 });
