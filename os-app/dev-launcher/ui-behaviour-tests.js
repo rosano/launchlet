@@ -1,10 +1,5 @@
 import { throws, deepEqual } from 'assert';
-import {
-	LCHLauncherModeCommit,
-	LCHLauncherModeJump,
-	LCHLauncherModePipe,
-	LCHLauncherThrottleDuration,
-} from './ui-logic.js';
+import { LCHLauncherThrottleDuration } from './ui-logic.js';
 
 
 const browser = new OLSKBrowser();
@@ -34,7 +29,7 @@ describe('LCHLauncherAccess', function testkLCHLauncherAccess() {
 	context('LCHLauncherModeCommit', function () {
 
 		before(function() {
-			return browser.visit(`${ kDefaultRoutePath }?runMode=${ LCHLauncherModeCommit() }`);
+			return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModeCommit`);
 		});
 		
 		it('on startup', function() {
@@ -55,7 +50,7 @@ describe('LCHLauncherAccess', function testkLCHLauncherAccess() {
 	context('LCHLauncherModeJump', function () {
 
 		before(function() {
-			return browser.visit(`${ kDefaultRoutePath }?runMode=${ LCHLauncherModeJump() }`);
+			return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModeJump`);
 		});
 		
 		it('on startup', function() {
@@ -76,7 +71,7 @@ describe('LCHLauncherAccess', function testkLCHLauncherAccess() {
 	context('LCHLauncherModePipe', function () {
 
 		before(function() {
-			return browser.visit(`${ kDefaultRoutePath }?runMode=${ LCHLauncherModePipe() }`);
+			return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
 		});
 		
 		it('on startup', function() {
@@ -122,7 +117,7 @@ describe('LCHLauncherAccess', function testkLCHLauncherAccess() {
 				browser.assert.elements(kLCHLauncherResultListItem, 5);
 			});
 
-			it.skip('selects first list item', async function() {
+			it('selects first list item', async function() {
 				await browser.wait({element: '.LCHLauncherResultListItemSelected'});
 				browser.assert.hasClass(kLCHLauncherResultListItem, 'LCHLauncherResultListItemSelected');
 			});
@@ -300,7 +295,7 @@ describe('LCHLauncherLanguage', function testkLCHLauncherLanguage() {
 			context('LCHLauncherModeJump', function () {
 
 				before(function() {
-					return browser.visit(`${ languageCode }${ kDefaultRoutePath }?runMode=${ LCHLauncherModeJump() }`);
+					return browser.visit(`${ languageCode }${ kDefaultRoutePath }?runMode=kRunModeJump`);
 				});
 
 				it('on startup', function() {
@@ -312,7 +307,7 @@ describe('LCHLauncherLanguage', function testkLCHLauncherLanguage() {
 			context('LCHLauncherModePipe', function () {
 
 				before(function() {
-					return browser.visit(`${ languageCode }${ kDefaultRoutePath }?runMode=${ LCHLauncherModePipe() }`);
+					return browser.visit(`${ languageCode }${ kDefaultRoutePath }?runMode=kRunModePipe`);
 				});
 
 				it('on startup', function() {
@@ -346,7 +341,7 @@ describe('LCHLauncherInteraction', function testkLCHLauncherInteraction() {
 	context('LCHLauncherModeCommit', function () {
 
 		before(function() {
-			return browser.visit(`${ kDefaultRoutePath }?runMode=${ LCHLauncherModeCommit() }`);
+			return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModeCommit`);
 		});
 		
 		it('shows no items if no filter', function() {
@@ -393,7 +388,7 @@ describe('LCHLauncherInteraction', function testkLCHLauncherInteraction() {
 		context('shortcuts', function () {
 
 			before(function() {
-				return browser.visit(`${ kDefaultRoutePath }?runMode=${ LCHLauncherModeCommit() }`);
+				return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModeCommit`);
 			});
 
 			it('selects next item on ArrowDown', async function() {
@@ -427,7 +422,7 @@ describe('LCHLauncherInteraction', function testkLCHLauncherInteraction() {
 	context('LCHLauncherModeJump', function () {
 
 		before(function() {
-			return browser.visit(`${ kDefaultRoutePath }?runMode=${ LCHLauncherModeJump() }`);
+			return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModeJump`);
 		});
 
 		it('selects no items', async function() {
@@ -465,7 +460,7 @@ describe('LCHLauncherInteraction', function testkLCHLauncherInteraction() {
 		context('shortcuts', function () {
 
 			before(function() {
-				return browser.visit(`${ kDefaultRoutePath }?runMode=${ LCHLauncherModeJump() }`);
+				return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModeJump`);
 			});
 
 			it('runs item on ArrowDown', async function() {
@@ -496,7 +491,7 @@ describe('LCHLauncherInteraction', function testkLCHLauncherInteraction() {
 	context('LCHLauncherModePipe', function () {
 
 		before(function() {
-			return browser.visit(`${ kDefaultRoutePath }?runMode=${ LCHLauncherModePipe() }`);
+			return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
 		});
 		
 		context('on startup', function() {
