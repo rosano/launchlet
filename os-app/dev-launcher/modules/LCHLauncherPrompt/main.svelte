@@ -9,6 +9,11 @@ export let FilterText = undefined;
 export let MatchStop = false;
 
 let ItemSelected = null;
+import { createEventDispatcher } from 'svelte';
+const dispatch = createEventDispatcher();
+function ItemSelectedDidChange(event) {
+	dispatch('ItemSelectedDidChange', ItemSelected = event.detail);
+}
 </script>
 
 <div class="LCHLauncherPrompt">
@@ -20,7 +25,7 @@ let ItemSelected = null;
 {:else}
 	<LCHLauncherZoneInput HeadingText={ HeaderText } FilterText={ FilterText } MatchStop={ MatchStop } />
 {/if}
-<LCHLauncherResultList ListItems={ PromptItems } let:LCHLauncherResultListItem={ item } on:ItemSelectedDidChange={ (event) => ItemSelected = event.detail }>
+<LCHLauncherResultList ListItems={ PromptItems } let:LCHLauncherResultListItem={ item } on:ItemSelectedDidChange={ ItemSelectedDidChange }>
 	<div>{ item.LCHRecipeTitle }</div>
 </LCHLauncherResultList>
 

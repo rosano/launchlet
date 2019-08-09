@@ -56,6 +56,7 @@ describe.only('LCHLauncherPromptText', function testLCHLauncherPromptText() {
 
 	it('on startup', function() {
 		browser.assert.text('.LCHLauncherZoneInputHeading', 'Undefined');
+		browser.assert.text('#LCHLauncherPromptStubItemSelected', 'null');
 	});
 
 	it('on update HeaderText', async function() {
@@ -70,6 +71,12 @@ describe.only('LCHLauncherPromptText', function testLCHLauncherPromptText() {
 		await browser.wait({ element: '.LCHLauncherZoneInputHeading' });
 
 		browser.assert.text('.LCHLauncherZoneInputHeading', 'BRAVO');
+	});
+	
+	it('on select item', async function() {
+		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsSingle');
+
+		browser.assert.text('#LCHLauncherPromptStubItemSelected', 'alfa');
 	});
 
 });
