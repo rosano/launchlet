@@ -19,6 +19,8 @@
 		}
 
 		target.dispatchEvent(event);
+
+		return this._wait(null);
 	};
 
 	Browser.extend(function(browser) {
