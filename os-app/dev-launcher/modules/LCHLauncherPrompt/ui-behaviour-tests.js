@@ -27,7 +27,7 @@ describe.only('LCHLauncherPromptText', function testLCHLauncherPromptText() {
 
 });
 
-describe.only('LCHLauncherPromptInteraction', function testLCHLauncherPromptInteraction() {
+describe.skip('LCHLauncherPromptInteraction', function testLCHLauncherPromptInteraction() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
