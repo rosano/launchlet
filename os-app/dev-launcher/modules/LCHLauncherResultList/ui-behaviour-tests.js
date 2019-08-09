@@ -31,7 +31,7 @@ describe.only('LCHLauncherResultListDiscovery', function testLCHLauncherResultLi
 	it('on set multiple', async function() {
 		await browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsMultiple');
 
-		browser.assert.elements(LCHLauncherResultListItem, 2);
+		browser.assert.elements(LCHLauncherResultListItem, 3);
 		
 		browser.assert.elements(LCHLauncherResultListEmpty, 0);
 	});
