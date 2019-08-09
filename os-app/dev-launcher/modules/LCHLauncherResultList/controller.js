@@ -2,7 +2,7 @@
 
 exports.OLSKControllerRoutes = function() {
 	return process.env.NODE_ENV === 'production' ? {} : {
-		LCHLauncherResultListRoute: {
+		LCHLauncherResultListStubRoute: {
 			OLSKRoutePath: '/modules/LCHLauncherResultList',
 			OLSKRouteMethod: 'get',
 			OLSKRouteFunction: function(req, res, next) {
