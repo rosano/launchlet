@@ -57,3 +57,35 @@ describe.only('LCHLauncherResultListLanguage', function testLCHLauncherResultLis
 	});
 
 });
+
+describe.only('LCHLauncherResultListInteraction', function testLCHLauncherResultListInteraction() {
+
+	const browser = new OLSKBrowser();
+
+	before(function() {
+		return browser.visit(kDefaultRoutePath);
+	});
+
+	context('SelectedIndex', function() {
+		
+		it('on startup', function() {
+			browser.assert.elements('.LCHLauncherResultListItemSelected', 0);
+		});
+		
+		it('on set single', async function() {
+			browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsSingle');
+			await browser.wait({ element: LCHLauncherResultListItem });
+
+			browser.assert.hasClass(LCHLauncherResultListItem, 'LCHLauncherResultListItemSelected');
+		});
+		
+		it('on set multiple', async function() {
+			await browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsMultiple');
+
+			browser.assert.hasClass(`${ LCHLauncherResultListItem }:nth-child(1)`, 'LCHLauncherResultListItemSelected');
+			browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
+		});
+
+	});
+
+});
