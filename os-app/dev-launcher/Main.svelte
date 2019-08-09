@@ -1,5 +1,8 @@
 <script>
-import { OLSKLocalized } from '../_shared/common/global.js';
+import {
+	OLSKLocalized,
+	_LCHIsTestingBehaviour,
+} from '../_shared/common/global.js';
 
 import LCHLauncherZoneInput from './modules/LCHLauncherZoneInput/main.svelte';
 import LCHLauncherPipeItem from './modules/LCHLauncherPipeItem/main.svelte';
@@ -184,7 +187,7 @@ onMount(function () {
 
 import { afterUpdate } from 'svelte';
 afterUpdate(function () {
-	if (navigator.appName === 'Zombie') {
+	if (_LCHIsTestingBehaviour()) {
 		return;
 	}
 
