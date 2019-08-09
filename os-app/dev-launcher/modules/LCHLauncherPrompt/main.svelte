@@ -10,11 +10,13 @@ let ItemSelected = null;
 
 <div class="LCHLauncherPrompt">
 
-<LCHLauncherZoneInput>
-	{#if ItemSelected}
+{#if ItemSelected}
+	<LCHLauncherZoneInput>
 		<LCHLauncherPipeItem itemTitle={ ItemSelected.LCHRecipeTitle } />
-	{/if}
-</LCHLauncherZoneInput>
+	</LCHLauncherZoneInput>
+{:else}
+	<LCHLauncherZoneInput />
+{/if}
 <LCHLauncherResultList ListItems={ PromptItems } let:LCHLauncherResultListItem={ item } on:ItemSelectedDidChange={ (event) => ItemSelected = event.detail }>
 	<div>{ item.LCHRecipeTitle }</div>
 </LCHLauncherResultList>
