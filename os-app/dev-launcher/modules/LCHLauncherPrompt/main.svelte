@@ -7,6 +7,7 @@ export let PromptItems = [];
 export let HeaderText = undefined;
 export let FilterText = undefined;
 export let MatchStop = false;
+export let ResultsHidden = false;
 
 let ItemSelected = null;
 import { createEventDispatcher } from 'svelte';
@@ -25,9 +26,12 @@ function ItemSelectedDidChange(event) {
 {:else}
 	<LCHLauncherZoneInput HeadingText={ HeaderText } FilterText={ FilterText } MatchStop={ MatchStop } />
 {/if}
-<LCHLauncherResultList ListItems={ PromptItems } let:LCHLauncherResultListItem={ item } on:ItemSelectedDidChange={ ItemSelectedDidChange }>
-	<div>{ item.LCHRecipeTitle }</div>
-</LCHLauncherResultList>
+
+{#if !ResultsHidden}
+	<LCHLauncherResultList ListItems={ PromptItems } let:LCHLauncherResultListItem={ item } on:ItemSelectedDidChange={ ItemSelectedDidChange }>
+		<div>{ item.LCHRecipeTitle }</div>
+	</LCHLauncherResultList>
+{/if}
 
 </div>
 

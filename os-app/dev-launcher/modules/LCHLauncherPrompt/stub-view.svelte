@@ -6,9 +6,10 @@ let StubItemSelected = null;
 export let HeaderText = undefined;
 export let FilterText = undefined;
 export let MatchStop = false;
+export let ResultsHidden = false;
 </script>
 
-<Module PromptItems={ StubItems } on:ItemSelectedDidChange={ (event) => StubItemSelected = (event.detail || {}).LCHRecipeTitle } HeaderText={ HeaderText } FilterText={ FilterText } MatchStop={ MatchStop } />
+<Module PromptItems={ StubItems } on:ItemSelectedDidChange={ (event) => StubItemSelected = (event.detail || {}).LCHRecipeTitle } HeaderText={ HeaderText } FilterText={ FilterText } MatchStop={ MatchStop } ResultsHidden={ ResultsHidden } />
 
 <hr>
 

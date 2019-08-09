@@ -26,6 +26,11 @@
 </p>
 
 <p>
+	<strong>ResultsHidden</strong>
+	<input type="checkbox" oninput="Main.$set({ResultsHidden: this.checked})" id="LCHLauncherPromptTestSetResultsHidden" />
+</p>
+
+<p>
 	<strong>PromptItems</strong>
 	<button onclick="Main.$set({StubItems: []})" id="LCHLauncherPromptTestSetPromptItemsZero">Zero</button>
 	<button onclick="Main.$set({StubItems: [{

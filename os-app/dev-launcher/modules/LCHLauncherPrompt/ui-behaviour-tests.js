@@ -48,6 +48,13 @@ describe.only('LCHLauncherPromptElements', function testLCHLauncherPromptElement
 
 		browser.assert.elements(LCHLauncherResultListItem, 0);
 	});
+	
+	it('on HideResults', async function() {
+		browser.check('#LCHLauncherPromptTestSetResultsHidden');
+		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
+
+		browser.assert.elements(LCHLauncherResultList, 0);
+	});
 
 });
 
