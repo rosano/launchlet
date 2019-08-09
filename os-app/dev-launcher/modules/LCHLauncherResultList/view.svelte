@@ -10,4 +10,7 @@ export let TestIndex = 0;
 </Module>
 
 <style>
+:global(.LCHLauncherResultListItemSelected) {
+	background: #eee;
+}
 </style>

@@ -1,7 +1,28 @@
 <script>
+import { LCHLauncherResultListConstrainIndex } from './ui-logic.js';
 export let SelectedIndex = 0;
 export let ListItems = [];
+
+function keydownDidFire(event) {
+	const handlerFunctions = {
+		ArrowUp () {
+			SelectedIndex = LCHLauncherResultListConstrainIndex(ListItems, SelectedIndex - 1);
+
+			return event.preventDefault();
+		},
+		ArrowDown () {
+			SelectedIndex = LCHLauncherResultListConstrainIndex(ListItems, SelectedIndex + 1);
+			
+			return event.preventDefault();
+		},
+	};
+
+	if (Object.keys(handlerFunctions).indexOf(event.code) !== -1) {
+		return handlerFunctions[event.code]();
+	}
+}
 </script>
+<svelte:window on:keydown={ keydownDidFire } />
 
 <div class="LCHLauncherResultList">
 	{#each ListItems as e,index}

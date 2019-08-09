@@ -68,22 +68,25 @@ describe.only('LCHLauncherResultListInteraction', function testLCHLauncherResult
 
 	context('SelectedIndex', function() {
 		
-		it('on startup', function() {
-			browser.assert.elements('.LCHLauncherResultListItemSelected', 0);
-		});
-		
-		it('on set single', async function() {
-			browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsSingle');
-			await browser.wait({ element: LCHLauncherResultListItem });
-
-			browser.assert.hasClass(LCHLauncherResultListItem, 'LCHLauncherResultListItemSelected');
-		});
-		
-		it('on set multiple', async function() {
+		it('defaults to 0', async function() {
 			await browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsMultiple');
 
 			browser.assert.hasClass(`${ LCHLauncherResultListItem }:nth-child(1)`, 'LCHLauncherResultListItemSelected');
 			browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
+		});
+		
+		it('decrements on ArrowUp', async function() {
+			await browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
+
+			browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
+			browser.assert.hasClass(`${ LCHLauncherResultListItem }:nth-child(3)`, 'LCHLauncherResultListItemSelected');
+		});
+		
+		it('increments on ArrowDown', async function() {
+			await browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
+
+			browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
+			browser.assert.hasClass(`${ LCHLauncherResultListItem }:nth-child(1)`, 'LCHLauncherResultListItemSelected');
 		});
 
 	});
