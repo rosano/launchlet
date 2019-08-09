@@ -1,11 +1,11 @@
 <script>
-export let NameText = '';
+export let HeadingText = '';
 export let FilterText = '';
 export let MatchStop = false;
 export let didClick = null;
 </script>
 
-<strong class="LCHLauncherZoneInputHeading" class:LCHLauncherZoneInputHeadingMatchStop={ MatchStop }>{ FilterText && FilterText.toUpperCase() || NameText || 'Undefined' }</strong>
+<strong class="LCHLauncherZoneInputHeading" class:LCHLauncherZoneInputHeadingMatchStop={ MatchStop }>{ FilterText && FilterText.toUpperCase() || HeadingText || 'Undefined' }</strong>
 
 <div class="LCHLauncherZoneInput" on:click={ () => didClick && didClick() }>
 

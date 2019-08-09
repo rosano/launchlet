@@ -38,17 +38,17 @@ describe('LCHLauncherZoneInputLanguage', function testLCHLauncherZoneInputLangua
 				deepEqual(browser.query(LCHLauncherZoneInputPlaceholder).textContent, uLocalized('LCHLauncherZoneInputPlaceholderText'));
 			});
 
-			context('NameText', function () {
+			context('HeadingText', function () {
 
 				it('shows inputData if filled', async function() {
-					browser.fill('#LCHLauncherZoneInputTestSetNameText', 'alfa');
+					browser.fill('#LCHLauncherZoneInputTestSetHeadingText', 'alfa');
 					await browser.wait({ element: '.LCHLauncherZoneInputHeading' });
 
 					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, 'alfa');
 				});
 
 				it('shows default value if empty', async function() {
-					browser.fill('#LCHLauncherZoneInputTestSetNameText', '');
+					browser.fill('#LCHLauncherZoneInputTestSetHeadingText', '');
 					await browser.wait({ element: '.LCHLauncherZoneInputHeading' });
 
 					deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, uLocalized('LCHLauncherZoneInputHeadingTextDefault'));
@@ -59,7 +59,7 @@ describe('LCHLauncherZoneInputLanguage', function testLCHLauncherZoneInputLangua
 			context('FilterText', function () {
 
 				before(function() {
-					browser.fill('#LCHLauncherZoneInputTestSetNameText', 'alfa');
+					browser.fill('#LCHLauncherZoneInputTestSetHeadingText', 'alfa');
 				});
 
 				it('shows FilterText if filled', async function() {
