@@ -88,6 +88,14 @@ describe.only('LCHLauncherResultListInteraction', function testLCHLauncherResult
 			browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
 			browser.assert.hasClass(`${ LCHLauncherResultListItem }:nth-child(1)`, 'LCHLauncherResultListItemSelected');
 		});
+		
+		it('sets to 0 on result change', async function() {
+			await browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
+			await browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsSingle');
+
+			browser.assert.hasClass(LCHLauncherResultListItem, 'LCHLauncherResultListItemSelected');
+			browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
+		});
 
 	});
 
