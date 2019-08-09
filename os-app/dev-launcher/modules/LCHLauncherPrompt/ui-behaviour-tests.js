@@ -28,22 +28,25 @@ describe.only('LCHLauncherPromptElements', function testLCHLauncherPromptElement
 	it('on set single', async function() {
 		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsSingle');
 
-		browser.assert.elements(LCHLauncherResultListItem, 1);
 		browser.assert.elements(LCHLauncherZoneInputPipeItem, 1);
+
+		browser.assert.elements(LCHLauncherResultListItem, 1);
 	});
 	
 	it('on set multiple', async function() {
 		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
 
-		browser.assert.elements(LCHLauncherResultListItem, 3);
 		browser.assert.elements(LCHLauncherZoneInputPipeItem, 1);
+
+		browser.assert.elements(LCHLauncherResultListItem, 3);
 	});
 	
 	it('on set zero', async function() {
 		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsZero');
 
-		browser.assert.elements(LCHLauncherResultListItem, 0);
 		browser.assert.elements(LCHLauncherZoneInputPipeItem, 0);
+
+		browser.assert.elements(LCHLauncherResultListItem, 0);
 	});
 
 });
