@@ -4,8 +4,10 @@ import { LCHLauncherResultListConstrainIndex } from './ui-logic.js';
 export let ListItems = [];
 
 export let SelectedIndex = 0;
+import { createEventDispatcher } from 'svelte';
+const dispatch = createEventDispatcher();
 function setSelectedIndex(inputData) {
-	SelectedIndex = LCHLauncherResultListConstrainIndex(ListItems, inputData);
+	dispatch('ItemSelectedDidChange', ListItems[SelectedIndex = LCHLauncherResultListConstrainIndex(ListItems, inputData)]);
 }
 
 function LCHLauncherResultListInit(node, ListItems) {
