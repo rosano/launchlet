@@ -12,6 +12,7 @@ import {
 	actionsVisible,
 	actionSelected,
 	secondaryComponent,
+	LCHPromptObjects,
 } from './_shared.js';
 import { LCHLauncherStandardRecipes } from './recipes/recipes.js';
 import {
@@ -63,27 +64,7 @@ export let optionsObject = {};
 
 let _PromptObjects, _PromptActive;
 (function StartPromptObjects() {
-	 _PromptObjects = [{
-		LCHPromptClass: 'LCHLauncherSubjectPrompt',
-		LCHPromptHeading: OLSKLocalized('LCHLauncherZoneInputHeadingSubject'),
-		LCHPromptItems: [],
-		LCHPromptItemSelected: null,
-		LCHPromptInputThrottle: undefined,
-		LCHPromptFilterText: '',
-		LCHPromptMatchStop: false,
-		LCHPromptResultsHidden: true,
-		LCHPromptResultsThrottle: undefined,
-	}, {
-		LCHPromptClass: 'LCHLauncherActionPrompt',
-		LCHPromptHeading: OLSKLocalized('LCHLauncherZoneInputHeadingAction'),
-		LCHPromptItems: [],
-		LCHPromptItemSelected: null,
-		LCHPromptInputThrottle: undefined,
-		LCHPromptFilterText: '',
-		LCHPromptMatchStop: false,
-		LCHPromptResultsHidden: true,
-		LCHPromptResultsThrottle: undefined,
-	}];
+	 _PromptObjects = LCHPromptObjects();
 
 	_PromptActive = _PromptObjects[0];
 })();

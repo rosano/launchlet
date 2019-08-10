@@ -16,3 +16,27 @@ export const formulasVisible = writable([]);
 export const actionsVisible = writable([]);
 export const actionSelected = writable(null);
 export const secondaryComponent = writable(null);
+
+export const LCHPromptObjects = function() {
+	return [{
+		LCHPromptClass: 'LCHLauncherSubjectPrompt',
+		LCHPromptHeading: OLSKLocalized('LCHLauncherZoneInputHeadingSubject'),
+		LCHPromptItems: [],
+		LCHPromptItemSelected: null,
+		LCHPromptInputThrottle: undefined,
+		LCHPromptFilterText: '',
+		LCHPromptMatchStop: false,
+		LCHPromptResultsHidden: true,
+		LCHPromptResultsThrottle: undefined,
+	}, {
+		LCHPromptClass: 'LCHLauncherActionPrompt',
+		LCHPromptHeading: OLSKLocalized('LCHLauncherZoneInputHeadingAction'),
+		LCHPromptItems: [],
+		LCHPromptItemSelected: null,
+		LCHPromptInputThrottle: undefined,
+		LCHPromptFilterText: '',
+		LCHPromptMatchStop: false,
+		LCHPromptResultsHidden: true,
+		LCHPromptResultsThrottle: undefined,
+	}];
+};
