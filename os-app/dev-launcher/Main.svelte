@@ -432,6 +432,7 @@ async function itemDidClick(event, item) {
 			{/each}
 		{/if}
 	</div>
+	
 	{#if $secondaryComponent}
 		<svelte:component this={ $secondaryComponent.LCHInstanceClass } {...$secondaryComponent.LCHInstanceOptions} />
 	{/if}
