@@ -18,8 +18,8 @@ Object.entries({
 	kLCHLauncherPipeItem: '.LCHLauncherPipeItem',
 	kLCHLauncherResultList: '.LCHLauncherResultList',
 	kLCHLauncherResultListItem: '.LCHLauncherResultListItem',
-	kLCHLauncherSubjectPipeItem: '.LCHLauncherSubjectZoneInput .LCHLauncherPipeItem',
-	kLCHLauncherActionPipeItem: '.LCHLauncherActionZoneInput .LCHLauncherPipeItem',
+	kLCHLauncherSubjectPipeItem: '.LCHLauncherSubjectPrompt .LCHLauncherPipeItem',
+	kLCHLauncherActionPipeItem: '.LCHLauncherActionPrompt .LCHLauncherPipeItem',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
