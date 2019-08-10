@@ -7,10 +7,10 @@ const kDefaultRoutePath = '/launcher';
 
 Object.entries({
 	kLCHLauncherFilterInput: '#LCHLauncherFilterInput',
-	kLCHLauncherSubjectZoneInput: '.LCHLauncherSubjectZoneInput',
-	kLCHLauncherSubjectZoneInputHeading: '.LCHLauncherSubjectZoneInput .LCHLauncherZoneInputHeading',
-	kLCHLauncherActionZoneInput: '.LCHLauncherActionZoneInput',
-	kLCHLauncherActionZoneInputHeading: '.LCHLauncherActionZoneInput .LCHLauncherZoneInputHeading',
+	kLCHLauncherSubjectZoneInput: '.LCHLauncherSubjectPrompt .LCHLauncherZoneInput',
+	kLCHLauncherSubjectZoneInputHeading: '.LCHLauncherSubjectPrompt .LCHLauncherZoneInputHeading',
+	kLCHLauncherActionZoneInput: '.LCHLauncherActionPrompt .LCHLauncherZoneInput',
+	kLCHLauncherActionZoneInputHeading: '.LCHLauncherActionPrompt .LCHLauncherZoneInputHeading',
 
 	kLCHLauncherList: '.ListContainer',
 	kLCHLauncherListItem: '.ListItem',
