@@ -424,6 +424,12 @@ async function itemDidClick(event, item) {
 					{/if}
 				</LCHLauncherZoneInput>
 			</div>
+
+			{#each _PromptObjects as e}
+				<div class={ e.LCHPromptClass } class:LCHLauncherPromptSelected={ selectedZone === e.LCHPromptClass }>
+					<LCHLauncherPrompt PromptItems={ e.LCHPromptItems } on:ItemSelectedDidChange={ (event) => e.LCHPromptItemSelected = event.detail } HeaderText={ e.LCHPromptHeading } FilterText={ e.LCHPromptFilterText } MatchStop={ e.LCHPromptMatchStop } ResultsHidden={ e.LCHPromptResultsHidden } />
+				</div>
+			{/each}
 		{/if}
 	</div>
 	{#if $secondaryComponent}
