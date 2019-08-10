@@ -9,11 +9,12 @@ export let MatchStop = false;
 export let ResultsHidden = false;
 </script>
 
-<Module PromptItems={ StubItems } on:ItemSelectedDidChange={ (event) => StubItemSelected = (event.detail || {}).LCHRecipeTitle } HeaderText={ HeaderText } FilterText={ FilterText } MatchStop={ MatchStop } ResultsHidden={ ResultsHidden } />
+<Module PromptItems={ StubItems } ItemSelected={ StubItemSelected } on:ItemSelectedDidChange={ (event) => StubItemSelected = event.detail } HeaderText={ HeaderText } FilterText={ FilterText } MatchStop={ MatchStop } ResultsHidden={ ResultsHidden } />
 
 <hr>
 
 <p>
 	<strong>StubItemSelected</strong>
-	<span id="LCHLauncherPromptStubItemSelected">{ StubItemSelected }</span>
+	<button on:click={ () => StubItemSelected = StubItems[1] } id="LCHLauncherZoneInputTestSetStubItemSelected">Set</button>
+	<span id="LCHLauncherPromptStubItemSelected">{ (StubItemSelected || {}).LCHRecipeTitle }</span>
 </p>

@@ -8,28 +8,16 @@ export let HeaderText = undefined;
 export let FilterText = undefined;
 export let MatchStop = false;
 export let ResultsHidden = false;
+export let ItemSelected = null;
 
-let ItemSelected = null;
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 function ItemSelectedDidChange(event) {
 	dispatch('ItemSelectedDidChange', ItemSelected = event.detail);
 }
-
-function LCHLauncherResultListInit(node, PromptItems) {
-	return {
-		update(PromptItems) {
-			setTimeout(function () {
-				ItemSelectedDidChange({
-					detail: PromptItems[0],
-				});
-			});
-		},
-	};
-};
 </script>
 
-<div class="LCHLauncherPrompt" use:LCHLauncherResultListInit={ PromptItems }>
+<div class="LCHLauncherPrompt">
 
 {#if ItemSelected}
 	<LCHLauncherZoneInput HeadingText={ HeaderText } FilterText={ FilterText } MatchStop={ MatchStop }>
@@ -40,7 +28,7 @@ function LCHLauncherResultListInit(node, PromptItems) {
 {/if}
 
 {#if !ResultsHidden}
-	<LCHLauncherResultList ListItems={ PromptItems } let:LCHLauncherResultListItem={ item } on:ItemSelectedDidChange={ ItemSelectedDidChange }>
+	<LCHLauncherResultList ListItems={ PromptItems } let:LCHLauncherResultListItem={ item } ItemSelected={ ItemSelected } on:ItemSelectedDidChange={ ItemSelectedDidChange }>
 		<div>{ item.LCHRecipeTitle }</div>
 	</LCHLauncherResultList>
 {/if}

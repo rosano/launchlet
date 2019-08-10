@@ -28,23 +28,17 @@ describe('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
 	it('on set single', async function() {
 		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsSingle');
 
-		browser.assert.elements(LCHLauncherZoneInputPipeItem, 1);
-
 		browser.assert.elements(LCHLauncherResultListItem, 1);
 	});
 	
 	it('on set multiple', async function() {
 		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
 
-		browser.assert.elements(LCHLauncherZoneInputPipeItem, 1);
-
 		browser.assert.elements(LCHLauncherResultListItem, 3);
 	});
 	
 	it('on set zero', async function() {
 		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsZero');
-
-		browser.assert.elements(LCHLauncherZoneInputPipeItem, 0);
 
 		browser.assert.elements(LCHLauncherResultListItem, 0);
 	});
@@ -54,6 +48,12 @@ describe('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
 		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
 
 		browser.assert.elements(LCHLauncherResultList, 0);
+	});
+	
+	it('on set ItemSelected', async function() {
+		await browser.pressButton('#LCHLauncherZoneInputTestSetStubItemSelected');
+		
+		browser.assert.elements(LCHLauncherZoneInputPipeItem, 1);
 	});
 
 });
@@ -66,7 +66,7 @@ describe('LCHLauncherPromptText', function testLCHLauncherPromptText() {
 
 	it('on startup', function() {
 		browser.assert.text('.LCHLauncherZoneInputHeading', 'Undefined');
-		browser.assert.text('#LCHLauncherPromptStubItemSelected', 'null');
+		browser.assert.text('#LCHLauncherPromptStubItemSelected', 'undefined');
 	});
 
 	it('on update HeaderText', async function() {
@@ -83,15 +83,15 @@ describe('LCHLauncherPromptText', function testLCHLauncherPromptText() {
 		browser.assert.text('.LCHLauncherZoneInputHeading', 'BRAVO');
 	});
 	
-	it('on set single', async function() {
-		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsSingle');
+	it('does nothing on set', async function() {
+		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
 
-		browser.assert.text('#LCHLauncherPromptStubItemSelected', 'alfa');
+		browser.assert.text('#LCHLauncherPromptStubItemSelected', 'undefined');
 	});
 	
 	it('on set multiple', async function() {
-		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
-
+		await browser.pressButton('#LCHLauncherZoneInputTestSetStubItemSelected');
+		
 		browser.assert.text('#LCHLauncherPromptStubItemSelected', 'bravo');
 	});
 
