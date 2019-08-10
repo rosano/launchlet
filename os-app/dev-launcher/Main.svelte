@@ -396,7 +396,7 @@ async function itemDidClick(event, item) {
 		{#if LCHOptionsObject().runMode === LCHLauncherModePipe }
 			{#each _PromptObjects as e}
 				<div class={ e.LCHPromptClass } class:LCHLauncherPromptSelected={ _PromptObjects[_PromptActiveIndex] === e }>
-					<LCHLauncherPrompt PromptItems={ e.LCHPromptItems } on:ItemSelectedDidChange={ (event) => e.LCHPromptItemSelected = event.detail } HeaderText={ e.LCHPromptHeading } FilterText={ e.LCHPromptFilterText } MatchStop={ e.LCHPromptMatchStop } ResultsHidden={ e.LCHPromptResultsThrottle } />
+					<LCHLauncherPrompt PromptItems={ e.LCHPromptItems } on:ItemSelectedDidChange={ (event) => e.LCHPromptItemSelected = event.detail } ItemSelected={ e.LCHPromptItemSelected } HeaderText={ e.LCHPromptHeading } FilterText={ e.LCHPromptFilterText } MatchStop={ e.LCHPromptMatchStop } ResultsHidden={ e.LCHPromptResultsThrottle !== false } />
 				</div>
 			{/each}
 		{/if}
@@ -421,14 +421,14 @@ async function itemDidClick(event, item) {
 	z-index: 9999;
 
 	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
-	font-size: 16pt;
+	/*font-size: 16pt;*/
 	color: black;
 
 	/* CompensateExternalStyles */
 	text-align: initial;
 }
 
-.LCHLauncherResultList {
+.Container :global(.LCHLauncherResultList) {
 	width: 95%;
 	border: 1px solid hsl(0, 0%, 80%);
 	border-radius: 5px 0 0 5px;
@@ -438,10 +438,6 @@ async function itemDidClick(event, item) {
 	margin-right: none;
 
 	background: hsl(0, 0%, 95%);
-}
-
-.LCHLauncherResultListItemSelected {
-	background: #bcdaff;
 }
 
 .Bezel {
