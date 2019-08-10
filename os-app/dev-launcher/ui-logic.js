@@ -66,26 +66,6 @@ export const LCHLauncherFilterForText = function (inputData) {
 
 export const LCHLauncherThrottleDuration = _LCHIsTestingBehaviour() ? 25 : 1000;
 
-export const LCHLauncherConstrainIndex = function (param1, param2) {
-	if (!Array.isArray(param1)) {
-		throw new Error('LCHErrorInputInvalid');
-	}
-
-	if (typeof param2 !== 'number') {
-		throw new Error('LCHErrorInputInvalid');
-	}
-
-	if (param2 < 0) {
-		return param1.length - 1;
-	}
-
-	if (param2 >= param1.length) {
-		return 0;
-	}
-
-	return param2;
-};
-
 export const LCHLauncherPatternMatchesURL = function (param1, param2) {
 	if (typeof param1 !== 'string') {
 		throw new Error('LCHErrorInputInvalid');

@@ -20,7 +20,6 @@ import {
 	LCHLauncherModePipe,
 	LCHLauncherFilterForText,
 	LCHLauncherThrottleDuration,
-	LCHLauncherConstrainIndex,
 	LCHLauncherPatternMatchesURL,
 	LCHLauncherKeyboardEventIsTextInput,
 } from './ui-logic.js';
