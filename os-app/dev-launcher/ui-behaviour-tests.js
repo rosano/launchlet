@@ -7,8 +7,10 @@ const kDefaultRoutePath = '/launcher';
 
 Object.entries({
 	kLCHLauncherFilterInput: '#LCHLauncherFilterInput',
+	LCHLauncherSubjectPrompt: '.LCHLauncherSubjectPrompt',
 	kLCHLauncherSubjectZoneInput: '.LCHLauncherSubjectPrompt .LCHLauncherZoneInput',
 	kLCHLauncherSubjectZoneInputHeading: '.LCHLauncherSubjectPrompt .LCHLauncherZoneInputHeading',
+	LCHLauncherActionPrompt: '.LCHLauncherActionPrompt',
 	kLCHLauncherActionZoneInput: '.LCHLauncherActionPrompt .LCHLauncherZoneInput',
 	kLCHLauncherActionZoneInputHeading: '.LCHLauncherActionPrompt .LCHLauncherZoneInputHeading',
 
@@ -24,7 +26,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHLauncherAccess', function testkLCHLauncherAccess() {
+describe.only('LCHLauncherAccess', function testkLCHLauncherAccess() {
 
 	context('LCHLauncherModeCommit', function () {
 
@@ -119,7 +121,7 @@ describe('LCHLauncherAccess', function testkLCHLauncherAccess() {
 
 			it('selects first list item', async function() {
 				await browser.wait({element: '.LCHLauncherResultListItemSelected'});
-				browser.assert.hasClass(kLCHLauncherResultListItem, 'LCHLauncherResultListItemSelected');
+				browser.assert.hasClass(`${ kLCHLauncherResultListItem }:first-child`, 'LCHLauncherResultListItemSelected');
 			});
 
 			it('skips throttle on ArrowDown', async function() {
@@ -497,7 +499,7 @@ describe('LCHLauncherInteraction', function testkLCHLauncherInteraction() {
 		context('on startup', function() {
 			
 			it('selects LCHLauncherSubjectZoneInput', function() {
-				browser.assert.hasClass(kLCHLauncherSubjectZoneInput, 'LCHLauncherPromptSelected');
+				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
 			});
 
 		});
@@ -507,13 +509,13 @@ describe('LCHLauncherInteraction', function testkLCHLauncherInteraction() {
 			it('selects LCHLauncherActionZoneInput if LCHLauncherSubjectZoneInput selected', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 				await browser.wait({element: kLCHLauncherActionZoneInput});
-				browser.assert.hasClass(kLCHLauncherActionZoneInput, 'LCHLauncherPromptSelected');
+				browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
 			});
 			
 			it('selects LCHLauncherSubjectZoneInput', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 				await browser.wait({element: kLCHLauncherSubjectZoneInput});
-				browser.assert.hasClass(kLCHLauncherSubjectZoneInput, 'LCHLauncherPromptSelected');
+				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
 			});
 
 		});
