@@ -61,7 +61,7 @@ export let optionsObject = {};
 	}));
 })();
 
-let _PromptObjects;
+let _PromptObjects, _PromptActive;
 (function StartPromptObjects() {
 	 _PromptObjects = [{
 		LCHPromptClass: 'LCHLauncherSubjectPrompt',
@@ -80,6 +80,8 @@ let _PromptObjects;
 		LCHPromptMatchStop: false,
 		LCHPromptResultsHidden: true,
 	}];
+
+	_PromptActive = _PromptObjects[0];
 })();
 
 import { LCHAPIObjectFor } from './api.js';
@@ -426,7 +428,7 @@ async function itemDidClick(event, item) {
 			</div>
 
 			{#each _PromptObjects as e}
-				<div class={ e.LCHPromptClass } class:LCHLauncherPromptSelected={ selectedZone === e.LCHPromptClass }>
+				<div class={ e.LCHPromptClass } class:LCHLauncherPromptSelected={ _PromptActive === e }>
 					<LCHLauncherPrompt PromptItems={ e.LCHPromptItems } on:ItemSelectedDidChange={ (event) => e.LCHPromptItemSelected = event.detail } HeaderText={ e.LCHPromptHeading } FilterText={ e.LCHPromptFilterText } MatchStop={ e.LCHPromptMatchStop } ResultsHidden={ e.LCHPromptResultsHidden } />
 				</div>
 			{/each}
