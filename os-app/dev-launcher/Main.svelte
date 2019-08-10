@@ -61,6 +61,27 @@ export let optionsObject = {};
 	}));
 })();
 
+let _PromptObjects;
+(function StartPromptObjects() {
+	 _PromptObjects = [{
+		LCHPromptClass: 'LCHLauncherSubjectPrompt',
+		LCHPromptHeading: OLSKLocalized('LCHLauncherZoneInputHeadingSubject'),
+		LCHPromptItems: [],
+		LCHPromptItemSelected: null,
+		LCHPromptFilterText: '',
+		LCHPromptMatchStop: false,
+		LCHPromptResultsHidden: true,
+	}, {
+		LCHPromptClass: 'LCHLauncherActionPrompt',
+		LCHPromptHeading: OLSKLocalized('LCHLauncherZoneInputHeadingAction'),
+		LCHPromptItems: [],
+		LCHPromptItemSelected: null,
+		LCHPromptFilterText: '',
+		LCHPromptMatchStop: false,
+		LCHPromptResultsHidden: true,
+	}];
+})();
+
 import { LCHAPIObjectFor } from './api.js';
 import * as apiComponents from './recipes/components.js';
 const allRecipes = LCHLauncherStandardRecipes().concat(dataObjects);
