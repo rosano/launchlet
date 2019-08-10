@@ -68,6 +68,7 @@ let _PromptObjects, _PromptActive;
 		LCHPromptHeading: OLSKLocalized('LCHLauncherZoneInputHeadingSubject'),
 		LCHPromptItems: [],
 		LCHPromptItemSelected: null,
+		LCHPromptInputThrottle: undefined,
 		LCHPromptFilterText: '',
 		LCHPromptMatchStop: false,
 		LCHPromptResultsHidden: true,
@@ -76,6 +77,7 @@ let _PromptObjects, _PromptActive;
 		LCHPromptHeading: OLSKLocalized('LCHLauncherZoneInputHeadingAction'),
 		LCHPromptItems: [],
 		LCHPromptItemSelected: null,
+		LCHPromptInputThrottle: undefined,
 		LCHPromptFilterText: '',
 		LCHPromptMatchStop: false,
 		LCHPromptResultsHidden: true,
@@ -122,7 +124,7 @@ async function apiStart(inputData) {
 let filterText = '';
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump ? dataObjects : [];
 import OLSKThrottle from 'OLSKThrottle';
-let resultListThrottle, inputThrottle;
+let resultListThrottle;
 let matchStop;
 if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
 	formulaSelected.subscribe(function formulaSelectedDidChange(val) {
@@ -332,23 +334,23 @@ function handleKeydown(event) {
 		return;
 	}
 
-	filterText = inputThrottle === false ? event.key : filterText + event.key;
+	_PromptActive.LCHPromptFilterText = _PromptActive.LCHPromptInputThrottle === false ? event.key : _PromptActive.LCHPromptFilterText + event.key;
 
-	if (inputThrottle === false) {
+	if (_PromptActive.LCHPromptInputThrottle === false) {
 		matchStop = false;
 	}
 
 	(function ThrottleInput() {
-		if (!inputThrottle) {
-			inputThrottle = {
+		if (!_PromptActive.LCHPromptInputThrottle) {
+			_PromptActive.LCHPromptInputThrottle = {
 				OLSKThrottleDuration: LCHLauncherThrottleDuration,
 				OLSKThrottleCallback: function () {
-					inputThrottle = false;
+					_PromptActive.LCHPromptInputThrottle = false;
 				},
 			};	
 		}
 
-		OLSKThrottle.OLSKThrottleTimeoutFor(inputThrottle);
+		OLSKThrottle.OLSKThrottleTimeoutFor(_PromptActive.LCHPromptInputThrottle);
 	})();
 
 	(function ThrottleResults() {
