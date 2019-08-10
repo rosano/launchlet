@@ -380,36 +380,6 @@ async function itemDidClick(event, item) {
 		{/if}
 
 		{#if LCHOptionsObject().runMode === LCHLauncherModePipe }
-			<div class="LCHLauncherSubjectZoneInput" class:LCHLauncherPromptSelected={ selectedZone === 'LCHLauncherSubjectZoneInput' }>
-				{#if $formulasVisible.length}
-					<LCHLauncherZoneInput HeadingText={ OLSKLocalized('LCHLauncherZoneInputHeadingSubject') } FilterText={ filterText } MatchStop={ _PromptActive.LCHPromptMatchStop }>
-						<LCHLauncherPipeItem itemTitle={ $formulaSelected.LCHRecipeTitle } />
-					</LCHLauncherZoneInput>
-				{:else}
-					<LCHLauncherZoneInput HeadingText={ OLSKLocalized('LCHLauncherZoneInputHeadingSubject') } FilterText={ filterText } />
-				{/if}
-			</div>
-
-			{#if LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptActive.LCHPromptResultsThrottle === false }
-				{#if $formulasVisible.length}
-					<div class="LCHLauncherResultList">
-						{#each $formulasVisible as e}
-							<div class="LCHLauncherResultListItem" class:LCHLauncherResultListItemSelected={ e === $formulaSelected }>
-								<LCHLauncherPipeItem itemTitle={ e.LCHRecipeTitle } />
-							</div>
-						{/each}
-					</div>
-				{/if}
-			{/if}
-
-			<div class="LCHLauncherActionZoneInput" class:LCHLauncherPromptSelected={ selectedZone === 'LCHLauncherActionZoneInput' }>
-				<LCHLauncherZoneInput HeadingText={ OLSKLocalized('LCHLauncherZoneInputHeadingAction') }>
-					{#if $actionSelected}
-						<LCHLauncherPipeItem itemTitle={ $actionSelected.LCHRecipeTitle } />
-					{/if}
-				</LCHLauncherZoneInput>
-			</div>
-
 			{#each _PromptObjects as e}
 				<div class={ e.LCHPromptClass } class:LCHLauncherPromptSelected={ _PromptActive === e }>
 					<LCHLauncherPrompt PromptItems={ e.LCHPromptItems } on:ItemSelectedDidChange={ (event) => e.LCHPromptItemSelected = event.detail } HeaderText={ e.LCHPromptHeading } FilterText={ e.LCHPromptFilterText } MatchStop={ e.LCHPromptMatchStop } ResultsHidden={ e.LCHPromptResultsHidden } />
