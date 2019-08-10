@@ -62,11 +62,10 @@ export let optionsObject = {};
 	}));
 })();
 
-let _PromptObjects, _PromptActive;
+let _PromptObjects, _PromptActiveIndex;
 (function StartPromptObjects() {
 	 _PromptObjects = LCHPromptObjects();
-
-	_PromptActive = _PromptObjects[0];
+	 _PromptActiveIndex = 0;
 })();
 
 import { LCHAPIObjectFor } from './api.js';
@@ -135,7 +134,7 @@ let filterTextDidChange = function (val) {
 			return !val ? formulasDefault : dataObjects.filter(LCHLauncherFilterForText(val));
 		}
 		
-		if (!val && _PromptActive.LCHPromptResultsThrottle === false) {
+		if (!val && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === false) {
 			return currentValue;
 		}
 		
@@ -146,11 +145,11 @@ let filterTextDidChange = function (val) {
 		let results = dataObjects.filter(LCHRecipesModelIsSubject).filter(LCHLauncherFilterForText(val));
 
 		if (currentValue.length && !results.length) {
-			if (_PromptActive.LCHPromptResultsThrottle) {
-				OLSKThrottle.OLSKThrottleSkip(_PromptActive.LCHPromptResultsThrottle);
+			if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
+				OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 			}
 
-			_PromptActive.LCHPromptMatchStop = true;
+			_PromptObjects[_PromptActiveIndex].LCHPromptMatchStop = true;
 
 			return currentValue;
 		}
@@ -245,8 +244,8 @@ function handleKeydown(event) {
 			return event.preventDefault();
 		},
 		ArrowUp () {
-			if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptActive.LCHPromptResultsThrottle) {
-				return OLSKThrottle.OLSKThrottleSkip(_PromptActive.LCHPromptResultsThrottle);
+			if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
+				return OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 			}
 
 			if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
@@ -256,8 +255,8 @@ function handleKeydown(event) {
 			return event.preventDefault();
 		},
 		ArrowDown () {
-			if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptActive.LCHPromptResultsThrottle) {
-				return OLSKThrottle.OLSKThrottleSkip(_PromptActive.LCHPromptResultsThrottle);
+			if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
+				return OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 			}
 
 			if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
@@ -281,19 +280,19 @@ function handleKeydown(event) {
 				return;
 			}
 
-			if (_PromptActive.LCHPromptResultsThrottle !== false) {
+			if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle !== false) {
 				filterText = filterText.slice(0, -1);
 				return;
 			}
 
 			if (filterText) {
 				filterText = '';
-				_PromptActive.LCHPromptMatchStop = false;
+				_PromptObjects[_PromptActiveIndex].LCHPromptMatchStop = false;
 
 				return;
 			}
 
-			_PromptActive.LCHPromptResultsThrottle = undefined;
+			_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
 			formulaSelected.set(null);
 			formulasVisible.set([]);
 		},
@@ -311,36 +310,36 @@ function handleKeydown(event) {
 		return;
 	}
 
-	_PromptActive.LCHPromptFilterText = _PromptActive.LCHPromptInputThrottle === false ? event.key : _PromptActive.LCHPromptFilterText + event.key;
+	_PromptObjects[_PromptActiveIndex].LCHPromptFilterText = _PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle === false ? event.key : _PromptObjects[_PromptActiveIndex].LCHPromptFilterText + event.key;
 
-	if (_PromptActive.LCHPromptInputThrottle === false) {
-		_PromptActive.LCHPromptMatchStop = false;
+	if (_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle === false) {
+		_PromptObjects[_PromptActiveIndex].LCHPromptMatchStop = false;
 	}
 
 	(function ThrottleInput() {
-		if (!_PromptActive.LCHPromptInputThrottle) {
-			_PromptActive.LCHPromptInputThrottle = {
+		if (!_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle) {
+			_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle = {
 				OLSKThrottleDuration: LCHLauncherThrottleDuration,
 				OLSKThrottleCallback: function () {
-					_PromptActive.LCHPromptInputThrottle = false;
+					_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle = false;
 				},
 			};	
 		}
 
-		OLSKThrottle.OLSKThrottleTimeoutFor(_PromptActive.LCHPromptInputThrottle);
+		OLSKThrottle.OLSKThrottleTimeoutFor(_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle);
 	})();
 
 	(function ThrottleResults() {
-		if (!_PromptActive.LCHPromptResultsThrottle) {
-			_PromptActive.LCHPromptResultsThrottle = {
+		if (!_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
+			_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = {
 				OLSKThrottleDuration: LCHLauncherThrottleDuration,
 				OLSKThrottleCallback: function () {
-					_PromptActive.LCHPromptResultsThrottle = false;
+					_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = false;
 				},
 			};	
 		}
 
-		OLSKThrottle.OLSKThrottleTimeoutFor(_PromptActive.LCHPromptResultsThrottle);
+		OLSKThrottle.OLSKThrottleTimeoutFor(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 	})();
 }
 
@@ -377,7 +376,7 @@ async function itemDidClick(event, item) {
 
 		{#if LCHOptionsObject().runMode === LCHLauncherModePipe }
 			{#each _PromptObjects as e}
-				<div class={ e.LCHPromptClass } class:LCHLauncherPromptSelected={ _PromptActive === e }>
+				<div class={ e.LCHPromptClass } class:LCHLauncherPromptSelected={ _PromptObjects[_PromptActiveIndex] === e }>
 					<LCHLauncherPrompt PromptItems={ e.LCHPromptItems } on:ItemSelectedDidChange={ (event) => e.LCHPromptItemSelected = event.detail } HeaderText={ e.LCHPromptHeading } FilterText={ e.LCHPromptFilterText } MatchStop={ e.LCHPromptMatchStop } ResultsHidden={ e.LCHPromptResultsHidden } />
 				</div>
 			{/each}
