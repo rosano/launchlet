@@ -12,7 +12,6 @@ import {
 	actionsVisible,
 	actionSelected,
 	secondaryComponent,
-	LCHPromptObjects,
 } from './_shared.js';
 import { LCHLauncherStandardRecipes } from './recipes/recipes.js';
 import {
@@ -61,12 +60,6 @@ export let optionsObject = {};
 	}));
 })();
 
-let _PromptObjects, _PromptActiveIndex;
-(function StartPromptObjects() {
-	 _PromptObjects = LCHPromptObjects();
-	 _PromptActiveIndex = 0;
-})();
-
 import { LCHAPIObjectFor } from './api.js';
 import * as apiComponents from './recipes/components.js';
 const allRecipes = LCHLauncherStandardRecipes().concat(dataObjects);
@@ -101,6 +94,35 @@ async function apiStart(inputData) {
 		});
 	});
 }
+
+let _PromptObjects, _PromptActiveIndex;
+(function StartPromptObjects() {
+	 _PromptObjects = [{
+		LCHPromptClass: 'LCHLauncherSubjectPrompt',
+		LCHPromptHeading: OLSKLocalized('LCHLauncherZoneInputHeadingSubject'),
+		LCHPromptItems: [],
+		LCHPromptItemsAll: allRecipes.filter(LCHRecipesModelIsSubject),
+		LCHPromptItemSelected: null,
+		LCHPromptInputThrottle: undefined,
+		LCHPromptFilterText: '',
+		LCHPromptMatchStop: false,
+		LCHPromptResultsHidden: true,
+		LCHPromptResultsThrottle: undefined,
+	 }, {
+		LCHPromptClass: 'LCHLauncherActionPrompt',
+		LCHPromptHeading: OLSKLocalized('LCHLauncherZoneInputHeadingAction'),
+		LCHPromptItems: [],
+		LCHPromptItemsAll: allRecipes.filter(LCHRecipesModelIsVerb),
+		LCHPromptItemSelected: null,
+		LCHPromptInputThrottle: undefined,
+		LCHPromptFilterText: '',
+		LCHPromptMatchStop: false,
+		LCHPromptResultsHidden: true,
+		LCHPromptResultsThrottle: undefined,
+	}];
+
+	_PromptActiveIndex = 0;
+})();
 
 let filterText = '';
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump ? dataObjects : [];
