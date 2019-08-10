@@ -497,7 +497,7 @@ describe('LCHLauncherInteraction', function testkLCHLauncherInteraction() {
 		context('on startup', function() {
 			
 			it('selects LCHLauncherSubjectZoneInput', function() {
-				browser.assert.hasClass(kLCHLauncherSubjectZoneInput, 'LCHLauncherZoneSelected');
+				browser.assert.hasClass(kLCHLauncherSubjectZoneInput, 'LCHLauncherPromptSelected');
 			});
 
 		});
@@ -507,13 +507,13 @@ describe('LCHLauncherInteraction', function testkLCHLauncherInteraction() {
 			it('selects LCHLauncherActionZoneInput if LCHLauncherSubjectZoneInput selected', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 				await browser.wait({element: kLCHLauncherActionZoneInput});
-				browser.assert.hasClass(kLCHLauncherActionZoneInput, 'LCHLauncherZoneSelected');
+				browser.assert.hasClass(kLCHLauncherActionZoneInput, 'LCHLauncherPromptSelected');
 			});
 			
 			it('selects LCHLauncherSubjectZoneInput', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 				await browser.wait({element: kLCHLauncherSubjectZoneInput});
-				browser.assert.hasClass(kLCHLauncherSubjectZoneInput, 'LCHLauncherZoneSelected');
+				browser.assert.hasClass(kLCHLauncherSubjectZoneInput, 'LCHLauncherPromptSelected');
 			});
 
 		});

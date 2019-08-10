@@ -373,7 +373,7 @@ async function itemDidClick(event, item) {
 		{/if}
 
 		{#if LCHOptionsObject().runMode === LCHLauncherModePipe }
-			<div class="LCHLauncherSubjectZoneInput" class:LCHLauncherZoneSelected={ selectedZone === 'LCHLauncherSubjectZoneInput' }>
+			<div class="LCHLauncherSubjectZoneInput" class:LCHLauncherPromptSelected={ selectedZone === 'LCHLauncherSubjectZoneInput' }>
 				{#if $formulasVisible.length}
 					<LCHLauncherZoneInput HeadingText={ OLSKLocalized('LCHLauncherZoneInputHeadingSubject') } FilterText={ filterText } MatchStop={ matchStop }>
 						<LCHLauncherPipeItem itemTitle={ $formulaSelected.LCHRecipeTitle } />
@@ -395,7 +395,7 @@ async function itemDidClick(event, item) {
 				{/if}
 			{/if}
 
-			<div class="LCHLauncherActionZoneInput" class:LCHLauncherZoneSelected={ selectedZone === 'LCHLauncherActionZoneInput' }>
+			<div class="LCHLauncherActionZoneInput" class:LCHLauncherPromptSelected={ selectedZone === 'LCHLauncherActionZoneInput' }>
 				<LCHLauncherZoneInput HeadingText={ OLSKLocalized('LCHLauncherZoneInputHeadingAction') }>
 					{#if $actionSelected}
 						<LCHLauncherPipeItem itemTitle={ $actionSelected.LCHRecipeTitle } />
@@ -499,7 +499,7 @@ input {
 	background: #cccccc;
 }
 
-.LCHLauncherZoneSelected :global(.LCHLauncherZoneInputBezel) {
+.LCHLauncherPromptSelected :global(.LCHLauncherZoneInputBezel) {
 	background: #bcdaff;
 }
 
