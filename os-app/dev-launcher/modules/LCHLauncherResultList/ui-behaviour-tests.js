@@ -64,49 +64,57 @@ describe('LCHLauncherResultListInteraction', function testLCHLauncherResultListI
 		return browser.visit(kDefaultRoutePath);
 	});
 
-	context('SelectedIndex', function() {
-		
-		it('defaults to 0', async function() {
-			await browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsMultiple');
+	it('selects none by default', async function() {
+		await browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsMultiple');
 
-			browser.assert.hasClass(`${ LCHLauncherResultListItem }:nth-child(1)`, 'LCHLauncherResultListItemSelected');
-			browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
-			// browser.assert.text('#LCHLauncherZoneInputTestItemSelected', 'alfa');
-		});
-		
-		it('increments on ArrowDown', async function() {
-			await browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
+		browser.assert.elements(LCHLauncherResultListItem, 3);
+		browser.assert.elements('.LCHLauncherResultListItemSelected', 0);
+		browser.assert.text('#LCHLauncherZoneInputTestItemSelected', 'null');
+	});
 
-			browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
-			browser.assert.hasClass(`${ LCHLauncherResultListItem }:nth-child(2)`, 'LCHLauncherResultListItemSelected');
-			browser.assert.text('#LCHLauncherZoneInputTestItemSelected', 'bravo');
-		});
-		
-		it('sets to 0 on result change', async function() {
-			await browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsSingle');
+	it('adds class on set', async function() {
+		await browser.pressButton('#LCHLauncherZoneInputTestSetTestItemSelected');
 
-			browser.assert.hasClass(LCHLauncherResultListItem, 'LCHLauncherResultListItemSelected');
-			browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
-			browser.assert.text('#LCHLauncherZoneInputTestItemSelected', 'alfa');
-		});
-		
-		it('decrements on ArrowUp', async function() {
-			await browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsMultiple');
-			await browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
+		browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
+		browser.assert.text('#LCHLauncherZoneInputTestItemSelected', 'bravo');
+	});
+	
+	it('increments on ArrowDown', async function() {
+		await browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
 
-			browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
-			browser.assert.hasClass(`${ LCHLauncherResultListItem }:nth-child(3)`, 'LCHLauncherResultListItemSelected');
-			browser.assert.text('#LCHLauncherZoneInputTestItemSelected', 'charlie');
-		});
-		
-		it('sets on click', async function() {
-			await browser.click(`${ LCHLauncherResultListItem }:nth-child(2)`);
+		browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
+		browser.assert.hasClass(`${ LCHLauncherResultListItem }:nth-child(3)`, 'LCHLauncherResultListItemSelected');
+		browser.assert.text('#LCHLauncherZoneInputTestItemSelected', 'charlie');
+	});
+	
+	it('does nothing if selected item no longer exists', async function() {
+		await browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsSingle');
 
-			browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
-			browser.assert.hasClass(`${ LCHLauncherResultListItem }:nth-child(2)`, 'LCHLauncherResultListItemSelected');
-			browser.assert.text('#LCHLauncherZoneInputTestItemSelected', 'bravo');
-		});
+		browser.assert.elements('.LCHLauncherResultListItemSelected', 0);
+		browser.assert.text('#LCHLauncherZoneInputTestItemSelected', 'charlie');
+	});
+	
+	it('sets on click', async function() {
+		await browser.click(LCHLauncherResultListItem);
 
+		browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
+		browser.assert.text('#LCHLauncherZoneInputTestItemSelected', 'alfa');
+	});
+	
+	it('does nothing if selected item still exists', async function() {
+		await browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsSingle');
+
+		browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
+		browser.assert.text('#LCHLauncherZoneInputTestItemSelected', 'alfa');
+	});
+	
+	it('decrements on ArrowUp', async function() {
+		await browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsMultiple');
+		await browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
+
+		browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
+		browser.assert.hasClass(`${ LCHLauncherResultListItem }:nth-child(3)`, 'LCHLauncherResultListItemSelected');
+		browser.assert.text('#LCHLauncherZoneInputTestItemSelected', 'charlie');
 	});
 
 });

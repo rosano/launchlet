@@ -3,36 +3,22 @@ import { LCHLauncherResultListConstrainIndex } from './ui-logic.js';
 
 export let ListItems = [];
 
-let SelectedIndex = 0;
+export let ItemSelected = null;
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
-function setSelectedIndex(inputData) {
-	dispatch('ItemSelectedDidChange', ListItems[SelectedIndex = LCHLauncherResultListConstrainIndex(ListItems, inputData)]);
+function setItemSelected(inputData) {
+	dispatch('ItemSelectedDidChange', inputData);
 }
-
-function LCHLauncherResultListInit(node, ListItems) {
-	return {
-		update(ListItems) {
-			if (SelectedIndex === 0) {
-				return;
-			};
-			
-			setTimeout(function () {
-				setSelectedIndex(0);
-			})
-		},
-	};
-};
 
 function keydownDidFire(event) {
 	const handlerFunctions = {
 		ArrowUp () {
-			setSelectedIndex(SelectedIndex - 1);
+			setItemSelected(ListItems[LCHLauncherResultListConstrainIndex(ListItems, ListItems.indexOf(ItemSelected) - 1)]);
 
 			return event.preventDefault();
 		},
 		ArrowDown () {
-			setSelectedIndex(SelectedIndex + 1);
+			setItemSelected(ListItems[LCHLauncherResultListConstrainIndex(ListItems, ListItems.indexOf(ItemSelected) + 1)]);
 			
 			return event.preventDefault();
 		},
@@ -45,9 +31,9 @@ function keydownDidFire(event) {
 </script>
 <svelte:window on:keydown={ keydownDidFire } />
 
-<div class="LCHLauncherResultList" use:LCHLauncherResultListInit={ ListItems }>
+<div class="LCHLauncherResultList">
 	{#each ListItems as e,index}
-		<div class="LCHLauncherResultListItem" class:LCHLauncherResultListItemSelected={ index === SelectedIndex } on:click={ () => setSelectedIndex(index) }>
+		<div class="LCHLauncherResultListItem" class:LCHLauncherResultListItemSelected={ e === ItemSelected } on:click={ () => setItemSelected(e) }>
 			<slot LCHLauncherResultListItem={ e }></slot>
 		</div>
 	{/each}
