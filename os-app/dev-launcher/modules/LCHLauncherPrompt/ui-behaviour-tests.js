@@ -83,10 +83,16 @@ describe('LCHLauncherPromptText', function testLCHLauncherPromptText() {
 		browser.assert.text('.LCHLauncherZoneInputHeading', 'BRAVO');
 	});
 	
-	it('on select item', async function() {
+	it('on set single', async function() {
 		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsSingle');
 
 		browser.assert.text('#LCHLauncherPromptStubItemSelected', 'alfa');
+	});
+	
+	it('on set multiple', async function() {
+		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
+
+		browser.assert.text('#LCHLauncherPromptStubItemSelected', 'bravo');
 	});
 
 });

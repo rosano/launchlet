@@ -15,9 +15,21 @@ const dispatch = createEventDispatcher();
 function ItemSelectedDidChange(event) {
 	dispatch('ItemSelectedDidChange', ItemSelected = event.detail);
 }
+
+function LCHLauncherResultListInit(node, PromptItems) {
+	return {
+		update(PromptItems) {
+			setTimeout(function () {
+				ItemSelectedDidChange({
+					detail: PromptItems[0],
+				});
+			});
+		},
+	};
+};
 </script>
 
-<div class="LCHLauncherPrompt">
+<div class="LCHLauncherPrompt" use:LCHLauncherResultListInit={ PromptItems }>
 
 {#if ItemSelected}
 	<LCHLauncherZoneInput HeadingText={ HeaderText } FilterText={ FilterText } MatchStop={ MatchStop }>
