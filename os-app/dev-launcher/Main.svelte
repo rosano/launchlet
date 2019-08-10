@@ -122,12 +122,16 @@ let _PromptObjects, _PromptActiveIndex;
 	_PromptActiveIndex = 0;
 })();
 
-function ActivePromptUpdateFilterText (val) {
-	_PromptObjects[_PromptActiveIndex].LCHPromptFilterText = val;
+function ActivePromptFilterTextShouldUpdate (val) {
+	(function SetFilterText() {
+		_PromptObjects[_PromptActiveIndex].LCHPromptFilterText = val;
+	})();
 
-	if (_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle === false) {
-		_PromptObjects[_PromptActiveIndex].LCHPromptMatchStop = false;
-	}
+	(function SetMatchStop() {
+		if (_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle === false) {
+			_PromptObjects[_PromptActiveIndex].LCHPromptMatchStop = false;
+		}
+	})();
 
 	(function ThrottleInput() {
 		if (!_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle) {
@@ -155,31 +159,35 @@ function ActivePromptUpdateFilterText (val) {
 		OLSKThrottle.OLSKThrottleTimeoutFor(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 	})();
 
-	_PromptObjects[_PromptActiveIndex].LCHPromptItems = (function() {
-		if (!_PromptObjects[_PromptActiveIndex].LCHPromptFilterText && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === false) {
-			return _PromptObjects[_PromptActiveIndex].LCHPromptItems;
-		}
-		
-		if (!_PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
-			return [];
-		}
-
-		let results = dataObjects.filter(LCHRecipesModelIsSubject).filter(LCHLauncherFilterForText(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText));
-
-		if (_PromptObjects[_PromptActiveIndex].LCHPromptItems.length && !results.length) {
-			if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
-				OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
+	(function SetItems() {
+		_PromptObjects[_PromptActiveIndex].LCHPromptItems = (function() {
+			if (!_PromptObjects[_PromptActiveIndex].LCHPromptFilterText && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === false) {
+				return _PromptObjects[_PromptActiveIndex].LCHPromptItems;
+			}
+			
+			if (!_PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
+				return [];
 			}
 
-			_PromptObjects[_PromptActiveIndex].LCHPromptMatchStop = true;
+			let results = dataObjects.filter(LCHRecipesModelIsSubject).filter(LCHLauncherFilterForText(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText));
 
-			return _PromptObjects[_PromptActiveIndex].LCHPromptItems;
-		}
+			if (_PromptObjects[_PromptActiveIndex].LCHPromptItems.length && !results.length) {
+				if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
+					OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
+				}
 
-		return results;
+				_PromptObjects[_PromptActiveIndex].LCHPromptMatchStop = true;
+
+				return _PromptObjects[_PromptActiveIndex].LCHPromptItems;
+			}
+
+			return results;
+		})();
 	})();
 
-	_PromptObjects[_PromptActiveIndex].LCHPromptItemSelected = _PromptObjects[_PromptActiveIndex].LCHPromptItems[0];
+	(function SetItemSelected() {
+		_PromptObjects[_PromptActiveIndex].LCHPromptItemSelected = _PromptObjects[_PromptActiveIndex].LCHPromptItems[0];
+	})();
 };
 
 let filterText = '';
@@ -389,7 +397,7 @@ function handleKeydown(event) {
 		return;
 	}
 
-	ActivePromptUpdateFilterText(_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle === false ? event.key : _PromptObjects[_PromptActiveIndex].LCHPromptFilterText + event.key);
+	ActivePromptFilterTextShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle === false ? event.key : _PromptObjects[_PromptActiveIndex].LCHPromptFilterText + event.key);
 }
 
 function handleClick(event) { 
