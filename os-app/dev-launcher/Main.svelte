@@ -364,12 +364,12 @@ function handleKeydown(event) {
 		Tab () {
 			if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
 				(function() {
-					if (selectedZone === 'LCHLauncherSubjectZoneInput') {
-						selectedZone = 'LCHLauncherActionZoneInput';
+					if (_PromptActiveIndex === 0) {
+						_PromptActiveIndex = 1;
 						return;
 					}
 
-					selectedZone = 'LCHLauncherSubjectZoneInput';
+					_PromptActiveIndex = 0;
 				})();
 			}
 
