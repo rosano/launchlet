@@ -71,7 +71,7 @@ describe('LCHLauncherResultListInteraction', function testLCHLauncherResultListI
 
 			browser.assert.hasClass(`${ LCHLauncherResultListItem }:nth-child(1)`, 'LCHLauncherResultListItemSelected');
 			browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
-			browser.assert.text('#LCHLauncherZoneInputTestItemSelected', 'alfa');
+			// browser.assert.text('#LCHLauncherZoneInputTestItemSelected', 'alfa');
 		});
 		
 		it('increments on ArrowDown', async function() {

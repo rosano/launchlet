@@ -13,6 +13,10 @@ function setSelectedIndex(inputData) {
 function LCHLauncherResultListInit(node, ListItems) {
 	return {
 		update(ListItems) {
+			if (SelectedIndex === 0) {
+				return;
+			};
+			
 			setTimeout(function () {
 				setSelectedIndex(0);
 			})
