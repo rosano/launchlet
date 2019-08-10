@@ -179,7 +179,7 @@ function ActivePromptFilterTextShouldUpdate (val) {
 				return [];
 			}
 
-			let results = dataObjects.filter(LCHRecipesModelIsSubject).filter(LCHLauncherFilterForText(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText));
+			let results = _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll.filter(LCHLauncherFilterForText(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText));
 
 			if (_PromptObjects[_PromptActiveIndex].LCHPromptItems.length && !results.length) {
 				if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
