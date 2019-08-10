@@ -72,6 +72,7 @@ let _PromptObjects, _PromptActive;
 		LCHPromptFilterText: '',
 		LCHPromptMatchStop: false,
 		LCHPromptResultsHidden: true,
+		LCHPromptResultsThrottle: undefined,
 	}, {
 		LCHPromptClass: 'LCHLauncherActionPrompt',
 		LCHPromptHeading: OLSKLocalized('LCHLauncherZoneInputHeadingAction'),
@@ -81,6 +82,7 @@ let _PromptObjects, _PromptActive;
 		LCHPromptFilterText: '',
 		LCHPromptMatchStop: false,
 		LCHPromptResultsHidden: true,
+		LCHPromptResultsThrottle: undefined,
 	}];
 
 	_PromptActive = _PromptObjects[0];
@@ -124,7 +126,6 @@ async function apiStart(inputData) {
 let filterText = '';
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump ? dataObjects : [];
 import OLSKThrottle from 'OLSKThrottle';
-let resultListThrottle;
 let matchStop;
 if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
 	formulaSelected.subscribe(function formulaSelectedDidChange(val) {
@@ -154,7 +155,7 @@ let filterTextDidChange = function (val) {
 			return !val ? formulasDefault : dataObjects.filter(LCHLauncherFilterForText(val));
 		}
 		
-		if (!val && resultListThrottle === false) {
+		if (!val && _PromptActive.LCHPromptResultsThrottle === false) {
 			return currentValue;
 		}
 		
@@ -165,8 +166,8 @@ let filterTextDidChange = function (val) {
 		let results = dataObjects.filter(LCHRecipesModelIsSubject).filter(LCHLauncherFilterForText(val));
 
 		if (currentValue.length && !results.length) {
-			if (resultListThrottle) {
-				OLSKThrottle.OLSKThrottleSkip(resultListThrottle);
+			if (_PromptActive.LCHPromptResultsThrottle) {
+				OLSKThrottle.OLSKThrottleSkip(_PromptActive.LCHPromptResultsThrottle);
 			}
 
 			matchStop = true;
@@ -264,8 +265,8 @@ function handleKeydown(event) {
 			return event.preventDefault();
 		},
 		ArrowUp () {
-			if (LCHOptionsObject().runMode === LCHLauncherModePipe && resultListThrottle) {
-				return OLSKThrottle.OLSKThrottleSkip(resultListThrottle);
+			if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptActive.LCHPromptResultsThrottle) {
+				return OLSKThrottle.OLSKThrottleSkip(_PromptActive.LCHPromptResultsThrottle);
 			}
 
 			formulaSelected.set($formulasVisible[LCHLauncherConstrainIndex($formulasVisible, $formulasVisible.indexOf($formulaSelected) - 1)]);
@@ -277,8 +278,8 @@ function handleKeydown(event) {
 			return event.preventDefault();
 		},
 		ArrowDown () {
-			if (LCHOptionsObject().runMode === LCHLauncherModePipe && resultListThrottle) {
-				return OLSKThrottle.OLSKThrottleSkip(resultListThrottle);
+			if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptActive.LCHPromptResultsThrottle) {
+				return OLSKThrottle.OLSKThrottleSkip(_PromptActive.LCHPromptResultsThrottle);
 			}
 
 			formulaSelected.set($formulasVisible[LCHLauncherConstrainIndex($formulasVisible, $formulasVisible.indexOf($formulaSelected) + 1)]);
@@ -304,7 +305,7 @@ function handleKeydown(event) {
 				return;
 			}
 
-			if (resultListThrottle !== false) {
+			if (_PromptActive.LCHPromptResultsThrottle !== false) {
 				filterText = filterText.slice(0, -1);
 				return;
 			}
@@ -316,7 +317,7 @@ function handleKeydown(event) {
 				return;
 			}
 
-			resultListThrottle = undefined;
+			_PromptActive.LCHPromptResultsThrottle = undefined;
 			formulaSelected.set(null);
 			formulasVisible.set([]);
 		},
@@ -354,16 +355,16 @@ function handleKeydown(event) {
 	})();
 
 	(function ThrottleResults() {
-		if (!resultListThrottle) {
-			resultListThrottle = {
+		if (!_PromptActive.LCHPromptResultsThrottle) {
+			_PromptActive.LCHPromptResultsThrottle = {
 				OLSKThrottleDuration: LCHLauncherThrottleDuration,
 				OLSKThrottleCallback: function () {
-					resultListThrottle = false;
+					_PromptActive.LCHPromptResultsThrottle = false;
 				},
 			};	
 		}
 
-		OLSKThrottle.OLSKThrottleTimeoutFor(resultListThrottle);
+		OLSKThrottle.OLSKThrottleTimeoutFor(_PromptActive.LCHPromptResultsThrottle);
 	})();
 }
 
@@ -409,7 +410,7 @@ async function itemDidClick(event, item) {
 				{/if}
 			</div>
 
-			{#if LCHOptionsObject().runMode === LCHLauncherModePipe && resultListThrottle === false }
+			{#if LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptActive.LCHPromptResultsThrottle === false }
 				{#if $formulasVisible.length}
 					<div class="LCHLauncherResultList">
 						{#each $formulasVisible as e}
