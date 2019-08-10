@@ -381,6 +381,8 @@ function handleKeydown(event) {
 				return OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 			}
 
+			formulaSelected.set($formulasVisible[LCHLauncherConstrainIndex($formulasVisible, $formulasVisible.indexOf($formulaSelected) - 1)]);
+
 			if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
 				apiStart($formulaSelected);
 			}
@@ -392,6 +394,8 @@ function handleKeydown(event) {
 				return OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 			}
 
+			formulaSelected.set($formulasVisible[LCHLauncherConstrainIndex($formulasVisible, $formulasVisible.indexOf($formulaSelected) + 1)]);
+			
 			if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
 				apiStart($formulaSelected);
 			}
