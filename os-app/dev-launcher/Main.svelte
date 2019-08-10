@@ -106,7 +106,6 @@ let _PromptObjects, _PromptActiveIndex;
 		LCHPromptInputThrottle: undefined,
 		LCHPromptFilterText: '',
 		LCHPromptMatchStop: false,
-		LCHPromptResultsHidden: true,
 		LCHPromptResultsThrottle: undefined,
 	 }, {
 		LCHPromptClass: 'LCHLauncherActionPrompt',
@@ -117,7 +116,6 @@ let _PromptObjects, _PromptActiveIndex;
 		LCHPromptInputThrottle: undefined,
 		LCHPromptFilterText: '',
 		LCHPromptMatchStop: false,
-		LCHPromptResultsHidden: true,
 		LCHPromptResultsThrottle: undefined,
 	}];
 
@@ -398,7 +396,7 @@ async function itemDidClick(event, item) {
 		{#if LCHOptionsObject().runMode === LCHLauncherModePipe }
 			{#each _PromptObjects as e}
 				<div class={ e.LCHPromptClass } class:LCHLauncherPromptSelected={ _PromptObjects[_PromptActiveIndex] === e }>
-					<LCHLauncherPrompt PromptItems={ e.LCHPromptItems } on:ItemSelectedDidChange={ (event) => e.LCHPromptItemSelected = event.detail } HeaderText={ e.LCHPromptHeading } FilterText={ e.LCHPromptFilterText } MatchStop={ e.LCHPromptMatchStop } ResultsHidden={ e.LCHPromptResultsHidden } />
+					<LCHLauncherPrompt PromptItems={ e.LCHPromptItems } on:ItemSelectedDidChange={ (event) => e.LCHPromptItemSelected = event.detail } HeaderText={ e.LCHPromptHeading } FilterText={ e.LCHPromptFilterText } MatchStop={ e.LCHPromptMatchStop } ResultsHidden={ e.LCHPromptResultsThrottle } />
 				</div>
 			{/each}
 		{/if}
