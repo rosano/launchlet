@@ -363,20 +363,16 @@ function handleKeydown(event) {
 		},
 		Backspace () {
 			if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
-				filterText = filterText.slice(0, -1);
-				return;
+				return ActivePromptFilterTextShouldUpdate(filterText.slice(0, -1));
 			}
 
-			if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle !== false) {
-				filterText = filterText.slice(0, -1);
-				return;
+			if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
+				return ActivePromptFilterTextShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText.slice(0, -1));
 			}
 
-			if (filterText) {
-				filterText = '';
+			if (_PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
 				_PromptObjects[_PromptActiveIndex].LCHPromptMatchStop = false;
-
-				return;
+				return ActivePromptFilterTextShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText.slice(0, -1));
 			}
 
 			_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
