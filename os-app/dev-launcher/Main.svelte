@@ -126,7 +126,6 @@ async function apiStart(inputData) {
 let filterText = '';
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump ? dataObjects : [];
 import OLSKThrottle from 'OLSKThrottle';
-let matchStop;
 if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
 	formulaSelected.subscribe(function formulaSelectedDidChange(val) {
 		return actionsVisible.set(!val ? [] : allRecipes.filter(function (e) {
@@ -170,7 +169,7 @@ let filterTextDidChange = function (val) {
 				OLSKThrottle.OLSKThrottleSkip(_PromptActive.LCHPromptResultsThrottle);
 			}
 
-			matchStop = true;
+			_PromptActive.LCHPromptMatchStop = true;
 
 			return currentValue;
 		}
@@ -312,7 +311,7 @@ function handleKeydown(event) {
 
 			if (filterText) {
 				filterText = '';
-				matchStop = false;
+				_PromptActive.LCHPromptMatchStop = false;
 
 				return;
 			}
@@ -338,7 +337,7 @@ function handleKeydown(event) {
 	_PromptActive.LCHPromptFilterText = _PromptActive.LCHPromptInputThrottle === false ? event.key : _PromptActive.LCHPromptFilterText + event.key;
 
 	if (_PromptActive.LCHPromptInputThrottle === false) {
-		matchStop = false;
+		_PromptActive.LCHPromptMatchStop = false;
 	}
 
 	(function ThrottleInput() {
@@ -402,7 +401,7 @@ async function itemDidClick(event, item) {
 		{#if LCHOptionsObject().runMode === LCHLauncherModePipe }
 			<div class="LCHLauncherSubjectZoneInput" class:LCHLauncherPromptSelected={ selectedZone === 'LCHLauncherSubjectZoneInput' }>
 				{#if $formulasVisible.length}
-					<LCHLauncherZoneInput HeadingText={ OLSKLocalized('LCHLauncherZoneInputHeadingSubject') } FilterText={ filterText } MatchStop={ matchStop }>
+					<LCHLauncherZoneInput HeadingText={ OLSKLocalized('LCHLauncherZoneInputHeadingSubject') } FilterText={ filterText } MatchStop={ _PromptActive.LCHPromptMatchStop }>
 						<LCHLauncherPipeItem itemTitle={ $formulaSelected.LCHRecipeTitle } />
 					</LCHLauncherZoneInput>
 				{:else}
