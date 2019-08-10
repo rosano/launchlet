@@ -135,6 +135,10 @@ function ActivePromptFilterTextShouldUpdate (val) {
 	})();
 
 	(function ThrottleInput() {
+		if (!_PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
+			return;
+		}
+
 		if (!_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle) {
 			_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle = {
 				OLSKThrottleDuration: LCHLauncherThrottleDuration,
@@ -148,6 +152,10 @@ function ActivePromptFilterTextShouldUpdate (val) {
 	})();
 
 	(function ThrottleResults() {
+		if (!_PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
+			return;
+		}
+
 		if (!_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
 			_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = {
 				OLSKThrottleDuration: LCHLauncherThrottleDuration,
@@ -161,7 +169,7 @@ function ActivePromptFilterTextShouldUpdate (val) {
 	})();
 
 	(function SetItems() {
-		_PromptObjects[_PromptActiveIndex].LCHPromptItems = (function() {
+		ActivePromptItemsShouldUpdate((function() {
 			if (!_PromptObjects[_PromptActiveIndex].LCHPromptFilterText && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === false) {
 				return _PromptObjects[_PromptActiveIndex].LCHPromptItems;
 			}
@@ -183,8 +191,15 @@ function ActivePromptFilterTextShouldUpdate (val) {
 			}
 
 			return results;
-		})();
+		})());
 	})();
+};
+
+function ActivePromptItemsShouldUpdate (val) {
+	(function SetItems() {
+		_PromptObjects[_PromptActiveIndex].LCHPromptItems = val;
+	})();
+
 
 	(function SetItemSelected() {
 		ActivePromptItemSelectedShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptItems[0]);
@@ -201,6 +216,13 @@ function ActivePromptItemSelectedShouldUpdate (val) {
 	};
 
 	(function UpdateActionsForSubject() {
+		if (!_PromptObjects[_PromptActiveIndex].LCHPromptItemSelected) {
+			_PromptObjects[1].LCHPromptItems = _PromptObjects[1].LCHPromptItemsAll = [];
+			_PromptObjects[1].LCHPromptItemSelected = null;
+
+			return;
+		};
+
 		_PromptObjects[1].LCHPromptItemsAll = _AllActions.filter(function (e) {
 			return apiTypeEquivalenceMap[val.LCHRecipeOutputType].filter(function (type) {
 				return e.LCHRecipeInputTypes.indexOf(type) !== -1
@@ -395,8 +417,10 @@ function handleKeydown(event) {
 
 			if (_PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
 				_PromptObjects[_PromptActiveIndex].LCHPromptMatchStop = false;
-				return ActivePromptFilterTextShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText.slice(0, -1));
+				return ActivePromptFilterTextShouldUpdate('');
 			}
+
+			ActivePromptItemsShouldUpdate([]);
 
 			_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
 			formulaSelected.set(null);
