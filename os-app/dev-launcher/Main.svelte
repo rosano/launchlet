@@ -122,6 +122,66 @@ let _PromptObjects, _PromptActiveIndex;
 	_PromptActiveIndex = 0;
 })();
 
+function ActivePromptUpdateFilterText (val) {
+	_PromptObjects[_PromptActiveIndex].LCHPromptFilterText = val;
+
+	if (_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle === false) {
+		_PromptObjects[_PromptActiveIndex].LCHPromptMatchStop = false;
+	}
+
+	(function ThrottleInput() {
+		if (!_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle) {
+			_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle = {
+				OLSKThrottleDuration: LCHLauncherThrottleDuration,
+				OLSKThrottleCallback: function () {
+					_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle = false;
+				},
+			};	
+		}
+
+		OLSKThrottle.OLSKThrottleTimeoutFor(_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle);
+	})();
+
+	(function ThrottleResults() {
+		if (!_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
+			_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = {
+				OLSKThrottleDuration: LCHLauncherThrottleDuration,
+				OLSKThrottleCallback: function () {
+					_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = false;
+				},
+			};	
+		}
+
+		OLSKThrottle.OLSKThrottleTimeoutFor(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
+	})();
+
+	_PromptObjects[_PromptActiveIndex].LCHPromptItems = (function() {
+		if (!_PromptObjects[_PromptActiveIndex].LCHPromptFilterText && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === false) {
+			return _PromptObjects[_PromptActiveIndex].LCHPromptItems;
+		}
+		
+		if (!_PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
+			return [];
+		}
+
+		let results = dataObjects.filter(LCHRecipesModelIsSubject).filter(LCHLauncherFilterForText(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText));
+
+		if (_PromptObjects[_PromptActiveIndex].LCHPromptItems.length && !results.length) {
+			if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
+				OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
+			}
+
+			_PromptObjects[_PromptActiveIndex].LCHPromptMatchStop = true;
+
+			return _PromptObjects[_PromptActiveIndex].LCHPromptItems;
+		}
+
+		return results;
+	})();
+
+	_PromptObjects[_PromptActiveIndex].LCHPromptItemSelected = _PromptObjects[_PromptActiveIndex].LCHPromptItems[0];
+};
+
 let filterText = '';
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump ? dataObjects : [];
 import OLSKThrottle from 'OLSKThrottle';
@@ -329,37 +389,7 @@ function handleKeydown(event) {
 		return;
 	}
 
-	_PromptObjects[_PromptActiveIndex].LCHPromptFilterText = _PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle === false ? event.key : _PromptObjects[_PromptActiveIndex].LCHPromptFilterText + event.key;
-
-	if (_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle === false) {
-		_PromptObjects[_PromptActiveIndex].LCHPromptMatchStop = false;
-	}
-
-	(function ThrottleInput() {
-		if (!_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle) {
-			_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle = {
-				OLSKThrottleDuration: LCHLauncherThrottleDuration,
-				OLSKThrottleCallback: function () {
-					_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle = false;
-				},
-			};	
-		}
-
-		OLSKThrottle.OLSKThrottleTimeoutFor(_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle);
-	})();
-
-	(function ThrottleResults() {
-		if (!_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
-			_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = {
-				OLSKThrottleDuration: LCHLauncherThrottleDuration,
-				OLSKThrottleCallback: function () {
-					_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = false;
-				},
-			};	
-		}
-
-		OLSKThrottle.OLSKThrottleTimeoutFor(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
-	})();
+	ActivePromptUpdateFilterText(_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle === false ? event.key : _PromptObjects[_PromptActiveIndex].LCHPromptFilterText + event.key);
 }
 
 function handleClick(event) { 
