@@ -560,11 +560,20 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 				browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
 			});
 
-			it('updates on tab', async function() {
+			it('updates on Tab', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 				await browser.wait({element: LCHLauncherSubjectZoneInput});
 				
 				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
+			});
+
+			it('updates on Shift Tab', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'Tab', {
+					shiftKey: true,
+				});
+				await browser.wait({element: LCHLauncherSubjectZoneInput});
+				
+				browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
 			});
 
 			it('does nothing if no subject', async function() {

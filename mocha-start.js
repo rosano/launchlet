@@ -7,9 +7,9 @@
 
 	Browser.localhost('loc.tests', 3000);
 	
-	Browser.prototype.OLSKFireKeyboardEvent = function(target, keyCode, eventName = 'keydown') {
+	Browser.prototype.OLSKFireKeyboardEvent = function(target, keyCode, eventOptions = {}) {
 		const event = this.window.document.createEvent('HTMLEvents');
-		event.initEvent(eventName, true, true);
+		event.initEvent('keydown', true, true);
 		event.which = event.keyCode = event.key = event.code = keyCode;
 
 		target = typeof target === 'string' ? this.query(target) : target;
@@ -18,7 +18,7 @@
 			throw new Error('no target');
 		}
 
-		target.dispatchEvent(event);
+		target.dispatchEvent(Object.assign(event, eventOptions));
 
 		return this._wait(null);
 	};
