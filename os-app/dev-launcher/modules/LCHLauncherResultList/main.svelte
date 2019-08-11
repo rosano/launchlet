@@ -31,17 +31,17 @@ function keydownDidFire(event) {
 </script>
 <svelte:window on:keydown={ keydownDidFire } />
 
-<div class="LCHLauncherResultList">
-	{#each ListItems as e,index}
-		<div class="LCHLauncherResultListItem" class:LCHLauncherResultListItemSelected={ e === ItemSelected } on:click={ () => setItemSelected(e) }>
-			<slot LCHLauncherResultListItem={ e }></slot>
-		</div>
-	{/each}
-
-	{#if !ListItems.length}
-		<slot name="LCHLauncherResultListEmpty"></slot>
-	{/if}
-</div>
+{#if ListItems.length}
+	<div class="LCHLauncherResultList">
+		{#each ListItems as e,index}
+			<div class="LCHLauncherResultListItem" class:LCHLauncherResultListItemSelected={ e === ItemSelected } on:click={ () => setItemSelected(e) }>
+				<slot LCHLauncherResultListItem={ e }></slot>
+			</div>
+		{/each}
+	</div>
+{:else}
+	<slot name="LCHLauncherResultListEmpty"></slot>
+{/if}
 
 <style>
 .LCHLauncherResultListItem {

@@ -14,8 +14,7 @@ describe('LCHLauncherResultListElements', function testLCHLauncherResultListElem
 	});
 	
 	it('on startup', function() {
-		browser.assert.elements(LCHLauncherResultList, 1);
-
+		browser.assert.elements(LCHLauncherResultList, 0);
 		browser.assert.elements(LCHLauncherResultListItem, 0);
 
 		browser.assert.elements(LCHLauncherResultListEmpty, 1);
@@ -25,6 +24,7 @@ describe('LCHLauncherResultListElements', function testLCHLauncherResultListElem
 		browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsSingle');
 		await browser.wait({element: LCHLauncherResultListItem});
 
+		browser.assert.elements(LCHLauncherResultList, 1);
 		browser.assert.elements(LCHLauncherResultListItem, 1);
 		
 		browser.assert.elements(LCHLauncherResultListEmpty, 0);
@@ -42,6 +42,7 @@ describe('LCHLauncherResultListElements', function testLCHLauncherResultListElem
 	it('on set zero', async function() {
 		await browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsZero');
 
+		browser.assert.elements(LCHLauncherResultList, 0);
 		browser.assert.elements(LCHLauncherResultListItem, 0);
 
 		browser.assert.elements(LCHLauncherResultListEmpty, 1);
