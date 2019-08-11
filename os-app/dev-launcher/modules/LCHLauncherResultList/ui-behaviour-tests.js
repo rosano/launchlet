@@ -2,11 +2,12 @@ import { throws, deepEqual } from 'assert';
 
 const browser = new OLSKBrowser();
 const kDefaultRoutePath = '/modules/LCHLauncherResultList';
+
 const LCHLauncherResultList = '.LCHLauncherResultList';
 const LCHLauncherResultListItem = '.LCHLauncherResultListItem';
 const LCHLauncherResultListEmpty = '.LCHLauncherResultListEmpty';
 
-describe.skip('LCHLauncherResultListElements', function testLCHLauncherResultListElements() {
+describe('LCHLauncherResultListElements', function testLCHLauncherResultListElements() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
@@ -22,7 +23,7 @@ describe.skip('LCHLauncherResultListElements', function testLCHLauncherResultLis
 	
 	it('on set single', async function() {
 		browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsSingle');
-		await browser.wait({element: kLCHLauncherListItem});
+		await browser.wait({element: LCHLauncherResultListItem});
 
 		browser.assert.elements(LCHLauncherResultListItem, 1);
 		
@@ -31,7 +32,7 @@ describe.skip('LCHLauncherResultListElements', function testLCHLauncherResultLis
 	
 	it('on set multiple', async function() {
 		browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsMultiple');
-		await browser.wait({element: kLCHLauncherListItem});
+		await browser.wait({element: LCHLauncherResultListItem});
 
 		browser.assert.elements(LCHLauncherResultListItem, 3);
 		
