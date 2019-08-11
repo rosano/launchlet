@@ -50,7 +50,6 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 						LCHRecipeCallback: function () {
 							return document.querySelector('textarea').value = e;
 						},
-						LCHRecipeOutputType: 'String',
 					};
 				}),
 				completionHandler () {
