@@ -31,9 +31,3 @@ function ItemSelectedDidChange(event) {
 {/if}
 
 </div>
-
-<style>
-.LCHLauncherPrompt :global(.LCHLauncherResultListItemSelected) {
-	background: #bcdaff;
-}
-</style>

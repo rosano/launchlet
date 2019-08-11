@@ -535,7 +535,8 @@ async function itemDidClick(event, item) {
 	margin: 0 0 0 calc(var(--__LaunchletWidth) / -2);
 	z-index: 9999;
 
-	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+	font-family: 'Lucida Grande', 'Helvetica', sans-serif;
+	
 	/*font-size: 16pt;*/
 	color: black;
 
@@ -543,7 +544,7 @@ async function itemDidClick(event, item) {
 	text-align: initial;
 }
 
-.Container :global(.LCHLauncherPrompt) {
+.Container :global(.LCHLauncherZoneInput) {
 	/* DisableTextSelection */
 	pointer-events: none;
 	-moz-user-select: none;
@@ -556,6 +557,7 @@ async function itemDidClick(event, item) {
 .LCHLauncherPromptHeading {
 	padding: 3px;
 
+	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
 	font-size: 8pt;
 	color: hsl(0, 0%, 60%);
 
@@ -569,14 +571,13 @@ async function itemDidClick(event, item) {
 
 .Container :global(.LCHLauncherResultList) {
 	width: 95%;
-	border: 1px solid hsl(0, 0%, 80%);
-	border-radius: 5px 0 0 5px;
+	border-left: 1px solid hsl(0, 0%, 80%);
 
 	margin: 5px;
 	margin-left: 4%;
 	margin-right: none;
 
-	background: hsl(0, 0%, 95%);
+	color: black;
 
 	/* @CapAndScroll */
 	max-height: 50px;
@@ -621,6 +622,7 @@ input {
 .ListItem {
 	padding: 5px;
 
+	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
 	font-weight: bold;
 
 	/* Behaviour */
@@ -636,12 +638,15 @@ input {
 	background: #cccccc;
 }
 
-.LCHLauncherPromptSelected :global(.LCHLauncherZoneInputBezel) {
-	background: #bcdaff;
+.LCHLauncherPromptSelected :global(.LCHLauncherZoneInputBezel), .LCHLauncherPromptSelected :global(.LCHLauncherResultListItemSelected) {
+	background: hsl(0, 0%, 85%);
 }
 
 .LCHLauncherSubjectZoneInputPlaceholder {
 	display: inline-block;
+
+	font-size: 9pt;
+	color: hsl(0, 0%, 50%);
 
 	/* @LCHLauncherZoneInputBezelFlexbox:Child */
 	align-self: center;

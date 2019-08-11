@@ -13,11 +13,8 @@ export let didClick = null;
 	padding: 3px;
 	border: solid 1px hsl(0, 0%, 90%);
 	border-radius: 6px;
-
+	
 	background: hsl(0, 0%, 95%);
-	font-family: 'Lucida Grande', 'Helvetica', sans-serif;
-	font-size: 8pt;
-	color: hsl(0, 0%, 30%);
 
 	/* @LCHLauncherZoneInputFlexbox:Parent */
 	display: flex;
