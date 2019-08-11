@@ -9,7 +9,7 @@ describe('LCHRunCommandCallback', function testLCHRunCommandCallback() {
 			LCHRecipeCallback: function () {
 				return 'alfa';
 			},
-		}), 'alfa');
+		})(), 'alfa');
 	});
 
 });

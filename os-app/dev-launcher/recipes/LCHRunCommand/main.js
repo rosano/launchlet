@@ -1,5 +1,5 @@
 export const LCHRunCommandCallback = function(inputData) {
-	return inputData.LCHRecipeCallback();
+	return inputData.LCHRecipeCallback;
 };
 
 export const LCHRunCommandRecipe = function() {
