@@ -124,9 +124,9 @@ let _AllActions = allRecipes.filter(LCHRecipesModelIsVerb);
 	_PromptActiveIndex = 0;
 })();
 
-function ActivePromptFilterTextShouldUpdate (val) {
+function ActivePromptFilterTextShouldUpdate (inputData) {
 	(function SetFilterText() {
-		_PromptObjects[_PromptActiveIndex].LCHPromptFilterText = val;
+		_PromptObjects[_PromptActiveIndex].LCHPromptFilterText = inputData;
 	})();
 
 	(function SetMatchStop() {
@@ -196,9 +196,9 @@ function ActivePromptFilterTextShouldUpdate (val) {
 	})();
 };
 
-function ActivePromptItemsShouldUpdate (val) {
+function ActivePromptItemsShouldUpdate (inputData) {
 	(function SetItems() {
-		_PromptObjects[_PromptActiveIndex].LCHPromptItems = val;
+		_PromptObjects[_PromptActiveIndex].LCHPromptItems = inputData;
 	})();
 
 
@@ -207,9 +207,9 @@ function ActivePromptItemsShouldUpdate (val) {
 	})();
 };
 
-function ActivePromptItemSelectedShouldUpdate (val) {
+function ActivePromptItemSelectedShouldUpdate (inputData) {
 	(function SetItemSelected() {
-		_PromptObjects[_PromptActiveIndex].LCHPromptItemSelected = val;
+		_PromptObjects[_PromptActiveIndex].LCHPromptItemSelected = inputData;
 	})();
 
 	if (_PromptActiveIndex !== 0) {
@@ -225,7 +225,7 @@ function ActivePromptItemSelectedShouldUpdate (val) {
 		};
 
 		_PromptObjects[1].LCHPromptItemsAll = _AllActions.filter(function (e) {
-			return apiTypeEquivalenceMap[val.LCHRecipeOutputType].filter(function (type) {
+			return apiTypeEquivalenceMap[inputData.LCHRecipeOutputType].filter(function (type) {
 				return e.LCHRecipeInputTypes.indexOf(type) !== -1
 			}).length
 		});
