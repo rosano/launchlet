@@ -26,7 +26,7 @@ function ItemSelectedDidChange(event) {
 
 {#if !ResultsHidden}
 	<LCHLauncherResultList ListItems={ PromptItems } let:LCHLauncherResultListItem={ item } ItemSelected={ ItemSelected } on:ItemSelectedDidChange={ ItemSelectedDidChange }>
-		<div>{ item.LCHRecipeTitle }</div>
+		<LCHLauncherPipeItem itemTitle={ item.LCHRecipeTitle } />
 	</LCHLauncherResultList>
 {/if}
 

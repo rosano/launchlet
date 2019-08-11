@@ -21,8 +21,8 @@ Object.entries({
 	LCHLauncherPipeItem: '.LCHLauncherPipeItem',
 	LCHLauncherResultList: '.LCHLauncherResultList',
 	LCHLauncherResultListItem: '.LCHLauncherResultListItem',
-	LCHLauncherSubjectPipeItem: '.LCHLauncherSubjectPrompt .LCHLauncherPipeItem',
-	LCHLauncherActionPipeItem: '.LCHLauncherActionPrompt .LCHLauncherPipeItem',
+	LCHLauncherSubjectPipeItem: '.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem',
+	LCHLauncherActionPipeItem: '.LCHLauncherActionPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
