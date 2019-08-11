@@ -9,7 +9,7 @@ const LCHLauncherZoneInputPipeItem = '.LCHLauncherZoneInput .LCHLauncherPipeItem
 const LCHLauncherResultList = '.LCHLauncherResultList';
 const LCHLauncherResultListItem = '.LCHLauncherResultListItem';
 
-describe.skip('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
+describe('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
@@ -26,19 +26,22 @@ describe.skip('LCHLauncherPromptElements', function testLCHLauncherPromptElement
 	});
 
 	it('on set single', async function() {
-		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsSingle');
+		browser.pressButton('#LCHLauncherPromptTestSetPromptItemsSingle');
+		await browser.wait({element: LCHLauncherResultListItem});
 
 		browser.assert.elements(LCHLauncherResultListItem, 1);
 	});
 	
 	it('on set multiple', async function() {
-		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
+		browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
+		await browser.wait({element: LCHLauncherResultListItem});
 
 		browser.assert.elements(LCHLauncherResultListItem, 3);
 	});
 	
 	it('on set zero', async function() {
-		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsZero');
+		browser.pressButton('#LCHLauncherPromptTestSetPromptItemsZero');
+		await browser.wait({element: LCHLauncherResultListItem});
 
 		browser.assert.elements(LCHLauncherResultListItem, 0);
 	});
