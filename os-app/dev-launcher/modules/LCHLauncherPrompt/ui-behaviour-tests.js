@@ -9,7 +9,7 @@ const LCHLauncherZoneInputPipeItem = '.LCHLauncherZoneInput .LCHLauncherPipeItem
 const LCHLauncherResultList = '.LCHLauncherResultList';
 const LCHLauncherResultListItem = '.LCHLauncherResultListItem';
 
-describe('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
+describe.skip('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
