@@ -491,12 +491,12 @@ describe('LCHLauncherInteraction', function testkLCHLauncherInteraction() {
 	});
 
 	context('LCHLauncherModePipe', function () {
-
-		before(function() {
-			return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
-		});
 		
 		context('on startup', function() {
+
+			before(function() {
+				return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
+			});
 			
 			it('selects LCHLauncherSubjectZoneInput', function() {
 				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
@@ -504,7 +504,11 @@ describe('LCHLauncherInteraction', function testkLCHLauncherInteraction() {
 
 		});
 		
-		context('Tab', function() {
+		context('on Tab', function() {
+
+			before(function() {
+				return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
+			});
 			
 			it('selects LCHLauncherActionZoneInput if LCHLauncherSubjectZoneInput selected', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
