@@ -356,7 +356,19 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 						browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 						await browser.wait({element: LCHLauncherSubjectZoneInput});
 						
+						browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
 						browser.assert.elements(LCHLauncherResultList, 0);
+					});
+
+				});
+				
+				context('on click', function() {
+					
+					it('selects prompt', async function() {
+						browser.click(LCHLauncherSubjectPrompt);
+						await browser.wait({element: LCHLauncherSubjectPrompt});
+						
+						browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
 					});
 
 				});
