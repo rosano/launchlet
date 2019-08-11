@@ -375,6 +375,26 @@ export const LCHAPIObjectFor = function(inputData) {
 	return api;
 };
 
+export const LCHAPIExecuteComposition = async function(inputData, api = {}) {
+	if (!Array.isArray(inputData)) {
+		return Promise.reject(new Error('LCHErrorInputInvalid'));
+	}
+
+	if (inputData.filter(LCHRecipesModelErrorsFor).length) {
+		return Promise.reject(new Error('LCHErrorInputInvalid'));
+	}
+
+	let outputData;
+
+	while (inputData.length) {
+		outputData = await Promise.resolve(inputData.pop().LCHRecipeCallback.bind({
+			api: api,
+		})(outputData));
+	};
+
+	return outputData;
+};
+
 export const LCHComponentDescriptorsModelErrorsFor = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');

@@ -1,4 +1,4 @@
-import { throws, deepEqual } from 'assert';
+import { throws, rejects, deepEqual } from 'assert';
 
 import * as mainModule from './api.js';
 
@@ -826,6 +826,102 @@ describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 				},
 				LCHRecipeSignature: 'charlie',
 			})]).fn('charlie')(), 'hello bravo');
+		});
+
+	});
+
+});
+
+describe('LCHAPIExecuteComposition', function testLCHAPIExecuteComposition() {
+
+	it('throws error if not array', async function() {
+		await rejects(mainModule.LCHAPIExecuteComposition(null), /LCHErrorInputInvalid/);
+	});
+
+	it('throws error if item not valid', async function() {
+		await rejects(mainModule.LCHAPIExecuteComposition([{}]), /LCHErrorInputInvalid/);
+	});
+
+	it('returns output', async function() {
+		deepEqual(await mainModule.LCHAPIExecuteComposition([kTesting.StubRecipeObjectValid()]), undefined);
+	});
+
+	context('single', function() {
+
+		it('binds api', async function() {
+			deepEqual(await mainModule.LCHAPIExecuteComposition([{
+				LCHRecipeCallback() {
+					return this.api.fn('alfa')()
+				},
+			}], mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeCallback() {
+					return 'bravo';
+				},
+				LCHRecipeSignature: 'alfa',
+			})])), 'bravo');
+		});
+
+		it('resolves async callbacks', async function() {
+			deepEqual(await mainModule.LCHAPIExecuteComposition([{
+				LCHRecipeCallback() {
+					return this.api.fn('alfa')()
+				},
+			}], mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeCallback() {
+					return Promise.resolve('bravo');
+				},
+				LCHRecipeSignature: 'alfa',
+			})])), 'bravo');
+		});
+
+	});
+
+	context('multiple', function() {
+
+		it('passes second recipe to first', async function() {
+			deepEqual(await mainModule.LCHAPIExecuteComposition([{
+				LCHRecipeCallback(inputData) {
+					return [inputData, 'bravo'].join(' ');
+				},
+			}, {
+				LCHRecipeCallback() {
+					return 'alfa';
+				},
+			}]), 'alfa bravo');
+		});
+
+		it('binds api first', async function() {
+			deepEqual(await mainModule.LCHAPIExecuteComposition([{
+				LCHRecipeCallback(inputData) {
+					return [this.api.fn('alfa')(), inputData, 'delta'].join(' ');
+				},
+			}, {
+				LCHRecipeCallback() {
+					return 'charlie';
+				}
+			}], mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeCallback() {
+					return 'bravo';
+				},
+				LCHRecipeSignature: 'alfa',
+			})])), 'bravo charlie delta');
+		});
+
+		it('binds api second', async function() {
+			deepEqual(await mainModule.LCHAPIExecuteComposition([{
+				LCHRecipeCallback(inputData) {
+					return [inputData, 'bravo'].join(' ');
+				},
+			}, {
+				LCHRecipeCallback() {
+					return this.api.fn('alfa')()
+				}
+			}], mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeCallback() {
+					return 'bravo';
+				},
+				LCHRecipeSignature: 'alfa',
+			})])), 'bravo bravo');
 		});
 
 	});
