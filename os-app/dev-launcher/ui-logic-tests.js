@@ -321,6 +321,12 @@ describe('LCHLauncherKeyboardEventIsTextInput', function testLCHLauncherKeyboard
 		}), false);
 	});
 
+	it('returns false if key Space', function() {
+		deepEqual(mainModule.LCHLauncherKeyboardEventIsTextInput({
+			key: ' ',
+		}), false);
+	});
+
 	it('returns true', function() {
 		deepEqual(mainModule.LCHLauncherKeyboardEventIsTextInput({
 			key: 'a',

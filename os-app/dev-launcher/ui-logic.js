@@ -170,5 +170,9 @@ export const LCHLauncherKeyboardEventIsTextInput = function (inputData) {
 		return false;
 	}
 
+	if (inputData.key === ' ') {
+		return false;
+	}
+
 	return true;
 };
