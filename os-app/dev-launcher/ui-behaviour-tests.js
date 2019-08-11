@@ -26,7 +26,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe.only('LCHLauncherAccess', function testkLCHLauncherAccess() {
+describe('LCHLauncherAccess', function testkLCHLauncherAccess() {
 
 	context('LCHLauncherModeCommit', function () {
 
