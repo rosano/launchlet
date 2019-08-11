@@ -1,8 +1,8 @@
 import { throws, deepEqual } from 'assert';
 
-Object.entries({
-	browser: new OLSKBrowser(),
 
+const browser = new OLSKBrowser();
+Object.entries({
 	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
 
 	LCHLauncherListItem: '.ListItem',

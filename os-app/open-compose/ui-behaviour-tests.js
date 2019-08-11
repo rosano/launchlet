@@ -1,9 +1,9 @@
 import { throws, deepEqual } from 'assert';
 
-Object.entries({
-	browser: new OLSKBrowser(),
-	DefaultRoutePath: '/',
+const browser = new OLSKBrowser();
+const kDefaultRoutePath = '/';
 
+Object.entries({
 	LCHComposeCreateButton: '#LCHComposeCreateButton',
 
 	LCHComposeListItem: '.ListItem',
@@ -37,7 +37,7 @@ Object.entries({
 describe('LCHComposeDiscovery', function testLCHComposeDiscovery() {
 
 	before(function() {
-		return browser.visit(DefaultRoutePath);
+		return browser.visit(kDefaultRoutePath);
 	});
 	
 	it('on startup', function() {
@@ -133,7 +133,7 @@ describe('LCHComposeLanguage', function testLCHComposeLanguage() {
 			};
 
 			before(function() {
-				return browser.visit(`${ languageCode }${ DefaultRoutePath }`);
+				return browser.visit(`${ languageCode }${ kDefaultRoutePath }`);
 			});
 
 			it('localizes interface', function() {
@@ -214,7 +214,7 @@ describe('LCHComposeLanguage', function testLCHComposeLanguage() {
 describe('LCHComposeDiscovery', function testLCHComposeDiscovery() {
 
 	before(function() {
-		return browser.visit(DefaultRoutePath);
+		return browser.visit(kDefaultRoutePath);
 	});
 
 	context('on create', async function() {
