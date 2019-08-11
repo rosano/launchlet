@@ -141,9 +141,9 @@ export const LCHRecipesModelIsSubject = function(inputData) {
 		return false;
 	}
 
-	if (!inputData.LCHRecipeOutputType) {
-		return false;
-	}
+	// if (!inputData.LCHRecipeOutputType) {
+	// 	return false;
+	// }
 
 	return true;
 };
