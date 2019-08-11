@@ -470,7 +470,6 @@ async function itemDidClick(event, item) {
 	handleDidFinish();
 }
 </script>
-<!-- Bind to window to avoit triggering external events on page -->
 <svelte:window on:keydown={ handleKeydown } on:click={ handleClick } on:touchstart={ handleClick }/>
 
 <div class="Container" bind:this={ rootElement }>
