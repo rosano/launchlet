@@ -580,7 +580,7 @@ async function itemDidClick(event, item) {
 	color: black;
 
 	/* @CapAndScroll */
-	max-height: 50px;
+	max-height: 80px;
 	overflow-y: scroll;
 }
 
