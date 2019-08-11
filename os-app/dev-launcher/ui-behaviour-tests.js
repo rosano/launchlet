@@ -577,6 +577,7 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 			});
 
 			it('does nothing if no subject', async function() {
+				browser.click(LCHLauncherSubjectPrompt);
 				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
 				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
 				await browser.wait({element: LCHLauncherPipeItem});
