@@ -23,7 +23,7 @@ export const LCHTypeStringCanonicalExampleCallback = function() {
 
 export const LCHTypeCommandRecipe = function() {
 	return {
-		LCHRecipeName: 'Command',
+		LCHRecipeTitle: 'Command',
 		LCHRecipeSignature: 'Command',
 		LCHRecipeCallback: LCHTypeCommandCallback,
 		LCHRecipeOutputType: 'Bool',
