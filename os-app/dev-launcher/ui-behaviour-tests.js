@@ -259,6 +259,17 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 
 			});
 
+			context('on Tab', function () {
+				
+				it('hides open result list', async function() {
+					browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+					await browser.wait({element: LCHLauncherSubjectZoneInput});
+					
+					browser.assert.elements(LCHLauncherResultList, 0);
+				});
+
+			});
+
 		});
 
 	});
@@ -329,48 +340,6 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 					await browser.wait({element: LCHLauncherSubjectZoneInputHeading});
 					
 					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, uLocalized('LCHLauncherZoneInputHeadingSubject'));
-				});
-				
-				context('on Tab', function() {
-					
-					it('selects LCHLauncherActionZoneInput if LCHLauncherSubjectZoneInput selected', async function() {
-						browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-						await browser.wait({element: LCHLauncherActionZoneInput});
-						
-						browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
-					});
-					
-					it('selects LCHLauncherSubjectZoneInput', async function() {
-						browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-						await browser.wait({element: LCHLauncherSubjectZoneInput});
-						
-						browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
-					});
-
-					it('hides open result list', async function() {
-						browser.OLSKFireKeyboardEvent(browser.window, 'a');
-						await browser.wait({element: LCHLauncherResultList});
-
-						browser.assert.elements(LCHLauncherResultList, 1);
-
-						browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-						await browser.wait({element: LCHLauncherSubjectZoneInput});
-						
-						browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
-						browser.assert.elements(LCHLauncherResultList, 0);
-					});
-
-				});
-				
-				context('on click', function() {
-					
-					it('selects prompt', async function() {
-						browser.click(LCHLauncherSubjectPrompt);
-						await browser.wait({element: LCHLauncherSubjectPrompt});
-						
-						browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
-					});
-
 				});
 
 			});
@@ -564,6 +533,17 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 				await browser.wait({element: LCHLauncherSubjectZoneInput});
 				
 				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
+			});
+
+		});
+		
+		context('on click', function() {
+			
+			it('selects prompt', async function() {
+				browser.click(LCHLauncherActionPrompt);
+				await browser.wait({element: LCHLauncherActionPrompt});
+				
+				browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
 			});
 
 		});
