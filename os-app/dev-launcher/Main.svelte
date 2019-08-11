@@ -505,7 +505,9 @@ async function itemDidClick(event, item) {
 		{#if LCHOptionsObject().runMode === LCHLauncherModePipe }
 			{#each _PromptObjects as e}
 				<div class={ e.LCHPromptClass } class:LCHLauncherPromptSelected={ _PromptObjects[_PromptActiveIndex] === e } on:click={ () => ActivePromptIndexShouldUpdate(_PromptObjects.indexOf(e) ) }>
-					<LCHLauncherPrompt PromptItems={ e.LCHPromptItems } on:ItemSelectedDidChange={ (event) => e.LCHPromptItemSelected = event.detail } ItemSelected={ e.LCHPromptItemSelected } HeaderText={ e.LCHPromptHeading } FilterText={ e.LCHPromptFilterText } MatchStop={ e.LCHPromptMatchStop } ResultsHidden={ e.LCHPromptResultsThrottle !== false }>
+					<strong class="LCHLauncherPromptHeading" class:LCHLauncherPromptHeadingMatchStop={ e.LCHPromptMatchStop }>{ e.LCHPromptFilterText && e.LCHPromptFilterText.toUpperCase() || e.LCHPromptHeading }</strong>
+
+					<LCHLauncherPrompt PromptItems={ e.LCHPromptItems } on:ItemSelectedDidChange={ (event) => e.LCHPromptItemSelected = event.detail } ItemSelected={ e.LCHPromptItemSelected } ResultsHidden={ e.LCHPromptResultsThrottle !== false }>
 						{#if e.LCHPromptClass === 'LCHLauncherSubjectPrompt' }
 							<span class="LCHLauncherSubjectZoneInputPlaceholder">{ OLSKLocalized('LCHLauncherSubjectZoneInputPlaceholder') }</span>
 						{/if}
@@ -549,6 +551,20 @@ async function itemDidClick(event, item) {
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+
+.LCHLauncherPromptHeading {
+	padding: 3px;
+
+	font-size: 8pt;
+	color: hsl(0, 0%, 60%);
+
+	/* ContainerDivSpacingHotfix */
+	display: block;
+}
+
+.LCHLauncherPromptHeadingMatchStop {
+	color: #fd6666;
 }
 
 .Container :global(.LCHLauncherResultList) {

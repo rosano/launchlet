@@ -9,11 +9,11 @@ Object.entries({
 	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
 	LCHLauncherSubjectPrompt: '.LCHLauncherSubjectPrompt',
 	LCHLauncherSubjectZoneInput: '.LCHLauncherSubjectPrompt .LCHLauncherZoneInput',
-	LCHLauncherSubjectZoneInputHeading: '.LCHLauncherSubjectPrompt .LCHLauncherZoneInputHeading',
+	LCHLauncherSubjectZoneInputHeading: '.LCHLauncherSubjectPrompt .LCHLauncherPromptHeading',
 	LCHLauncherSubjectZoneInputPlaceholder: '.LCHLauncherSubjectZoneInputPlaceholder',
 	LCHLauncherActionPrompt: '.LCHLauncherActionPrompt',
 	LCHLauncherActionZoneInput: '.LCHLauncherActionPrompt .LCHLauncherZoneInput',
-	LCHLauncherActionZoneInputHeading: '.LCHLauncherActionPrompt .LCHLauncherZoneInputHeading',
+	LCHLauncherActionZoneInputHeading: '.LCHLauncherActionPrompt .LCHLauncherPromptHeading',
 
 	LCHLauncherList: '.ListContainer',
 	LCHLauncherListItem: '.ListItem',
