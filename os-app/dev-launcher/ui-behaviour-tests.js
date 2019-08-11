@@ -534,7 +534,7 @@ describe('LCHLauncherInteraction', function testkLCHLauncherInteraction() {
 
 		it('closes on Escape', async function() {
 			browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
-			await browser.wait({element: kLCHLauncherListItem});
+			await browser.wait({element: kLCHLauncherFilterInput});
 
 			browser.assert.elements(kLCHLauncherFilterInput, 0);
 		});
