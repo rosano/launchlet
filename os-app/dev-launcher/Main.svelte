@@ -236,6 +236,20 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 	})();
 };
 
+function ActivePromptIndexShouldUpdate (inputData) {
+	(function CancelThrottle() {
+		if (OLSKThrottle.OLSKThrottleInputDataIsThrottleObject(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle)) {
+			clearTimeout(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
+		}
+		
+		_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
+	})();
+
+	(function SetIndexActive() {
+		_PromptActiveIndex = inputData;
+	})();
+};
+
 let filterText = '';
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump ? dataObjects : [];
 import OLSKThrottle from 'OLSKThrottle';
@@ -365,20 +379,7 @@ function handleKeydown(event) {
 		},
 		Tab () {
 			if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
-				(function() {
-					if (OLSKThrottle.OLSKThrottleInputDataIsThrottleObject(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle)) {
-						clearTimeout(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
-					}
-					
-					_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
-
-					if (_PromptActiveIndex === 0) {
-						_PromptActiveIndex = 1;
-						return;
-					}
-
-					_PromptActiveIndex = 0;
-				})();
+				ActivePromptIndexShouldUpdate(!_PromptActiveIndex ? 1 : 0);
 			}
 
 			return event.preventDefault();
