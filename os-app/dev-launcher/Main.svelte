@@ -328,7 +328,8 @@ afterUpdate(function () {
 		return;
 	}
 
-	let element = document.querySelector('.ListItemSelected');
+	/* @CapAndScroll */
+	let element = document.querySelector('.LCHLauncherResultListItemSelected');
 
 	if (!element) {
 		return;
@@ -530,6 +531,10 @@ async function itemDidClick(event, item) {
 	margin-right: none;
 
 	background: hsl(0, 0%, 95%);
+
+	/* @CapAndScroll */
+	max-height: 50px;
+	overflow-y: scroll;
 }
 
 .Bezel {
