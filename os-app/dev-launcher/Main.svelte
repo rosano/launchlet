@@ -645,8 +645,8 @@ input {
 .LCHLauncherSubjectZoneInputPlaceholder {
 	display: inline-block;
 
-	font-size: 9pt;
-	color: hsl(0, 0%, 50%);
+	font-size: 8pt;
+	color: hsl(0, 0%, 20%);
 
 	/* @LCHLauncherZoneInputBezelFlexbox:Child */
 	align-self: center;
