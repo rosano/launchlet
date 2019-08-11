@@ -102,7 +102,9 @@ let _AllActions = allRecipes.filter(LCHRecipesModelIsVerb);
 		LCHPromptClass: 'LCHLauncherSubjectPrompt',
 		LCHPromptHeading: OLSKLocalized('LCHLauncherZoneInputHeadingSubject'),
 		LCHPromptItems: [],
-		LCHPromptItemsAll: allRecipes.filter(LCHRecipesModelIsSubject),
+		LCHPromptItemsAll: allRecipes.filter(LCHRecipesModelIsSubject).filter(function (e) {
+			return !e.LCHRecipeOutputType || (Object.keys(apiTypeEquivalenceMap).indexOf(e.LCHRecipeOutputType) !== -1);
+		}),
 		LCHPromptItemSelected: null,
 		LCHPromptInputThrottle: undefined,
 		LCHPromptFilterText: '',
