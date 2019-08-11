@@ -4,9 +4,6 @@ import LCHLauncherResultList from '../LCHLauncherResultList/main.svelte';
 import LCHLauncherPipeItem from '../LCHLauncherPipeItem/main.svelte';
 
 export let PromptItems = [];
-export let HeaderText = undefined;
-export let FilterText = undefined;
-export let MatchStop = false;
 export let ResultsHidden = false;
 export let ItemSelected = null;
 
@@ -19,7 +16,7 @@ function ItemSelectedDidChange(event) {
 
 <div class="LCHLauncherPrompt">
 
-<LCHLauncherZoneInput HeadingText={ HeaderText } FilterText={ FilterText } MatchStop={ MatchStop }>
+<LCHLauncherZoneInput>
 {#if ItemSelected}
 	<LCHLauncherPipeItem itemTitle={ ItemSelected.LCHRecipeTitle } />
 {:else}

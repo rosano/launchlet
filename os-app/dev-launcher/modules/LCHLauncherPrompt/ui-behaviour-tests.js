@@ -67,26 +67,12 @@ describe('LCHLauncherPromptText', function testLCHLauncherPromptText() {
 	});
 
 	it('on startup', function() {
-		browser.assert.text('.LCHLauncherZoneInputHeading', 'Undefined');
 		browser.assert.text('#LCHLauncherPromptStubItemSelected', 'undefined');
 	});
 
-	it('on update HeaderText', async function() {
-		browser.fill('#LCHLauncherPromptTestSetHeaderText', 'alfa');
-		await browser.wait({ element: '.LCHLauncherZoneInputHeading' });
-
-		browser.assert.text('.LCHLauncherZoneInputHeading', 'alfa');
-	});
-
-	it('on update FilterText', async function() {
-		browser.fill('#LCHLauncherPromptTestSetFilterText', 'bravo');
-		await browser.wait({ element: '.LCHLauncherZoneInputHeading' });
-
-		browser.assert.text('.LCHLauncherZoneInputHeading', 'BRAVO');
-	});
-	
 	it('does nothing on set', async function() {
-		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
+		browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
+		await browser.wait({element: LCHLauncherResultListItem});
 
 		browser.assert.text('#LCHLauncherPromptStubItemSelected', 'undefined');
 	});
@@ -95,21 +81,6 @@ describe('LCHLauncherPromptText', function testLCHLauncherPromptText() {
 		await browser.pressButton('#LCHLauncherZoneInputTestSetStubItemSelected');
 		
 		browser.assert.text('#LCHLauncherPromptStubItemSelected', 'bravo');
-	});
-
-});
-
-describe('LCHLauncherPromptInteraction', function testLCHLauncherPromptInteraction() {
-
-	before(function() {
-		return browser.visit(kDefaultRoutePath);
-	});
-	
-	it('on update MatchStop', async function() {
-		browser.check('#LCHLauncherPromptTestSetMatchStop');
-		await browser.wait({ element: '.LCHLauncherZoneInputHeading' });
-
-		browser.assert.hasClass('.LCHLauncherZoneInputHeading', 'LCHLauncherZoneInputHeadingMatchStop');
 	});
 
 });

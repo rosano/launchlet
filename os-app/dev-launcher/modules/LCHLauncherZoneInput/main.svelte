@@ -1,12 +1,7 @@
 <script>
-export let HeadingText = '';
-export let FilterText = '';
-export let MatchStop = false;
 export let didClick = null;
 </script>
 	
-<strong class="LCHLauncherZoneInputHeading" class:LCHLauncherZoneInputHeadingMatchStop={ MatchStop }>{ FilterText && FilterText.toUpperCase() || HeadingText || 'Undefined' }</strong>
-
 <div class="LCHLauncherZoneInput" on:click={ () => didClick && didClick() }>
 	<div class="LCHLauncherZoneInputBezel">
 		<slot></slot>
@@ -14,20 +9,6 @@ export let didClick = null;
 </div>
 
 <style>
-.LCHLauncherZoneInputHeading {
-	padding: 3px;
-
-	font-size: 8pt;
-	color: hsl(0, 0%, 60%);
-
-	/* ContainerDivSpacingHotfix */
-	display: block;
-}
-
-.LCHLauncherZoneInputHeadingMatchStop {
-	color: #fd6666;
-}
-
 .LCHLauncherZoneInput {
 	padding: 3px;
 	border: solid 1px hsl(0, 0%, 90%);

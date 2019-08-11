@@ -176,7 +176,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				});
 
 				it('passes MatchStop to LCHLauncherSubjectZoneInput', async function() {
-					browser.assert.elements('.LCHLauncherZoneInputHeadingMatchStop', 1);
+					browser.assert.elements('.LCHLauncherPromptHeadingMatchStop', 1);
 				});
 
 				it('continues to throttle keydown', async function() {
@@ -195,7 +195,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					await browser.wait({element: LCHLauncherSubjectPipeItem});
 
 					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, 'A');
-					browser.assert.elements('.LCHLauncherZoneInputHeadingMatchStop', 0);
+					browser.assert.elements('.LCHLauncherPromptHeadingMatchStop', 0);
 				});
 				
 			});
@@ -588,6 +588,24 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
 			})
 
+		});
+
+		context('MatchStop', function() {
+
+			before(async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'a');
+				await browser.wait({element: LCHLauncherSubjectZoneInputHeading});
+
+				browser.assert.hasNoClass(LCHLauncherSubjectZoneInputHeading, 'LCHLauncherPromptHeadingMatchStop');
+			});
+
+			it('adds class', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'x');
+				await browser.wait({element: LCHLauncherSubjectZoneInputHeading});
+
+				browser.assert.hasClass(LCHLauncherSubjectZoneInputHeading, 'LCHLauncherPromptHeadingMatchStop');
+			});
+			
 		});
 
 	});
