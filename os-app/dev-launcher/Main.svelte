@@ -225,7 +225,7 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 		};
 
 		_PromptObjects[1].LCHPromptItemsAll = _AllActions.filter(function (e) {
-			return apiTypeEquivalenceMap[inputData.LCHRecipeOutputType].filter(function (type) {
+			return apiTypeEquivalenceMap[inputData.LCHRecipeOutputType || 'Command'].filter(function (type) {
 				return e.LCHRecipeInputTypes.indexOf(type) !== -1
 			}).length
 		});
