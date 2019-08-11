@@ -523,6 +523,25 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
 			});
 
+			it('does nothing on Enter if no input', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
+				await browser.wait({element: LCHLauncherSubjectPrompt});
+
+				browser.assert.elements(LCHLauncherSubjectPrompt, 1);
+			});
+
+			it('runs item and closes on Enter', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'a');
+				await browser.wait({element: LCHLauncherPipeItem});
+
+				browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
+				await browser.wait({element: LCHLauncherSubjectPrompt});
+
+				browser.assert.elements(LCHLauncherSubjectPrompt, 0);
+				
+				browser.assert.input('textarea', 'Alfa');
+			});
+
 		});
 		
 		context('active prompt', function() {

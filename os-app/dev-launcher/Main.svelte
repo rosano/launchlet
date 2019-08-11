@@ -250,6 +250,16 @@ function ActivePromptIndexShouldUpdate (inputData) {
 	})();
 };
 
+function CompositionIsValid () {
+	return !_PromptObjects.filter(function (e) {
+		return !e.LCHPromptItemSelected;
+	}).length;
+};
+
+function ExecuteComposition () {
+	return Promise.resolve(_PromptObjects[1].LCHPromptItemSelected.LCHRecipeCallback(_PromptObjects[0].LCHPromptItemSelected));
+};
+
 let filterText = '';
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump ? dataObjects : [];
 import OLSKThrottle from 'OLSKThrottle';
@@ -411,7 +421,13 @@ function handleKeydown(event) {
 			return event.preventDefault();
 		},
 		async Enter () {
-			if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
+			if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
+				if (!CompositionIsValid()) {
+					return;
+				};
+
+				await ExecuteComposition();
+			} else if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
 				await apiStart($formulaSelected);
 			}
 
