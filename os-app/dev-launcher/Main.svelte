@@ -365,6 +365,12 @@ function handleKeydown(event) {
 		Tab () {
 			if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
 				(function() {
+					if (OLSKThrottle.OLSKThrottleInputDataIsThrottleObject(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle)) {
+						clearTimeout(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
+					}
+					
+					_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
+
 					if (_PromptActiveIndex === 0) {
 						_PromptActiveIndex = 1;
 						return;

@@ -330,6 +330,36 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 					
 					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, uLocalized('LCHLauncherZoneInputHeadingSubject'));
 				});
+				
+				context('on Tab', function() {
+					
+					it('selects LCHLauncherActionZoneInput if LCHLauncherSubjectZoneInput selected', async function() {
+						browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+						await browser.wait({element: LCHLauncherActionZoneInput});
+						
+						browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
+					});
+					
+					it('selects LCHLauncherSubjectZoneInput', async function() {
+						browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+						await browser.wait({element: LCHLauncherSubjectZoneInput});
+						
+						browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
+					});
+
+					it('hides open result list', async function() {
+						browser.OLSKFireKeyboardEvent(browser.window, 'a');
+						await browser.wait({element: LCHLauncherResultList});
+
+						browser.assert.elements(LCHLauncherResultList, 1);
+
+						browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+						await browser.wait({element: LCHLauncherSubjectZoneInput});
+						
+						browser.assert.elements(LCHLauncherResultList, 0);
+					});
+
+				});
 
 			});
 
@@ -513,12 +543,14 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 			it('selects LCHLauncherActionZoneInput if LCHLauncherSubjectZoneInput selected', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 				await browser.wait({element: LCHLauncherActionZoneInput});
+				
 				browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
 			});
 			
 			it('selects LCHLauncherSubjectZoneInput', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 				await browser.wait({element: LCHLauncherSubjectZoneInput});
+				
 				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
 			});
 
