@@ -21,8 +21,7 @@ describe('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
 		browser.assert.elements(LCHLauncherZoneInput, 1);
 		browser.assert.elements(LCHLauncherZoneInputPipeItem, 0);
 
-		browser.assert.elements(LCHLauncherResultList, 1);
-		browser.assert.elements(LCHLauncherResultListItem, 0);
+		browser.assert.elements(LCHLauncherResultList, 0);
 	});
 
 	it('on set single', async function() {
