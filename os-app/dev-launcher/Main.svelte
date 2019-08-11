@@ -28,7 +28,8 @@ import {
 	LCHRecipesModelIsSubject,
 	LCHRecipesModelIsVerb,
 	LCHComponentDescriptorsModelErrorsFor,
-	LCHAPITypeEquivalenceMapForRecipes
+	LCHAPITypeEquivalenceMapForRecipes,
+	LCHAPIExecuteComposition,
 } from './api.js';
 
 export let dataObjects = [];
@@ -68,9 +69,7 @@ const api = LCHAPIObjectFor(allRecipes);
 const apiTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes)
 
 async function apiStart(inputData) {
-	return Promise.resolve(inputData.LCHRecipeCallback.bind({
-		api: api,
-	})()).then(function (inputData) {
+	return await LCHAPIExecuteComposition([].concat.apply([], [inputData]), api).then(function (inputData) {
 		if (!inputData) {
 			return Promise.resolve(inputData);
 		}
@@ -256,10 +255,6 @@ function CompositionIsValid () {
 	}).length;
 };
 
-function ExecuteComposition () {
-	return Promise.resolve(_PromptObjects[1].LCHPromptItemSelected.LCHRecipeCallback(_PromptObjects[0].LCHPromptItemSelected));
-};
-
 let filterText = '';
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump ? dataObjects : [];
 import OLSKThrottle from 'OLSKThrottle';
@@ -426,7 +421,10 @@ function handleKeydown(event) {
 					return;
 				};
 
-				await ExecuteComposition();
+				await apiStart([
+					_PromptObjects[1].LCHPromptItemSelected,
+					_PromptObjects[0].LCHPromptItemSelected,
+					]);
 			} else if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
 				await apiStart($formulaSelected);
 			}
