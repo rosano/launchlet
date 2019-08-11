@@ -114,65 +114,33 @@ export const LCHLauncherKeyboardEventIsTextInput = function (inputData) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	if (inputData.metaKey) {
-		return false;
-	}
-
-	if (inputData.shiftKey) {
-		return false;
-	}
-
-	if (inputData.ctrlKey) {
-		return false;
-	}
-
-	if (inputData.altKey) {
+	if ([
+		inputData.metaKey,
+		inputData.shiftKey,
+		inputData.ctrlKey,
+		inputData.altKey,
+		].indexOf(true) !== -1) {
 		return false;
 	}
 
 	if (!inputData.key) {
 		return false;
 	}
-
-	if (inputData.key === 'Unidentified') {
+	
+	if ([
+		'Unidentified',
+		'Tab',
+		'CapsLock',
+		'ArrowRight',
+		'ArrowLeft',
+		'Backspace',
+		'\\',
+		'.',
+		',',
+		' ',
+		].indexOf(inputData.key) !== -1) {
 		return false;
-	}
-
-	if (inputData.key === 'Tab') {
-		return false;
-	}
-
-	if (inputData.key === 'CapsLock') {
-		return false;
-	}
-
-	if (inputData.key === 'ArrowRight') {
-		return false;
-	}
-
-	if (inputData.key === 'ArrowLeft') {
-		return false;
-	}
-
-	if (inputData.key === 'Backspace') {
-		return false;
-	}
-
-	if (inputData.key === '\\') {
-		return false;
-	}
-
-	if (inputData.key === '.') {
-		return false;
-	}
-
-	if (inputData.key === ',') {
-		return false;
-	}
-
-	if (inputData.key === ' ') {
-		return false;
-	}
-
+	};
+	
 	return true;
 };
