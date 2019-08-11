@@ -489,7 +489,11 @@ async function itemDidClick(event, item) {
 		{#if LCHOptionsObject().runMode === LCHLauncherModePipe }
 			{#each _PromptObjects as e}
 				<div class={ e.LCHPromptClass } class:LCHLauncherPromptSelected={ _PromptObjects[_PromptActiveIndex] === e } on:click={ () => ActivePromptIndexShouldUpdate(_PromptObjects.indexOf(e) ) }>
-					<LCHLauncherPrompt PromptItems={ e.LCHPromptItems } on:ItemSelectedDidChange={ (event) => e.LCHPromptItemSelected = event.detail } ItemSelected={ e.LCHPromptItemSelected } HeaderText={ e.LCHPromptHeading } FilterText={ e.LCHPromptFilterText } MatchStop={ e.LCHPromptMatchStop } ResultsHidden={ e.LCHPromptResultsThrottle !== false } />
+					<LCHLauncherPrompt PromptItems={ e.LCHPromptItems } on:ItemSelectedDidChange={ (event) => e.LCHPromptItemSelected = event.detail } ItemSelected={ e.LCHPromptItemSelected } HeaderText={ e.LCHPromptHeading } FilterText={ e.LCHPromptFilterText } MatchStop={ e.LCHPromptMatchStop } ResultsHidden={ e.LCHPromptResultsThrottle !== false }>
+						{#if e.LCHPromptClass === 'LCHLauncherSubjectPrompt' }
+							<span class="LCHLauncherSubjectZoneInputPlaceholder">{ OLSKLocalized('LCHLauncherSubjectZoneInputPlaceholder') }</span>
+						{/if}
+					</LCHLauncherPrompt>
 				</div>
 			{/each}
 		{/if}
@@ -519,6 +523,16 @@ async function itemDidClick(event, item) {
 
 	/* CompensateExternalStyles */
 	text-align: initial;
+}
+
+.Container :global(.LCHLauncherPrompt) {
+	/* DisableTextSelection */
+	pointer-events: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .Container :global(.LCHLauncherResultList) {
@@ -592,6 +606,13 @@ input {
 
 .LCHLauncherPromptSelected :global(.LCHLauncherZoneInputBezel) {
 	background: #bcdaff;
+}
+
+.LCHLauncherSubjectZoneInputPlaceholder {
+	display: inline-block;
+
+	/* @LCHLauncherZoneInputBezelFlexbox:Child */
+	align-self: center;
 }
 
 @media screen and (max-width: 760px) {

@@ -19,13 +19,13 @@ function ItemSelectedDidChange(event) {
 
 <div class="LCHLauncherPrompt">
 
+<LCHLauncherZoneInput HeadingText={ HeaderText } FilterText={ FilterText } MatchStop={ MatchStop }>
 {#if ItemSelected}
-	<LCHLauncherZoneInput HeadingText={ HeaderText } FilterText={ FilterText } MatchStop={ MatchStop }>
-		<LCHLauncherPipeItem itemTitle={ ItemSelected.LCHRecipeTitle } />
-	</LCHLauncherZoneInput>
+	<LCHLauncherPipeItem itemTitle={ ItemSelected.LCHRecipeTitle } />
 {:else}
-	<LCHLauncherZoneInput HeadingText={ HeaderText } FilterText={ FilterText } MatchStop={ MatchStop } />
+	<slot></slot>
 {/if}
+</LCHLauncherZoneInput>
 
 {#if !ResultsHidden}
 	<LCHLauncherResultList ListItems={ PromptItems } let:LCHLauncherResultListItem={ item } ItemSelected={ ItemSelected } on:ItemSelectedDidChange={ ItemSelectedDidChange }>

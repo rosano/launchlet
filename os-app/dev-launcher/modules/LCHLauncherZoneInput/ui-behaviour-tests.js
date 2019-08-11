@@ -4,7 +4,6 @@ const browser = new OLSKBrowser();
 const kDefaultRoutePath = '/modules/LCHLauncherZoneInput';
 const LCHLauncherZoneInput = '.LCHLauncherZoneInput';
 const LCHLauncherZoneInputHeading = '.LCHLauncherZoneInputHeading';
-const LCHLauncherZoneInputPlaceholder = '.LCHLauncherZoneInputPlaceholder';
 
 describe('LCHLauncherZoneInputDiscovery', function testLCHLauncherZoneInputDiscovery() {
 
@@ -14,7 +13,6 @@ describe('LCHLauncherZoneInputDiscovery', function testLCHLauncherZoneInputDisco
 	
 	it('on startup', function() {
 		browser.assert.elements(LCHLauncherZoneInputHeading, 1);
-		browser.assert.elements(LCHLauncherZoneInputPlaceholder, 1);
 	});
 
 });
@@ -35,7 +33,6 @@ describe('LCHLauncherZoneInputLanguage', function testLCHLauncherZoneInputLangua
 
 			it('on startup', function() {
 				deepEqual(browser.query(LCHLauncherZoneInputHeading).textContent, uLocalized('LCHLauncherZoneInputHeadingTextDefault'));
-				deepEqual(browser.query(LCHLauncherZoneInputPlaceholder).textContent, uLocalized('LCHLauncherZoneInputPlaceholderText'));
 			});
 
 			context('HeadingText', function () {

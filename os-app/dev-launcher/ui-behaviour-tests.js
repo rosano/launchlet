@@ -10,6 +10,7 @@ Object.entries({
 	LCHLauncherSubjectPrompt: '.LCHLauncherSubjectPrompt',
 	LCHLauncherSubjectZoneInput: '.LCHLauncherSubjectPrompt .LCHLauncherZoneInput',
 	LCHLauncherSubjectZoneInputHeading: '.LCHLauncherSubjectPrompt .LCHLauncherZoneInputHeading',
+	LCHLauncherSubjectZoneInputPlaceholder: '.LCHLauncherSubjectZoneInputPlaceholder',
 	LCHLauncherActionPrompt: '.LCHLauncherActionPrompt',
 	LCHLauncherActionZoneInput: '.LCHLauncherActionPrompt .LCHLauncherZoneInput',
 	LCHLauncherActionZoneInputHeading: '.LCHLauncherActionPrompt .LCHLauncherZoneInputHeading',
@@ -79,6 +80,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 		it('on startup', function() {
 			browser.assert.elements(LCHLauncherFilterInput, 0);
 			browser.assert.elements(LCHLauncherSubjectZoneInput, 1);
+			browser.assert.elements(LCHLauncherSubjectZoneInputPlaceholder, 1);
 			browser.assert.elements(LCHLauncherActionZoneInput, 1);
 
 			browser.assert.elements(LCHLauncherList, 0);
@@ -102,6 +104,8 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
 				browser.OLSKFireKeyboardEvent(browser.window, 'a');
 				await browser.wait({element: LCHLauncherSubjectZoneInputHeading});
+
+				browser.assert.elements(LCHLauncherSubjectZoneInputPlaceholder, 0);
 
 				browser.assert.elements(LCHLauncherSubjectPipeItem, 1);
 				browser.assert.elements(LCHLauncherActionPipeItem, 1);
@@ -217,7 +221,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, 'Subject');
 				});
 				
-				it('keeps results ', function() {
+				it('keeps results', function() {
 					browser.assert.elements(LCHLauncherSubjectPipeItem, 1);
 					browser.assert.elements(LCHLauncherResultList, 1);
 					browser.assert.elements(LCHLauncherResultListItem, 5);
@@ -234,6 +238,10 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				
 				it('clears results', function() {
 					browser.assert.elements(LCHLauncherPipeItem, 0);
+				});
+				
+				it('shows placeholder', function() {
+					browser.assert.elements(LCHLauncherSubjectZoneInputPlaceholder, 1);
 				});
 
 			});
@@ -324,8 +332,10 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 				});
 
 				it('on startup', function() {
-					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, uLocalized('LCHLauncherZoneInputHeadingSubject'));
-					deepEqual(browser.query(LCHLauncherActionZoneInputHeading).textContent, uLocalized('LCHLauncherZoneInputHeadingAction'));
+					browser.text(LCHLauncherSubjectZoneInputHeading), uLocalized('LCHLauncherZoneInputHeadingSubject');
+					browser.text(LCHLauncherSubjectZoneInputPlaceholder), uLocalized('LCHLauncherSubjectZoneInputPlaceholder');
+
+					browser.text(LCHLauncherActionZoneInputHeading), uLocalized('LCHLauncherZoneInputHeadingAction');
 				});
 
 				it('on keydown', async function() {

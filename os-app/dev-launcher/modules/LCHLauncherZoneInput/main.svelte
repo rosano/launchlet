@@ -4,20 +4,13 @@ export let FilterText = '';
 export let MatchStop = false;
 export let didClick = null;
 </script>
-
+	
 <strong class="LCHLauncherZoneInputHeading" class:LCHLauncherZoneInputHeadingMatchStop={ MatchStop }>{ FilterText && FilterText.toUpperCase() || HeadingText || 'Undefined' }</strong>
 
 <div class="LCHLauncherZoneInput" on:click={ () => didClick && didClick() }>
-
-
-<div class="LCHLauncherZoneInputBezel">
-
-<slot>
-<span class="LCHLauncherZoneInputPlaceholder">Type to search</span>
-</slot>
-
-</div>
-
+	<div class="LCHLauncherZoneInputBezel">
+		<slot></slot>
+	</div>
 </div>
 
 <style>
@@ -63,20 +56,5 @@ export let didClick = null;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-}
-
-.LCHLauncherZoneInputPlaceholder {
-	display: inline-block;
-
-	/* DisableTextSelection */
-	pointer-events: none;
-	-moz-user-select: none;
-	-khtml-user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-
-	/* @LCHLauncherZoneInputBezelFlexbox:Child */
-	align-self: center;
 }
 </style>
