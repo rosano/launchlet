@@ -246,7 +246,7 @@ function ActivePromptIndexShouldUpdate (inputData) {
 	})();
 
 	(function SetIndexActive() {
-		_PromptActiveIndex = inputData;
+		_PromptActiveIndex = _PromptObjects[0].LCHPromptFilterText ? inputData : 0;
 	})();
 };
 

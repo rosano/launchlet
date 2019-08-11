@@ -515,36 +515,39 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 
 		});
 		
-		context('on Tab', function() {
+		context('active prompt', function() {
 
-			before(function() {
-				return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
+			before(async function() {
+				await browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
+
+				browser.OLSKFireKeyboardEvent(browser.window, 'a');
+				await browser.wait({element: LCHLauncherResultList});
 			});
 			
-			it('selects LCHLauncherActionZoneInput if LCHLauncherSubjectZoneInput selected', async function() {
-				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-				await browser.wait({element: LCHLauncherActionZoneInput});
+			it('updates on click', async function() {
+				browser.click(LCHLauncherActionPrompt);
+				await browser.wait({element: LCHLauncherActionPrompt});
 				
 				browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
 			});
-			
-			it('selects LCHLauncherSubjectZoneInput', async function() {
+
+			it('updates on tab', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 				await browser.wait({element: LCHLauncherSubjectZoneInput});
 				
 				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
 			});
 
-		});
-		
-		context('on click', function() {
-			
-			it('selects prompt', async function() {
+			it('does nothing if no subject', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
+				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
+				await browser.wait({element: LCHLauncherPipeItem});
+
 				browser.click(LCHLauncherActionPrompt);
 				await browser.wait({element: LCHLauncherActionPrompt});
 				
-				browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
-			});
+				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
+			})
 
 		});
 
