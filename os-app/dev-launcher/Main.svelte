@@ -129,12 +129,19 @@ import {
 		}]);
 	};
 
-	_PromptObjects.push(...[{
+	_PromptObjects.push({
 		LCHPromptClass: 'LCHLauncherFilterPrompt',
 		LCHPromptItems: [],
 		LCHPromptItemsAll: allRecipes.filter(LCHRecipesModelIsCommand),
 		LCHPromptFilterText: '',
-	 }]);
+		LCHPromptResultsThrottle: false,
+	 });
+
+	if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
+		return;
+	};
+
+	_PromptObjects[0].LCHPromptItems = _PromptObjects[0].LCHPromptItemsAll;
 })();
 
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
@@ -150,6 +157,10 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 	})();
 
 	(function ThrottleInput() {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+			return;
+		};
+
 		if (!_PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
 			return;
 		}
@@ -167,6 +178,10 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 	})();
 
 	(function ThrottleResults() {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+			return;
+		};
+		
 		if (!_PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
 			return;
 		}
@@ -224,6 +239,12 @@ function ActivePromptItemsShouldUpdate (inputData) {
 function ActivePromptItemSelectedShouldUpdate (inputData) {
 	(function SetItemSelected() {
 		_PromptObjects[_PromptActiveIndex].LCHPromptItemSelected = inputData;
+
+		if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
+			return;
+		};
+
+		apiStart(_PromptObjects[0].LCHPromptItemSelected);
 	})();
 
 	if (_PromptActiveIndex !== 0) {
@@ -231,6 +252,10 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 	};
 
 	(function UpdateActionsForSubject() {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+			return;
+		};
+
 		if (!_PromptObjects[_PromptActiveIndex].LCHPromptItemSelected) {
 			_PromptObjects[1].LCHPromptItems = _PromptObjects[1].LCHPromptItemsAll = [];
 			_PromptObjects[1].LCHPromptItemSelected = null;
@@ -268,6 +293,25 @@ function CompositionIsValid () {
 	return !_PromptObjects.filter(function (e) {
 		return !e.LCHPromptItemSelected;
 	}).length;
+};
+
+async function LauncherShouldTerminate () {
+	if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
+		if (!CompositionIsValid()) {
+			return;
+		};
+
+		await apiStart({
+			LCHCompositionAction: _PromptObjects[1].LCHPromptItemSelected,
+			LCHCompositionSubjectPrimary: _PromptObjects[0].LCHPromptItemSelected,
+		});
+	}
+
+	if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
+		await apiStart(_PromptObjects[0].LCHPromptItemSelected);
+	};
+
+	handleDidFinish();
 };
 
 let filterText = '';
@@ -412,13 +456,13 @@ function handleKeydown(event) {
 				return OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 			}
 
-			formulaSelected.set($formulasVisible[LCHLauncherConstrainIndex($formulasVisible, $formulasVisible.indexOf($formulaSelected) - 1)]);
+			// formulaSelected.set($formulasVisible[LCHLauncherConstrainIndex($formulasVisible, $formulasVisible.indexOf($formulaSelected) - 1)]);
 
-			if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
-				apiStart($formulaSelected);
-			}
+			// if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
+			// 	apiStart($formulaSelected);
+			// }
 
-			return event.preventDefault();
+			// return event.preventDefault();
 		},
 		ArrowDown () {
 			if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
@@ -433,27 +477,14 @@ function handleKeydown(event) {
 
 			return event.preventDefault();
 		},
-		async Enter () {
-			if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
-				if (!CompositionIsValid()) {
-					return;
-				};
-
-				await apiStart({
-					LCHCompositionAction: _PromptObjects[1].LCHPromptItemSelected,
-					LCHCompositionSubjectPrimary: _PromptObjects[0].LCHPromptItemSelected,
-				});
-			} else if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
-				await apiStart($formulaSelected);
-			}
-
-			handleDidFinish();
+		Enter () {
+			LauncherShouldTerminate()
 
 			return event.preventDefault();
 		},
 		Backspace () {
 			if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
-				return ActivePromptFilterTextShouldUpdate(filterText.slice(0, -1));
+				return;
 			}
 
 			if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
@@ -506,7 +537,7 @@ async function itemDidClick(event, item) {
 
 <div class="Container" bind:this={ rootElement }>
 	<div class="Bezel">
-		{#if LCHOptionsObject().runMode !== LCHLauncherModePipe }
+		{#if false && LCHOptionsObject().runMode !== LCHLauncherModePipe }
 			<input placeholder="{ LCHOptionsObject().runMode === LCHLauncherModeJump ? OLSKLocalized('LCHLauncherInputPlaceholderJump') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ filterText } bind:this={ inputElement } id="LCHLauncherFilterInput" />
 
 			{#if $formulasVisible.length }
@@ -518,12 +549,12 @@ async function itemDidClick(event, item) {
 			{/if}
 		{/if}
 
-		{#if LCHOptionsObject().runMode === LCHLauncherModePipe }
+		{#if false && LCHOptionsObject().runMode === LCHLauncherModePipe }
 			{#each _PromptObjects as e}
 				<div class={ e.LCHPromptClass } class:LCHLauncherPromptSelected={ _PromptObjects[_PromptActiveIndex] === e } on:click={ () => ActivePromptIndexShouldUpdate(_PromptObjects.indexOf(e) ) }>
 					<strong class="LCHLauncherPromptHeading" class:LCHLauncherPromptHeadingMatchStop={ e.LCHPromptMatchStop }>{ e.LCHPromptFilterText && e.LCHPromptFilterText.toUpperCase() || e.LCHPromptHeading }</strong>
 
-					<LCHLauncherPrompt PromptItems={ e.LCHPromptItems } on:ItemSelectedDidChange={ (event) => e.LCHPromptItemSelected = event.detail } ItemSelected={ e.LCHPromptItemSelected } ResultsHidden={ e.LCHPromptResultsThrottle !== false }>
+					<LCHLauncherPrompt PromptItems={ e.LCHPromptItems } on:ResultListDispatchArrow={ (event) => e.LCHPromptItemSelected = event.detail } ItemSelected={ e.LCHPromptItemSelected } ResultsHidden={ e.LCHPromptResultsThrottle !== false }>
 						{#if e.LCHPromptClass === 'LCHLauncherSubjectPrompt' }
 							<span class="LCHLauncherSubjectPromptPlaceholder">{ OLSKLocalized('LCHLauncherSubjectPromptPlaceholderText') }</span>
 						{/if}
@@ -531,6 +562,24 @@ async function itemDidClick(event, item) {
 				</div>
 			{/each}
 		{/if}
+
+		{#each _PromptObjects as e}
+			<div class={ e.LCHPromptClass } class:LCHLauncherPromptSelected={ _PromptObjects[_PromptActiveIndex] === e } on:click={ () => ActivePromptIndexShouldUpdate(_PromptObjects.indexOf(e) ) }>
+				{#if LCHOptionsObject().runMode === LCHLauncherModePipe}
+					<strong class="LCHLauncherPromptHeading" class:LCHLauncherPromptHeadingMatchStop={ e.LCHPromptMatchStop }>{ e.LCHPromptFilterText && e.LCHPromptFilterText.toUpperCase() || e.LCHPromptHeading }</strong>
+				{/if}
+
+				<LCHLauncherPrompt PromptItems={ e.LCHPromptItems } on:ResultListDispatchArrow={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) } ItemSelected={ e.LCHPromptItemSelected } on:ResultListDispatchClick={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) || LauncherShouldTerminate() } ItemSelectedHidden={ LCHOptionsObject().runMode !== LCHLauncherModePipe } ResultsHidden={ e.LCHPromptResultsThrottle !== false }>
+					{#if e.LCHPromptClass === 'LCHLauncherSubjectPrompt' }
+						<span class="LCHLauncherSubjectPromptPlaceholder">{ OLSKLocalized('LCHLauncherSubjectPromptPlaceholderText') }</span>
+					{/if}
+
+					{#if e.LCHPromptClass === 'LCHLauncherFilterPrompt' }
+						<input placeholder="{ LCHOptionsObject().runMode === LCHLauncherModeJump ? OLSKLocalized('LCHLauncherInputPlaceholderJump') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ _PromptObjects[0].LCHPromptFilterText } bind:this={ inputElement } on:input={ () => ActivePromptFilterTextShouldUpdate(this.value) } id="LCHLauncherFilterInput" />
+					{/if}
+				</LCHLauncherPrompt>
+			</div>
+		{/each}
 	</div>
 	
 	{#if $secondaryComponent}
@@ -560,7 +609,7 @@ async function itemDidClick(event, item) {
 	text-align: initial;
 }
 
-.Container :global(.LCHLauncherZoneInput) {
+xxx .Container :global(.LCHLauncherZoneInput) {
 	/* DisableTextSelection */
 	pointer-events: none;
 	-moz-user-select: none;
@@ -613,12 +662,22 @@ async function itemDidClick(event, item) {
 	flex-direction: column;
 }
 
-input {
+xxx input {
 	padding: 6px;
 	border: 1px solid #cccccc;
 	border-radius: 5px;
 
 	background: #f3f3f3;
+	color: #3f3f3f;
+
+	/* BrowserDefaultOutline */
+	outline: none;
+}
+
+input {
+	border: none;
+
+	background: none;
 	color: #3f3f3f;
 
 	/* BrowserDefaultOutline */

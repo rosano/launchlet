@@ -382,7 +382,7 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[0], 'LCHLauncherResultListItemSelected');
 		});
 
-		it('selects item on mouseover', async function() {
+		it.skip('selects item on mouseover', async function() {
 			browser.fire(browser.queryAll(LCHLauncherListItem)[1], 'mouseover');
 			await browser.wait({element: LCHLauncherListItem});
 
@@ -446,7 +446,7 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 			browser.assert.elements('.LCHLauncherResultListItemSelected', 0);
 		});
 
-		it('selects item on mouseover', async function() {
+		it.skip('selects item on mouseover', async function() {
 			browser.fire(browser.queryAll(LCHLauncherListItem)[1], 'mouseover');
 			await browser.wait({element: LCHLauncherListItem});
 
