@@ -518,7 +518,7 @@ async function itemDidClick(event, item) {
 
 					<LCHLauncherPrompt PromptItems={ e.LCHPromptItems } on:ItemSelectedDidChange={ (event) => e.LCHPromptItemSelected = event.detail } ItemSelected={ e.LCHPromptItemSelected } ResultsHidden={ e.LCHPromptResultsThrottle !== false }>
 						{#if e.LCHPromptClass === 'LCHLauncherSubjectPrompt' }
-							<span class="LCHLauncherSubjectZoneInputPlaceholder">{ OLSKLocalized('LCHLauncherSubjectZoneInputPlaceholder') }</span>
+							<span class="LCHLauncherSubjectZoneInputPlaceholder">{ OLSKLocalized('LCHLauncherSubjectPromptPlaceholderText') }</span>
 						{/if}
 					</LCHLauncherPrompt>
 				</div>

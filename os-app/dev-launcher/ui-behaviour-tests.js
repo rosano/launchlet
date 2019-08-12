@@ -333,7 +333,7 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 
 				it('on startup', function() {
 					browser.text(LCHLauncherSubjectZoneInputHeading), uLocalized('LCHLauncherZoneInputHeadingSubject');
-					browser.text(LCHLauncherSubjectZoneInputPlaceholder), uLocalized('LCHLauncherSubjectZoneInputPlaceholder');
+					browser.text(LCHLauncherSubjectZoneInputPlaceholder), uLocalized('LCHLauncherSubjectPromptPlaceholderText');
 
 					browser.text(LCHLauncherActionZoneInputHeading), uLocalized('LCHLauncherZoneInputHeadingAction');
 				});
