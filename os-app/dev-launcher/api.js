@@ -425,18 +425,22 @@ export const LCHAPIExecuteComposition = async function(inputData, api = {}) {
 	return outputData;
 };
 
-export const LCHAPIExecuteRecipe = async function(param1, param2 = {}) {
+export const LCHAPIExecuteRecipe = async function(param1, param2 = [], param3 = {}) {
 	if (LCHRecipesModelErrorsFor(param1)) {
 		return Promise.reject(new Error('LCHErrorInputInvalid'));
 	}
 
-	if (typeof param2.fn !== 'function') {
+	if (!Array.isArray(param2)) {
 		return Promise.reject(new Error('LCHErrorInputInvalid'));
 	}
 
-	return Promise.resolve(param1.LCHRecipeCallback.bind({
-		api: param2,
-	})());
+	if (typeof param3.fn !== 'function') {
+		return Promise.reject(new Error('LCHErrorInputInvalid'));
+	}
+
+	return Promise.resolve(param1.LCHRecipeCallback.apply({
+		api: param3,
+	}, param2));
 };
 
 export const LCHComponentDescriptorsModelErrorsFor = function(inputData) {
