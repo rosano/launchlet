@@ -196,12 +196,12 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 
 	(function SetItems() {
 		ActivePromptItemsShouldUpdate((function() {
-			if (!_PromptObjects[_PromptActiveIndex].LCHPromptFilterText && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === false) {
+			if (LCHOptionsObject().runMode === LCHLauncherModePipe && !_PromptObjects[_PromptActiveIndex].LCHPromptFilterText && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === false) {
 				return _PromptObjects[_PromptActiveIndex].LCHPromptItems;
 			}
 			
 			if (!_PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
-				return [];
+				return LCHOptionsObject().runMode === LCHLauncherModeJump ? _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll : [];
 			}
 
 			let results = _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll.filter(LCHLauncherFilterForText(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText));
@@ -359,12 +359,12 @@ import {
 function handleKeydown(event) {
 	const handlerFunctions = {
 		Escape () {
-			if (!filterText) {
+			if (LCHOptionsObject().runMode === LCHLauncherModePipe || !_PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
 				handleDidFinish();
 			}
 
-			if (filterText) {
-				filterText = '';
+			if (LCHOptionsObject().runMode !== LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
+				ActivePromptFilterTextShouldUpdate('')
 			}
 
 			return event.preventDefault();

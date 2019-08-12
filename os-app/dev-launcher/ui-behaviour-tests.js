@@ -317,6 +317,18 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 					deepEqual(browser.query(LCHLauncherFilterInput).placeholder, uLocalized('LCHLauncherInputPlaceholderJump'));
 				});
 
+				it('clears filter on Escape', async function() {
+					browser.fill(LCHLauncherFilterInput, 'a');
+					await browser.wait({element: LCHLauncherListItem});
+
+					browser.assert.input(LCHLauncherFilterInput, 'a');
+					
+					browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+					await browser.wait({element: LCHLauncherFilterInput});
+
+					browser.assert.input(LCHLauncherFilterInput, '');
+				});
+
 			});
 
 			context('LCHLauncherModePipe', function () {
@@ -365,8 +377,9 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 			browser.assert.elements(LCHLauncherListItem, 0);
 		});
 		
-		it('shows no items if no match', function() {
+		it('shows no items if no match', async function() {
 			browser.fill(LCHLauncherFilterInput, 'alfabravo');
+			await browser.wait({element: LCHLauncherFilterInput});
 
 			browser.assert.elements(LCHLauncherListItem, 0);
 		});
