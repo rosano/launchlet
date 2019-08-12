@@ -425,6 +425,20 @@ export const LCHAPIExecuteComposition = async function(inputData, api = {}) {
 	return outputData;
 };
 
+export const LCHAPIExecuteRecipe = async function(param1, param2 = {}) {
+	if (LCHRecipesModelErrorsFor(param1)) {
+		return Promise.reject(new Error('LCHErrorInputInvalid'));
+	}
+
+	if (typeof param2.fn !== 'function') {
+		return Promise.reject(new Error('LCHErrorInputInvalid'));
+	}
+
+	return Promise.resolve(param1.LCHRecipeCallback.bind({
+		api: param2,
+	})());
+};
+
 export const LCHComponentDescriptorsModelErrorsFor = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
