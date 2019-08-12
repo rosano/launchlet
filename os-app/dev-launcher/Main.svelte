@@ -5,6 +5,7 @@ import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 import LCHLauncherPrompt from './modules/LCHLauncherPrompt/main.svelte';
 import LCHLauncherZoneInput from './modules/LCHLauncherZoneInput/main.svelte';
 import LCHLauncherPipeItem from './modules/LCHLauncherPipeItem/main.svelte';
+
 import {
 	LCHOptionsObject,
 	formulaSelected,
@@ -13,23 +14,11 @@ import {
 	actionSelected,
 	secondaryComponent,
 } from './_shared.js';
-import { LCHLauncherStandardRecipes } from './recipes/recipes.js';
 import {
 	LCHLauncherModeJump,
 	LCHLauncherModePipe,
 	LCHLauncherFilterForText,
-	LCHLauncherThrottleDuration,
-	LCHLauncherConstrainIndex,
-	LCHLauncherPatternMatchesURL,
-	LCHLauncherKeyboardEventIsTextInput,
 } from './ui-logic.js';
-import {
-	LCHRecipesModelErrorsFor,
-	LCHRecipesModelIsSubject,
-	LCHRecipesModelIsVerb,
-	LCHComponentDescriptorsModelErrorsFor,
-	LCHAPITypeEquivalenceMapForRecipes,
-} from './api.js';
 
 export let dataObjects = [];
 export let completionHandler;
@@ -39,12 +28,14 @@ export let optionsObject = {};
 	LCHOptionsObject(optionsObject);
 })();
 
+import { LCHLauncherPatternMatchesURL } from './ui-logic.js';
 (function StartFilterDataObjects() {
 	dataObjects = dataObjects.filter(function (e) {
 		return LCHLauncherPatternMatchesURL(e.LCHRecipeURLFilter || '', window.location.href);
 	});
 })();
 
+import { LCHRecipesModelErrorsFor } from './api.js';
 (function StartPageFormulas() {
 	if (typeof window.LCHPageFormulas !== 'function') {
 		return;
@@ -61,8 +52,11 @@ export let optionsObject = {};
 	}));
 })();
 
-import { LCHAPIObjectFor } from './api.js';
-import * as apiComponents from './recipes/components.js';
+import {
+	LCHAPIObjectFor,
+	LCHAPITypeEquivalenceMapForRecipes,
+} from './api.js';
+import { LCHLauncherStandardRecipes } from './recipes/recipes.js';
 const allRecipes = LCHLauncherStandardRecipes().concat(dataObjects);
 const api = LCHAPIObjectFor(allRecipes);
 const apiTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes)
@@ -71,7 +65,9 @@ const apiTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes)
 import {
 	LCHAPIExecuteComposition,
 	LCHAPIExecuteRecipe,
+	LCHComponentDescriptorsModelErrorsFor,
 } from './api.js';
+import * as apiComponents from './recipes/components.js';
 async function apiStart(inputData) {
 	return await (inputData.LCHCompositionAction ? LCHAPIExecuteComposition(inputData, api) : LCHAPIExecuteRecipe(inputData, [], api)).then(function (inputData) {
 		if (!inputData) {
@@ -101,6 +97,10 @@ async function apiStart(inputData) {
 
 let _PromptObjects, _PromptActiveIndex;
 let _AllActions = allRecipes.filter(LCHRecipesModelIsVerb);
+import {
+	LCHRecipesModelIsSubject,
+	LCHRecipesModelIsVerb,
+} from './api.js';
 (function StartPromptObjects() {
 	 _PromptObjects = [{
 		LCHPromptClass: 'LCHLauncherSubjectPrompt',
@@ -129,6 +129,7 @@ let _AllActions = allRecipes.filter(LCHRecipesModelIsVerb);
 	_PromptActiveIndex = 0;
 })();
 
+import { LCHLauncherThrottleDuration } from './ui-logic.js';
 function ActivePromptFilterTextShouldUpdate (inputData) {
 	(function SetFilterText() {
 		_PromptObjects[_PromptActiveIndex].LCHPromptFilterText = inputData;
@@ -375,6 +376,10 @@ function handleDidFinish() {
 }
 
 let selectedZone = 'LCHLauncherSubjectZoneInput';
+import {
+	LCHLauncherKeyboardEventIsTextInput,
+	LCHLauncherConstrainIndex,
+} from './ui-logic.js';
 function handleKeydown(event) {
 	const handlerFunctions = {
 		Escape () {
