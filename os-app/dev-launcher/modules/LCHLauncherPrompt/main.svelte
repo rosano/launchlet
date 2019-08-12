@@ -1,5 +1,4 @@
 <script>
-import LCHLauncherZoneInput from '../LCHLauncherZoneInput/main.svelte';
 import LCHLauncherResultList from '../LCHLauncherResultList/main.svelte';
 import LCHLauncherPipeItem from '../LCHLauncherPipeItem/main.svelte';
 
@@ -16,13 +15,15 @@ function ItemSelectedDidChange(event) {
 
 <div class="LCHLauncherPrompt">
 
-<LCHLauncherZoneInput>
-{#if ItemSelected}
-	<LCHLauncherPipeItem itemTitle={ ItemSelected.LCHRecipeTitle } />
-{:else}
-	<slot></slot>
-{/if}
-</LCHLauncherZoneInput>
+<div class="LCHLauncherZoneInput">
+	<div class="LCHLauncherZoneInputBezel">
+		{#if ItemSelected}
+			<LCHLauncherPipeItem itemTitle={ ItemSelected.LCHRecipeTitle } />
+		{:else}
+			<slot></slot>
+		{/if}
+	</div>
+</div>
 
 {#if !ResultsHidden}
 	<LCHLauncherResultList ListItems={ PromptItems } let:LCHLauncherResultListItem={ item } ItemSelected={ ItemSelected } on:ItemSelectedDidChange={ ItemSelectedDidChange }>
@@ -31,3 +32,32 @@ function ItemSelectedDidChange(event) {
 {/if}
 
 </div>
+
+<style>
+.LCHLauncherZoneInput {
+	padding: 3px;
+	border: solid 1px hsl(0, 0%, 90%);
+	border-radius: 6px;
+	
+	background: hsl(0, 0%, 95%);
+
+	/* @LCHLauncherZoneInputFlexbox:Parent */
+	display: flex;
+	justify-content: center;
+}
+
+.LCHLauncherZoneInputBezel {
+	height: 20px;
+	
+	padding: 4px;
+	border-radius: 4px;
+
+	/* @LCHLauncherZoneInputFlexbox:Child */
+	flex-grow: 1;
+
+	/* @LCHLauncherZoneInputBezelFlexbox:Parent */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+</style>
