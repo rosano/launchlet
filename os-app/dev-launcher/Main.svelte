@@ -29,7 +29,6 @@ import {
 	LCHRecipesModelIsVerb,
 	LCHComponentDescriptorsModelErrorsFor,
 	LCHAPITypeEquivalenceMapForRecipes,
-	LCHAPIExecuteComposition,
 } from './api.js';
 
 export let dataObjects = [];
@@ -68,8 +67,13 @@ const allRecipes = LCHLauncherStandardRecipes().concat(dataObjects);
 const api = LCHAPIObjectFor(allRecipes);
 const apiTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes)
 
+
+import {
+	LCHAPIExecuteComposition,
+	LCHAPIExecuteRecipe,
+} from './api.js';
 async function apiStart(inputData) {
-	return await LCHAPIExecuteComposition([].concat.apply([], [inputData]), api).then(function (inputData) {
+	return await (inputData.LCHCompositionAction ? LCHAPIExecuteComposition(inputData, api) : LCHAPIExecuteRecipe(inputData, [], api)).then(function (inputData) {
 		if (!inputData) {
 			return Promise.resolve(inputData);
 		}
@@ -423,10 +427,10 @@ function handleKeydown(event) {
 					return;
 				};
 
-				await apiStart([
-					_PromptObjects[1].LCHPromptItemSelected,
-					_PromptObjects[0].LCHPromptItemSelected,
-					]);
+				await apiStart({
+					LCHCompositionAction: _PromptObjects[1].LCHPromptItemSelected,
+					LCHCompositionSubjectPrimary: _PromptObjects[0].LCHPromptItemSelected,
+				});
 			} else if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
 				await apiStart($formulaSelected);
 			}
