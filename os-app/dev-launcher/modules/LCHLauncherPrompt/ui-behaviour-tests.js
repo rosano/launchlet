@@ -43,7 +43,7 @@ describe('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
 		browser.assert.elements(LCHLauncherResultListItem, 0);
 	});
 	
-	it('on HideResults', async function() {
+	it('on ResultsHidden', async function() {
 		browser.check('#LCHLauncherPromptTestSetResultsHidden');
 		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
 
@@ -54,6 +54,12 @@ describe('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
 		await browser.pressButton('#LCHLauncherPromptTestSetStubItemSelected');
 		
 		browser.assert.elements(LCHLauncherPromptItemSelected, 1);
+	});
+	
+	it('on ItemSelectedHidden', async function() {
+		await browser.check('#LCHLauncherPromptTestSetItemSelectedHidden');
+
+		browser.assert.elements(LCHLauncherPromptItemSelected, 0);
 	});
 
 });

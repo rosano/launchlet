@@ -5,6 +5,7 @@ import LCHLauncherPipeItem from '../LCHLauncherPipeItem/main.svelte';
 export let PromptItems = [];
 export let ResultsHidden = false;
 export let ItemSelected = null;
+export let ItemSelectedHidden = false;
 
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
@@ -17,10 +18,10 @@ function ItemSelectedDidChange(event) {
 
 <div class="LCHLauncherZoneInput">
 	<div class="LCHLauncherZoneInputBezel">
-		{#if ItemSelected}
-			<LCHLauncherPipeItem itemTitle={ ItemSelected.LCHRecipeTitle } />
-		{:else}
+		{#if !ItemSelected || ItemSelectedHidden}
 			<slot></slot>
+		{:else}
+			<LCHLauncherPipeItem itemTitle={ ItemSelected.LCHRecipeTitle } />
 		{/if}
 	</div>
 </div>
