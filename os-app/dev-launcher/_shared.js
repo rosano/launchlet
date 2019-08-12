@@ -11,8 +11,4 @@ export const OLSKLocalized = function(translationConstant) {
 };
 
 import { writable } from 'svelte/store';
-export const formulaSelected = writable(null);
-export const formulasVisible = writable([]);
-export const actionsVisible = writable([]);
-export const actionSelected = writable(null);
 export const secondaryComponent = writable(null);

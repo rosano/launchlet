@@ -7,10 +7,6 @@ import LCHLauncherPipeItem from './modules/LCHLauncherPipeItem/main.svelte';
 
 import {
 	LCHOptionsObject,
-	formulaSelected,
-	formulasVisible,
-	actionsVisible,
-	actionSelected,
 	secondaryComponent,
 } from './_shared.js';
 import {
@@ -314,79 +310,8 @@ async function LauncherShouldTerminate () {
 	handleDidFinish();
 };
 
-let filterText = '';
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump ? dataObjects : [];
 import OLSKThrottle from 'OLSKThrottle';
-if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
-	formulaSelected.subscribe(function formulaSelectedDidChange(val) {
-		return actionsVisible.set(!val ? [] : allRecipes.filter(function (e) {
-			if (!LCHRecipesModelIsVerb(e)) {
-				return false;
-			}
-
-			if (!apiTypeEquivalenceMap[val.LCHRecipeOutputType].filter(function (type) {
-				return e.LCHRecipeInputTypes.indexOf(type) !== -1
-			}).length) {
-				return false;
-			}
-
-			return true;
-		}));
-	});
-
-	actionsVisible.subscribe(function actionsVisibleDidChange(val) {
-		return actionSelected.set(val[0]);
-	});
-}
-
-let filterTextDidChange = function (val) {
-	formulasVisible.update(function(currentValue) {
-		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
-			return !val ? formulasDefault : dataObjects.filter(LCHLauncherFilterForText(val));
-		}
-		
-		if (!val && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === false) {
-			return currentValue;
-		}
-		
-		if (!val) {
-			return [];
-		}
-
-		let results = dataObjects.filter(LCHRecipesModelIsSubject).filter(LCHLauncherFilterForText(val));
-
-		if (currentValue.length && !results.length) {
-			if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
-				OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
-			}
-
-			_PromptObjects[_PromptActiveIndex].LCHPromptMatchStop = true;
-
-			return currentValue;
-		}
-
-		return results;
-	});
-
-	formulaSelected.set((function() {
-		if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
-			return $formulasVisible[0];
-		}
-
-		return !val ? null : $formulasVisible[0];
-	})());
-
-	if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
-		return;
-	}
-
-	if (!val) {
-		return;
-	}
-
-	apiStart($formulaSelected);
-};
-$: filterTextDidChange(filterText.trim());
 
 let rootElement;
 
@@ -455,26 +380,12 @@ function handleKeydown(event) {
 			if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
 				return OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 			}
-
-			// formulaSelected.set($formulasVisible[LCHLauncherConstrainIndex($formulasVisible, $formulasVisible.indexOf($formulaSelected) - 1)]);
-
-			// if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
-			// 	apiStart($formulaSelected);
-			// }
-
-			// return event.preventDefault();
+			return event.preventDefault();
 		},
 		ArrowDown () {
 			if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
 				return OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 			}
-
-			formulaSelected.set($formulasVisible[LCHLauncherConstrainIndex($formulasVisible, $formulasVisible.indexOf($formulaSelected) + 1)]);
-			
-			if (LCHOptionsObject().runMode === LCHLauncherModeJump) {
-				apiStart($formulaSelected);
-			}
-
 			return event.preventDefault();
 		},
 		Enter () {
@@ -499,8 +410,6 @@ function handleKeydown(event) {
 			ActivePromptItemsShouldUpdate([]);
 
 			_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
-			formulaSelected.set(null);
-			formulasVisible.set([]);
 		},
 	};
 
