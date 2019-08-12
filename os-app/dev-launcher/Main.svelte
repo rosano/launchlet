@@ -102,29 +102,31 @@ import {
 	LCHRecipesModelIsVerb,
 } from './api.js';
 (function StartPromptObjects() {
-	 _PromptObjects.push(...[{
-		LCHPromptClass: 'LCHLauncherSubjectPrompt',
-		LCHPromptHeading: OLSKLocalized('LCHLauncherSubjectPromptHeadingText'),
-		LCHPromptItems: [],
-		LCHPromptItemsAll: allRecipes.filter(LCHRecipesModelIsSubject).filter(function (e) {
-			return !e.LCHRecipeOutputType || (Object.keys(apiTypeEquivalenceMap).indexOf(e.LCHRecipeOutputType) !== -1);
-		}),
-		LCHPromptItemSelected: null,
-		LCHPromptInputThrottle: undefined,
-		LCHPromptFilterText: '',
-		LCHPromptMatchStop: false,
-		LCHPromptResultsThrottle: undefined,
-	 }, {
-		LCHPromptClass: 'LCHLauncherActionPrompt',
-		LCHPromptHeading: OLSKLocalized('LCHLauncherActionPromptHeadingText'),
-		LCHPromptItems: [],
-		LCHPromptItemsAll: [],
-		LCHPromptItemSelected: null,
-		LCHPromptInputThrottle: undefined,
-		LCHPromptFilterText: '',
-		LCHPromptMatchStop: false,
-		LCHPromptResultsThrottle: undefined,
-	}]);
+	if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
+		 return _PromptObjects.push(...[{
+			LCHPromptClass: 'LCHLauncherSubjectPrompt',
+			LCHPromptHeading: OLSKLocalized('LCHLauncherSubjectPromptHeadingText'),
+			LCHPromptItems: [],
+			LCHPromptItemsAll: allRecipes.filter(LCHRecipesModelIsSubject).filter(function (e) {
+				return !e.LCHRecipeOutputType || (Object.keys(apiTypeEquivalenceMap).indexOf(e.LCHRecipeOutputType) !== -1);
+			}),
+			LCHPromptItemSelected: null,
+			LCHPromptInputThrottle: undefined,
+			LCHPromptFilterText: '',
+			LCHPromptMatchStop: false,
+			LCHPromptResultsThrottle: undefined,
+		 }, {
+			LCHPromptClass: 'LCHLauncherActionPrompt',
+			LCHPromptHeading: OLSKLocalized('LCHLauncherActionPromptHeadingText'),
+			LCHPromptItems: [],
+			LCHPromptItemsAll: [],
+			LCHPromptItemSelected: null,
+			LCHPromptInputThrottle: undefined,
+			LCHPromptFilterText: '',
+			LCHPromptMatchStop: false,
+			LCHPromptResultsThrottle: undefined,
+		}]);
+	};
 })();
 
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
