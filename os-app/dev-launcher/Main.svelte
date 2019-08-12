@@ -100,6 +100,7 @@ let _AllActions = allRecipes.filter(LCHRecipesModelIsVerb);
 import {
 	LCHRecipesModelIsSubject,
 	LCHRecipesModelIsVerb,
+	LCHRecipesModelIsCommand,
 } from './api.js';
 (function StartPromptObjects() {
 	if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
@@ -127,6 +128,13 @@ import {
 			LCHPromptResultsThrottle: undefined,
 		}]);
 	};
+
+	_PromptObjects.push(...[{
+		LCHPromptClass: 'LCHLauncherFilterPrompt',
+		LCHPromptItems: [],
+		LCHPromptItemsAll: allRecipes.filter(LCHRecipesModelIsCommand),
+		LCHPromptFilterText: '',
+	 }]);
 })();
 
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
