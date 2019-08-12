@@ -21,7 +21,7 @@ describe('LCHLauncherResultListElements', function testLCHLauncherResultListElem
 	});
 	
 	it('on set single', async function() {
-		browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsSingle');
+		browser.pressButton('#LCHLauncherResultListTestSetTestItemsSingle');
 		await browser.wait({element: LCHLauncherResultListItem});
 
 		browser.assert.elements(LCHLauncherResultList, 1);
@@ -31,7 +31,7 @@ describe('LCHLauncherResultListElements', function testLCHLauncherResultListElem
 	});
 	
 	it('on set multiple', async function() {
-		browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsMultiple');
+		browser.pressButton('#LCHLauncherResultListTestSetTestItemsMultiple');
 		await browser.wait({element: LCHLauncherResultListItem});
 
 		browser.assert.elements(LCHLauncherResultListItem, 3);
@@ -40,7 +40,7 @@ describe('LCHLauncherResultListElements', function testLCHLauncherResultListElem
 	});
 	
 	it('on set zero', async function() {
-		await browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsZero');
+		await browser.pressButton('#LCHLauncherResultListTestSetTestItemsZero');
 
 		browser.assert.elements(LCHLauncherResultList, 0);
 		browser.assert.elements(LCHLauncherResultListItem, 0);
@@ -69,18 +69,18 @@ describe('LCHLauncherResultListInteraction', function testLCHLauncherResultListI
 	});
 
 	it('selects none by default', async function() {
-		await browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsMultiple');
+		await browser.pressButton('#LCHLauncherResultListTestSetTestItemsMultiple');
 
 		browser.assert.elements(LCHLauncherResultListItem, 3);
 		browser.assert.elements('.LCHLauncherResultListItemSelected', 0);
-		browser.assert.text('#LCHLauncherZoneInputTestItemSelected', 'null');
+		browser.assert.text('#LCHLauncherResultListTestItemSelected', 'null');
 	});
 
 	it('adds class on set', async function() {
-		await browser.pressButton('#LCHLauncherZoneInputTestSetTestItemSelected');
+		await browser.pressButton('#LCHLauncherResultListTestSetTestItemSelected');
 
 		browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
-		browser.assert.text('#LCHLauncherZoneInputTestItemSelected', 'bravo');
+		browser.assert.text('#LCHLauncherResultListTestItemSelected', 'bravo');
 	});
 	
 	it('increments on ArrowDown', async function() {
@@ -88,37 +88,37 @@ describe('LCHLauncherResultListInteraction', function testLCHLauncherResultListI
 
 		browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
 		browser.assert.hasClass(`${ LCHLauncherResultListItem }:nth-child(3)`, 'LCHLauncherResultListItemSelected');
-		browser.assert.text('#LCHLauncherZoneInputTestItemSelected', 'charlie');
+		browser.assert.text('#LCHLauncherResultListTestItemSelected', 'charlie');
 	});
 	
 	it('does nothing if selected item no longer exists', async function() {
-		await browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsSingle');
+		await browser.pressButton('#LCHLauncherResultListTestSetTestItemsSingle');
 
 		browser.assert.elements('.LCHLauncherResultListItemSelected', 0);
-		browser.assert.text('#LCHLauncherZoneInputTestItemSelected', 'charlie');
+		browser.assert.text('#LCHLauncherResultListTestItemSelected', 'charlie');
 	});
 	
 	it('sets on click', async function() {
 		await browser.click(LCHLauncherResultListItem);
 
 		browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
-		browser.assert.text('#LCHLauncherZoneInputTestItemSelected', 'alfa');
+		browser.assert.text('#LCHLauncherResultListTestItemSelected', 'alfa');
 	});
 	
 	it('does nothing if selected item still exists', async function() {
-		await browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsSingle');
+		await browser.pressButton('#LCHLauncherResultListTestSetTestItemsSingle');
 
 		browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
-		browser.assert.text('#LCHLauncherZoneInputTestItemSelected', 'alfa');
+		browser.assert.text('#LCHLauncherResultListTestItemSelected', 'alfa');
 	});
 	
 	it('decrements on ArrowUp', async function() {
-		await browser.pressButton('#LCHLauncherZoneInputTestSetTestItemsMultiple');
+		await browser.pressButton('#LCHLauncherResultListTestSetTestItemsMultiple');
 		await browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
 
 		browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
 		browser.assert.hasClass(`${ LCHLauncherResultListItem }:nth-child(3)`, 'LCHLauncherResultListItemSelected');
-		browser.assert.text('#LCHLauncherZoneInputTestItemSelected', 'charlie');
+		browser.assert.text('#LCHLauncherResultListTestItemSelected', 'charlie');
 	});
 
 });

@@ -13,8 +13,8 @@ export let TestItemSelected = null;
 
 <p>
 	<strong>TestItemSelected</strong>
-	<button on:click={ () => TestItemSelected = 'bravo' } id="LCHLauncherZoneInputTestSetTestItemSelected">Set</button>
-	<span id="LCHLauncherZoneInputTestItemSelected">{ TestItemSelected }</span>
+	<button on:click={ () => TestItemSelected = 'bravo' } id="LCHLauncherResultListTestSetTestItemSelected">Set</button>
+	<span id="LCHLauncherResultListTestItemSelected">{ TestItemSelected }</span>
 </p>
 
 <style>
