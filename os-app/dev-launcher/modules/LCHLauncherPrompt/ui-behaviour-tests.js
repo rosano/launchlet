@@ -4,7 +4,6 @@ const browser = new OLSKBrowser();
 const kDefaultRoutePath = '/modules/LCHLauncherPrompt';
 
 const LCHLauncherPrompt = '.LCHLauncherPrompt';
-const LCHLauncherZoneInput = '.LCHLauncherZoneInput';
 const LCHLauncherZoneInputPipeItem = '.LCHLauncherZoneInput .LCHLauncherPipeItem';
 const LCHLauncherResultList = '.LCHLauncherResultList';
 const LCHLauncherResultListItem = '.LCHLauncherResultListItem';
@@ -18,7 +17,6 @@ describe('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
 	it('on startup', function() {
 		browser.assert.elements(LCHLauncherPrompt, 1);
 
-		browser.assert.elements(LCHLauncherZoneInput, 1);
 		browser.assert.elements(LCHLauncherZoneInputPipeItem, 0);
 
 		browser.assert.elements(LCHLauncherResultList, 0);
@@ -53,7 +51,7 @@ describe('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
 	});
 	
 	it('on set ItemSelected', async function() {
-		await browser.pressButton('#LCHLauncherZoneInputTestSetStubItemSelected');
+		await browser.pressButton('#LCHLauncherPromptTestSetStubItemSelected');
 		
 		browser.assert.elements(LCHLauncherZoneInputPipeItem, 1);
 	});
@@ -78,7 +76,7 @@ describe('LCHLauncherPromptText', function testLCHLauncherPromptText() {
 	});
 	
 	it('on set multiple', async function() {
-		await browser.pressButton('#LCHLauncherZoneInputTestSetStubItemSelected');
+		await browser.pressButton('#LCHLauncherPromptTestSetStubItemSelected');
 		
 		browser.assert.text('#LCHLauncherPromptStubItemSelected', 'bravo');
 	});

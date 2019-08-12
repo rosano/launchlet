@@ -12,6 +12,6 @@ export let ResultsHidden = false;
 
 <p>
 	<strong>StubItemSelected</strong>
-	<button on:click={ () => StubItemSelected = StubItems[1] } id="LCHLauncherZoneInputTestSetStubItemSelected">Set</button>
+	<button on:click={ () => StubItemSelected = StubItems[1] } id="LCHLauncherPromptTestSetStubItemSelected">Set</button>
 	<span id="LCHLauncherPromptStubItemSelected">{ (StubItemSelected || {}).LCHRecipeTitle }</span>
 </p>

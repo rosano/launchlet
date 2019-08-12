@@ -10,7 +10,7 @@ Object.entries({
 	LCHLauncherSubjectPrompt: '.LCHLauncherSubjectPrompt',
 	LCHLauncherSubjectZoneInput: '.LCHLauncherSubjectPrompt .LCHLauncherZoneInput',
 	LCHLauncherSubjectZoneInputHeading: '.LCHLauncherSubjectPrompt .LCHLauncherPromptHeading',
-	LCHLauncherSubjectZoneInputPlaceholder: '.LCHLauncherSubjectZoneInputPlaceholder',
+	LCHLauncherSubjectPromptPlaceholder: '.LCHLauncherSubjectPromptPlaceholder',
 	LCHLauncherActionPrompt: '.LCHLauncherActionPrompt',
 	LCHLauncherActionZoneInput: '.LCHLauncherActionPrompt .LCHLauncherZoneInput',
 	LCHLauncherActionZoneInputHeading: '.LCHLauncherActionPrompt .LCHLauncherPromptHeading',
@@ -80,7 +80,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 		it('on startup', function() {
 			browser.assert.elements(LCHLauncherFilterInput, 0);
 			browser.assert.elements(LCHLauncherSubjectZoneInput, 1);
-			browser.assert.elements(LCHLauncherSubjectZoneInputPlaceholder, 1);
+			browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 1);
 			browser.assert.elements(LCHLauncherActionZoneInput, 1);
 
 			browser.assert.elements(LCHLauncherList, 0);
@@ -105,7 +105,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'a');
 				await browser.wait({element: LCHLauncherSubjectZoneInputHeading});
 
-				browser.assert.elements(LCHLauncherSubjectZoneInputPlaceholder, 0);
+				browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 0);
 
 				browser.assert.elements(LCHLauncherSubjectPipeItem, 1);
 				browser.assert.elements(LCHLauncherActionPipeItem, 1);
@@ -241,7 +241,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				});
 				
 				it('shows placeholder', function() {
-					browser.assert.elements(LCHLauncherSubjectZoneInputPlaceholder, 1);
+					browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 1);
 				});
 
 			});
@@ -333,7 +333,7 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 
 				it('on startup', function() {
 					browser.text(LCHLauncherSubjectZoneInputHeading), uLocalized('LCHLauncherSubjectPromptHeadingText');
-					browser.text(LCHLauncherSubjectZoneInputPlaceholder), uLocalized('LCHLauncherSubjectPromptPlaceholderText');
+					browser.text(LCHLauncherSubjectPromptPlaceholder), uLocalized('LCHLauncherSubjectPromptPlaceholderText');
 
 					browser.text(LCHLauncherActionZoneInputHeading), uLocalized('LCHLauncherActionPromptHeadingText');
 				});
