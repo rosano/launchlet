@@ -9,6 +9,9 @@ const dispatch = createEventDispatcher();
 function setItemSelected(inputData) {
 	dispatch('ItemSelectedDidChange', inputData);
 }
+function ResultListDispatchClick(inputData) {
+	dispatch('ResultListDispatchClick', inputData);
+}
 
 function keydownDidFire(event) {
 	const handlerFunctions = {
@@ -34,7 +37,7 @@ function keydownDidFire(event) {
 {#if ListItems.length}
 	<div class="LCHLauncherResultList">
 		{#each ListItems as e,index}
-			<div class="LCHLauncherResultListItem" class:LCHLauncherResultListItemSelected={ e === ItemSelected } on:click={ () => setItemSelected(e) }>
+			<div class="LCHLauncherResultListItem" class:LCHLauncherResultListItemSelected={ e === ItemSelected } on:click={ () => ResultListDispatchClick(e) }>
 				<slot LCHLauncherResultListItem={ e }></slot>
 			</div>
 		{/each}

@@ -69,7 +69,8 @@ describe('LCHLauncherResultListInteraction', function testLCHLauncherResultListI
 	});
 
 	it('selects none by default', async function() {
-		await browser.pressButton('#LCHLauncherResultListTestSetTestItemsMultiple');
+		browser.pressButton('#LCHLauncherResultListTestSetTestItemsMultiple');
+		await browser.wait({ element: LCHLauncherResultListItem });
 
 		browser.assert.elements(LCHLauncherResultListItem, 3);
 		browser.assert.elements('.LCHLauncherResultListItemSelected', 0);
@@ -103,6 +104,10 @@ describe('LCHLauncherResultListInteraction', function testLCHLauncherResultListI
 
 		browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
 		browser.assert.text('#LCHLauncherResultListTestItemSelected', 'alfa');
+	});
+	
+	it('emits ResultListDispatchClick', async function() {
+		browser.assert.text('#LCHLauncherResultListTestResultListDispatchClick', '1');
 	});
 	
 	it('does nothing if selected item still exists', async function() {
