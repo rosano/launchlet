@@ -13,8 +13,7 @@ Object.entries({
 	LCHLauncherActionPrompt: '.LCHLauncherActionPrompt',
 	LCHLauncherActionPromptHeading: '.LCHLauncherActionPrompt .LCHLauncherPromptHeading',
 
-	LCHLauncherList: '.ListContainer',
-	LCHLauncherListItem: '.ListItem',
+	LCHLauncherListItem: '.LCHLauncherResultListItem',
 
 	LCHLauncherPipeItem: '.LCHLauncherPipeItem',
 	LCHLauncherResultList: '.LCHLauncherResultList',
@@ -79,7 +78,6 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 			browser.assert.elements(LCHLauncherFilterInput, 0);
 			browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 1);
 
-			browser.assert.elements(LCHLauncherList, 0);
 			browser.assert.elements(LCHLauncherListItem, 0);
 			browser.assert.elements(LCHLauncherResultList, 0);
 			browser.assert.elements(LCHLauncherResultListItem, 0);
@@ -304,7 +302,7 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 					browser.fill(LCHLauncherFilterInput, 'a');
 					await browser.wait({element: LCHLauncherListItem});
 
-					deepEqual(browser.queryAll(LCHLauncherListItem)[0].textContent, 'Alfa');
+					browser.assert.text(`${ LCHLauncherListItem }:first-child`, 'Alfa');
 				});
 
 			});
@@ -381,14 +379,14 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 		});
 
 		it('selects first item', async function() {
-			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[0], 'ListItemSelected');
+			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[0], 'LCHLauncherResultListItemSelected');
 		});
 
 		it('selects item on mouseover', async function() {
 			browser.fire(browser.queryAll(LCHLauncherListItem)[1], 'mouseover');
 			await browser.wait({element: LCHLauncherListItem});
 
-			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[1], 'ListItemSelected');
+			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[1], 'LCHLauncherResultListItemSelected');
 		});
 
 		it('does not run item on select', async function() {
@@ -417,14 +415,14 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
 				await browser.wait({element: LCHLauncherListItem});
 
-				browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[1], 'ListItemSelected');
+				browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[1], 'LCHLauncherResultListItemSelected');
 			});
 
 			it('selects previous item on ArrowUp', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
 				await browser.wait({element: LCHLauncherListItem});
 
-				browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[0], 'ListItemSelected');
+				browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[0], 'LCHLauncherResultListItemSelected');
 			});
 
 			it('runs item and closes on Enter', async function() {
@@ -445,14 +443,14 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 		});
 
 		it('selects no items', async function() {
-			browser.assert.elements('.ListItemSelected', 0);
+			browser.assert.elements('.LCHLauncherResultListItemSelected', 0);
 		});
 
 		it('selects item on mouseover', async function() {
 			browser.fire(browser.queryAll(LCHLauncherListItem)[1], 'mouseover');
 			await browser.wait({element: LCHLauncherListItem});
 
-			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[1], 'ListItemSelected');
+			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[1], 'LCHLauncherResultListItemSelected');
 		});
 
 		it('does not run item on mouseover', async function() {

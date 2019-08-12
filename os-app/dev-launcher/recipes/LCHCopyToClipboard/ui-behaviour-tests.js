@@ -5,8 +5,6 @@ const browser = new OLSKBrowser();
 Object.entries({
 	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
 
-	LCHLauncherListItem: '.ListItem',
-
 	LCHCopyToClipboardButton: '#LCHCopyToClipboardButton',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
