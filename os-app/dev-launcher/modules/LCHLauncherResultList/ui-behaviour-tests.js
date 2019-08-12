@@ -75,6 +75,8 @@ describe('LCHLauncherResultListInteraction', function testLCHLauncherResultListI
 		browser.assert.elements(LCHLauncherResultListItem, 3);
 		browser.assert.elements('.LCHLauncherResultListItemSelected', 0);
 		browser.assert.text('#LCHLauncherResultListTestItemSelected', 'null');
+		browser.assert.text('#LCHLauncherResultListTestResultListDispatchArrow', '0');
+		browser.assert.text('#LCHLauncherResultListTestResultListDispatchClick', '0');
 	});
 
 	it('adds class on set', async function() {
@@ -90,6 +92,10 @@ describe('LCHLauncherResultListInteraction', function testLCHLauncherResultListI
 		browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
 		browser.assert.hasClass(`${ LCHLauncherResultListItem }:nth-child(3)`, 'LCHLauncherResultListItemSelected');
 		browser.assert.text('#LCHLauncherResultListTestItemSelected', 'charlie');
+	});
+	
+	it('emits ResultListDispatchArrow on ArrowDown', async function() {
+		browser.assert.text('#LCHLauncherResultListTestResultListDispatchArrow', '1');
 	});
 	
 	it('does nothing if selected item no longer exists', async function() {

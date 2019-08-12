@@ -6,8 +6,8 @@ export let ListItems = [];
 export let ItemSelected = null;
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
-function setItemSelected(inputData) {
-	dispatch('ItemSelectedDidChange', inputData);
+function ResultListDispatchArrow(inputData) {
+	dispatch('ResultListDispatchArrow', inputData);
 }
 function ResultListDispatchClick(inputData) {
 	dispatch('ResultListDispatchClick', inputData);
@@ -16,12 +16,12 @@ function ResultListDispatchClick(inputData) {
 function keydownDidFire(event) {
 	const handlerFunctions = {
 		ArrowUp () {
-			setItemSelected(ListItems[LCHLauncherResultListConstrainIndex(ListItems, ListItems.indexOf(ItemSelected) - 1)]);
+			ResultListDispatchArrow(ListItems[LCHLauncherResultListConstrainIndex(ListItems, ListItems.indexOf(ItemSelected) - 1)]);
 
 			return event.preventDefault();
 		},
 		ArrowDown () {
-			setItemSelected(ListItems[LCHLauncherResultListConstrainIndex(ListItems, ListItems.indexOf(ItemSelected) + 1)]);
+			ResultListDispatchArrow(ListItems[LCHLauncherResultListConstrainIndex(ListItems, ListItems.indexOf(ItemSelected) + 1)]);
 			
 			return event.preventDefault();
 		},
