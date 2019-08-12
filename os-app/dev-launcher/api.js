@@ -406,23 +406,19 @@ export const LCHCompositionModelErrors = function(inputData) {
 };
 
 export const LCHAPIExecuteComposition = async function(inputData, api = {}) {
-	if (!Array.isArray(inputData)) {
+	if (LCHCompositionModelErrors(inputData)) {
 		return Promise.reject(new Error('LCHErrorInputInvalid'));
 	}
 
-	if (inputData.filter(LCHRecipesModelErrorsFor).length) {
+	if (typeof api.fn !== 'function') {
 		return Promise.reject(new Error('LCHErrorInputInvalid'));
 	}
 
-	let outputData;
-
-	while (inputData.length) {
-		outputData = await Promise.resolve(inputData.pop().LCHRecipeCallback.bind({
-			api: api,
-		})(outputData));
-	};
-
-	return outputData;
+	return LCHAPIExecuteRecipe(inputData.LCHCompositionAction, [
+		await LCHAPIExecuteRecipe(inputData.LCHCompositionSubjectPrimary, [], api),
+		].concat(inputData.LCHCompositionSubjectSecondary ? [
+			await LCHAPIExecuteRecipe(inputData.LCHCompositionSubjectSecondary, [], api),
+			] : []), api);
 };
 
 export const LCHAPIExecuteRecipe = async function(param1, param2 = [], param3 = {}) {

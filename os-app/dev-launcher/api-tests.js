@@ -899,96 +899,47 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 
 describe('LCHAPIExecuteComposition', function testLCHAPIExecuteComposition() {
 
-	it('throws error if not array', async function() {
-		await rejects(mainModule.LCHAPIExecuteComposition(null), /LCHErrorInputInvalid/);
+	it('throws error if param1 not LCHComposition', async function() {
+		await rejects(mainModule.LCHAPIExecuteComposition({}, kTesting.StubAPIObjectValid()), /LCHErrorInputInvalid/);
 	});
 
-	it('throws error if item not valid', async function() {
-		await rejects(mainModule.LCHAPIExecuteComposition([{}]), /LCHErrorInputInvalid/);
+	it('throws error if param2 not API object', async function() {
+		await rejects(mainModule.LCHAPIExecuteComposition(kTesting.StubCompositionObjectValid(), {}), /LCHErrorInputInvalid/);
 	});
 
 	it('returns output', async function() {
-		deepEqual(await mainModule.LCHAPIExecuteComposition([kTesting.StubRecipeObjectValid()]), undefined);
-	});
-
-	context('single', function() {
-
-		it('binds api', async function() {
-			deepEqual(await mainModule.LCHAPIExecuteComposition([{
-				LCHRecipeCallback() {
-					return this.api.fn('alfa')()
-				},
-			}], mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeCallback() {
+		deepEqual(await mainModule.LCHAPIExecuteComposition(Object.assign(kTesting.StubCompositionObjectValid(), {
+			LCHCompositionAction: Object.assign(kTesting.StubRecipeObjectVerb(), {
+				LCHRecipeCallback (inputData) {
+					return ['alfa', inputData].join(' ');
+				}
+			}),
+			LCHCompositionSubjectPrimary: Object.assign(kTesting.StubRecipeObjectSubject(), {
+				LCHRecipeCallback () {
 					return 'bravo';
-				},
-				LCHRecipeSignature: 'alfa',
-			})])), 'bravo');
-		});
-
-		it('resolves async callbacks', async function() {
-			deepEqual(await mainModule.LCHAPIExecuteComposition([{
-				LCHRecipeCallback() {
-					return this.api.fn('alfa')()
-				},
-			}], mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeCallback() {
-					return Promise.resolve('bravo');
-				},
-				LCHRecipeSignature: 'alfa',
-			})])), 'bravo');
-		});
-
+				}
+			}),
+		}), kTesting.StubAPIObjectValid()), 'alfa bravo');
 	});
 
-	context('multiple', function() {
-
-		it('passes second recipe to first', async function() {
-			deepEqual(await mainModule.LCHAPIExecuteComposition([{
-				LCHRecipeCallback(inputData) {
-					return [inputData, 'bravo'].join(' ');
-				},
-			}, {
-				LCHRecipeCallback() {
-					return 'alfa';
-				},
-			}]), 'alfa bravo');
-		});
-
-		it('binds api first', async function() {
-			deepEqual(await mainModule.LCHAPIExecuteComposition([{
-				LCHRecipeCallback(inputData) {
-					return [this.api.fn('alfa')(), inputData, 'delta'].join(' ');
-				},
-			}, {
-				LCHRecipeCallback() {
+	it('returns output if LCHCompositionSubjectSecondary', async function() {
+		deepEqual(await mainModule.LCHAPIExecuteComposition(Object.assign(kTesting.StubCompositionObjectValid(), {
+			LCHCompositionAction: Object.assign(kTesting.StubRecipeObjectVerb(), {
+				LCHRecipeCallback (param1, param2) {
+					return ['alfa', param1, param2].join(' ');
+				}
+			}),
+			LCHCompositionSubjectPrimary: Object.assign(kTesting.StubRecipeObjectSubject(), {
+				LCHRecipeCallback () {
+					return 'bravo';
+				}
+			}),
+			LCHCompositionSubjectSecondary: Object.assign(kTesting.StubRecipeObjectSubject(), {
+				LCHRecipeCallback () {
 					return 'charlie';
 				}
-			}], mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeCallback() {
-					return 'bravo';
-				},
-				LCHRecipeSignature: 'alfa',
-			})])), 'bravo charlie delta');
-		});
-
-		it('binds api second', async function() {
-			deepEqual(await mainModule.LCHAPIExecuteComposition([{
-				LCHRecipeCallback(inputData) {
-					return [inputData, 'bravo'].join(' ');
-				},
-			}, {
-				LCHRecipeCallback() {
-					return this.api.fn('alfa')()
-				}
-			}], mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeCallback() {
-					return 'bravo';
-				},
-				LCHRecipeSignature: 'alfa',
-			})])), 'bravo bravo');
-		});
-
+			}),
+		}), kTesting.StubAPIObjectValid()), 'alfa bravo charlie');
 	});
 
 });
