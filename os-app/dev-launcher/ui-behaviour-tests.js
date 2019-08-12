@@ -8,12 +8,10 @@ const kDefaultRoutePath = '/launcher';
 Object.entries({
 	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
 	LCHLauncherSubjectPrompt: '.LCHLauncherSubjectPrompt',
-	LCHLauncherSubjectZoneInput: '.LCHLauncherSubjectPrompt .LCHLauncherZoneInput',
-	LCHLauncherSubjectZoneInputHeading: '.LCHLauncherSubjectPrompt .LCHLauncherPromptHeading',
+	LCHLauncherSubjectPromptHeading: '.LCHLauncherSubjectPrompt .LCHLauncherPromptHeading',
 	LCHLauncherSubjectPromptPlaceholder: '.LCHLauncherSubjectPromptPlaceholder',
 	LCHLauncherActionPrompt: '.LCHLauncherActionPrompt',
-	LCHLauncherActionZoneInput: '.LCHLauncherActionPrompt .LCHLauncherZoneInput',
-	LCHLauncherActionZoneInputHeading: '.LCHLauncherActionPrompt .LCHLauncherPromptHeading',
+	LCHLauncherActionPromptHeading: '.LCHLauncherActionPrompt .LCHLauncherPromptHeading',
 
 	LCHLauncherList: '.ListContainer',
 	LCHLauncherListItem: '.ListItem',
@@ -79,9 +77,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 		
 		it('on startup', function() {
 			browser.assert.elements(LCHLauncherFilterInput, 0);
-			browser.assert.elements(LCHLauncherSubjectZoneInput, 1);
 			browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 1);
-			browser.assert.elements(LCHLauncherActionZoneInput, 1);
 
 			browser.assert.elements(LCHLauncherList, 0);
 			browser.assert.elements(LCHLauncherListItem, 0);
@@ -94,8 +90,8 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 			
 			it('does nothing if no match', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, '[');
-				await browser.wait({element: LCHLauncherSubjectZoneInputHeading});
-				deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, '[');
+				await browser.wait({element: LCHLauncherSubjectPromptHeading});
+				deepEqual(browser.query(LCHLauncherSubjectPromptHeading).textContent, '[');
 
 				browser.assert.elements(LCHLauncherPipeItem, 0);
 			});
@@ -103,7 +99,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 			it('shows first item if match', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
 				browser.OLSKFireKeyboardEvent(browser.window, 'a');
-				await browser.wait({element: LCHLauncherSubjectZoneInputHeading});
+				await browser.wait({element: LCHLauncherSubjectPromptHeading});
 
 				browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 0);
 
@@ -175,7 +171,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					browser.assert.elements(LCHLauncherResultListItem, 5);
 				});
 
-				it('passes MatchStop to LCHLauncherSubjectZoneInput', async function() {
+				it('passes MatchStop to LCHLauncherPromptHeading', async function() {
 					browser.assert.elements('.LCHLauncherPromptHeadingMatchStop', 1);
 				});
 
@@ -183,7 +179,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					browser.OLSKFireKeyboardEvent(browser.window, 'x');
 					await browser.wait({element: LCHLauncherSubjectPromptItemSelected});
 
-					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, 'AXX');
+					deepEqual(browser.query(LCHLauncherSubjectPromptHeading).textContent, 'AXX');
 					browser.assert.elements(LCHLauncherResultList, 1);
 					browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
 					browser.assert.elements(LCHLauncherResultListItem, 5);
@@ -194,7 +190,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					browser.OLSKFireKeyboardEvent(browser.window, 'a');
 					await browser.wait({element: LCHLauncherSubjectPromptItemSelected});
 
-					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, 'A');
+					deepEqual(browser.query(LCHLauncherSubjectPromptHeading).textContent, 'A');
 					browser.assert.elements('.LCHLauncherPromptHeadingMatchStop', 0);
 				});
 				
@@ -218,7 +214,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				});
 				
 				it('clears filter ', function() {
-					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, 'Subject');
+					deepEqual(browser.query(LCHLauncherSubjectPromptHeading).textContent, 'Subject');
 				});
 				
 				it('keeps results', function() {
@@ -252,7 +248,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					browser.OLSKFireKeyboardEvent(browser.window, 'a');
 					await browser.wait({duration: LCHLauncherThrottleDuration * 2});
 
-					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, 'A');
+					deepEqual(browser.query(LCHLauncherSubjectPromptHeading).textContent, 'A');
 					browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
 					browser.assert.elements(LCHLauncherResultList, 1);
 					browser.assert.elements(LCHLauncherResultListItem, 5);
@@ -262,7 +258,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				});
 				
 				it('replaces filter', function() {
-					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, 'B');
+					deepEqual(browser.query(LCHLauncherSubjectPromptHeading).textContent, 'B');
 				});
 
 			});
@@ -271,7 +267,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				
 				it('hides open result list', async function() {
 					browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-					await browser.wait({element: LCHLauncherSubjectZoneInput});
+					await browser.wait({element: LCHLauncherSubjectPrompt});
 					
 					browser.assert.elements(LCHLauncherResultList, 0);
 				});
@@ -332,24 +328,24 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 				});
 
 				it('on startup', function() {
-					browser.text(LCHLauncherSubjectZoneInputHeading), uLocalized('LCHLauncherSubjectPromptHeadingText');
+					browser.text(LCHLauncherSubjectPromptHeading), uLocalized('LCHLauncherSubjectPromptHeadingText');
 					browser.text(LCHLauncherSubjectPromptPlaceholder), uLocalized('LCHLauncherSubjectPromptPlaceholderText');
 
-					browser.text(LCHLauncherActionZoneInputHeading), uLocalized('LCHLauncherActionPromptHeadingText');
+					browser.text(LCHLauncherActionPromptHeading), uLocalized('LCHLauncherActionPromptHeadingText');
 				});
 
 				it('on keydown', async function() {
 					browser.OLSKFireKeyboardEvent(browser.window, 'a');
-					await browser.wait({element: LCHLauncherSubjectZoneInputHeading});
+					await browser.wait({element: LCHLauncherSubjectPromptHeading});
 
-					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, 'A');
+					deepEqual(browser.query(LCHLauncherSubjectPromptHeading).textContent, 'A');
 				});
 				
 				it('on keydown Backspace', async function() {
 					browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
-					await browser.wait({element: LCHLauncherSubjectZoneInputHeading});
+					await browser.wait({element: LCHLauncherSubjectPromptHeading});
 					
-					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, uLocalized('LCHLauncherSubjectPromptHeadingText'));
+					deepEqual(browser.query(LCHLauncherSubjectPromptHeading).textContent, uLocalized('LCHLauncherSubjectPromptHeadingText'));
 				});
 
 			});
@@ -519,7 +515,7 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 				return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
 			});
 			
-			it('selects LCHLauncherSubjectZoneInput', function() {
+			it('selects LCHLauncherSubjectPrompt', function() {
 				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
 			});
 
@@ -562,7 +558,7 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 
 			it('updates on Tab', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-				await browser.wait({element: LCHLauncherSubjectZoneInput});
+				await browser.wait({element: LCHLauncherSubjectPrompt});
 				
 				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
 			});
@@ -571,7 +567,7 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab', {
 					shiftKey: true,
 				});
-				await browser.wait({element: LCHLauncherSubjectZoneInput});
+				await browser.wait({element: LCHLauncherSubjectPrompt});
 				
 				browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
 			});
@@ -594,16 +590,16 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 
 			before(async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'a');
-				await browser.wait({element: LCHLauncherSubjectZoneInputHeading});
+				await browser.wait({element: LCHLauncherSubjectPromptHeading});
 
-				browser.assert.hasNoClass(LCHLauncherSubjectZoneInputHeading, 'LCHLauncherPromptHeadingMatchStop');
+				browser.assert.hasNoClass(LCHLauncherSubjectPromptHeading, 'LCHLauncherPromptHeadingMatchStop');
 			});
 
 			it('adds class', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'x');
-				await browser.wait({element: LCHLauncherSubjectZoneInputHeading});
+				await browser.wait({element: LCHLauncherSubjectPromptHeading});
 
-				browser.assert.hasClass(LCHLauncherSubjectZoneInputHeading, 'LCHLauncherPromptHeadingMatchStop');
+				browser.assert.hasClass(LCHLauncherSubjectPromptHeading, 'LCHLauncherPromptHeadingMatchStop');
 			});
 			
 		});
