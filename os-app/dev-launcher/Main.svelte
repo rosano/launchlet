@@ -104,7 +104,7 @@ import {
 (function StartPromptObjects() {
 	 _PromptObjects = [{
 		LCHPromptClass: 'LCHLauncherSubjectPrompt',
-		LCHPromptHeading: OLSKLocalized('LCHLauncherZoneInputHeadingSubject'),
+		LCHPromptHeading: OLSKLocalized('LCHLauncherSubjectPromptHeadingText'),
 		LCHPromptItems: [],
 		LCHPromptItemsAll: allRecipes.filter(LCHRecipesModelIsSubject).filter(function (e) {
 			return !e.LCHRecipeOutputType || (Object.keys(apiTypeEquivalenceMap).indexOf(e.LCHRecipeOutputType) !== -1);

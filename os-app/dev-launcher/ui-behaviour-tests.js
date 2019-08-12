@@ -332,7 +332,7 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 				});
 
 				it('on startup', function() {
-					browser.text(LCHLauncherSubjectZoneInputHeading), uLocalized('LCHLauncherZoneInputHeadingSubject');
+					browser.text(LCHLauncherSubjectZoneInputHeading), uLocalized('LCHLauncherSubjectPromptHeadingText');
 					browser.text(LCHLauncherSubjectZoneInputPlaceholder), uLocalized('LCHLauncherSubjectPromptPlaceholderText');
 
 					browser.text(LCHLauncherActionZoneInputHeading), uLocalized('LCHLauncherZoneInputHeadingAction');
@@ -349,7 +349,7 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 					browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
 					await browser.wait({element: LCHLauncherSubjectZoneInputHeading});
 					
-					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, uLocalized('LCHLauncherZoneInputHeadingSubject'));
+					deepEqual(browser.query(LCHLauncherSubjectZoneInputHeading).textContent, uLocalized('LCHLauncherSubjectPromptHeadingText'));
 				});
 
 			});
