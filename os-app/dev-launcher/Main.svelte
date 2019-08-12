@@ -374,7 +374,6 @@ function handleDidFinish() {
 	return completionHandler();
 }
 
-let selectedZone = 'LCHLauncherSubjectZoneInput';
 import {
 	LCHLauncherKeyboardEventIsTextInput,
 	LCHLauncherConstrainIndex,
