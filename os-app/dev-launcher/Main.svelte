@@ -683,10 +683,6 @@ input {
 	text-overflow: ellipsis;
 }
 
-.ListItemSelected {
-	background: #cccccc;
-}
-
 .LCHLauncherPromptSelected :global(.LCHLauncherZoneInputBezel), .LCHLauncherPromptSelected :global(.LCHLauncherResultListItemSelected) {
 	background: hsl(0, 0%, 85%);
 }
