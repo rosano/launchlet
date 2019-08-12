@@ -9,8 +9,11 @@ export let ItemSelectedHidden = false;
 
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
-function ItemSelectedDidChange(event) {
-	dispatch('ItemSelectedDidChange', ItemSelected = event.detail);
+function ResultListDispatchArrow(event) {
+	dispatch('ResultListDispatchArrow', ItemSelected = event.detail);
+}
+function ResultListDispatchClick(event) {
+	dispatch('ResultListDispatchClick', ItemSelected = event.detail);
 }
 </script>
 
@@ -27,7 +30,7 @@ function ItemSelectedDidChange(event) {
 </div>
 
 {#if !ResultsHidden}
-	<LCHLauncherResultList ListItems={ PromptItems } let:LCHLauncherResultListItem={ item } ItemSelected={ ItemSelected } on:ItemSelectedDidChange={ ItemSelectedDidChange }>
+	<LCHLauncherResultList ListItems={ PromptItems } let:LCHLauncherResultListItem={ item } ItemSelected={ ItemSelected } on:ResultListDispatchArrow={ ResultListDispatchArrow } on:ResultListDispatchClick={ ResultListDispatchClick }>
 		<LCHLauncherPipeItem itemTitle={ item.LCHRecipeTitle } />
 	</LCHLauncherResultList>
 {/if}

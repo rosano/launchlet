@@ -5,9 +5,23 @@ let StubItemSelected = null;
 let StubItemSelectedHidden = false;
 
 export let ResultsHidden = false;
+
+let TestResultListDispatchArrow;
+function ResultListDispatchArrow(inputData) {
+	StubItemSelected = inputData;
+
+	TestResultListDispatchArrow.innerHTML = parseInt(TestResultListDispatchArrow.innerHTML) + 1;
+}
+
+let TestResultListDispatchClick;
+function ResultListDispatchClick(inputData) {
+	StubItemSelected = inputData;
+
+	TestResultListDispatchClick.innerHTML = parseInt(TestResultListDispatchClick.innerHTML) + 1;
+}
 </script>
 
-<Module PromptItems={ StubItems } ItemSelected={ StubItemSelected } ItemSelectedHidden={ StubItemSelectedHidden } on:ItemSelectedDidChange={ (event) => StubItemSelected = event.detail } ResultsHidden={ ResultsHidden } />
+<Module PromptItems={ StubItems } ItemSelected={ StubItemSelected } ItemSelectedHidden={ StubItemSelectedHidden } on:ResultListDispatchArrow={ (event) => ResultListDispatchArrow(event.detail) } on:ResultListDispatchClick={ (event) => ResultListDispatchClick(event.detail) } ResultsHidden={ ResultsHidden } />
 
 <hr>
 
@@ -20,4 +34,13 @@ export let ResultsHidden = false;
 <p>
 	<strong>ItemSelectedHidden</strong>
 	<input type="checkbox" on:input={ () => StubItemSelectedHidden = this.checked } id="LCHLauncherPromptTestSetItemSelectedHidden" />
+</p>
+<p>
+	<strong>TestResultListDispatchArrow</strong>
+	<span id="LCHLauncherResultListTestResultListDispatchArrow" bind:this={ TestResultListDispatchArrow }>0</span>
+</p>
+
+<p>
+	<strong>TestResultListDispatchClick</strong>
+	<span id="LCHLauncherResultListTestResultListDispatchClick" bind:this={ TestResultListDispatchClick }>0</span>
 </p>

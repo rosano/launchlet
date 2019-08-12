@@ -81,10 +81,35 @@ describe('LCHLauncherPromptText', function testLCHLauncherPromptText() {
 		browser.assert.text('#LCHLauncherPromptStubItemSelected', 'undefined');
 	});
 	
-	it('on set multiple', async function() {
+	it('on set selected', async function() {
 		await browser.pressButton('#LCHLauncherPromptTestSetStubItemSelected');
 		
 		browser.assert.text('#LCHLauncherPromptStubItemSelected', 'bravo');
 	});
 
 });
+
+describe('LCHLauncherPromptInteraction', function testLCHLauncherPromptInteraction() {
+
+	before(function() {
+		return browser.visit(kDefaultRoutePath);
+	});
+	
+	it('bubbles ResultListDispatchArrow', async function() {
+		browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
+		await browser.wait({element: LCHLauncherResultListItem});
+
+		browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
+		await browser.wait({element: LCHLauncherResultListItem});
+
+		browser.assert.text('#LCHLauncherResultListTestResultListDispatchArrow', '1');
+	});
+	
+	it('bubbles ResultListDispatchClick', async function() {
+		await browser.click(LCHLauncherResultListItem);
+
+		browser.assert.text('#LCHLauncherResultListTestResultListDispatchClick', '1');
+	});
+
+});
+
