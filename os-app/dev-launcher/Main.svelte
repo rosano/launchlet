@@ -94,14 +94,15 @@ async function apiStart(inputData) {
 	});
 }
 
-let _PromptObjects, _PromptActiveIndex;
+let _PromptObjects = [];
+let _PromptActiveIndex = 0;
 let _AllActions = allRecipes.filter(LCHRecipesModelIsVerb);
 import {
 	LCHRecipesModelIsSubject,
 	LCHRecipesModelIsVerb,
 } from './api.js';
 (function StartPromptObjects() {
-	 _PromptObjects = [{
+	 _PromptObjects.push(...[{
 		LCHPromptClass: 'LCHLauncherSubjectPrompt',
 		LCHPromptHeading: OLSKLocalized('LCHLauncherSubjectPromptHeadingText'),
 		LCHPromptItems: [],
@@ -123,9 +124,7 @@ import {
 		LCHPromptFilterText: '',
 		LCHPromptMatchStop: false,
 		LCHPromptResultsThrottle: undefined,
-	}];
-
-	_PromptActiveIndex = 0;
+	}]);
 })();
 
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
