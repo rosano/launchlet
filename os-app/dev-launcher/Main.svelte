@@ -147,6 +147,10 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 	})();
 
 	(function SetMatchStop() {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+			return;
+		};
+
 		if (_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle === false) {
 			_PromptObjects[_PromptActiveIndex].LCHPromptMatchStop = false;
 		}
@@ -206,7 +210,7 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 
 			let results = _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll.filter(LCHLauncherFilterForText(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText));
 
-			if (_PromptObjects[_PromptActiveIndex].LCHPromptItems.length && !results.length) {
+			if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptItems.length && !results.length) {
 				if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
 					OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 				}
@@ -273,6 +277,10 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 
 function ActivePromptIndexShouldUpdate (inputData) {
 	(function CancelThrottle() {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+			return;
+		}
+
 		if (OLSKThrottle.OLSKThrottleInputDataIsThrottleObject(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle)) {
 			clearTimeout(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 		}
