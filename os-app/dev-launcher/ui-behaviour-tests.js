@@ -335,7 +335,7 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 					browser.text(LCHLauncherSubjectZoneInputHeading), uLocalized('LCHLauncherSubjectPromptHeadingText');
 					browser.text(LCHLauncherSubjectZoneInputPlaceholder), uLocalized('LCHLauncherSubjectPromptPlaceholderText');
 
-					browser.text(LCHLauncherActionZoneInputHeading), uLocalized('LCHLauncherZoneInputHeadingAction');
+					browser.text(LCHLauncherActionZoneInputHeading), uLocalized('LCHLauncherActionPromptHeadingText');
 				});
 
 				it('on keydown', async function() {

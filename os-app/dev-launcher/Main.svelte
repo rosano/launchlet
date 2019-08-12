@@ -116,7 +116,7 @@ import {
 		LCHPromptResultsThrottle: undefined,
 	 }, {
 		LCHPromptClass: 'LCHLauncherActionPrompt',
-		LCHPromptHeading: OLSKLocalized('LCHLauncherZoneInputHeadingAction'),
+		LCHPromptHeading: OLSKLocalized('LCHLauncherActionPromptHeadingText'),
 		LCHPromptItems: [],
 		LCHPromptItemsAll: [],
 		LCHPromptItemSelected: null,
