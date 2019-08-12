@@ -375,6 +375,36 @@ export const LCHAPIObjectFor = function(inputData) {
 	return api;
 };
 
+export const LCHCompositionModelErrors = function(inputData) {
+	if (typeof inputData !== 'object' || inputData === null) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	const errors = {};
+
+	if (!LCHRecipesModelIsVerb(inputData.LCHCompositionAction)) {
+		errors.LCHCompositionAction = [
+			'LCHErrorInputInvalid',
+		];
+	}
+
+	if (!LCHRecipesModelIsSubject(inputData.LCHCompositionSubjectPrimary)) {
+		errors.LCHCompositionSubjectPrimary = [
+			'LCHErrorInputInvalid',
+		];
+	}
+
+	if (inputData.LCHCompositionSubjectSecondary !== undefined) {
+		if (!LCHRecipesModelIsSubject(inputData.LCHCompositionSubjectSecondary)) {
+			errors.LCHCompositionSubjectSecondary = [
+				'LCHErrorInputInvalid',
+			];
+		}
+	}
+
+	return Object.entries(errors).length ? errors : null;
+};
+
 export const LCHAPIExecuteComposition = async function(inputData, api = {}) {
 	if (!Array.isArray(inputData)) {
 		return Promise.reject(new Error('LCHErrorInputInvalid'));

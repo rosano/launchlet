@@ -46,6 +46,12 @@ const kTesting = {
 			},
 		});
 	},
+	StubCompositionObjectValid() {
+		return {
+			LCHCompositionAction: kTesting.StubRecipeObjectVerb(),
+			LCHCompositionSubjectPrimary: kTesting.StubRecipeObjectSubject(),
+		};
+	},
 };
 
 describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
@@ -826,6 +832,60 @@ describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 				},
 				LCHRecipeSignature: 'charlie',
 			})]).fn('charlie')(), 'hello bravo');
+		});
+
+	});
+
+});
+
+describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
+
+	it('throws error if not object', function() {
+		throws(function() {
+			mainModule.LCHCompositionModelErrors(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns object if LCHCompositionAction not Action', function() {
+		deepEqual(mainModule.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
+			LCHCompositionAction: kTesting.StubRecipeObjectValid(),
+		})), {
+			LCHCompositionAction: [
+				'LCHErrorInputInvalid',
+			],
+		});
+	});
+
+	it('returns object if LCHCompositionSubjectPrimary not Subject', function() {
+		deepEqual(mainModule.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
+			LCHCompositionSubjectPrimary: kTesting.StubRecipeObjectValid(),
+		})), {
+			LCHCompositionSubjectPrimary: [
+				'LCHErrorInputInvalid',
+			],
+		});
+	});
+
+	it('returns null', function() {
+		deepEqual(mainModule.LCHCompositionModelErrors(kTesting.StubCompositionObjectValid()), null);
+	});
+
+	context('LCHCompositionSubjectSecondary', function() {
+
+		it('returns object if LCHCompositionSubjectSecondary not Subject', function() {
+			deepEqual(mainModule.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
+				LCHCompositionSubjectSecondary: kTesting.StubRecipeObjectValid(),
+			})), {
+				LCHCompositionSubjectSecondary: [
+					'LCHErrorInputInvalid',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
+				LCHCompositionSubjectSecondary: kTesting.StubRecipeObjectSubject(),
+			})), null);
 		});
 
 	});
