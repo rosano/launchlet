@@ -610,10 +610,10 @@ xxx .Container :global(.LCHLauncherZoneInput) {
 
 .Container :global(.LCHLauncherResultList) {
 	width: 95%;
+	padding-left: 5px;
 	border-left: 1px solid hsl(0, 0%, 80%);
 
 	margin: 5px;
-	margin-left: 4%;
 	margin-right: none;
 
 	color: black;
