@@ -1,6 +1,6 @@
 <script>
 import { membersAll, modelDidChange } from './persistence.js';
-import { _LCHClosureObjectFor, LCHComposeLogicBoomarkletStringFor, LCHComposeLogicBookmarkletBinaryFor } from './ui-logic.js';
+import { LCHComposeLogicBoomarkletStringFor, LCHComposeLogicBookmarkletBinaryFor } from './ui-logic.js';
 
 let javascriptComposed, javascriptBinary = '';
 
@@ -10,9 +10,7 @@ onMount(function () {
 		javascriptComposed = LCHComposeLogicBoomarkletStringFor({
 			LCHCompileToken_AppStyle: window.LCHComposeLauncherStyle.textContent,
 			LCHCompileToken_AppBehaviour: window.LCHComposeLauncherBehaviour.textContent,
-			LCHCompileToken_ClosureObjects: $membersAll.filter(function (e) {
-				return !!e.LCHMemberBody;
-			}).map(_LCHClosureObjectFor),
+			LCHCompileToken_ClosureObjects: $membersAll,
 			LCHCompileToken_AppLanguageCode: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 

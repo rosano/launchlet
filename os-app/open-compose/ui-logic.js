@@ -78,7 +78,7 @@ export const LCHComposeLogicBoomarkletStringFor = function (inputData, OLSK_TEST
 		let itemReplacement = inputData[item];
 
 		if (item === 'LCHCompileToken_ClosureObjects') {
-			itemReplacement = _LCHComposeLogicFormulaObjectsReplacementFor(inputData[item]);
+			itemReplacement = `[${ inputData[item].map(_LCHComposeRecipeStub).map(_LCHComposeLogicRecipeJSON) }]`;
 		}
 
 		if (item === 'LCHCompileToken_AppStyle') {
@@ -92,146 +92,6 @@ export const LCHComposeLogicBoomarkletStringFor = function (inputData, OLSK_TEST
 			.replace(`/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');`, '__LIVERELOADEND__')
 			.replace(/__LIVERELOADSTART__.*__LIVERELOADEND__/, '')
 			.replace(`//# sourceMappingURL=ui-behaviour.js.map`, '');
-};
-
-export const _LCHClosureString = function(inputData) {
-	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputInvalid');
-	}
-
-	if (typeof inputData.LCHMemberBody !== 'string') {
-		throw new Error('LCHErrorInputInvalid');
-	}
-
-	return `function (${ inputData.LCHMemberArgs || '' }) { ${ inputData.LCHMemberBody } }`;
-};
-
-export const _LCHClosureObjectFor = function(inputData) {
-	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputInvalid');
-	}
-
-	if (typeof inputData.LCHMemberBody !== 'string') {
-		throw new Error('LCHErrorInputInvalid');
-	}
-
-	if (!inputData.LCHMemberBody.length) {
-		throw new Error('LCHErrorInputInvalid');
-	}
-
-	return Object.assign({
-		LCHClosureString: `function (${ inputData.LCHMemberArgs || '' }) { ${ inputData.LCHMemberBody } }`,
-	}, inputData.LCHMemberSignature ? {
-		LCHClosureSignature: inputData.LCHMemberSignature,
-	} : undefined, inputData.LCHMemberURLFilter ? {
-		LCHClosureURLFilter: inputData.LCHMemberURLFilter,
-	} : undefined, inputData.LCHMemberIsAutomatic ? {
-		LCHClosureIsAutomatic: inputData.LCHMemberIsAutomatic,
-	} : undefined, inputData.LCHMemberName ? {
-		LCHClosureName: inputData.LCHMemberName,
-	} : undefined);
-};
-
-export const LCHClosuresModelErrorsFor = function(inputData) {
-	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputInvalid');
-	}
-
-	const errors = {};
-
-	if (typeof inputData.LCHClosureString !== 'string') {
-		errors.LCHClosureString = [
-			'LCHErrorNotString',
-		];
-	}
-
-	if (inputData.LCHClosureName !== undefined) {
-		if (typeof inputData.LCHClosureName !== 'string') {
-			errors.LCHClosureName = [
-				'LCHErrorNotString',
-			];
-		}
-
-		if (typeof inputData.LCHClosureName === 'string' && !inputData.LCHClosureName) {
-			errors.LCHClosureName = [
-				'LCHErrorNotFilled',
-			];
-		}
-
-		if (typeof inputData.LCHClosureName === 'string' && inputData.LCHClosureName.trim() !== inputData.LCHClosureName) {
-			errors.LCHClosureName = [
-				'LCHErrorNotTrimmed',
-			];
-		}
-	}
-
-	if (inputData.LCHClosureSignature !== undefined) {
-		if (typeof inputData.LCHClosureSignature !== 'string') {
-			errors.LCHClosureSignature = [
-				'LCHErrorNotString',
-			];
-		}
-	}
-
-	if (inputData.LCHClosureURLFilter !== undefined) {
-		if (typeof inputData.LCHClosureURLFilter !== 'string') {
-			errors.LCHClosureURLFilter = [
-				'LCHErrorNotString',
-			];
-		}
-	}
-
-	if (inputData.LCHClosureIsAutomatic !== undefined) {
-		if (typeof inputData.LCHClosureIsAutomatic !== 'boolean') {
-			errors.LCHClosureIsAutomatic = [
-				'LCHErrorNotBool',
-			];
-		}
-	}
-
-	return Object.entries(errors).length ? errors : null;
-};
-
-export const _LCHComposeLogicRecipeStubFor = function (inputData) {
-	if (LCHClosuresModelErrorsFor(inputData)) {
-		throw new Error('LCHErrorInputInvalid');
-	}
-
-	const outputData = {
-		LCHRecipeCallback: '__LCHRecipeCallback__',
-	};
-
-	if (inputData.LCHClosureName) {
-		outputData.LCHRecipeName = inputData.LCHClosureName;
-	}
-
-	if (inputData.LCHClosureSignature) {
-		outputData.LCHRecipeSignature = inputData.LCHClosureSignature;
-	}
-
-	if (inputData.LCHClosureURLFilter) {
-		outputData.LCHRecipeURLFilter = inputData.LCHClosureURLFilter;
-	}
-
-	if (inputData.LCHClosureIsAutomatic) {
-		outputData.LCHRecipeIsAutomatic = inputData.LCHClosureIsAutomatic;
-	}
-
-	return JSON.stringify(outputData).replace('"__LCHRecipeCallback__"', inputData.LCHClosureString);
-};
-
-export const _LCHComposeLogicRecipeJSON = function (inputData) {
-	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputInvalid');
-	}
-
-	const outputData = Object.assign({}, inputData);
-
-	if (inputData.LCHRecipeCallback) {
-		outputData.LCHRecipeCallback = '__LCHRecipeCallback__';
-	};
-
-	return JSON.stringify(outputData).replace('"__LCHRecipeCallback__"', inputData.LCHRecipeCallback);
 };
 
 import { LCHFormulaModelErrorsFor, LCHFormulaFrom, LCHFormulaTo } from '../_shared/LCHFormula/main.js';
@@ -253,12 +113,30 @@ export const _LCHComposeRecipeStub = function (inputData) {
 	} : {});
 };
 
-export const _LCHComposeLogicFormulaObjectsReplacementFor = function (inputData) {
-	if (!Array.isArray(inputData)) {
+export const _LCHClosureString = function(inputData) {
+	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	return `[${ inputData.map(_LCHComposeLogicRecipeStubFor) }]`;
+	if (typeof inputData.LCHMemberBody !== 'string') {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	return `function (${ inputData.LCHMemberArgs || '' }) { ${ inputData.LCHMemberBody } }`;
+};
+
+export const _LCHComposeLogicRecipeJSON = function (inputData) {
+	if (typeof inputData !== 'object' || inputData === null) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	const outputData = Object.assign({}, inputData);
+
+	if (inputData.LCHRecipeCallback) {
+		outputData.LCHRecipeCallback = '__LCHRecipeCallback__';
+	};
+
+	return JSON.stringify(outputData).replace('"__LCHRecipeCallback__"', inputData.LCHRecipeCallback);
 };
 
 export const LCHComposeLogicBookmarkletBinaryFor = function (inputData) {
