@@ -87,6 +87,12 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 			});
 		});
 
+		it('returns null', function() {
+			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+				LCHMemberName: 'alfa',
+			})), null);
+		});
+
 	});
 
 	context('LCHMemberSignature', function() {
@@ -101,6 +107,12 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 			});
 		});
 
+		it('returns null', function() {
+			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+				LCHMemberSignature: 'alfa',
+			})), null);
+		});
+
 	});
 
 	context('LCHMemberArgs', function() {
@@ -113,6 +125,12 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 					'LCHErrorNotString',
 				],
 			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+				LCHMemberArgs: 'alfa',
+			})), null);
 		});
 
 	});
@@ -197,6 +215,12 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 					'LCHErrorNotString',
 				],
 			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+				LCHMemberURLFilter: 'alfa',
+			})), null);
 		});
 
 	});
