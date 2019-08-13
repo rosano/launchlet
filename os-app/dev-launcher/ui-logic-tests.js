@@ -42,7 +42,7 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mainModule.LCHLauncherFilterForText(null);
+			mainModule.LCHLauncherOptions(null);
 		}, /LCHErrorInputInvalid/);
 	});
 
