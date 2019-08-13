@@ -404,12 +404,6 @@ describe('LCHRecipesModelIsType', function testLCHRecipesModelIsType() {
 		}, /LCHErrorInputInvalid/);
 	});
 
-	it('returns false if no LCHRecipeSignature', function() {
-		deepEqual(mainModule.LCHRecipesModelIsType(Object.assign(kTesting.StubRecipeObjectType(), {
-			LCHRecipeSignature: undefined,
-		})), false);
-	});
-
 	it('returns false if no arguments', function() {
 		deepEqual(mainModule.LCHRecipesModelIsType(Object.assign(kTesting.StubRecipeObjectType(), {
 			LCHRecipeCallback () {},
