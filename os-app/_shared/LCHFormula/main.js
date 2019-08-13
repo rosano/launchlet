@@ -45,5 +45,13 @@ export const LCHFormulaModelErrorsFor = function(inputData) {
 		}
 	}
 
+	if (inputData.LCHFormulaIsAutomatic !== undefined) {
+		if (typeof inputData.LCHFormulaIsAutomatic !== 'boolean') {
+			errors.LCHFormulaIsAutomatic = [
+				'LCHErrorNotBoolean',
+			];
+		}
+	}
+
 	return Object.entries(errors).length ? errors : null;
 };

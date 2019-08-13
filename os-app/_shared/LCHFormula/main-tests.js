@@ -120,4 +120,24 @@ describe('LCHFormulaModelErrorsFor', function testLCHFormulaModelErrorsFor() {
 
 	});
 
+	context('LCHFormulaIsAutomatic', function() {
+
+		it('returns object if LCHFormulaIsAutomatic not boolean', function() {
+			deepEqual(LCHFormulaModelErrorsFor({
+				LCHFormulaIsAutomatic: null,
+			}), {
+				LCHFormulaIsAutomatic: [
+					'LCHErrorNotBoolean',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(LCHFormulaModelErrorsFor({
+				LCHFormulaIsAutomatic: true,
+			}), null);
+		});
+
+	});
+
 });
