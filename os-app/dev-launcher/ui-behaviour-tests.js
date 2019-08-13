@@ -276,6 +276,21 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 
 	});
 
+	context('shared', function () {
+
+		before(function() {
+			return browser.visit(`${ kDefaultRoutePath }?LCHLauncherAccessTestURLFilter`);
+		});
+
+		it('shows url specific item', async function() {
+			browser.fill(LCHLauncherFilterInput, 'LCHLauncherAccessTestURLFilter');
+			await browser.wait({element: LCHLauncherListItem});
+
+			browser.assert.elements(LCHLauncherListItem, 1);
+		});
+
+	});
+
 });
 
 describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
