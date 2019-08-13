@@ -391,6 +391,16 @@ bravo
 
 	});
 
+	context('LCHClosureIsAutomatic', function() {
+
+		it('prints LCHRecipeIsAutomatic', function() {
+			deepEqual(mainModule._LCHComposeLogicRecipeStubFor(Object.assign(kTesting.StubClosureObjectValid(), {
+				LCHClosureIsAutomatic: true,
+			})), `{"LCHRecipeCallback":alfa,"LCHRecipeIsAutomatic":true}`);
+		});
+
+	});
+
 });
 
 describe('_LCHComposeLogicFormulaObjectsReplacementFor', function test_LCHComposeLogicFormulaObjectsReplacementFor() {

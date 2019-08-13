@@ -201,6 +201,10 @@ export const _LCHComposeLogicRecipeStubFor = function (inputData) {
 		outputData.LCHRecipeURLFilter = inputData.LCHClosureURLFilter;
 	}
 
+	if (inputData.LCHClosureIsAutomatic) {
+		outputData.LCHRecipeIsAutomatic = inputData.LCHClosureIsAutomatic;
+	}
+
 	return JSON.stringify(outputData).replace('"__LCHRecipeCallback__"', inputData.LCHClosureString);
 };
 
