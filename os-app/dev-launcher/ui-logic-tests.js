@@ -222,6 +222,10 @@ describe('LCHLauncherPatternMatchesURL', function testLCHLauncherPatternMatchesU
 		deepEqual(mainModule.LCHLauncherPatternMatchesURL('br', 'alfa'), false);
 	});
 
+	it('treats regex characters as string if no slashes', function() {
+		deepEqual(mainModule.LCHLauncherPatternMatchesURL('alfa?bravo', 'alfa?bravo'), true);
+	});
+
 	it('matches as regex', function() {
 		deepEqual(mainModule.LCHLauncherPatternMatchesURL('/\\w/', 'alfa'), true);
 		deepEqual(mainModule.LCHLauncherPatternMatchesURL('/\\d/', 'alfa'), false);

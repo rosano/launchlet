@@ -99,14 +99,13 @@ export const LCHLauncherPatternMatchesURL = function (param1, param2) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	let pattern = param1;
-
 	let match = param1.match(/^\/(.*)\/(\w*)/i);
-	if (match && match.shift()) {
-		pattern = new RegExp(match[0], match[1]);
+
+	if (!match || !match.shift()) {
+		return param2.includes(param1);
 	}
 
-	return !!param2.match(pattern);
+	return !!param2.match(new RegExp(match[0], match[1]));
 };
 
 export const LCHLauncherKeyboardEventIsTextInput = function (inputData) {
