@@ -190,6 +190,20 @@ describe('_LCHClosureObjectFor', function test_LCHClosureObjectFor() {
 
 	});
 
+	context('LCHClosureIsAutomatic', function() {
+
+		it('populates LCHClosureIsAutomatic', function() {
+			deepEqual(mainModule._LCHClosureObjectFor({
+				LCHMemberBody: 'alfa',
+				LCHMemberIsAutomatic: 'bravo',
+			}), {
+				LCHClosureString: 'function () { alfa }',
+				LCHClosureIsAutomatic: 'bravo',
+			});
+		});
+
+	});
+
 	context('LCHClosureName', function() {
 
 		it('populates LCHClosureName', function() {

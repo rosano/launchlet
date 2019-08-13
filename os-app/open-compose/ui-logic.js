@@ -113,6 +113,8 @@ export const _LCHClosureObjectFor = function(inputData) {
 		LCHClosureSignature: inputData.LCHMemberSignature,
 	} : undefined, inputData.LCHMemberURLFilter ? {
 		LCHClosureURLFilter: inputData.LCHMemberURLFilter,
+	} : undefined, inputData.LCHMemberIsAutomatic ? {
+		LCHClosureIsAutomatic: inputData.LCHMemberIsAutomatic,
 	} : undefined, inputData.LCHMemberName ? {
 		LCHClosureName: inputData.LCHMemberName,
 	} : undefined);
