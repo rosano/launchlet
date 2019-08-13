@@ -324,6 +324,13 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 					browser.assert.text(`${ LCHLauncherListItem }:first-child`, 'Alfa');
 				});
 
+				it('skips LCHPageFormulas tasks', async function() {
+					await browser.wait({element: LCHLauncherFilterInput});
+
+					// browser.assert.input('input', ''); // #mysterious
+					deepEqual(browser.query('input').value, '');
+				});
+
 				context('LCHLauncherAccessTestURLFilter', function () {
 
 					before(function() {

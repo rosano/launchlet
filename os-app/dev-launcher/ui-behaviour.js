@@ -24,6 +24,13 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 						document.querySelector('textarea').value = 'Hello';
 					},
 				},
+				{
+				LCHRecipeCallback: function () {
+					document.querySelector('input').value = 'LCHPageFormulas';
+				},
+				LCHRecipeURLFilter: 'loc',
+				LCHRecipeIsAutomatic: true,
+			}
 			]);
 		};
 	},

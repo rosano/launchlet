@@ -46,7 +46,12 @@ import { LCHRecipesModelErrorsFor } from './api.js';
 		return;
 	}
 
-	dataObjects.push(...pageFormulas.filter(function(e) {
+	dataObjects.push(...pageFormulas.map(function (e) {
+		delete e.LCHRecipeURLFilter;
+		delete e.LCHRecipeIsAutomatic;
+		
+		return e;
+	}).filter(function(e) {
 		return !LCHRecipesModelErrorsFor(e);
 	}));
 })();
