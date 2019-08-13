@@ -1,5 +1,6 @@
 <script>
 import { OLSKLocalized } from '../../_shared.js';
+import { _LCHIsTestingBehaviour } from '../../../_shared/common/global.js';
 export let inputData = '';
 export let completionHandler = null;
 
@@ -39,6 +40,11 @@ onMount(function () {
 	});
 
 	clipboardButton.focus();
+	
+	if (_LCHIsTestingBehaviour()) {
+		return;
+	};
+
 	clipboardButton.click();
 });
 </script>
