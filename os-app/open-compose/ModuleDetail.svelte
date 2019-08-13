@@ -134,6 +134,13 @@ async function memberDelete() {
 		<p>
 			<input type="text" bind:value={ $memberSelected.LCHMemberURLFilter } on:input={ memberSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputURLFilterPlaceholder') }" id="LCHComposeListItemFormInputURLFilter" />
 		</p>
+
+		{#if $memberSelected.LCHMemberURLFilter }
+			<p>
+				<input type="checkbox" bind:checked={ $memberSelected.LCHMemberIsAutomatic } on:input={ memberSave } id="LCHComposeListItemFormInputIsAutomatic" />
+				<label for="LCHComposeListItemFormInputIsAutomatic">{ OLSKLocalized('LCHComposeListItemFormInputIsAutomaticText') }</label>
+			</p>
+		{/if}
 	</div>
 {/if}
 
@@ -171,7 +178,7 @@ p:nth-child(1) {
 	background: #e6e6e6;
 }
 
-input {
+input[type=text] {
 	width: 50%;
 	border: var(--LCHBorderStyle);
 	border-radius: 5px;

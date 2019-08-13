@@ -19,6 +19,7 @@ Object.entries({
 	LCHComposeListItemFormInputInputData: '#LCHComposeListItemFormInputInputData',
 	LCHComposeListItemFormInputSignature: '#LCHComposeListItemFormInputSignature',
 	LCHComposeListItemFormInputURLFilter: '#LCHComposeListItemFormInputURLFilter',
+	LCHComposeListItemFormInputIsAutomatic: '#LCHComposeListItemFormInputIsAutomatic',
 
 	LCHComposeReloadButton: '#LCHComposeReloadButton',
 
@@ -71,6 +72,7 @@ describe('LCHComposeDiscovery', function testLCHComposeDiscovery() {
 		// editor
 		browser.assert.elements(LCHComposeListItemFormInputSignature, 1);
 		browser.assert.elements(LCHComposeListItemFormInputURLFilter, 1);
+		browser.assert.elements(LCHComposeListItemFormInputIsAutomatic, 0);
 	});
 
 	it('on create nth item', async function() {
@@ -79,6 +81,20 @@ describe('LCHComposeDiscovery', function testLCHComposeDiscovery() {
 		browser.assert.elements(LCHComposeListItem, 2);
 
 		browser.assert.elements(LCHComposeDetailToolbar, 1);
+	});
+
+	it('on fill LCHRecipeURLFilter', async function() {
+		browser.fill(LCHComposeListItemFormInputURLFilter, 'alfa');
+		await browser.wait({ element: LCHComposeListItemFormInputIsAutomatic });
+
+		browser.assert.elements(LCHComposeListItemFormInputIsAutomatic, 1);
+	});
+
+	it('on empty LCHRecipeURLFilter', async function() {
+		browser.fill(LCHComposeListItemFormInputURLFilter, '');
+		await browser.wait({ element: LCHComposeListItemFormInputIsAutomatic });
+
+		browser.assert.elements(LCHComposeListItemFormInputIsAutomatic, 0);
 	});
 
 	it.skip('on run', async function() {
@@ -165,6 +181,14 @@ describe('LCHComposeLanguage', function testLCHComposeLanguage() {
 				deepEqual(browser.query(LCHComposeListItemFormInputURLFilter).value, '');
 
 				browser.fill(LCHComposeListItemFormInputInputData, 'charlie');
+			});
+
+			it('on fill LCHRecipeURLFilter', async function() {
+				browser.fill(LCHComposeListItemFormInputURLFilter, 'alfa');
+				await browser.wait({ element: LCHComposeListItemFormInputIsAutomatic });
+
+				browser.assert.text(`label[for='${ LCHComposeListItemFormInputIsAutomatic.replace('#', '') }']`, uLocalized('LCHComposeListItemFormInputIsAutomaticText'));
+
 				browser.fill(LCHComposeListItemFormInputURLFilter, '/https?://(.*\.)?google\.com/i');
 			});
 
