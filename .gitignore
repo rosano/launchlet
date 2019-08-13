@@ -9,6 +9,7 @@ os-workspace-testing
 # BUILD
 dist/*
 !dist/package.json
+!dist/npm-prepublish.js
 os-app/_shared/_external
 os-app/**/_compiled
 
