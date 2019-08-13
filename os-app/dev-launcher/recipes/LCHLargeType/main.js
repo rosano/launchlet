@@ -8,7 +8,7 @@ export const LCHLargeTypeCallback = function(inputData) {
 
 export const LCHLargeTypeRecipe = function() {
 	return {
-		LCHRecipeTitle: 'Large Type',
+		LCHRecipeName: 'Large Type',
 		LCHRecipeSignature: 'LCHLargeType',
 		LCHRecipeInputTypes: 'String',
 		LCHRecipeCallback: LCHLargeTypeCallback,

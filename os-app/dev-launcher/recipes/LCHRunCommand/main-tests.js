@@ -18,7 +18,7 @@ describe('LCHRunCommandRecipe', function testLCHRunCommandRecipe() {
 
 	it('returns LCHRecipe', async function() {
 		deepEqual(mainModule.LCHRunCommandRecipe(), {
-			LCHRecipeTitle: 'Run Command',
+			LCHRecipeName: 'Run Command',
 			LCHRecipeSignature: 'LCHRunCommand',
 			LCHRecipeInputTypes: 'Command',
 			LCHRecipeCallback: mainModule.LCHRunCommandCallback,

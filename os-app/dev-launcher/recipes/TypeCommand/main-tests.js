@@ -10,9 +10,9 @@ describe('LCHTypeCommandCallback', function testLCHTypeCommandCallback() {
 		}, /LCHErrorInputInvalid/);
 	});
 
-	it('returns false if no LCHRecipeTitle', function() {
+	it('returns false if no LCHRecipeName', function() {
 		deepEqual(mainModule.LCHTypeCommandCallback(Object.assign(mainModule.LCHTypeStringCanonicalExampleCallback(), {
-			LCHRecipeTitle: undefined,
+			LCHRecipeName: undefined,
 		})), false);
 	});
 
@@ -42,10 +42,10 @@ describe('LCHTypeStringCanonicalExampleCallback', function testLCHTypeStringCano
 
 	});
 
-	context('LCHRecipeTitle', function() {
+	context('LCHRecipeName', function() {
 		
 		it('returns function', function() {
-			deepEqual(mainModule.LCHTypeStringCanonicalExampleCallback().LCHRecipeTitle, 'alfa');
+			deepEqual(mainModule.LCHTypeStringCanonicalExampleCallback().LCHRecipeName, 'alfa');
 		});
 
 	});
@@ -56,7 +56,7 @@ describe('LCHTypeCommandRecipe', function testLCHTypeCommandRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHTypeCommandRecipe(), {
-			LCHRecipeTitle: 'Command',
+			LCHRecipeName: 'Command',
 			LCHRecipeSignature: 'Command',
 			LCHRecipeCallback: mainModule.LCHTypeCommandCallback,
 			LCHRecipeOutputType: 'Bool',

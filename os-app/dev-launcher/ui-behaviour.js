@@ -19,7 +19,7 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 		window.LCHPageFormulas = function () {
 			return _LCHLauncherRecipes.concat([
 				{
-					LCHRecipeTitle: 'Hello',
+					LCHRecipeName: 'Hello',
 					LCHRecipeCallback: function () {
 						document.querySelector('textarea').value = 'Hello';
 					},
@@ -53,13 +53,13 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 					'Llama',
 				].map(function (e) {
 					return {
-						LCHRecipeTitle: e,
+						LCHRecipeName: e,
 						LCHRecipeCallback: function () {
 							return document.querySelector('textarea').value = e;
 						},
 					};
 				}).concat({
-					LCHRecipeTitle: 'LCHLauncherAccessTestURLFilter',
+					LCHRecipeName: 'LCHLauncherAccessTestURLFilter',
 					LCHRecipeCallback: function () {
 						document.querySelector('input').value = 'xylophone';
 					},

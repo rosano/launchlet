@@ -24,14 +24,14 @@ function ResultListDispatchClick(event) {
 		{#if !ItemSelected || ItemSelectedHidden}
 			<slot></slot>
 		{:else}
-			<LCHLauncherPipeItem itemTitle={ ItemSelected.LCHRecipeTitle } />
+			<LCHLauncherPipeItem itemTitle={ ItemSelected.LCHRecipeName } />
 		{/if}
 	</div>
 </div>
 
 {#if !ResultsHidden}
 	<LCHLauncherResultList ListItems={ PromptItems } let:LCHLauncherResultListItem={ item } ItemSelected={ ItemSelected } on:ResultListDispatchArrow={ ResultListDispatchArrow } on:ResultListDispatchClick={ ResultListDispatchClick }>
-		<LCHLauncherPipeItem itemTitle={ item.LCHRecipeTitle } />
+		<LCHLauncherPipeItem itemTitle={ item.LCHRecipeName } />
 	</LCHLauncherResultList>
 {/if}
 

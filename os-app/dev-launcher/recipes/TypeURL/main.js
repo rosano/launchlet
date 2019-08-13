@@ -20,7 +20,7 @@ export const LCHTypeStringCanonicalExampleCallback = function() {
 
 export const LCHTypeURLRecipe = function() {
 	return {
-		LCHRecipeTitle: 'URL',
+		LCHRecipeName: 'URL',
 		LCHRecipeSignature: 'URL',
 		LCHRecipeCallback: LCHTypeURLCallback,
 		LCHRecipeOutputType: 'Bool',

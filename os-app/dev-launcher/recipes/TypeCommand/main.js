@@ -3,7 +3,7 @@ export const LCHTypeCommandCallback = function(inputData) {
 	// 	throw new Error('LCHErrorInputInvalid');
 	// }
 
-	if (!inputData.LCHRecipeTitle) {
+	if (!inputData.LCHRecipeName) {
 		return false;
 	}
 	
@@ -17,13 +17,13 @@ export const LCHTypeCommandCallback = function(inputData) {
 export const LCHTypeStringCanonicalExampleCallback = function() {
 	return {
 		LCHRecipeCallback () {},
-		LCHRecipeTitle: 'alfa',
+		LCHRecipeName: 'alfa',
 	};
 };
 
 export const LCHTypeCommandRecipe = function() {
 	return {
-		LCHRecipeTitle: 'Command',
+		LCHRecipeName: 'Command',
 		LCHRecipeSignature: 'Command',
 		LCHRecipeCallback: LCHTypeCommandCallback,
 		LCHRecipeOutputType: 'Bool',

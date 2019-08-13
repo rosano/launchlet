@@ -9,7 +9,7 @@
 	setupEverything() {
 		Launchlet.instanceCreate([
 			{
-				LCHRecipeTitle: 'Alfa',
+				LCHRecipeName: 'Alfa',
 				LCHRecipeCallback () {
 					alert('Alfa');
 				},

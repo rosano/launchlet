@@ -238,7 +238,7 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 			}
 
 			let results = fuzzysort.go(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText, _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll, {
-				key: 'LCHRecipeTitle',
+				key: 'LCHRecipeName',
 			});
 
 			if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptItems.length && !results.length) {

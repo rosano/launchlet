@@ -26,7 +26,7 @@ describe('LCHTypeStringRecipe', function testLCHTypeStringRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHTypeStringRecipe(), {
-			LCHRecipeTitle: 'String',
+			LCHRecipeName: 'String',
 			LCHRecipeSignature: 'String',
 			LCHRecipeCallback: mainModule.LCHTypeStringCallback,
 			LCHRecipeOutputType: 'Bool',

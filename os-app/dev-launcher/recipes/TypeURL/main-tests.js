@@ -72,7 +72,7 @@ describe('LCHTypeURLRecipe', function testLCHTypeURLRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHTypeURLRecipe(), {
-			LCHRecipeTitle: 'URL',
+			LCHRecipeName: 'URL',
 			LCHRecipeSignature: 'URL',
 			LCHRecipeCallback: mainModule.LCHTypeURLCallback,
 			LCHRecipeOutputType: 'Bool',

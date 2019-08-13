@@ -54,7 +54,7 @@ export const LCHLauncherModes = function () {
 // 	}
 
 // 	return function (e) {
-// 		return [e.LCHRecipeTitle].filter(function (e) {
+// 		return [e.LCHRecipeName].filter(function (e) {
 // 			if (!e) {
 // 				return false;
 // 			}

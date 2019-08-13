@@ -110,45 +110,45 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 // 			}), false);
 // 		});
 		
-// 		it('returns true if match LCHRecipeTitle', function() {
+// 		it('returns true if match LCHRecipeName', function() {
 // 			deepEqual(mainModule.LCHLauncherFilterForText('alfa')({
-// 				LCHRecipeTitle: 'alfa',
+// 				LCHRecipeName: 'alfa',
 // 			}), true);
 // 		});
 
 // 		it('returns false if no match', function() {
 // 			deepEqual(mainModule.LCHLauncherFilterForText('alfa')({
-// 				LCHRecipeTitle: 'bravo',
+// 				LCHRecipeName: 'bravo',
 // 			}), false);
 // 		});
 
 // 		it('matches partial head', function() {
 // 			deepEqual(mainModule.LCHLauncherFilterForText('alf')({
-// 				LCHRecipeTitle: 'alfa',
+// 				LCHRecipeName: 'alfa',
 // 			}), true);
 // 		});
 
 // 		it('matches partial tail', function() {
 // 			deepEqual(mainModule.LCHLauncherFilterForText('lfa')({
-// 				LCHRecipeTitle: 'alfa',
+// 				LCHRecipeName: 'alfa',
 // 			}), true);
 // 		});
 
 // 		it('matches partial body', function() {
 // 			deepEqual(mainModule.LCHLauncherFilterForText('lf')({
-// 				LCHRecipeTitle: 'alfa',
+// 				LCHRecipeName: 'alfa',
 // 			}), true);
 // 		});
 
 // 		it('matches partial multi', function() {
 // 			deepEqual(mainModule.LCHLauncherFilterForText('af')({
-// 				LCHRecipeTitle: 'alfa',
+// 				LCHRecipeName: 'alfa',
 // 			}), true);
 // 		});
 
 // 		it('matches alternate case', function() {
 // 			deepEqual(mainModule.LCHLauncherFilterForText('ALF')({
-// 				LCHRecipeTitle: 'alfa',
+// 				LCHRecipeName: 'alfa',
 // 			}), true);
 // 		});
 		

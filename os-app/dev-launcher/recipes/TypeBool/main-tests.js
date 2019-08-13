@@ -34,7 +34,7 @@ describe('LCHTypeBoolRecipe', function testLCHTypeBoolRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHTypeBoolRecipe(), {
-			LCHRecipeTitle: 'Boolean',
+			LCHRecipeName: 'Boolean',
 			LCHRecipeSignature: 'Bool',
 			LCHRecipeCallback: mainModule.LCHTypeBoolCallback,
 		});

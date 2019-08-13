@@ -4,7 +4,7 @@ export const LCHTypeBoolCallback = function(inputData) {
 
 export const LCHTypeBoolRecipe = function() {
 	return {
-		LCHRecipeTitle: 'Boolean',
+		LCHRecipeName: 'Boolean',
 		LCHRecipeSignature: 'Bool',
 		LCHRecipeCallback: LCHTypeBoolCallback,
 	};
