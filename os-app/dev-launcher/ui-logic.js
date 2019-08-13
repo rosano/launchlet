@@ -46,23 +46,23 @@ export const LCHLauncherModes = function () {
 	];
 };
 
-import * as _fuzzysearch from 'fuzzysearch';
-const fuzzysearch = typeof _fuzzysearch === 'function' ? _fuzzysearch : _fuzzysearch.default;
-export const LCHLauncherFilterForText = function (inputData) {
-	if (typeof inputData !== 'string') {
-		throw new Error('LCHErrorInputInvalid');
-	}
+// import * as _fuzzysearch from 'fuzzysearch';
+// const fuzzysearch = typeof _fuzzysearch === 'function' ? _fuzzysearch : _fuzzysearch.default;
+// export const LCHLauncherFilterForText = function (inputData) {
+// 	if (typeof inputData !== 'string') {
+// 		throw new Error('LCHErrorInputInvalid');
+// 	}
 
-	return function (e) {
-		return [e.LCHRecipeTitle].filter(function (e) {
-			if (!e) {
-				return false;
-			}
+// 	return function (e) {
+// 		return [e.LCHRecipeTitle].filter(function (e) {
+// 			if (!e) {
+// 				return false;
+// 			}
 
-			return fuzzysearch(inputData.toLowerCase(), e.toLowerCase());
-		}).length > 0;
-	};
-};
+// 			return fuzzysearch(inputData.toLowerCase(), e.toLowerCase());
+// 		}).length > 0;
+// 	};
+// };
 
 export const LCHLauncherThrottleDuration = _LCHIsTestingBehaviour() ? 25 : 1000;
 

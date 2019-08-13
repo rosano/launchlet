@@ -82,79 +82,79 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 
 });
 
-describe('LCHLauncherFilterForText', function testLCHLauncherFilterForText() {
+// describe('LCHLauncherFilterForText', function testLCHLauncherFilterForText() {
 
-	it('throws error if not string', function() {
-		throws(function() {
-			mainModule.LCHLauncherFilterForText(null);
-		}, /LCHErrorInputInvalid/);
-	});
+// 	it('throws error if not string', function() {
+// 		throws(function() {
+// 			mainModule.LCHLauncherFilterForText(null);
+// 		}, /LCHErrorInputInvalid/);
+// 	});
 
-	it('returns function', function() {
-		deepEqual(typeof mainModule.LCHLauncherFilterForText('alfa'), 'function');
-	});
+// 	it('returns function', function() {
+// 		deepEqual(typeof mainModule.LCHLauncherFilterForText('alfa'), 'function');
+// 	});
 
-	context('function', function () {
+// 	context('function', function () {
 
-		it('returns false if LCHRecipeSignature match', function() {
-			deepEqual(mainModule.LCHLauncherFilterForText('alfa')({
-				LCHRecipeSignature: 'alfa',
-			}), false);
-		});
+// 		it('returns false if LCHRecipeSignature match', function() {
+// 			deepEqual(mainModule.LCHLauncherFilterForText('alfa')({
+// 				LCHRecipeSignature: 'alfa',
+// 			}), false);
+// 		});
 
-		it('returns false if LCHRecipeCallback match', function() {
-			deepEqual(mainModule.LCHLauncherFilterForText('alfa')({
-				LCHRecipeCallback () {
-					return 'alfa';
-				},
-			}), false);
-		});
+// 		it('returns false if LCHRecipeCallback match', function() {
+// 			deepEqual(mainModule.LCHLauncherFilterForText('alfa')({
+// 				LCHRecipeCallback () {
+// 					return 'alfa';
+// 				},
+// 			}), false);
+// 		});
 		
-		it('returns true if match LCHRecipeTitle', function() {
-			deepEqual(mainModule.LCHLauncherFilterForText('alfa')({
-				LCHRecipeTitle: 'alfa',
-			}), true);
-		});
+// 		it('returns true if match LCHRecipeTitle', function() {
+// 			deepEqual(mainModule.LCHLauncherFilterForText('alfa')({
+// 				LCHRecipeTitle: 'alfa',
+// 			}), true);
+// 		});
 
-		it('returns false if no match', function() {
-			deepEqual(mainModule.LCHLauncherFilterForText('alfa')({
-				LCHRecipeTitle: 'bravo',
-			}), false);
-		});
+// 		it('returns false if no match', function() {
+// 			deepEqual(mainModule.LCHLauncherFilterForText('alfa')({
+// 				LCHRecipeTitle: 'bravo',
+// 			}), false);
+// 		});
 
-		it('matches partial head', function() {
-			deepEqual(mainModule.LCHLauncherFilterForText('alf')({
-				LCHRecipeTitle: 'alfa',
-			}), true);
-		});
+// 		it('matches partial head', function() {
+// 			deepEqual(mainModule.LCHLauncherFilterForText('alf')({
+// 				LCHRecipeTitle: 'alfa',
+// 			}), true);
+// 		});
 
-		it('matches partial tail', function() {
-			deepEqual(mainModule.LCHLauncherFilterForText('lfa')({
-				LCHRecipeTitle: 'alfa',
-			}), true);
-		});
+// 		it('matches partial tail', function() {
+// 			deepEqual(mainModule.LCHLauncherFilterForText('lfa')({
+// 				LCHRecipeTitle: 'alfa',
+// 			}), true);
+// 		});
 
-		it('matches partial body', function() {
-			deepEqual(mainModule.LCHLauncherFilterForText('lf')({
-				LCHRecipeTitle: 'alfa',
-			}), true);
-		});
+// 		it('matches partial body', function() {
+// 			deepEqual(mainModule.LCHLauncherFilterForText('lf')({
+// 				LCHRecipeTitle: 'alfa',
+// 			}), true);
+// 		});
 
-		it('matches partial multi', function() {
-			deepEqual(mainModule.LCHLauncherFilterForText('af')({
-				LCHRecipeTitle: 'alfa',
-			}), true);
-		});
+// 		it('matches partial multi', function() {
+// 			deepEqual(mainModule.LCHLauncherFilterForText('af')({
+// 				LCHRecipeTitle: 'alfa',
+// 			}), true);
+// 		});
 
-		it('matches alternate case', function() {
-			deepEqual(mainModule.LCHLauncherFilterForText('ALF')({
-				LCHRecipeTitle: 'alfa',
-			}), true);
-		});
+// 		it('matches alternate case', function() {
+// 			deepEqual(mainModule.LCHLauncherFilterForText('ALF')({
+// 				LCHRecipeTitle: 'alfa',
+// 			}), true);
+// 		});
 		
-	});
+// 	});
 
-});
+// });
 
 describe('LCHLauncherConstrainIndex', function testLCHLauncherConstrainIndex() {
 
