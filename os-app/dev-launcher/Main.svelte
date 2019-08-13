@@ -490,7 +490,7 @@ async function itemDidClick(event, item) {
 	top: 0;
 	left: 50%;
 	margin: 0 0 0 calc(var(--__LaunchletWidth) / -2);
-	z-index: 9999;
+	z-index: 99999999;
 
 	font-family: 'Lucida Grande', 'Helvetica', sans-serif;
 	
