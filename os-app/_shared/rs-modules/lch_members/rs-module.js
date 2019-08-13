@@ -5,7 +5,7 @@ export const RSModuleProtocolModuleForChangeDelegate = function (changeDelegate)
 	return {
 		name: 'lch_members',
 		builder: function(privateClient, publicClient) {
-			privateClient.declareType('lch_member', RSModuleShared.RSModuleSharedJSONSchemaForErrors(LCHFormulasModel.LCHFormulasModelErrorsFor({})));
+			privateClient.declareType('lch_member', RSModuleShared.RSModuleSharedJSONSchemaForErrors(LCHFormulasModel.LCHDocumentModelErrorsFor({})));
 
 			!changeDelegate ? null : privateClient.on('change', function (event) {
 				if (typeof event.oldValue === 'undefined') {

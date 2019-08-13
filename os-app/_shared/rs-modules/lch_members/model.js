@@ -1,6 +1,6 @@
 import { LCHFormulaModelErrorsFor, LCHFormulaFrom, LCHFormulaTo } from '../../LCHFormula/main.js';
 
-export const LCHFormulasModelErrorsFor = function(inputData) {
+export const LCHDocumentModelErrorsFor = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
 	}

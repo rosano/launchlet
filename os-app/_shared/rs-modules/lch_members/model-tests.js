@@ -13,16 +13,16 @@ const kTesting = {
 	},
 };
 
-describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
+describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mainModule.LCHFormulasModelErrorsFor(null);
+			mainModule.LCHDocumentModelErrorsFor(null);
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns object if LCHMemberID not string', function() {
-		deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+		deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 			LCHMemberID: null,
 		})), {
 			LCHMemberID: [
@@ -32,7 +32,7 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 	});
 
 	it('returns object if LCHMemberID not filled', function() {
-		deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+		deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 			LCHMemberID: ' ',
 		})), {
 			LCHMemberID: [
@@ -42,7 +42,7 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 	});
 
 	it('returns object if LCHMemberBody not string', function() {
-		deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+		deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 			LCHMemberBody: null,
 		})), {
 			LCHMemberBody: [
@@ -52,7 +52,7 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 	});
 
 	it('returns object if LCHMemberCreationDate not date', function() {
-		deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+		deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 			LCHMemberCreationDate: new Date('alfa'),
 		})), {
 			LCHMemberCreationDate: [
@@ -62,7 +62,7 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 	});
 
 	it('returns object if LCHMemberModificationDate not date', function() {
-		deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+		deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 			LCHMemberModificationDate: new Date('alfa'),
 		})), {
 			LCHMemberModificationDate: [
@@ -72,13 +72,13 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 	});
 
 	it('returns null', function() {
-		deepEqual(mainModule.LCHFormulasModelErrorsFor(kTesting.StubFormulaObjectValid()), null);
+		deepEqual(mainModule.LCHDocumentModelErrorsFor(kTesting.StubFormulaObjectValid()), null);
 	});
 
 	context('LCHMemberArgs', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 				LCHMemberArgs: null,
 			})), {
 				LCHMemberArgs: [
@@ -88,7 +88,7 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 				LCHMemberArgs: 'alfa',
 			})), null);
 		});
@@ -98,7 +98,7 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 	context('LCHMemberOutputType', function() {
 
 		it('returns object if not filled', function() {
-			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 				LCHMemberOutputType: '',
 			})), {
 				LCHMemberOutputType: [
@@ -108,7 +108,7 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 		});
 
 		it('returns object if not trimmed', function() {
-			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 				LCHMemberOutputType: ' alfa ',
 			})), {
 				LCHMemberOutputType: [
@@ -118,7 +118,7 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 		});
 
 		it('returns object if only whitespace', function() {
-			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 				LCHMemberOutputType: ' ',
 			})), {
 				LCHMemberOutputType: [
@@ -128,7 +128,7 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 				LCHMemberOutputType: 'alfa',
 			})), null);
 		});
@@ -138,7 +138,7 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 	context('LCHMemberOutputTypeCanonicalExampleBody', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 				LCHMemberOutputTypeCanonicalExampleBody: null,
 			})), {
 				LCHMemberOutputTypeCanonicalExampleBody: [
@@ -148,7 +148,7 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 				LCHMemberOutputTypeCanonicalExampleBody: '',
 			})), null);
 		});

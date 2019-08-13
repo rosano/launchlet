@@ -5,7 +5,7 @@ export const LCHFormulasMetalWrite = async function(storageClient, inputData) {
 		return Promise.reject(new Error('LCHErrorInputInvalid'));
 	}
 
-	let errors = LCHFormulasModel.LCHFormulasModelErrorsFor(inputData);
+	let errors = LCHFormulasModel.LCHDocumentModelErrorsFor(inputData);
 	if (errors) {
 		return Promise.resolve({
 			LCHErrors: errors,
