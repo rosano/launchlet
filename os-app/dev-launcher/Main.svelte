@@ -301,10 +301,6 @@ function CompositionIsValid () {
 
 async function LauncherShouldTerminate () {
 	if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
-		if (!CompositionIsValid()) {
-			return;
-		};
-
 		await apiStart({
 			LCHCompositionAction: _PromptObjects[1].LCHPromptItemSelected,
 			LCHCompositionSubjectPrimary: _PromptObjects[0].LCHPromptItemSelected,
@@ -397,7 +393,9 @@ function handleKeydown(event) {
 			return event.preventDefault();
 		},
 		Enter () {
-			LauncherShouldTerminate()
+			if (CompositionIsValid()) {
+				LauncherShouldTerminate();
+			};
 
 			return event.preventDefault();
 		},
