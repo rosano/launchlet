@@ -75,8 +75,6 @@ async function memberSave() {
 		return val;
 	});
 
-	modelDidChange.set(Date.now());
-
 	if (!throttleMap[$memberSelected.LCHMemberID]) {
 		throttleMap[$memberSelected.LCHMemberID] = {
 			OLSKThrottleDuration: 500,
@@ -84,6 +82,8 @@ async function memberSave() {
 				delete throttleMap[$memberSelected.LCHMemberID];
 
 				await LCHFormulasAction.LCHFormulasActionUpdate(storageClient, $memberSelected);
+
+				modelDidChange.set(Date.now());
 			},
 		};	
 	}
