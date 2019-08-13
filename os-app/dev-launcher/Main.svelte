@@ -83,6 +83,7 @@ async function apiStart(inputData) {
 				LCHInstanceOptions: Object.assign(inputData.LCHComponentDescriptorProps, {
 					completionHandler: function () {
 						secondaryComponent.set(null);
+						handleDidFinish();
 					},
 				}),
 			});
