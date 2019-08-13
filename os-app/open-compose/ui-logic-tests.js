@@ -119,6 +119,41 @@ describe('LCHComposeLogicBoomarkletStringFor', function testLCHComposeLogicBooma
 
 });
 
+describe('_LCHClosureString', function test_LCHClosureString() {
+
+	it('throws error if not object', function() {
+		throws(function() {
+			mainModule._LCHClosureString(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('throws error if LCHMemberBody not string', function() {
+		throws(function() {
+			mainModule._LCHClosureString({});
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns string', function() {
+		deepEqual(mainModule._LCHClosureString({
+			LCHMemberBody: 'alfa',
+		}), 'function () { alfa }');
+	});
+
+	context('LCHMemberArgs', function() {
+
+		it('populates LCHClosureString', function() {
+			deepEqual(mainModule._LCHClosureObjectFor({
+				LCHMemberBody: 'alfa',
+				LCHMemberArgs: 'bravo',
+			}), {
+				LCHClosureString: 'function (bravo) { alfa }',
+			});
+		});
+
+	});
+
+});
+
 describe('_LCHClosureObjectFor', function test_LCHClosureObjectFor() {
 
 	it('throws error if not object', function() {

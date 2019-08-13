@@ -94,6 +94,18 @@ export const LCHComposeLogicBoomarkletStringFor = function (inputData, OLSK_TEST
 			.replace(`//# sourceMappingURL=ui-behaviour.js.map`, '');
 };
 
+export const _LCHClosureString = function(inputData) {
+	if (typeof inputData !== 'object' || inputData === null) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	if (typeof inputData.LCHMemberBody !== 'string') {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	return `function (${ inputData.LCHMemberArgs || '' }) { ${ inputData.LCHMemberBody } }`;
+};
+
 export const _LCHClosureObjectFor = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
