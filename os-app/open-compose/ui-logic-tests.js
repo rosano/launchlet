@@ -438,6 +438,42 @@ bravo
 
 });
 
+describe('_LCHComposeRecipeStub', function test_LCHComposeRecipeStub() {
+
+	it('throws error if not object', function() {
+		throws(function() {
+			mainModule._LCHComposeRecipeStub(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns object', function() {
+		deepEqual(mainModule._LCHComposeRecipeStub({}), {});
+	});
+
+	it('converts formula fields', function() {
+		deepEqual(mainModule._LCHComposeRecipeStub({
+			LCHMemberName: '',
+		}), {
+			LCHRecipeName: '',
+		});
+	});
+
+	it('ignores others', function() {
+		deepEqual(mainModule._LCHComposeRecipeStub({
+			alfa: '',
+		}), {});
+	});
+
+	it('assigns _LCHClosureString to LCHRecipeCallback', function() {
+		deepEqual(mainModule._LCHComposeRecipeStub({
+			LCHMemberBody: 'alfa',
+		}), {
+			LCHRecipeCallback: 'function () { alfa }',
+		});
+	});
+
+});
+
 describe('_LCHComposeLogicFormulaObjectsReplacementFor', function test_LCHComposeLogicFormulaObjectsReplacementFor() {
 
 	it('throws error if not array', function() {

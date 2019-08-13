@@ -220,6 +220,24 @@ export const _LCHComposeLogicRecipeStubFor = function (inputData) {
 	return JSON.stringify(outputData).replace('"__LCHRecipeCallback__"', inputData.LCHClosureString);
 };
 
+import { LCHFormulaModelErrorsFor, LCHFormulaFrom, LCHFormulaTo } from '../_shared/LCHFormula/main.js';
+
+export const _LCHComposeRecipeStub = function (inputData) {
+	if (typeof inputData !== 'object' || inputData === null) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	const validKeys = Object.keys(LCHFormulaTo(LCHFormulaModelErrorsFor(LCHFormulaFrom(Object.keys(inputData).reduce(function (coll, item) {
+		return (coll[item] = Symbol('ForceInvalid')) && coll;
+	}, {}))) || {}, 'LCHRecipe'));
+
+	return Object.assign(validKeys.reduce(function (coll, item) {
+		coll[item] = LCHFormulaTo(LCHFormulaFrom(inputData), 'LCHRecipe')[item];
+		return coll;
+	}, {}), inputData.LCHMemberBody ? {
+		LCHRecipeCallback: _LCHClosureString(inputData),
+	} : {});
+};
 export const _LCHComposeLogicFormulaObjectsReplacementFor = function (inputData) {
 	if (!Array.isArray(inputData)) {
 		throw new Error('LCHErrorInputInvalid');
