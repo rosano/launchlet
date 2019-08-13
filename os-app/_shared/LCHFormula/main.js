@@ -55,3 +55,16 @@ export const LCHFormulaModelErrorsFor = function(inputData) {
 
 	return Object.entries(errors).length ? errors : null;
 };
+
+export const LCHFormulaFrom = function(inputData) {
+	if (typeof inputData !== 'object' || inputData === null) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	return Object.entries(inputData).reduce(function (coll, item) {
+		coll[item[0].replace(/LCH[A-Z][a-z]+/, 'LCHFormula')] = item[1];
+
+		return coll;
+	}, {});
+};
+

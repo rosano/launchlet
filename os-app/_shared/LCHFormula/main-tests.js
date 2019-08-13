@@ -141,3 +141,27 @@ describe('LCHFormulaModelErrorsFor', function testLCHFormulaModelErrorsFor() {
 	});
 
 });
+
+import { LCHFormulaFrom } from './main.js';
+
+describe('LCHFormulaFrom', function testLCHFormulaFrom() {
+
+	it('throws error if not object', function() {
+		throws(function() {
+			LCHFormulaFrom(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns inputData', function() {
+		deepEqual(LCHFormulaFrom({}), {});
+	});
+
+	it('replaces domain', function() {
+		deepEqual(LCHFormulaFrom({
+			LCHAlfaBravo: '',
+		}), {
+			LCHFormulaBravo: '',
+		});
+	});
+
+});
