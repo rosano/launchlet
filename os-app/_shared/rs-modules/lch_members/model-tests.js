@@ -75,46 +75,6 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 		deepEqual(mainModule.LCHFormulasModelErrorsFor(kTesting.StubFormulaObjectValid()), null);
 	});
 
-	context('LCHMemberName', function() {
-
-		it('returns object if not string', function() {
-			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-				LCHMemberName: null,
-			})), {
-				LCHMemberName: [
-					'LCHErrorNotString',
-				],
-			});
-		});
-
-		it('returns null', function() {
-			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-				LCHMemberName: 'alfa',
-			})), null);
-		});
-
-	});
-
-	context('LCHMemberSignature', function() {
-
-		it('returns object if not string', function() {
-			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-				LCHMemberSignature: null,
-			})), {
-				LCHMemberSignature: [
-					'LCHErrorNotString',
-				],
-			});
-		});
-
-		it('returns null', function() {
-			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-				LCHMemberSignature: 'alfa',
-			})), null);
-		});
-
-	});
-
 	context('LCHMemberArgs', function() {
 
 		it('returns object if not string', function() {
@@ -136,16 +96,6 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 	});
 
 	context('LCHMemberOutputType', function() {
-
-		it('returns object if not string', function() {
-			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-				LCHMemberOutputType: null,
-			})), {
-				LCHMemberOutputType: [
-					'LCHErrorNotString',
-				],
-			});
-		});
 
 		it('returns object if not filled', function() {
 			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
@@ -200,26 +150,6 @@ describe('LCHFormulasModelErrorsFor', function testLCHFormulasModelErrorsFor() {
 		it('returns null', function() {
 			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
 				LCHMemberOutputTypeCanonicalExampleBody: '',
-			})), null);
-		});
-
-	});
-
-	context('LCHMemberURLFilter', function() {
-
-		it('returns object if not string', function() {
-			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-				LCHMemberURLFilter: null,
-			})), {
-				LCHMemberURLFilter: [
-					'LCHErrorNotString',
-				],
-			});
-		});
-
-		it('returns null', function() {
-			deepEqual(mainModule.LCHFormulasModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-				LCHMemberURLFilter: 'alfa',
 			})), null);
 		});
 

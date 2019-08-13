@@ -1,9 +1,11 @@
+import { LCHFormulaModelErrorsFor, LCHFormulaFrom, LCHFormulaTo } from '../../LCHFormula/main.js';
+
 export const LCHFormulasModelErrorsFor = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	var errors = {};
+	var errors = LCHFormulaTo(LCHFormulaModelErrorsFor(LCHFormulaFrom(inputData)) || {}, 'LCHMember');
 
 	if (typeof inputData.LCHMemberID !== 'string') {
 		errors.LCHMemberID = [
@@ -33,22 +35,6 @@ export const LCHFormulasModelErrorsFor = function(inputData) {
 		];
 	}
 
-	if (inputData.LCHMemberName !== undefined) {
-		if (typeof inputData.LCHMemberName !== 'string') {
-			errors.LCHMemberName = [
-				'LCHErrorNotString',
-			];
-		}
-	}
-
-	if (inputData.LCHMemberSignature !== undefined) {
-		if (typeof inputData.LCHMemberSignature !== 'string') {
-			errors.LCHMemberSignature = [
-				'LCHErrorNotString',
-			];
-		}
-	}
-
 	if (inputData.LCHMemberArgs !== undefined) {
 		if (typeof inputData.LCHMemberArgs !== 'string') {
 			errors.LCHMemberArgs = [
@@ -57,37 +43,23 @@ export const LCHFormulasModelErrorsFor = function(inputData) {
 		}
 	}
 
-	if (inputData.LCHMemberOutputType !== undefined) {
-		if (typeof inputData.LCHMemberOutputType !== 'string') {
+	if (inputData.LCHMemberOutputType !== undefined && typeof inputData.LCHMemberOutputType === 'string') {
+		if (inputData.LCHMemberOutputType.trim() !== inputData.LCHMemberOutputType) {
 			errors.LCHMemberOutputType = [
-				'LCHErrorNotString',
+				'LCHErrorNotTrimmed',
 			];
-		} else {
-			if (inputData.LCHMemberOutputType.trim() !== inputData.LCHMemberOutputType) {
-				errors.LCHMemberOutputType = [
-					'LCHErrorNotTrimmed',
-				];
-			}
+		}
 
-			if (inputData.LCHMemberOutputType.trim() === '') {
-				errors.LCHMemberOutputType = [
-					'LCHErrorNotFilled',
-				];
-			}
+		if (inputData.LCHMemberOutputType.trim() === '') {
+			errors.LCHMemberOutputType = [
+				'LCHErrorNotFilled',
+			];
 		}
 	}
 
 	if (inputData.LCHMemberOutputTypeCanonicalExampleBody !== undefined) {
 		if (typeof inputData.LCHMemberOutputTypeCanonicalExampleBody !== 'string') {
 			errors.LCHMemberOutputTypeCanonicalExampleBody = [
-				'LCHErrorNotString',
-			];
-		}
-	}
-
-	if (inputData.LCHMemberURLFilter !== undefined) {
-		if (typeof inputData.LCHMemberURLFilter !== 'string') {
-			errors.LCHMemberURLFilter = [
 				'LCHErrorNotString',
 			];
 		}
