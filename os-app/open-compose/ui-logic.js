@@ -169,6 +169,14 @@ export const LCHClosuresModelErrorsFor = function(inputData) {
 		}
 	}
 
+	if (inputData.LCHClosureIsAutomatic !== undefined) {
+		if (typeof inputData.LCHClosureIsAutomatic !== 'boolean') {
+			errors.LCHClosureIsAutomatic = [
+				'LCHErrorNotBool',
+			];
+		}
+	}
+
 	return Object.entries(errors).length ? errors : null;
 };
 

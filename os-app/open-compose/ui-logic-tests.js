@@ -329,6 +329,26 @@ describe('LCHClosuresModelErrorsFor', function testLCHClosuresModelErrorsFor() {
 
 	});
 
+	context('LCHClosureIsAutomatic', function() {
+
+		it('returns object if LCHClosureIsAutomatic not bool', function() {
+			deepEqual(mainModule.LCHClosuresModelErrorsFor(Object.assign(kTesting.StubClosureObjectValid(), {
+				LCHClosureIsAutomatic: null,
+			})), {
+				LCHClosureIsAutomatic: [
+					'LCHErrorNotBool',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.LCHClosuresModelErrorsFor(Object.assign(kTesting.StubClosureObjectValid(), {
+				LCHClosureIsAutomatic: true,
+			})), null);
+		});
+
+	});
+
 });
 
 describe('_LCHComposeLogicRecipeStubFor', function test_LCHComposeLogicRecipeStubFor() {
