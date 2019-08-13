@@ -10,7 +10,7 @@ import {
 	secondaryComponent,
 } from './_shared.js';
 import {
-	LCHLauncherModeJump,
+	LCHLauncherModePreview,
 	LCHLauncherModePipe,
 	// LCHLauncherFilterForText,
 } from './ui-logic.js';
@@ -134,7 +134,7 @@ import {
 		LCHPromptResultsThrottle: false,
 	 });
 
-	if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
+	if (LCHOptionsObject().runMode !== LCHLauncherModePreview) {
 		return;
 	};
 
@@ -207,7 +207,7 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 			}
 			
 			if (!_PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
-				return LCHOptionsObject().runMode === LCHLauncherModeJump ? _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll : [];
+				return LCHOptionsObject().runMode === LCHLauncherModePreview ? _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll : [];
 			}
 
 			let results = fuzzysort.go(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText, _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll, {
@@ -248,7 +248,7 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 	(function SetItemSelected() {
 		_PromptObjects[_PromptActiveIndex].LCHPromptItemSelected = inputData;
 
-		if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePreview) {
 			return;
 		};
 
@@ -315,14 +315,14 @@ async function LauncherShouldTerminate () {
 		});
 	}
 
-	if (LCHOptionsObject().runMode !== LCHLauncherModeJump) {
+	if (LCHOptionsObject().runMode !== LCHLauncherModePreview) {
 		await apiStart(_PromptObjects[0].LCHPromptItemSelected);
 	};
 
 	handleDidFinish();
 };
 
-let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModeJump ? dataObjects : [];
+let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModePreview ? dataObjects : [];
 import OLSKThrottle from 'OLSKThrottle';
 
 let rootElement;
@@ -474,7 +474,7 @@ async function itemDidClick(event, item) {
 					{/if}
 
 					{#if e.LCHPromptClass === 'LCHLauncherFilterPrompt' }
-						<input placeholder="{ LCHOptionsObject().runMode === LCHLauncherModeJump ? OLSKLocalized('LCHLauncherInputPlaceholderJump') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ _PromptObjects[0].LCHPromptFilterText } bind:this={ inputElement } on:input={ () => ActivePromptFilterTextShouldUpdate(this.value) } id="LCHLauncherFilterInput" />
+						<input placeholder="{ LCHOptionsObject().runMode === LCHLauncherModePreview ? OLSKLocalized('LCHLauncherInputPlaceholderPreview') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ _PromptObjects[0].LCHPromptFilterText } bind:this={ inputElement } on:input={ () => ActivePromptFilterTextShouldUpdate(this.value) } id="LCHLauncherFilterInput" />
 					{/if}
 				</LCHLauncherPrompt>
 			</div>

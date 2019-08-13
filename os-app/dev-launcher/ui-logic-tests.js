@@ -10,10 +10,10 @@ describe('LCHLauncherModeCommit', function testLCHLauncherModeCommit() {
 
 });
 
-describe('LCHLauncherModeJump', function testLCHLauncherModeJump() {
+describe('LCHLauncherModePreview', function testLCHLauncherModePreview() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHLauncherModeJump(), 'kLCHLauncherModeJump');
+		deepEqual(mainModule.LCHLauncherModePreview(), 'kLCHLauncherModePreview');
 	});
 
 });
@@ -31,7 +31,7 @@ describe('LCHLauncherModes', function testLCHLauncherModes() {
 	it('returns array', function() {
 		deepEqual(mainModule.LCHLauncherModes(), [
 			mainModule.LCHLauncherModeCommit,
-			mainModule.LCHLauncherModeJump,
+			mainModule.LCHLauncherModePreview,
 			mainModule.LCHLauncherModePipe,
 		]);
 	});
@@ -74,8 +74,8 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 
 		it('returns inputData', function() {
 			deepEqual(mainModule.LCHLauncherOptions({
-				runMode: mainModule.LCHLauncherModeJump,
-			}).runMode, mainModule.LCHLauncherModeJump);
+				runMode: mainModule.LCHLauncherModePreview,
+			}).runMode, mainModule.LCHLauncherModePreview);
 		});
 		
 	});

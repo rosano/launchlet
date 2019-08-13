@@ -30,8 +30,8 @@ export const LCHLauncherModeCommit = function () {
 	return 'kLCHLauncherModeCommit';
 };
 
-export const LCHLauncherModeJump = function () {
-	return 'kLCHLauncherModeJump';
+export const LCHLauncherModePreview = function () {
+	return 'kLCHLauncherModePreview';
 };
 
 export const LCHLauncherModePipe = function () {
@@ -41,7 +41,7 @@ export const LCHLauncherModePipe = function () {
 export const LCHLauncherModes = function () {
 	return [
 		LCHLauncherModeCommit,
-		LCHLauncherModeJump,
+		LCHLauncherModePreview,
 		LCHLauncherModePipe,
 	];
 };

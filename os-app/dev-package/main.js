@@ -1,4 +1,4 @@
-import { LCHLauncherModeCommit, LCHLauncherModeJump, LCHLauncherModePipe, LCHLauncherModes } from '../dev-launcher/ui-logic.js';
+import { LCHLauncherModeCommit, LCHLauncherModePreview, LCHLauncherModePipe, LCHLauncherModes } from '../dev-launcher/ui-logic.js';
 
 let _AppClass;
 export const AppClass = function (inputData) {
@@ -6,7 +6,7 @@ export const AppClass = function (inputData) {
 };
 
 export const kRunModeDefault = LCHLauncherModeCommit;
-export const kRunModeJump = LCHLauncherModeJump;
+export const kRunModePreview = LCHLauncherModePreview;
 export const kRunModePipe = LCHLauncherModePipe;
 
 let appContainer, appInstance;

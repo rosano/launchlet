@@ -47,10 +47,10 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 
 	});
 
-	context('LCHLauncherModeJump', function () {
+	context('LCHLauncherModePreview', function () {
 
 		before(function() {
-			return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModeJump`);
+			return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePreview`);
 		});
 		
 		it('on startup', function() {
@@ -307,14 +307,14 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 
 			});
 
-			context('LCHLauncherModeJump', function () {
+			context('LCHLauncherModePreview', function () {
 
 				before(function() {
-					return browser.visit(`${ languageCode }${ kDefaultRoutePath }?runMode=kRunModeJump`);
+					return browser.visit(`${ languageCode }${ kDefaultRoutePath }?runMode=kRunModePreview`);
 				});
 
 				it('on startup', function() {
-					deepEqual(browser.query(LCHLauncherFilterInput).placeholder, uLocalized('LCHLauncherInputPlaceholderJump'));
+					deepEqual(browser.query(LCHLauncherFilterInput).placeholder, uLocalized('LCHLauncherInputPlaceholderPreview'));
 				});
 
 				it('clears filter on Escape', async function() {
@@ -449,10 +449,10 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 
 	});
 
-	context('LCHLauncherModeJump', function () {
+	context('LCHLauncherModePreview', function () {
 
 		before(function() {
-			return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModeJump`);
+			return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePreview`);
 		});
 
 		it('selects no items', async function() {
@@ -490,7 +490,7 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 		context('shortcuts', function () {
 
 			before(function() {
-				return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModeJump`);
+				return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePreview`);
 			});
 
 			it('runs item on ArrowDown', async function() {
