@@ -184,6 +184,26 @@ export const LCHRecipesModelIsType = function(inputData) {
 	return true;
 };
 
+export const LCHRecipesModelIsTask = function(inputData) {
+	if (LCHRecipesModelErrorsFor(inputData)) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+	
+	if (inputData.LCHRecipeCallback.length) {
+		return false;
+	}
+
+	if (!inputData.LCHRecipeURLFilter) {
+		return false;
+	}
+
+	if (inputData.LCHRecipeIsAutomatic !== true) {
+		return false;
+	}
+
+	return true;
+};
+
 export const LCHRecipesModelActionTakesObject = function(inputData) {
 	if (LCHRecipesModelErrorsFor(inputData)) {
 		throw new Error('LCHErrorInputInvalid');
