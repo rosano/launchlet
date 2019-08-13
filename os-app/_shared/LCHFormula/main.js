@@ -68,3 +68,18 @@ export const LCHFormulaFrom = function(inputData) {
 	}, {});
 };
 
+export const LCHFormulaTo = function(param1, param2) {
+	if (typeof param1 !== 'object' || param1 === null) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	if (typeof param2 !== 'string') {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	return Object.entries(param1).reduce(function (coll, item) {
+		coll[item[0].replace('LCHFormula', param2)] = item[1];
+
+		return coll;
+	}, {});
+};

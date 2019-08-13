@@ -165,3 +165,33 @@ describe('LCHFormulaFrom', function testLCHFormulaFrom() {
 	});
 
 });
+
+import { LCHFormulaTo } from './main.js';
+
+describe('LCHFormulaTo', function testLCHFormulaTo() {
+
+	it('throws error if not object', function() {
+		throws(function() {
+			LCHFormulaTo(null, '');
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('throws error if param2 not string', function() {
+		throws(function() {
+			LCHFormulaTo({}, null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns inputData', function() {
+		deepEqual(LCHFormulaTo({}, ''), {});
+	});
+
+	it('replaces domain and prefix', function() {
+		deepEqual(LCHFormulaTo({
+			LCHFormulaAlfa: '',
+		}, 'bravo'), {
+			bravoAlfa: '',
+		});
+	});
+
+});
