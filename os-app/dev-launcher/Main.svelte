@@ -93,10 +93,10 @@ async function apiStart(inputData) {
 
 let _PromptObjects = [];
 let _PromptActiveIndex = 0;
-let _AllActions = allRecipes.filter(LCHRecipesModelIsVerb);
+let _AllActions = allRecipes.filter(LCHRecipesModelIsAction);
 import {
 	LCHRecipesModelIsSubject,
-	LCHRecipesModelIsVerb,
+	LCHRecipesModelIsAction,
 	LCHRecipesModelIsCommand,
 } from './api.js';
 (function StartPromptObjects() {

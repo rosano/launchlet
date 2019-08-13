@@ -148,7 +148,7 @@ export const LCHRecipesModelIsSubject = function(inputData) {
 	return true;
 };
 
-export const LCHRecipesModelIsVerb = function(inputData) {
+export const LCHRecipesModelIsAction = function(inputData) {
 	if (LCHRecipesModelErrorsFor(inputData)) {
 		throw new Error('LCHErrorInputInvalid');
 	}
@@ -188,12 +188,12 @@ export const LCHRecipesModelIsType = function(inputData) {
 	return true;
 };
 
-export const LCHRecipesModelVerbTakesObject = function(inputData) {
+export const LCHRecipesModelActionTakesObject = function(inputData) {
 	if (LCHRecipesModelErrorsFor(inputData)) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	if (!LCHRecipesModelIsVerb(inputData)) {
+	if (!LCHRecipesModelIsAction(inputData)) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 	
@@ -208,12 +208,12 @@ export const LCHRecipesModelVerbTakesObject = function(inputData) {
 	return true;
 };
 
-export const LCHRecipesModelVerbTakesParams = function(inputData) {
+export const LCHRecipesModelActionTakesParams = function(inputData) {
 	if (LCHRecipesModelErrorsFor(inputData)) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	if (!LCHRecipesModelIsVerb(inputData)) {
+	if (!LCHRecipesModelIsAction(inputData)) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 	
@@ -279,7 +279,7 @@ export const LCHAPITypeEquivalenceMapForRecipes = function(inputData) {
 	}, {});
 };
 
-export const LCHAPIVerbsForType = function(param1, param2) {
+export const LCHAPIActionsForType = function(param1, param2) {
 	if (typeof param1 !== 'string') {
 		throw new Error('LCHErrorInputInvalid');
 	}
@@ -293,7 +293,7 @@ export const LCHAPIVerbsForType = function(param1, param2) {
 			return false;
 		}
 
-		if (!LCHRecipesModelIsVerb(e)) {
+		if (!LCHRecipesModelIsAction(e)) {
 			return false;
 		}
 
@@ -382,7 +382,7 @@ export const LCHCompositionModelErrors = function(inputData) {
 
 	const errors = {};
 
-	if (!LCHRecipesModelIsVerb(inputData.LCHCompositionAction)) {
+	if (!LCHRecipesModelIsAction(inputData.LCHCompositionAction)) {
 		errors.LCHCompositionAction = [
 			'LCHErrorInputInvalid',
 		];
