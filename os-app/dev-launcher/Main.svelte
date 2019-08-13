@@ -26,7 +26,11 @@ export let optionsObject = {};
 import { LCHLauncherPatternMatchesURL } from './ui-logic.js';
 (function StartFilterDataObjects() {
 	dataObjects = dataObjects.filter(function (e) {
-		return LCHLauncherPatternMatchesURL(e.LCHRecipeURLFilter || '', window.location.href);
+		if (e.LCHRecipeURLFilter && !LCHLauncherPatternMatchesURL(e.LCHRecipeURLFilter, window.location.href)) {
+			return false;
+		};
+		
+		return true;
 	});
 })();
 

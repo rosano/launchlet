@@ -278,15 +278,19 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 
 	context('shared', function () {
 
-		before(function() {
-			return browser.visit(`${ kDefaultRoutePath }?LCHLauncherAccessTestURLFilter`);
-		});
+		context('LCHLauncherAccessTestURLFilter', function () {
 
-		it('shows url specific item', async function() {
-			browser.fill(LCHLauncherFilterInput, 'LCHLauncherAccessTestURLFilter');
-			await browser.wait({element: LCHLauncherListItem});
+			before(function() {
+				return browser.visit(`${ kDefaultRoutePath }?LCHLauncherAccessTestURLFilter`);
+			});
 
-			browser.assert.elements(LCHLauncherListItem, 1);
+			it('shows url specific item', async function() {
+				browser.fill(LCHLauncherFilterInput, 'LCHLauncherAccessTestURLFilter');
+				await browser.wait({element: LCHLauncherListItem});
+
+				browser.assert.elements(LCHLauncherListItem, 1);
+			});
+
 		});
 
 	});
