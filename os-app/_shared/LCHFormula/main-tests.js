@@ -14,13 +14,13 @@ describe('LCHFormulaModelErrorsFor', function testLCHFormulaModelErrorsFor() {
 		deepEqual(LCHFormulaModelErrorsFor({}), null);
 	});
 
-	context('LCHFormulaTitle', function() {
+	context('LCHFormulaName', function() {
 
-		it('returns object if LCHFormulaTitle not string', function() {
+		it('returns object if LCHFormulaName not string', function() {
 			deepEqual(LCHFormulaModelErrorsFor({
-				LCHFormulaTitle: null,
+				LCHFormulaName: null,
 			}), {
-				LCHFormulaTitle: [
+				LCHFormulaName: [
 					'LCHErrorNotString',
 				],
 			});
@@ -28,7 +28,7 @@ describe('LCHFormulaModelErrorsFor', function testLCHFormulaModelErrorsFor() {
 
 		it('returns null', function() {
 			deepEqual(LCHFormulaModelErrorsFor({
-				LCHFormulaTitle: 'alfa',
+				LCHFormulaName: 'alfa',
 			}), null);
 		});
 

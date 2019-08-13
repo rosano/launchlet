@@ -5,9 +5,9 @@ export const LCHFormulaModelErrorsFor = function(inputData) {
 
 	const errors = {};
 
-	if (inputData.LCHFormulaTitle !== undefined) {
-		if (typeof inputData.LCHFormulaTitle !== 'string') {
-			errors.LCHFormulaTitle = [
+	if (inputData.LCHFormulaName !== undefined) {
+		if (typeof inputData.LCHFormulaName !== 'string') {
+			errors.LCHFormulaName = [
 				'LCHErrorNotString',
 			];
 		}
