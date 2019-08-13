@@ -15,14 +15,14 @@
 			const svelte = require('rollup-plugin-svelte');
 			const pathPackage = require('path');
 
-			inputData.output.file = pathPackage.join(__dirname, '../../dist/launchlet.js');
+			inputData.output.file = pathPackage.join(__dirname, '_compiled/dist/launchlet.js');
 
 			inputData.plugins.splice(inputData.plugins.indexOf(inputData.plugins.filter(function (e) {
 				return e.name === 'svelte';
 			}).pop()), 1, svelte({
 				css (css) {
 					// css.code = require('fs').readFileSync(pathPackage.join(__dirname, '../dev-launcher/_compiled/ui-style.css'), 'utf8').replace('ui-style', 'launchlet');
-					return css.write(pathPackage.join(__dirname, '../../dist/launchlet.css'));
+					return css.write(pathPackage.join(__dirname, '_compiled/dist/launchlet.css'));
 				},
 
 				// --- COPY PREVIOUS CONFIGURATION ---
