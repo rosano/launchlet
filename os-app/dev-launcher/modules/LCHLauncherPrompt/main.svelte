@@ -38,6 +38,9 @@ function ResultListDispatchClick(event) {
 </div>
 
 <style>
+
+@media screen and (min-width: 760px) {
+
 .LCHLauncherZoneInput {
 	padding: 3px;
 	border: solid 1px hsl(0, 0%, 90%);
@@ -63,5 +66,7 @@ function ResultListDispatchClick(event) {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+}
+
 }
 </style>
