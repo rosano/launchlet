@@ -39,6 +39,7 @@ onMount(function () {
 	});
 
 	clipboardButton.focus();
+	clipboardButton.click();
 });
 </script>
 
