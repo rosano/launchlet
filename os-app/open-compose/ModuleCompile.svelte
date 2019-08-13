@@ -10,7 +10,19 @@ onMount(function () {
 		javascriptComposed = LCHComposeLogicBoomarkletStringFor({
 			LCHCompileToken_AppStyle: window.LCHComposeLauncherStyle.textContent,
 			LCHCompileToken_AppBehaviour: window.LCHComposeLauncherBehaviour.textContent,
-			LCHCompileToken_ClosureObjects: $membersAll,
+			LCHCompileToken_ClosureObjects: $membersAll.map(function (e) {
+				return Object.entries(e).filter(function (e) {
+					if (typeof e[1] === 'string' && !e[1]) {
+						return false;
+					};
+
+					return true;
+				}).reduce(function (coll, item) {
+					coll[item[0]] = item[1];
+
+					return coll;
+				}, {});
+			}),
 			LCHCompileToken_AppLanguageCode: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 
