@@ -33,7 +33,7 @@ export { replaceCharAt, incrementBase32, randomChar, encodeTime, encodeRandom, d
 		'OLSKRouting',
 		'OLSKLayout',
 		'OLSKServiceWorker',
-		'fuzzysearch',
+		'fuzzysort',
 		'clipboard',
 	], pathPackage.join(__dirname, 'node_modules'), pathPackage.join(__dirname, 'os-app/_shared/_external'));
 })();

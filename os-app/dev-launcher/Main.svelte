@@ -12,7 +12,7 @@ import {
 import {
 	LCHLauncherModeJump,
 	LCHLauncherModePipe,
-	LCHLauncherFilterForText,
+	// LCHLauncherFilterForText,
 } from './ui-logic.js';
 
 export let dataObjects = [];
@@ -142,6 +142,7 @@ import {
 })();
 
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
+import fuzzysort from 'fuzzysort';
 function ActivePromptFilterTextShouldUpdate (inputData) {
 	(function SetFilterText() {
 		_PromptObjects[_PromptActiveIndex].LCHPromptFilterText = inputData;
@@ -209,7 +210,9 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 				return LCHOptionsObject().runMode === LCHLauncherModeJump ? _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll : [];
 			}
 
-			let results = _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll.filter(LCHLauncherFilterForText(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText));
+			let results = fuzzysort.go(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText, _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll, {
+				key: 'LCHRecipeTitle',
+			});
 
 			if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptItems.length && !results.length) {
 				if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
@@ -221,7 +224,11 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 				return _PromptObjects[_PromptActiveIndex].LCHPromptItems;
 			}
 
-			return results;
+			return results.sort(function (a, b) {
+				return a.score < b.score ? 1 : (a.score > b.score ? -1 : 0);
+			}).map(function (e) {
+				return e.obj;
+			});
 		})());
 	})();
 };

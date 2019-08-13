@@ -41,7 +41,7 @@
     "OLSKServiceWorker": "olsk/OLSKServiceWorker",
 
     "// FRONTEND FUZZY SEARCH": null,
-    "fuzzysearch": "latest",
+    "fuzzysort": "latest",
 
     "// FRONTEND RECIPE LCHCopyToClipboard": null,
     "clipboard": "latest",
