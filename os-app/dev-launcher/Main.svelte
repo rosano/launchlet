@@ -327,7 +327,9 @@ onMount(function () {
 		return;
 	}
 	
-	inputElement.focus();
+	setTimeout(function () {
+		inputElement.focus();
+	})
 });
 
 import { afterUpdate } from 'svelte';
