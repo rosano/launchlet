@@ -438,6 +438,41 @@ bravo
 
 });
 
+describe('_LCHComposeLogicRecipeJSON', function test_LCHComposeLogicRecipeJSON() {
+
+	it('throws error if not object', function() {
+		throws(function() {
+			mainModule._LCHComposeLogicRecipeJSON(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns string', function() {
+		deepEqual(mainModule._LCHComposeLogicRecipeJSON({}), '{}');
+	});
+
+	it('stringifies inputData', function() {
+		deepEqual(mainModule._LCHComposeLogicRecipeJSON({
+			alfa: 'bravo',
+			charlie: true,
+		}), '{"alfa":"bravo","charlie":true}');
+	});
+
+	it('prints LCHRecipeCallback directly', function() {
+		deepEqual(mainModule._LCHComposeLogicRecipeJSON({
+			LCHRecipeCallback: 'function () { alfa }',
+		}), '{"LCHRecipeCallback":function () { alfa }}');
+	});
+
+	it('prints LCHRecipeCallback with line breaks', function() {
+		deepEqual(mainModule._LCHComposeLogicRecipeJSON({
+			LCHRecipeCallback: `
+bravo
+`,
+		}), `{"LCHRecipeCallback":\nbravo\n}`);
+	});
+
+});
+
 describe('_LCHComposeRecipeStub', function test_LCHComposeRecipeStub() {
 
 	it('throws error if not object', function() {
@@ -462,14 +497,6 @@ describe('_LCHComposeRecipeStub', function test_LCHComposeRecipeStub() {
 		deepEqual(mainModule._LCHComposeRecipeStub({
 			alfa: '',
 		}), {});
-	});
-
-	it('assigns _LCHClosureString to LCHRecipeCallback', function() {
-		deepEqual(mainModule._LCHComposeRecipeStub({
-			LCHMemberBody: 'alfa',
-		}), {
-			LCHRecipeCallback: 'function () { alfa }',
-		});
 	});
 
 });
