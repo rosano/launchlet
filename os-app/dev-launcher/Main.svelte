@@ -639,10 +639,15 @@ input {
 }
 
 input {
+	width: 100%;
 	padding: 10px;
 	border: none;
 	border-radius: 0;
 	border-bottom: 1px solid #cccccc;
+
+	background: #f3f3f3;
+	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+	font-size: 16pt;
 }
 
 .ListContainer {
@@ -658,6 +663,19 @@ input {
 .ListItem {
 	padding: 10px;
 }
+
+.Container :global(.LCHLauncherResultList) {
+	width: 100%;
+	padding-left: 0;
+	border-left: none;
+
+	margin: 0;
+}
+
+.LCHLauncherPromptSelected :global(.LCHLauncherZoneInputBezel), .LCHLauncherPromptSelected :global(.LCHLauncherResultListItemSelected) {
+	background: hsl(0, 0%, 80%);
+}
+
 
 }
 </style>

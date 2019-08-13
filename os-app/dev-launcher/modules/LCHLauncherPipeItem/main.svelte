@@ -11,4 +11,17 @@ export let itemTitle = '';
 	font-size: 8pt;
 	color: hsl(0, 0%, 30%);
 }
+
+@media screen and (max-width: 760px) {
+
+.LCHLauncherPipeItem {
+	padding: 10px;
+
+	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+	font-weight: bold;
+	font-size: 13.5pt;
+	color: hsl(0, 0%, 0%);
+}
+
+}
 </style>
