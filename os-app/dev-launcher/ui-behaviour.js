@@ -57,6 +57,12 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 						document.querySelector('input').value = 'xylophone';
 					},
 					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherAccessTestURLFilter',
+				}).concat({
+					LCHRecipeCallback: function () {
+						document.querySelector('input').value = 'zebra';
+					},
+					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherAccessTestURLFilter',
+					LCHRecipeIsAutomatic: true,
 				}),
 				completionHandler () {
 					app.$destroy();

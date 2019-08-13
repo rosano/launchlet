@@ -324,6 +324,21 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 					browser.assert.text(`${ LCHLauncherListItem }:first-child`, 'Alfa');
 				});
 
+				context('LCHLauncherAccessTestURLFilter', function () {
+
+					before(function() {
+						return browser.visit(`${ kDefaultRoutePath }?LCHLauncherAccessTestURLFilter`);
+					});
+
+					it('runs tasks', async function() {
+						await browser.wait({element: LCHLauncherFilterInput});
+
+						// browser.assert.input('input', 'zebra'); // #mysterious
+						deepEqual(browser.query('input').value, 'zebra');
+					});
+
+				});
+
 			});
 
 			context('LCHLauncherModePreview', function () {

@@ -58,12 +58,30 @@ import {
 import { LCHLauncherStandardRecipes } from './recipes/recipes.js';
 const allRecipes = LCHLauncherStandardRecipes().concat(dataObjects);
 const api = LCHAPIObjectFor(allRecipes);
-const apiTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes)
+const apiTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes);
 
+import {
+	LCHRecipesModelIsTask,
+	LCHAPIExecuteRecipe,
+} from './api.js';
+(function StartRecipeTasks() {
+	allRecipes.filter(function (e) {
+		if (!LCHRecipesModelIsTask(e)) {
+			return false;
+		};
+
+		if (!LCHLauncherPatternMatchesURL(e.LCHRecipeURLFilter, window.location.href)) {
+			return false;
+		};
+
+		return true;
+	}).forEach(function (e) {
+		LCHAPIExecuteRecipe(e, [], api);
+	});
+})();
 
 import {
 	LCHAPIExecuteComposition,
-	LCHAPIExecuteRecipe,
 	LCHComponentDescriptorsModelErrorsFor,
 } from './api.js';
 import * as apiComponents from './recipes/components.js';
