@@ -341,7 +341,7 @@ describe('LCHRecipesModelIsSubject', function testLCHRecipesModelIsSubject() {
 	});
 
 	it('returns false if no LCHRecipeTitle', function() {
-		deepEqual(mainModule.LCHRecipesModelIsSubject(Object.assign(kTesting.StubRecipeObjectCommand(), {
+		deepEqual(mainModule.LCHRecipesModelIsSubject(Object.assign(kTesting.StubRecipeObjectSubject(), {
 			LCHRecipeTitle: undefined,
 		})), false);
 	});
@@ -373,7 +373,7 @@ describe('LCHRecipesModelIsAction', function testLCHRecipesModelIsAction() {
 	});
 
 	it('returns false if no LCHRecipeTitle', function() {
-		deepEqual(mainModule.LCHRecipesModelIsAction(Object.assign(kTesting.StubRecipeObjectCommand(), {
+		deepEqual(mainModule.LCHRecipesModelIsAction(Object.assign(kTesting.StubRecipeObjectAction(), {
 			LCHRecipeTitle: undefined,
 		})), false);
 	});
@@ -405,7 +405,7 @@ describe('LCHRecipesModelIsType', function testLCHRecipesModelIsType() {
 	});
 
 	it('returns false if no LCHRecipeSignature', function() {
-		deepEqual(mainModule.LCHRecipesModelIsType(Object.assign(kTesting.StubRecipeObjectCommand(), {
+		deepEqual(mainModule.LCHRecipesModelIsType(Object.assign(kTesting.StubRecipeObjectType(), {
 			LCHRecipeSignature: undefined,
 		})), false);
 	});
