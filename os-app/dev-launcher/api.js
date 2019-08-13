@@ -1,9 +1,11 @@
+import { LCHFormulaModelErrorsFor, LCHFormulaFrom, LCHFormulaTo } from '../_shared/LCHFormula/main.js';
+
 export const LCHRecipesModelErrorsFor = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	const errors = {};
+	const errors = LCHFormulaTo(LCHFormulaModelErrorsFor(LCHFormulaFrom(inputData)) || {}, 'LCHRecipe');
 
 	if (typeof inputData.LCHRecipeCallback !== 'function') {
 		errors.LCHRecipeCallback = [
@@ -11,71 +13,45 @@ export const LCHRecipesModelErrorsFor = function(inputData) {
 		];
 	}
 
-	if (inputData.LCHRecipeTitle !== undefined) {
-		if (typeof inputData.LCHRecipeTitle !== 'string') {
-			errors.LCHRecipeTitle = [
-				'LCHErrorNotString',
-			];
-		}
-
-		if (typeof inputData.LCHRecipeTitle === 'string' && !inputData.LCHRecipeTitle) {
-			errors.LCHRecipeTitle = [
+	if (inputData.LCHRecipeName !== undefined) {
+		if (typeof inputData.LCHRecipeName === 'string' && !inputData.LCHRecipeName) {
+			errors.LCHRecipeName = [
 				'LCHErrorNotFilled',
 			];
 		}
 
-		if (typeof inputData.LCHRecipeTitle === 'string' && inputData.LCHRecipeTitle.trim() !== inputData.LCHRecipeTitle) {
-			errors.LCHRecipeTitle = [
+		if (typeof inputData.LCHRecipeName === 'string' && inputData.LCHRecipeName.trim() !== inputData.LCHRecipeName) {
+			errors.LCHRecipeName = [
 				'LCHErrorNotTrimmed',
 			];
 		}
 	}
 
-	if (inputData.LCHRecipeSignature !== undefined) {
-		if (typeof inputData.LCHRecipeSignature !== 'string') {
-			errors.LCHRecipeSignature = [
-				'LCHErrorNotString',
-			];
-		}
-	}
-
-	if (inputData.LCHRecipeInputTypes !== undefined) {
-		if (typeof inputData.LCHRecipeInputTypes !== 'string') {
+	if (inputData.LCHRecipeInputTypes !== undefined && typeof inputData.LCHRecipeInputTypes === 'string') {
+		if (inputData.LCHRecipeInputTypes.trim() !== inputData.LCHRecipeInputTypes) {
 			errors.LCHRecipeInputTypes = [
-				'LCHErrorNotString',
+				'LCHErrorNotTrimmed',
 			];
-		} else {
-			if (inputData.LCHRecipeInputTypes.trim() !== inputData.LCHRecipeInputTypes) {
-				errors.LCHRecipeInputTypes = [
-					'LCHErrorNotTrimmed',
-				];
-			}
+		}
 
-			if (inputData.LCHRecipeInputTypes.trim() === '') {
-				errors.LCHRecipeInputTypes = [
-					'LCHErrorNotFilled',
-				];
-			}
+		if (inputData.LCHRecipeInputTypes.trim() === '') {
+			errors.LCHRecipeInputTypes = [
+				'LCHErrorNotFilled',
+			];
 		}
 	}
 
-	if (inputData.LCHRecipeOutputType !== undefined) {
-		if (typeof inputData.LCHRecipeOutputType !== 'string') {
+	if (inputData.LCHRecipeOutputType !== undefined && typeof inputData.LCHRecipeOutputType === 'string') {
+		if (inputData.LCHRecipeOutputType.trim() !== inputData.LCHRecipeOutputType) {
 			errors.LCHRecipeOutputType = [
-				'LCHErrorNotString',
+				'LCHErrorNotTrimmed',
 			];
-		} else {
-			if (inputData.LCHRecipeOutputType.trim() !== inputData.LCHRecipeOutputType) {
-				errors.LCHRecipeOutputType = [
-					'LCHErrorNotTrimmed',
-				];
-			}
+		}
 
-			if (inputData.LCHRecipeOutputType.trim() === '') {
-				errors.LCHRecipeOutputType = [
-					'LCHErrorNotFilled',
-				];
-			}
+		if (inputData.LCHRecipeOutputType.trim() === '') {
+			errors.LCHRecipeOutputType = [
+				'LCHErrorNotFilled',
+			];
 		}
 	}
 
@@ -101,14 +77,6 @@ export const LCHRecipesModelErrorsFor = function(inputData) {
 		}
 	}
 
-	if (inputData.LCHRecipeURLFilter !== undefined) {
-		if (typeof inputData.LCHRecipeURLFilter !== 'string') {
-			errors.LCHRecipeURLFilter = [
-				'LCHErrorNotString',
-			];
-		}
-	}
-
 	return Object.entries(errors).length ? errors : null;
 };
 
@@ -117,7 +85,7 @@ export const LCHRecipesModelIsCommand = function(inputData) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	if (!inputData.LCHRecipeTitle) {
+	if (!inputData.LCHRecipeName) {
 		return false;
 	}
 	
@@ -133,7 +101,7 @@ export const LCHRecipesModelIsSubject = function(inputData) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	if (!inputData.LCHRecipeTitle) {
+	if (!inputData.LCHRecipeName) {
 		return false;
 	}
 	
@@ -153,7 +121,7 @@ export const LCHRecipesModelIsAction = function(inputData) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	if (!inputData.LCHRecipeTitle) {
+	if (!inputData.LCHRecipeName) {
 		return false;
 	}
 
