@@ -139,10 +139,12 @@ async function memberDelete() {
 		<span>) &#123;</span>
 		<br>
 
-		{#if _LCHIsTestingBehaviour()}
-			<textarea bind:value={ $memberSelected.LCHMemberBody } on:input={ memberSave } id="LCHComposeDetailCallbackBodyInputDebug"></textarea>
-		{/if}
-		<textarea bind:this={ editorElement }></textarea>
+		<div class="LCHComposeDetailCallbackBody">
+			{#if _LCHIsTestingBehaviour()}
+				<textarea bind:value={ $memberSelected.LCHMemberBody } on:input={ memberSave } id="LCHComposeDetailCallbackBodyInputDebug"></textarea>
+			{/if}
+			<textarea bind:this={ editorElement }></textarea>
+		</div>
 		<span>&#125;</span>
 		<br>
 

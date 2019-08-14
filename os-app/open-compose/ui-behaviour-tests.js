@@ -18,7 +18,7 @@ Object.entries({
 	LCHComposeDetailFormContainer: '.FormContainer',
 	LCHComposeListItemFormInputName: '#LCHComposeListItemFormInputName',
 	LCHComposeListItemFormInputInputData: '#LCHComposeListItemFormInputInputData',
-	LCHComposeDetailCallbackBodyInput: '.CodeMirror',
+	LCHComposeDetailCallbackBodyInput: '.LCHComposeDetailCallbackBody .CodeMirror',
 	LCHComposeDetailCallbackBodyInputDebug: '#LCHComposeDetailCallbackBodyInputDebug',
 	LCHComposeListItemFormInputSignature: '#LCHComposeListItemFormInputSignature',
 	LCHComposeListItemFormInputURLFilter: '#LCHComposeListItemFormInputURLFilter',
