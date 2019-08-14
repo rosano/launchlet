@@ -62,7 +62,15 @@ import {
 } from './api.js';
 import { LCHLauncherStandardRecipes } from './recipes/recipes.js';
 const allRecipes = LCHLauncherStandardRecipes().concat(dataObjects);
-const api = LCHAPIObjectFor(allRecipes);
+const api = Object.assign(LCHAPIObjectFor(allRecipes), {
+	_LCHAPIExecuteRecipePrior (inputData) {
+		if (!inputData.LCHRecipeStyle) {
+			return;
+		};
+		
+		document.body.appendChild(document.createElement('style')).innerHTML = inputData.LCHRecipeStyle;
+	},
+});
 const apiTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes);
 
 import {

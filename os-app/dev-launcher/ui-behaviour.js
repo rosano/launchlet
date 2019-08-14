@@ -70,6 +70,13 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 					},
 					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherAccessTestURLFilter',
 					LCHRecipeIsAutomatic: true,
+				}).concat({
+					LCHRecipeName: 'LCHLauncherAccessTestStyle',
+					LCHRecipeCallback: function () {
+						document.querySelector('input').value = 'xylophone';
+					},
+					LCHRecipeStyle: 'body { background: red; }',
+					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestStyle',
 				}),
 				completionHandler () {
 					app.$destroy();

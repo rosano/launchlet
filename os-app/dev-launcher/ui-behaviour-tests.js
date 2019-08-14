@@ -293,6 +293,27 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 
 		});
 
+		context('LCHLauncherAccessTestStyle', function () {
+
+			before(function() {
+				return browser.visit(`${ kDefaultRoutePath }?LCHLauncherTestStyle`);
+			});
+
+			it('shows url specific item', async function() {
+				browser.assert.elements('body style', 0);
+
+				browser.fill(LCHLauncherFilterInput, 'LCHLauncherAccessTestStyle');
+				await browser.wait({element: LCHLauncherListItem});
+
+				browser.click(LCHLauncherListItem);
+
+				browser.assert.input('#LCHLauncherTestInputSingleLine', 'xylophone');
+
+				browser.assert.elements('body style', 1);
+			});
+
+		});
+
 	});
 
 });
@@ -340,6 +361,23 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 						await browser.wait({element: LCHLauncherFilterInput});
 
 						browser.assert.input('#LCHLauncherTestInputSingleLine', 'zebra');
+					});
+
+				});
+
+				context('LCHLauncherAccessTestStyle', function () {
+
+					before(function() {
+						return browser.visit(`${ kDefaultRoutePath }?LCHLauncherTestStyle`);
+					});
+
+					it('shows url specific item', async function() {
+						browser.fill(LCHLauncherFilterInput, 'LCHLauncherAccessTestStyle');
+						await browser.wait({element: LCHLauncherListItem});
+
+						browser.click(LCHLauncherListItem);
+
+						browser.assert.text('body style', 'body { background: red; }');
 					});
 
 				});
