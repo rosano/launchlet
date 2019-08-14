@@ -6,6 +6,7 @@ import * as URL from './TypeURL/main.js';
 import * as Command from './TypeCommand/main.js';
 
 import * as LCHCopyToClipboard from './LCHCopyToClipboard/main.js';
+import * as LCHDateLocalOffsetSubtracted from './LCHDateLocalOffsetSubtracted/main.js';
 import * as LCHLargeType from './LCHLargeType/main.js';
 import * as LCHRunCommand from './LCHRunCommand/main.js';
 
@@ -19,6 +20,7 @@ export const LCHLauncherStandardRecipes = function() {
 		Command,
 		
 		LCHCopyToClipboard,
+		LCHDateLocalOffsetSubtracted,
 		LCHLargeType,
 		LCHRunCommand,
 	].map(function (e) {
