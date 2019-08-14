@@ -23,6 +23,8 @@ Object.entries({
 	LCHComposeListItemFormInputSignature: '#LCHComposeListItemFormInputSignature',
 	LCHComposeListItemFormInputURLFilter: '#LCHComposeListItemFormInputURLFilter',
 	LCHComposeListItemFormInputIsAutomatic: '#LCHComposeListItemFormInputIsAutomatic',
+	LCHComposeDetailStyleInput: '.LCHComposeDetailStyle .CodeMirror',
+	LCHComposeDetailStyleInputDebug: '#LCHComposeDetailStyleInputDebug',
 
 	LCHComposeReloadButton: '#LCHComposeReloadButton',
 
@@ -79,6 +81,8 @@ describe('LCHComposeDiscovery', function testLCHComposeDiscovery() {
 		browser.assert.elements(LCHComposeListItemFormInputSignature, 1);
 		browser.assert.elements(LCHComposeListItemFormInputURLFilter, 1);
 		browser.assert.elements(LCHComposeListItemFormInputIsAutomatic, 0);
+		browser.assert.elements(LCHComposeDetailStyleInput, 1);
+		browser.assert.elements(LCHComposeDetailStyleInputDebug, 1);
 	});
 
 	it('on create nth item', async function() {
@@ -186,10 +190,12 @@ describe('LCHComposeLanguage', function testLCHComposeLanguage() {
 				browser.assert.input(LCHComposeListItemFormInputSignature, '');
 				browser.assert.attribute(LCHComposeListItemFormInputURLFilter, 'placeholder', uLocalized('LCHComposeListItemFormInputURLFilterPlaceholder').replace(/\\\\/g, '\\'));
 				browser.assert.input(LCHComposeListItemFormInputURLFilter, '');
+				browser.assert.text(`${ LCHComposeDetailStyleInput } .CodeMirror-placeholder`, uLocalized('LCHComposeListItemFormInputCSSPlaceholder'));
+				browser.assert.input(LCHComposeDetailStyleInputDebug, '');
 
 				browser.fill(LCHComposeListItemFormInputInputData, 'charlie');
 				browser.fill(LCHComposeDetailCallbackBodyInputDebug, 'delta');
-				await browser.wait({ element: LCHComposeListItemFormInputIsAutomatic });
+				browser.fill(LCHComposeDetailStyleInputDebug, 'echo');
 			});
 
 			it('on fill LCHRecipeURLFilter', async function() {
@@ -220,6 +226,7 @@ describe('LCHComposeLanguage', function testLCHComposeLanguage() {
 
 				browser.assert.input(LCHComposeListItemFormInputName, '');
 				browser.assert.input(LCHComposeDetailCallbackBodyInputDebug, '');
+				browser.assert.input(LCHComposeDetailStyleInputDebug, '');
 			});
 
 			it('on select 1st item', async function() {
@@ -232,6 +239,7 @@ describe('LCHComposeLanguage', function testLCHComposeLanguage() {
 				browser.assert.input(LCHComposeDetailCallbackBodyInputDebug, 'delta');
 				browser.assert.input(LCHComposeListItemFormInputInputData, 'charlie');
 				browser.assert.input(LCHComposeListItemFormInputURLFilter, '/https?://(.*\.)?google\.com/i');
+				browser.assert.input(LCHComposeDetailStyleInputDebug, 'echo');
 			});
 
 			it('on delete', async function() {

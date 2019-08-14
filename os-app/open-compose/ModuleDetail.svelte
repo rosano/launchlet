@@ -54,6 +54,54 @@ afterUpdate(function SetupCallbackBodyEditor () {
 	});
 });
 
+let StyleEditorElement;
+let StyleEditorInstance = null;
+let StyleEditorPostInitializeQueue = [];
+let StyleEditorConfigure = function (inputData) {
+	// console.log(StyleEditorInstance ? 'run' : 'queue', inputData);
+	return StyleEditorInstance ? inputData() : StyleEditorPostInitializeQueue.push(inputData);
+};
+afterUpdate(function SetupStyleEditor () {
+	if (!StyleEditorElement) {
+		return;
+	}
+
+	if (StyleEditorInstance) {
+		return;
+	}
+
+	StyleEditorInstance = CodeMirror.fromTextArea(StyleEditorElement, {
+		mode: 'css',
+
+		lineNumbers: true,
+		lineWrapping: true,
+
+		placeholder: OLSKLocalized('LCHComposeListItemFormInputCSSPlaceholder'),
+		
+	  keyMap: 'sublime',
+	});
+
+	StyleEditorInstance.on('change', function (instance, changeObject) {
+		if (changeObject.origin === 'setValue') {
+			return;
+		}
+
+		Object.assign($memberSelected, {
+			LCHMemberStyle: instance.getValue(),
+		}); // @DependancySvelteIgnoresMutableChanges
+
+		memberSave();
+	});
+
+	// console.log(StyleEditorPostInitializeQueue);
+	
+	StyleEditorPostInitializeQueue.splice(0, StyleEditorPostInitializeQueue.length).forEach(function(e) {
+		// console.log('run', e);
+
+		return e(StyleEditorInstance);
+	});
+});
+
 let _memberSelected;
 memberSelected.subscribe(function (val) {
 	if (val && (val !== _memberSelected)) {
@@ -67,17 +115,31 @@ memberSelected.subscribe(function (val) {
 		CallbackBodyEditorInstance = null;
 	}
 
+	if (!val && StyleEditorInstance) {
+		StyleEditorInstance.toTextArea();
+		StyleEditorInstance = null;
+	}
+
 	if (!val) {
 		return;
 	}
 
-	return CallbackBodyEditorConfigure(function () {
+	CallbackBodyEditorConfigure(function () {
 		if (_LCHIsTestingBehaviour()) {
 			return document.querySelector('#LCHComposeDetailCallbackBodyInputDebug').value = val.LCHMemberBody;
 		}
 
 		CallbackBodyEditorInstance.setValue(val.LCHMemberBody);
 		CallbackBodyEditorInstance.getDoc().clearHistory();
+	});
+
+	StyleEditorConfigure(function () {
+		if (_LCHIsTestingBehaviour()) {
+			return document.querySelector('#LCHComposeDetailStyleInputDebug').value = val.LCHMemberStyle;
+		}
+
+		StyleEditorInstance.setValue(val.LCHMemberStyle);
+		StyleEditorInstance.getDoc().clearHistory();
 	});
 });
 
@@ -160,6 +222,15 @@ async function memberDelete() {
 			<label for="LCHComposeListItemFormInputIsAutomatic">{ OLSKLocalized('LCHComposeListItemFormInputIsAutomaticText') }</label>
 		</p>
 	{/if}
+
+	<hr>
+
+	<div class="LCHComposeDetailStyle">
+		{#if _LCHIsTestingBehaviour()}
+			<textarea bind:value={ $memberSelected.LCHMemberStyle } on:input={ memberSave } id="LCHComposeDetailStyleInputDebug"></textarea>
+		{/if}
+		<textarea bind:this={ StyleEditorElement }></textarea>
+	</div>
 </div>
 {/if}
 
