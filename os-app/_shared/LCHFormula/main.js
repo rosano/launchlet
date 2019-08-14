@@ -53,6 +53,14 @@ export const LCHFormulaModelErrorsFor = function(inputData) {
 		}
 	}
 
+	if (inputData.LCHFormulaStyle !== undefined) {
+		if (typeof inputData.LCHFormulaStyle !== 'string') {
+			errors.LCHFormulaStyle = [
+				'LCHErrorNotString',
+			];
+		}
+	}
+
 	return Object.entries(errors).length ? errors : null;
 };
 

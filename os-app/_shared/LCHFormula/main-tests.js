@@ -140,6 +140,26 @@ describe('LCHFormulaModelErrorsFor', function testLCHFormulaModelErrorsFor() {
 
 	});
 
+	context('LCHFormulaStyle', function() {
+
+		it('returns object if LCHFormulaStyle not string', function() {
+			deepEqual(LCHFormulaModelErrorsFor({
+				LCHFormulaStyle: null,
+			}), {
+				LCHFormulaStyle: [
+					'LCHErrorNotString',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(LCHFormulaModelErrorsFor({
+				LCHFormulaStyle: 'alfa',
+			}), null);
+		});
+
+	});
+
 });
 
 import { LCHFormulaFrom } from './main.js';
