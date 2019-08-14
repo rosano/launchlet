@@ -418,6 +418,11 @@ export const LCHAPIExecuteRecipe = async function(param1, param2 = [], param3 = 
 		return Promise.reject(new Error('LCHErrorInputInvalid'));
 	}
 
+	if (param3._LCHAPIExecuteRecipePrior) {
+		param3._LCHAPIExecuteRecipePrior();
+		delete param3._LCHAPIExecuteRecipePrior;
+	};
+
 	return Promise.resolve(param1.LCHRecipeCallback.apply({
 		api: param3,
 	}, param2));

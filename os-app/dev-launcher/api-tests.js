@@ -976,6 +976,30 @@ describe('LCHAPIExecuteRecipe', function testLCHAPIExecuteRecipe() {
 		}, ['alfa', 'bravo', 'charlie', 'delta'], kTesting.StubAPIObjectValid()), 'alfa bravo charlie delta');
 	});
 
+	it('runs _LCHAPIExecuteRecipePrior', async function() {
+		let item = false;
+		await mainModule.LCHAPIExecuteRecipe({
+			LCHRecipeCallback() {},
+		}, [], Object.assign(kTesting.StubAPIObjectValid(), {
+			_LCHAPIExecuteRecipePrior () {
+				item = true;
+			},
+		}));
+		deepEqual(item, true);
+	});
+
+	it('deletes _LCHAPIExecuteRecipePrior', async function() {
+		deepEqual(await mainModule.LCHAPIExecuteRecipe({
+			LCHRecipeCallback() {
+				return this.api._LCHAPIExecuteRecipePrior;
+			},
+		}, [], Object.assign(kTesting.StubAPIObjectValid(), {
+			_LCHAPIExecuteRecipePrior () {
+				item = true;
+			},
+		})), undefined);
+	});
+
 });
 
 describe('LCHComponentDescriptorsModelErrorsFor', function testLCHComponentDescriptorsModelErrorsFor() {
