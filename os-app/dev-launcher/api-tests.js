@@ -942,6 +942,20 @@ describe('LCHAPIExecuteRecipe', function testLCHAPIExecuteRecipe() {
 		})])), 'bravo');
 	});
 
+	it('binds copy', async function() {
+		let item = Object.assign(kTesting.StubAPIObjectValid(), {
+			alfa: 'bravo',
+		});
+
+		await mainModule.LCHAPIExecuteRecipe({
+			LCHRecipeCallback() {
+				return this.api.alfa = 'charlie';
+			},
+		}, [], item);
+
+		deepEqual(item.alfa, 'bravo');
+	});
+
 	it('resolves promise if async', async function() {
 		deepEqual(await mainModule.LCHAPIExecuteRecipe({
 			async LCHRecipeCallback() {
