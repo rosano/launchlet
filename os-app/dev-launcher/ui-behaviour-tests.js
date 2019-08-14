@@ -327,8 +327,7 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 				it('skips LCHPageFormulas tasks', async function() {
 					await browser.wait({element: LCHLauncherFilterInput});
 
-					// browser.assert.input('input', ''); // #mysterious
-					deepEqual(browser.query('input').value, '');
+					browser.assert.input('#LCHLauncherTestInputSingleLine', '');
 				});
 
 				context('LCHLauncherAccessTestURLFilter', function () {
@@ -340,8 +339,7 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 					it('runs tasks', async function() {
 						await browser.wait({element: LCHLauncherFilterInput});
 
-						// browser.assert.input('input', 'zebra'); // #mysterious
-						deepEqual(browser.query('input').value, 'zebra');
+						browser.assert.input('#LCHLauncherTestInputSingleLine', 'zebra');
 					});
 
 				});
