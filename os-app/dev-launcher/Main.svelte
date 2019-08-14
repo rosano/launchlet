@@ -581,6 +581,7 @@ xxx .Container :global(.LCHLauncherZoneInput) {
 	/* @CapAndScroll */
 	max-height: 80px;
 	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
 }
 
 .Bezel {
