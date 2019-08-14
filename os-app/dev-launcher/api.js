@@ -421,7 +421,7 @@ export const LCHAPIExecuteRecipe = async function(param1, param2 = [], param3 = 
 	let api = Object.assign({}, param3);
 
 	if (api._LCHAPIExecuteRecipePrior) {
-		api._LCHAPIExecuteRecipePrior();
+		api._LCHAPIExecuteRecipePrior(param1);
 		delete api._LCHAPIExecuteRecipePrior;
 	};
 

@@ -991,15 +991,16 @@ describe('LCHAPIExecuteRecipe', function testLCHAPIExecuteRecipe() {
 	});
 
 	it('runs _LCHAPIExecuteRecipePrior', async function() {
-		let item = false;
+		let item = 'alfa';
 		await mainModule.LCHAPIExecuteRecipe({
 			LCHRecipeCallback() {},
+			bravo: 'charlie',
 		}, [], Object.assign(kTesting.StubAPIObjectValid(), {
-			_LCHAPIExecuteRecipePrior () {
-				item = true;
+			_LCHAPIExecuteRecipePrior (e) {
+				item = e.bravo;
 			},
 		}));
-		deepEqual(item, true);
+		deepEqual(item, 'charlie');
 	});
 
 	it('deletes _LCHAPIExecuteRecipePrior', async function() {
