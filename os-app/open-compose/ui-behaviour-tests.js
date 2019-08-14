@@ -179,7 +179,7 @@ describe('LCHComposeLanguage', function testLCHComposeLanguage() {
 				browser.assert.input(LCHComposeListItemFormInputName, '');
 				browser.assert.attribute(LCHComposeListItemFormInputInputData, 'placeholder', 'undefined');
 				browser.assert.input(LCHComposeListItemFormInputInputData, '');
-				// editor placeholder
+				browser.assert.text(`${ LCHComposeDetailCallbackBodyInput } .CodeMirror-placeholder`, uLocalized('LCHComposeListItemFormInputFunctionBodyPlaceholder'));
 				// editor value
 				browser.assert.input(LCHComposeDetailCallbackBodyInputDebug, '');
 				browser.assert.attribute(LCHComposeListItemFormInputSignature, 'placeholder', uLocalized('LCHComposeListItemFormInputSignaturePlaceholder'));
