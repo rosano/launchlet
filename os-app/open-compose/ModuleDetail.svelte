@@ -4,11 +4,11 @@ import * as LCHFormulasAction from '../_shared/rs-modules/lch_members/action.js'
 import { OLSKLocalized, _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 import { storageClient, membersAll, memberSelected, modelDidChange } from './persistence.js';
 
-let editorInstance = null;
-let editorPostInitializeQueue = [];
-export let editorConfigure = function (inputData) {
-	// console.log(editorInstance ? 'run' : 'queue', inputData);
-	return editorInstance ? inputData() : editorPostInitializeQueue.push(inputData);
+let CallbackBodyEditorInstance = null;
+let CallbackBodyEditorPostInitializeQueue = [];
+export let CallbackBodyEditorConfigure = function (inputData) {
+	// console.log(CallbackBodyEditorInstance ? 'run' : 'queue', inputData);
+	return CallbackBodyEditorInstance ? inputData() : CallbackBodyEditorPostInitializeQueue.push(inputData);
 };
 
 let _memberSelected;
@@ -19,38 +19,38 @@ memberSelected.subscribe(function (val) {
 		_memberSelected = val;
 	}
 
-	if (!val && editorInstance) {
-		editorInstance.toTextArea();
-		editorInstance = null;
+	if (!val && CallbackBodyEditorInstance) {
+		CallbackBodyEditorInstance.toTextArea();
+		CallbackBodyEditorInstance = null;
 	}
 
 	if (!val) {
 		return;
 	}
 
-	return editorConfigure(function () {
+	return CallbackBodyEditorConfigure(function () {
 		if (_LCHIsTestingBehaviour()) {
 			return document.querySelector('#LCHComposeDetailCallbackBodyInputDebug').value = val.LCHMemberBody;
 		}
 
-		editorInstance.setValue(val.LCHMemberBody);
-		editorInstance.getDoc().clearHistory();
+		CallbackBodyEditorInstance.setValue(val.LCHMemberBody);
+		CallbackBodyEditorInstance.getDoc().clearHistory();
 	});
 });
 
-let editorElement;
+let CallbackBodyEditorElement;
 import { afterUpdate } from 'svelte';
 afterUpdate(function () {
-	if (!editorElement) {
+	if (!CallbackBodyEditorElement) {
 		return;
 	}
 
-	if (editorInstance) {
+	if (CallbackBodyEditorInstance) {
 		return;
 	}
 
 	(function setupEditor() {
-		editorInstance = CodeMirror.fromTextArea(editorElement, {
+		CallbackBodyEditorInstance = CodeMirror.fromTextArea(CallbackBodyEditorElement, {
 			mode: 'javascript',
 
 			lineNumbers: true,
@@ -61,7 +61,7 @@ afterUpdate(function () {
 		  keyMap: 'sublime',
 		});
 
-		editorInstance.on('change', function (instance, changeObject) {
+		CallbackBodyEditorInstance.on('change', function (instance, changeObject) {
 			if (changeObject.origin === 'setValue') {
 				return;
 			}
@@ -73,13 +73,13 @@ afterUpdate(function () {
 			memberSave();
 		});
 
-		// console.log(editorPostInitializeQueue);
+		// console.log(CallbackBodyEditorPostInitializeQueue);
 	})();
 
-	editorPostInitializeQueue.splice(0, editorPostInitializeQueue.length).forEach(function(e) {
+	CallbackBodyEditorPostInitializeQueue.splice(0, CallbackBodyEditorPostInitializeQueue.length).forEach(function(e) {
 		// console.log('run', e);
 
-		return e(editorInstance);
+		return e(CallbackBodyEditorInstance);
 	});
 });
 
@@ -143,7 +143,7 @@ async function memberDelete() {
 			{#if _LCHIsTestingBehaviour()}
 				<textarea bind:value={ $memberSelected.LCHMemberBody } on:input={ memberSave } id="LCHComposeDetailCallbackBodyInputDebug"></textarea>
 			{/if}
-			<textarea bind:this={ editorElement }></textarea>
+			<textarea bind:this={ CallbackBodyEditorElement }></textarea>
 		</div>
 		<span>&#125;</span>
 		<br>
