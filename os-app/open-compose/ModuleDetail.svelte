@@ -4,12 +4,55 @@ import * as LCHFormulasAction from '../_shared/rs-modules/lch_members/action.js'
 import { OLSKLocalized, _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 import { storageClient, membersAll, memberSelected, modelDidChange } from './persistence.js';
 
+import { afterUpdate } from 'svelte';
+
+let CallbackBodyEditorElement;
 let CallbackBodyEditorInstance = null;
 let CallbackBodyEditorPostInitializeQueue = [];
-export let CallbackBodyEditorConfigure = function (inputData) {
+let CallbackBodyEditorConfigure = function (inputData) {
 	// console.log(CallbackBodyEditorInstance ? 'run' : 'queue', inputData);
 	return CallbackBodyEditorInstance ? inputData() : CallbackBodyEditorPostInitializeQueue.push(inputData);
 };
+afterUpdate(function SetupCallbackBodyEditor () {
+	if (!CallbackBodyEditorElement) {
+		return;
+	}
+
+	if (CallbackBodyEditorInstance) {
+		return;
+	}
+
+	CallbackBodyEditorInstance = CodeMirror.fromTextArea(CallbackBodyEditorElement, {
+		mode: 'javascript',
+
+		lineNumbers: true,
+		lineWrapping: true,
+
+		placeholder: OLSKLocalized('LCHComposeListItemFormInputFunctionBodyPlaceholder'),
+		
+	  keyMap: 'sublime',
+	});
+
+	CallbackBodyEditorInstance.on('change', function (instance, changeObject) {
+		if (changeObject.origin === 'setValue') {
+			return;
+		}
+
+		Object.assign($memberSelected, {
+			LCHMemberBody: instance.getValue(),
+		}); // @DependancySvelteIgnoresMutableChanges
+
+		memberSave();
+	});
+
+	// console.log(CallbackBodyEditorPostInitializeQueue);
+	
+	CallbackBodyEditorPostInitializeQueue.splice(0, CallbackBodyEditorPostInitializeQueue.length).forEach(function(e) {
+		// console.log('run', e);
+
+		return e(CallbackBodyEditorInstance);
+	});
+});
 
 let _memberSelected;
 memberSelected.subscribe(function (val) {
@@ -35,51 +78,6 @@ memberSelected.subscribe(function (val) {
 
 		CallbackBodyEditorInstance.setValue(val.LCHMemberBody);
 		CallbackBodyEditorInstance.getDoc().clearHistory();
-	});
-});
-
-let CallbackBodyEditorElement;
-import { afterUpdate } from 'svelte';
-afterUpdate(function () {
-	if (!CallbackBodyEditorElement) {
-		return;
-	}
-
-	if (CallbackBodyEditorInstance) {
-		return;
-	}
-
-	(function setupEditor() {
-		CallbackBodyEditorInstance = CodeMirror.fromTextArea(CallbackBodyEditorElement, {
-			mode: 'javascript',
-
-			lineNumbers: true,
-			lineWrapping: true,
-
-			placeholder: OLSKLocalized('LCHComposeListItemFormInputFunctionBodyPlaceholder'),
-			
-		  keyMap: 'sublime',
-		});
-
-		CallbackBodyEditorInstance.on('change', function (instance, changeObject) {
-			if (changeObject.origin === 'setValue') {
-				return;
-			}
-
-			Object.assign($memberSelected, {
-				LCHMemberBody: instance.getValue(),
-			}); // @DependancySvelteIgnoresMutableChanges
-
-			memberSave();
-		});
-
-		// console.log(CallbackBodyEditorPostInitializeQueue);
-	})();
-
-	CallbackBodyEditorPostInitializeQueue.splice(0, CallbackBodyEditorPostInitializeQueue.length).forEach(function(e) {
-		// console.log('run', e);
-
-		return e(CallbackBodyEditorInstance);
 	});
 });
 
