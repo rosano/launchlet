@@ -2,6 +2,7 @@ import * as Bool from './TypeBool/main.js';
 import * as Date from './TypeDate/main.js';
 import * as String from './TypeString/main.js';
 import * as URL from './TypeURL/main.js';
+
 import * as Command from './TypeCommand/main.js';
 
 import * as LCHCopyToClipboard from './LCHCopyToClipboard/main.js';
@@ -14,6 +15,7 @@ export const LCHLauncherStandardRecipes = function() {
 		Date,
 		String,
 		URL,
+		
 		Command,
 		
 		LCHCopyToClipboard,
