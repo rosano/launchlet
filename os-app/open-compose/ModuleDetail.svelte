@@ -4,10 +4,11 @@ import * as LCHFormulasAction from '../_shared/rs-modules/lch_members/action.js'
 import { OLSKLocalized, _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 import { storageClient, membersAll, memberSelected, modelDidChange } from './persistence.js';
 
-let editorInstance;
-let editorInitializeValue = function () {
-	editorInstance.setValue($memberSelected.LCHMemberBody);
-	editorInstance.getDoc().clearHistory();
+let editorInstance = null;
+let editorPostInitializeQueue = [];
+export let editorConfigure = function (inputData) {
+	// console.log(editorInstance ? 'run' : 'queue', inputData);
+	return editorInstance ? inputData() : editorPostInitializeQueue.push(inputData);
 };
 
 let _memberSelected;
@@ -18,17 +19,23 @@ memberSelected.subscribe(function (val) {
 		_memberSelected = val;
 	}
 
-	if (!val) {
+	if (!val && editorInstance) {
+		editorInstance.toTextArea();
 		editorInstance = null;
+	}
 
+	if (!val) {
 		return;
 	}
 
-	if (!editorInstance) {
-		return;
-	}
+	return editorConfigure(function () {
+		if (_LCHIsTestingBehaviour()) {
+			return document.querySelector('#LCHComposeDetailCallbackBodyInputDebug').value = val.LCHMemberBody;
+		}
 
-	editorInitializeValue();
+		editorInstance.setValue(val.LCHMemberBody);
+		editorInstance.getDoc().clearHistory();
+	});
 });
 
 let editorElement;
@@ -42,29 +49,37 @@ afterUpdate(function () {
 		return;
 	}
 
-	editorInstance = CodeMirror.fromTextArea(editorElement, {
-		mode: 'javascript',
+	(function setupEditor() {
+		editorInstance = CodeMirror.fromTextArea(editorElement, {
+			mode: 'javascript',
 
-		lineNumbers: true,
-		lineWrapping: true,
+			lineNumbers: true,
+			lineWrapping: true,
 
-		placeholder: OLSKLocalized('LCHComposeListItemFormInputFunctionBodyPlaceholder'),
-		
-	  keyMap: 'sublime',
-	});
+			placeholder: OLSKLocalized('LCHComposeListItemFormInputFunctionBodyPlaceholder'),
+			
+		  keyMap: 'sublime',
+		});
 
-	editorInitializeValue();
+		editorInstance.on('change', function (instance, changeObject) {
+			if (changeObject.origin === 'setValue') {
+				return;
+			}
 
-	editorInstance.on('change', function (instance, changeObject) {
-		if (changeObject.origin === 'setValue') {
-			return;
-		}
+			Object.assign($memberSelected, {
+				LCHMemberBody: instance.getValue(),
+			}); // @DependancySvelteIgnoresMutableChanges
 
-		Object.assign($memberSelected, {
-			LCHMemberBody: instance.getValue(),
-		}); // @DependancySvelteIgnoresMutableChanges
+			memberSave();
+		});
 
-		memberSave();
+		// console.log(editorPostInitializeQueue);
+	})();
+
+	editorPostInitializeQueue.splice(0, editorPostInitializeQueue.length).forEach(function(e) {
+		// console.log('run', e);
+
+		return e(editorInstance);
 	});
 });
 
@@ -89,14 +104,6 @@ async function memberSave() {
 	}
 
 	OLSKThrottle.OLSKThrottleTimeoutFor(throttleMap[$memberSelected.LCHMemberID]);
-}
-
-function debugTextAreaDidInput() {
-	Object.assign($memberSelected, {
-		LCHMemberBody: this.value,
-	}); // @DependancySvelteIgnoresMutableChanges
-
-	noteSave($memberSelected);
 }
 
 async function memberDelete() {
@@ -133,7 +140,7 @@ async function memberDelete() {
 		<br>
 
 		{#if _LCHIsTestingBehaviour()}
-			<textarea on:input={ debugTextAreaDidInput } id="LCHComposeDetailCallbackBodyInputDebug"></textarea>
+			<textarea bind:value={ $memberSelected.LCHMemberBody } on:input={ memberSave } id="LCHComposeDetailCallbackBodyInputDebug"></textarea>
 		{/if}
 		<textarea bind:this={ editorElement }></textarea>
 		<span>&#125;</span>

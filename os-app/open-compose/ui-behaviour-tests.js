@@ -188,6 +188,8 @@ describe('LCHComposeLanguage', function testLCHComposeLanguage() {
 				browser.assert.input(LCHComposeListItemFormInputURLFilter, '');
 
 				browser.fill(LCHComposeListItemFormInputInputData, 'charlie');
+				browser.fill(LCHComposeDetailCallbackBodyInputDebug, 'delta');
+				await browser.wait({ element: LCHComposeListItemFormInputIsAutomatic });
 			});
 
 			it('on fill LCHRecipeURLFilter', async function() {
@@ -216,7 +218,8 @@ describe('LCHComposeLanguage', function testLCHComposeLanguage() {
 			it('on create nth item', async function() {
 				await uCreateItem(browser);
 
-				deepEqual(browser.query(LCHComposeListItemFormInputName).value, '');
+				browser.assert.input(LCHComposeListItemFormInputName, '');
+				browser.assert.input(LCHComposeDetailCallbackBodyInputDebug, '');
 			});
 
 			it('on select 1st item', async function() {
@@ -226,6 +229,7 @@ describe('LCHComposeLanguage', function testLCHComposeLanguage() {
 				browser.assert.input(LCHComposeListItemFormInputName, 'bravo');
 				browser.assert.input(LCHComposeListItemFormInputSignature, 'alfa');
 				// editor value
+				browser.assert.input(LCHComposeDetailCallbackBodyInputDebug, 'delta');
 				browser.assert.input(LCHComposeListItemFormInputInputData, 'charlie');
 				browser.assert.input(LCHComposeListItemFormInputURLFilter, '/https?://(.*\.)?google\.com/i');
 			});
