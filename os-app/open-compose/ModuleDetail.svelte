@@ -124,49 +124,49 @@ async function memberDelete() {
 <div class="Container">
 
 {#if $memberSelected}
-	<header class="LCHSharedToolbar" id="LCHComposeDetailToolbar">
-		<button on:click={ memberDelete } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" id="LCHComposeDetailToolbarDiscardButton" title={ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }>{ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }</button>
-	</header>
-	<div class="FormContainer">
-		<p>
-			<input type="text" bind:value={ $memberSelected.LCHMemberName } on:input={ memberSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputNamePlaceholder') }" autofocus id="LCHComposeListItemFormInputName" />
-		</p>
+<header class="LCHSharedToolbar" id="LCHComposeDetailToolbar">
+	<button on:click={ memberDelete } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" id="LCHComposeDetailToolbarDiscardButton" title={ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }>{ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }</button>
+</header>
+<div class="FormContainer">
+	<p>
+		<input type="text" bind:value={ $memberSelected.LCHMemberName } on:input={ memberSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputNamePlaceholder') }" autofocus id="LCHComposeListItemFormInputName" />
+	</p>
 
-		<span>function (</span>
-		<input type="text" bind:value={ $memberSelected.LCHMemberArgs } placeholder="undefined" on:input={ memberSave } id="LCHComposeListItemFormInputInputData" />
-		<span>) &#123;</span>
-		<br>
+	<span>function (</span>
+	<input type="text" bind:value={ $memberSelected.LCHMemberArgs } placeholder="undefined" on:input={ memberSave } id="LCHComposeListItemFormInputInputData" />
+	<span>) &#123;</span>
+	<br>
 
-		<div class="LCHComposeDetailCallbackBody">
-			{#if _LCHIsTestingBehaviour()}
-				<textarea bind:value={ $memberSelected.LCHMemberBody } on:input={ memberSave } id="LCHComposeDetailCallbackBodyInputDebug"></textarea>
-			{/if}
-			<textarea bind:this={ CallbackBodyEditorElement }></textarea>
-		</div>
-		<span>&#125;</span>
-		<br>
-
-		<p>
-			<input type="text" bind:value={ $memberSelected.LCHMemberSignature } on:input={ memberSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputSignaturePlaceholder') }" id="LCHComposeListItemFormInputSignature" />
-		</p>
-
-		<p>
-			<input type="text" bind:value={ $memberSelected.LCHMemberURLFilter } on:input={ memberSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputURLFilterPlaceholder') }" id="LCHComposeListItemFormInputURLFilter" />
-		</p>
-
-		{#if $memberSelected.LCHMemberURLFilter }
-			<p>
-				<input type="checkbox" bind:checked={ $memberSelected.LCHMemberIsAutomatic } on:input={ memberSave } id="LCHComposeListItemFormInputIsAutomatic" />
-				<label for="LCHComposeListItemFormInputIsAutomatic">{ OLSKLocalized('LCHComposeListItemFormInputIsAutomaticText') }</label>
-			</p>
+	<div class="LCHComposeDetailCallbackBody">
+		{#if _LCHIsTestingBehaviour()}
+			<textarea bind:value={ $memberSelected.LCHMemberBody } on:input={ memberSave } id="LCHComposeDetailCallbackBodyInputDebug"></textarea>
 		{/if}
+		<textarea bind:this={ CallbackBodyEditorElement }></textarea>
 	</div>
+	<span>&#125;</span>
+	<br>
+
+	<p>
+		<input type="text" bind:value={ $memberSelected.LCHMemberSignature } on:input={ memberSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputSignaturePlaceholder') }" id="LCHComposeListItemFormInputSignature" />
+	</p>
+
+	<p>
+		<input type="text" bind:value={ $memberSelected.LCHMemberURLFilter } on:input={ memberSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputURLFilterPlaceholder') }" id="LCHComposeListItemFormInputURLFilter" />
+	</p>
+
+	{#if $memberSelected.LCHMemberURLFilter }
+		<p>
+			<input type="checkbox" bind:checked={ $memberSelected.LCHMemberIsAutomatic } on:input={ memberSave } id="LCHComposeListItemFormInputIsAutomatic" />
+			<label for="LCHComposeListItemFormInputIsAutomatic">{ OLSKLocalized('LCHComposeListItemFormInputIsAutomaticText') }</label>
+		</p>
+	{/if}
+</div>
 {/if}
 
 {#if !$memberSelected}
-	<div class="PlaceholderContainer">
-		<span>{ OLSKLocalized('LCHComposeDetailPlaceholderText') }</span>
-	</div>
+<div class="PlaceholderContainer">
+	<span>{ OLSKLocalized('LCHComposeDetailPlaceholderText') }</span>
+</div>
 {/if}
 
 </div>
