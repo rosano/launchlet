@@ -15,8 +15,11 @@ Object.entries({
 
 	LCHComposeDetailToolbarDiscardButton: '#LCHComposeDetailToolbarDiscardButton',
 
+	LCHComposeDetailFormContainer: '.FormContainer',
 	LCHComposeListItemFormInputName: '#LCHComposeListItemFormInputName',
 	LCHComposeListItemFormInputInputData: '#LCHComposeListItemFormInputInputData',
+	LCHComposeDetailCallbackBodyInput: '.CodeMirror',
+	LCHComposeDetailCallbackBodyInputDebug: '#LCHComposeDetailCallbackBodyInputDebug',
 	LCHComposeListItemFormInputSignature: '#LCHComposeListItemFormInputSignature',
 	LCHComposeListItemFormInputURLFilter: '#LCHComposeListItemFormInputURLFilter',
 	LCHComposeListItemFormInputIsAutomatic: '#LCHComposeListItemFormInputIsAutomatic',
@@ -50,6 +53,7 @@ describe('LCHComposeDiscovery', function testLCHComposeDiscovery() {
 		browser.assert.elements(LCHComposeDetailPlaceholderContainer, 1);
 
 		browser.assert.elements(LCHComposeDetailToolbar, 0);
+		browser.assert.elements(LCHComposeDetailFormContainer, 0);
 
 		browser.assert.elements(LCHComposeBuildLink, 1);
 		browser.assert.attribute(LCHComposeBuildLink, 'accesskey', 'r');
@@ -67,9 +71,11 @@ describe('LCHComposeDiscovery', function testLCHComposeDiscovery() {
 		browser.assert.elements(LCHComposeDetailToolbar, 1);
 		browser.assert.elements(LCHComposeDetailToolbarDiscardButton, 1);
 
+		browser.assert.elements(LCHComposeDetailFormContainer, 1);
 		browser.assert.elements(LCHComposeListItemFormInputName, 1);
 		browser.assert.elements(LCHComposeListItemFormInputInputData, 1);
-		// editor
+		browser.assert.elements(LCHComposeDetailCallbackBodyInput, 1);
+		browser.assert.elements(LCHComposeDetailCallbackBodyInputDebug, 1);
 		browser.assert.elements(LCHComposeListItemFormInputSignature, 1);
 		browser.assert.elements(LCHComposeListItemFormInputURLFilter, 1);
 		browser.assert.elements(LCHComposeListItemFormInputIsAutomatic, 0);

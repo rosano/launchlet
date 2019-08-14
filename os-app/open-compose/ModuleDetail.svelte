@@ -1,7 +1,7 @@
 <script>
 import * as LCHFormulasAction from '../_shared/rs-modules/lch_members/action.js';
 
-import { OLSKLocalized } from '../_shared/common/global.js';
+import { OLSKLocalized, _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 import { storageClient, membersAll, memberSelected, modelDidChange } from './persistence.js';
 
 let editorInstance;
@@ -91,6 +91,14 @@ async function memberSave() {
 	OLSKThrottle.OLSKThrottleTimeoutFor(throttleMap[$memberSelected.LCHMemberID]);
 }
 
+function debugTextAreaDidInput() {
+	Object.assign($memberSelected, {
+		LCHMemberBody: this.value,
+	}); // @DependancySvelteIgnoresMutableChanges
+
+	noteSave($memberSelected);
+}
+
 async function memberDelete() {
 	if (!window.confirm(OLSKLocalized('LCHComposeListItemDeletePromptText'))) {
 		return;
@@ -123,6 +131,10 @@ async function memberDelete() {
 		<input type="text" bind:value={ $memberSelected.LCHMemberArgs } placeholder="undefined" on:input={ memberSave } id="LCHComposeListItemFormInputInputData" />
 		<span>) &#123;</span>
 		<br>
+
+		{#if _LCHIsTestingBehaviour()}
+			<textarea on:input={ debugTextAreaDidInput } id="LCHComposeDetailCallbackBodyInputDebug"></textarea>
+		{/if}
 		<textarea bind:this={ editorElement }></textarea>
 		<span>&#125;</span>
 		<br>
