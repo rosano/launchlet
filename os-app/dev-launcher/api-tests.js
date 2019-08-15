@@ -1,7 +1,6 @@
 import { throws, rejects, deepEqual } from 'assert';
 
 import * as mainModule from './api.js';
-import { LCHTypeServiceSearchRecipe } from './recipes/TypeServiceSearch/main.js';
 
 const kTesting = {
 	StubRecipeObjectValid() {
@@ -398,6 +397,7 @@ describe('LCHRecipesModelIsTask', function testLCHRecipesModelIsTask() {
 
 });
 
+import { LCHTypeServiceSearchRecipe } from './recipes/TypeServiceSearch/main.js';
 describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertTypeServiceSearch() {
 
 	it('throws error if not array', function() {
@@ -423,6 +423,7 @@ describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertT
 			return `Search: ${ inputData }`;
 		})[0];
 
+
 		it('replaces with action', function() {
 			deepEqual(mainModule.LCHRecipesModelIsAction(item), true);
 		});
@@ -439,7 +440,7 @@ describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertT
 		context('LCHRecipeName', function() {
 
 			it('returns string', function() {
-				deepEqual(item.LCHRecipeName, 'Search: bravo');
+				deepEqual(item.LCHRecipeName, 'Search: alfa');
 			});
 			
 		});
