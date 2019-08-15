@@ -195,6 +195,7 @@ export const LCHLauncherConvertTypeServiceSearch = function(inputData, _stringCa
 			LCHRecipeCallback (inputData) {
 				return;
 			},
+			_LCHLauncherGenerated: true,
 		};
 	});
 };

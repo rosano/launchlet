@@ -432,6 +432,7 @@ describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertT
 				'LCHRecipeName',
 				'LCHRecipeInputTypes',
 				'LCHRecipeCallback',
+				'_LCHLauncherGenerated',
 			]);
 		});
 
@@ -459,6 +460,14 @@ describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertT
 
 			it('has one argument', function() {
 				deepEqual(item.LCHRecipeCallback.length, 1);
+			});
+			
+		});
+
+		context('_LCHLauncherGenerated', function() {
+
+			it('returns boolean', function() {
+				deepEqual(item._LCHLauncherGenerated, true);
 			});
 			
 		});
