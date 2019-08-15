@@ -50,7 +50,7 @@ describe('LCHLauncherResultListElements', function testLCHLauncherResultListElem
 
 });
 
-describe('LCHLauncherResultListText', function testLCHLauncherResultListText() {
+describe('LCHLauncherResultListLanguage', function testLCHLauncherResultListLanguage() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);

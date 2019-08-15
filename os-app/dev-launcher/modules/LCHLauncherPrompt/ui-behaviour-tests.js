@@ -64,7 +64,7 @@ describe('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
 
 });
 
-describe('LCHLauncherPromptText', function testLCHLauncherPromptText() {
+describe('LCHLauncherPromptLanguage', function testLCHLauncherPromptLanguage() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
