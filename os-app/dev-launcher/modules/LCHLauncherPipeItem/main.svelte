@@ -9,7 +9,7 @@ export let itemTitle = '';
 	padding: 4px;
 	
 	font-size: 8pt;
-	color: hsl(0, 0%, 30%);
+	color: hsl(0, 0%, 0%);
 }
 
 @media screen and (max-width: 760px) {
