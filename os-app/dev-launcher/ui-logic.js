@@ -64,7 +64,7 @@ export const LCHLauncherUIRecipesForMode = function (param1, param2) {
 			return false;
 		}
 		
-		return e;
+		return true;
 	});
 };
 
