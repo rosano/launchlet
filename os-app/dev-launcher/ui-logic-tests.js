@@ -96,14 +96,6 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 		}, /LCHErrorInputInvalid/);
 	});
 
-	it('returns inputData', function() {
-		deepEqual(mainModule.LCHLauncherUIRecipesForMode([{
-			LCHRecipeInputTypes: 'alfa',
-		}], mainModule.LCHLauncherModeCommit), [{
-			LCHRecipeInputTypes: 'alfa',
-		}]);
-	});
-
 	it('excludes if not object', function() {
 		deepEqual(mainModule.LCHLauncherUIRecipesForMode([null], mainModule.LCHLauncherModeCommit), []);
 	});
@@ -112,6 +104,53 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 		deepEqual(mainModule.LCHLauncherUIRecipesForMode([{
 			LCHRecipeInputTypes: 'alfa,bravo',
 		}], mainModule.LCHLauncherModeCommit), []);
+	});
+
+	context('LCHLauncherModeCommit', function() {
+
+		it('excludes all', function() {
+			deepEqual(mainModule.LCHLauncherUIRecipesForMode([{
+				LCHRecipeCallback () {},
+			}], mainModule.LCHLauncherModeCommit), []);
+		});
+
+		it('includes if Command', function() {
+			let item = {
+				LCHRecipeName: 'alfa',
+				LCHRecipeCallback () {},
+			};
+			deepEqual(mainModule.LCHLauncherUIRecipesForMode([item], mainModule.LCHLauncherModeCommit), [item]);
+		});
+
+		context('if Action', function() {
+			
+			it('excludes if multiple LCHRecipeInputTypes', function() {
+				deepEqual(mainModule.LCHLauncherUIRecipesForMode([{
+					LCHRecipeName: 'alfa',
+					LCHRecipeInputTypes: 'String,String',
+					LCHRecipeCallback (bravo, charlie) {},
+				}], mainModule.LCHLauncherModeCommit), []);
+			});
+			
+			it('excludes if LCHRecipeInputTypes not String', function() {
+				deepEqual(mainModule.LCHLauncherUIRecipesForMode([{
+					LCHRecipeName: 'alfa',
+					LCHRecipeInputTypes: 'bravo',
+					LCHRecipeCallback (charlie) {},
+				}], mainModule.LCHLauncherModeCommit), []);
+			});
+
+			it('includes', function() {
+				let item = {
+					LCHRecipeName: 'alfa',
+					LCHRecipeInputTypes: 'String',
+					LCHRecipeCallback (charlie) {},
+				};
+				deepEqual(mainModule.LCHLauncherUIRecipesForMode([item], mainModule.LCHLauncherModeCommit), [item]);
+			});
+
+		});
+
 	});
 
 });

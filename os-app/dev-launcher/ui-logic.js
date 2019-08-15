@@ -46,6 +46,7 @@ export const LCHLauncherModes = function () {
 	];
 };
 
+import { LCHRecipesModelIsCommand, LCHRecipesModelIsAction } from './api.js';
 export const LCHLauncherUIRecipesForMode = function (param1, param2) {
 	if (!Array.isArray(param1)) {
 		throw new Error('LCHErrorInputInvalid');
@@ -62,6 +63,24 @@ export const LCHLauncherUIRecipesForMode = function (param1, param2) {
 
 		if (typeof e.LCHRecipeInputTypes === 'string' && e.LCHRecipeInputTypes.includes(',')) {
 			return false;
+		}
+
+		if (param2 === LCHLauncherModeCommit) {
+			if (LCHRecipesModelIsCommand(e)) {
+				return true;
+			};
+
+			if (!LCHRecipesModelIsAction(e)) {
+				return false;
+			};
+
+			if (e.LCHRecipeCallback.length !== 1) {
+				return false;
+			};
+
+			if (e.LCHRecipeInputTypes !== 'String') {
+				return false;
+			};
 		}
 		
 		return true;
