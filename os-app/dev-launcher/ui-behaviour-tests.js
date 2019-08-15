@@ -1,4 +1,4 @@
-import { throws, deepEqual } from 'assert';
+import { deepEqual } from 'assert';
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
 
 
