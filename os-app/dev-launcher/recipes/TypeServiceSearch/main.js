@@ -3,15 +3,11 @@ export const LCHTypeServiceSearchCallback = function(inputData) {
 		return false;
 	}
 	
-	if (inputData.LCHRecipeInputTypes !== 'String') {
+	if (inputData.LCHRecipeCallback.length) {
 		return false;
 	}
 	
-	if (inputData.LCHRecipeCallback.length !== 1) {
-		return false;
-	}
-	
-	if (inputData.LCHRecipeOutputType !== 'URL') {
+	if (inputData.LCHRecipeOutputType !== 'ServiceSearchURLTemplate') {
 		return false;
 	}
 
@@ -20,10 +16,9 @@ export const LCHTypeServiceSearchCallback = function(inputData) {
 
 export const LCHTypeServiceSearchCanonicalExampleCallback = function() {
 	return {
-		LCHRecipeInputTypes: 'String',
-		LCHRecipeCallback (alfa) {},
-		LCHRecipeName: 'bravo',
-		LCHRecipeOutputType: 'URL',
+		LCHRecipeName: 'alfa',
+		LCHRecipeCallback () {},
+		LCHRecipeOutputType: 'ServiceSearchURLTemplate',
 	};
 };
 

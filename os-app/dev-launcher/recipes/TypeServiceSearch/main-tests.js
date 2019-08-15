@@ -10,25 +10,13 @@ describe('LCHTypeServiceSearchCallback', function testLCHTypeServiceSearchCallba
 		})), false);
 	});
 
-	it('returns false if LCHRecipeInputTypes not String', function() {
+	it('returns false if arguments', function() {
 		deepEqual(mainModule.LCHTypeServiceSearchCallback(Object.assign(mainModule.LCHTypeServiceSearchCanonicalExampleCallback(), {
-			LCHRecipeInputTypes: 'alfa',
+			LCHRecipeCallback (alfa) {},
 		})), false);
 	});
 
-	it('returns false if no arguments', function() {
-		deepEqual(mainModule.LCHTypeServiceSearchCallback(Object.assign(mainModule.LCHTypeServiceSearchCanonicalExampleCallback(), {
-			LCHRecipeCallback () {},
-		})), false);
-	});
-
-	it('returns false if more than one argument', function() {
-		deepEqual(mainModule.LCHTypeServiceSearchCallback(Object.assign(mainModule.LCHTypeServiceSearchCanonicalExampleCallback(), {
-			LCHRecipeCallback (alfa, bravo) {},
-		})), false);
-	});
-
-	it('returns false if LCHRecipeOutputType not URL', function() {
+	it('returns false if LCHRecipeOutputType not ServiceSearchURLTemplate', function() {
 		deepEqual(mainModule.LCHTypeServiceSearchCallback(Object.assign(mainModule.LCHTypeServiceSearchCanonicalExampleCallback(), {
 			LCHRecipeOutputType: 'alfa',
 		})), false);
@@ -46,10 +34,10 @@ describe('LCHTypeServiceSearchCanonicalExampleCallback', function testLCHTypeSer
 		deepEqual(typeof mainModule.LCHTypeServiceSearchCanonicalExampleCallback(), 'object');
 	});
 
-	context('LCHRecipeInputTypes', function() {
+	context('LCHRecipeName', function() {
 		
 		it('returns string', function() {
-			deepEqual(mainModule.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeInputTypes, 'String');
+			deepEqual(mainModule.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeName, 'alfa');
 		});
 
 	});
@@ -62,18 +50,10 @@ describe('LCHTypeServiceSearchCanonicalExampleCallback', function testLCHTypeSer
 
 	});
 
-	context('LCHRecipeName', function() {
-		
-		it('returns string', function() {
-			deepEqual(mainModule.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeName, 'bravo');
-		});
-
-	});
-
 	context('LCHRecipeOutputType', function() {
 		
 		it('returns string', function() {
-			deepEqual(mainModule.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeOutputType, 'URL');
+			deepEqual(mainModule.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeOutputType, 'ServiceSearchURLTemplate');
 		});
 
 	});
