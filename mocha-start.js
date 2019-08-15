@@ -52,6 +52,7 @@ let languageDictionary = {};
 
 	const pathPackage = require('path');
 	const OLSKInternational = require('OLSKInternational');
+	const OLSKString = require('OLSKString');
 
 	let baseDirectory = pathPackage.join(__dirname, 'os-app');
 	languageDictionary = require('glob').sync('*i18n*.y*(a)ml', {
@@ -70,6 +71,8 @@ let languageDictionary = {};
 	global.OLSKTestingLocalized = function(translationConstant, languageCode) {
 		return OLSKInternational.OLSKInternationalLocalizedStringWithTranslationKeyAndTranslationDictionary(translationConstant, languageDictionary[languageCode]);
 	};
+
+	global.OLSKTestingStringWithFormat = OLSKString.OLSKStringWithFormat;
 })();
 
 (function LCHMochaStorage() {
