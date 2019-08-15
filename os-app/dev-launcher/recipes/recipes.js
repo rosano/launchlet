@@ -1,6 +1,7 @@
 import * as Bool from './TypeBool/main.js';
 import * as Date from './TypeDate/main.js';
 import * as ServiceSearch from './TypeServiceSearch/main.js';
+import * as ServiceSearchURLTemplate from './TypeServiceSearchURLTemplate/main.js';
 import * as String from './TypeString/main.js';
 import * as URL from './TypeURL/main.js';
 
@@ -18,6 +19,7 @@ export const LCHLauncherStandardRecipes = function() {
 		Bool,
 		Date,
 		ServiceSearch,
+		ServiceSearchURLTemplate,
 		String,
 		URL,
 		
