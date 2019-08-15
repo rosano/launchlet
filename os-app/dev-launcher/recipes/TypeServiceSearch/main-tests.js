@@ -10,6 +10,12 @@ describe('LCHTypeServiceSearchCallback', function testLCHTypeServiceSearchCallba
 		})), false);
 	});
 
+	it('returns false if LCHRecipeInputTypes not String', function() {
+		deepEqual(mainModule.LCHTypeServiceSearchCallback(Object.assign(mainModule.LCHTypeServiceSearchCanonicalExampleCallback(), {
+			LCHRecipeInputTypes: 'alfa',
+		})), false);
+	});
+
 	it('returns false if no arguments', function() {
 		deepEqual(mainModule.LCHTypeServiceSearchCallback(Object.assign(mainModule.LCHTypeServiceSearchCanonicalExampleCallback(), {
 			LCHRecipeCallback () {},
@@ -38,6 +44,14 @@ describe('LCHTypeServiceSearchCanonicalExampleCallback', function testLCHTypeSer
 
 	it('returns object', function() {
 		deepEqual(typeof mainModule.LCHTypeServiceSearchCanonicalExampleCallback(), 'object');
+	});
+
+	context('LCHRecipeInputTypes', function() {
+		
+		it('returns string', function() {
+			deepEqual(mainModule.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeInputTypes, 'String');
+		});
+
 	});
 
 	context('LCHRecipeCallback', function() {
