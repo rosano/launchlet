@@ -14,7 +14,7 @@ onMount(function () {
 				return Object.entries(e).filter(function (e) {
 					if (typeof e[1] === 'string' && !e[1]) {
 						return false;
-					};
+					}
 
 					return true;
 				}).reduce(function (coll, item) {

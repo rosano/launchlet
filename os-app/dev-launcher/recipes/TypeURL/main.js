@@ -4,7 +4,7 @@ const URLParser = typeof _URLParser === 'function' ? _URLParser : _URLParser.def
 export const LCHTypeURLCallback = function(inputData) {
 	if (typeof inputData !== 'string') {
 		// throw new Error('LCHErrorInputInvalid');
-		return false
+		return false;
 	}
 
 	if (!(new URLParser(inputData)).hostname) {

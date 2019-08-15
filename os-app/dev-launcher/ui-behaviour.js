@@ -25,12 +25,12 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 					},
 				},
 				{
-				LCHRecipeCallback: function () {
-					document.querySelector('input').value = 'LCHPageFormulas';
-				},
-				LCHRecipeURLFilter: 'loc',
-				LCHRecipeIsAutomatic: true,
-			}
+					LCHRecipeCallback: function () {
+						document.querySelector('input').value = 'LCHPageFormulas';
+					},
+					LCHRecipeURLFilter: 'loc',
+					LCHRecipeIsAutomatic: true,
+				}
 			]);
 		};
 	},

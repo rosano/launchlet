@@ -432,7 +432,7 @@ describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertT
 				'LCHRecipeName',
 				'LCHRecipeInputTypes',
 				'LCHRecipeCallback',
-				]);
+			]);
 		});
 
 		context('LCHRecipeName', function() {
@@ -1042,7 +1042,7 @@ describe('LCHAPIExecuteRecipe', function testLCHAPIExecuteRecipe() {
 	it('resolves promise if not async', async function() {
 		deepEqual(await mainModule.LCHAPIExecuteRecipe({
 			LCHRecipeCallback() {
-				return this.api.fn('alfa')()
+				return this.api.fn('alfa')();
 			},
 		}, [], mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
 			LCHRecipeCallback() {

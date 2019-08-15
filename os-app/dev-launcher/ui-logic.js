@@ -53,7 +53,7 @@ export const LCHLauncherUIRecipesForMode = function (param1, param2) {
 
 	if (LCHLauncherModes().indexOf(param2) === -1) {
 		throw new Error('LCHErrorInputInvalid');
-	};
+	}
 
 	return param1.filter(function (e) {
 		if (typeof e !== 'object' || e === null) {
@@ -120,7 +120,7 @@ export const LCHLauncherKeyboardEventIsTextInput = function (inputData) {
 		inputData.shiftKey,
 		inputData.ctrlKey,
 		inputData.altKey,
-		].indexOf(true) !== -1) {
+	].indexOf(true) !== -1) {
 		return false;
 	}
 
@@ -139,9 +139,9 @@ export const LCHLauncherKeyboardEventIsTextInput = function (inputData) {
 		'.',
 		',',
 		' ',
-		].indexOf(inputData.key) !== -1) {
+	].indexOf(inputData.key) !== -1) {
 		return false;
-	};
+	}
 	
 	return true;
 };

@@ -163,11 +163,11 @@ describe('LCHComposeLanguage', function testLCHComposeLanguage() {
 			});
 
 			it('localizes interface', function() {
-				browser.assert.attribute(LCHComposeCreateButton, 'title', uLocalized('LCHComposeToolbarCreateButtonText'))
+				browser.assert.attribute(LCHComposeCreateButton, 'title', uLocalized('LCHComposeToolbarCreateButtonText'));
 
-				browser.assert.text(LCHComposeDetailPlaceholderContainer, uLocalized('LCHComposeDetailPlaceholderText'))
+				browser.assert.text(LCHComposeDetailPlaceholderContainer, uLocalized('LCHComposeDetailPlaceholderText'));
 
-				browser.assert.text(LCHComposeBuildLink, 'Try it')
+				browser.assert.text(LCHComposeBuildLink, 'Try it');
 				// deepEqual(browser.query(LCHComposeBuildLink).href.slice(0, 11), 'javascript:');
 				// deepEqual(item.href.includes('Launchlet'), true);
 			});
@@ -245,7 +245,7 @@ describe('LCHComposeLanguage', function testLCHComposeLanguage() {
 			it('on delete', async function() {
 				deepEqual((await browser.OLSKConfirm(async function () {
 					browser.pressButton(LCHComposeDetailToolbarDiscardButton);
-				})).question, uLocalized('LCHComposeListItemDeletePromptText'))
+				})).question, uLocalized('LCHComposeListItemDeletePromptText'));
 			});
 
 		});

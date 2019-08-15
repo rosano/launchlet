@@ -10,7 +10,7 @@ describe('LCHSearchWithCallback', function testLCHSearchWithCallback() {
 				fn () {
 					return function (inputData) {
 						return [inputData, 'bravo'];
-					}
+					};
 				},
 			},
 		})('alfa', {

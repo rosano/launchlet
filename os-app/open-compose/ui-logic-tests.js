@@ -36,7 +36,7 @@ describe('LCHComposeLogicValidCompileTokens', function testLCHComposeLogicValidC
 			'LCHCompileToken_AppStyle',
 			'LCHCompileToken_DocumenntObjects',
 			'LCHCompileToken_AppLanguageCode',
-			]);
+		]);
 	});
 
 });

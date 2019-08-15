@@ -1,11 +1,11 @@
 export const LCHTypeDateCallback = function(inputData) {
 	if (!(inputData instanceof Date)) {
 		return false;
-	};
+	}
 
 	if (Number.isNaN(inputData.getTime())) {
 		return false;
-	};
+	}
 
 	return true;
 };

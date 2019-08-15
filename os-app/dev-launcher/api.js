@@ -187,7 +187,7 @@ export const LCHLauncherConvertTypeServiceSearch = function(inputData, _stringCa
 	}).map(function (e) {
 		if (!LCHTypeServiceSearchRecipe().LCHRecipeCallback(e)) {
 			return e;
-		};
+		}
 
 		return {
 			LCHRecipeName: _stringCallback(e.LCHRecipeName),
@@ -427,9 +427,9 @@ export const LCHAPIExecuteComposition = async function(inputData, api = {}) {
 
 	return LCHAPIExecuteRecipe(inputData.LCHCompositionAction, [
 		await LCHAPIExecuteRecipe(inputData.LCHCompositionSubjectPrimary, [], api),
-		].concat(inputData.LCHCompositionSubjectSecondary ? [
-			await LCHAPIExecuteRecipe(inputData.LCHCompositionSubjectSecondary, [], api),
-			] : []), api);
+	].concat(inputData.LCHCompositionSubjectSecondary ? [
+		await LCHAPIExecuteRecipe(inputData.LCHCompositionSubjectSecondary, [], api),
+	] : []), api);
 };
 
 export const LCHAPIExecuteRecipe = async function(param1, param2 = [], param3 = {}) {
@@ -450,7 +450,7 @@ export const LCHAPIExecuteRecipe = async function(param1, param2 = [], param3 = 
 	if (api._LCHAPIExecuteRecipePrior) {
 		api._LCHAPIExecuteRecipePrior(param1);
 		delete api._LCHAPIExecuteRecipePrior;
-	};
+	}
 
 	return Promise.resolve(param1.LCHRecipeCallback.apply({
 		api: api,

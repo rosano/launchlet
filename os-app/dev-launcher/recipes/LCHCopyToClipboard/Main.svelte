@@ -43,7 +43,7 @@ onMount(function () {
 	
 	if (_LCHIsTestingBehaviour()) {
 		return;
-	};
+	}
 
 	clipboardButton.click();
 });

@@ -670,7 +670,7 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 				await browser.wait({element: LCHLauncherActionPrompt});
 				
 				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
-			})
+			});
 
 		});
 
