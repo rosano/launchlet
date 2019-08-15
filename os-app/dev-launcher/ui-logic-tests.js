@@ -122,7 +122,7 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 			deepEqual(mainModule.LCHLauncherUIRecipesForMode([item], mainModule.LCHLauncherModeCommit), [item]);
 		});
 
-		context('if Action', function() {
+		context.skip('if Action', function() {
 			
 			it('excludes if multiple LCHRecipeInputTypes', function() {
 				deepEqual(mainModule.LCHLauncherUIRecipesForMode([{

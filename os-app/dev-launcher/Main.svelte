@@ -1,5 +1,5 @@
 <script>
-import { OLSKLocalized } from './_shared.js';
+import { OLSKLocalized, OLSKFormatted } from './_shared.js';
 import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 
 import LCHLauncherPrompt from './modules/LCHLauncherPrompt/main.svelte';
@@ -58,10 +58,14 @@ import { LCHRecipesModelErrorsFor } from './api.js';
 
 import {
 	LCHAPIObjectFor,
+	LCHLauncherConvertTypeServiceSearch,
 	LCHAPITypeEquivalenceMapForRecipes,
 } from './api.js';
 import { LCHLauncherStandardRecipes } from './recipes/recipes.js';
-const allRecipes = LCHLauncherStandardRecipes().concat(dataObjects);
+const allRecipes = LCHLauncherConvertTypeServiceSearch(LCHLauncherStandardRecipes().concat(dataObjects), function (inputData) {
+	return OLSKFormatted(OLSKLocalized('LCHLauncherTestConvertTypeServiceSearchTextFormat'), inputData);
+});
+
 const api = Object.assign(LCHAPIObjectFor(allRecipes), {
 	_LCHAPIExecuteRecipePrior (inputData) {
 		if (!inputData.LCHRecipeStyle) {
@@ -126,14 +130,15 @@ async function apiStart(inputData) {
 	});
 }
 
-let _PromptObjects = [];
-let _PromptActiveIndex = 0;
-let _AllActions = allRecipes.filter(LCHRecipesModelIsAction);
 import {
 	LCHRecipesModelIsSubject,
 	LCHRecipesModelIsAction,
 	LCHRecipesModelIsCommand,
 } from './api.js';
+import { LCHLauncherUIRecipesForMode } from './ui-logic.js';
+let _PromptObjects = [];
+let _PromptActiveIndex = 0;
+let _AllActions = allRecipes.filter(LCHRecipesModelIsAction);
 (function StartPromptObjects() {
 	if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
 		 return _PromptObjects.push(...[{
@@ -148,7 +153,7 @@ import {
 			LCHPromptFilterText: '',
 			LCHPromptMatchStop: false,
 			LCHPromptResultsThrottle: undefined,
-		 }, {
+		}, {
 			LCHPromptClass: 'LCHLauncherActionPrompt',
 			LCHPromptHeading: OLSKLocalized('LCHLauncherActionPromptHeadingText'),
 			LCHPromptItems: [],
@@ -164,7 +169,7 @@ import {
 	_PromptObjects.push({
 		LCHPromptClass: 'LCHLauncherFilterPrompt',
 		LCHPromptItems: [],
-		LCHPromptItemsAll: allRecipes.filter(LCHRecipesModelIsCommand),
+		LCHPromptItemsAll: LCHLauncherUIRecipesForMode(allRecipes, LCHOptionsObject().runMode),
 		LCHPromptFilterText: '',
 		LCHPromptResultsThrottle: false,
 	 });

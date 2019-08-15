@@ -79,6 +79,11 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 					LCHRecipeName: 'LCHLauncherTestLongStringAlfaBravoCharlieDeltaEchoFoxtrotGolfHotel',
 					LCHRecipeCallback: function () {},
 					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestLongString',
+				}, {
+					LCHRecipeName: 'LCHLauncherTestConvertTypeServiceSearch',
+					LCHRecipeCallback: function (alfa) {},
+					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestConvertTypeServiceSearch',
+					LCHRecipeOutputType: 'URL',
 				}]),
 				completionHandler () {
 					app.$destroy();

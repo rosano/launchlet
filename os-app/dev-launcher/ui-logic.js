@@ -66,25 +66,26 @@ export const LCHLauncherUIRecipesForMode = function (param1, param2) {
 		}
 
 		if (param2 === LCHLauncherModeCommit) {
-			if (LCHRecipesModelIsCommand(e)) {
-				return true;
-			};
+			return LCHRecipesModelIsCommand(e);
+			// if (LCHRecipesModelIsCommand(e)) {
+			// 	return true;
+			// };
 
-			if (!LCHRecipesModelIsAction(e)) {
-				return false;
-			};
+			// if (!LCHRecipesModelIsAction(e)) {
+			// 	return false;
+			// };
 
-			if (e.LCHRecipeCallback.length !== 1) {
-				return false;
-			};
+			// if (e.LCHRecipeCallback.length !== 1) {
+			// 	return false;
+			// };
 
-			if (e.LCHRecipeInputTypes !== 'String') {
-				return false;
-			};
+			// if (e.LCHRecipeInputTypes !== 'String') {
+			// 	return false;
+			// };
 
-			if (e._LCHLauncherGenerated !== true) {
-				return false;
-			};
+			// if (e._LCHLauncherGenerated !== true) {
+			// 	return false;
+			// };
 		}
 
 		if (param2 === LCHLauncherModePreview) {

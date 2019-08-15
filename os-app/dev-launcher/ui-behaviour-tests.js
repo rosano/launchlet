@@ -307,9 +307,22 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 
 				browser.click(LCHLauncherListItem);
 
-				browser.assert.input('#LCHLauncherTestInputSingleLine', 'xylophone');
-
 				browser.assert.elements('body style', 1);
+			});
+
+		});
+
+		context.skip('LCHLauncherTestConvertTypeServiceSearch', function () {
+
+			before(function() {
+				return browser.visit(`${ kDefaultRoutePath }?LCHLauncherTestConvertTypeServiceSearch`);
+			});
+
+			it('shows one item', async function() {
+				browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestConvertTypeServiceSearch');
+				await browser.wait({element: LCHLauncherListItem});
+
+				browser.assert.elements(LCHLauncherListItem, 1);
 			});
 
 		});
@@ -327,6 +340,8 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 			const uLocalized = function (inputData) {
 				return OLSKTestingLocalized(inputData, languageCode);
 			};
+
+			const uStringWithFormat = OLSKTestingStringWithFormat;
 
 			context('shared', function () {
 
@@ -378,6 +393,21 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 						browser.click(LCHLauncherListItem);
 
 						browser.assert.text('body style', 'body { background: red; }');
+					});
+
+				});
+
+				context.skip('LCHLauncherTestConvertTypeServiceSearch', function () {
+
+					before(function() {
+						return browser.visit(`${ kDefaultRoutePath }?LCHLauncherTestConvertTypeServiceSearch`);
+					});
+
+					it('converts recipe', async function() {
+						browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestConvertTypeServiceSearch');
+						await browser.wait({element: LCHLauncherListItem});
+
+						browser.assert.text(LCHLauncherListItem, uStringWithFormat(uLocalized('LCHLauncherTestConvertTypeServiceSearchTextFormat'), 'LCHLauncherTestConvertTypeServiceSearch'));
 					});
 
 				});

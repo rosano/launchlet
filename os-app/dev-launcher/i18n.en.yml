@@ -3,3 +3,4 @@ LCHLauncherInputPlaceholderPreview: Type to filter
 LCHLauncherSubjectPromptPlaceholderText: Type to search
 LCHLauncherSubjectPromptHeadingText: Subject
 LCHLauncherActionPromptHeadingText: Action
+LCHLauncherTestConvertTypeServiceSearchTextFormat: 'Search: %@'
