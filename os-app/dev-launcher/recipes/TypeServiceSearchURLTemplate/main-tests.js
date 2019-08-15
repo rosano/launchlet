@@ -9,27 +9,27 @@ describe('LCHTypeServiceSearchURLTemplateCallback', function testLCHTypeServiceS
 	});
 
 	it('returns false if no token match', function() {
-		deepEqual(mainModule.LCHTypeServiceSearchURLTemplateCallback('http://example.com?q=LCH+SEARCH+TOKE'), false);
+		deepEqual(mainModule.LCHTypeServiceSearchURLTemplateCallback('http://example.com?q=LCHSEARCHTOKEN1+LCHSEARCHTOKEN'), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mainModule.LCHTypeServiceSearchURLTemplateCallback('http://example.com?q=LCH+SEARCH+TOKEN'), true);
+		deepEqual(mainModule.LCHTypeServiceSearchURLTemplateCallback('http://example.com?q=LCHSEARCHTOKEN1+LCHSEARCHTOKEN2'), true);
 	});
 
 	it('matches +', function() {
-		deepEqual(mainModule.LCHTypeServiceSearchURLTemplateCallback('http://example.com?q=LCH+SEARCH+TOKEN'), true);
+		deepEqual(mainModule.LCHTypeServiceSearchURLTemplateCallback('http://example.com?q=LCHSEARCHTOKEN1+LCHSEARCHTOKEN2'), true);
 	});
 
 	it('matches space', function() {
-		deepEqual(mainModule.LCHTypeServiceSearchURLTemplateCallback('http://example.com?q=LCH SEARCH TOKEN'), true);
+		deepEqual(mainModule.LCHTypeServiceSearchURLTemplateCallback('http://example.com?q=LCHSEARCHTOKEN1 LCHSEARCHTOKEN2'), true);
 	});
 
 	it('matches encoded space', function() {
-		deepEqual(mainModule.LCHTypeServiceSearchURLTemplateCallback('http://example.com?q=LCH%20SEARCH%20TOKEN'), true);
+		deepEqual(mainModule.LCHTypeServiceSearchURLTemplateCallback('http://example.com?q=LCHSEARCHTOKEN1%20LCHSEARCHTOKEN2'), true);
 	});
 
 	it('matches lowercase', function() {
-		deepEqual(mainModule.LCHTypeServiceSearchURLTemplateCallback('http://example.com?q=lch+search+token'), true);
+		deepEqual(mainModule.LCHTypeServiceSearchURLTemplateCallback('http://example.com?q=lchsearchtoken1+lchsearchtoken2'), true);
 	});
 
 });
@@ -37,7 +37,7 @@ describe('LCHTypeServiceSearchURLTemplateCallback', function testLCHTypeServiceS
 describe('LCHTypeStringCanonicalExampleCallback', function testLCHTypeStringCanonicalExampleCallback() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHTypeStringCanonicalExampleCallback(), 'http://example.com?q=LCH+SEARCH+TOKEN');
+		deepEqual(mainModule.LCHTypeStringCanonicalExampleCallback(), 'http://example.com?q=LCHSEARCHTOKEN1+LCHSEARCHTOKEN2');
 	});
 
 });

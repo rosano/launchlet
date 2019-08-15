@@ -23,15 +23,15 @@ describe('LCHSearchWithURLFrom', function testLCHSearchWithURLFrom() {
 	describe('search token', function() {
 
 		it('replaces with param2', function() {
-			deepEqual(mainModule.LCHSearchWithURLFrom('alfa?LCH+SEARCH+TOKEN', 'bravo'), 'alfa?bravo');
+			deepEqual(mainModule.LCHSearchWithURLFrom('alfa?LCHSEARCHTOKEN1+LCHSEARCHTOKEN2', 'bravo'), 'alfa?bravo');
 		});
 
 		it('substitutes delimiters', function() {
-			deepEqual(mainModule.LCHSearchWithURLFrom('LCH+SEARCH+TOKEN', 'bravo charlie'), 'bravo+charlie');
+			deepEqual(mainModule.LCHSearchWithURLFrom('LCHSEARCHTOKEN1+LCHSEARCHTOKEN2', 'bravo charlie'), 'bravo+charlie');
 		});
 
 		it('matches %20', function() {
-			deepEqual(mainModule.LCHSearchWithURLFrom('LCH%20SEARCH%20TOKEN', 'bravo charlie'), 'bravo%20charlie');
+			deepEqual(mainModule.LCHSearchWithURLFrom('LCHSEARCHTOKEN1%20LCHSEARCHTOKEN2', 'bravo charlie'), 'bravo%20charlie');
 		});
 
 	});

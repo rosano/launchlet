@@ -7,7 +7,7 @@ export const LCHSearchWithURLFrom = function(param1, param2) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	let match = param1.match(/LCH(.*)SEARCH(.*)TOKEN/i);
+	let match = param1.match(/LCHSEARCHTOKEN1(.*)LCHSEARCHTOKEN2/i);
 
 	if (!match || !match[1]) {
 		return param1;
