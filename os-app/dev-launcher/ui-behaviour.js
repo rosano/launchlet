@@ -72,16 +72,12 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 					LCHRecipeIsAutomatic: true,
 				}, {
 					LCHRecipeName: 'LCHLauncherTestStyle',
-					LCHRecipeCallback: function () {
-						document.querySelector('input').value = 'xylophone';
-					},
+					LCHRecipeCallback: function () {},
 					LCHRecipeStyle: 'body { background: red; }',
 					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestStyle',
 				}, {
 					LCHRecipeName: 'LCHLauncherTestLongStringAlfaBravoCharlieDeltaEchoFoxtrotGolfHotel',
-					LCHRecipeCallback: function () {
-						document.querySelector('input').value = 'xylophone';
-					},
+					LCHRecipeCallback: function () {},
 					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestLongString',
 				}]),
 				completionHandler () {
