@@ -629,15 +629,7 @@ input {
 	overflow: scroll;
 }
 
-.ListItem {
-	padding: 5px;
-
-	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
-	font-weight: bold;
-
-	/* Behaviour */
-	cursor: pointer;
-
+.Container :global(.LCHLauncherResultListItem) {
 	/* CapWidth */
 	overflow: hidden;
 	white-space: nowrap;
@@ -711,7 +703,6 @@ input {
 .LCHLauncherPromptSelected :global(.LCHLauncherZoneInputBezel), .LCHLauncherPromptSelected :global(.LCHLauncherResultListItemSelected) {
 	background: hsl(0, 0%, 80%);
 }
-
 
 }
 </style>
