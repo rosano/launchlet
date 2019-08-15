@@ -24,7 +24,7 @@ export const LCHSearchWithRecipe = function() {
 	return {
 		LCHRecipeName: 'Search With',
 		LCHRecipeSignature: 'LCHSearchWith',
-		LCHRecipeInputTypes: 'String,ServiceSearch',
+		LCHRecipeInputTypes: 'String,ServiceSearchURLTemplate',
 		LCHRecipeCallback: LCHSearchWithCallback,
 	};
 };

@@ -64,7 +64,7 @@ describe('LCHSearchWithRecipe', function testLCHSearchWithRecipe() {
 		deepEqual(mainModule.LCHSearchWithRecipe(), {
 			LCHRecipeName: 'Search With',
 			LCHRecipeSignature: 'LCHSearchWith',
-			LCHRecipeInputTypes: 'String,ServiceSearch',
+			LCHRecipeInputTypes: 'String,ServiceSearchURLTemplate',
 			LCHRecipeCallback: mainModule.LCHSearchWithCallback,
 		});
 	});
