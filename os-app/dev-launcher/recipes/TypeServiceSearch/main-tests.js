@@ -5,45 +5,45 @@ import * as mainModule from './main.js';
 describe('LCHTypeServiceSearchCallback', function testLCHTypeServiceSearchCallback() {
 
 	it('returns false if no LCHRecipeName', function() {
-		deepEqual(mainModule.LCHTypeServiceSearchCallback(Object.assign(mainModule.LCHTypeStringCanonicalExampleCallback(), {
+		deepEqual(mainModule.LCHTypeServiceSearchCallback(Object.assign(mainModule.LCHTypeServiceSearchCanonicalExampleCallback(), {
 			LCHRecipeName: undefined,
 		})), false);
 	});
 
 	it('returns false if no arguments', function() {
-		deepEqual(mainModule.LCHTypeServiceSearchCallback(Object.assign(mainModule.LCHTypeStringCanonicalExampleCallback(), {
+		deepEqual(mainModule.LCHTypeServiceSearchCallback(Object.assign(mainModule.LCHTypeServiceSearchCanonicalExampleCallback(), {
 			LCHRecipeCallback () {},
 		})), false);
 	});
 
 	it('returns false if more than one argument', function() {
-		deepEqual(mainModule.LCHTypeServiceSearchCallback(Object.assign(mainModule.LCHTypeStringCanonicalExampleCallback(), {
+		deepEqual(mainModule.LCHTypeServiceSearchCallback(Object.assign(mainModule.LCHTypeServiceSearchCanonicalExampleCallback(), {
 			LCHRecipeCallback (alfa, bravo) {},
 		})), false);
 	});
 
 	it('returns false if LCHRecipeOutputType not URL', function() {
-		deepEqual(mainModule.LCHTypeServiceSearchCallback(Object.assign(mainModule.LCHTypeStringCanonicalExampleCallback(), {
+		deepEqual(mainModule.LCHTypeServiceSearchCallback(Object.assign(mainModule.LCHTypeServiceSearchCanonicalExampleCallback(), {
 			LCHRecipeOutputType: 'alfa',
 		})), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mainModule.LCHTypeServiceSearchCallback(mainModule.LCHTypeStringCanonicalExampleCallback()), true);
+		deepEqual(mainModule.LCHTypeServiceSearchCallback(mainModule.LCHTypeServiceSearchCanonicalExampleCallback()), true);
 	});
 
 });
 
-describe('LCHTypeStringCanonicalExampleCallback', function testLCHTypeStringCanonicalExampleCallback() {
+describe('LCHTypeServiceSearchCanonicalExampleCallback', function testLCHTypeServiceSearchCanonicalExampleCallback() {
 
 	it('returns object', function() {
-		deepEqual(typeof mainModule.LCHTypeStringCanonicalExampleCallback(), 'object');
+		deepEqual(typeof mainModule.LCHTypeServiceSearchCanonicalExampleCallback(), 'object');
 	});
 
 	context('LCHRecipeCallback', function() {
 		
 		it('returns function', function() {
-			deepEqual(typeof mainModule.LCHTypeStringCanonicalExampleCallback().LCHRecipeCallback, 'function');
+			deepEqual(typeof mainModule.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeCallback, 'function');
 		});
 
 	});
@@ -51,7 +51,7 @@ describe('LCHTypeStringCanonicalExampleCallback', function testLCHTypeStringCano
 	context('LCHRecipeName', function() {
 		
 		it('returns string', function() {
-			deepEqual(mainModule.LCHTypeStringCanonicalExampleCallback().LCHRecipeName, 'bravo');
+			deepEqual(mainModule.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeName, 'bravo');
 		});
 
 	});
@@ -59,7 +59,7 @@ describe('LCHTypeStringCanonicalExampleCallback', function testLCHTypeStringCano
 	context('LCHRecipeOutputType', function() {
 		
 		it('returns string', function() {
-			deepEqual(mainModule.LCHTypeStringCanonicalExampleCallback().LCHRecipeOutputType, 'URL');
+			deepEqual(mainModule.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeOutputType, 'URL');
 		});
 
 	});
@@ -71,10 +71,10 @@ describe('LCHTypeServiceSearchRecipe', function testLCHTypeServiceSearchRecipe()
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHTypeServiceSearchRecipe(), {
 			LCHRecipeName: 'Search Service',
-			LCHRecipeSignature: 'ServiceSearch',
 			LCHRecipeCallback: mainModule.LCHTypeServiceSearchCallback,
 			LCHRecipeOutputType: 'Bool',
-			LCHRecipeOutputTypeCanonicalExampleCallback: mainModule.LCHTypeStringCanonicalExampleCallback,
+			LCHRecipeOutputTypeCanonicalExampleCallback: mainModule.LCHTypeServiceSearchCanonicalExampleCallback,
+			LCHRecipeSignature: 'ServiceSearch',
 		});
 	});
 

@@ -14,7 +14,7 @@ export const LCHTypeServiceSearchCallback = function(inputData) {
 	return true;
 };
 
-export const LCHTypeStringCanonicalExampleCallback = function() {
+export const LCHTypeServiceSearchCanonicalExampleCallback = function() {
 	return {
 		LCHRecipeCallback (alfa) {},
 		LCHRecipeName: 'bravo',
@@ -28,6 +28,6 @@ export const LCHTypeServiceSearchRecipe = function() {
 		LCHRecipeSignature: 'ServiceSearch',
 		LCHRecipeCallback: LCHTypeServiceSearchCallback,
 		LCHRecipeOutputType: 'Bool',
-		LCHRecipeOutputTypeCanonicalExampleCallback: LCHTypeStringCanonicalExampleCallback,
+		LCHRecipeOutputTypeCanonicalExampleCallback: LCHTypeServiceSearchCanonicalExampleCallback,
 	};
 };
