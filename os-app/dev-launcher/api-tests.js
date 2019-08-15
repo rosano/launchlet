@@ -1,6 +1,7 @@
 import { throws, rejects, deepEqual } from 'assert';
 
 import * as mainModule from './api.js';
+import { LCHTypeServiceSearchRecipe } from './recipes/TypeServiceSearch/main.js';
 
 const kTesting = {
 	StubRecipeObjectValid() {
@@ -393,6 +394,75 @@ describe('LCHRecipesModelIsTask', function testLCHRecipesModelIsTask() {
 
 	it('returns true', function() {
 		deepEqual(mainModule.LCHRecipesModelIsTask(kTesting.StubRecipeObjectTask()), true);
+	});
+
+});
+
+describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertTypeServiceSearch() {
+
+	it('throws error if not array', function() {
+		throws(function() {
+			mainModule.LCHLauncherConvertTypeServiceSearch(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns inputData', function() {
+		let item = Object.assign(LCHTypeServiceSearchRecipe().LCHRecipeOutputTypeCanonicalExampleCallback(), {
+			LCHRecipeOutputType: 'alfa',
+		});
+		deepEqual(mainModule.LCHLauncherConvertTypeServiceSearch([item]), [item]);
+	});
+
+	it('excludes if not object', function() {
+		deepEqual(mainModule.LCHLauncherConvertTypeServiceSearch([null]), []);
+	});
+
+	context('TypeServiceSearch', function() {
+
+		const item = mainModule.LCHLauncherConvertTypeServiceSearch([LCHTypeServiceSearchRecipe().LCHRecipeOutputTypeCanonicalExampleCallback()], function (inputData) {
+			return `Search: ${ inputData }`;
+		})[0];
+
+		it('replaces with action', function() {
+			deepEqual(mainModule.LCHRecipesModelIsAction(item), true);
+		});
+
+		it('contains only specified fields', function() {
+			deepEqual(Object.keys(item), [
+				'LCHRecipeName',
+				'LCHRecipeInputTypes',
+				'LCHRecipeCallback',
+				]);
+		});
+
+		context('LCHRecipeName', function() {
+
+			it('returns string', function() {
+				deepEqual(item.LCHRecipeName, 'Search: bravo');
+			});
+			
+		});
+
+		context('LCHRecipeInputTypes', function() {
+
+			it('returns string', function() {
+				deepEqual(item.LCHRecipeInputTypes, 'String');
+			});
+			
+		});
+
+		context('LCHRecipeCallback', function() {
+
+			it('returns function', function() {
+				deepEqual(typeof item.LCHRecipeCallback, 'function');
+			});
+
+			it('has one argument', function() {
+				deepEqual(item.LCHRecipeCallback.length, 1);
+			});
+			
+		});
+
 	});
 
 });

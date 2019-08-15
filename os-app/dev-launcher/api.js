@@ -172,6 +172,33 @@ export const LCHRecipesModelIsTask = function(inputData) {
 	return true;
 };
 
+import { LCHTypeServiceSearchRecipe } from './recipes/TypeServiceSearch/main.js';
+export const LCHLauncherConvertTypeServiceSearch = function(inputData, _stringCallback) {
+	if (!Array.isArray(inputData)) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	return inputData.filter(function (e) {
+		if (typeof e !== 'object' || e === null) {
+			return false;
+		}
+		
+		return true;
+	}).map(function (e) {
+		if (!LCHTypeServiceSearchRecipe().LCHRecipeCallback(e)) {
+			return e;
+		};
+
+		return {
+			LCHRecipeName: _stringCallback(e.LCHRecipeName),
+			LCHRecipeInputTypes: 'String',
+			LCHRecipeCallback (inputData) {
+				return;
+			},
+		};
+	});
+};
+
 export const LCHRecipesModelActionTakesObject = function(inputData) {
 	if (LCHRecipesModelErrorsFor(inputData)) {
 		throw new Error('LCHErrorInputInvalid');
