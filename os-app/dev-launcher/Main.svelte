@@ -401,10 +401,7 @@ function handleDidFinish() {
 	return completionHandler();
 }
 
-import {
-	LCHLauncherKeyboardEventIsTextInput,
-	LCHLauncherConstrainIndex,
-} from './ui-logic.js';
+import { LCHLauncherKeyboardEventIsTextInput } from './ui-logic.js';
 function handleKeydown(event) {
 	const handlerFunctions = {
 		Escape () {
