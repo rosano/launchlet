@@ -82,6 +82,40 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 
 });
 
+describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode() {
+
+	it('throws error if param1 not array', function() {
+		throws(function() {
+			mainModule.LCHLauncherUIRecipesForMode(null, mainModule.LCHLauncherModeCommit);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('throws error if param2 not valid', function() {
+		throws(function() {
+			mainModule.LCHLauncherUIRecipesForMode([], 'alfa');
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns inputData', function() {
+		deepEqual(mainModule.LCHLauncherUIRecipesForMode([{
+			LCHRecipeInputTypes: 'alfa',
+		}], mainModule.LCHLauncherModeCommit), [{
+			LCHRecipeInputTypes: 'alfa',
+		}]);
+	});
+
+	it('excludes if not object', function() {
+		deepEqual(mainModule.LCHLauncherUIRecipesForMode([null], mainModule.LCHLauncherModeCommit), []);
+	});
+
+	it('excludes if multiple LCHRecipeInputTypes', function() {
+		deepEqual(mainModule.LCHLauncherUIRecipesForMode([{
+			LCHRecipeInputTypes: 'alfa,bravo',
+		}], mainModule.LCHLauncherModeCommit), []);
+	});
+
+});
+
 // describe('LCHLauncherFilterForText', function testLCHLauncherFilterForText() {
 
 // 	it('throws error if not string', function() {

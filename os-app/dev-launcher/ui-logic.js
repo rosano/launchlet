@@ -46,6 +46,28 @@ export const LCHLauncherModes = function () {
 	];
 };
 
+export const LCHLauncherUIRecipesForMode = function (param1, param2) {
+	if (!Array.isArray(param1)) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	if (LCHLauncherModes().indexOf(param2) === -1) {
+		throw new Error('LCHErrorInputInvalid');
+	};
+
+	return param1.filter(function (e) {
+		if (typeof e !== 'object' || e === null) {
+			return false;
+		}
+
+		if (typeof e.LCHRecipeInputTypes === 'string' && e.LCHRecipeInputTypes.includes(',')) {
+			return false;
+		}
+		
+		return e;
+	});
+};
+
 // import * as _fuzzysearch from 'fuzzysearch';
 // const fuzzysearch = typeof _fuzzysearch === 'function' ? _fuzzysearch : _fuzzysearch.default;
 // export const LCHLauncherFilterForText = function (inputData) {
