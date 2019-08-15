@@ -380,7 +380,7 @@ afterUpdate(function () {
 		return;
 	}
 
-	/* @CapAndScroll */
+	/* @LCHLauncherResultListCapAndScroll */
 	let element = document.querySelector('.LCHLauncherResultListItemSelected');
 
 	if (!element) {
@@ -543,6 +543,19 @@ async function itemDidClick(event, item) {
 	text-align: initial;
 }
 
+.Bezel {
+	padding: var(--__LaunchletSharedPadding);
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	box-shadow: 0 0 10px 0px #e6e6e6;
+
+	background: #e6e6e6;
+
+	/* __LaunchletBezelFlexboxParent */
+	display: flex;
+	flex-direction: column;
+}
+
 xxx .Container :global(.LCHLauncherZoneInput) {
 	/* DisableTextSelection */
 	pointer-events: none;
@@ -551,6 +564,28 @@ xxx .Container :global(.LCHLauncherZoneInput) {
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+
+xxx input {
+	padding: 6px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+
+	background: #f3f3f3;
+	color: #3f3f3f;
+
+	/* BrowserDefaultOutline */
+	outline: none;
+}
+
+input {
+	border: none;
+
+	background: none;
+	color: #3f3f3f;
+
+	/* BrowserDefaultOutline */
+	outline: none;
 }
 
 .LCHLauncherPromptHeading {
@@ -578,55 +613,9 @@ xxx .Container :global(.LCHLauncherZoneInput) {
 
 	color: black;
 
-	/* @CapAndScroll */
-	max-height: 80px;
-	overflow-y: scroll;
-	-webkit-overflow-scrolling: touch;
-}
-
-.Bezel {
-	padding: var(--__LaunchletSharedPadding);
-	border: 1px solid #cccccc;
-	border-radius: 5px;
-	box-shadow: 0 0 10px 0px #e6e6e6;
-
-	background: #e6e6e6;
-
-	/* __LaunchletBezelFlexboxParent */
-	display: flex;
-	flex-direction: column;
-}
-
-xxx input {
-	padding: 6px;
-	border: 1px solid #cccccc;
-	border-radius: 5px;
-
-	background: #f3f3f3;
-	color: #3f3f3f;
-
-	/* BrowserDefaultOutline */
-	outline: none;
-}
-
-input {
-	border: none;
-
-	background: none;
-	color: #3f3f3f;
-
-	/* BrowserDefaultOutline */
-	outline: none;
-}
-
-.ListContainer {
-	margin-top: 10px;
-
-	font-size: 13.5pt;
-
-	/* @CapHeight */
+	/* @LCHLauncherResultListCapAndScroll */
 	max-height: 165px;
-	overflow: scroll;
+	overflow-y: scroll;
 }
 
 .Container :global(.LCHLauncherResultListItem) {
@@ -678,26 +667,18 @@ input {
 	font-size: 16pt;
 }
 
-.ListContainer {
-	margin-top: 0;
-
-	/* @CapHeight */
-	max-height: 220px;
-
-  /* MobileSafariSmoothScrolling */
-	-webkit-overflow-scrolling: touch;
-}
-
-.ListItem {
-	padding: 10px;
-}
-
 .Container :global(.LCHLauncherResultList) {
 	width: 100%;
 	padding-left: 0;
 	border-left: none;
 
 	margin: 0;
+
+	/* @LCHLauncherResultListCapAndScroll */
+	max-height: 220px;
+
+  /* MobileSafariSmoothScrolling */
+	-webkit-overflow-scrolling: touch;
 }
 
 .LCHLauncherPromptSelected :global(.LCHLauncherZoneInputBezel), .LCHLauncherPromptSelected :global(.LCHLauncherResultListItemSelected) {
