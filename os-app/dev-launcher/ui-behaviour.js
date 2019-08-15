@@ -58,26 +58,26 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 							return document.querySelector('textarea').value = e;
 						},
 					};
-				}).concat({
+				}).concat([{
 					LCHRecipeName: 'LCHLauncherTestURLFilter',
 					LCHRecipeCallback: function () {
 						document.querySelector('input').value = 'xylophone';
 					},
 					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestURLFilter',
-				}).concat({
+				}, {
 					LCHRecipeCallback: function () {
 						document.querySelector('input').value = 'zebra';
 					},
 					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestURLFilter',
 					LCHRecipeIsAutomatic: true,
-				}).concat({
+				}, {
 					LCHRecipeName: 'LCHLauncherTestStyle',
 					LCHRecipeCallback: function () {
 						document.querySelector('input').value = 'xylophone';
 					},
 					LCHRecipeStyle: 'body { background: red; }',
 					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestStyle',
-				}),
+				}]),
 				completionHandler () {
 					app.$destroy();
 					app = null;
