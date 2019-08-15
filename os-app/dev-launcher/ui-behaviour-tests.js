@@ -278,14 +278,14 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 
 	context('shared', function () {
 
-		context('LCHLauncherAccessTestURLFilter', function () {
+		context('LCHLauncherTestURLFilter', function () {
 
 			before(function() {
-				return browser.visit(`${ kDefaultRoutePath }?LCHLauncherAccessTestURLFilter`);
+				return browser.visit(`${ kDefaultRoutePath }?LCHLauncherTestURLFilter`);
 			});
 
 			it('shows url specific item', async function() {
-				browser.fill(LCHLauncherFilterInput, 'LCHLauncherAccessTestURLFilter');
+				browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestURLFilter');
 				await browser.wait({element: LCHLauncherListItem});
 
 				browser.assert.elements(LCHLauncherListItem, 1);
@@ -293,7 +293,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 
 		});
 
-		context('LCHLauncherAccessTestStyle', function () {
+		context('LCHLauncherTestStyle', function () {
 
 			before(function() {
 				return browser.visit(`${ kDefaultRoutePath }?LCHLauncherTestStyle`);
@@ -302,7 +302,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 			it('shows url specific item', async function() {
 				browser.assert.elements('body style', 0);
 
-				browser.fill(LCHLauncherFilterInput, 'LCHLauncherAccessTestStyle');
+				browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestStyle');
 				await browser.wait({element: LCHLauncherListItem});
 
 				browser.click(LCHLauncherListItem);
@@ -351,10 +351,10 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 					browser.assert.input('#LCHLauncherTestInputSingleLine', '');
 				});
 
-				context('LCHLauncherAccessTestURLFilter', function () {
+				context('LCHLauncherTestURLFilter', function () {
 
 					before(function() {
-						return browser.visit(`${ kDefaultRoutePath }?LCHLauncherAccessTestURLFilter`);
+						return browser.visit(`${ kDefaultRoutePath }?LCHLauncherTestURLFilter`);
 					});
 
 					it('runs tasks', async function() {
@@ -365,14 +365,14 @@ describe('LCHLauncherLanguage', function testLCHLauncherLanguage() {
 
 				});
 
-				context('LCHLauncherAccessTestStyle', function () {
+				context('LCHLauncherTestStyle', function () {
 
 					before(function() {
 						return browser.visit(`${ kDefaultRoutePath }?LCHLauncherTestStyle`);
 					});
 
 					it('shows url specific item', async function() {
-						browser.fill(LCHLauncherFilterInput, 'LCHLauncherAccessTestStyle');
+						browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestStyle');
 						await browser.wait({element: LCHLauncherListItem});
 
 						browser.click(LCHLauncherListItem);

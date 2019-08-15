@@ -59,19 +59,19 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 						},
 					};
 				}).concat({
-					LCHRecipeName: 'LCHLauncherAccessTestURLFilter',
+					LCHRecipeName: 'LCHLauncherTestURLFilter',
 					LCHRecipeCallback: function () {
 						document.querySelector('input').value = 'xylophone';
 					},
-					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherAccessTestURLFilter',
+					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestURLFilter',
 				}).concat({
 					LCHRecipeCallback: function () {
 						document.querySelector('input').value = 'zebra';
 					},
-					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherAccessTestURLFilter',
+					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestURLFilter',
 					LCHRecipeIsAutomatic: true,
 				}).concat({
-					LCHRecipeName: 'LCHLauncherAccessTestStyle',
+					LCHRecipeName: 'LCHLauncherTestStyle',
 					LCHRecipeCallback: function () {
 						document.querySelector('input').value = 'xylophone';
 					},
