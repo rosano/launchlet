@@ -128,6 +128,7 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 				deepEqual(mainModule.LCHLauncherUIRecipesForMode([{
 					LCHRecipeName: 'alfa',
 					LCHRecipeInputTypes: 'String,String',
+					_LCHLauncherGenerated: true,
 					LCHRecipeCallback (bravo, charlie) {},
 				}], mainModule.LCHLauncherModeCommit), []);
 			});
@@ -136,6 +137,16 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 				deepEqual(mainModule.LCHLauncherUIRecipesForMode([{
 					LCHRecipeName: 'alfa',
 					LCHRecipeInputTypes: 'bravo',
+					_LCHLauncherGenerated: true,
+					LCHRecipeCallback (charlie) {},
+				}], mainModule.LCHLauncherModeCommit), []);
+			});
+			
+			it('excludes if _LCHLauncherGenerated not true', function() {
+				deepEqual(mainModule.LCHLauncherUIRecipesForMode([{
+					LCHRecipeName: 'alfa',
+					LCHRecipeInputTypes: 'String',
+					_LCHLauncherGenerated: 'bravo',
 					LCHRecipeCallback (charlie) {},
 				}], mainModule.LCHLauncherModeCommit), []);
 			});
@@ -144,7 +155,8 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 				let item = {
 					LCHRecipeName: 'alfa',
 					LCHRecipeInputTypes: 'String',
-					LCHRecipeCallback (charlie) {},
+					_LCHLauncherGenerated: true,
+					LCHRecipeCallback (bravo) {},
 				};
 				deepEqual(mainModule.LCHLauncherUIRecipesForMode([item], mainModule.LCHLauncherModeCommit), [item]);
 			});

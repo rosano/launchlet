@@ -81,6 +81,10 @@ export const LCHLauncherUIRecipesForMode = function (param1, param2) {
 			if (e.LCHRecipeInputTypes !== 'String') {
 				return false;
 			};
+
+			if (e._LCHLauncherGenerated !== true) {
+				return false;
+			};
 		}
 
 		if (param2 === LCHLauncherModePreview) {
