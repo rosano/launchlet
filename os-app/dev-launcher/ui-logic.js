@@ -82,6 +82,10 @@ export const LCHLauncherUIRecipesForMode = function (param1, param2) {
 				return false;
 			};
 		}
+
+		if (param2 === LCHLauncherModePreview) {
+			return LCHRecipesModelIsCommand(e);
+		}
 		
 		return true;
 	});

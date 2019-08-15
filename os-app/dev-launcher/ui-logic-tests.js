@@ -153,6 +153,24 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 
 	});
 
+	context('LCHLauncherModePreview', function() {
+
+		it('excludes all', function() {
+			deepEqual(mainModule.LCHLauncherUIRecipesForMode([{
+				LCHRecipeCallback () {},
+			}], mainModule.LCHLauncherModePreview), []);
+		});
+
+		it('includes if Command', function() {
+			let item = {
+				LCHRecipeName: 'alfa',
+				LCHRecipeCallback () {},
+			};
+			deepEqual(mainModule.LCHLauncherUIRecipesForMode([item], mainModule.LCHLauncherModePreview), [item]);
+		});
+
+	});
+
 });
 
 // describe('LCHLauncherFilterForText', function testLCHLauncherFilterForText() {
