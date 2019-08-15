@@ -10,6 +10,7 @@ import * as LCHCopyToClipboard from './LCHCopyToClipboard/main.js';
 import * as LCHDateLocalOffsetSubtracted from './LCHDateLocalOffsetSubtracted/main.js';
 import * as LCHLargeType from './LCHLargeType/main.js';
 import * as LCHRunCommand from './LCHRunCommand/main.js';
+import * as LCHSearchWith from './LCHSearchWith/main.js';
 
 export const LCHLauncherStandardRecipes = function() {
 	return [].concat.apply([], [
@@ -25,6 +26,7 @@ export const LCHLauncherStandardRecipes = function() {
 		LCHDateLocalOffsetSubtracted,
 		LCHLargeType,
 		LCHRunCommand,
+		LCHSearchWith,
 	].map(function (e) {
 		return Object.entries(e).filter(function (e) {
 			return e.shift().includes('Recipe');
