@@ -467,8 +467,8 @@ function handleKeydown(event) {
 		},
 	};
 
-	if (Object.keys(handlerFunctions).indexOf(event.code) !== -1) {
-		return handlerFunctions[event.code]();
+	if (Object.keys(handlerFunctions).indexOf(event.key) !== -1) {
+		return handlerFunctions[event.key]();
 	}
 
 	if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
