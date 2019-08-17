@@ -338,8 +338,12 @@ function ActivePromptIndexShouldUpdate (inputData) {
 		_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
 	})();
 
+	if (!_PromptObjects[inputData].LCHPromptItemsAll.length) {
+		return;
+	};
+
 	(function SetIndexActive() {
-		_PromptActiveIndex = _PromptObjects[0].LCHPromptFilterText ? inputData : 0;
+		_PromptActiveIndex = inputData;
 	})();
 }
 

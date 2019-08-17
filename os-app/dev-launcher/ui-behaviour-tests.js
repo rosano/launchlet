@@ -811,7 +811,7 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 				browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
 			});
 
-			it('does nothing if no subject', async function() {
+			it('does nothing on click if no subject', async function() {
 				browser.click(LCHLauncherSubjectPrompt);
 				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
 				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
@@ -820,6 +820,22 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 				browser.click(LCHLauncherActionPrompt);
 				await browser.wait({element: LCHLauncherActionPrompt});
 				
+				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
+			});
+
+			it('does nothing on Tab if no subject', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+				await browser.wait({element: LCHLauncherPipeItem});
+
+				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
+			});
+
+			it('does nothing on Shift Tab if no subject', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'Tab', {
+					shiftKey: true,
+				});
+				await browser.wait({element: LCHLauncherPipeItem});
+
 				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
 			});
 
