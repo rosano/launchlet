@@ -154,6 +154,7 @@ let _AllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
 			LCHPromptFilterText: '',
 			LCHPromptMatchStop: false,
 			LCHPromptResultsThrottle: undefined,
+			LCHPromptTextItem: '',
 		}, {
 			LCHPromptClass: 'LCHLauncherActionPrompt',
 			LCHPromptHeading: OLSKLocalized('LCHLauncherActionPromptHeadingText'),
@@ -475,6 +476,7 @@ function handleKeydown(event) {
 
 			_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
 			_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = true;
+			_PromptObjects[_PromptActiveIndex].LCHPromptFilterText = '';
 
 			return event.preventDefault();
 		},
@@ -544,7 +546,7 @@ async function itemDidClick(event, item) {
 					<strong class="LCHLauncherPromptHeading" class:LCHLauncherPromptHeadingMatchStop={ e.LCHPromptMatchStop }>{ e.LCHPromptFilterText && e.LCHPromptFilterText.toUpperCase() || e.LCHPromptHeading }</strong>
 				{/if}
 
-				<LCHLauncherPrompt PromptItems={ e.LCHPromptItems } on:ResultListDispatchArrow={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) } ItemSelected={ e.LCHPromptItemSelected } on:ResultListDispatchClick={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) || LauncherShouldTerminate() } ItemSelectedHidden={ LCHOptionsObject().runMode !== LCHLauncherModePipe } ResultsHidden={ e.LCHPromptResultsThrottle !== false }>
+				<LCHLauncherPrompt PromptItems={ e.LCHPromptItems } on:ResultListDispatchArrow={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) } ItemSelected={ e.LCHPromptItemSelected } on:ResultListDispatchClick={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) || LauncherShouldTerminate() } ItemSelectedHidden={ LCHOptionsObject().runMode !== LCHLauncherModePipe || e.LCHPromptTextItemMode } ResultsHidden={ e.LCHPromptResultsThrottle !== false }>
 					{#if e.LCHPromptClass === 'LCHLauncherSubjectPrompt' && !e.LCHPromptTextItemMode }
 						<span class="LCHLauncherSubjectPromptPlaceholder">{ OLSKLocalized('LCHLauncherSubjectPromptPlaceholderText') }</span>
 					{/if}
@@ -554,7 +556,7 @@ async function itemDidClick(event, item) {
 					{/if}
 
 					{#if ['LCHLauncherFilterPrompt', 'LCHLauncherActionPrompt'].indexOf(e.LCHPromptClass) === -1 && e.LCHPromptTextItemMode }
-						<input bind:value={ _PromptObjects[0].LCHPromptTextItem } on:input={ () => ActivePromptTextItemShouldUpdate(this.value) } class="LCHLauncherPromptTextItemInput" />
+						<input bind:value={ _PromptObjects[0].LCHPromptTextItem } on:input={ () => ActivePromptTextItemShouldUpdate(this.value) } class="LCHLauncherPromptTextItemInput" autofocus />
 					{/if}
 				</LCHLauncherPrompt>
 			</div>

@@ -295,6 +295,11 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					
 				it('shows LCHLauncherPromptTextItemInput', function() {
 					browser.assert.elements(LCHLauncherPromptTextItemInput, 1);
+					browser.assert.attribute(LCHLauncherPromptTextItemInput, 'autofocus', '')
+				});
+
+				it('focuses input', function() { // #move interaction
+					deepEqual(browser.document.activeElement, browser.query(LCHLauncherPromptTextItemInput))
 				});
 			
 			});
@@ -326,6 +331,10 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				
 				it('hides results', async function() {
 					browser.assert.elements(LCHLauncherResultList, 0);
+				});
+
+				it('clears filter text', function() {
+					browser.assert.text(LCHLauncherSubjectPromptHeading, 'Subject') // #move language
 				});
 			
 			});
