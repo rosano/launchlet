@@ -519,6 +519,17 @@ const mod = {
 	_commandHandleEventKeydownTab () {
 		ActivePromptIndexShouldUpdate(!_PromptActiveIndex ? 1 : 0);
 	},
+	_commandHandleEventKeydownArrow () {
+		if (!mod.ValuePromptResultsIsVisible()) {
+			return mod.ValuePromptResultsIsVisible(true);
+		}
+
+		if (!_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
+			return;
+		}
+
+		OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
+	},
 	commandHandleEventKeydown (event) {
 		if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode && mod._commandHandleEventKeydownModeTextItem(event)) {
 			return;
@@ -546,16 +557,7 @@ const mod = {
 
 				event.preventDefault();
 
-				if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === undefined) {
-					_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = false;
-					return;
-				}
-
-				if (!_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
-					return;
-				}
-
-				OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
+				mod._commandHandleEventKeydownArrow();
 			},
 			ArrowDown () {
 				if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
