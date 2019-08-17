@@ -434,14 +434,11 @@ function handleKeydown(event) {
 		const handlerFunctions = {
 			Escape () {
 				_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
+				return true;
 			},
-			// Tab () {
-			// 	if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
-			// 		ActivePromptIndexShouldUpdate(!_PromptActiveIndex ? 1 : 0);
-			// 	}
-
-			// 	return event.preventDefault();
-			// },
+			Tab () {
+				_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
+			},
 			// Enter () {
 			// 	if (CompositionIsValid()) {
 			// 		LauncherShouldTerminate();
@@ -451,13 +448,13 @@ function handleKeydown(event) {
 			// },
 		};
 
-		if (Object.keys(handlerFunctions).indexOf(event.key) !== -1) {
-			return handlerFunctions[event.key]();
+		if (Object.keys(handlerFunctions).indexOf(event.key) === -1) {
+			return;
 		}
 
-		
-
-		return;
+		if (handlerFunctions[event.key]()) {
+			return;
+		};
 	};
 
 	const handlerFunctions = {

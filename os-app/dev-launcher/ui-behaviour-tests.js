@@ -368,6 +368,41 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					browser.assert.elements(LCHLauncherPipeItem, 0)
 				});
 
+				context('on Escape', function () {
+
+					before(function () {
+						browser.fill(LCHLauncherPromptTextItemInput, 'bravo')
+						browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+						return browser.wait({element: LCHLauncherPipeItem});
+					});
+					
+					it('shows text item as pipe item', async function() {
+						browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1)
+					});
+				
+				});
+
+				context('on Tab', function () {
+
+					before(async function () {
+						browser.OLSKFireKeyboardEvent(browser.window, '.');
+						await browser.wait({element: LCHLauncherPromptTextItemInput});
+
+						browser.fill(LCHLauncherPromptTextItemInput, 'charlie')
+						browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+						await browser.wait({element: LCHLauncherPipeItem});
+					});
+					
+					it('shows text item as pipe item', async function() {
+						browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1)
+					});
+					
+					it('selects next prompt', async function() {
+						browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
+					});
+				
+				});
+
 			});
 				
 			context('on Dot when action prompt selected', function () {
