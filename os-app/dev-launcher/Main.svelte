@@ -332,7 +332,7 @@ function ActivePromptIndexShouldUpdate (inputData) {
 		}
 
 		if (OLSKThrottle.OLSKThrottleInputDataIsThrottleObject(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle)) {
-			clearTimeout(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
+			clearTimeout(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle._OLSKThrottleTimeoutID);
 		}
 		
 		_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;

@@ -278,6 +278,20 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 
 		});
 
+		context('Tab', function () {
+
+			it('cancels throttle', async function() {
+				await browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
+
+				browser.OLSKFireKeyboardEvent(browser.window, 'a');
+				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+				await browser.wait({duration: LCHLauncherThrottleDuration})
+
+				browser.assert.elements(LCHLauncherResultList, 0);
+			});
+		
+		});
+
 		context('TextItemInput', function () {
 
 			before(function() {
