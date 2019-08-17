@@ -455,15 +455,13 @@ function handleKeydown(event) {
 
 	const handlerFunctions = {
 		Escape () {
-			if (LCHOptionsObject().runMode === LCHLauncherModePipe || !_PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
-				handleDidFinish();
-			}
+			event.preventDefault();
 
 			if (LCHOptionsObject().runMode !== LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
-				ActivePromptFilterTextShouldUpdate('');
+				return ActivePromptFilterTextShouldUpdate('');
 			}
 
-			return event.preventDefault();
+			handleDidFinish();
 		},
 		Tab () {
 			if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
