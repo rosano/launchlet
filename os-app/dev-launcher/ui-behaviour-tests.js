@@ -12,6 +12,7 @@ Object.entries({
 	LCHLauncherSubjectPromptPlaceholder: '.LCHLauncherSubjectPromptPlaceholder',
 	LCHLauncherActionPrompt: '.LCHLauncherActionPrompt',
 	LCHLauncherActionPromptHeading: '.LCHLauncherActionPrompt .LCHLauncherPromptHeading',
+	LCHLauncherPromptTextItemInput: '.LCHLauncherPromptTextItemInput',
 
 	LCHLauncherListItem: '.LCHLauncherResultListItem',
 
@@ -34,7 +35,8 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 		
 		it('on startup', function() {
 			browser.assert.elements(LCHLauncherFilterInput, 1);
-			
+			browser.assert.elements(LCHLauncherPromptTextItemInput, 0);
+
 			browser.assert.elements(LCHLauncherListItem, 0);
 		});
 
@@ -55,6 +57,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 		
 		it('on startup', function() {
 			browser.assert.elements(LCHLauncherFilterInput, 1);
+			browser.assert.elements(LCHLauncherPromptTextItemInput, 0);
 
 			browser.assert.elements(LCHLauncherListItem, 13);
 		});
@@ -76,6 +79,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 		
 		it('on startup', function() {
 			browser.assert.elements(LCHLauncherFilterInput, 0);
+			browser.assert.elements(LCHLauncherPromptTextItemInput, 0);
 			browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 1);
 
 			browser.assert.elements(LCHLauncherListItem, 0);
@@ -271,6 +275,69 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				});
 
 			});
+
+		});
+
+		context('TextItemInput', function () {
+
+			before(function() {
+				return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
+			});
+				
+			context('on Dot', function () {
+				
+				it('hides LCHLauncherSubjectPromptPlaceholder', async function() {
+					browser.OLSKFireKeyboardEvent(browser.window, '.');
+					await browser.wait({element: LCHLauncherPromptTextItemInput});
+					
+					browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 0);
+				});
+					
+				it('shows LCHLauncherPromptTextItemInput', function() {
+					browser.assert.elements(LCHLauncherPromptTextItemInput, 1);
+				});
+			
+			});
+				
+			context('on Escape', function () {
+				
+				it('hide LCHLauncherPromptTextItemInput', function() {
+					browser.assert.elements(LCHLauncherPromptTextItemInput, 1);
+				});
+					
+				it('shows LCHLauncherSubjectPromptPlaceholder', async function() {
+					browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+					await browser.wait({element: LCHLauncherPromptTextItemInput});
+					
+					browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 1);
+				});
+			
+			});
+				
+			context('on Dot when results visible', function () {
+
+				before(async function () {
+					browser.OLSKFireKeyboardEvent(browser.window, 'a');
+					await browser.wait({element: LCHLauncherResultList});
+
+					browser.OLSKFireKeyboardEvent(browser.window, '.');
+					await browser.wait({element: LCHLauncherPromptTextItemInput});
+				});
+				
+				it('hides results', async function() {
+					browser.assert.elements(LCHLauncherResultList, 0);
+				});
+			
+			});
+
+			// it('does nothing if selected prompt is action', async function() {
+			// 	browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
+
+			// 	browser.OLSKFireKeyboardEvent(browser.window, '.');
+			// 	await browser.wait({element: LCHLauncherSubjectPrompt});
+
+			// 	browser.assert.elements(LCHLauncherPromptTextItemInput, 0);
+			// });
 
 		});
 

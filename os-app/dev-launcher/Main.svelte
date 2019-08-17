@@ -409,6 +409,34 @@ function handleDidFinish() {
 
 import { LCHLauncherKeyboardEventIsTextInput } from './ui-logic.js';
 function handleKeydown(event) {
+	if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode) {
+		const handlerFunctions = {
+			Escape () {
+				_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
+			},
+			// Tab () {
+			// 	if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
+			// 		ActivePromptIndexShouldUpdate(!_PromptActiveIndex ? 1 : 0);
+			// 	}
+
+			// 	return event.preventDefault();
+			// },
+			// Enter () {
+			// 	if (CompositionIsValid()) {
+			// 		LauncherShouldTerminate();
+			// 	}
+
+			// 	return event.preventDefault();
+			// },
+		};
+
+		if (Object.keys(handlerFunctions).indexOf(event.key) !== -1) {
+			return handlerFunctions[event.key]();
+		}
+
+		return;
+	};
+
 	const handlerFunctions = {
 		Escape () {
 			if (LCHOptionsObject().runMode === LCHLauncherModePipe || !_PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
@@ -438,6 +466,16 @@ function handleKeydown(event) {
 			if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
 				return OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 			}
+			return event.preventDefault();
+		},
+		'.': function Dot () {
+			if (OLSKThrottle.OLSKThrottleInputDataIsThrottleObject(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle)) {
+				clearTimeout(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
+			}
+
+			_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
+			_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = true;
+
 			return event.preventDefault();
 		},
 		Enter () {
@@ -507,12 +545,16 @@ async function itemDidClick(event, item) {
 				{/if}
 
 				<LCHLauncherPrompt PromptItems={ e.LCHPromptItems } on:ResultListDispatchArrow={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) } ItemSelected={ e.LCHPromptItemSelected } on:ResultListDispatchClick={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) || LauncherShouldTerminate() } ItemSelectedHidden={ LCHOptionsObject().runMode !== LCHLauncherModePipe } ResultsHidden={ e.LCHPromptResultsThrottle !== false }>
-					{#if e.LCHPromptClass === 'LCHLauncherSubjectPrompt' }
+					{#if e.LCHPromptClass === 'LCHLauncherSubjectPrompt' && !e.LCHPromptTextItemMode }
 						<span class="LCHLauncherSubjectPromptPlaceholder">{ OLSKLocalized('LCHLauncherSubjectPromptPlaceholderText') }</span>
 					{/if}
 
 					{#if e.LCHPromptClass === 'LCHLauncherFilterPrompt' }
 						<input placeholder="{ LCHOptionsObject().runMode === LCHLauncherModePreview ? OLSKLocalized('LCHLauncherInputPlaceholderPreview') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ _PromptObjects[0].LCHPromptFilterText } bind:this={ inputElement } on:input={ () => ActivePromptFilterTextShouldUpdate(this.value) } id="LCHLauncherFilterInput" />
+					{/if}
+
+					{#if ['LCHLauncherFilterPrompt', 'LCHLauncherActionPrompt'].indexOf(e.LCHPromptClass) === -1 && e.LCHPromptTextItemMode }
+						<input bind:value={ _PromptObjects[0].LCHPromptTextItem } on:input={ () => ActivePromptTextItemShouldUpdate(this.value) } class="LCHLauncherPromptTextItemInput" />
 					{/if}
 				</LCHLauncherPrompt>
 			</div>
