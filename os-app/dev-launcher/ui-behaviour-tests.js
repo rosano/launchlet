@@ -413,6 +413,19 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				
 				});
 
+				context('on re-entry', function () {
+
+					before(async function () {
+						browser.OLSKFireKeyboardEvent(browser.window, '.');
+						await browser.wait({element: LCHLauncherPromptTextItemInput});
+					});
+					
+					it('shows previous text input', async function() {
+						browser.assert.input(LCHLauncherPromptTextItemInput, 'bravo')
+					});
+				
+				});
+
 				context('on Tab', function () {
 
 					before(async function () {
