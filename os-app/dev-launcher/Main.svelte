@@ -486,15 +486,15 @@ const mod = {
 	
 	_commandHandleEventKeydownModeTextItem (event) {
 		const handlerFunctions = {
-			'Escape': function () {
+			Escape () {
 				event.preventDefault();
 
 				return mod.ValuePromptModeText(false) || true;
 			},
-			'Tab': function () {
+			Tab () {
 				return mod.ValuePromptModeText(false)
 			},
-			'Enter': function () {
+			Enter () {
 				return mod.ValuePromptModeText(false)
 			},
 		};
