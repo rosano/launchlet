@@ -59,19 +59,10 @@ const kTesting = {
 			LCHCompositionSubjectPrimary: kTesting.StubRecipeObjectSubject(),
 		};
 	},
-	StubAPIObjectValid() {
+	StubAPIObjectValid(hash) {
 		return {
-			fn () {},
-		};
-	},
-	StubAPIObjectSimulate(param1, param2) {
-		return {
-			fn (inputData) {
-				const outputData = {};
-
-				outputData[param1] = param2;
-
-				return outputData[inputData];
+			fn (address) {
+				return hash[address];
 			},
 		};
 	},
@@ -476,8 +467,10 @@ describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertT
 
 			it('has calls api fn', function() {
 				deepEqual(item.LCHRecipeCallback.bind({
-					api: kTesting.StubAPIObjectSimulate('LCHURLOpen', function (inputData) {
-						return [inputData, 'bravo'];
+					api: kTesting.StubAPIObjectValid({
+						LCHURLOpen (inputData) {
+							return inputData;
+						},
 					})
 				})('alfa'), ['alfa', 'bravo']);
 			});
