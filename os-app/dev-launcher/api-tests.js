@@ -476,7 +476,7 @@ describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertT
 
 			it('has calls api fn', function() {
 				deepEqual(item.LCHRecipeCallback.bind({
-					api: kTesting.StubAPIObjectSimulate('LCHVisitURL', function (inputData) {
+					api: kTesting.StubAPIObjectSimulate('LCHURLOpen', function (inputData) {
 						return [inputData, 'bravo'];
 					})
 				})('alfa'), ['alfa', 'bravo']);

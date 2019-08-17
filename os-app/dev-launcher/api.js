@@ -193,7 +193,7 @@ export const LCHLauncherConvertTypeServiceSearch = function(inputData, _stringCa
 			LCHRecipeName: _stringCallback(e.LCHRecipeName),
 			LCHRecipeInputTypes: 'String',
 			LCHRecipeCallback (inputData) {
-				return this.api.fn('LCHVisitURL')(inputData);
+				return this.api.fn('LCHURLOpen')(inputData);
 			},
 			_LCHLauncherGenerated: true,
 		};
