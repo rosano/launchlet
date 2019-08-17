@@ -487,6 +487,10 @@ function handleKeydown(event) {
 		'.': function Dot () {
 			event.preventDefault();
 
+			if (_PromptActiveIndex === 1) {
+				return;
+			};
+			
 			if (OLSKThrottle.OLSKThrottleInputDataIsThrottleObject(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle)) {
 				clearTimeout(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle._OLSKThrottleTimeoutID);
 			}

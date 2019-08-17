@@ -502,14 +502,14 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 					await browser.wait({element: LCHLauncherActionPrompt});
 
-					browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
+					browser.assert.elements(LCHLauncherPipeItem, 2);
 				});
 
 				it('does nothing if selected prompt is action', async function() {
 					browser.OLSKFireKeyboardEvent(browser.window, '.');
 					await browser.wait({element: LCHLauncherSubjectPrompt});
 
-					browser.assert.elements(LCHLauncherPromptTextItemInput, 0);
+					browser.assert.elements(LCHLauncherPipeItem, 2);
 				});
 			
 			});
