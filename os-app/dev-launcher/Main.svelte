@@ -469,14 +469,14 @@ const mod = {
 	
 	_commandHandleEventKeydownModeTextItem (event) {
 		const handlerFunctions = {
-			Escape () {
+			'Escape': function () {
 				_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
 				return true;
 			},
-			Tab () {
+			'Tab': function () {
 				_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
 			},
-			Enter () {
+			'Enter': function () {
 				_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
 			},
 		};
@@ -487,7 +487,6 @@ const mod = {
 
 		return handlerFunctions[event.key]()
 	},
-	
 	commandHandleEventKeydown (event) {
 		if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode && mod._commandHandleEventKeydownModeTextItem(event)) {
 			return;
