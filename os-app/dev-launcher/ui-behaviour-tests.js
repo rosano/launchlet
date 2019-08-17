@@ -546,6 +546,29 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				
 				});
 
+				context('on Backspace', function () {
+
+					before(async function () {
+						browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+						await browser.wait({element: LCHLauncherPipeItem});
+
+						browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
+						await browser.wait({element: LCHLauncherSubjectPromptPlaceholder});
+
+						browser.OLSKFireKeyboardEvent(browser.window, '.');
+						await browser.wait({element: LCHLauncherPromptTextItemInput});
+					});
+					
+					it('shows empty text', async function() {
+						browser.assert.input(LCHLauncherPromptTextItemInput, '')
+					});
+					
+					it('shows no actions', async function() {
+						browser.assert.elements(LCHLauncherPipeItem, 0)
+					});
+				
+				});
+			
 			});
 
 		});

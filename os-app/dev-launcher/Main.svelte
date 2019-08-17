@@ -527,6 +527,8 @@ function handleKeydown(event) {
 			ActivePromptItemsShouldUpdate([]);
 
 			_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
+
+			_PromptObjects[_PromptActiveIndex].LCHPromptTextItem = '';
 		},
 	};
 
