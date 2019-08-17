@@ -462,6 +462,12 @@ const mod = {
 		mod.commandExit();
 	},
 	interfaceDidKeydown (event) {
+		mod.commandHandleEventKeydown(event);
+	},
+
+	// COMMANDS
+	
+	commandHandleEventKeydown (event) {
 		if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode) {
 			const handlerFunctions = {
 				Escape () {
@@ -609,9 +615,6 @@ const mod = {
 
 		ActivePromptFilterTextShouldUpdate(!_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle ? event.key : _PromptObjects[_PromptActiveIndex].LCHPromptFilterText + event.key);
 	},
-
-	// COMMANDS
-	
 	commandExit () {
 		if (typeof completionHandler !== 'function') {
 			return;
