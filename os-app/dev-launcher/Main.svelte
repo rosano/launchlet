@@ -467,28 +467,30 @@ const mod = {
 
 	// COMMANDS
 	
+	_commandHandleEventKeydownModeTextItem (event) {
+		const handlerFunctions = {
+			Escape () {
+				_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
+				return true;
+			},
+			Tab () {
+				_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
+			},
+			Enter () {
+				_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
+			},
+		};
+
+		if (Object.keys(handlerFunctions).indexOf(event.key) === -1) {
+			return;
+		}
+
+		return handlerFunctions[event.key]()
+	},
+	
 	commandHandleEventKeydown (event) {
-		if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode) {
-			const handlerFunctions = {
-				Escape () {
-					_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
-					return true;
-				},
-				Tab () {
-					_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
-				},
-				Enter () {
-					_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
-				},
-			};
-
-			if (Object.keys(handlerFunctions).indexOf(event.key) === -1) {
-				return;
-			}
-
-			if (handlerFunctions[event.key]()) {
-				return;
-			};
+		if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode && mod._commandHandleEventKeydownModeTextItem(event)) {
+			return;
 		};
 
 		const handlerFunctions = {
