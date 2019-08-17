@@ -173,6 +173,20 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				browser.assert.elements(LCHLauncherResultList, 1);
 			});
 
+			it('hides list on Escape', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+				await browser.wait({element: LCHLauncherPipeItem});
+
+				browser.assert.elements(LCHLauncherResultList, 0);
+			});
+
+			it('shows list on ArrowUp', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
+				await browser.wait({element: LCHLauncherPipeItem});
+
+				browser.assert.elements(LCHLauncherResultList, 1);
+			});
+
 			context('MatchStop', function() {
 
 				before(async function() {
