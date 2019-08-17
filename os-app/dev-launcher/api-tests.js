@@ -468,11 +468,11 @@ describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertT
 			it('has calls api fn', function() {
 				deepEqual(item.LCHRecipeCallback.bind({
 					api: kTesting.StubAPIObjectValid({
-						LCHURLOpen (inputData) {
-							return inputData;
+						LCHSearchWith (param1, param2) {
+							return [param1, param2.LCHRecipeCallback()];
 						},
 					})
-				})('alfa'), ['alfa', 'bravo']);
+				})('alfa'), ['alfa', 'http://example.com?q=LCHSEARCHTOKEN1+LCHSEARCHTOKEN2']);
 			});
 			
 		});

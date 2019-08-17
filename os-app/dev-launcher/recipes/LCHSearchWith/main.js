@@ -17,7 +17,7 @@ export const LCHSearchWithURLFrom = function(param1, param2) {
 };
 
 export const LCHSearchWithCallback = function(param1, param2) {
-	return this.api.fn('ROCOLaunchURL')(param2.LCHRecipeCallback(param1));
+	return this.api.fn('LCHURLOpen')(LCHSearchWithURLFrom(param2.LCHRecipeCallback(), param1));
 };
 
 export const LCHSearchWithRecipe = function() {

@@ -50,8 +50,8 @@ describe('LCHSearchWithCallback', function testLCHSearchWithCallback() {
 				},
 			},
 		})('alfa', {
-			LCHRecipeCallback: function (inputData) {
-				return `example.com/${ inputData }`;
+			LCHRecipeCallback: function () {
+				return `example.com/LCHSEARCHTOKEN1+LCHSEARCHTOKEN2`;
 			},
 		}), ['example.com/alfa', 'bravo']);
 	});
