@@ -411,6 +411,16 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					it('selects next prompt', async function() {
 						browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
 					});
+					
+					it('executes composition on Enter', async function() {
+						browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
+						await browser.wait({element: '#LCHCopyToClipboardButton'});
+
+						browser.click('#LCHCopyToClipboardButton')
+						await browser.wait({element: '#LCHLauncherTestDidFinish'});
+
+						browser.assert.elements('#LCHLauncherTestDidFinish', 1);
+					});
 				
 				});
 
