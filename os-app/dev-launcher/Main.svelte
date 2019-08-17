@@ -516,6 +516,13 @@ const mod = {
 
 		mod.commandExit();
 	},
+	_commandHandleEventKeydownTab () {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+			return;
+		}
+
+		ActivePromptIndexShouldUpdate(!_PromptActiveIndex ? 1 : 0);
+	},
 	commandHandleEventKeydown (event) {
 		if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode && mod._commandHandleEventKeydownModeTextItem(event)) {
 			return;
@@ -528,11 +535,9 @@ const mod = {
 				mod._commandHandleEventKeydownEscape();
 			},
 			Tab () {
-				if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
-					ActivePromptIndexShouldUpdate(!_PromptActiveIndex ? 1 : 0);
-				}
+				event.preventDefault();
 
-				return event.preventDefault();
+				mod._commandHandleEventKeydownTab();
 			},
 			ArrowUp () {
 				if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
