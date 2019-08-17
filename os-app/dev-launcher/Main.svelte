@@ -517,10 +517,6 @@ const mod = {
 		mod.commandExit();
 	},
 	_commandHandleEventKeydownTab () {
-		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
-			return;
-		}
-
 		ActivePromptIndexShouldUpdate(!_PromptActiveIndex ? 1 : 0);
 	},
 	commandHandleEventKeydown (event) {
@@ -536,6 +532,10 @@ const mod = {
 			},
 			Tab () {
 				event.preventDefault();
+
+				if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+					return;
+				}
 
 				mod._commandHandleEventKeydownTab();
 			},
