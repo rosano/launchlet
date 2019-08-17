@@ -505,7 +505,9 @@ const mod = {
 
 		return handlerFunctions[event.key]()
 	},
-	_commandHandleEventKeydownEscape () {
+	_commandHandleEventKeydownEscape (event) {
+		event.preventDefault();
+
 		if (LCHOptionsObject().runMode === LCHLauncherModePipe && mod.ValuePromptResultsIsVisible()) {
 			return mod.ValuePromptResultsIsVisible(false);
 		}
@@ -516,10 +518,31 @@ const mod = {
 
 		mod.commandExit();
 	},
-	_commandHandleEventKeydownTab () {
+	_commandHandleEventKeydownTab (event) {
+		event.preventDefault();
+
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+			return;
+		}
+
 		ActivePromptIndexShouldUpdate(!_PromptActiveIndex ? 1 : 0);
 	},
-	_commandHandleEventKeydownArrow () {
+	_commandHandleEventKeydownEnter (event) {
+		event.preventDefault();
+
+		if (!CompositionIsValid()) {
+			return;
+		}
+
+		LauncherShouldTerminate();
+	},
+	_commandHandleEventKeydownArrow (event) {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+			return
+		};
+
+		event.preventDefault();
+
 		if (!mod.ValuePromptResultsIsVisible()) {
 			return mod.ValuePromptResultsIsVisible(true);
 		}
@@ -530,7 +553,13 @@ const mod = {
 
 		OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 	},
-	_commandHandleEventKeydownArrowDown () {
+	_commandHandleEventKeydownArrowDown (event) {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+			return
+		};
+
+		event.preventDefault();
+
 		if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === undefined) {
 			_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = false;
 			return;
@@ -542,7 +571,13 @@ const mod = {
 
 		OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 	},
-	_commandHandleEventKeydownDot () {
+	_commandHandleEventKeydownDot (event) {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+			return;
+		}
+
+		event.preventDefault();
+
 		if (_PromptActiveIndex === 1) {
 			return;
 		};
@@ -563,17 +598,12 @@ const mod = {
 		_PromptObjects[1].LCHPromptItems = [];
 		_PromptObjects[1].LCHPromptItemSelected = null;
 	},
-	_commandHandleEventKeydownEnter () {
-		if (!CompositionIsValid()) {
-			return;
-		}
-
-		LauncherShouldTerminate();
-	},
-	_commandHandleEventKeydownBackspace () {
+	_commandHandleEventKeydownBackspace (event) {
 		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
 			return;
 		}
+
+		event.preventDefault();
 
 		if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
 			return ActivePromptFilterTextShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText.slice(0, -1));
@@ -596,57 +626,17 @@ const mod = {
 		};
 
 		const handlerFunctions = {
-			Escape () {
-				event.preventDefault();
-
-				mod._commandHandleEventKeydownEscape();
-			},
-			Tab () {
-				event.preventDefault();
-
-				if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
-					return;
-				}
-
-				mod._commandHandleEventKeydownTab();
-			},
-			ArrowUp () {
-				if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
-					return
-				};
-
-				event.preventDefault();
-
-				mod._commandHandleEventKeydownArrow();
-			},
-			ArrowDown () {
-				if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
-					return
-				};
-
-				event.preventDefault();
-
-				mod._commandHandleEventKeydownArrowDown();
-			},
-			'.': function Dot () {
-				event.preventDefault();
-
-				mod._commandHandleEventKeydownDot()
-			},
-			Enter () {
-				event.preventDefault();
-
-				mod._commandHandleEventKeydownEnter()
-			},
-			Backspace () {
-				event.preventDefault();
-
-				mod._commandHandleEventKeydownBackspace();
-			},
+			Escape: mod._commandHandleEventKeydownEscape,
+			Tab: mod._commandHandleEventKeydownTab,
+			'.': mod._commandHandleEventKeydownDot,
+			Enter: mod._commandHandleEventKeydownEnter,
+			ArrowUp: mod._commandHandleEventKeydownArrow,
+			ArrowDown: mod._commandHandleEventKeydownArrowDown,
+			Backspace: mod._commandHandleEventKeydownBackspace,
 		};
 
 		if (handlerFunctions[event.key]) {
-			return handlerFunctions[event.key]();
+			return handlerFunctions[event.key](event);
 		}
 
 		if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode) {
