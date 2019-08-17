@@ -476,16 +476,30 @@ function handleKeydown(event) {
 			return event.preventDefault();
 		},
 		ArrowUp () {
-			if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
-				return OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
+			if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+				return
+			};
+
+			event.preventDefault();
+
+			if (!_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
+				return;
 			}
-			return event.preventDefault();
+
+			OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 		},
 		ArrowDown () {
-			if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
-				return OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
+			if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+				return
+			};
+
+			event.preventDefault();
+
+			if (!_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
+				return;
 			}
-			return event.preventDefault();
+
+			OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 		},
 		'.': function Dot () {
 			event.preventDefault();
