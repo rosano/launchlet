@@ -64,6 +64,17 @@ const kTesting = {
 			fn () {},
 		};
 	},
+	StubAPIObjectSimulate(param1, param2) {
+		return {
+			fn (inputData) {
+				const outputData = {};
+
+				outputData[param1] = param2;
+
+				return outputData[inputData];
+			},
+		};
+	},
 };
 
 describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
@@ -461,6 +472,14 @@ describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertT
 
 			it('has one argument', function() {
 				deepEqual(item.LCHRecipeCallback.length, 1);
+			});
+
+			it('has calls api fn', function() {
+				deepEqual(item.LCHRecipeCallback.bind({
+					api: kTesting.StubAPIObjectSimulate('LCHVisitURL', function (inputData) {
+						return [inputData, 'bravo'];
+					})
+				})('alfa'), ['alfa', 'bravo']);
 			});
 			
 		});
