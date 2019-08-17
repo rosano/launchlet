@@ -551,6 +551,13 @@ const mod = {
 		_PromptObjects[1].LCHPromptItems = [];
 		_PromptObjects[1].LCHPromptItemSelected = null;
 	},
+	_commandHandleEventKeydownEnter () {
+		if (!CompositionIsValid()) {
+			return;
+		}
+
+		LauncherShouldTerminate();
+	},
 	commandHandleEventKeydown (event) {
 		if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode && mod._commandHandleEventKeydownModeTextItem(event)) {
 			return;
@@ -604,11 +611,9 @@ const mod = {
 				mod._commandHandleEventKeydownDot()
 			},
 			Enter () {
-				if (CompositionIsValid()) {
-					LauncherShouldTerminate();
-				}
+				event.preventDefault();
 
-				return event.preventDefault();
+				mod._commandHandleEventKeydownEnter()
 			},
 			Backspace () {
 				if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
