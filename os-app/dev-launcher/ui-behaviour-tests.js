@@ -357,6 +357,23 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 			
 			});
 				
+			context('on Dot when throttling', function () {
+
+				before(async function () {
+					browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+					await browser.wait({element: LCHLauncherSubjectPromptPlaceholder});
+
+					browser.OLSKFireKeyboardEvent(browser.window, 'a');
+					browser.OLSKFireKeyboardEvent(browser.window, '.');
+					await browser.wait({duration: LCHLauncherThrottleDuration});
+				});
+				
+				it('skips throttle', async function() {
+					browser.assert.elements(LCHLauncherResultList, 0);
+				});
+			
+			});
+				
 			context('in mode', function () {
 
 				before(async function () {
