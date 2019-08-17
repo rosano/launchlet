@@ -13,7 +13,9 @@ export const LCHSearchWithURLFrom = function(param1, param2) {
 		return param1;
 	};
 
-	return param1.replace(match[0], param2.split(' ').join(match[1]));
+	return param1.replace(match[0], param2.split(' ').map(function (e) {
+		return encodeURIComponent(e);
+	}).join(match[1]));
 };
 
 export const LCHSearchWithCallback = function(param1, param2) {

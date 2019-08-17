@@ -34,6 +34,10 @@ describe('LCHSearchWithURLFrom', function testLCHSearchWithURLFrom() {
 			deepEqual(mainModule.LCHSearchWithURLFrom('LCHSEARCHTOKEN1%20LCHSEARCHTOKEN2', 'bravo charlie'), 'bravo%20charlie');
 		});
 
+		it('escapes ampersand', function() {
+			deepEqual(mainModule.LCHSearchWithURLFrom('LCHSEARCHTOKEN1+LCHSEARCHTOKEN2', 'bravo & charlie'), 'bravo+%26+charlie');
+		});
+
 	});
 
 });
