@@ -599,15 +599,24 @@ function handleKeydown(event) {
 	ActivePromptFilterTextShouldUpdate(!_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle ? event.key : _PromptObjects[_PromptActiveIndex].LCHPromptFilterText + event.key);
 }
 
-function handleClick(event) { 
-	if (rootElement.contains(event.target)) {
-  	return;
-	}
+const mod = {
+	interfaceDidClickBody (event) {
+		if (rootElement.contains(event.target)) {
+	  	return;
+		}
 
-	handleDidFinish();
+		mod.commandExit();
+	},
+	commandExit () {
+		if (typeof completionHandler !== 'function') {
+			return;
+		}
+
+		return completionHandler();
+	},
 }
 </script>
-<svelte:window on:keydown={ handleKeydown } on:click={ handleClick } on:touchstart={ handleClick }/>
+<svelte:window on:keydown={ handleKeydown } on:click={ mod.interfaceDidClickBody } on:touchstart={ mod.interfaceDidClickBody }/>
 
 <div class="Container" bind:this={ rootElement }>
 	<div class="Bezel">
