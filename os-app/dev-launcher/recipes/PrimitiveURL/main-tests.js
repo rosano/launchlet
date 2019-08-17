@@ -2,81 +2,81 @@ import { throws, deepEqual } from 'assert';
 
 import * as mainModule from './main.js';
 
-describe('LCHTypeURLCallback', function testLCHTypeURLCallback() {
+describe('LCHPrimitiveURLCallback', function testLCHPrimitiveURLCallback() {
 
 	it.skip('throws error if not string', function() {
 		throws(function() {
-			mainModule.LCHTypeURLCallback(null);
+			mainModule.LCHPrimitiveURLCallback(null);
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns false if not string', function() {
-		deepEqual(mainModule.LCHTypeURLCallback(null), false);
+		deepEqual(mainModule.LCHPrimitiveURLCallback(null), false);
 	});
 
 	it('returns false if no scheme', function() {
-		deepEqual(mainModule.LCHTypeURLCallback('://example'), false);
+		deepEqual(mainModule.LCHPrimitiveURLCallback('://example'), false);
 	});
 
 	it('returns false if no colon', function() {
-		deepEqual(mainModule.LCHTypeURLCallback('http//example'), false);
+		deepEqual(mainModule.LCHPrimitiveURLCallback('http//example'), false);
 	});
 
 	it('returns false if no slashes', function() {
-		deepEqual(mainModule.LCHTypeURLCallback('http:/example'), false);
+		deepEqual(mainModule.LCHPrimitiveURLCallback('http:/example'), false);
 	});
 
 	it('returns false if no host', function() {
-		deepEqual(mainModule.LCHTypeURLCallback('http://'), false);
+		deepEqual(mainModule.LCHPrimitiveURLCallback('http://'), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mainModule.LCHTypeURLCallback('http://example'), true);
+		deepEqual(mainModule.LCHPrimitiveURLCallback('http://example'), true);
 	});
 
 	it('accepts https', function() {
-		deepEqual(mainModule.LCHTypeURLCallback('https://example'), true);
+		deepEqual(mainModule.LCHPrimitiveURLCallback('https://example'), true);
 	});
 
 	it('accepts domain', function() {
-		deepEqual(mainModule.LCHTypeURLCallback('http://example.com'), true);
+		deepEqual(mainModule.LCHPrimitiveURLCallback('http://example.com'), true);
 	});
 
 	it('accepts port', function() {
-		deepEqual(mainModule.LCHTypeURLCallback('http://example.com:80'), true);
+		deepEqual(mainModule.LCHPrimitiveURLCallback('http://example.com:80'), true);
 	});
 
 	it('accepts path', function() {
-		deepEqual(mainModule.LCHTypeURLCallback('http://example.com/alfa'), true);
+		deepEqual(mainModule.LCHPrimitiveURLCallback('http://example.com/alfa'), true);
 	});
 
 	it('accepts anchor', function() {
-		deepEqual(mainModule.LCHTypeURLCallback('http://example.com#alfa'), true);
+		deepEqual(mainModule.LCHPrimitiveURLCallback('http://example.com#alfa'), true);
 	});
 
 	it('accepts query', function() {
-		deepEqual(mainModule.LCHTypeURLCallback('http://example.com?alfa'), true);
+		deepEqual(mainModule.LCHPrimitiveURLCallback('http://example.com?alfa'), true);
 	});
 
 });
 
-describe('LCHTypeStringCanonicalExampleCallback', function testLCHTypeStringCanonicalExampleCallback() {
+describe('LCHPrimitiveStringCanonicalExampleCallback', function testLCHPrimitiveStringCanonicalExampleCallback() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHTypeStringCanonicalExampleCallback(), 'http://example.com');
+		deepEqual(mainModule.LCHPrimitiveStringCanonicalExampleCallback(), 'http://example.com');
 	});
 
 });
 
-describe('LCHTypeURLRecipe', function testLCHTypeURLRecipe() {
+describe('LCHPrimitiveURLRecipe', function testLCHPrimitiveURLRecipe() {
 
 	it('returns LCHRecipe', function() {
-		deepEqual(mainModule.LCHTypeURLRecipe(), {
+		deepEqual(mainModule.LCHPrimitiveURLRecipe(), {
 			LCHRecipeName: 'URL',
 			LCHRecipeSignature: 'URL',
-			LCHRecipeCallback: mainModule.LCHTypeURLCallback,
+			LCHRecipeCallback: mainModule.LCHPrimitiveURLCallback,
 			LCHRecipeOutputType: 'Bool',
-			LCHRecipeOutputTypeCanonicalExampleCallback: mainModule.LCHTypeStringCanonicalExampleCallback,
+			LCHRecipeOutputTypeCanonicalExampleCallback: mainModule.LCHPrimitiveStringCanonicalExampleCallback,
 		});
 	});
 

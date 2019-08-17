@@ -1,4 +1,4 @@
-export const LCHTypeDateCallback = function(inputData) {
+export const LCHPrimitiveDateCallback = function(inputData) {
 	if (!(inputData instanceof Date)) {
 		return false;
 	}
@@ -10,16 +10,16 @@ export const LCHTypeDateCallback = function(inputData) {
 	return true;
 };
 
-export const LCHTypeDateCanonicalExampleCallback = function() {
+export const LCHPrimitiveDateCanonicalExampleCallback = function() {
 	return new Date(0);
 };
 
-export const LCHTypeDateRecipe = function() {
+export const LCHPrimitiveDateRecipe = function() {
 	return {
 		LCHRecipeName: 'Date',
 		LCHRecipeSignature: 'Date',
-		LCHRecipeCallback: LCHTypeDateCallback,
+		LCHRecipeCallback: LCHPrimitiveDateCallback,
 		LCHRecipeOutputType: 'Bool',
-		LCHRecipeOutputTypeCanonicalExampleCallback: LCHTypeDateCanonicalExampleCallback,
+		LCHRecipeOutputTypeCanonicalExampleCallback: LCHPrimitiveDateCanonicalExampleCallback,
 	};
 };

@@ -2,41 +2,41 @@ import { throws, deepEqual } from 'assert';
 
 import * as mainModule from './main.js';
 
-describe('LCHTypeBoolCallback', function testLCHTypeBoolCallback() {
+describe('LCHPrimitiveBoolCallback', function testLCHPrimitiveBoolCallback() {
 
 	it('returns false if not present', function() {
-		deepEqual(mainModule.LCHTypeBoolCallback(), false);
+		deepEqual(mainModule.LCHPrimitiveBoolCallback(), false);
 	});
 
 	it('returns false if undefined', function() {
-		deepEqual(mainModule.LCHTypeBoolCallback(undefined), false);
+		deepEqual(mainModule.LCHPrimitiveBoolCallback(undefined), false);
 	});
 
 	it('returns false if null', function() {
-		deepEqual(mainModule.LCHTypeBoolCallback(null), false);
+		deepEqual(mainModule.LCHPrimitiveBoolCallback(null), false);
 	});
 
 	it('returns false if empty string', function() {
-		deepEqual(mainModule.LCHTypeBoolCallback(''), false);
+		deepEqual(mainModule.LCHPrimitiveBoolCallback(''), false);
 	});
 
 	it('returns true if true', function() {
-		deepEqual(mainModule.LCHTypeBoolCallback(true), true);
+		deepEqual(mainModule.LCHPrimitiveBoolCallback(true), true);
 	});
 
 	it('returns true if filled string', function() {
-		deepEqual(mainModule.LCHTypeBoolCallback('alfa'), true);
+		deepEqual(mainModule.LCHPrimitiveBoolCallback('alfa'), true);
 	});
 
 });
 
-describe('LCHTypeBoolRecipe', function testLCHTypeBoolRecipe() {
+describe('LCHPrimitiveBoolRecipe', function testLCHPrimitiveBoolRecipe() {
 
 	it('returns LCHRecipe', function() {
-		deepEqual(mainModule.LCHTypeBoolRecipe(), {
+		deepEqual(mainModule.LCHPrimitiveBoolRecipe(), {
 			LCHRecipeName: 'Boolean',
 			LCHRecipeSignature: 'Bool',
-			LCHRecipeCallback: mainModule.LCHTypeBoolCallback,
+			LCHRecipeCallback: mainModule.LCHPrimitiveBoolCallback,
 		});
 	});
 

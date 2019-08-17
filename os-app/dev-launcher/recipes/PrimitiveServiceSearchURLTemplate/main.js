@@ -1,7 +1,7 @@
-import { LCHTypeURLCallback } from '../PrimitiveURL/main.js';
+import { LCHPrimitiveURLCallback } from '../PrimitiveURL/main.js';
 
-export const LCHTypeServiceSearchURLTemplateCallback = function(inputData) {
-	if (!LCHTypeURLCallback(inputData)) {
+export const LCHPrimitiveServiceSearchURLTemplateCallback = function(inputData) {
+	if (!LCHPrimitiveURLCallback(inputData)) {
 		return false;
 	}
 
@@ -12,16 +12,16 @@ export const LCHTypeServiceSearchURLTemplateCallback = function(inputData) {
 	return true;
 };
 
-export const LCHTypeStringCanonicalExampleCallback = function() {
+export const LCHPrimitiveStringCanonicalExampleCallback = function() {
 	return 'http://example.com?q=LCHSEARCHTOKEN1+LCHSEARCHTOKEN2';
 };
 
-export const LCHTypeServiceSearchURLTemplateRecipe = function() {
+export const LCHPrimitiveServiceSearchURLTemplateRecipe = function() {
 	return {
 		LCHRecipeName: 'Search Service URL Template',
-		LCHRecipeCallback: LCHTypeServiceSearchURLTemplateCallback,
+		LCHRecipeCallback: LCHPrimitiveServiceSearchURLTemplateCallback,
 		LCHRecipeOutputType: 'Bool',
-		LCHRecipeOutputTypeCanonicalExampleCallback: LCHTypeStringCanonicalExampleCallback,
+		LCHRecipeOutputTypeCanonicalExampleCallback: LCHPrimitiveStringCanonicalExampleCallback,
 		LCHRecipeSignature: 'ServiceSearchURLTemplate',
 	};
 };

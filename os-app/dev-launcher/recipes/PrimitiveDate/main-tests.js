@@ -2,39 +2,39 @@ import { throws, deepEqual } from 'assert';
 
 import * as mainModule from './main.js';
 
-describe('LCHTypeDateCallback', function testLCHTypeDateCallback() {
+describe('LCHPrimitiveDateCallback', function testLCHPrimitiveDateCallback() {
 
 	it('returns false if not date', function() {
-		deepEqual(mainModule.LCHTypeDateCallback(null), false);
+		deepEqual(mainModule.LCHPrimitiveDateCallback(null), false);
 	});
 
 	it('returns false if invalid', function() {
-		deepEqual(mainModule.LCHTypeDateCallback(new Date('alfa')), false);
+		deepEqual(mainModule.LCHPrimitiveDateCallback(new Date('alfa')), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mainModule.LCHTypeDateCallback(new Date()), true);
+		deepEqual(mainModule.LCHPrimitiveDateCallback(new Date()), true);
 	});
 
 });
 
-describe('LCHTypeDateCanonicalExampleCallback', function testLCHTypeDateCanonicalExampleCallback() {
+describe('LCHPrimitiveDateCanonicalExampleCallback', function testLCHPrimitiveDateCanonicalExampleCallback() {
 
 	it('returns Date', function() {
-		deepEqual(mainModule.LCHTypeDateCanonicalExampleCallback(), new Date(0));
+		deepEqual(mainModule.LCHPrimitiveDateCanonicalExampleCallback(), new Date(0));
 	});
 
 });
 
-describe('LCHTypeDateRecipe', function testLCHTypeDateRecipe() {
+describe('LCHPrimitiveDateRecipe', function testLCHPrimitiveDateRecipe() {
 
 	it('returns LCHRecipe', function() {
-		deepEqual(mainModule.LCHTypeDateRecipe(), {
+		deepEqual(mainModule.LCHPrimitiveDateRecipe(), {
 			LCHRecipeName: 'Date',
 			LCHRecipeSignature: 'Date',
-			LCHRecipeCallback: mainModule.LCHTypeDateCallback,
+			LCHRecipeCallback: mainModule.LCHPrimitiveDateCallback,
 			LCHRecipeOutputType: 'Bool',
-			LCHRecipeOutputTypeCanonicalExampleCallback: mainModule.LCHTypeDateCanonicalExampleCallback,
+			LCHRecipeOutputTypeCanonicalExampleCallback: mainModule.LCHPrimitiveDateCanonicalExampleCallback,
 		});
 	});
 

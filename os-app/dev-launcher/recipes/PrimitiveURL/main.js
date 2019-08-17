@@ -1,7 +1,7 @@
 import * as _URLParser from 'url-parse';
 const URLParser = typeof _URLParser === 'function' ? _URLParser : _URLParser.default;
 
-export const LCHTypeURLCallback = function(inputData) {
+export const LCHPrimitiveURLCallback = function(inputData) {
 	if (typeof inputData !== 'string') {
 		// throw new Error('LCHErrorInputInvalid');
 		return false;
@@ -14,16 +14,16 @@ export const LCHTypeURLCallback = function(inputData) {
 	return true;
 };
 
-export const LCHTypeStringCanonicalExampleCallback = function() {
+export const LCHPrimitiveStringCanonicalExampleCallback = function() {
 	return 'http://example.com';
 };
 
-export const LCHTypeURLRecipe = function() {
+export const LCHPrimitiveURLRecipe = function() {
 	return {
 		LCHRecipeName: 'URL',
 		LCHRecipeSignature: 'URL',
-		LCHRecipeCallback: LCHTypeURLCallback,
+		LCHRecipeCallback: LCHPrimitiveURLCallback,
 		LCHRecipeOutputType: 'Bool',
-		LCHRecipeOutputTypeCanonicalExampleCallback: LCHTypeStringCanonicalExampleCallback,
+		LCHRecipeOutputTypeCanonicalExampleCallback: LCHPrimitiveStringCanonicalExampleCallback,
 	};
 };

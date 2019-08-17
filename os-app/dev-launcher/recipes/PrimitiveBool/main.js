@@ -1,11 +1,11 @@
-export const LCHTypeBoolCallback = function(inputData) {
+export const LCHPrimitiveBoolCallback = function(inputData) {
 	return !!inputData;
 };
 
-export const LCHTypeBoolRecipe = function() {
+export const LCHPrimitiveBoolRecipe = function() {
 	return {
 		LCHRecipeName: 'Boolean',
 		LCHRecipeSignature: 'Bool',
-		LCHRecipeCallback: LCHTypeBoolCallback,
+		LCHRecipeCallback: LCHPrimitiveBoolCallback,
 	};
 };

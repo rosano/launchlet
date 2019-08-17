@@ -1,17 +1,17 @@
-export const LCHTypeStringCallback = function(inputData) {
+export const LCHPrimitiveStringCallback = function(inputData) {
 	return typeof inputData === 'string';
 };
 
-export const LCHTypeStringCanonicalExampleCallback = function() {
+export const LCHPrimitiveStringCanonicalExampleCallback = function() {
 	return '';
 };
 
-export const LCHTypeStringRecipe = function() {
+export const LCHPrimitiveStringRecipe = function() {
 	return {
 		LCHRecipeName: 'String',
 		LCHRecipeSignature: 'String',
-		LCHRecipeCallback: LCHTypeStringCallback,
+		LCHRecipeCallback: LCHPrimitiveStringCallback,
 		LCHRecipeOutputType: 'Bool',
-		LCHRecipeOutputTypeCanonicalExampleCallback: LCHTypeStringCanonicalExampleCallback,
+		LCHRecipeOutputTypeCanonicalExampleCallback: LCHPrimitiveStringCanonicalExampleCallback,
 	};
 };

@@ -2,35 +2,35 @@ import { throws, deepEqual } from 'assert';
 
 import * as mainModule from './main.js';
 
-describe('LCHTypeStringCallback', function testLCHTypeStringCallback() {
+describe('LCHPrimitiveStringCallback', function testLCHPrimitiveStringCallback() {
 
 	it('returns false if not string', function() {
-		deepEqual(mainModule.LCHTypeStringCallback(null), false);
+		deepEqual(mainModule.LCHPrimitiveStringCallback(null), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mainModule.LCHTypeStringCallback(''), true);
+		deepEqual(mainModule.LCHPrimitiveStringCallback(''), true);
 	});
 
 });
 
-describe('LCHTypeStringCanonicalExampleCallback', function testLCHTypeStringCanonicalExampleCallback() {
+describe('LCHPrimitiveStringCanonicalExampleCallback', function testLCHPrimitiveStringCanonicalExampleCallback() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHTypeStringCanonicalExampleCallback(), '');
+		deepEqual(mainModule.LCHPrimitiveStringCanonicalExampleCallback(), '');
 	});
 
 });
 
-describe('LCHTypeStringRecipe', function testLCHTypeStringRecipe() {
+describe('LCHPrimitiveStringRecipe', function testLCHPrimitiveStringRecipe() {
 
 	it('returns LCHRecipe', function() {
-		deepEqual(mainModule.LCHTypeStringRecipe(), {
+		deepEqual(mainModule.LCHPrimitiveStringRecipe(), {
 			LCHRecipeName: 'String',
 			LCHRecipeSignature: 'String',
-			LCHRecipeCallback: mainModule.LCHTypeStringCallback,
+			LCHRecipeCallback: mainModule.LCHPrimitiveStringCallback,
 			LCHRecipeOutputType: 'Bool',
-			LCHRecipeOutputTypeCanonicalExampleCallback: mainModule.LCHTypeStringCanonicalExampleCallback,
+			LCHRecipeOutputTypeCanonicalExampleCallback: mainModule.LCHPrimitiveStringCanonicalExampleCallback,
 		});
 	});
 
