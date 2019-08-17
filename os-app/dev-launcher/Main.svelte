@@ -530,6 +530,18 @@ const mod = {
 
 		OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 	},
+	_commandHandleEventKeydownArrowDown () {
+		if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === undefined) {
+			_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = false;
+			return;
+		}
+
+		if (!_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
+			return;
+		}
+
+		OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
+	},
 	_commandHandleEventKeydownDot () {
 		if (_PromptActiveIndex === 1) {
 			return;
@@ -594,16 +606,7 @@ const mod = {
 
 				event.preventDefault();
 
-				if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === undefined) {
-					_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = false;
-					return;
-				}
-
-				if (!_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
-					return;
-				}
-
-				OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
+				mod._commandHandleEventKeydownArrowDown();
 			},
 			'.': function Dot () {
 				event.preventDefault();
@@ -617,7 +620,7 @@ const mod = {
 			},
 			Backspace () {
 				event.preventDefault();
-				
+
 				if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
 					return;
 				}
