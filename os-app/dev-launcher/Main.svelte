@@ -452,6 +452,16 @@ function handleDidFinish() {
 import { LCHLauncherKeyboardEventIsTextInput } from './ui-logic.js';
 const mod = {
 
+	// VALUE
+
+	ValuePromptModeText (inputData) {
+		if (typeof inputData === 'undefined') {
+			return _PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode;
+		};
+
+		_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = inputData
+	},
+
 	// INTERFACE
 
 	interfaceDidClickBody (event) {
@@ -465,27 +475,22 @@ const mod = {
 		mod.commandHandleEventKeydown(event);
 	},
 
-	// COMMANDS
+	// COMMAND
 	
 	_commandHandleEventKeydownModeTextItem (event) {
 		const handlerFunctions = {
 			'Escape': function () {
-				_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
-				return true;
+				return mod.ValuePromptModeText(false) || true;
 			},
 			'Tab': function () {
-				_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
+				return mod.ValuePromptModeText(false)
 			},
 			'Enter': function () {
-				_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
+				return mod.ValuePromptModeText(false)
 			},
 		};
 
-		if (Object.keys(handlerFunctions).indexOf(event.key) === -1) {
-			return;
-		}
-
-		return handlerFunctions[event.key]()
+		return handlerFunctions[event.key] && handlerFunctions[event.key]()
 	},
 	commandHandleEventKeydown (event) {
 		if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode && mod._commandHandleEventKeydownModeTextItem(event)) {
