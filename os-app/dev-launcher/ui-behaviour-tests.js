@@ -369,15 +369,29 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				});
 
 			});
+				
+			context('on Dot when action prompt selected', function () {
 
-			// it('does nothing if selected prompt is action', async function() {
-			// 	browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
+				before(async function () {
+					await browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
 
-			// 	browser.OLSKFireKeyboardEvent(browser.window, '.');
-			// 	await browser.wait({element: LCHLauncherSubjectPrompt});
+					browser.OLSKFireKeyboardEvent(browser.window, 'a');
+					await browser.wait({element: LCHLauncherResultList});
 
-			// 	browser.assert.elements(LCHLauncherPromptTextItemInput, 0);
-			// });
+					browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+					await browser.wait({element: LCHLauncherActionPrompt});
+
+					browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
+				});
+
+				it('does nothing if selected prompt is action', async function() {
+					browser.OLSKFireKeyboardEvent(browser.window, '.');
+					await browser.wait({element: LCHLauncherSubjectPrompt});
+
+					browser.assert.elements(LCHLauncherPromptTextItemInput, 0);
+				});
+			
+			});
 
 		});
 
