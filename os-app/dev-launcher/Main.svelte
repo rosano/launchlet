@@ -485,6 +485,8 @@ function handleKeydown(event) {
 			return event.preventDefault();
 		},
 		'.': function Dot () {
+			event.preventDefault();
+
 			if (OLSKThrottle.OLSKThrottleInputDataIsThrottleObject(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle)) {
 				clearTimeout(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle._OLSKThrottleTimeoutID);
 			}
@@ -492,11 +494,14 @@ function handleKeydown(event) {
 			_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
 			_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = true;
 			_PromptObjects[_PromptActiveIndex].LCHPromptFilterText = '';
+
+			if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItem) {
+				return;
+			};
+
 			_PromptObjects[1].LCHPromptItemsAll = [];
 			_PromptObjects[1].LCHPromptItems = [];
 			_PromptObjects[1].LCHPromptItemSelected = null;
-
-			return event.preventDefault();
 		},
 		Enter () {
 			if (CompositionIsValid()) {

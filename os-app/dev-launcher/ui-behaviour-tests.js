@@ -413,19 +413,6 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				
 				});
 
-				context('on re-entry', function () {
-
-					before(async function () {
-						browser.OLSKFireKeyboardEvent(browser.window, '.');
-						await browser.wait({element: LCHLauncherPromptTextItemInput});
-					});
-					
-					it('shows previous text input', async function() {
-						browser.assert.input(LCHLauncherPromptTextItemInput, 'bravo')
-					});
-				
-				});
-
 				context('on Tab', function () {
 
 					before(async function () {
@@ -525,6 +512,40 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					browser.assert.elements(LCHLauncherPromptTextItemInput, 0);
 				});
 			
+			});
+				
+			context('on Dot Escape', function () {
+
+				before(async function () {
+					await browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
+
+					browser.OLSKFireKeyboardEvent(browser.window, '.');
+					await browser.wait({element: LCHLauncherPromptTextItemInput});
+
+					browser.fill(LCHLauncherPromptTextItemInput, 'alfa')
+					await browser.wait({element: LCHLauncherPipeItem});
+
+					browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+					await browser.wait({element: LCHLauncherPipeItem});
+				});
+
+				context('on re-entry', function () {
+
+					before(async function () {
+						browser.OLSKFireKeyboardEvent(browser.window, '.');
+						await browser.wait({element: LCHLauncherPromptTextItemInput});
+					});
+					
+					it('shows previous text input', async function() {
+						browser.assert.input(LCHLauncherPromptTextItemInput, 'alfa')
+					});
+					
+					it('shows actions', async function() {
+						browser.assert.elements(LCHLauncherPipeItem, 1)
+					});
+				
+				});
+
 			});
 
 		});
