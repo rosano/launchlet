@@ -159,6 +159,13 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				browser.assert.elements(LCHLauncherResultListItem, 5);
 			});
 
+			it('hides list on Escape', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+				await browser.wait({element: LCHLauncherPipeItem});
+
+				browser.assert.elements(LCHLauncherResultList, 0);
+			});
+
 			context('MatchStop', function() {
 
 				before(async function() {

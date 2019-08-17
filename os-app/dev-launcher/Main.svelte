@@ -457,6 +457,11 @@ function handleKeydown(event) {
 		Escape () {
 			event.preventDefault();
 
+			if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === false) {
+				_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
+				return;
+			}
+
 			if (LCHOptionsObject().runMode !== LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
 				return ActivePromptFilterTextShouldUpdate('');
 			}
