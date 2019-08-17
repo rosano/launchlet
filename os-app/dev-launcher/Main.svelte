@@ -461,6 +461,13 @@ const mod = {
 
 		_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = inputData
 	},
+	ValuePromptResultsIsVisible (inputData) {
+		if (typeof inputData === 'undefined') {
+			return _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === false;
+		};
+
+		_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = inputData ? false : undefined;
+	},
 
 	// INTERFACE
 
@@ -481,6 +488,7 @@ const mod = {
 		const handlerFunctions = {
 			'Escape': function () {
 				event.preventDefault();
+
 				return mod.ValuePromptModeText(false) || true;
 			},
 			'Tab': function () {
@@ -497,6 +505,17 @@ const mod = {
 
 		return handlerFunctions[event.key]()
 	},
+	_commandHandleEventKeydownEscape () {
+		if (LCHOptionsObject().runMode === LCHLauncherModePipe && mod.ValuePromptResultsIsVisible()) {
+			return mod.ValuePromptResultsIsVisible(false);
+		}
+
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
+			return ActivePromptFilterTextShouldUpdate('');
+		}
+
+		mod.commandExit();
+	},
 	commandHandleEventKeydown (event) {
 		if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode && mod._commandHandleEventKeydownModeTextItem(event)) {
 			return;
@@ -506,16 +525,7 @@ const mod = {
 			Escape () {
 				event.preventDefault();
 
-				if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === false) {
-					_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
-					return;
-				}
-
-				if (LCHOptionsObject().runMode !== LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
-					return ActivePromptFilterTextShouldUpdate('');
-				}
-
-				handleDidFinish();
+				mod._commandHandleEventKeydownEscape();
 			},
 			Tab () {
 				if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
