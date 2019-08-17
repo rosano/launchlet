@@ -103,7 +103,7 @@ import {
 } from './api.js';
 import * as apiComponents from './recipes/components.js';
 async function apiStart(inputData) {
-	return await (inputData.LCHCompositionAction ? LCHAPIExecuteComposition(inputData, api) : LCHAPIExecuteRecipe(inputData, [], api)).then(function (inputData) {
+	return await (function (inputData) {
 		if (!inputData) {
 			return Promise.resolve(inputData);
 		}
@@ -127,7 +127,7 @@ async function apiStart(inputData) {
 				}),
 			});
 		});
-	});
+	})(inputData.LCHCompositionAction ? await LCHAPIExecuteComposition(inputData, api) : await LCHAPIExecuteRecipe(inputData, [], api));
 }
 
 import {
