@@ -616,6 +616,8 @@ const mod = {
 				mod._commandHandleEventKeydownEnter()
 			},
 			Backspace () {
+				event.preventDefault();
+				
 				if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
 					return;
 				}
