@@ -612,7 +612,7 @@ const mod = {
 			},
 		};
 
-		if (Object.keys(handlerFunctions).indexOf(event.key) !== -1) {
+		if (handlerFunctions[event.key]) {
 			return handlerFunctions[event.key]();
 		}
 
