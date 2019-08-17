@@ -606,12 +606,6 @@ function handleClick(event) {
 
 	handleDidFinish();
 }
-
-async function itemDidClick(event, item) {
-	await apiStart(item);
-
-	handleDidFinish();
-}
 </script>
 <svelte:window on:keydown={ handleKeydown } on:click={ handleClick } on:touchstart={ handleClick }/>
 
