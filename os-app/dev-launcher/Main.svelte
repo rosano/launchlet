@@ -570,6 +570,26 @@ const mod = {
 
 		LauncherShouldTerminate();
 	},
+	_commandHandleEventKeydownBackspace () {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+			return;
+		}
+
+		if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
+			return ActivePromptFilterTextShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText.slice(0, -1));
+		}
+
+		if (_PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
+			_PromptObjects[_PromptActiveIndex].LCHPromptMatchStop = false;
+			return ActivePromptFilterTextShouldUpdate('');
+		}
+
+		ActivePromptItemsShouldUpdate([]);
+
+		_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
+
+		_PromptObjects[_PromptActiveIndex].LCHPromptTextItem = '';
+	},
 	commandHandleEventKeydown (event) {
 		if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode && mod._commandHandleEventKeydownModeTextItem(event)) {
 			return;
@@ -621,24 +641,7 @@ const mod = {
 			Backspace () {
 				event.preventDefault();
 
-				if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
-					return;
-				}
-
-				if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
-					return ActivePromptFilterTextShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText.slice(0, -1));
-				}
-
-				if (_PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
-					_PromptObjects[_PromptActiveIndex].LCHPromptMatchStop = false;
-					return ActivePromptFilterTextShouldUpdate('');
-				}
-
-				ActivePromptItemsShouldUpdate([]);
-
-				_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
-
-				_PromptObjects[_PromptActiveIndex].LCHPromptTextItem = '';
+				mod._commandHandleEventKeydownBackspace();
 			},
 		};
 
