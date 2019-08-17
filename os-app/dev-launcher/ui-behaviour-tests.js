@@ -166,6 +166,13 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				browser.assert.elements(LCHLauncherResultList, 0);
 			});
 
+			it('shows list on ArrowDown', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
+				await browser.wait({element: LCHLauncherPipeItem});
+
+				browser.assert.elements(LCHLauncherResultList, 1);
+			});
+
 			context('MatchStop', function() {
 
 				before(async function() {

@@ -495,6 +495,11 @@ function handleKeydown(event) {
 
 			event.preventDefault();
 
+			if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === undefined) {
+				_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = false;
+				return;
+			}
+
 			if (!_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
 				return;
 			}
