@@ -450,155 +450,6 @@ function handleDidFinish() {
 }
 
 import { LCHLauncherKeyboardEventIsTextInput } from './ui-logic.js';
-function handleKeydown(event) {
-	if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode) {
-		const handlerFunctions = {
-			Escape () {
-				_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
-				return true;
-			},
-			Tab () {
-				_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
-			},
-			Enter () {
-				_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
-			},
-		};
-
-		if (Object.keys(handlerFunctions).indexOf(event.key) === -1) {
-			return;
-		}
-
-		if (handlerFunctions[event.key]()) {
-			return;
-		};
-	};
-
-	const handlerFunctions = {
-		Escape () {
-			event.preventDefault();
-
-			if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === false) {
-				_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
-				return;
-			}
-
-			if (LCHOptionsObject().runMode !== LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
-				return ActivePromptFilterTextShouldUpdate('');
-			}
-
-			handleDidFinish();
-		},
-		Tab () {
-			if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
-				ActivePromptIndexShouldUpdate(!_PromptActiveIndex ? 1 : 0);
-			}
-
-			return event.preventDefault();
-		},
-		ArrowUp () {
-			if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
-				return
-			};
-
-			event.preventDefault();
-
-			if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === undefined) {
-				_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = false;
-				return;
-			}
-
-			if (!_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
-				return;
-			}
-
-			OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
-		},
-		ArrowDown () {
-			if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
-				return
-			};
-
-			event.preventDefault();
-
-			if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === undefined) {
-				_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = false;
-				return;
-			}
-
-			if (!_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
-				return;
-			}
-
-			OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
-		},
-		'.': function Dot () {
-			event.preventDefault();
-
-			if (_PromptActiveIndex === 1) {
-				return;
-			};
-			
-			if (OLSKThrottle.OLSKThrottleInputDataIsThrottleObject(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle)) {
-				clearTimeout(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle._OLSKThrottleTimeoutID);
-			}
-
-			_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
-			_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = true;
-			_PromptObjects[_PromptActiveIndex].LCHPromptFilterText = '';
-
-			if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItem) {
-				return;
-			};
-
-			_PromptObjects[1].LCHPromptItemsAll = [];
-			_PromptObjects[1].LCHPromptItems = [];
-			_PromptObjects[1].LCHPromptItemSelected = null;
-		},
-		Enter () {
-			if (CompositionIsValid()) {
-				LauncherShouldTerminate();
-			}
-
-			return event.preventDefault();
-		},
-		Backspace () {
-			if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
-				return;
-			}
-
-			if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
-				return ActivePromptFilterTextShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText.slice(0, -1));
-			}
-
-			if (_PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
-				_PromptObjects[_PromptActiveIndex].LCHPromptMatchStop = false;
-				return ActivePromptFilterTextShouldUpdate('');
-			}
-
-			ActivePromptItemsShouldUpdate([]);
-
-			_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
-
-			_PromptObjects[_PromptActiveIndex].LCHPromptTextItem = '';
-		},
-	};
-
-	if (Object.keys(handlerFunctions).indexOf(event.key) !== -1) {
-		return handlerFunctions[event.key]();
-	}
-
-	if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
-		return;
-	}
-
-	if (!LCHLauncherKeyboardEventIsTextInput(event)) {
-		return;
-	}
-
-	ActivePromptFilterTextShouldUpdate(!_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle ? event.key : _PromptObjects[_PromptActiveIndex].LCHPromptFilterText + event.key);
-}
-
 const mod = {
 	interfaceDidClickBody (event) {
 		if (rootElement.contains(event.target)) {
@@ -606,6 +457,154 @@ const mod = {
 		}
 
 		mod.commandExit();
+	},
+	interfaceDidKeydown (event) {
+		if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode) {
+			const handlerFunctions = {
+				Escape () {
+					_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
+					return true;
+				},
+				Tab () {
+					_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
+				},
+				Enter () {
+					_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
+				},
+			};
+
+			if (Object.keys(handlerFunctions).indexOf(event.key) === -1) {
+				return;
+			}
+
+			if (handlerFunctions[event.key]()) {
+				return;
+			};
+		};
+
+		const handlerFunctions = {
+			Escape () {
+				event.preventDefault();
+
+				if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === false) {
+					_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
+					return;
+				}
+
+				if (LCHOptionsObject().runMode !== LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
+					return ActivePromptFilterTextShouldUpdate('');
+				}
+
+				handleDidFinish();
+			},
+			Tab () {
+				if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
+					ActivePromptIndexShouldUpdate(!_PromptActiveIndex ? 1 : 0);
+				}
+
+				return event.preventDefault();
+			},
+			ArrowUp () {
+				if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+					return
+				};
+
+				event.preventDefault();
+
+				if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === undefined) {
+					_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = false;
+					return;
+				}
+
+				if (!_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
+					return;
+				}
+
+				OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
+			},
+			ArrowDown () {
+				if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+					return
+				};
+
+				event.preventDefault();
+
+				if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === undefined) {
+					_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = false;
+					return;
+				}
+
+				if (!_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
+					return;
+				}
+
+				OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
+			},
+			'.': function Dot () {
+				event.preventDefault();
+
+				if (_PromptActiveIndex === 1) {
+					return;
+				};
+				
+				if (OLSKThrottle.OLSKThrottleInputDataIsThrottleObject(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle)) {
+					clearTimeout(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle._OLSKThrottleTimeoutID);
+				}
+
+				_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
+				_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = true;
+				_PromptObjects[_PromptActiveIndex].LCHPromptFilterText = '';
+
+				if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItem) {
+					return;
+				};
+
+				_PromptObjects[1].LCHPromptItemsAll = [];
+				_PromptObjects[1].LCHPromptItems = [];
+				_PromptObjects[1].LCHPromptItemSelected = null;
+			},
+			Enter () {
+				if (CompositionIsValid()) {
+					LauncherShouldTerminate();
+				}
+
+				return event.preventDefault();
+			},
+			Backspace () {
+				if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+					return;
+				}
+
+				if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
+					return ActivePromptFilterTextShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText.slice(0, -1));
+				}
+
+				if (_PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
+					_PromptObjects[_PromptActiveIndex].LCHPromptMatchStop = false;
+					return ActivePromptFilterTextShouldUpdate('');
+				}
+
+				ActivePromptItemsShouldUpdate([]);
+
+				_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
+
+				_PromptObjects[_PromptActiveIndex].LCHPromptTextItem = '';
+			},
+		};
+
+		if (Object.keys(handlerFunctions).indexOf(event.key) !== -1) {
+			return handlerFunctions[event.key]();
+		}
+
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+			return;
+		}
+
+		if (!LCHLauncherKeyboardEventIsTextInput(event)) {
+			return;
+		}
+
+		ActivePromptFilterTextShouldUpdate(!_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle ? event.key : _PromptObjects[_PromptActiveIndex].LCHPromptFilterText + event.key);
 	},
 	commandExit () {
 		if (typeof completionHandler !== 'function') {
@@ -616,7 +615,7 @@ const mod = {
 	},
 }
 </script>
-<svelte:window on:keydown={ handleKeydown } on:click={ mod.interfaceDidClickBody } on:touchstart={ mod.interfaceDidClickBody }/>
+<svelte:window on:keydown={ mod.interfaceDidKeydown } on:click={ mod.interfaceDidClickBody } on:touchstart={ mod.interfaceDidClickBody }/>
 
 <div class="Container" bind:this={ rootElement }>
 	<div class="Bezel">
