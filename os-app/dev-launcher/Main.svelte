@@ -364,6 +364,22 @@ async function LauncherShouldTerminate () {
 	handleDidFinish();
 }
 
+function ActivePromptTextItemShouldUpdate(inputData) {
+	(function SetTextItem() {
+		_PromptObjects[_PromptActiveIndex].LCHPromptTextItem = inputData
+	})();
+
+	(function SetActivePromptItems() {
+		ActivePromptItemsShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptTextItem ? [{
+			LCHRecipeName: _PromptObjects[_PromptActiveIndex].LCHPromptTextItem,
+			LCHRecipeCallback: function () {
+				return _PromptObjects[_PromptActiveIndex].LCHPromptTextItem;
+			},
+			LCHRecipeOutputType: 'String',
+		}] : []);
+	})();
+}
+
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModePreview ? dataObjects : [];
 import OLSKThrottle from 'OLSKThrottle';
 

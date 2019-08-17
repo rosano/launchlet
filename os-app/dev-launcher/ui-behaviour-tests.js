@@ -342,6 +342,33 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				});
 			
 			});
+				
+			context('in mode', function () {
+
+				before(async function () {
+					browser.OLSKFireKeyboardEvent(browser.window, '.');
+					await browser.wait({element: LCHLauncherPromptTextItemInput});
+				});
+				
+				it('shows no actions', async function() {
+					browser.assert.elements(LCHLauncherPipeItem, 0)
+				});
+
+				it('shows actions if filled', async function() {
+					browser.fill(LCHLauncherPromptTextItemInput, 'alfa')
+					await browser.wait({element: LCHLauncherPipeItem});
+
+					browser.assert.elements(LCHLauncherPipeItem, 1)
+				});
+
+				it('shows no actions if empty', async function() {
+					browser.fill(LCHLauncherPromptTextItemInput, '')
+					await browser.wait({element: LCHLauncherPromptTextItemInput});
+
+					browser.assert.elements(LCHLauncherPipeItem, 0)
+				});
+
+			});
 
 			// it('does nothing if selected prompt is action', async function() {
 			// 	browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
