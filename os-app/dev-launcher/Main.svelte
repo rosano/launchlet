@@ -451,6 +451,9 @@ function handleDidFinish() {
 
 import { LCHLauncherKeyboardEventIsTextInput } from './ui-logic.js';
 const mod = {
+
+	// INTERFACE
+
 	interfaceDidClickBody (event) {
 		if (rootElement.contains(event.target)) {
 	  	return;
@@ -606,6 +609,9 @@ const mod = {
 
 		ActivePromptFilterTextShouldUpdate(!_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle ? event.key : _PromptObjects[_PromptActiveIndex].LCHPromptFilterText + event.key);
 	},
+
+	// COMMANDS
+	
 	commandExit () {
 		if (typeof completionHandler !== 'function') {
 			return;
