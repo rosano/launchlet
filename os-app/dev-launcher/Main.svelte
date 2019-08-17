@@ -530,6 +530,27 @@ const mod = {
 
 		OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 	},
+	_commandHandleEventKeydownDot () {
+		if (_PromptActiveIndex === 1) {
+			return;
+		};
+		
+		if (OLSKThrottle.OLSKThrottleInputDataIsThrottleObject(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle)) {
+			clearTimeout(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle._OLSKThrottleTimeoutID);
+		}
+
+		mod.ValuePromptResultsIsVisible(false);
+		mod.ValuePromptModeText(true)
+		_PromptObjects[_PromptActiveIndex].LCHPromptFilterText = '';
+
+		if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItem) {
+			return;
+		};
+
+		_PromptObjects[1].LCHPromptItemsAll = [];
+		_PromptObjects[1].LCHPromptItems = [];
+		_PromptObjects[1].LCHPromptItemSelected = null;
+	},
 	commandHandleEventKeydown (event) {
 		if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode && mod._commandHandleEventKeydownModeTextItem(event)) {
 			return;
@@ -580,25 +601,7 @@ const mod = {
 			'.': function Dot () {
 				event.preventDefault();
 
-				if (_PromptActiveIndex === 1) {
-					return;
-				};
-				
-				if (OLSKThrottle.OLSKThrottleInputDataIsThrottleObject(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle)) {
-					clearTimeout(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle._OLSKThrottleTimeoutID);
-				}
-
-				_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
-				_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = true;
-				_PromptObjects[_PromptActiveIndex].LCHPromptFilterText = '';
-
-				if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItem) {
-					return;
-				};
-
-				_PromptObjects[1].LCHPromptItemsAll = [];
-				_PromptObjects[1].LCHPromptItems = [];
-				_PromptObjects[1].LCHPromptItemSelected = null;
+				mod._commandHandleEventKeydownDot()
 			},
 			Enter () {
 				if (CompositionIsValid()) {
