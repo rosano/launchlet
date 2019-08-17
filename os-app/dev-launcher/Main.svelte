@@ -480,6 +480,7 @@ const mod = {
 	_commandHandleEventKeydownModeTextItem (event) {
 		const handlerFunctions = {
 			'Escape': function () {
+				event.preventDefault();
 				return mod.ValuePromptModeText(false) || true;
 			},
 			'Tab': function () {
@@ -490,7 +491,11 @@ const mod = {
 			},
 		};
 
-		return handlerFunctions[event.key] && handlerFunctions[event.key]()
+		if (!handlerFunctions[event.key]) {
+			return true;
+		};
+
+		return handlerFunctions[event.key]()
 	},
 	commandHandleEventKeydown (event) {
 		if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode && mod._commandHandleEventKeydownModeTextItem(event)) {
@@ -610,6 +615,10 @@ const mod = {
 		if (Object.keys(handlerFunctions).indexOf(event.key) !== -1) {
 			return handlerFunctions[event.key]();
 		}
+
+		if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode) {
+			return;
+		};
 
 		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
 			return;
