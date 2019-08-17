@@ -336,6 +336,10 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				it('clears filter text', function() {
 					browser.assert.text(LCHLauncherSubjectPromptHeading, 'Subject') // #move language
 				});
+
+				it('clears actions', function() {
+					browser.assert.elements(LCHLauncherPipeItem, 0)
+				});
 			
 			});
 

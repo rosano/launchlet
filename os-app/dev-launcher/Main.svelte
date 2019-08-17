@@ -435,6 +435,8 @@ function handleKeydown(event) {
 			return handlerFunctions[event.key]();
 		}
 
+		
+
 		return;
 	};
 
@@ -477,6 +479,9 @@ function handleKeydown(event) {
 			_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
 			_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = true;
 			_PromptObjects[_PromptActiveIndex].LCHPromptFilterText = '';
+			_PromptObjects[1].LCHPromptItemsAll = [];
+			_PromptObjects[1].LCHPromptItems = [];
+			_PromptObjects[1].LCHPromptItemSelected = null;
 
 			return event.preventDefault();
 		},
