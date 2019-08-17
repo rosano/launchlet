@@ -190,6 +190,21 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 		_PromptObjects[_PromptActiveIndex].LCHPromptFilterText = inputData;
 	})();
 
+	(function ClearFilterTextOnSubsequentPrompts() {
+		for (var i = 0; i < _PromptObjects.length; i++) {
+			if (!i) {
+				continue
+			};
+
+			if (i === _PromptActiveIndex) {
+				continue
+			};
+
+			_PromptObjects[i].LCHPromptFilterText = '';
+			_PromptObjects[i].LCHPromptMatchStop = false;
+		};
+	})();
+
 	(function SetMatchStop() {
 		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
 			return;
@@ -330,6 +345,12 @@ function ActivePromptIndexShouldUpdate (inputData) {
 		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
 			return;
 		}
+
+		if (OLSKThrottle.OLSKThrottleInputDataIsThrottleObject(_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle)) {
+			clearTimeout(_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle._OLSKThrottleTimeoutID);
+		}
+		
+		_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle = undefined;
 
 		if (OLSKThrottle.OLSKThrottleInputDataIsThrottleObject(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle)) {
 			clearTimeout(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle._OLSKThrottleTimeoutID);
@@ -575,7 +596,7 @@ function handleKeydown(event) {
 		return;
 	}
 
-	ActivePromptFilterTextShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle === false ? event.key : _PromptObjects[_PromptActiveIndex].LCHPromptFilterText + event.key);
+	ActivePromptFilterTextShouldUpdate(!_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle ? event.key : _PromptObjects[_PromptActiveIndex].LCHPromptFilterText + event.key);
 }
 
 function handleClick(event) { 

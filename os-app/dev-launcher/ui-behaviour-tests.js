@@ -187,6 +187,25 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				browser.assert.elements(LCHLauncherResultList, 1);
 			});
 
+			it('clears filter text on subsequent prompts', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+				await browser.wait({element: LCHLauncherActionPrompt});
+
+				browser.OLSKFireKeyboardEvent(browser.window, 'a');
+				await browser.wait({element: LCHLauncherActionPromptHeading});
+
+				browser.assert.text(LCHLauncherActionPromptHeading, 'A');
+
+				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+				await browser.wait({element: LCHLauncherSubjectPrompt});
+
+				browser.OLSKFireKeyboardEvent(browser.window, 'a');
+				await browser.wait({element: LCHLauncherSubjectPromptHeading});
+
+				browser.assert.text(LCHLauncherSubjectPromptHeading, 'A');
+				browser.assert.text(LCHLauncherActionPromptHeading, 'Action');
+			});
+
 			context('MatchStop', function() {
 
 				before(async function() {
@@ -315,9 +334,18 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 
 				browser.OLSKFireKeyboardEvent(browser.window, 'a');
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+				browser.OLSKFireKeyboardEvent(browser.window, 'a');
+				await browser.wait({element: LCHLauncherSubjectPromptHeading});
+
+				browser.assert.text(LCHLauncherSubjectPromptHeading, 'A')
+
+				browser.OLSKFireKeyboardEvent(browser.window, 'a');
+				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 				await browser.wait({duration: LCHLauncherThrottleDuration})
 
 				browser.assert.elements(LCHLauncherResultList, 0);
+
 			});
 		
 		});
