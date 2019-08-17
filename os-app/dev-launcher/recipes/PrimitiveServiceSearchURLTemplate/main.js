@@ -1,4 +1,4 @@
-import { LCHTypeURLCallback } from '../TypeURL/main.js';
+import { LCHTypeURLCallback } from '../PrimitiveURL/main.js';
 
 export const LCHTypeServiceSearchURLTemplateCallback = function(inputData) {
 	if (!LCHTypeURLCallback(inputData)) {

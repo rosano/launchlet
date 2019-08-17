@@ -1,11 +1,11 @@
-import * as Bool from './TypeBool/main.js';
-import * as Date from './TypeDate/main.js';
-import * as ServiceSearch from './TypeServiceSearch/main.js';
-import * as ServiceSearchURLTemplate from './TypeServiceSearchURLTemplate/main.js';
-import * as String from './TypeString/main.js';
-import * as URL from './TypeURL/main.js';
+import * as Bool from './PrimitiveBool/main.js';
+import * as Date from './PrimitiveDate/main.js';
+import * as ServiceSearchURLTemplate from './PrimitiveServiceSearchURLTemplate/main.js';
+import * as String from './PrimitiveString/main.js';
+import * as URL from './PrimitiveURL/main.js';
 
 import * as Command from './TypeCommand/main.js';
+import * as ServiceSearch from './TypeServiceSearch/main.js';
 
 import * as LCHCopyToClipboard from './LCHCopyToClipboard/main.js';
 import * as LCHDateLocalOffsetSubtracted from './LCHDateLocalOffsetSubtracted/main.js';
@@ -19,12 +19,12 @@ export const LCHLauncherStandardRecipes = function() {
 	return [].concat.apply([], [
 		Bool,
 		Date,
-		ServiceSearch,
 		ServiceSearchURLTemplate,
 		String,
 		URL,
 		
 		Command,
+		ServiceSearch,
 		
 		LCHCopyToClipboard,
 		LCHDateLocalOffsetSubtracted,
