@@ -388,9 +388,20 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 						browser.OLSKFireKeyboardEvent(browser.window, '.');
 						await browser.wait({element: LCHLauncherPromptTextItemInput});
 
+						browser.fill(LCHLauncherPromptTextItemInput, '')
+						browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+						await browser.wait({element: LCHLauncherPromptTextItemInput});
+					});
+					
+					it('does nothing if empty', async function() {
+						browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
+
+						browser.OLSKFireKeyboardEvent(browser.window, '.');
+						await browser.wait({element: LCHLauncherPromptTextItemInput});
+
 						browser.fill(LCHLauncherPromptTextItemInput, 'charlie')
 						browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-						await browser.wait({element: LCHLauncherPipeItem});
+						await browser.wait({element: LCHLauncherPromptTextItemInput});
 					});
 					
 					it('shows text item as pipe item', async function() {
@@ -399,6 +410,41 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					
 					it('selects next prompt', async function() {
 						browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
+					});
+				
+				});
+
+				context('on Enter', function () {
+
+					before(async function () {
+						browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+						await browser.wait({element: LCHLauncherPipeItem});
+
+						browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
+
+						browser.OLSKFireKeyboardEvent(browser.window, '.');
+						await browser.wait({element: LCHLauncherPromptTextItemInput});
+
+						browser.fill(LCHLauncherPromptTextItemInput, '');
+						browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
+						await browser.wait({element: LCHLauncherPromptTextItemInput});
+					});
+					
+					it('does nothing if empty', async function() {
+						browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
+
+						browser.OLSKFireKeyboardEvent(browser.window, '.');
+						await browser.wait({element: LCHLauncherPromptTextItemInput});
+
+						browser.fill(LCHLauncherPromptTextItemInput, 'delta')
+						await browser.wait({element: LCHLauncherPipeItem});
+
+						browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
+						await browser.wait({element: '#LCHLauncherTestDidFinish'});
+					});
+					
+					it.skip('executes composition', async function() {
+						browser.assert.elements('#LCHLauncherTestDidFinish', 1);
 					});
 				
 				});

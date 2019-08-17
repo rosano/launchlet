@@ -376,8 +376,8 @@ function ActivePromptTextItemShouldUpdate(inputData) {
 	(function SetActivePromptItems() {
 		ActivePromptItemsShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptTextItem ? [{
 			LCHRecipeName: _PromptObjects[_PromptActiveIndex].LCHPromptTextItem,
-			LCHRecipeCallback: function () {
-				return _PromptObjects[_PromptActiveIndex].LCHPromptTextItem;
+			LCHRecipeCallback () {
+				return inputData;
 			},
 			LCHRecipeOutputType: 'String',
 		}] : []);
@@ -439,13 +439,9 @@ function handleKeydown(event) {
 			Tab () {
 				_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
 			},
-			// Enter () {
-			// 	if (CompositionIsValid()) {
-			// 		LauncherShouldTerminate();
-			// 	}
-
-			// 	return event.preventDefault();
-			// },
+			Enter () {
+				_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = false;
+			},
 		};
 
 		if (Object.keys(handlerFunctions).indexOf(event.key) === -1) {
