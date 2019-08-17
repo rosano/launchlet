@@ -36,6 +36,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 		it('on startup', function() {
 			browser.assert.elements(LCHLauncherFilterInput, 1);
 			browser.assert.elements(LCHLauncherPromptTextItemInput, 0);
+			browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 0);
 
 			browser.assert.elements(LCHLauncherListItem, 0);
 		});
@@ -58,6 +59,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 		it('on startup', function() {
 			browser.assert.elements(LCHLauncherFilterInput, 1);
 			browser.assert.elements(LCHLauncherPromptTextItemInput, 0);
+			browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 0);
 
 			browser.assert.elements(LCHLauncherListItem, 13);
 		});
