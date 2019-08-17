@@ -417,22 +417,20 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				context('on Enter', function () {
 
 					before(async function () {
-						browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-						await browser.wait({element: LCHLauncherPipeItem});
-
-						browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
+						await browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
 
 						browser.OLSKFireKeyboardEvent(browser.window, '.');
 						await browser.wait({element: LCHLauncherPromptTextItemInput});
 
-						browser.fill(LCHLauncherPromptTextItemInput, '');
 						browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
-						await browser.wait({element: LCHLauncherPromptTextItemInput});
+						await browser.wait({element: LCHLauncherSubjectPromptPlaceholder});
 					});
 					
 					it('does nothing if empty', async function() {
 						browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
-
+					});
+					
+					it('executes composition', async function() {
 						browser.OLSKFireKeyboardEvent(browser.window, '.');
 						await browser.wait({element: LCHLauncherPromptTextItemInput});
 
@@ -440,10 +438,11 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 						await browser.wait({element: LCHLauncherPipeItem});
 
 						browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
+						await browser.wait({element: '#LCHCopyToClipboardButton'});
+
+						browser.click('#LCHCopyToClipboardButton')
 						await browser.wait({element: '#LCHLauncherTestDidFinish'});
-					});
-					
-					it.skip('executes composition', async function() {
+
 						browser.assert.elements('#LCHLauncherTestDidFinish', 1);
 					});
 				
