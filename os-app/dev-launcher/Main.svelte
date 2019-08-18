@@ -213,6 +213,10 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 		if (_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle === false) {
 			_PromptObjects[_PromptActiveIndex].LCHPromptMatchStop = false;
 		}
+
+		if (!_PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
+			_PromptObjects[_PromptActiveIndex].LCHPromptMatchStop = false;
+		}
 	})();
 
 	(function ThrottleInput() {
