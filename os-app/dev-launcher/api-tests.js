@@ -1126,18 +1126,14 @@ describe('LCHAPIExecuteRecipe', function testLCHAPIExecuteRecipe() {
 		})])), 'bravo');
 	});
 
-	it('binds copy', async function() {
-		let item = Object.assign(kTesting.StubAPIObjectValid(), {
-			alfa: 'bravo',
-		});
+	it('binds exact value', async function() {
+		let item = kTesting.StubAPIObjectValid();
 
-		await mainModule.LCHAPIExecuteRecipe({
+		deepEqual(await mainModule.LCHAPIExecuteRecipe({
 			LCHRecipeCallback() {
-				return this.api.alfa = 'charlie';
+				return this.api === item;
 			},
-		}, [], item);
-
-		deepEqual(item.alfa, 'bravo');
+		}, [], item), true);
 	});
 
 	it('resolves promise if async', async function() {
@@ -1172,31 +1168,6 @@ describe('LCHAPIExecuteRecipe', function testLCHAPIExecuteRecipe() {
 				return  Array.prototype.slice.call(arguments).join(' ');
 			},
 		}, ['alfa', 'bravo', 'charlie', 'delta'], kTesting.StubAPIObjectValid()), 'alfa bravo charlie delta');
-	});
-
-	it('runs _LCHAPIExecuteRecipePrior', async function() {
-		let item = 'alfa';
-		await mainModule.LCHAPIExecuteRecipe({
-			LCHRecipeCallback() {},
-			bravo: 'charlie',
-		}, [], Object.assign(kTesting.StubAPIObjectValid(), {
-			_LCHAPIExecuteRecipePrior (e) {
-				item = e.bravo;
-			},
-		}));
-		deepEqual(item, 'charlie');
-	});
-
-	it('deletes _LCHAPIExecuteRecipePrior', async function() {
-		deepEqual(await mainModule.LCHAPIExecuteRecipe({
-			LCHRecipeCallback() {
-				return this.api._LCHAPIExecuteRecipePrior;
-			},
-		}, [], Object.assign(kTesting.StubAPIObjectValid(), {
-			_LCHAPIExecuteRecipePrior () {
-				item = true;
-			},
-		})), undefined);
 	});
 
 });

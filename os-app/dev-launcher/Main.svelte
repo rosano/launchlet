@@ -66,15 +66,7 @@ const allRecipes = LCHLauncherConvertTypeServiceSearch(LCHLauncherStandardRecipe
 	return OLSKFormatted(OLSKLocalized('LCHLauncherTestConvertTypeServiceSearchTextFormat'), inputData);
 });
 
-const api = Object.assign(LCHAPIObjectFor(allRecipes), {
-	_LCHAPIExecuteRecipePrior (inputData) {
-		if (!inputData.LCHRecipeStyle) {
-			return;
-		}
-		
-		document.body.appendChild(document.createElement('style')).innerHTML = inputData.LCHRecipeStyle;
-	},
-});
+const api = LCHAPIObjectFor(allRecipes);
 const apiTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes);
 
 import {
@@ -93,9 +85,17 @@ import {
 
 		return true;
 	}).forEach(function (e) {
-		LCHAPIExecuteRecipe(e, [], api);
+		LCHLauncherExecuteRecipe(e, [], api);
 	});
 })();
+
+async function LCHLauncherExecuteRecipe(param1, param2, param3) {
+	if (param1.LCHRecipeStyle) {
+		document.body.appendChild(document.createElement('style')).innerHTML = param1.LCHRecipeStyle;
+	}
+
+	return await LCHAPIExecuteRecipe(param1, param2, param3);
+}
 
 import {
 	LCHAPIExecuteComposition,
@@ -127,7 +127,7 @@ async function apiStart(inputData) {
 				}),
 			});
 		});
-	})(inputData.LCHCompositionAction ? await LCHAPIExecuteComposition(inputData, api) : await LCHAPIExecuteRecipe(inputData, [], api));
+	})(inputData.LCHCompositionAction ? await LCHAPIExecuteComposition(inputData, api) : await LCHLauncherExecuteRecipe(inputData, [], api));
 }
 
 import {

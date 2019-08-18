@@ -356,7 +356,7 @@ export const LCHAPIObjectFor = function(inputData) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	const api = {
+	const outputData = {
 		fn (signature) {
 			if (typeof signature !== 'string') {
 				throw new Error('LCHErrorIdentifierNotString');
@@ -379,22 +379,24 @@ export const LCHAPIObjectFor = function(inputData) {
 			}
 
 			return functionObject.LCHRecipeCallback.bind({
-				api: api,
+				api: outputData,
 			});
 		},
 	};
 
-	Object.freeze(Object.assign(api, inputData.reduce(function (coll, item) {
+	Object.assign(outputData, inputData.reduce(function (coll, item) {
 		if (!coll[item.LCHRecipeSignature]) {
 			coll[item.LCHRecipeSignature] = item.LCHRecipeCallback.bind({
-				api: api,
+				api: outputData,
 			});
 		};
 
 		return coll;
-	}, {})));
+	}, {}));
 
-	return api;
+	Object.freeze(outputData);
+
+	return outputData;
 };
 
 export const LCHCompositionModelErrors = function(inputData) {
@@ -456,15 +458,8 @@ export const LCHAPIExecuteRecipe = async function(param1, param2 = [], param3 = 
 		return Promise.reject(new Error('LCHErrorInputInvalid'));
 	}
 
-	let api = Object.assign({}, param3);
-
-	if (api._LCHAPIExecuteRecipePrior) {
-		api._LCHAPIExecuteRecipePrior(param1);
-		delete api._LCHAPIExecuteRecipePrior;
-	}
-
 	return Promise.resolve(param1.LCHRecipeCallback.apply({
-		api: api,
+		api: param3,
 	}, param2));
 };
 
