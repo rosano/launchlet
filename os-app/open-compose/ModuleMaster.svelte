@@ -40,37 +40,38 @@ export const DocumentsImport = async function(inputData) {
 	DocumentsAllStore.set(await LCHFormulasAction.LCHFormulasActionList(storageClient));
 }
 
-async function memberCreate() {
-	let item = await LCHFormulasAction.LCHFormulasActionCreate(storageClient, {
-		LCHDocumentName: '',
-		LCHDocumentArgs: '',
-		LCHDocumentBody: '',
-		LCHDocumentSignature: '',
-		LCHDocumentURLFilter: '',
-		LCHDocumentStyle: '',
-		LCHDocumentModificationDate: new Date(),
-	});
+const mod = {
+	async commandDocumentCreate() {
+		let item = await LCHFormulasAction.LCHFormulasActionCreate(storageClient, {
+			LCHDocumentName: '',
+			LCHDocumentArgs: '',
+			LCHDocumentBody: '',
+			LCHDocumentSignature: '',
+			LCHDocumentURLFilter: '',
+			LCHDocumentStyle: '',
+			LCHDocumentModificationDate: new Date(),
+		});
 
-	DocumentsAllStore.update(function (val) {
-		return val.concat(item).sort(LCHComposeLogicSort);
-	});
+		DocumentsAllStore.update(function (val) {
+			return val.concat(item).sort(LCHComposeLogicSort);
+		});
 
-	return memberSelect(item);
-}
-
-async function memberSelect(inputData) {
-	return DocumentSelectedStore.set(inputData);
+		return mod.commandDocumentSelect(item);
+	},
+	commandDocumentSelect(inputData) {
+		return DocumentSelectedStore.set(inputData);
+	}
 }
 </script>
 
 <div class="Container">
 
 <header class="LCHSharedToolbar">
-	<button on:click={ memberCreate } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" accesskey="n" id="LCHComposeCreateButton" title={ OLSKLocalized('LCHComposeToolbarCreateButtonText') }>{ OLSKLocalized('LCHComposeToolbarCreateButtonText') }</button>
+	<button on:click={ mod.commandDocumentCreate } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" accesskey="n" id="LCHComposeCreateButton" title={ OLSKLocalized('LCHComposeToolbarCreateButtonText') }>{ OLSKLocalized('LCHComposeToolbarCreateButtonText') }</button>
 </header>
 <div class="List">
 	{#each $DocumentsAllStore as e}
-		<div on:click={ () => memberSelect(e) } class="ListItem OLSKLayoutElementTappable">
+		<div on:click={ () => mod.commandDocumentSelect(e) } class="ListItem OLSKLayoutElementTappable">
 			<strong>{ e.LCHDocumentName || e.LCHDocumentSignature || e.LCHDocumentID }</strong>
 		</div>
 	{/each}
