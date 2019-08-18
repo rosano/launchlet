@@ -384,6 +384,8 @@ export const LCHAPIObjectFor = function(inputData) {
 		},
 	};
 
+	Object.freeze(api);
+
 	return api;
 };
 

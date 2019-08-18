@@ -894,6 +894,25 @@ describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 			})]).fn('charlie')(), 'hello bravo');
 		});
 
+		it('returns frozen object', function() {
+			deepEqual(mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeCallback(inputData) {
+					return `hello ${ inputData }`;
+				},
+				LCHRecipeSignature: 'alfa',
+			}), Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeCallback() {
+					this.api.fn = function () {
+						return function () {
+							return 'charlie'
+						}
+					}
+					return this.api.fn('alfa')('bravo');
+				},
+				LCHRecipeSignature: 'charlie',
+			})]).fn('charlie')(), 'hello bravo');
+		});
+
 	});
 
 });
