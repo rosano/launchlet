@@ -593,6 +593,7 @@ const mod = {
 		mod.ValuePromptResultsIsVisible(false);
 		mod.ValuePromptModeText(true)
 		ActivePromptFilterTextShouldUpdate('');
+		ActivePromptTextItemShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptTextItem)
 
 		if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItem) {
 			return;
