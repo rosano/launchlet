@@ -842,7 +842,7 @@ describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 		deepEqual(typeof mainModule.LCHAPIObjectFor([]), 'object');
 	});
 
-	context('fn', function() {
+	context('this.api.fn', function() {
 
 		it('throws error if not string', function() {
 			throws(function() {
@@ -884,6 +884,25 @@ describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 			deepEqual(mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeCallback(inputData) {
 					return `hello ${ inputData }`;
+				},
+				LCHRecipeSignature: 'alfa',
+			}), Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeCallback() {
+					return this.api.fn('alfa')('bravo');
+				},
+				LCHRecipeSignature: 'charlie',
+			})]).fn('charlie')(), 'hello bravo');
+		});
+
+		it('ignores duplicates', function() {
+			deepEqual(mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeCallback(inputData) {
+					return `hello ${ inputData }`;
+				},
+				LCHRecipeSignature: 'alfa',
+			}), Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeCallback(inputData) {
+					return `bye ${ inputData }`;
 				},
 				LCHRecipeSignature: 'alfa',
 			}), Object.assign(kTesting.StubRecipeObjectValid(), {
