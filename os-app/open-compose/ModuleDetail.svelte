@@ -2,7 +2,7 @@
 import * as LCHFormulasAction from '../_shared/rs-modules/lch_documents/action.js';
 
 import { OLSKLocalized, _LCHIsTestingBehaviour } from '../_shared/common/global.js';
-import { storageClient, DocumentsStore, memberSelected, modelDidChange } from './persistence.js';
+import { storageClient, DocumentsStore, DocumentSelectedStore, modelDidChange } from './persistence.js';
 
 import { afterUpdate } from 'svelte';
 
@@ -38,7 +38,7 @@ afterUpdate(function SetupCallbackBodyEditor () {
 			return;
 		}
 
-		Object.assign($memberSelected, {
+		Object.assign($DocumentSelectedStore, {
 			LCHDocumentBody: instance.getValue(),
 		}); // @DependancySvelteIgnoresMutableChanges
 
@@ -86,7 +86,7 @@ afterUpdate(function SetupStyleEditor () {
 			return;
 		}
 
-		Object.assign($memberSelected, {
+		Object.assign($DocumentSelectedStore, {
 			LCHDocumentStyle: instance.getValue(),
 		}); // @DependancySvelteIgnoresMutableChanges
 
@@ -102,12 +102,12 @@ afterUpdate(function SetupStyleEditor () {
 	});
 });
 
-let _memberSelected;
-memberSelected.subscribe(function (val) {
-	if (val && (val !== _memberSelected)) {
+let _DocumentSelected;
+DocumentSelectedStore.subscribe(function (val) {
+	if (val && (val !== _DocumentSelected)) {
 		document.querySelector('input').focus();
 
-		_memberSelected = val;
+		_DocumentSelected = val;
 	}
 
 	if (!val && CallbackBodyEditorInstance) {
@@ -150,20 +150,20 @@ async function memberSave() {
 		return val;
 	});
 
-	if (!throttleMap[$memberSelected.LCHDocumentID]) {
-		throttleMap[$memberSelected.LCHDocumentID] = {
+	if (!throttleMap[$DocumentSelectedStore.LCHDocumentID]) {
+		throttleMap[$DocumentSelectedStore.LCHDocumentID] = {
 			OLSKThrottleDuration: 500,
 			OLSKThrottleCallback: async function () {
-				delete throttleMap[$memberSelected.LCHDocumentID];
+				delete throttleMap[$DocumentSelectedStore.LCHDocumentID];
 
-				await LCHFormulasAction.LCHFormulasActionUpdate(storageClient, $memberSelected);
+				await LCHFormulasAction.LCHFormulasActionUpdate(storageClient, $DocumentSelectedStore);
 
 				modelDidChange.set(Date.now());
 			},
 		};	
 	}
 
-	OLSKThrottle.OLSKThrottleTimeoutFor(throttleMap[$memberSelected.LCHDocumentID]);
+	OLSKThrottle.OLSKThrottleTimeoutFor(throttleMap[$DocumentSelectedStore.LCHDocumentID]);
 }
 
 async function memberDelete() {
@@ -173,35 +173,35 @@ async function memberDelete() {
 
 	DocumentsStore.update(function (val) {
 		return val.filter(function(e) {
-			return e !== $memberSelected;
+			return e !== $DocumentSelectedStore;
 		});
 	});
 
-	await LCHFormulasAction.LCHFormulasActionDelete(storageClient, $memberSelected.LCHDocumentID);
+	await LCHFormulasAction.LCHFormulasActionDelete(storageClient, $DocumentSelectedStore.LCHDocumentID);
 
-	return memberSelected.set(null);
+	return DocumentSelectedStore.set(null);
 }
 </script>
 
 <div class="Container">
 
-{#if $memberSelected}
+{#if $DocumentSelectedStore}
 <header class="LCHSharedToolbar" id="LCHComposeDetailToolbar">
 	<button on:click={ memberDelete } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" id="LCHComposeDetailToolbarDiscardButton" title={ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }>{ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }</button>
 </header>
 <div class="FormContainer">
 	<p>
-		<input type="text" bind:value={ $memberSelected.LCHDocumentName } on:input={ memberSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputNamePlaceholder') }" autofocus id="LCHComposeListItemFormInputName" />
+		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentName } on:input={ memberSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputNamePlaceholder') }" autofocus id="LCHComposeListItemFormInputName" />
 	</p>
 
 	<span>function (</span>
-	<input type="text" bind:value={ $memberSelected.LCHDocumentArgs } placeholder="undefined" on:input={ memberSave } id="LCHComposeListItemFormInputInputData" />
+	<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentArgs } placeholder="undefined" on:input={ memberSave } id="LCHComposeListItemFormInputInputData" />
 	<span>) &#123;</span>
 	<br>
 
 	<div class="LCHComposeDetailCallbackBody">
 		{#if _LCHIsTestingBehaviour()}
-			<textarea bind:value={ $memberSelected.LCHDocumentBody } on:input={ memberSave } id="LCHComposeDetailCallbackBodyInputDebug"></textarea>
+			<textarea bind:value={ $DocumentSelectedStore.LCHDocumentBody } on:input={ memberSave } id="LCHComposeDetailCallbackBodyInputDebug"></textarea>
 		{/if}
 		<textarea bind:this={ CallbackBodyEditorElement }></textarea>
 	</div>
@@ -209,16 +209,16 @@ async function memberDelete() {
 	<br>
 
 	<p>
-		<input type="text" bind:value={ $memberSelected.LCHDocumentSignature } on:input={ memberSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputSignaturePlaceholder') }" id="LCHComposeListItemFormInputSignature" />
+		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentSignature } on:input={ memberSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputSignaturePlaceholder') }" id="LCHComposeListItemFormInputSignature" />
 	</p>
 
 	<p>
-		<input type="text" bind:value={ $memberSelected.LCHDocumentURLFilter } on:input={ memberSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputURLFilterPlaceholder') }" id="LCHComposeListItemFormInputURLFilter" />
+		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentURLFilter } on:input={ memberSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputURLFilterPlaceholder') }" id="LCHComposeListItemFormInputURLFilter" />
 	</p>
 
-	{#if $memberSelected.LCHDocumentURLFilter }
+	{#if $DocumentSelectedStore.LCHDocumentURLFilter }
 		<p>
-			<input type="checkbox" bind:checked={ $memberSelected.LCHDocumentIsAutomatic } on:input={ memberSave } id="LCHComposeListItemFormInputIsAutomatic" />
+			<input type="checkbox" bind:checked={ $DocumentSelectedStore.LCHDocumentIsAutomatic } on:input={ memberSave } id="LCHComposeListItemFormInputIsAutomatic" />
 			<label for="LCHComposeListItemFormInputIsAutomatic">{ OLSKLocalized('LCHComposeListItemFormInputIsAutomaticText') }</label>
 		</p>
 	{/if}
@@ -227,14 +227,14 @@ async function memberDelete() {
 
 	<div class="LCHComposeDetailStyle">
 		{#if _LCHIsTestingBehaviour()}
-			<textarea bind:value={ $memberSelected.LCHDocumentStyle } on:input={ memberSave } id="LCHComposeDetailStyleInputDebug"></textarea>
+			<textarea bind:value={ $DocumentSelectedStore.LCHDocumentStyle } on:input={ memberSave } id="LCHComposeDetailStyleInputDebug"></textarea>
 		{/if}
 		<textarea bind:this={ StyleEditorElement }></textarea>
 	</div>
 </div>
 {/if}
 
-{#if !$memberSelected}
+{#if !$DocumentSelectedStore}
 <div class="PlaceholderContainer">
 	<span>{ OLSKLocalized('LCHComposeDetailPlaceholderText') }</span>
 </div>

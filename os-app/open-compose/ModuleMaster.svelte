@@ -4,7 +4,7 @@ import * as LCHFormulasMetal from '../_shared/rs-modules/lch_documents/metal.js'
 import { LCHFormulasModelPostJSONParse } from '../_shared/rs-modules/lch_documents/model.js';
 import { LCHComposeLogicSort } from './ui-logic.js';
 import { OLSKLocalized } from '../_shared/common/global.js';
-import { storageClient, DocumentsStore, memberSelected } from './persistence.js';
+import { storageClient, DocumentsStore, DocumentSelectedStore } from './persistence.js';
 
 export const DocumentsExport = function() {
 	let zip = new JSZip();
@@ -59,7 +59,7 @@ async function memberCreate() {
 }
 
 async function memberSelect(inputData) {
-	return memberSelected.set(inputData);
+	return DocumentSelectedStore.set(inputData);
 }
 </script>
 

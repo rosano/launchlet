@@ -9,12 +9,12 @@ import * as LCHFormulasAction from '../_shared/rs-modules/lch_documents/action.j
 import { writable } from 'svelte/store';
 
 export const DocumentsStore = writable([]);
-export const memberSelected = writable(null);
+export const DocumentSelectedStore = writable(null);
 export const modelDidChange = writable(null);
 
-let _memberSelected;
-memberSelected.subscribe(function (val) {
-	_memberSelected = val;
+let _DocumentSelected;
+DocumentSelectedStore.subscribe(function (val) {
+	_DocumentSelected = val;
 });
 export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 	RSModuleProtocol_lch_documents.RSModuleProtocolModuleForChangeDelegate({
@@ -31,8 +31,8 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 		OLSKChangeDelegateRemove: function (inputData) {
 			// console.log('OLSKChangeDelegateRemove', inputData);
 
-			if (_memberSelected && (_memberSelected.LCHDocumentID === inputData.LCHDocumentID)) {
-				memberSelected.set(null);
+			if (_DocumentSelected && (_DocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
+				DocumentSelectedStore.set(null);
 			}
 
 			DocumentsStore.update(function (val) {
@@ -45,8 +45,8 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 		},
 		OLSKChangeDelegateUpdate: function (inputData) {
 			// console.log('OLSKChangeDelegateUpdate', inputData);
-			if (_memberSelected && (_memberSelected.LCHDocumentID === inputData.LCHDocumentID)) {
-				memberSelected.update(function (val) {
+			if (_DocumentSelected && (_DocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
+				DocumentSelectedStore.update(function (val) {
 					return Object.assign(val, inputData);
 				});
 			}
