@@ -14,7 +14,4 @@ LCHComposeListItemFormInputCSSPlaceholder: 'CSS (e.g. body { background: red; })
 LCHComposeListItemFormInputSignaturePlaceholder: Signature (e.g. XYZGreet)
 LCHComposeListItemFormInputURLFilterPlaceholder: 'URL Filter (e.g. google.com or /https?://(.*\\.)?google\\.com/i)'
 LCHComposeListItemFormInputIsAutomaticText: Is automatic
-LCHComposeSampleMemberID: XYZGreet
-LCHComposeSampleMemberName: Say Hello
-LCHComposeSampleMemberFNBody: window.alert('Hello');
 LCHUpdateReloadText: Reload
