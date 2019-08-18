@@ -5,8 +5,8 @@ import * as mainModule from './action.js';
 const kTesting = {
 	StubFormulaObject: function() {
 		return {
-			LCHMemberArgs: 'alfa',
-			LCHMemberBody: 'bravo',
+			LCHDocumentArgs: 'alfa',
+			LCHDocumentBody: 'bravo',
 		};
 	},
 	uSerial: function (inputData) {
@@ -28,38 +28,38 @@ describe('LCHFormulasActionCreate', function testLCHFormulasActionCreate() {
 
 	it('returns object with LCHErrors if not valid', async function() {
 		deepEqual((await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, Object.assign(kTesting.StubFormulaObject(), {
-			LCHMemberBody: null,
+			LCHDocumentBody: null,
 		}))).LCHErrors, {
-			LCHMemberBody: [
+			LCHDocumentBody: [
 				'LCHErrorNotString',
 			],
 		});
 	});
 
-	it('returns LCHMember', async function() {
+	it('returns LCHDocument', async function() {
 		let item = await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject());
 
 		deepEqual(item, Object.assign(kTesting.StubFormulaObject(), {
-			LCHMemberID: item.LCHMemberID,
-			LCHMemberCreationDate: item.LCHMemberCreationDate,
-			LCHMemberModificationDate: item.LCHMemberModificationDate,
+			LCHDocumentID: item.LCHDocumentID,
+			LCHDocumentCreationDate: item.LCHDocumentCreationDate,
+			LCHDocumentModificationDate: item.LCHDocumentModificationDate,
 			'@context': item['@context'],
 		}));
 	});
 
-	it('sets LCHMemberID to unique value', async function() {
+	it('sets LCHDocumentID to unique value', async function() {
 		let items = await kTesting.uSerial(Array.from(Array(10)).map(async function (e) {
-			return (await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject())).LCHMemberID;
+			return (await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject())).LCHDocumentID;
 		}));
 		deepEqual([...(new Set(items))], items);
 	});
 
-	it('sets LCHMemberCreationDate to now', async function() {
-		deepEqual(new Date() - (await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject())).LCHMemberCreationDate < 100, true);
+	it('sets LCHDocumentCreationDate to now', async function() {
+		deepEqual(new Date() - (await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject())).LCHDocumentCreationDate < 100, true);
 	});
 
-	it('sets LCHMemberModificationDate to now', async function() {
-		deepEqual(new Date() - (await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject())).LCHMemberModificationDate < 100, true);
+	it('sets LCHDocumentModificationDate to now', async function() {
+		deepEqual(new Date() - (await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject())).LCHDocumentModificationDate < 100, true);
 	});
 
 });
@@ -74,10 +74,10 @@ describe('LCHFormulasActionRead', function testLCHFormulasActionRead() {
 		deepEqual(await mainModule.LCHFormulasActionRead(LCHTestingStorageClient, 'alfa'), null);
 	});
 
-	it('returns LCHMember', async function() {
+	it('returns LCHDocument', async function() {
 		let item = await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject());
 
-		deepEqual(item, await mainModule.LCHFormulasActionRead(LCHTestingStorageClient, item.LCHMemberID));
+		deepEqual(item, await mainModule.LCHFormulasActionRead(LCHTestingStorageClient, item.LCHDocumentID));
 	});
 
 });
@@ -90,37 +90,37 @@ describe('LCHFormulasActionUpdate', function testLCHFormulasActionUpdate() {
 
 	it('returns object with LCHErrors if not valid', async function() {
 		deepEqual((await mainModule.LCHFormulasActionUpdate(LCHTestingStorageClient, Object.assign(await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject()), {
-			LCHMemberID: null,
+			LCHDocumentID: null,
 		}))).LCHErrors, {
-			LCHMemberID: [
+			LCHDocumentID: [
 				'LCHErrorNotString',
 			],
 		});
 	});
 
-	it('returns LCHMember', async function() {
+	it('returns LCHDocument', async function() {
 		let itemCreated = await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject());
 
 		let item = await mainModule.LCHFormulasActionUpdate(LCHTestingStorageClient, itemCreated);
 
 		deepEqual(item, Object.assign(itemCreated, {
-			LCHMemberModificationDate: item.LCHMemberModificationDate,
+			LCHDocumentModificationDate: item.LCHDocumentModificationDate,
 		}));
 	});
 
-	it('sets LCHMemberModificationDate to now', async function() {
-		deepEqual(new Date() - (await mainModule.LCHFormulasActionUpdate(LCHTestingStorageClient, await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject()))).LCHMemberModificationDate < 100, true);
+	it('sets LCHDocumentModificationDate to now', async function() {
+		deepEqual(new Date() - (await mainModule.LCHFormulasActionUpdate(LCHTestingStorageClient, await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject()))).LCHDocumentModificationDate < 100, true);
 	});
 
 	it('writes inputData if not found', async function() {
 		let item = await mainModule.LCHFormulasActionUpdate(LCHTestingStorageClient, Object.assign(kTesting.StubFormulaObject(), {
-			LCHMemberID: 'alfa',
-			LCHMemberCreationDate: new Date(),
+			LCHDocumentID: 'alfa',
+			LCHDocumentCreationDate: new Date(),
 		}));
 		deepEqual(item, Object.assign(kTesting.StubFormulaObject(), {
-			LCHMemberID: item.LCHMemberID,
-			LCHMemberCreationDate: item.LCHMemberCreationDate,
-			LCHMemberModificationDate: item.LCHMemberModificationDate,
+			LCHDocumentID: item.LCHDocumentID,
+			LCHDocumentCreationDate: item.LCHDocumentCreationDate,
+			LCHDocumentModificationDate: item.LCHDocumentModificationDate,
 			'@context': item['@context'],
 		}));
 	});
@@ -134,14 +134,14 @@ describe('LCHFormulasActionDelete', function testLCHFormulasActionDelete() {
 	});
 
 	it('returns statusCode', async function() {
-		deepEqual(await mainModule.LCHFormulasActionDelete(LCHTestingStorageClient, (await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject())).LCHMemberID), {
+		deepEqual(await mainModule.LCHFormulasActionDelete(LCHTestingStorageClient, (await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject())).LCHDocumentID), {
 			statusCode: 200,
 		});
 	});
 
-	it('deletes LCHMember', async function() {
+	it('deletes LCHDocument', async function() {
 		let itemID;
-		await mainModule.LCHFormulasActionDelete(LCHTestingStorageClient, itemID = (await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject())).LCHMemberID);
+		await mainModule.LCHFormulasActionDelete(LCHTestingStorageClient, itemID = (await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject())).LCHDocumentID);
 		deepEqual(await mainModule.LCHFormulasActionRead(LCHTestingStorageClient, itemID), null);
 	});
 
@@ -153,7 +153,7 @@ describe('LCHFormulasActionList', function testLCHFormulasActionList() {
 		deepEqual(await mainModule.LCHFormulasActionList(LCHTestingStorageClient), []);
 	});
 
-	it('returns array with existing LCHMembers', async function() {
+	it('returns array with existing LCHDocuments', async function() {
 		let item = await mainModule.LCHFormulasActionCreate(LCHTestingStorageClient, kTesting.StubFormulaObject());
 
 		deepEqual(await mainModule.LCHFormulasActionList(LCHTestingStorageClient), [item]);

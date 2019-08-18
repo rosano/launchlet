@@ -1,9 +1,9 @@
 export const LCHComposeLogicSort = function (a, b) {
-	if (a.LCHMemberModificationDate && b.LCHMemberModificationDate) {
-		return b.LCHMemberModificationDate - a.LCHMemberModificationDate;
+	if (a.LCHDocumentModificationDate && b.LCHDocumentModificationDate) {
+		return b.LCHDocumentModificationDate - a.LCHDocumentModificationDate;
 	}
 
-	return b.LCHMemberCreationDate - a.LCHMemberCreationDate;
+	return b.LCHDocumentCreationDate - a.LCHDocumentCreationDate;
 };
 
 export const LCHComposeLogicValidCompileTokens = function (inputData) {
@@ -108,7 +108,7 @@ export const _LCHComposeRecipeStub = function (inputData) {
 	return Object.assign(validKeys.reduce(function (coll, item) {
 		coll[item] = LCHFormulaTo(LCHFormulaFrom(inputData), 'LCHRecipe')[item];
 		return coll;
-	}, {}), inputData.LCHMemberBody ? {
+	}, {}), inputData.LCHDocumentBody ? {
 		LCHRecipeCallback: _LCHClosureString(inputData),
 	} : {});
 };
@@ -118,11 +118,11 @@ export const _LCHClosureString = function(inputData) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	if (typeof inputData.LCHMemberBody !== 'string') {
+	if (typeof inputData.LCHDocumentBody !== 'string') {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	return `function (${ inputData.LCHMemberArgs || '' }) { ${ inputData.LCHMemberBody } }`;
+	return `function (${ inputData.LCHDocumentArgs || '' }) { ${ inputData.LCHDocumentBody } }`;
 };
 
 export const _LCHComposeLogicRecipeJSON = function (inputData) {

@@ -12,7 +12,7 @@ export const LCHFormulasMetalWrite = async function(storageClient, inputData) {
 		});
 	}
 
-	return await storageClient.lch_documents.writeObject(inputData.LCHMemberID, inputData);
+	return await storageClient.lch_documents.writeObject(inputData.LCHDocumentID, inputData);
 };
 
 export const LCHFormulasMetalRead = async function(storageClient, inputData) {

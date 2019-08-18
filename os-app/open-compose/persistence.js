@@ -22,7 +22,7 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 			// console.log('OLSKChangeDelegateAdd', inputData);
 			membersAll.update(function (val) {
 				return val.filter(function (e) { // @Hotfix Dropbox sending DelegateAdd
-					return e.LCHMemberID !== inputData.LCHMemberID;
+					return e.LCHDocumentID !== inputData.LCHDocumentID;
 				}).concat(inputData).sort(LCHComposeLogicSort);
 			});
 
@@ -31,13 +31,13 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 		OLSKChangeDelegateRemove: function (inputData) {
 			// console.log('OLSKChangeDelegateRemove', inputData);
 
-			if (_memberSelected && (_memberSelected.LCHMemberID === inputData.LCHMemberID)) {
+			if (_memberSelected && (_memberSelected.LCHDocumentID === inputData.LCHDocumentID)) {
 				memberSelected.set(null);
 			}
 
 			membersAll.update(function (val) {
 				return val.filter(function (e) {
-					return e.LCHMemberID !== inputData.LCHMemberID;
+					return e.LCHDocumentID !== inputData.LCHDocumentID;
 				});
 			});
 
@@ -45,7 +45,7 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 		},
 		OLSKChangeDelegateUpdate: function (inputData) {
 			// console.log('OLSKChangeDelegateUpdate', inputData);
-			if (_memberSelected && (_memberSelected.LCHMemberID === inputData.LCHMemberID)) {
+			if (_memberSelected && (_memberSelected.LCHDocumentID === inputData.LCHDocumentID)) {
 				memberSelected.update(function (val) {
 					return Object.assign(val, inputData);
 				});
@@ -53,7 +53,7 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 
 			membersAll.update(function (val) {
 				return val.map(function (e) {
-					return Object.assign(e, e.LCHMemberID === inputData.LCHMemberID ? inputData : {});
+					return Object.assign(e, e.LCHDocumentID === inputData.LCHDocumentID ? inputData : {});
 				});
 			});
 

@@ -5,11 +5,11 @@ import * as mainModule from './metal.js';
 const kTesting = {
 	StubFormulaObjectValid: function() {
 		return {
-			LCHMemberID: 'alfa',
-			LCHMemberArgs: 'bravo',
-			LCHMemberBody: 'charlie',
-			LCHMemberCreationDate: new Date('2019-02-23T13:56:36Z'),
-			LCHMemberModificationDate: new Date('2019-02-23T13:56:36Z'),
+			LCHDocumentID: 'alfa',
+			LCHDocumentArgs: 'bravo',
+			LCHDocumentBody: 'charlie',
+			LCHDocumentCreationDate: new Date('2019-02-23T13:56:36Z'),
+			LCHDocumentModificationDate: new Date('2019-02-23T13:56:36Z'),
 		};
 	},
 };
@@ -22,15 +22,15 @@ describe('LCHFormulasMetalWrite', function testLCHFormulasMetalWrite() {
 
 	it('returns object with LCHErrors if not valid', async function() {
 		deepEqual((await mainModule.LCHFormulasMetalWrite(LCHTestingStorageClient, Object.assign(kTesting.StubFormulaObjectValid(), {
-			LCHMemberID: null,
+			LCHDocumentID: null,
 		}))).LCHErrors, {
-			LCHMemberID: [
+			LCHDocumentID: [
 				'LCHErrorNotString',
 			],
 		});
 	});
 
-	it('returns LCHMember', async function() {
+	it('returns LCHDocument', async function() {
 		let item = await mainModule.LCHFormulasMetalWrite(LCHTestingStorageClient, kTesting.StubFormulaObjectValid());
 
 		deepEqual(item, Object.assign(kTesting.StubFormulaObjectValid(), {
@@ -50,10 +50,10 @@ describe('LCHFormulasMetalRead', function testLCHFormulasMetalRead() {
 		deepEqual(await mainModule.LCHFormulasMetalRead(LCHTestingStorageClient, 'alfa'), null);
 	});
 
-	it('returns LCHMember', async function() {
+	it('returns LCHDocument', async function() {
 		let item = await mainModule.LCHFormulasMetalWrite(LCHTestingStorageClient, kTesting.StubFormulaObjectValid());
 
-		deepEqual(await mainModule.LCHFormulasMetalRead(LCHTestingStorageClient, item.LCHMemberID), item);
+		deepEqual(await mainModule.LCHFormulasMetalRead(LCHTestingStorageClient, item.LCHDocumentID), item);
 	});
 
 });
@@ -64,10 +64,10 @@ describe('LCHFormulasMetalList', function testLCHFormulasMetalList() {
 		deepEqual(await mainModule.LCHFormulasMetalList(LCHTestingStorageClient), {});
 	});
 
-	it('returns existing LCHMembers', async function() {
+	it('returns existing LCHDocuments', async function() {
 		let item = await mainModule.LCHFormulasMetalWrite(LCHTestingStorageClient, kTesting.StubFormulaObjectValid());
 		deepEqual(Object.values(await mainModule.LCHFormulasMetalList(LCHTestingStorageClient)), [item]);
-		deepEqual(Object.keys(await mainModule.LCHFormulasMetalList(LCHTestingStorageClient)), [item.LCHMemberID]);
+		deepEqual(Object.keys(await mainModule.LCHFormulasMetalList(LCHTestingStorageClient)), [item.LCHDocumentID]);
 	});
 
 });
@@ -79,13 +79,13 @@ describe('LCHFormulasMetalDelete', function testLCHFormulasMetalDelete() {
 	});
 
 	it('returns statusCode', async function() {
-		deepEqual(await mainModule.LCHFormulasMetalDelete(LCHTestingStorageClient, (await mainModule.LCHFormulasMetalWrite(LCHTestingStorageClient, kTesting.StubFormulaObjectValid())).LCHMemberID), {
+		deepEqual(await mainModule.LCHFormulasMetalDelete(LCHTestingStorageClient, (await mainModule.LCHFormulasMetalWrite(LCHTestingStorageClient, kTesting.StubFormulaObjectValid())).LCHDocumentID), {
 			statusCode: 200,
 		});
 	});
 
-	it('deletes LCHMember', async function() {
-		await mainModule.LCHFormulasMetalDelete(LCHTestingStorageClient, (await mainModule.LCHFormulasMetalWrite(LCHTestingStorageClient, kTesting.StubFormulaObjectValid())).LCHMemberID);
+	it('deletes LCHDocument', async function() {
+		await mainModule.LCHFormulasMetalDelete(LCHTestingStorageClient, (await mainModule.LCHFormulasMetalWrite(LCHTestingStorageClient, kTesting.StubFormulaObjectValid())).LCHDocumentID);
 		deepEqual(await mainModule.LCHFormulasMetalList(LCHTestingStorageClient), {});
 	});
 

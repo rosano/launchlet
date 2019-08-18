@@ -5,10 +5,10 @@ import * as mainModule from './model.js';
 const kTesting = {
 	StubFormulaObjectValid: function() {
 		return {
-			LCHMemberID: 'alfa',
-			LCHMemberBody: '',
-			LCHMemberCreationDate: new Date('2019-02-23T13:56:36Z'),
-			LCHMemberModificationDate: new Date('2019-02-23T13:56:36Z'),
+			LCHDocumentID: 'alfa',
+			LCHDocumentBody: '',
+			LCHDocumentCreationDate: new Date('2019-02-23T13:56:36Z'),
+			LCHDocumentModificationDate: new Date('2019-02-23T13:56:36Z'),
 		};
 	},
 };
@@ -21,51 +21,51 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 		}, /LCHErrorInputInvalid/);
 	});
 
-	it('returns object if LCHMemberID not string', function() {
+	it('returns object if LCHDocumentID not string', function() {
 		deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-			LCHMemberID: null,
+			LCHDocumentID: null,
 		})), {
-			LCHMemberID: [
+			LCHDocumentID: [
 				'LCHErrorNotString',
 			],
 		});
 	});
 
-	it('returns object if LCHMemberID not filled', function() {
+	it('returns object if LCHDocumentID not filled', function() {
 		deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-			LCHMemberID: ' ',
+			LCHDocumentID: ' ',
 		})), {
-			LCHMemberID: [
+			LCHDocumentID: [
 				'LCHErrorNotFilled',
 			],
 		});
 	});
 
-	it('returns object if LCHMemberBody not string', function() {
+	it('returns object if LCHDocumentBody not string', function() {
 		deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-			LCHMemberBody: null,
+			LCHDocumentBody: null,
 		})), {
-			LCHMemberBody: [
+			LCHDocumentBody: [
 				'LCHErrorNotString',
 			],
 		});
 	});
 
-	it('returns object if LCHMemberCreationDate not date', function() {
+	it('returns object if LCHDocumentCreationDate not date', function() {
 		deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-			LCHMemberCreationDate: new Date('alfa'),
+			LCHDocumentCreationDate: new Date('alfa'),
 		})), {
-			LCHMemberCreationDate: [
+			LCHDocumentCreationDate: [
 				'LCHErrorNotDate',
 			],
 		});
 	});
 
-	it('returns object if LCHMemberModificationDate not date', function() {
+	it('returns object if LCHDocumentModificationDate not date', function() {
 		deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-			LCHMemberModificationDate: new Date('alfa'),
+			LCHDocumentModificationDate: new Date('alfa'),
 		})), {
-			LCHMemberModificationDate: [
+			LCHDocumentModificationDate: [
 				'LCHErrorNotDate',
 			],
 		});
@@ -75,13 +75,13 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 		deepEqual(mainModule.LCHDocumentModelErrorsFor(kTesting.StubFormulaObjectValid()), null);
 	});
 
-	context('LCHMemberArgs', function() {
+	context('LCHDocumentArgs', function() {
 
 		it('returns object if not string', function() {
 			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-				LCHMemberArgs: null,
+				LCHDocumentArgs: null,
 			})), {
-				LCHMemberArgs: [
+				LCHDocumentArgs: [
 					'LCHErrorNotString',
 				],
 			});
@@ -89,19 +89,19 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 
 		it('returns null', function() {
 			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-				LCHMemberArgs: 'alfa',
+				LCHDocumentArgs: 'alfa',
 			})), null);
 		});
 
 	});
 
-	context('LCHMemberOutputType', function() {
+	context('LCHDocumentOutputType', function() {
 
 		it('returns object if not filled', function() {
 			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-				LCHMemberOutputType: '',
+				LCHDocumentOutputType: '',
 			})), {
-				LCHMemberOutputType: [
+				LCHDocumentOutputType: [
 					'LCHErrorNotFilled',
 				],
 			});
@@ -109,9 +109,9 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 
 		it('returns object if not trimmed', function() {
 			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-				LCHMemberOutputType: ' alfa ',
+				LCHDocumentOutputType: ' alfa ',
 			})), {
-				LCHMemberOutputType: [
+				LCHDocumentOutputType: [
 					'LCHErrorNotTrimmed',
 				],
 			});
@@ -119,9 +119,9 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 
 		it('returns object if only whitespace', function() {
 			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-				LCHMemberOutputType: ' ',
+				LCHDocumentOutputType: ' ',
 			})), {
-				LCHMemberOutputType: [
+				LCHDocumentOutputType: [
 					'LCHErrorNotFilled',
 				],
 			});
@@ -129,19 +129,19 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 
 		it('returns null', function() {
 			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-				LCHMemberOutputType: 'alfa',
+				LCHDocumentOutputType: 'alfa',
 			})), null);
 		});
 
 	});
 
-	context('LCHMemberOutputTypeCanonicalExampleBody', function() {
+	context('LCHDocumentOutputTypeCanonicalExampleBody', function() {
 
 		it('returns object if not string', function() {
 			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-				LCHMemberOutputTypeCanonicalExampleBody: null,
+				LCHDocumentOutputTypeCanonicalExampleBody: null,
 			})), {
-				LCHMemberOutputTypeCanonicalExampleBody: [
+				LCHDocumentOutputTypeCanonicalExampleBody: [
 					'LCHErrorNotString',
 				],
 			});
@@ -149,7 +149,7 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 
 		it('returns null', function() {
 			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-				LCHMemberOutputTypeCanonicalExampleBody: '',
+				LCHDocumentOutputTypeCanonicalExampleBody: '',
 			})), null);
 		});
 
@@ -163,19 +163,19 @@ describe('LCHFormulasModelPreJSONSchemaValidate', function testLCHFormulasModelP
 		deepEqual(mainModule.LCHFormulasModelPreJSONSchemaValidate({}), {});
 	});
 
-	it('returns input with LCHMemberCreationDate as string', function() {
+	it('returns input with LCHDocumentCreationDate as string', function() {
 		deepEqual(mainModule.LCHFormulasModelPreJSONSchemaValidate({
-			LCHMemberCreationDate: new Date('2018-12-09T19:07:01.902Z'),
+			LCHDocumentCreationDate: new Date('2018-12-09T19:07:01.902Z'),
 		}), {
-			LCHMemberCreationDate: '2018-12-09T19:07:01.902Z',
+			LCHDocumentCreationDate: '2018-12-09T19:07:01.902Z',
 		});
 	});
 
-	it('returns input with LCHMemberModificationDate as string', function() {
+	it('returns input with LCHDocumentModificationDate as string', function() {
 		deepEqual(mainModule.LCHFormulasModelPreJSONSchemaValidate({
-			LCHMemberModificationDate: new Date('2018-12-09T19:07:01.902Z'),
+			LCHDocumentModificationDate: new Date('2018-12-09T19:07:01.902Z'),
 		}), {
-			LCHMemberModificationDate: '2018-12-09T19:07:01.902Z',
+			LCHDocumentModificationDate: '2018-12-09T19:07:01.902Z',
 		});
 	});
 
@@ -191,19 +191,19 @@ describe('LCHFormulasModelPostJSONParse', function testLCHFormulasModelPostJSONP
 		deepEqual(mainModule.LCHFormulasModelPostJSONParse({}), {});
 	});
 
-	it('returns input with LCHMemberCreationDate as date', function() {
+	it('returns input with LCHDocumentCreationDate as date', function() {
 		deepEqual(mainModule.LCHFormulasModelPostJSONParse({
-			LCHMemberCreationDate: '2018-12-09T19:07:01.902Z',
+			LCHDocumentCreationDate: '2018-12-09T19:07:01.902Z',
 		}), {
-			LCHMemberCreationDate: new Date('2018-12-09T19:07:01.902Z'),
+			LCHDocumentCreationDate: new Date('2018-12-09T19:07:01.902Z'),
 		});
 	});
 
-	it('returns input with LCHMemberModificationDate as date', function() {
+	it('returns input with LCHDocumentModificationDate as date', function() {
 		deepEqual(mainModule.LCHFormulasModelPostJSONParse({
-			LCHMemberModificationDate: '2018-12-09T19:07:01.902Z',
+			LCHDocumentModificationDate: '2018-12-09T19:07:01.902Z',
 		}), {
-			LCHMemberModificationDate: new Date('2018-12-09T19:07:01.902Z'),
+			LCHDocumentModificationDate: new Date('2018-12-09T19:07:01.902Z'),
 		});
 	});
 

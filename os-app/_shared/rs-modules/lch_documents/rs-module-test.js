@@ -20,10 +20,10 @@ const kTesting = {
 	},
 	StubFormulaObjectValid: function() {
 		return {
-			LCHMemberID: 'alfa',
-			LCHMemberBody: 'bravo',
-			LCHMemberCreationDate: new Date('2019-02-23T13:56:36Z'),
-			LCHMemberModificationDate: new Date('2019-02-23T13:56:36Z'),
+			LCHDocumentID: 'alfa',
+			LCHDocumentBody: 'bravo',
+			LCHDocumentCreationDate: new Date('2019-02-23T13:56:36Z'),
+			LCHDocumentModificationDate: new Date('2019-02-23T13:56:36Z'),
 		};
 	},
 };
@@ -39,8 +39,8 @@ describe('OLSKChangeDelegateProtocol', function testOLSKChangeDelegateProtocol()
 		kTesting.StubRemoteStorage({
 			OLSKChangeDelegateAdd: function (inputData) {
 				assert.deepEqual(inputData, Object.assign(kTesting.StubFormulaObjectValid(), {
-					LCHMemberCreationDate: inputData.LCHMemberCreationDate,
-					LCHMemberModificationDate: inputData.LCHMemberModificationDate,
+					LCHDocumentCreationDate: inputData.LCHDocumentCreationDate,
+					LCHDocumentModificationDate: inputData.LCHDocumentModificationDate,
 					'@context': inputData['@context'],
 				}));
 
@@ -52,7 +52,7 @@ describe('OLSKChangeDelegateProtocol', function testOLSKChangeDelegateProtocol()
 	it('calls OLSKChangeDelegateUpdate on update', async function(done) {
 		let remoteStorage = kTesting.StubRemoteStorage({
 			OLSKChangeDelegateUpdate: function (inputData) {
-				assert.deepEqual(inputData.LCHMemberBody, 'charlie');
+				assert.deepEqual(inputData.LCHDocumentBody, 'charlie');
 				
 				done();
 			},
@@ -60,21 +60,21 @@ describe('OLSKChangeDelegateProtocol', function testOLSKChangeDelegateProtocol()
 
 		let item = remoteStorage.lch_documents.writeObject('alfa', kTesting.StubFormulaObjectValid());
 
-		remoteStorage.lch_documents.writeObject(item.LCHMemberID, Object.assign(item, {
-			LCHMemberBody: 'charlie',
+		remoteStorage.lch_documents.writeObject(item.LCHDocumentID, Object.assign(item, {
+			LCHDocumentBody: 'charlie',
 		}));
 	});
 
 	it('calls OLSKChangeDelegateRemove on delete', async function(done) {
 		let remoteStorage = kTesting.StubRemoteStorage({
 			OLSKChangeDelegateRemove: function (inputData) {
-				assert.deepEqual(inputData.LCHMemberID, 'alfa');
+				assert.deepEqual(inputData.LCHDocumentID, 'alfa');
 				
 				done();
 			},
 		});
 
-		remoteStorage.lch_documents.deleteObject((await remoteStorage.lch_documents.writeObject('alfa', kTesting.StubFormulaObjectValid())).LCHMemberID);
+		remoteStorage.lch_documents.deleteObject((await remoteStorage.lch_documents.writeObject('alfa', kTesting.StubFormulaObjectValid())).LCHDocumentID);
 	});
 
 });

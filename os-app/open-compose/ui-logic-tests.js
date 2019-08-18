@@ -4,23 +4,23 @@ import * as mainModule from './ui-logic.js';
 
 describe('LCHComposeLogicSort', function testLCHComposeLogicSort() {
 
-	it('sorts by LCHMemberModificationDate descending', function() {
+	it('sorts by LCHDocumentModificationDate descending', function() {
 		let item1 = {
-			LCHMemberModificationDate: new Date(0),
+			LCHDocumentModificationDate: new Date(0),
 		};
 		let item2 = {
-			LCHMemberModificationDate: new Date(1),
+			LCHDocumentModificationDate: new Date(1),
 		};
 
 		deepEqual([item1, item2].sort(mainModule.LCHComposeLogicSort), [item2, item1]);
 	});
 
-	it('sorts by LCHMemberCreationDate descending if no LCHMemberModificationDate', function() {
+	it('sorts by LCHDocumentCreationDate descending if no LCHDocumentModificationDate', function() {
 		let item1 = {
-			LCHMemberCreationDate: new Date(0),
+			LCHDocumentCreationDate: new Date(0),
 		};
 		let item2 = {
-			LCHMemberCreationDate: new Date(1),
+			LCHDocumentCreationDate: new Date(1),
 		};
 
 		deepEqual([item1, item2].sort(mainModule.LCHComposeLogicSort), [item2, item1]);
@@ -119,7 +119,7 @@ describe('_LCHClosureString', function test_LCHClosureString() {
 		}, /LCHErrorInputInvalid/);
 	});
 
-	it('throws error if LCHMemberBody not string', function() {
+	it('throws error if LCHDocumentBody not string', function() {
 		throws(function() {
 			mainModule._LCHClosureString({});
 		}, /LCHErrorInputInvalid/);
@@ -127,16 +127,16 @@ describe('_LCHClosureString', function test_LCHClosureString() {
 
 	it('returns string', function() {
 		deepEqual(mainModule._LCHClosureString({
-			LCHMemberBody: 'alfa',
+			LCHDocumentBody: 'alfa',
 		}), 'function () { alfa }');
 	});
 
-	context('LCHMemberArgs', function() {
+	context('LCHDocumentArgs', function() {
 
 		it('populates LCHClosureString', function() {
 			deepEqual(mainModule._LCHClosureString({
-				LCHMemberBody: 'alfa',
-				LCHMemberArgs: 'bravo',
+				LCHDocumentBody: 'alfa',
+				LCHDocumentArgs: 'bravo',
 			}), 'function (bravo) { alfa }');
 		});
 
@@ -193,7 +193,7 @@ describe('_LCHComposeRecipeStub', function test_LCHComposeRecipeStub() {
 
 	it('converts formula fields', function() {
 		deepEqual(mainModule._LCHComposeRecipeStub({
-			LCHMemberName: '',
+			LCHDocumentName: '',
 		}), {
 			LCHRecipeName: '',
 		});

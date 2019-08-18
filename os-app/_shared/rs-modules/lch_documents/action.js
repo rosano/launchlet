@@ -10,9 +10,9 @@ export const LCHFormulasActionCreate = async function(storageClient, inputData) 
 	let creationDate = new Date();
 
 	return await LCHFormulasMetal.LCHFormulasMetalWrite(storageClient, Object.assign(inputData, {
-		LCHMemberID: uniqueID(),
-		LCHMemberCreationDate: creationDate,
-		LCHMemberModificationDate: creationDate,
+		LCHDocumentID: uniqueID(),
+		LCHDocumentCreationDate: creationDate,
+		LCHDocumentModificationDate: creationDate,
 	}));
 };
 
@@ -26,7 +26,7 @@ export const LCHFormulasActionUpdate = async function(storageClient, inputData) 
 	}
 
 	return await LCHFormulasMetal.LCHFormulasMetalWrite(storageClient, Object.assign(inputData, {
-		LCHMemberModificationDate: new Date(),
+		LCHDocumentModificationDate: new Date(),
 	}));
 };
 

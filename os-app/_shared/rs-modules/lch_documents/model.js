@@ -5,61 +5,61 @@ export const LCHDocumentModelErrorsFor = function(inputData) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	var errors = LCHFormulaTo(LCHFormulaModelErrorsFor(LCHFormulaFrom(inputData)) || {}, 'LCHMember');
+	var errors = LCHFormulaTo(LCHFormulaModelErrorsFor(LCHFormulaFrom(inputData)) || {}, 'LCHDocument');
 
-	if (typeof inputData.LCHMemberID !== 'string') {
-		errors.LCHMemberID = [
+	if (typeof inputData.LCHDocumentID !== 'string') {
+		errors.LCHDocumentID = [
 			'LCHErrorNotString',
 		];
-	} else if (inputData.LCHMemberID.trim() === '') {
-		errors.LCHMemberID = [
+	} else if (inputData.LCHDocumentID.trim() === '') {
+		errors.LCHDocumentID = [
 			'LCHErrorNotFilled',
 		];
 	}
 
-	if (typeof inputData.LCHMemberBody !== 'string') {
-		errors.LCHMemberBody = [
+	if (typeof inputData.LCHDocumentBody !== 'string') {
+		errors.LCHDocumentBody = [
 			'LCHErrorNotString',
 		];
 	}
 
-	if (!(inputData.LCHMemberCreationDate instanceof Date) || Number.isNaN(inputData.LCHMemberCreationDate.getTime())) {
-		errors.LCHMemberCreationDate = [
+	if (!(inputData.LCHDocumentCreationDate instanceof Date) || Number.isNaN(inputData.LCHDocumentCreationDate.getTime())) {
+		errors.LCHDocumentCreationDate = [
 			'LCHErrorNotDate',
 		];
 	}
 
-	if (!(inputData.LCHMemberModificationDate instanceof Date) || Number.isNaN(inputData.LCHMemberModificationDate.getTime())) {
-		errors.LCHMemberModificationDate = [
+	if (!(inputData.LCHDocumentModificationDate instanceof Date) || Number.isNaN(inputData.LCHDocumentModificationDate.getTime())) {
+		errors.LCHDocumentModificationDate = [
 			'LCHErrorNotDate',
 		];
 	}
 
-	if (inputData.LCHMemberArgs !== undefined) {
-		if (typeof inputData.LCHMemberArgs !== 'string') {
-			errors.LCHMemberArgs = [
+	if (inputData.LCHDocumentArgs !== undefined) {
+		if (typeof inputData.LCHDocumentArgs !== 'string') {
+			errors.LCHDocumentArgs = [
 				'LCHErrorNotString',
 			];
 		}
 	}
 
-	if (inputData.LCHMemberOutputType !== undefined && typeof inputData.LCHMemberOutputType === 'string') {
-		if (inputData.LCHMemberOutputType.trim() !== inputData.LCHMemberOutputType) {
-			errors.LCHMemberOutputType = [
+	if (inputData.LCHDocumentOutputType !== undefined && typeof inputData.LCHDocumentOutputType === 'string') {
+		if (inputData.LCHDocumentOutputType.trim() !== inputData.LCHDocumentOutputType) {
+			errors.LCHDocumentOutputType = [
 				'LCHErrorNotTrimmed',
 			];
 		}
 
-		if (inputData.LCHMemberOutputType.trim() === '') {
-			errors.LCHMemberOutputType = [
+		if (inputData.LCHDocumentOutputType.trim() === '') {
+			errors.LCHDocumentOutputType = [
 				'LCHErrorNotFilled',
 			];
 		}
 	}
 
-	if (inputData.LCHMemberOutputTypeCanonicalExampleBody !== undefined) {
-		if (typeof inputData.LCHMemberOutputTypeCanonicalExampleBody !== 'string') {
-			errors.LCHMemberOutputTypeCanonicalExampleBody = [
+	if (inputData.LCHDocumentOutputTypeCanonicalExampleBody !== undefined) {
+		if (typeof inputData.LCHDocumentOutputTypeCanonicalExampleBody !== 'string') {
+			errors.LCHDocumentOutputTypeCanonicalExampleBody = [
 				'LCHErrorNotString',
 			];
 		}
@@ -69,12 +69,12 @@ export const LCHDocumentModelErrorsFor = function(inputData) {
 };
 
 export const LCHFormulasModelPreJSONSchemaValidate = function(inputData) {
-	if (inputData.LCHMemberCreationDate) {
-		inputData.LCHMemberCreationDate = inputData.LCHMemberCreationDate.toISOString();
+	if (inputData.LCHDocumentCreationDate) {
+		inputData.LCHDocumentCreationDate = inputData.LCHDocumentCreationDate.toISOString();
 	}
 
-	if (inputData.LCHMemberModificationDate) {
-		inputData.LCHMemberModificationDate = inputData.LCHMemberModificationDate.toISOString();
+	if (inputData.LCHDocumentModificationDate) {
+		inputData.LCHDocumentModificationDate = inputData.LCHDocumentModificationDate.toISOString();
 	}
 
 	return inputData;
@@ -85,12 +85,12 @@ export const LCHFormulasModelPostJSONParse = function(inputData) {
 		return inputData;
 	}
 
-	if (inputData.LCHMemberCreationDate) {
-		inputData.LCHMemberCreationDate = new Date(inputData.LCHMemberCreationDate);
+	if (inputData.LCHDocumentCreationDate) {
+		inputData.LCHDocumentCreationDate = new Date(inputData.LCHDocumentCreationDate);
 	}
 
-	if (inputData.LCHMemberModificationDate) {
-		inputData.LCHMemberModificationDate = new Date(inputData.LCHMemberModificationDate);
+	if (inputData.LCHDocumentModificationDate) {
+		inputData.LCHDocumentModificationDate = new Date(inputData.LCHDocumentModificationDate);
 	}
 
 	return inputData;

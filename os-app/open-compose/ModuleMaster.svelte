@@ -42,13 +42,13 @@ export const DocumentsImport = async function(inputData) {
 
 async function memberCreate() {
 	let item = await LCHFormulasAction.LCHFormulasActionCreate(storageClient, {
-		LCHMemberName: '',
-		LCHMemberArgs: '',
-		LCHMemberBody: '',
-		LCHMemberSignature: '',
-		LCHMemberURLFilter: '',
-		LCHMemberStyle: '',
-		LCHMemberModificationDate: new Date(),
+		LCHDocumentName: '',
+		LCHDocumentArgs: '',
+		LCHDocumentBody: '',
+		LCHDocumentSignature: '',
+		LCHDocumentURLFilter: '',
+		LCHDocumentStyle: '',
+		LCHDocumentModificationDate: new Date(),
 	});
 
 	membersAll.update(function (val) {
@@ -71,7 +71,7 @@ async function memberSelect(inputData) {
 <div class="List">
 	{#each $membersAll as e}
 		<div on:click={ () => memberSelect(e) } class="ListItem OLSKLayoutElementTappable">
-			<strong>{ e.LCHMemberName || e.LCHMemberSignature || e.LCHMemberID }</strong>
+			<strong>{ e.LCHDocumentName || e.LCHDocumentSignature || e.LCHDocumentID }</strong>
 		</div>
 	{/each}
 </div>
