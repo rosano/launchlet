@@ -145,11 +145,11 @@ let _AllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
 		 return _PromptObjects.push(...[{
 			LCHPromptClass: 'LCHLauncherSubjectPrompt',
 			LCHPromptHeading: OLSKLocalized('LCHLauncherSubjectPromptHeadingText'),
-			LCHPromptItems: [],
-			LCHPromptItemsAll: _AllPromptRecipes.filter(LCHRecipesModelIsSubject).filter(function (e) {
+			LCHPromptItemsVisible: [],
+			LCHPromptItemsVisibleAll: _AllPromptRecipes.filter(LCHRecipesModelIsSubject).filter(function (e) {
 				return !e.LCHRecipeOutputType || (Object.keys(apiTypeEquivalenceMap).indexOf(e.LCHRecipeOutputType) !== -1);
 			}),
-			LCHPromptItemSelected: null,
+			LCHPromptItemSVisibleelected: null,
 			LCHPromptInputThrottle: undefined,
 			LCHPromptFilterText: '',
 			LCHPromptMatchStop: false,
@@ -158,9 +158,9 @@ let _AllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
 		}, {
 			LCHPromptClass: 'LCHLauncherActionPrompt',
 			LCHPromptHeading: OLSKLocalized('LCHLauncherActionPromptHeadingText'),
-			LCHPromptItems: [],
-			LCHPromptItemsAll: [],
-			LCHPromptItemSelected: null,
+			LCHPromptItemsVisible: [],
+			LCHPromptItemsVisibleAll: [],
+			LCHPromptItemSVisibleelected: null,
 			LCHPromptInputThrottle: undefined,
 			LCHPromptFilterText: '',
 			LCHPromptMatchStop: false,
@@ -170,8 +170,8 @@ let _AllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
 
 	_PromptObjects.push({
 		LCHPromptClass: 'LCHLauncherFilterPrompt',
-		LCHPromptItems: [],
-		LCHPromptItemsAll: _AllPromptRecipes,
+		LCHPromptItemsVisible: [],
+		LCHPromptItemsVisibleAll: _AllPromptRecipes,
 		LCHPromptFilterText: '',
 		LCHPromptResultsThrottle: false,
 	 });
@@ -180,7 +180,7 @@ let _AllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
 		return;
 	}
 
-	_PromptObjects[0].LCHPromptItems = _PromptObjects[0].LCHPromptItemsAll;
+	_PromptObjects[0].LCHPromptItemsVisible = _PromptObjects[0].LCHPromptItemsVisibleAll;
 })();
 
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
@@ -260,25 +260,25 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 	(function SetActivePromptItems() {
 		ActivePromptItemsShouldUpdate((function() {
 			if (LCHOptionsObject().runMode === LCHLauncherModePipe && !_PromptObjects[_PromptActiveIndex].LCHPromptFilterText && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === false) {
-				return _PromptObjects[_PromptActiveIndex].LCHPromptItems;
+				return _PromptObjects[_PromptActiveIndex].LCHPromptItemsVisible;
 			}
 			
 			if (!_PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
-				return LCHOptionsObject().runMode === LCHLauncherModePreview ? _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll : [];
+				return LCHOptionsObject().runMode === LCHLauncherModePreview ? _PromptObjects[_PromptActiveIndex].LCHPromptItemsVisibleAll : [];
 			}
 
-			let results = fuzzysort.go(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText, _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll, {
+			let results = fuzzysort.go(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText, _PromptObjects[_PromptActiveIndex].LCHPromptItemsVisibleAll, {
 				key: 'LCHRecipeName',
 			});
 
-			if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptItems.length && !results.length) {
+			if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptItemsVisible.length && !results.length) {
 				if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
 					OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 				}
 
 				_PromptObjects[_PromptActiveIndex].LCHPromptMatchStop = true;
 
-				return _PromptObjects[_PromptActiveIndex].LCHPromptItems;
+				return _PromptObjects[_PromptActiveIndex].LCHPromptItemsVisible;
 			}
 
 			return results.sort(function (a, b) {
@@ -292,24 +292,24 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 
 function ActivePromptItemsShouldUpdate (inputData) {
 	(function SetItems() {
-		_PromptObjects[_PromptActiveIndex].LCHPromptItems = inputData;
+		_PromptObjects[_PromptActiveIndex].LCHPromptItemsVisible = inputData;
 	})();
 
 
 	(function SetItemSelected() {
-		ActivePromptItemSelectedShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptItems[0]);
+		ActivePromptItemSelectedShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptItemsVisible[0]);
 	})();
 }
 
 function ActivePromptItemSelectedShouldUpdate (inputData) {
 	(function SetItemSelected() {
-		_PromptObjects[_PromptActiveIndex].LCHPromptItemSelected = inputData;
+		_PromptObjects[_PromptActiveIndex].LCHPromptItemSVisibleelected = inputData;
 
 		if (LCHOptionsObject().runMode !== LCHLauncherModePreview) {
 			return;
 		}
 
-		apiStart(_PromptObjects[0].LCHPromptItemSelected);
+		apiStart(_PromptObjects[0].LCHPromptItemSVisibleelected);
 	})();
 
 	if (_PromptActiveIndex !== 0) {
@@ -321,22 +321,22 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 			return;
 		}
 
-		if (!_PromptObjects[_PromptActiveIndex].LCHPromptItemSelected) {
-			_PromptObjects[1].LCHPromptItems = _PromptObjects[1].LCHPromptItemsAll = [];
-			_PromptObjects[1].LCHPromptItemSelected = null;
+		if (!_PromptObjects[_PromptActiveIndex].LCHPromptItemSVisibleelected) {
+			_PromptObjects[1].LCHPromptItemsVisible = _PromptObjects[1].LCHPromptItemsVisibleAll = [];
+			_PromptObjects[1].LCHPromptItemSVisibleelected = null;
 
 			return;
 		}
 
-		_PromptObjects[1].LCHPromptItemsAll = _AllActions.filter(function (e) {
+		_PromptObjects[1].LCHPromptItemsVisibleAll = _AllActions.filter(function (e) {
 			return apiTypeEquivalenceMap[inputData.LCHRecipeOutputType || 'Command'].filter(function (type) {
 				return e.LCHRecipeInputTypes.indexOf(type) !== -1;
 			}).length;
 		});
 
-		_PromptObjects[1].LCHPromptItems = _PromptObjects[1].LCHPromptItemsAll;
+		_PromptObjects[1].LCHPromptItemsVisible = _PromptObjects[1].LCHPromptItemsVisibleAll;
 
-		_PromptObjects[1].LCHPromptItemSelected = _PromptObjects[1].LCHPromptItems[0];
+		_PromptObjects[1].LCHPromptItemSVisibleelected = _PromptObjects[1].LCHPromptItemsVisible[0];
 	})();
 }
 
@@ -359,7 +359,7 @@ function ActivePromptIndexShouldUpdate (inputData) {
 		_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
 	})();
 
-	if (!_PromptObjects[inputData].LCHPromptItemsAll.length) {
+	if (!_PromptObjects[inputData].LCHPromptItemsVisibleAll.length) {
 		return;
 	};
 
@@ -370,20 +370,20 @@ function ActivePromptIndexShouldUpdate (inputData) {
 
 function CompositionIsValid () {
 	return !_PromptObjects.filter(function (e) {
-		return !e.LCHPromptItemSelected;
+		return !e.LCHPromptItemSVisibleelected;
 	}).length;
 }
 
 async function LauncherShouldTerminate () {
 	if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
 		await apiStart({
-			LCHCompositionAction: _PromptObjects[1].LCHPromptItemSelected,
-			LCHCompositionSubjectPrimary: _PromptObjects[0].LCHPromptItemSelected,
+			LCHCompositionAction: _PromptObjects[1].LCHPromptItemSVisibleelected,
+			LCHCompositionSubjectPrimary: _PromptObjects[0].LCHPromptItemSVisibleelected,
 		});
 	}
 
 	if (LCHOptionsObject().runMode !== LCHLauncherModePreview) {
-		await apiStart(_PromptObjects[0].LCHPromptItemSelected);
+		await apiStart(_PromptObjects[0].LCHPromptItemSVisibleelected);
 	}
 
 	handleDidFinish();
@@ -588,15 +588,15 @@ const mod = {
 
 		mod.ValuePromptResultsIsVisible(false);
 		mod.ValuePromptModeText(true)
-		_PromptObjects[_PromptActiveIndex].LCHPromptFilterText = '';
+		ActivePromptFilterTextShouldUpdate('');
 
 		if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItem) {
 			return;
 		};
 
-		_PromptObjects[1].LCHPromptItemsAll = [];
-		_PromptObjects[1].LCHPromptItems = [];
-		_PromptObjects[1].LCHPromptItemSelected = null;
+		_PromptObjects[1].LCHPromptItemsVisibleAll = [];
+		_PromptObjects[1].LCHPromptItemsVisible = [];
+		_PromptObjects[1].LCHPromptItemSVisibleelected = null;
 	},
 	_commandHandleEventKeydownBackspace (event) {
 		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
@@ -672,7 +672,7 @@ const mod = {
 					<strong class="LCHLauncherPromptHeading" class:LCHLauncherPromptHeadingMatchStop={ e.LCHPromptMatchStop }>{ e.LCHPromptFilterText && e.LCHPromptFilterText.toUpperCase() || e.LCHPromptHeading }</strong>
 				{/if}
 
-				<LCHLauncherPrompt PromptItems={ e.LCHPromptItems } on:ResultListDispatchArrow={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) } ItemSelected={ e.LCHPromptItemSelected } on:ResultListDispatchClick={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) || LauncherShouldTerminate() } ItemSelectedHidden={ LCHOptionsObject().runMode !== LCHLauncherModePipe || e.LCHPromptTextItemMode } ResultsHidden={ e.LCHPromptResultsThrottle !== false }>
+				<LCHLauncherPrompt PromptItems={ e.LCHPromptItemsVisible } on:ResultListDispatchArrow={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) } ItemSelected={ e.LCHPromptItemSVisibleelected } on:ResultListDispatchClick={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) || LauncherShouldTerminate() } ItemSelectedHidden={ LCHOptionsObject().runMode !== LCHLauncherModePipe || e.LCHPromptTextItemMode } ResultsHidden={ e.LCHPromptResultsThrottle !== false }>
 					{#if e.LCHPromptClass === 'LCHLauncherSubjectPrompt' && !e.LCHPromptTextItemMode }
 						<span class="LCHLauncherSubjectPromptPlaceholder">{ OLSKLocalized('LCHLauncherSubjectPromptPlaceholderText') }</span>
 					{/if}
