@@ -384,7 +384,15 @@ export const LCHAPIObjectFor = function(inputData) {
 		},
 	};
 
-	Object.freeze(api);
+	Object.freeze(Object.assign(api, inputData.reduce(function (coll, item) {
+		if (!coll[item.LCHRecipeSignature]) {
+			coll[item.LCHRecipeSignature] = item.LCHRecipeCallback.bind({
+				api: api,
+			});
+		};
+
+		return coll;
+	}, {})));
 
 	return api;
 };

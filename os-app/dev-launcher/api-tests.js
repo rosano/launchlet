@@ -934,6 +934,65 @@ describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 
 	});
 
+	context('this.api', function() {
+
+		it('returns LCHRecipeCallback', function() {
+			deepEqual(mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeCallback() {
+					return 'bravo';
+				},
+				LCHRecipeSignature: 'alfa',
+			})]).alfa(), 'bravo');
+		});
+
+		it('populates this.api', function() {
+			deepEqual(mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeCallback(inputData) {
+					return `hello ${ inputData }`;
+				},
+				LCHRecipeSignature: 'alfa',
+			}), Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeCallback() {
+					return this.api.alfa('bravo');
+				},
+				LCHRecipeSignature: 'charlie',
+			})]).charlie(), 'hello bravo');
+		});
+
+		it('ignores duplicates', function() {
+			deepEqual(mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeCallback(inputData) {
+					return `hello ${ inputData }`;
+				},
+				LCHRecipeSignature: 'alfa',
+			}), Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeCallback(inputData) {
+					return `bye ${ inputData }`;
+				},
+				LCHRecipeSignature: 'alfa',
+			})]).alfa('bravo'), 'hello bravo');
+		});
+
+		it('returns frozen object', function() {
+			deepEqual(mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeCallback(inputData) {
+					return `hello ${ inputData }`;
+				},
+				LCHRecipeSignature: 'alfa',
+			}), Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeCallback(inputData) {
+					this.api.alfa = function () {
+						return `bye ${ inputData }`;
+					}
+					
+					return this.api.alfa(inputData);
+				},
+				LCHRecipeSignature: 'bravo',
+			})]).bravo('charlie'), 'hello charlie');
+		});
+
+	});
+
 });
 
 describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
