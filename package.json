@@ -46,6 +46,10 @@
     "// FRONTEND RECIPE LCHCopyToClipboard": null,
     "clipboard": "latest",
 
+    "// FRONTEND EXPORT": null,
+    "jszip": "latest",
+    "file-saver": "latest",
+
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {
