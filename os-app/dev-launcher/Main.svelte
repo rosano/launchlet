@@ -398,7 +398,7 @@ function ActivePromptTextItemShouldUpdate(inputData) {
 		_PromptObjects[_PromptActiveIndex].LCHPromptTextItem = inputData
 	})();
 
-	(function SetActivePromptItems() {
+	(function SetItems() {
 		ActivePromptItemsShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptTextItem ? [{
 			LCHRecipeName: _PromptObjects[_PromptActiveIndex].LCHPromptTextItem,
 			LCHRecipeCallback () {
