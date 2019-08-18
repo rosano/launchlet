@@ -496,6 +496,10 @@ const mod = {
 				return mod.ValuePromptModeText(false) || true;
 			},
 			Tab () {
+				if (!_PromptObjects[_PromptActiveIndex].LCHPromptTextItem) {
+					return true;
+				};
+				
 				return mod.ValuePromptModeText(false)
 			},
 			Enter () {

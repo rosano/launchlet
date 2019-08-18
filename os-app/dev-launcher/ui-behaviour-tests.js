@@ -484,6 +484,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					
 					it('does nothing if empty', async function() {
 						browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
+						browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 0)
 
 						browser.OLSKFireKeyboardEvent(browser.window, '.');
 						await browser.wait({element: LCHLauncherPromptTextItemInput});
