@@ -4,7 +4,7 @@ import * as LCHFormulasMetal from '../_shared/rs-modules/lch_documents/metal.js'
 import { LCHFormulasModelPostJSONParse } from '../_shared/rs-modules/lch_documents/model.js';
 import { LCHComposeLogicSort } from './ui-logic.js';
 import { OLSKLocalized } from '../_shared/common/global.js';
-import { storageClient, membersAll, memberSelected } from './persistence.js';
+import { storageClient, DocumentsStore, memberSelected } from './persistence.js';
 
 export const DocumentsExport = function() {
 	let zip = new JSZip();
@@ -14,7 +14,7 @@ export const DocumentsExport = function() {
 		(new Date()).toJSON(),
 	].join(' ')
 
-	zip.file(`${ fileName }.json`, JSON.stringify($membersAll));
+	zip.file(`${ fileName }.json`, JSON.stringify($DocumentsStore));
 	
 	zip.generateAsync({type: 'blob'}).then(function (content) {
 		saveAs(content, `${ fileName }.zip`);
@@ -37,7 +37,7 @@ export const DocumentsImport = async function(inputData) {
 		return LCHFormulasMetal.LCHFormulasMetalWrite(storageClient, LCHFormulasModelPostJSONParse(e))
 	}));
 
-	membersAll.set(await LCHFormulasAction.LCHFormulasActionList(storageClient));
+	DocumentsStore.set(await LCHFormulasAction.LCHFormulasActionList(storageClient));
 }
 
 async function memberCreate() {
@@ -51,7 +51,7 @@ async function memberCreate() {
 		LCHDocumentModificationDate: new Date(),
 	});
 
-	membersAll.update(function (val) {
+	DocumentsStore.update(function (val) {
 		return val.concat(item).sort(LCHComposeLogicSort);
 	});
 
@@ -69,7 +69,7 @@ async function memberSelect(inputData) {
 	<button on:click={ memberCreate } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" accesskey="n" id="LCHComposeCreateButton" title={ OLSKLocalized('LCHComposeToolbarCreateButtonText') }>{ OLSKLocalized('LCHComposeToolbarCreateButtonText') }</button>
 </header>
 <div class="List">
-	{#each $membersAll as e}
+	{#each $DocumentsStore as e}
 		<div on:click={ () => memberSelect(e) } class="ListItem OLSKLayoutElementTappable">
 			<strong>{ e.LCHDocumentName || e.LCHDocumentSignature || e.LCHDocumentID }</strong>
 		</div>

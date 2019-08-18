@@ -2,7 +2,7 @@
 import * as LCHFormulasAction from '../_shared/rs-modules/lch_documents/action.js';
 
 import { OLSKLocalized, _LCHIsTestingBehaviour } from '../_shared/common/global.js';
-import { storageClient, membersAll, memberSelected, modelDidChange } from './persistence.js';
+import { storageClient, DocumentsStore, memberSelected, modelDidChange } from './persistence.js';
 
 import { afterUpdate } from 'svelte';
 
@@ -146,7 +146,7 @@ memberSelected.subscribe(function (val) {
 let throttleMap = {};
 import OLSKThrottle from 'OLSKThrottle';
 async function memberSave() {
-	membersAll.update(function (val) {
+	DocumentsStore.update(function (val) {
 		return val;
 	});
 
@@ -171,7 +171,7 @@ async function memberDelete() {
 		return;
 	}
 
-	membersAll.update(function (val) {
+	DocumentsStore.update(function (val) {
 		return val.filter(function(e) {
 			return e !== $memberSelected;
 		});

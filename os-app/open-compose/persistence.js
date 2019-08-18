@@ -8,7 +8,7 @@ import * as LCHFormulasAction from '../_shared/rs-modules/lch_documents/action.j
 
 import { writable } from 'svelte/store';
 
-export const membersAll = writable([]);
+export const DocumentsStore = writable([]);
 export const memberSelected = writable(null);
 export const modelDidChange = writable(null);
 
@@ -20,7 +20,7 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 	RSModuleProtocol_lch_documents.RSModuleProtocolModuleForChangeDelegate({
 		OLSKChangeDelegateAdd: function (inputData) {
 			// console.log('OLSKChangeDelegateAdd', inputData);
-			membersAll.update(function (val) {
+			DocumentsStore.update(function (val) {
 				return val.filter(function (e) { // @Hotfix Dropbox sending DelegateAdd
 					return e.LCHDocumentID !== inputData.LCHDocumentID;
 				}).concat(inputData).sort(LCHComposeLogicSort);
@@ -35,7 +35,7 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 				memberSelected.set(null);
 			}
 
-			membersAll.update(function (val) {
+			DocumentsStore.update(function (val) {
 				return val.filter(function (e) {
 					return e.LCHDocumentID !== inputData.LCHDocumentID;
 				});
@@ -51,7 +51,7 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 				});
 			}
 
-			membersAll.update(function (val) {
+			DocumentsStore.update(function (val) {
 				return val.map(function (e) {
 					return Object.assign(e, e.LCHDocumentID === inputData.LCHDocumentID ? inputData : {});
 				});
