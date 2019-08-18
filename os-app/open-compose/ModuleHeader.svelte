@@ -1,11 +1,22 @@
 <script>
 import { OLSKLocalized } from '../_shared/common/global.js';
 import RCSLanguageSwitcher from '../_shared/RCSLanguageSwitcher/Main.svelte';
+
+import { createEventDispatcher } from 'svelte';
+const dispatch = createEventDispatcher();
+
+const mod = {
+	interfaceExportButtonDidClick () {
+		dispatch('ModuleHeaderDispatchExport');
+	},
+}
 </script>
 
 <header class="Container">
 
 <h1>{ OLSKLocalized('LCHComposeTitle') }</h1>
+
+<button on:click={ mod.interfaceExportButtonDidClick }>Export</button>
 
 <RCSLanguageSwitcher />
 	

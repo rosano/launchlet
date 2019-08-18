@@ -13,14 +13,21 @@ import Widget from 'remotestorage-widget';
 onMount(function () {
 	(new Widget(storageClient.remoteStorage)).attach('LCHComposeStorageWidget');	
 });
+
+let masterInstance;
+const mod = {
+	ModuleHeaderDispatchExport () {
+		masterInstance.DocumentsExport();
+	},
+}
 </script>
 
 <div class="AppContainer">
 
-<ModuleHeader />
+<ModuleHeader on:ModuleHeaderDispatchExport={ mod.ModuleHeaderDispatchExport } />
 
 <div class="AppContentContainer">
-	<ModuleMaster />
+	<ModuleMaster bind:this={masterInstance} />
 	<ModuleDetail />
 </div>
 

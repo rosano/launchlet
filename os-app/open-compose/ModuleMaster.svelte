@@ -1,9 +1,23 @@
 <script>
 import * as LCHFormulasAction from '../_shared/rs-modules/lch_members/action.js';
 import { LCHComposeLogicSort } from './ui-logic.js';
-
 import { OLSKLocalized } from '../_shared/common/global.js';
 import { storageClient, membersAll, memberSelected } from './persistence.js';
+
+export const DocumentsExport = function() {
+	let zip = new JSZip();
+
+	const fileName = [
+		'dev.launchlet.export',
+		(new Date()).toJSON(),
+	].join(' ')
+
+	zip.file(`${ fileName }.json`, JSON.stringify($membersAll));
+	
+	zip.generateAsync({type: 'blob'}).then(function (content) {
+		saveAs(content, `${ fileName }.zip`);
+	});	
+}
 
 async function memberCreate() {
 	let item = await LCHFormulasAction.LCHFormulasActionCreate(storageClient, {
