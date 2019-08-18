@@ -905,12 +905,7 @@ describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 					return `bye ${ inputData }`;
 				},
 				LCHRecipeSignature: 'alfa',
-			}), Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeCallback() {
-					return this.api.fn('alfa')('bravo');
-				},
-				LCHRecipeSignature: 'charlie',
-			})]).fn('charlie')(), 'hello bravo');
+			})]).fn('alfa')('bravo'), 'hello bravo');
 		});
 
 		it('returns frozen object', function() {
