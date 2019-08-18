@@ -1,10 +1,10 @@
 import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 
 import * as LCHStorageClient from '../_shared/LCHStorageClient/main.js';
-import * as RSModuleProtocol_lch_members from '../_shared/rs-modules/lch_members/rs-module.js';
+import * as RSModuleProtocol_lch_documents from '../_shared/rs-modules/lch_documents/rs-module.js';
 import { LCHComposeLogicSort } from './ui-logic.js';
 
-import * as LCHFormulasAction from '../_shared/rs-modules/lch_members/action.js';
+import * as LCHFormulasAction from '../_shared/rs-modules/lch_documents/action.js';
 
 import { writable } from 'svelte/store';
 
@@ -17,7 +17,7 @@ memberSelected.subscribe(function (val) {
 	_memberSelected = val;
 });
 export const storageClient = LCHStorageClient.LCHStorageClientForModules([
-	RSModuleProtocol_lch_members.RSModuleProtocolModuleForChangeDelegate({
+	RSModuleProtocol_lch_documents.RSModuleProtocolModuleForChangeDelegate({
 		OLSKChangeDelegateAdd: function (inputData) {
 			// console.log('OLSKChangeDelegateAdd', inputData);
 			membersAll.update(function (val) {
@@ -73,7 +73,7 @@ remoteStorage.on('ready', async () => {
 		console.debug('ready', arguments);
 	}
 
-	await remoteStorage.lch_members.init();
+	await remoteStorage.lch_documents.init();
 
 	// setupFinalize(); remove loading class
 });

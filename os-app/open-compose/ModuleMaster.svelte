@@ -1,7 +1,7 @@
 <script>
-import * as LCHFormulasAction from '../_shared/rs-modules/lch_members/action.js';
-import * as LCHFormulasMetal from '../_shared/rs-modules/lch_members/metal.js';
-import { LCHFormulasModelPostJSONParse } from '../_shared/rs-modules/lch_members/model.js';
+import * as LCHFormulasAction from '../_shared/rs-modules/lch_documents/action.js';
+import * as LCHFormulasMetal from '../_shared/rs-modules/lch_documents/metal.js';
+import { LCHFormulasModelPostJSONParse } from '../_shared/rs-modules/lch_documents/model.js';
 import { LCHComposeLogicSort } from './ui-logic.js';
 import { OLSKLocalized } from '../_shared/common/global.js';
 import { storageClient, membersAll, memberSelected } from './persistence.js';

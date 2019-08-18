@@ -1,5 +1,5 @@
 <script>
-import * as LCHFormulasAction from '../_shared/rs-modules/lch_members/action.js';
+import * as LCHFormulasAction from '../_shared/rs-modules/lch_documents/action.js';
 
 import { OLSKLocalized, _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 import { storageClient, membersAll, memberSelected, modelDidChange } from './persistence.js';

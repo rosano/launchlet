@@ -12,7 +12,7 @@ export const LCHFormulasMetalWrite = async function(storageClient, inputData) {
 		});
 	}
 
-	return await storageClient.lch_members.writeObject(inputData.LCHMemberID, inputData);
+	return await storageClient.lch_documents.writeObject(inputData.LCHMemberID, inputData);
 };
 
 export const LCHFormulasMetalRead = async function(storageClient, inputData) {
@@ -20,11 +20,11 @@ export const LCHFormulasMetalRead = async function(storageClient, inputData) {
 		return Promise.reject(new Error('LCHErrorInputInvalid'));
 	}
 
-	return LCHFormulasModel.LCHFormulasModelPostJSONParse(await storageClient.lch_members.readObject(inputData));
+	return LCHFormulasModel.LCHFormulasModelPostJSONParse(await storageClient.lch_documents.readObject(inputData));
 };
 
 export const LCHFormulasMetalList = async function(storageClient) {
-	let outputData = await storageClient.lch_members.listObjects();
+	let outputData = await storageClient.lch_documents.listObjects();
 
 	for (let key in outputData) {
 		LCHFormulasModel.LCHFormulasModelPostJSONParse(outputData[key]);
@@ -38,5 +38,5 @@ export const LCHFormulasMetalDelete = async function(storageClient, inputData) {
 		return Promise.reject(new Error('LCHErrorInputInvalid'));
 	}
 
-	return await storageClient.lch_members.deleteObject(inputData);
+	return await storageClient.lch_documents.deleteObject(inputData);
 };

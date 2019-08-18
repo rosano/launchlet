@@ -3,9 +3,9 @@ import * as LCHFormulasModel from './model.js';
 
 export const RSModuleProtocolModuleForChangeDelegate = function (changeDelegate) {
 	return {
-		name: 'lch_members',
+		name: 'lch_documents',
 		builder: function(privateClient, publicClient) {
-			privateClient.declareType('lch_member', RSModuleShared.RSModuleSharedJSONSchemaForErrors(LCHFormulasModel.LCHDocumentModelErrorsFor({})));
+			privateClient.declareType('lch_document', RSModuleShared.RSModuleSharedJSONSchemaForErrors(LCHFormulasModel.LCHDocumentModelErrorsFor({})));
 
 			!changeDelegate ? null : privateClient.on('change', function (event) {
 				if (typeof event.oldValue === 'undefined') {
@@ -32,7 +32,7 @@ export const RSModuleProtocolModuleForChangeDelegate = function (changeDelegate)
 						return privateClient.getAll('');
 					},
 					writeObject: async function (param1, param2) {
-						await privateClient.storeObject('lch_member', param1, LCHFormulasModel.LCHFormulasModelPreJSONSchemaValidate(param2));
+						await privateClient.storeObject('lch_document', param1, LCHFormulasModel.LCHFormulasModelPreJSONSchemaValidate(param2));
 						return LCHFormulasModel.LCHFormulasModelPostJSONParse(param2);
 					},
 					readObject: function (inputData) {
