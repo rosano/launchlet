@@ -9,6 +9,18 @@ const mod = {
 	interfaceExportButtonDidClick () {
 		dispatch('ModuleHeaderDispatchExport');
 	},
+	interfaceImportButtonDidClick (event) {
+		let inputElement = event.target;
+		let reader = new FileReader();
+		
+		reader.onload = function (event) {
+			dispatch('ModuleHeaderDispatchImport', event.target.result);
+			
+			inputElement.value = null;
+		};
+
+		reader.readAsText(event.target.files.item(0))
+	},
 }
 </script>
 
@@ -17,6 +29,8 @@ const mod = {
 <h1>{ OLSKLocalized('LCHComposeTitle') }</h1>
 
 <button on:click={ mod.interfaceExportButtonDidClick }>Export</button>
+
+<input type="file" accept=".json" on:change={ mod.interfaceImportButtonDidClick } />
 
 <RCSLanguageSwitcher />
 	

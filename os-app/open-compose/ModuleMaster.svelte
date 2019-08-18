@@ -1,5 +1,7 @@
 <script>
 import * as LCHFormulasAction from '../_shared/rs-modules/lch_members/action.js';
+import * as LCHFormulasMetal from '../_shared/rs-modules/lch_members/metal.js';
+import { LCHFormulasModelPostJSONParse } from '../_shared/rs-modules/lch_members/model.js';
 import { LCHComposeLogicSort } from './ui-logic.js';
 import { OLSKLocalized } from '../_shared/common/global.js';
 import { storageClient, membersAll, memberSelected } from './persistence.js';
@@ -17,6 +19,25 @@ export const DocumentsExport = function() {
 	zip.generateAsync({type: 'blob'}).then(function (content) {
 		saveAs(content, `${ fileName }.zip`);
 	});	
+}
+
+export const DocumentsImport = async function(inputData) {
+	let outputData;
+	try {
+		outputData = JSON.parse(inputData);
+	} catch (e)  {
+		console.log(e);
+	}
+
+	if (!Array.isArray(outputData)) {
+		return;
+	};
+
+	await Promise.all(outputData.map(function (e) {
+		return LCHFormulasMetal.LCHFormulasMetalWrite(storageClient, LCHFormulasModelPostJSONParse(e))
+	}));
+
+	membersAll.set(await LCHFormulasAction.LCHFormulasActionList(storageClient));
 }
 
 async function memberCreate() {

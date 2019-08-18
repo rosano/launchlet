@@ -19,12 +19,15 @@ const mod = {
 	ModuleHeaderDispatchExport () {
 		masterInstance.DocumentsExport();
 	},
+	ModuleHeaderDispatchImport (event) {
+		masterInstance.DocumentsImport(event.detail);
+	},
 }
 </script>
 
 <div class="AppContainer">
 
-<ModuleHeader on:ModuleHeaderDispatchExport={ mod.ModuleHeaderDispatchExport } />
+<ModuleHeader on:ModuleHeaderDispatchExport={ mod.ModuleHeaderDispatchExport } on:ModuleHeaderDispatchImport={ mod.ModuleHeaderDispatchImport } />
 
 <div class="AppContentContainer">
 	<ModuleMaster bind:this={masterInstance} />
