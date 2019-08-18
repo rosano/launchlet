@@ -257,7 +257,7 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 		OLSKThrottle.OLSKThrottleTimeoutFor(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 	})();
 
-	(function SetActivePromptItems() {
+	(function SetItems() {
 		ActivePromptItemsShouldUpdate((function() {
 			if (LCHOptionsObject().runMode === LCHLauncherModePipe && !_PromptObjects[_PromptActiveIndex].LCHPromptFilterText && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === false) {
 				return _PromptObjects[_PromptActiveIndex].LCHPromptItemsVisible;
