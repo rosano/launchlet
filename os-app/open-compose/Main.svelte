@@ -1,4 +1,5 @@
 <script>
+import OLSKViewportContent from 'OLSKViewportContent';
 import ModuleHeader from './ModuleHeader.svelte';
 import ModuleMaster from './ModuleMaster.svelte';
 import ModuleDetail from './ModuleDetail.svelte';
@@ -6,7 +7,7 @@ import ModuleCompile from './ModuleCompile.svelte';
 import OLSKServiceWorker from '../_shared/_external/OLSKServiceWorker/Main.svelte';
 
 import { OLSKLocalized, _LCHIsTestingBehaviour } from '../_shared/common/global.js';
-import { storageClient } from './persistence.js';
+import { storageClient, isLoading } from './persistence.js';
 
 import { onMount } from 'svelte';
 import Widget from 'remotestorage-widget';
@@ -25,14 +26,14 @@ const mod = {
 }
 </script>
 
-<div class="AppContainer">
+<div class="Container OLSKViewport" class:OLSKIsLoading={ $isLoading }>
 
 <ModuleHeader on:ModuleHeaderDispatchExport={ mod.ModuleHeaderDispatchExport } on:ModuleHeaderDispatchImport={ mod.ModuleHeaderDispatchImport } />
 
-<div class="AppContentContainer">
-	<ModuleMaster bind:this={masterInstance} />
+<OLSKViewportContent>
+	<ModuleMaster bind:this={ masterInstance } />
 	<ModuleDetail />
-</div>
+</OLSKViewportContent>
 
 <ModuleCompile />
 
@@ -48,25 +49,7 @@ const mod = {
 {/if}
 
 <style>
-.AppContainer {
-	height: 100vh;
-
+.Container {
 	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
-
-	/* AppContainerFlexboxParent */
-	display: flex;
-	flex-direction: column;
-}
-
-.AppContentContainer {
-	/* AppContainerFlexboxChild */
-	flex-grow: 1;
-
-	/* AppContentContainerFlexboxParent */
-	display: flex;
-}
-
-.AppContentContainer ModuleDetail {
-	background: black;
 }
 </style>
