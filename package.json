@@ -53,6 +53,9 @@
     "jszip": "latest",
     "file-saver": "latest",
 
+    "// FRONTEND FILTER INPUT": null,
+    "OLSKFilterInput": "olsk/OLSKFilterInput",
+
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {

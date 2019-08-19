@@ -4,6 +4,9 @@ const browser = new OLSKBrowser();
 const kDefaultRoutePath = '/';
 
 Object.entries({
+	OLSKFilterInput: '.OLSKFilterInput',
+	OLSKFilterInputClearButton: '.OLSKFilterInputClearButton',
+
 	LCHComposeCreateButton: '#LCHComposeCreateButton',
 
 	LCHComposeListItem: '.ListItem',
@@ -47,6 +50,8 @@ describe('LCHComposeDiscovery', function testLCHComposeDiscovery() {
 	});
 	
 	it('on startup', function() {
+		browser.assert.elements(OLSKFilterInput, 1);
+
 		browser.assert.elements(LCHComposeCreateButton, 1);
 		browser.assert.attribute(LCHComposeCreateButton, 'accesskey', 'n');
 
@@ -254,10 +259,19 @@ describe('LCHComposeLanguage', function testLCHComposeLanguage() {
 
 });
 
-describe('LCHComposeDiscovery', function testLCHComposeDiscovery() {
+describe('LCHComposeBehaviourInteraction', function testLCHComposeBehaviourInteraction() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
+	});
+
+	context('on startup', function() {
+
+		it.skip('focuses OLSKFilterInput', function() {
+			// deepEqual(browser.document.hasFocus(OLSKFilterInput), true); #mysterious
+			deepEqual(browser.document.activeElement, browser.query(OLSKFilterInput));
+		});
+
 	});
 
 	context('on create', async function() {
@@ -266,6 +280,87 @@ describe('LCHComposeDiscovery', function testLCHComposeDiscovery() {
 			await uCreateItem(browser);
 
 			deepEqual(browser.document.activeElement, browser.query(LCHComposeListItemFormInputName));
+		});
+
+	});
+
+	context('on filter', function () {
+		
+		before(async function() {
+			await browser.visit(kDefaultRoutePath);
+
+			await uCreateItem(browser);
+			browser.fill(LCHComposeListItemFormInputName, 'alfa');
+
+			await uCreateItem(browser);
+			browser.fill(LCHComposeListItemFormInputName, 'bravo');
+		});
+
+		it('presents no items if no match', async function() {
+			browser.fill(OLSKFilterInput, 'test');
+			await browser.wait({ element: OLSKFilterInputClearButton });
+
+			browser.assert.elements(LCHComposeListItem, 0);
+		});
+
+		it('presents items if match', async function() {
+			browser.fill(OLSKFilterInput, 'alfa');
+			await browser.wait({ element: OLSKFilterInputClearButton });
+
+			browser.assert.elements(LCHComposeListItem, 1);
+		});
+
+		context('on click OLSKFilterInputClearButton', function() {
+
+			before(async function() {
+				browser.pressButton(OLSKFilterInputClearButton);
+				await browser.wait({ element: `${LCHComposeListItem}:nth-child(2)` });
+			});
+
+			it('clears OLSKFilterInput', function() {
+				browser.assert.input(OLSKFilterInput, '');
+			});
+
+			it('shows all items', function() {
+				browser.assert.elements(LCHComposeListItem, 2);
+			});
+
+		});
+
+		context('on Escape', function() {
+
+			before(async function() {
+				browser.fill(OLSKFilterInput, 'test');
+				await browser.wait({ element: OLSKFilterInputClearButton });
+
+				browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+			});
+
+			it('clears OLSKFilterInput', function() {
+				browser.assert.input(OLSKFilterInput, '');
+			});
+
+			it('shows all items', function() {
+				browser.assert.elements(LCHComposeListItem, 2);
+			});
+
+		});
+
+	});
+
+	context('on Escape', function() {
+
+		before(async function () {
+			await browser.visit(kDefaultRoutePath);
+
+			await uCreateItem(browser);
+
+			browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+		});
+
+		it('focuses OLSKFilterInput', function() {
+			// deepEqual(browser.document.hasFocus(OLSKFilterInput), true); #mysterious
+			deepEqual(browser.document.activeElement, browser.query(OLSKFilterInput));
 		});
 
 	});

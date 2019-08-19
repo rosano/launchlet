@@ -2,12 +2,18 @@
 import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
+import { LCHComposeDefaultFocusNode } from './_shared.js';
+
 import * as LCHFormulasAction from '../_shared/rs-modules/lch_documents/action.js';
 import * as LCHFormulasMetal from '../_shared/rs-modules/lch_documents/metal.js';
 import { LCHFormulasModelPostJSONParse } from '../_shared/rs-modules/lch_documents/model.js';
 import { LCHComposeLogicSort } from './ui-logic.js';
 import { OLSKLocalized } from '../_shared/common/global.js';
 import { storageClient, DocumentsAllStore, DocumentSelectedStore } from './persistence.js';
+
+import { writable } from 'svelte/store';
+import OLSKFilterInput from 'OLSKFilterInput';
+let FilterInputTextStore = writable('');
 
 export const DocumentsExport = function() {
 	let zip = new JSZip();
@@ -43,7 +49,38 @@ export const DocumentsImport = async function(inputData) {
 	DocumentsAllStore.set(await LCHFormulasAction.LCHFormulasActionList(storageClient));
 }
 
+let _DocumentsVisible = [];
 const mod = {
+	FilterInputDispatchClear() {
+		mod.valueFilterInputText('');
+		
+		LCHComposeDefaultFocusNode().focus();
+	},
+
+	// VALUE
+
+	valueFilterInputText(inputData) {
+		if (typeof inputData === 'undefined') {
+			return $FilterInputTextStore;
+		};
+
+		FilterInputTextStore.set(inputData);
+	},
+
+	// INTERFACE
+
+	interfaceDidKeydown(event) {
+		if (event.key !== 'Escape') {
+			return;
+		}
+
+		mod.valueFilterInputText('');
+
+		LCHComposeDefaultFocusNode().focus();
+	},
+
+	// COMMAND
+
 	async commandDocumentCreate() {
 		let item = await LCHFormulasAction.LCHFormulasActionCreate(storageClient, {
 			LCHDocumentName: '',
@@ -63,14 +100,43 @@ const mod = {
 	},
 	commandDocumentSelect(inputData) {
 		return DocumentSelectedStore.set(inputData);
-	}
-}
+	},
+
+	// REACT
+
+	reactDocumentsVisible() {
+		_DocumentsVisible = $DocumentsAllStore.filter(function (e) {
+			if (!$FilterInputTextStore) {
+				return true;
+			};
+
+			return e.LCHDocumentName.match($FilterInputTextStore);
+		});
+	},
+
+	// LIFECYCLE
+
+	lifecycleComponentDidMount() {
+		setTimeout(function () {
+			LCHComposeDefaultFocusNode().focus()
+		}, 200)
+	},
+};
+
+import { onMount } from 'svelte';
+onMount(mod.lifecycleComponentDidMount);
+
+FilterInputTextStore.subscribe(mod.reactDocumentsVisible);
+DocumentsAllStore.subscribe(mod.reactDocumentsVisible);
 </script>
+<svelte:window on:keydown={ mod.interfaceDidKeydown }/>
 
 <div class="Container OLSKViewportMaster">
 
 <header>
 	<OLSKToolbar>
+		<OLSKFilterInput bind:FilterInputText={ $FilterInputTextStore } on:FilterInputDispatchClear={ mod.FilterInputDispatchClear } OLSKLocalized={ OLSKLocalized } />
+
 		<OLSKToolbarElementGroup>
 			<button on:click={ mod.commandDocumentCreate } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" accesskey="n" id="LCHComposeCreateButton" title={ OLSKLocalized('LCHComposeToolbarCreateButtonText') }>{ OLSKLocalized('LCHComposeToolbarCreateButtonText') }</button>
 		</OLSKToolbarElementGroup>
@@ -78,7 +144,7 @@ const mod = {
 </header>
 
 <div class="List">
-	{#each $DocumentsAllStore as e}
+	{#each _DocumentsVisible as e}
 		<div on:click={ () => mod.commandDocumentSelect(e) } class="ListItem OLSKLayoutElementTappable">
 			<strong>{ e.LCHDocumentName || e.LCHDocumentSignature || e.LCHDocumentID }</strong>
 		</div>
