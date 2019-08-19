@@ -116,7 +116,7 @@ afterUpdate(function SetupStyleEditor () {
 let _DocumentSelected;
 DocumentSelectedStore.subscribe(function (val) {
 	if (val && (val !== _DocumentSelected)) {
-		document.querySelector('input').focus();
+		document.querySelector('#LCHComposeListItemFormInputName').focus();
 
 		_DocumentSelected = val;
 	}
