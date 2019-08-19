@@ -50,6 +50,9 @@ const mod = {
 
 <style>
 .Container {
+	--LCHBorderStyle: 1px solid #ddd;
+	
 	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+	font-size: 9pt;
 }
 </style>
