@@ -1,4 +1,7 @@
 <script>
+import OLSKToolbar from 'OLSKToolbar';
+import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
+
 import * as LCHFormulasAction from '../_shared/rs-modules/lch_documents/action.js';
 import * as LCHFormulasMetal from '../_shared/rs-modules/lch_documents/metal.js';
 import { LCHFormulasModelPostJSONParse } from '../_shared/rs-modules/lch_documents/model.js';
@@ -64,11 +67,16 @@ const mod = {
 }
 </script>
 
-<div class="Container">
+<div class="Container OLSKViewportMaster">
 
-<header class="LCHSharedToolbar">
-	<button on:click={ mod.commandDocumentCreate } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" accesskey="n" id="LCHComposeCreateButton" title={ OLSKLocalized('LCHComposeToolbarCreateButtonText') }>{ OLSKLocalized('LCHComposeToolbarCreateButtonText') }</button>
+<header>
+	<OLSKToolbar>
+		<OLSKToolbarElementGroup>
+			<button on:click={ mod.commandDocumentCreate } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" accesskey="n" id="LCHComposeCreateButton" title={ OLSKLocalized('LCHComposeToolbarCreateButtonText') }>{ OLSKLocalized('LCHComposeToolbarCreateButtonText') }</button>
+		</OLSKToolbarElementGroup>
+	</OLSKToolbar>
 </header>
+
 <div class="List">
 	{#each $DocumentsAllStore as e}
 		<div on:click={ () => mod.commandDocumentSelect(e) } class="ListItem OLSKLayoutElementTappable">
@@ -81,22 +89,14 @@ const mod = {
 
 <style>
 .Container {
-	/* AppContentContainerFlexboxChild */
-	flex-basis: 300px;
-	flex-shrink: 0;
+	border-right: var(--LCHBorderStyle);
 
 	/* ContainerFlexboxParent */
 	display: flex;
 	flex-direction: column;
 }
 
-.LCHSharedToolbar {
-	border-right: var(--LCHBorderStyle);
-}
-
 .List {
-	border-right: var(--LCHBorderStyle);
-
 	/* ContainerFlexboxChild */
 	flex-grow: 1;
 	overflow: auto;
