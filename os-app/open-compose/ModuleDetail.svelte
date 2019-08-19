@@ -116,7 +116,9 @@ afterUpdate(function SetupStyleEditor () {
 let _DocumentSelected;
 DocumentSelectedStore.subscribe(function (val) {
 	if (val && (val !== _DocumentSelected)) {
-		document.querySelector('#LCHComposeListItemFormInputName').focus();
+		setTimeout(function () {
+			document.querySelector('#LCHComposeListItemFormInputName').focus();
+		})
 
 		_DocumentSelected = val;
 	}
@@ -191,8 +193,9 @@ const mod = {
 		await LCHFormulasAction.LCHFormulasActionDelete(storageClient, $DocumentSelectedStore.LCHDocumentID);
 
 		return DocumentSelectedStore.set(null);
-	}
-}
+	},
+
+};
 </script>
 
 <div class="Container OLSKViewportDetail">
