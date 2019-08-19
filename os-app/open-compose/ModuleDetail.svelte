@@ -1,4 +1,7 @@
 <script>
+import OLSKToolbar from 'OLSKToolbar';
+import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
+
 import * as LCHFormulasAction from '../_shared/rs-modules/lch_documents/action.js';
 
 import { OLSKLocalized, _LCHIsTestingBehaviour } from '../_shared/common/global.js';
@@ -184,12 +187,17 @@ const mod = {
 }
 </script>
 
-<div class="Container">
+<div class="Container OLSKViewportDetail">
 
 {#if $DocumentSelectedStore}
-<header class="LCHSharedToolbar" id="LCHComposeDetailToolbar">
-	<button on:click={ mod.commandDocumentDelete } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" id="LCHComposeDetailToolbarDiscardButton" title={ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }>{ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }</button>
+<header id="LCHComposeDetailToolbar">
+	<OLSKToolbar OLSKToolbarJustify={ true }>
+		<OLSKToolbarElementGroup>
+			<button on:click={ mod.commandDocumentDelete } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" id="LCHComposeDetailToolbarDiscardButton" title={ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }>{ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }</button>
+		</OLSKToolbarElementGroup>
+	</OLSKToolbar>
 </header>
+
 <div class="FormContainer">
 	<p>
 		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentName } on:input={ mod.commandDocumentSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputNamePlaceholder') }" autofocus id="LCHComposeListItemFormInputName" />
@@ -245,12 +253,13 @@ const mod = {
 
 <style>
 .Container {
-	/* AppContentContainerFlexboxChild */
-	flex-grow: 1;
-
 	/* ContainerFlexboxParent */
 	display: flex;
 	flex-direction: column;
+}
+
+header {
+	border-bottom: var(--LCHBorderStyle);
 }
 
 .FormContainer {

@@ -96,6 +96,10 @@ const mod = {
 	flex-direction: column;
 }
 
+header {
+	border-bottom: var(--LCHBorderStyle);
+}
+
 .List {
 	/* ContainerFlexboxChild */
 	flex-grow: 1;
