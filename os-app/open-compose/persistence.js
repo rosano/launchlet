@@ -11,6 +11,7 @@ import { writable } from 'svelte/store';
 export const DocumentsAllStore = writable([]);
 export const DocumentSelectedStore = writable(null);
 export const modelDidChange = writable(null);
+export const isLoading = writable(true);
 
 let _DocumentSelected;
 DocumentSelectedStore.subscribe(function (val) {
@@ -72,6 +73,8 @@ remoteStorage.on('ready', async () => {
 	if (!_LCHIsTestingBehaviour()) {
 		console.debug('ready', arguments);
 	}
+
+	isLoading.set(false);
 
 	await remoteStorage.lch_documents.init();
 
