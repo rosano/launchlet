@@ -34,6 +34,10 @@ afterUpdate(function SetupCallbackBodyEditor () {
 		placeholder: OLSKLocalized('LCHComposeListItemFormInputFunctionBodyPlaceholder'),
 		
 	  keyMap: 'sublime',
+
+		extraKeys: {
+			Tab: false,
+		},
 	});
 
 	CallbackBodyEditorInstance.on('change', function (instance, changeObject) {
@@ -82,6 +86,10 @@ afterUpdate(function SetupStyleEditor () {
 		placeholder: OLSKLocalized('LCHComposeListItemFormInputCSSPlaceholder'),
 		
 	  keyMap: 'sublime',
+
+		extraKeys: {
+			Tab: false,
+		},
 	});
 
 	StyleEditorInstance.on('change', function (instance, changeObject) {
