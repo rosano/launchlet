@@ -43,20 +43,6 @@ export const LCHDocumentModelErrorsFor = function(inputData) {
 		}
 	}
 
-	if (inputData.LCHDocumentOutputType !== undefined && typeof inputData.LCHDocumentOutputType === 'string') {
-		if (inputData.LCHDocumentOutputType.trim() !== inputData.LCHDocumentOutputType) {
-			errors.LCHDocumentOutputType = [
-				'LCHErrorNotTrimmed',
-			];
-		}
-
-		if (inputData.LCHDocumentOutputType.trim() === '') {
-			errors.LCHDocumentOutputType = [
-				'LCHErrorNotFilled',
-			];
-		}
-	}
-
 	if (inputData.LCHDocumentOutputTypeCanonicalExampleBody !== undefined) {
 		if (typeof inputData.LCHDocumentOutputTypeCanonicalExampleBody !== 'string') {
 			errors.LCHDocumentOutputTypeCanonicalExampleBody = [

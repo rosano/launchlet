@@ -95,46 +95,6 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 
 	});
 
-	context('LCHDocumentOutputType', function() {
-
-		it('returns object if not filled', function() {
-			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-				LCHDocumentOutputType: '',
-			})), {
-				LCHDocumentOutputType: [
-					'LCHErrorNotFilled',
-				],
-			});
-		});
-
-		it('returns object if not trimmed', function() {
-			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-				LCHDocumentOutputType: ' alfa ',
-			})), {
-				LCHDocumentOutputType: [
-					'LCHErrorNotTrimmed',
-				],
-			});
-		});
-
-		it('returns object if only whitespace', function() {
-			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-				LCHDocumentOutputType: ' ',
-			})), {
-				LCHDocumentOutputType: [
-					'LCHErrorNotFilled',
-				],
-			});
-		});
-
-		it('returns null', function() {
-			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-				LCHDocumentOutputType: 'alfa',
-			})), null);
-		});
-
-	});
-
 	context('LCHDocumentOutputTypeCanonicalExampleBody', function() {
 
 		it('returns object if not string', function() {
