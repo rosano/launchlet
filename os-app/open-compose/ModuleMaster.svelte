@@ -7,7 +7,7 @@ import { LCHComposeDefaultFocusNode } from './_shared.js';
 import * as LCHFormulasAction from '../_shared/rs-modules/lch_documents/action.js';
 import * as LCHFormulasMetal from '../_shared/rs-modules/lch_documents/metal.js';
 import { LCHFormulasModelPostJSONParse } from '../_shared/rs-modules/lch_documents/model.js';
-import { LCHComposeLogicSort } from './ui-logic.js';
+import { LCHComposeFilterFunction, LCHComposeLogicSort } from './ui-logic.js';
 import { OLSKLocalized } from '../_shared/common/global.js';
 import { storageClient, DocumentsAllStore, DocumentSelectedStore } from './persistence.js';
 
@@ -105,13 +105,11 @@ const mod = {
 	// REACT
 
 	reactDocumentsVisible() {
-		_DocumentsVisible = $DocumentsAllStore.filter(function (e) {
-			if (!$FilterInputTextStore) {
-				return true;
-			};
+		if (!$FilterInputTextStore) {
+			return _DocumentsVisible = $DocumentsAllStore;
+		};
 
-			return e.LCHDocumentName.match($FilterInputTextStore);
-		});
+		_DocumentsVisible = $DocumentsAllStore.filter(LCHComposeFilterFunction($FilterInputTextStore));
 	},
 
 	// LIFECYCLE
