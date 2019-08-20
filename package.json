@@ -54,7 +54,7 @@
     "file-saver": "latest",
 
     "// FRONTEND FILTER INPUT": null,
-    "OLSKFilterInput": "olsk/OLSKFilterInput",
+    "OLSKInputWrapper": "olsk/OLSKInputWrapper",
 
     "// I sacrifice myself for the commas of others": null
   },

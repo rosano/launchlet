@@ -1,5 +1,6 @@
 LCHComposeTitle: Launchlet
 LCHComposeDescription: Think then do
+LCHComposeFilterInputPlaceholderText: Filter
 LCHComposeToolbarIdentifierVisibilityButtonText: Show Identifiers
 LCHComposeToolbarCreateButtonText: Create
 LCHComposeDetailPlaceholderText: No Item Selected

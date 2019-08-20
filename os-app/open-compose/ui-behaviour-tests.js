@@ -4,8 +4,8 @@ const browser = new OLSKBrowser();
 const kDefaultRoutePath = '/';
 
 Object.entries({
-	OLSKFilterInput: '.OLSKFilterInput',
-	OLSKFilterInputClearButton: '.OLSKFilterInputClearButton',
+	LCHComposeFilterInput: '.LCHComposeFilterInput',
+	OLSKInputWrapperClearButton: '.OLSKInputWrapperClearButton',
 
 	LCHComposeCreateButton: '#LCHComposeCreateButton',
 
@@ -50,7 +50,7 @@ describe('LCHComposeDiscovery', function testLCHComposeDiscovery() {
 	});
 	
 	it('on startup', function() {
-		browser.assert.elements(OLSKFilterInput, 1);
+		browser.assert.elements(LCHComposeFilterInput, 1);
 
 		browser.assert.elements(LCHComposeCreateButton, 1);
 		browser.assert.attribute(LCHComposeCreateButton, 'accesskey', 'n');
@@ -168,6 +168,7 @@ describe('LCHComposeLanguage', function testLCHComposeLanguage() {
 			});
 
 			it('localizes interface', function() {
+				browser.assert.attribute(LCHComposeFilterInput, 'placeholder', uLocalized('LCHComposeFilterInputPlaceholderText'))
 				browser.assert.attribute(LCHComposeCreateButton, 'title', uLocalized('LCHComposeToolbarCreateButtonText'));
 
 				browser.assert.text(LCHComposeDetailPlaceholderContainer, uLocalized('LCHComposeDetailPlaceholderText'));
@@ -267,9 +268,9 @@ describe('LCHComposeBehaviourInteraction', function testLCHComposeBehaviourInter
 
 	context('on startup', function() {
 
-		it.skip('focuses OLSKFilterInput', function() {
-			// deepEqual(browser.document.hasFocus(OLSKFilterInput), true); #mysterious
-			deepEqual(browser.document.activeElement, browser.query(OLSKFilterInput));
+		it.skip('focuses LCHComposeFilterInput', function() {
+			// deepEqual(browser.document.hasFocus(LCHComposeFilterInput), true); #mysterious
+			deepEqual(browser.document.activeElement, browser.query(LCHComposeFilterInput));
 		});
 
 	});
@@ -297,28 +298,28 @@ describe('LCHComposeBehaviourInteraction', function testLCHComposeBehaviourInter
 		});
 
 		it('presents no items if no match', async function() {
-			browser.fill(OLSKFilterInput, 'test');
-			await browser.wait({ element: OLSKFilterInputClearButton });
+			browser.fill(LCHComposeFilterInput, 'test');
+			await browser.wait({ element: OLSKInputWrapperClearButton });
 
 			browser.assert.elements(LCHComposeListItem, 0);
 		});
 
 		it('presents items if match', async function() {
-			browser.fill(OLSKFilterInput, 'alfa');
-			await browser.wait({ element: OLSKFilterInputClearButton });
+			browser.fill(LCHComposeFilterInput, 'alfa');
+			await browser.wait({ element: OLSKInputWrapperClearButton });
 
 			browser.assert.elements(LCHComposeListItem, 1);
 		});
 
-		context('on click OLSKFilterInputClearButton', function() {
+		context('on click OLSKInputWrapperClearButton', function() {
 
 			before(async function() {
-				browser.pressButton(OLSKFilterInputClearButton);
+				browser.pressButton(OLSKInputWrapperClearButton);
 				await browser.wait({ element: `${LCHComposeListItem}:nth-child(2)` });
 			});
 
-			it('clears OLSKFilterInput', function() {
-				browser.assert.input(OLSKFilterInput, '');
+			it('clears LCHComposeFilterInput', function() {
+				browser.assert.input(LCHComposeFilterInput, '');
 			});
 
 			it('shows all items', function() {
@@ -330,14 +331,14 @@ describe('LCHComposeBehaviourInteraction', function testLCHComposeBehaviourInter
 		context('on Escape', function() {
 
 			before(async function() {
-				browser.fill(OLSKFilterInput, 'test');
-				await browser.wait({ element: OLSKFilterInputClearButton });
+				browser.fill(LCHComposeFilterInput, 'test');
+				await browser.wait({ element: OLSKInputWrapperClearButton });
 
 				browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 			});
 
-			it('clears OLSKFilterInput', function() {
-				browser.assert.input(OLSKFilterInput, '');
+			it('clears LCHComposeFilterInput', function() {
+				browser.assert.input(LCHComposeFilterInput, '');
 			});
 
 			it('shows all items', function() {
@@ -358,9 +359,9 @@ describe('LCHComposeBehaviourInteraction', function testLCHComposeBehaviourInter
 			browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 		});
 
-		it('focuses OLSKFilterInput', function() {
-			// deepEqual(browser.document.hasFocus(OLSKFilterInput), true); #mysterious
-			deepEqual(browser.document.activeElement, browser.query(OLSKFilterInput));
+		it('focuses LCHComposeFilterInput', function() {
+			// deepEqual(browser.document.hasFocus(LCHComposeFilterInput), true); #mysterious
+			deepEqual(browser.document.activeElement, browser.query(LCHComposeFilterInput));
 		});
 
 	});

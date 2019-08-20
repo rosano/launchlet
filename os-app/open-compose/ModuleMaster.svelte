@@ -12,7 +12,7 @@ import { OLSKLocalized } from '../_shared/common/global.js';
 import { storageClient, DocumentsAllStore, DocumentSelectedStore } from './persistence.js';
 
 import { writable } from 'svelte/store';
-import OLSKFilterInput from 'OLSKFilterInput';
+import OLSKInputWrapper from 'OLSKInputWrapper';
 let FilterInputTextStore = writable('');
 
 export const DocumentsExport = function() {
@@ -135,7 +135,9 @@ DocumentsAllStore.subscribe(mod.reactDocumentsVisible);
 
 <header>
 	<OLSKToolbar>
-		<OLSKFilterInput bind:FilterInputText={ $FilterInputTextStore } on:FilterInputDispatchClear={ mod.FilterInputDispatchClear } OLSKLocalized={ OLSKLocalized } />
+		<OLSKInputWrapper bind:InputWrapperValue={ $FilterInputTextStore } on:InputWrapperDispatchClear={ mod.FilterInputDispatchClear } OLSKLocalized={ OLSKLocalized }>
+			<input bind:value={ $FilterInputTextStore } class="LCHComposeFilterInput" placeholder={ OLSKLocalized('LCHComposeFilterInputPlaceholderText') } />
+		</OLSKInputWrapper>
 
 		<OLSKToolbarElementGroup>
 			<button on:click={ mod.commandDocumentCreate } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" accesskey="n" id="LCHComposeCreateButton" title={ OLSKLocalized('LCHComposeToolbarCreateButtonText') }>{ OLSKLocalized('LCHComposeToolbarCreateButtonText') }</button>
