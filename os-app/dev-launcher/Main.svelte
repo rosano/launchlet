@@ -26,6 +26,10 @@ export let optionsObject = {};
 import { LCHLauncherPatternMatchesURL } from './ui-logic.js';
 (function StartFilterDataObjects() {
 	dataObjects = dataObjects.filter(function (e) {
+		if (LCHRecipesModelErrorsFor(e)) {
+			return false;
+		}
+
 		if (e.LCHRecipeURLFilter && !LCHLauncherPatternMatchesURL(e.LCHRecipeURLFilter, window.location.href)) {
 			return false;
 		}
