@@ -20,12 +20,12 @@ Object.entries({
 
 	LCHComposeDetailFormContainer: '.FormContainer',
 	LCHComposeFormNameField: '#LCHComposeFormNameField',
+	LCHComposeFormSignatureField: '#LCHComposeFormSignatureField',
 	LCHComposeFormInputTypesField: '#LCHComposeFormInputTypesField',
 	LCHComposeFormArgsField: '#LCHComposeFormArgsField',
 	LCHComposeDetailCallbackBodyInput: '.LCHComposeDetailCallbackBody .CodeMirror',
 	LCHComposeDetailCallbackBodyInputDebug: '#LCHComposeDetailCallbackBodyInputDebug',
 	LCHComposeFormOutputTypeField: '#LCHComposeFormOutputTypeField',
-	LCHComposeFormSignatureField: '#LCHComposeFormSignatureField',
 	LCHComposeFormURLFilterField: '#LCHComposeFormURLFilterField',
 	LCHComposeFormIsAutomaticField: '#LCHComposeFormIsAutomaticField',
 	LCHComposeDetailStyleInput: '.LCHComposeDetailStyle .CodeMirror',
