@@ -14,5 +14,5 @@ LCHComposeListItemFormInputFunctionBodyPlaceholder: Function Body (e.g. window.a
 LCHComposeListItemFormInputCSSPlaceholder: 'CSS (e.g. body { background: red; })'
 LCHComposeListItemFormInputSignaturePlaceholder: Signature (e.g. XYZGreet)
 LCHComposeListItemFormInputURLFilterPlaceholder: 'URL Filter (e.g. google.com or /https?://(.*\\.)?google\\.com/i)'
-LCHComposeListItemFormInputIsAutomaticText: Is automatic
+LCHComposeListItemFormInputIsAutomaticText: Run automatically
 LCHUpdateReloadText: Reload
