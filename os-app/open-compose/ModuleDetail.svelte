@@ -298,6 +298,10 @@ input[type=text] {
 	padding: 5px;
 }
 
+#LCHComposeListItemFormInputInputData {
+	max-width: 60px;
+}
+
 .FormContainer :global(.CodeMirror) {
 	margin: 10px 0;
 
