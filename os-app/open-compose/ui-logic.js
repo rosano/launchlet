@@ -1,3 +1,19 @@
+export const LCHComposeFilterFunction = function (inputData) {
+	if (typeof inputData !== 'string') {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	return function (e) {
+		return [e.LCHDocumentName].filter(function (e) {
+			if (!e) {
+				return false;
+			}
+
+			return e.toLowerCase().match(inputData.toLowerCase());
+		}).length > 0;
+	};
+};
+
 export const LCHComposeLogicSort = function (a, b) {
 	if (a.LCHDocumentModificationDate && b.LCHDocumentModificationDate) {
 		return b.LCHDocumentModificationDate - a.LCHDocumentModificationDate;

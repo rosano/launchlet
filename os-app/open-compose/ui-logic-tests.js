@@ -2,6 +2,62 @@ import { throws, doesNotThrow, deepEqual } from 'assert';
 
 import * as mainModule from './ui-logic.js';
 
+describe('LCHComposeFilterFunction', function testLCHComposeFilterFunction() {
+
+	it('throws error if not string', function() {
+		throws(function() {
+			mainModule.LCHComposeFilterFunction(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns function', function() {
+		deepEqual(typeof mainModule.LCHComposeFilterFunction('alfa'), 'function');
+	});
+
+	context('function', function () {
+
+		it('returns false if LCHDocumentSignature match', function() {
+			deepEqual(mainModule.LCHComposeFilterFunction('alfa')({
+				LCHDocumentSignature: 'alfa',
+			}), false);
+		});
+
+		it('returns false if LCHDocumentCallback match', function() {
+			deepEqual(mainModule.LCHComposeFilterFunction('alfa')({
+				LCHDocumentCallback () {
+					return 'alfa';
+				},
+			}), false);
+		});
+
+		it('returns false if no match', function() {
+			deepEqual(mainModule.LCHComposeFilterFunction('bravo')({
+				LCHDocumentName: 'alfa',
+			}), false);
+		});
+
+		it('returns true', function() {
+			deepEqual(mainModule.LCHComposeFilterFunction('alfa')({
+				LCHDocumentName: 'alfa',
+			}), true);
+		});
+
+		it('matches partial', function() {
+			deepEqual(mainModule.LCHComposeFilterFunction('alf')({
+				LCHDocumentName: 'alfa',
+			}), true);
+		});
+
+		it('matches case insensitive', function() {
+			deepEqual(mainModule.LCHComposeFilterFunction('ALF')({
+				LCHDocumentName: 'alfa',
+			}), true);
+		});
+		
+	});
+
+});
+
 describe('LCHComposeLogicSort', function testLCHComposeLogicSort() {
 
 	it('sorts by LCHDocumentModificationDate descending', function() {
