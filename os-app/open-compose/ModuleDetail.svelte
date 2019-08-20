@@ -236,6 +236,15 @@ const mod = {
 
 	<hr>
 
+	<div class="LCHComposeDetailStyle">
+		{#if _LCHIsTestingBehaviour()}
+			<textarea bind:value={ $DocumentSelectedStore.LCHDocumentStyle } on:input={ mod.commandDocumentSave } id="LCHComposeDetailStyleInputDebug"></textarea>
+		{/if}
+		<textarea bind:this={ StyleEditorElement }></textarea>
+	</div>
+
+	<hr>
+
 	<p>
 		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentURLFilter } on:input={ mod.commandDocumentSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputURLFilterPlaceholder') }" id="LCHComposeListItemFormInputURLFilter" />
 	</p>
@@ -246,15 +255,6 @@ const mod = {
 			<label for="LCHComposeListItemFormInputIsAutomatic">{ OLSKLocalized('LCHComposeListItemFormInputIsAutomaticText') }</label>
 		</p>
 	{/if}
-
-	<hr>
-
-	<div class="LCHComposeDetailStyle">
-		{#if _LCHIsTestingBehaviour()}
-			<textarea bind:value={ $DocumentSelectedStore.LCHDocumentStyle } on:input={ mod.commandDocumentSave } id="LCHComposeDetailStyleInputDebug"></textarea>
-		{/if}
-		<textarea bind:this={ StyleEditorElement }></textarea>
-	</div>
 </div>
 {/if}
 
