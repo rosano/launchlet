@@ -275,6 +275,8 @@ header {
 
 .FormContainer {
 	padding: 5px;
+
+	overflow-y: scroll;
 }
 
 p:nth-child(1) {
