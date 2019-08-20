@@ -6,38 +6,43 @@ export let ListItems = [];
 export let ItemSelected = null;
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
-function ResultListDispatchArrow(inputData) {
-	dispatch('ResultListDispatchArrow', inputData);
-}
-function ResultListDispatchClick(inputData) {
-	dispatch('ResultListDispatchClick', inputData);
-}
 
-function keydownDidFire(event) {
-	const handlerFunctions = {
-		ArrowUp () {
-			ResultListDispatchArrow(ListItems[LCHLauncherResultListConstrainIndex(ListItems, ListItems.indexOf(ItemSelected) - 1)]);
+const mod = {
 
-			return event.preventDefault();
-		},
-		ArrowDown () {
-			ResultListDispatchArrow(ListItems[LCHLauncherResultListConstrainIndex(ListItems, ListItems.indexOf(ItemSelected) + 1)]);
-			
-			return event.preventDefault();
-		},
-	};
+	ResultListDispatchArrow(inputData) {
+		dispatch('ResultListDispatchArrow', inputData);
+	},
+	ResultListDispatchClick(inputData) {
+		dispatch('ResultListDispatchClick', inputData);
+	},
 
-	if (Object.keys(handlerFunctions).indexOf(event.code) !== -1) {
-		return handlerFunctions[event.code]();
-	}
+	// INTERFACE
+
+	interfaceDidKeydown(event) {
+		const handlerFunctions = {
+			ArrowUp () {
+				mod.ResultListDispatchArrow(ListItems[LCHLauncherResultListConstrainIndex(ListItems, ListItems.indexOf(ItemSelected) - 1)]);
+
+				return event.preventDefault();
+			},
+			ArrowDown () {
+				mod.ResultListDispatchArrow(ListItems[LCHLauncherResultListConstrainIndex(ListItems, ListItems.indexOf(ItemSelected) + 1)]);
+				
+				return event.preventDefault();
+			},
+		};
+
+		handlerFunctions[event.code] && handlerFunctions[event.code]();
+	},
+
 }
 </script>
-<svelte:window on:keydown={ keydownDidFire } />
+<svelte:window on:keydown={ mod.interfaceDidKeydown } />
 
 {#if ListItems.length}
 	<div class="LCHLauncherResultList">
 		{#each ListItems as e,index}
-			<div class="LCHLauncherResultListItem" class:LCHLauncherResultListItemSelected={ e === ItemSelected } on:click={ () => ResultListDispatchClick(e) }>
+			<div class="LCHLauncherResultListItem" class:LCHLauncherResultListItemSelected={ e === ItemSelected } on:click={ () => mod.ResultListDispatchClick(e) }>
 				<slot LCHLauncherResultListItem={ e }></slot>
 			</div>
 		{/each}
