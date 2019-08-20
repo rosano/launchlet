@@ -8,12 +8,12 @@ LCHComposeListItemToolbarCollapseButtonText: Collapse
 LCHComposeListItemToolbarRevealButtonText: Reveal
 LCHComposeListItemToolbarDeleteButtonText: Delete
 LCHComposeListItemDeletePromptText: Are you sure?
-LCHComposeListItemFormInputNamePlaceholder: Name (e.g. Say Hello)
-LCHComposeListItemFormInputInputTypesPlaceholderText: Types (e.g. String, Bool)
-LCHComposeListItemFormInputFunctionBodyPlaceholder: Function Body (e.g. window.alert('Hello');)
-LCHComposeListItemFormInputOutputTypePlaceholderText: Output Type (e.g. String)
-LCHComposeListItemFormInputCSSPlaceholder: 'CSS (e.g. body { background: red; })'
-LCHComposeListItemFormInputSignaturePlaceholder: Signature (e.g. XYZGreet)
-LCHComposeListItemFormInputURLFilterPlaceholder: 'URL Filter (e.g. google.com or /https?://(.*\\.)?google\\.com/i)'
-LCHComposeListItemFormInputIsAutomaticText: Run automatically
+LCHComposeFormNameFieldPlaceholderText: Name (e.g. Say Hello)
+LCHComposeFormInputTypesFieldPlaceholderText: Types (e.g. String, Bool)
+LCHComposeFormScriptFieldPlaceholderText: Function Body (e.g. window.alert('Hello');)
+LCHComposeFormOutputTypeFieldPlaceholderText: Output Type (e.g. String)
+LCHComposeFormStyleFieldPlaceholderText: 'CSS (e.g. body { background: red; })'
+LCHComposeFormSignatureFieldPlaceholderText: Signature (e.g. XYZGreet)
+LCHComposeFormURLFilterFieldPlaceholderText: 'URL Filter (e.g. google.com or /https?://(.*\\.)?google\\.com/i)'
+LCHComposeFormIsAutomaticFieldLabelText: Run automatically
 LCHUpdateReloadText: Reload

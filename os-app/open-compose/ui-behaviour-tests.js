@@ -19,13 +19,13 @@ Object.entries({
 	LCHComposeDetailToolbarDiscardButton: '#LCHComposeDetailToolbarDiscardButton',
 
 	LCHComposeDetailFormContainer: '.FormContainer',
-	LCHComposeListItemFormInputName: '#LCHComposeListItemFormInputName',
-	LCHComposeListItemFormInputInputData: '#LCHComposeListItemFormInputInputData',
+	LCHComposeFormNameField: '#LCHComposeFormNameField',
+	LCHComposeFormInputInputData: '#LCHComposeFormInputInputData',
 	LCHComposeDetailCallbackBodyInput: '.LCHComposeDetailCallbackBody .CodeMirror',
 	LCHComposeDetailCallbackBodyInputDebug: '#LCHComposeDetailCallbackBodyInputDebug',
-	LCHComposeListItemFormInputSignature: '#LCHComposeListItemFormInputSignature',
-	LCHComposeListItemFormInputURLFilter: '#LCHComposeListItemFormInputURLFilter',
-	LCHComposeListItemFormInputIsAutomatic: '#LCHComposeListItemFormInputIsAutomatic',
+	LCHComposeFormSignatureField: '#LCHComposeFormSignatureField',
+	LCHComposeFormURLFilterField: '#LCHComposeFormURLFilterField',
+	LCHComposeFormIsAutomaticField: '#LCHComposeFormIsAutomaticField',
 	LCHComposeDetailStyleInput: '.LCHComposeDetailStyle .CodeMirror',
 	LCHComposeDetailStyleInputDebug: '#LCHComposeDetailStyleInputDebug',
 
@@ -79,13 +79,13 @@ describe('LCHComposeDiscovery', function testLCHComposeDiscovery() {
 		browser.assert.elements(LCHComposeDetailToolbarDiscardButton, 1);
 
 		browser.assert.elements(LCHComposeDetailFormContainer, 1);
-		browser.assert.elements(LCHComposeListItemFormInputName, 1);
-		browser.assert.elements(LCHComposeListItemFormInputInputData, 1);
+		browser.assert.elements(LCHComposeFormNameField, 1);
+		browser.assert.elements(LCHComposeFormInputInputData, 1);
 		browser.assert.elements(LCHComposeDetailCallbackBodyInput, 1);
 		browser.assert.elements(LCHComposeDetailCallbackBodyInputDebug, 1);
-		browser.assert.elements(LCHComposeListItemFormInputSignature, 1);
-		browser.assert.elements(LCHComposeListItemFormInputURLFilter, 1);
-		browser.assert.elements(LCHComposeListItemFormInputIsAutomatic, 0);
+		browser.assert.elements(LCHComposeFormSignatureField, 1);
+		browser.assert.elements(LCHComposeFormURLFilterField, 1);
+		browser.assert.elements(LCHComposeFormIsAutomaticField, 0);
 		browser.assert.elements(LCHComposeDetailStyleInput, 1);
 		browser.assert.elements(LCHComposeDetailStyleInputDebug, 1);
 	});
@@ -99,17 +99,17 @@ describe('LCHComposeDiscovery', function testLCHComposeDiscovery() {
 	});
 
 	it('on fill LCHRecipeURLFilter', async function() {
-		browser.fill(LCHComposeListItemFormInputURLFilter, 'alfa');
-		await browser.wait({ element: LCHComposeListItemFormInputIsAutomatic });
+		browser.fill(LCHComposeFormURLFilterField, 'alfa');
+		await browser.wait({ element: LCHComposeFormIsAutomaticField });
 
-		browser.assert.elements(LCHComposeListItemFormInputIsAutomatic, 1);
+		browser.assert.elements(LCHComposeFormIsAutomaticField, 1);
 	});
 
 	it('on empty LCHRecipeURLFilter', async function() {
-		browser.fill(LCHComposeListItemFormInputURLFilter, '');
-		await browser.wait({ element: LCHComposeListItemFormInputIsAutomatic });
+		browser.fill(LCHComposeFormURLFilterField, '');
+		await browser.wait({ element: LCHComposeFormIsAutomaticField });
 
-		browser.assert.elements(LCHComposeListItemFormInputIsAutomatic, 0);
+		browser.assert.elements(LCHComposeFormIsAutomaticField, 0);
 	});
 
 	it.skip('on run', async function() {
@@ -185,43 +185,43 @@ describe('LCHComposeLanguage', function testLCHComposeLanguage() {
 
 				browser.assert.attribute(LCHComposeDetailToolbarDiscardButton, 'title', uLocalized('LCHComposeListItemToolbarDeleteButtonText'));
 
-				browser.assert.attribute(LCHComposeListItemFormInputName, 'placeholder', uLocalized('LCHComposeListItemFormInputNamePlaceholder'));
-				browser.assert.input(LCHComposeListItemFormInputName, '');
-				browser.assert.attribute(LCHComposeListItemFormInputInputData, 'placeholder', 'undefined');
-				browser.assert.input(LCHComposeListItemFormInputInputData, '');
-				browser.assert.text(`${ LCHComposeDetailCallbackBodyInput } .CodeMirror-placeholder`, uLocalized('LCHComposeListItemFormInputFunctionBodyPlaceholder'));
+				browser.assert.attribute(LCHComposeFormNameField, 'placeholder', uLocalized('LCHComposeFormNameFieldPlaceholderText'));
+				browser.assert.input(LCHComposeFormNameField, '');
+				browser.assert.attribute(LCHComposeFormInputInputData, 'placeholder', 'undefined');
+				browser.assert.input(LCHComposeFormInputInputData, '');
+				browser.assert.text(`${ LCHComposeDetailCallbackBodyInput } .CodeMirror-placeholder`, uLocalized('LCHComposeFormScriptFieldPlaceholderText'));
 				// editor value
 				browser.assert.input(LCHComposeDetailCallbackBodyInputDebug, '');
-				browser.assert.attribute(LCHComposeListItemFormInputSignature, 'placeholder', uLocalized('LCHComposeListItemFormInputSignaturePlaceholder'));
-				browser.assert.input(LCHComposeListItemFormInputSignature, '');
-				browser.assert.attribute(LCHComposeListItemFormInputURLFilter, 'placeholder', uLocalized('LCHComposeListItemFormInputURLFilterPlaceholder').replace(/\\\\/g, '\\'));
-				browser.assert.input(LCHComposeListItemFormInputURLFilter, '');
-				browser.assert.text(`${ LCHComposeDetailStyleInput } .CodeMirror-placeholder`, uLocalized('LCHComposeListItemFormInputCSSPlaceholder'));
+				browser.assert.attribute(LCHComposeFormSignatureField, 'placeholder', uLocalized('LCHComposeFormSignatureFieldPlaceholderText'));
+				browser.assert.input(LCHComposeFormSignatureField, '');
+				browser.assert.attribute(LCHComposeFormURLFilterField, 'placeholder', uLocalized('LCHComposeFormURLFilterFieldPlaceholderText').replace(/\\\\/g, '\\'));
+				browser.assert.input(LCHComposeFormURLFilterField, '');
+				browser.assert.text(`${ LCHComposeDetailStyleInput } .CodeMirror-placeholder`, uLocalized('LCHComposeFormStyleFieldPlaceholderText'));
 				browser.assert.input(LCHComposeDetailStyleInputDebug, '');
 
-				browser.fill(LCHComposeListItemFormInputInputData, 'charlie');
+				browser.fill(LCHComposeFormInputInputData, 'charlie');
 				browser.fill(LCHComposeDetailCallbackBodyInputDebug, 'delta');
 				browser.fill(LCHComposeDetailStyleInputDebug, 'echo');
 			});
 
 			it('on fill LCHRecipeURLFilter', async function() {
-				browser.fill(LCHComposeListItemFormInputURLFilter, 'alfa');
-				await browser.wait({ element: LCHComposeListItemFormInputIsAutomatic });
+				browser.fill(LCHComposeFormURLFilterField, 'alfa');
+				await browser.wait({ element: LCHComposeFormIsAutomaticField });
 
-				browser.assert.text(`label[for='${ LCHComposeListItemFormInputIsAutomatic.replace('#', '') }']`, uLocalized('LCHComposeListItemFormInputIsAutomaticText'));
+				browser.assert.text(`label[for='${ LCHComposeFormIsAutomaticField.replace('#', '') }']`, uLocalized('LCHComposeFormIsAutomaticFieldLabelText'));
 
-				browser.fill(LCHComposeListItemFormInputURLFilter, '/https?://(.*\.)?google\.com/i');
+				browser.fill(LCHComposeFormURLFilterField, '/https?://(.*\.)?google\.com/i');
 			});
 
 			it('on edit signature', async function() {
-				browser.fill(LCHComposeListItemFormInputSignature, 'alfa');
+				browser.fill(LCHComposeFormSignatureField, 'alfa');
 				await browser.wait({ element: LCHComposeListItem });
 
 				deepEqual(browser.query(LCHComposeListItem).textContent.trim(), 'alfa');
 			});
 
 			it('on edit name', async function() {
-				browser.fill(LCHComposeListItemFormInputName, 'bravo');
+				browser.fill(LCHComposeFormNameField, 'bravo');
 				await browser.wait({ element: LCHComposeListItem });
 
 				deepEqual(browser.query(LCHComposeListItem).textContent.trim(), 'bravo');
@@ -230,7 +230,7 @@ describe('LCHComposeLanguage', function testLCHComposeLanguage() {
 			it('on create nth item', async function() {
 				await uCreateItem(browser);
 
-				browser.assert.input(LCHComposeListItemFormInputName, '');
+				browser.assert.input(LCHComposeFormNameField, '');
 				browser.assert.input(LCHComposeDetailCallbackBodyInputDebug, '');
 				browser.assert.input(LCHComposeDetailStyleInputDebug, '');
 			});
@@ -239,12 +239,12 @@ describe('LCHComposeLanguage', function testLCHComposeLanguage() {
 				browser.click(`${ LCHComposeListItem }:nth-child(2)`);
 				await browser.wait({ element: LCHComposeListItem });
 
-				browser.assert.input(LCHComposeListItemFormInputName, 'bravo');
-				browser.assert.input(LCHComposeListItemFormInputSignature, 'alfa');
+				browser.assert.input(LCHComposeFormNameField, 'bravo');
+				browser.assert.input(LCHComposeFormSignatureField, 'alfa');
 				// editor value
 				browser.assert.input(LCHComposeDetailCallbackBodyInputDebug, 'delta');
-				browser.assert.input(LCHComposeListItemFormInputInputData, 'charlie');
-				browser.assert.input(LCHComposeListItemFormInputURLFilter, '/https?://(.*\.)?google\.com/i');
+				browser.assert.input(LCHComposeFormInputInputData, 'charlie');
+				browser.assert.input(LCHComposeFormURLFilterField, '/https?://(.*\.)?google\.com/i');
 				browser.assert.input(LCHComposeDetailStyleInputDebug, 'echo');
 			});
 
@@ -277,10 +277,10 @@ describe('LCHComposeBehaviourInteraction', function testLCHComposeBehaviourInter
 
 	context('on create', async function() {
 
-		it('focuses LCHComposeListItemFormInputName', async function() {
+		it('focuses LCHComposeFormNameField', async function() {
 			await uCreateItem(browser);
 
-			deepEqual(browser.document.activeElement, browser.query(LCHComposeListItemFormInputName));
+			deepEqual(browser.document.activeElement, browser.query(LCHComposeFormNameField));
 		});
 
 	});
@@ -291,10 +291,10 @@ describe('LCHComposeBehaviourInteraction', function testLCHComposeBehaviourInter
 			await browser.visit(kDefaultRoutePath);
 
 			await uCreateItem(browser);
-			browser.fill(LCHComposeListItemFormInputName, 'alfa');
+			browser.fill(LCHComposeFormNameField, 'alfa');
 
 			await uCreateItem(browser);
-			browser.fill(LCHComposeListItemFormInputName, 'bravo');
+			browser.fill(LCHComposeFormNameField, 'bravo');
 		});
 
 		it('presents no items if no match', async function() {

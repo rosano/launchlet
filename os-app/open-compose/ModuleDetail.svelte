@@ -31,7 +31,7 @@ afterUpdate(function SetupCallbackBodyEditor () {
 		lineNumbers: true,
 		lineWrapping: true,
 
-		placeholder: OLSKLocalized('LCHComposeListItemFormInputFunctionBodyPlaceholder'),
+		placeholder: OLSKLocalized('LCHComposeFormScriptFieldPlaceholderText'),
 		
 	  keyMap: 'sublime',
 
@@ -83,7 +83,7 @@ afterUpdate(function SetupStyleEditor () {
 		lineNumbers: true,
 		lineWrapping: true,
 
-		placeholder: OLSKLocalized('LCHComposeListItemFormInputCSSPlaceholder'),
+		placeholder: OLSKLocalized('LCHComposeFormStyleFieldPlaceholderText'),
 		
 	  keyMap: 'sublime',
 
@@ -117,7 +117,7 @@ let _DocumentSelected;
 DocumentSelectedStore.subscribe(function (val) {
 	if (val && (val !== _DocumentSelected)) {
 		setTimeout(function () {
-			document.querySelector('#LCHComposeListItemFormInputName').focus();
+			document.querySelector('#LCHComposeFormNameField').focus();
 		})
 
 		_DocumentSelected = val;
@@ -211,7 +211,7 @@ const mod = {
 
 <div class="FormContainer">
 	<p>
-		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentName } on:input={ mod.commandDocumentSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputNamePlaceholder') }" autofocus id="LCHComposeListItemFormInputName" />
+		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentName } on:input={ mod.commandDocumentSave } placeholder="{ OLSKLocalized('LCHComposeFormNameFieldPlaceholderText') }" autofocus id="LCHComposeFormNameField" />
 	</p>
 
 	<hr>
@@ -220,12 +220,12 @@ const mod = {
 		<span>function</span>
 
 		{#if $DocumentSelectedStore.LCHDocumentArgs }
-			<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentInputTypes } placeholder={ OLSKLocalized('LCHComposeListItemFormInputInputTypesPlaceholderText') } on:input={ mod.commandDocumentSave } id="LCHComposeListItemFormInputInputTypes" />
+			<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentInputTypes } placeholder={ OLSKLocalized('LCHComposeFormInputTypesFieldPlaceholderText') } on:input={ mod.commandDocumentSave } id="LCHComposeFormInputTypesField" />
 		{/if}
 		
 		<span>(</span>
 		
-		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentArgs } placeholder="undefined" on:input={ mod.commandDocumentSave } id="LCHComposeListItemFormInputInputData" />
+		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentArgs } placeholder="undefined" on:input={ mod.commandDocumentSave } id="LCHComposeFormInputInputData" />
 		
 		<span>) &#123;</span>
 	</p>
@@ -239,11 +239,11 @@ const mod = {
 
 		<span>&#125;</span>
 
-		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentOutputType } placeholder={ OLSKLocalized('LCHComposeListItemFormInputOutputTypePlaceholderText') } on:input={ mod.commandDocumentSave } id="LCHComposeListItemFormInputOutputType" />	
+		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentOutputType } placeholder={ OLSKLocalized('LCHComposeFormOutputTypeFieldPlaceholderText') } on:input={ mod.commandDocumentSave } id="LCHComposeFormOutputTypeField" />	
 	</p>
 
 	<p>
-		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentSignature } on:input={ mod.commandDocumentSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputSignaturePlaceholder') }" id="LCHComposeListItemFormInputSignature" />
+		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentSignature } on:input={ mod.commandDocumentSave } placeholder="{ OLSKLocalized('LCHComposeFormSignatureFieldPlaceholderText') }" id="LCHComposeFormSignatureField" />
 	</p>
 
 	<hr>
@@ -258,13 +258,13 @@ const mod = {
 	<hr>
 
 	<p>
-		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentURLFilter } on:input={ mod.commandDocumentSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputURLFilterPlaceholder') }" id="LCHComposeListItemFormInputURLFilter" />
+		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentURLFilter } on:input={ mod.commandDocumentSave } placeholder="{ OLSKLocalized('LCHComposeFormURLFilterFieldPlaceholderText') }" id="LCHComposeFormURLFilterField" />
 	</p>
 
 	{#if $DocumentSelectedStore.LCHDocumentURLFilter }
 		<p>
-			<input type="checkbox" bind:checked={ $DocumentSelectedStore.LCHDocumentIsAutomatic } on:input={ mod.commandDocumentSave } id="LCHComposeListItemFormInputIsAutomatic" />
-			<label for="LCHComposeListItemFormInputIsAutomatic">{ OLSKLocalized('LCHComposeListItemFormInputIsAutomaticText') }</label>
+			<input type="checkbox" bind:checked={ $DocumentSelectedStore.LCHDocumentIsAutomatic } on:input={ mod.commandDocumentSave } id="LCHComposeFormIsAutomaticField" />
+			<label for="LCHComposeFormIsAutomaticField">{ OLSKLocalized('LCHComposeFormIsAutomaticFieldLabelText') }</label>
 		</p>
 	{/if}
 </div>
@@ -314,15 +314,15 @@ input[type=text] {
 	padding: 5px;
 }
 
-#LCHComposeListItemFormInputInputData {
+#LCHComposeFormInputInputData {
 	max-width: 60px;
 }
 
-#LCHComposeListItemFormInputInputTypes {
+#LCHComposeFormInputTypesField {
 	max-width: 100px;
 }
 
-#LCHComposeListItemFormInputOutputType {
+#LCHComposeFormOutputTypeField {
 	max-width: 100px;
 }
 
