@@ -4,13 +4,13 @@ export const LCHComposeFilterFunction = function (inputData) {
 	}
 
 	return function (e) {
-		return [e.LCHDocumentName].filter(function (e) {
+		return [e.LCHDocumentName, e.LCHDocumentSignature].filter(function (e) {
 			if (!e) {
 				return false;
 			}
 
 			return e.toLowerCase().match(inputData.toLowerCase());
-		}).length > 0;
+		}).length;
 	};
 };
 

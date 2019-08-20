@@ -16,12 +16,6 @@ describe('LCHComposeFilterFunction', function testLCHComposeFilterFunction() {
 
 	context('function', function () {
 
-		it('returns false if LCHDocumentSignature match', function() {
-			deepEqual(mainModule.LCHComposeFilterFunction('alfa')({
-				LCHDocumentSignature: 'alfa',
-			}), false);
-		});
-
 		it('returns false if LCHDocumentCallback match', function() {
 			deepEqual(mainModule.LCHComposeFilterFunction('alfa')({
 				LCHDocumentCallback () {
@@ -51,6 +45,12 @@ describe('LCHComposeFilterFunction', function testLCHComposeFilterFunction() {
 		it('matches case insensitive', function() {
 			deepEqual(mainModule.LCHComposeFilterFunction('ALF')({
 				LCHDocumentName: 'alfa',
+			}), true);
+		});
+
+		it('matches LCHDocumentSignature', function() {
+			deepEqual(mainModule.LCHComposeFilterFunction('alfa')({
+				LCHDocumentSignature: 'alfa',
 			}), true);
 		});
 		
