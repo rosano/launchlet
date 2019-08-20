@@ -216,25 +216,29 @@ const mod = {
 
 	<hr>
 
-	<span>function</span>
+	<p>
+		<span>function</span>
 
-	{#if $DocumentSelectedStore.LCHDocumentArgs }
-		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentInputTypes } placeholder={ OLSKLocalized('LCHComposeListItemFormInputInputTypesPlaceholderText') } on:input={ mod.commandDocumentSave } id="LCHComposeListItemFormInputInputTypes" />
-	{/if}
-	<span>(</span>
-	<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentArgs } placeholder="undefined" on:input={ mod.commandDocumentSave } id="LCHComposeListItemFormInputInputData" />
-	<span>)</span>
-	<span>&#123;</span>
-	<br>
-
-	<div class="LCHComposeDetailCallbackBody">
-		{#if _LCHIsTestingBehaviour()}
-			<textarea bind:value={ $DocumentSelectedStore.LCHDocumentBody } on:input={ mod.commandDocumentSave } id="LCHComposeDetailCallbackBodyInputDebug"></textarea>
+		{#if $DocumentSelectedStore.LCHDocumentArgs }
+			<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentInputTypes } placeholder={ OLSKLocalized('LCHComposeListItemFormInputInputTypesPlaceholderText') } on:input={ mod.commandDocumentSave } id="LCHComposeListItemFormInputInputTypes" />
 		{/if}
-		<textarea bind:this={ CallbackBodyEditorElement }></textarea>
-	</div>
-	<span>&#125;</span>
-	<br>
+		
+		<span>(</span>
+		
+		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentArgs } placeholder="undefined" on:input={ mod.commandDocumentSave } id="LCHComposeListItemFormInputInputData" />
+		
+		<span>) &#123;</span>
+	</p>
+
+	<p>
+		<div class="LCHComposeDetailCallbackBody">
+			{#if _LCHIsTestingBehaviour()}
+				<textarea bind:value={ $DocumentSelectedStore.LCHDocumentBody } on:input={ mod.commandDocumentSave } id="LCHComposeDetailCallbackBodyInputDebug"></textarea>
+			{/if}
+			<textarea bind:this={ CallbackBodyEditorElement }></textarea>
+		</div>
+		<span>&#125;</span>
+	</p>
 
 	<p>
 		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentSignature } on:input={ mod.commandDocumentSave } placeholder="{ OLSKLocalized('LCHComposeListItemFormInputSignaturePlaceholder') }" id="LCHComposeListItemFormInputSignature" />
