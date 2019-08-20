@@ -221,6 +221,7 @@ const mod = {
 
 		{#if $DocumentSelectedStore.LCHDocumentArgs }
 			<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentInputTypes } placeholder={ OLSKLocalized('LCHComposeFormInputTypesFieldPlaceholderText') } on:input={ mod.commandDocumentSave } id="LCHComposeFormInputTypesField" />
+			<span>→</span>
 		{/if}
 		
 		<span>(</span>
@@ -238,6 +239,8 @@ const mod = {
 		<textarea bind:this={ CallbackBodyEditorElement }></textarea>
 
 		<span>&#125;</span>
+
+		<span>→</span>
 
 		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentOutputType } placeholder={ OLSKLocalized('LCHComposeFormOutputTypeFieldPlaceholderText') } on:input={ mod.commandDocumentSave } id="LCHComposeFormOutputTypeField" />	
 	</p>
