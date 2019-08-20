@@ -225,7 +225,7 @@ const mod = {
 		
 		<span>(</span>
 		
-		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentArgs } placeholder="undefined" on:input={ mod.commandDocumentSave } id="LCHComposeFormInputInputData" />
+		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentArgs } placeholder="undefined" on:input={ mod.commandDocumentSave } id="LCHComposeFormArgsField" />
 		
 		<span>) &#123;</span>
 	</p>
@@ -314,7 +314,7 @@ input[type=text] {
 	padding: 5px;
 }
 
-#LCHComposeFormInputInputData {
+#LCHComposeFormArgsField {
 	max-width: 60px;
 }
 

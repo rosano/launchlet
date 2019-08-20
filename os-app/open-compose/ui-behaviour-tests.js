@@ -20,9 +20,11 @@ Object.entries({
 
 	LCHComposeDetailFormContainer: '.FormContainer',
 	LCHComposeFormNameField: '#LCHComposeFormNameField',
-	LCHComposeFormInputInputData: '#LCHComposeFormInputInputData',
+	LCHComposeFormInputTypesField: '#LCHComposeFormInputTypesField',
+	LCHComposeFormArgsField: '#LCHComposeFormArgsField',
 	LCHComposeDetailCallbackBodyInput: '.LCHComposeDetailCallbackBody .CodeMirror',
 	LCHComposeDetailCallbackBodyInputDebug: '#LCHComposeDetailCallbackBodyInputDebug',
+	LCHComposeFormOutputTypeField: '#LCHComposeFormOutputTypeField',
 	LCHComposeFormSignatureField: '#LCHComposeFormSignatureField',
 	LCHComposeFormURLFilterField: '#LCHComposeFormURLFilterField',
 	LCHComposeFormIsAutomaticField: '#LCHComposeFormIsAutomaticField',
@@ -80,9 +82,11 @@ describe('LCHComposeDiscovery', function testLCHComposeDiscovery() {
 
 		browser.assert.elements(LCHComposeDetailFormContainer, 1);
 		browser.assert.elements(LCHComposeFormNameField, 1);
-		browser.assert.elements(LCHComposeFormInputInputData, 1);
+		browser.assert.elements(LCHComposeFormInputTypesField, 0);
+		browser.assert.elements(LCHComposeFormArgsField, 1);
 		browser.assert.elements(LCHComposeDetailCallbackBodyInput, 1);
 		browser.assert.elements(LCHComposeDetailCallbackBodyInputDebug, 1);
+		browser.assert.elements(LCHComposeFormOutputTypeField, 1);
 		browser.assert.elements(LCHComposeFormSignatureField, 1);
 		browser.assert.elements(LCHComposeFormURLFilterField, 1);
 		browser.assert.elements(LCHComposeFormIsAutomaticField, 0);
@@ -96,6 +100,20 @@ describe('LCHComposeDiscovery', function testLCHComposeDiscovery() {
 		browser.assert.elements(LCHComposeListItem, 2);
 
 		browser.assert.elements(LCHComposeDetailToolbar, 1);
+	});
+
+	it('on fill LCHDocumentArgs', async function() {
+		browser.fill(LCHComposeFormArgsField, 'alfa');
+		await browser.wait({ element: LCHComposeFormInputTypesField });
+
+		browser.assert.elements(LCHComposeFormInputTypesField, 1);
+	});
+
+	it('on empty LCHDocumentArgs', async function() {
+		browser.fill(LCHComposeFormArgsField, '');
+		await browser.wait({ element: LCHComposeFormInputTypesField });
+
+		browser.assert.elements(LCHComposeFormInputTypesField, 0);
 	});
 
 	it('on fill LCHRecipeURLFilter', async function() {
@@ -187,8 +205,8 @@ describe('LCHComposeLanguage', function testLCHComposeLanguage() {
 
 				browser.assert.attribute(LCHComposeFormNameField, 'placeholder', uLocalized('LCHComposeFormNameFieldPlaceholderText'));
 				browser.assert.input(LCHComposeFormNameField, '');
-				browser.assert.attribute(LCHComposeFormInputInputData, 'placeholder', 'undefined');
-				browser.assert.input(LCHComposeFormInputInputData, '');
+				browser.assert.attribute(LCHComposeFormArgsField, 'placeholder', 'undefined');
+				browser.assert.input(LCHComposeFormArgsField, '');
 				browser.assert.text(`${ LCHComposeDetailCallbackBodyInput } .CodeMirror-placeholder`, uLocalized('LCHComposeFormScriptFieldPlaceholderText'));
 				// editor value
 				browser.assert.input(LCHComposeDetailCallbackBodyInputDebug, '');
@@ -199,7 +217,7 @@ describe('LCHComposeLanguage', function testLCHComposeLanguage() {
 				browser.assert.text(`${ LCHComposeDetailStyleInput } .CodeMirror-placeholder`, uLocalized('LCHComposeFormStyleFieldPlaceholderText'));
 				browser.assert.input(LCHComposeDetailStyleInputDebug, '');
 
-				browser.fill(LCHComposeFormInputInputData, 'charlie');
+				browser.fill(LCHComposeFormArgsField, 'charlie');
 				browser.fill(LCHComposeDetailCallbackBodyInputDebug, 'delta');
 				browser.fill(LCHComposeDetailStyleInputDebug, 'echo');
 			});
@@ -243,7 +261,7 @@ describe('LCHComposeLanguage', function testLCHComposeLanguage() {
 				browser.assert.input(LCHComposeFormSignatureField, 'alfa');
 				// editor value
 				browser.assert.input(LCHComposeDetailCallbackBodyInputDebug, 'delta');
-				browser.assert.input(LCHComposeFormInputInputData, 'charlie');
+				browser.assert.input(LCHComposeFormArgsField, 'charlie');
 				browser.assert.input(LCHComposeFormURLFilterField, '/https?://(.*\.)?google\.com/i');
 				browser.assert.input(LCHComposeDetailStyleInputDebug, 'echo');
 			});
