@@ -216,9 +216,15 @@ const mod = {
 
 	<hr>
 
-	<span>function (</span>
+	<span>function</span>
+
+	{#if $DocumentSelectedStore.LCHDocumentArgs }
+		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentInputTypes } placeholder={ OLSKLocalized('LCHComposeListItemFormInputInputTypesPlaceholderText') } on:input={ mod.commandDocumentSave } id="LCHComposeListItemFormInputInputTypes" />
+	{/if}
+	<span>(</span>
 	<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentArgs } placeholder="undefined" on:input={ mod.commandDocumentSave } id="LCHComposeListItemFormInputInputData" />
-	<span>) &#123;</span>
+	<span>)</span>
+	<span>&#123;</span>
 	<br>
 
 	<div class="LCHComposeDetailCallbackBody">
@@ -304,6 +310,10 @@ input[type=text] {
 
 #LCHComposeListItemFormInputInputData {
 	max-width: 60px;
+}
+
+#LCHComposeListItemFormInputInputTypes {
+	max-width: 100px;
 }
 
 .FormContainer :global(.CodeMirror) {

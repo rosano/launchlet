@@ -10,6 +10,7 @@ LCHComposeListItemToolbarDeleteButtonText: Delete
 LCHComposeListItemDeletePromptText: Are you sure?
 LCHComposeListItemFormInputIDPlaceholder: Identifier (e.g. XYZGreet)
 LCHComposeListItemFormInputNamePlaceholder: Name (e.g. Say Hello)
+LCHComposeListItemFormInputInputTypesPlaceholderText: Types (e.g. String, Bool)
 LCHComposeListItemFormInputFunctionBodyPlaceholder: Function Body (e.g. window.alert('Hello');)
 LCHComposeListItemFormInputCSSPlaceholder: 'CSS (e.g. body { background: red; })'
 LCHComposeListItemFormInputSignaturePlaceholder: Signature (e.g. XYZGreet)
