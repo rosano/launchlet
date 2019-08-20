@@ -322,11 +322,11 @@ input[type=text] {
 }
 
 #LCHComposeFormInputTypesField {
-	max-width: 100px;
+	max-width: 120px;
 }
 
 #LCHComposeFormOutputTypeField {
-	max-width: 100px;
+	max-width: 140px;
 }
 
 .FormContainer :global(.CodeMirror) {
