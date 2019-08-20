@@ -1,4 +1,5 @@
 <script>
+export let EditorInitialValue = '';
 export let EditorOptions = {};
 
 let EditorPostInitializeQueue = [];
@@ -10,15 +11,16 @@ export let EditorConfigure = function (e) {
 let EditorElement;
 let EditorInstance;
 import { onMount, createEventDispatcher } from 'svelte';
+const dispatch = createEventDispatcher();
 onMount(function SetupEditor () {
 	EditorInstance = CodeMirror.fromTextArea(EditorElement, EditorOptions);
+
+	EditorInstance.setValue(EditorInitialValue);
 
 	EditorInstance.on('change', function (instance, changeObject) {
 		if (changeObject.origin === 'setValue') {
 			return;
 		}
-
-		const dispatch = createEventDispatcher();
 
 		dispatch('EditorDispatchValueChanged', instance.getValue());
 	});

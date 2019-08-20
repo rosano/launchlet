@@ -2,6 +2,8 @@
 import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
+import LCHEditor from './modules/LCHEditor/main.svelte'
+
 import * as LCHFormulasAction from '../_shared/rs-modules/lch_documents/action.js';
 
 import { OLSKLocalized, _LCHIsTestingBehaviour } from '../_shared/common/global.js';
@@ -159,6 +161,15 @@ DocumentSelectedStore.subscribe(function (val) {
 let throttleMap = {};
 import OLSKThrottle from 'OLSKThrottle';
 const mod = {
+
+	_EditorDispatchValueChanged(inputData) {
+		Object.assign($DocumentSelectedStore, inputData); // @DependancySvelteIgnoresMutableChanges
+
+		mod.commandDocumentSave();
+	},
+
+	// COMMAND
+
 	async commandDocumentSave() {
 		DocumentsAllStore.update(function (val) {
 			return val;
@@ -248,6 +259,31 @@ const mod = {
 
 		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentOutputType } placeholder={ OLSKLocalized('LCHComposeFormOutputTypeFieldPlaceholderText') } on:input={ mod.commandDocumentSave } id="LCHComposeFormOutputTypeField" />	
 	</p>
+
+	{#if $DocumentSelectedStore.LCHDocumentOutputType === 'Bool'}
+		<p class="LCHComposeFormOutputTypeCanonicalExampleBody">
+			{#if _LCHIsTestingBehaviour()}
+				<textarea bind:value={ $DocumentSelectedStore.LCHDocumentOutputTypeCanonicalExampleBody } on:input={ mod.commandDocumentSave } id="LCHComposeFormOutputTypeCanonicalExampleBodyDebugField"></textarea>
+			{/if}
+
+			<LCHEditor EditorOptions={ {
+				mode: 'javascript',
+
+				lineNumbers: true,
+				lineWrapping: true,
+
+				placeholder: OLSKLocalized('LCHComposeFormScriptFieldPlaceholderText'),
+				
+			  keyMap: 'sublime',
+
+				extraKeys: {
+					Tab: false,
+				},
+			} } on:EditorDispatchValueChanged={ (event) => mod._EditorDispatchValueChanged({
+			LCHDocumentOutputTypeCanonicalExampleBody: event.detail,
+		}) } EditorInitialValue={ $DocumentSelectedStore.LCHDocumentOutputTypeCanonicalExampleBody } />
+		</p>
+	{/if}
 
 	<hr>
 

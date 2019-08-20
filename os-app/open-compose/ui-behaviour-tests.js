@@ -26,10 +26,12 @@ Object.entries({
 	LCHComposeDetailCallbackBodyInput: '.LCHComposeDetailCallbackBody .CodeMirror',
 	LCHComposeDetailCallbackBodyInputDebug: '#LCHComposeDetailCallbackBodyInputDebug',
 	LCHComposeFormOutputTypeField: '#LCHComposeFormOutputTypeField',
-	LCHComposeFormURLFilterField: '#LCHComposeFormURLFilterField',
-	LCHComposeFormIsAutomaticField: '#LCHComposeFormIsAutomaticField',
+	LCHComposeFormOutputTypeCanonicalExampleBodyField: '.LCHComposeFormOutputTypeCanonicalExampleBody .CodeMirror',
+	LCHComposeFormOutputTypeCanonicalExampleBodyDebugField: '#LCHComposeFormOutputTypeCanonicalExampleBodyDebugField',
 	LCHComposeDetailStyleInput: '.LCHComposeDetailStyle .CodeMirror',
 	LCHComposeDetailStyleInputDebug: '#LCHComposeDetailStyleInputDebug',
+	LCHComposeFormURLFilterField: '#LCHComposeFormURLFilterField',
+	LCHComposeFormIsAutomaticField: '#LCHComposeFormIsAutomaticField',
 
 	LCHComposeReloadButton: '#LCHComposeReloadButton',
 
@@ -87,6 +89,8 @@ describe('LCHComposeDiscovery', function testLCHComposeDiscovery() {
 		browser.assert.elements(LCHComposeDetailCallbackBodyInput, 1);
 		browser.assert.elements(LCHComposeDetailCallbackBodyInputDebug, 1);
 		browser.assert.elements(LCHComposeFormOutputTypeField, 1);
+		browser.assert.elements(LCHComposeFormOutputTypeCanonicalExampleBodyField, 0);
+		browser.assert.elements(LCHComposeFormOutputTypeCanonicalExampleBodyDebugField, 0);
 		browser.assert.elements(LCHComposeFormSignatureField, 1);
 		browser.assert.elements(LCHComposeFormURLFilterField, 1);
 		browser.assert.elements(LCHComposeFormIsAutomaticField, 0);
@@ -114,6 +118,26 @@ describe('LCHComposeDiscovery', function testLCHComposeDiscovery() {
 		await browser.wait({ element: LCHComposeFormInputTypesField });
 
 		browser.assert.elements(LCHComposeFormInputTypesField, 0);
+	});
+
+	context.skip('LCHComposeFormOutputTypeField', function () {
+		
+		it('shows LCHComposeFormOutputTypeCanonicalExampleBodyField if Bool', async function() {
+			browser.fill(LCHComposeFormOutputTypeField, 'Bool');
+			await browser.wait({ element: LCHComposeFormOutputTypeCanonicalExampleBodyField });
+
+			browser.assert.elements(LCHComposeFormOutputTypeCanonicalExampleBodyField, 1);
+			browser.assert.elements(LCHComposeFormOutputTypeCanonicalExampleBodyDebugField, 1);
+		});
+
+		it('hides LCHComposeFormOutputTypeCanonicalExampleBodyField', async function() {
+			browser.fill(LCHComposeFormOutputTypeField, 'alfa');
+			await browser.wait({ element: LCHComposeFormOutputTypeCanonicalExampleBodyField });
+
+			browser.assert.elements(LCHComposeFormOutputTypeCanonicalExampleBodyField, 0);
+			browser.assert.elements(LCHComposeFormOutputTypeCanonicalExampleBodyDebugField, 0);
+		});
+	
 	});
 
 	it('on fill LCHRecipeURLFilter', async function() {
