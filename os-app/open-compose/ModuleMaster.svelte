@@ -88,6 +88,7 @@ const mod = {
 			LCHDocumentArgs: '',
 			LCHDocumentBody: '',
 			LCHDocumentOutputType: '',
+			LCHDocumentOutputTypeCanonicalExampleBody: '',
 			LCHDocumentSignature: '',
 			LCHDocumentURLFilter: '',
 			LCHDocumentStyle: '',
