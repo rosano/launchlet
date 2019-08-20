@@ -84,8 +84,10 @@ const mod = {
 	async commandDocumentCreate() {
 		let item = await LCHFormulasAction.LCHFormulasActionCreate(storageClient, {
 			LCHDocumentName: '',
+			LCHDocumentInputTypes: '',
 			LCHDocumentArgs: '',
 			LCHDocumentBody: '',
+			LCHDocumentOutputType: '',
 			LCHDocumentSignature: '',
 			LCHDocumentURLFilter: '',
 			LCHDocumentStyle: '',

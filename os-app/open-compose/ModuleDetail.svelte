@@ -230,14 +230,16 @@ const mod = {
 		<span>) &#123;</span>
 	</p>
 
-	<p>
-		<div class="LCHComposeDetailCallbackBody">
-			{#if _LCHIsTestingBehaviour()}
-				<textarea bind:value={ $DocumentSelectedStore.LCHDocumentBody } on:input={ mod.commandDocumentSave } id="LCHComposeDetailCallbackBodyInputDebug"></textarea>
-			{/if}
-			<textarea bind:this={ CallbackBodyEditorElement }></textarea>
-		</div>
+	<p class="LCHComposeDetailCallbackBody">
+		{#if _LCHIsTestingBehaviour()}
+			<textarea bind:value={ $DocumentSelectedStore.LCHDocumentBody } on:input={ mod.commandDocumentSave } id="LCHComposeDetailCallbackBodyInputDebug"></textarea>
+		{/if}
+
+		<textarea bind:this={ CallbackBodyEditorElement }></textarea>
+
 		<span>&#125;</span>
+
+		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentOutputType } placeholder={ OLSKLocalized('LCHComposeListItemFormInputOutputTypePlaceholderText') } on:input={ mod.commandDocumentSave } id="LCHComposeListItemFormInputOutputType" />	
 	</p>
 
 	<p>
@@ -317,6 +319,10 @@ input[type=text] {
 }
 
 #LCHComposeListItemFormInputInputTypes {
+	max-width: 100px;
+}
+
+#LCHComposeListItemFormInputOutputType {
 	max-width: 100px;
 }
 
