@@ -265,6 +265,12 @@ describe('LCHRecipesModelIsCommand', function testLCHRecipesModelIsCommand() {
 		})), false);
 	});
 
+	it('returns false if LCHRecipeOutputType', function() {
+		deepEqual(mainModule.LCHRecipesModelIsCommand(Object.assign(kTesting.StubRecipeObjectCommand(), {
+			LCHRecipeOutputType: 'alfa',
+		})), false);
+	});
+
 	it('returns true', function() {
 		deepEqual(mainModule.LCHRecipesModelIsCommand(kTesting.StubRecipeObjectCommand()), true);
 	});

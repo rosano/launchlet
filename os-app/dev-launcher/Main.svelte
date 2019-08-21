@@ -137,7 +137,6 @@ async function apiStart(inputData) {
 import {
 	LCHRecipesModelIsSubject,
 	LCHRecipesModelIsAction,
-	LCHRecipesModelIsCommand,
 } from './api.js';
 import { LCHLauncherUIRecipesForMode } from './ui-logic.js';
 let _PromptObjects = [];
