@@ -52,7 +52,7 @@ const mod = {
 
 <p>
 	<label for="LCHCompileEnablePipeToggle">{ OLSKLocalized('LCHCompileEnablePipeToggleLabelText') }</label>
-	<input type="checkbox" bind:value={ EnablePipe } on:input={ mod.interfaceEnablePipeToggleDidInput } id="LCHCompileEnablePipeToggle" />
+	<input type="checkbox" bind:checked={ EnablePipe } on:change={ mod.interfaceEnablePipeToggleDidInput } id="LCHCompileEnablePipeToggle" />
 
 </p>
 

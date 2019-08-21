@@ -50,13 +50,13 @@ describe('LCHCompileLanguage', function testLCHCompileLanguage() {
 
 });
 
-describe('LCHCompileInteraction', function testLCHCompileInteraction() {
+describe.skip('LCHCompileInteraction', function testLCHCompileInteraction() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
 	});
 
-	context.skip('LCHCompileEnablePipeToggle', function() {
+	context('LCHCompileEnablePipeToggle', function() {
 
 		let item;
 
@@ -66,8 +66,9 @@ describe('LCHCompileInteraction', function testLCHCompileInteraction() {
 			item = browser.query(LCHComposeBuildLink).href;
 		});
 
-		it('compiles with LCHLauncherModeCommit if not checked', function () {
-			browser.assert.input(LCHCompileEnablePipeToggle, 'false');
+		it('compiles with LCHLauncherModeCommit if not checked', async function () {
+			browser.assert.input(LCHCompileEnablePipeToggle, 'on');
+			await browser.wait({ element: LCHComposeBuildLink });
 
 			deepEqual(item.includes("runMode: 'kLCHLauncherModeCommit'"), true);
 			deepEqual(item.includes("runMode: 'kLCHLauncherModePipe'"), false);
@@ -75,7 +76,7 @@ describe('LCHCompileInteraction', function testLCHCompileInteraction() {
 
 		it('compiles with Pipe mode if checked', async function () {
 			await browser.check(LCHCompileEnablePipeToggle);
-
+			await browser.wait({ element: LCHComposeBuildLink });
 
 			deepEqual(item.includes("runMode: 'kLCHLauncherModeCommit'"), false);
 			deepEqual(item.includes("runMode: 'kLCHLauncherModePipe'"), true);
