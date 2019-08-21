@@ -7,7 +7,7 @@ import LCHCompile from './modules/LCHCompile/main.svelte';
 import OLSKServiceWorker from '../_shared/_external/OLSKServiceWorker/Main.svelte';
 
 import { OLSKLocalized, _LCHIsTestingBehaviour } from '../_shared/common/global.js';
-import { storageClient, isLoading } from './persistence.js';
+import { storageClient, isLoading, DocumentsAllStore } from './persistence.js';
 
 import { onMount } from 'svelte';
 import Widget from 'remotestorage-widget';
@@ -35,7 +35,7 @@ const mod = {
 	<ModuleDetail />
 </OLSKViewportContent>
 
-<LCHCompile />
+<LCHCompile CompileDocuments={ $DocumentsAllStore } OLSKLocalized={ OLSKLocalized } />
 
 </div>
 
