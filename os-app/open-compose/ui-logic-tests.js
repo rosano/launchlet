@@ -118,12 +118,25 @@ describe('LCHComposeLogicBoomarkletStringFor', function testLCHComposeLogicBooma
 
 	it('throws error if without all tokens', function() {
 		throws(function() {
-			mainModule.LCHComposeLogicBoomarkletStringFor({
-				LCHCompileToken_AppStyle: '',
-				LCHCompileToken_DocumentObjects: [],
-				LCHCompileToken_AppLanguageCode: '',
-			});
+			mainModule.LCHComposeLogicBoomarkletStringFor(mainModule.LCHComposeLogicValidCompileTokens().reduce(function (coll, item) {
+				if (item !== 'LCHCompileToken_DocumentObjects') {
+					coll[item] = '';
+				};
+
+				return coll;
+			}, {}));
 		}, /LCHErrorInputInvalid/);
+	});
+
+	it('replaces all tokens', function() {
+		let item = mainModule.LCHComposeLogicBoomarkletStringFor(mainModule.LCHComposeLogicValidCompileTokens().reduce(function (coll, item) {
+			coll[item] = item === 'LCHCompileToken_DocumentObjects' ? [] : '';
+
+			return coll;
+		}, {}));
+		deepEqual(mainModule.LCHComposeLogicValidCompileTokens().filter(function (e) {
+			return !item.match(e);
+		}), mainModule.LCHComposeLogicValidCompileTokens());
 	});
 
 	it('throws no error if OLSK_TESTING', function() {
