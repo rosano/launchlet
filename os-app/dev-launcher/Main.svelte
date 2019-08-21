@@ -660,6 +660,8 @@ const mod = {
 			return;
 		}
 
+		event.preventDefault();
+
 		if (!LCHLauncherKeyboardEventIsTextInput(event)) {
 			return;
 		}

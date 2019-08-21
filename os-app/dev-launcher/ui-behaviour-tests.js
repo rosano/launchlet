@@ -1025,6 +1025,10 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 				await browser.wait({element: LCHLauncherResultList});
 			});
 			
+			it.skip('stops keydown from bubbling', async function() {
+				browser.assert.input('#LCHLauncherTestInputSingleLine', '');
+			});
+			
 			it('updates on click', async function() {
 				browser.click(LCHLauncherActionPrompt);
 				await browser.wait({element: LCHLauncherActionPrompt});
