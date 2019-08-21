@@ -496,6 +496,7 @@ const mod = {
 		const handlerFunctions = {
 			Escape () {
 				event.preventDefault();
+				event.stopPropagation();
 
 				return mod.ValuePromptModeText(false) || true;
 			},
@@ -519,6 +520,7 @@ const mod = {
 	},
 	_commandHandleEventKeydownEscape (event) {
 		event.preventDefault();
+		event.stopPropagation();
 
 		if (LCHOptionsObject().runMode === LCHLauncherModePipe() && mod.ValuePromptResultsIsVisible()) {
 			return mod.ValuePromptResultsIsVisible(false);
@@ -541,6 +543,7 @@ const mod = {
 	},
 	_commandHandleEventKeydownEnter (event) {
 		event.preventDefault();
+		event.stopPropagation();
 
 		if (!CompositionIsValid()) {
 			return;
