@@ -30,9 +30,9 @@ describe('LCHLauncherModes', function testLCHLauncherModes() {
 
 	it('returns array', function() {
 		deepEqual(mainModule.LCHLauncherModes(), [
-			mainModule.LCHLauncherModeCommit,
-			mainModule.LCHLauncherModePreview,
-			mainModule.LCHLauncherModePipe,
+			mainModule.LCHLauncherModeCommit(),
+			mainModule.LCHLauncherModePreview(),
+			mainModule.LCHLauncherModePipe(),
 		]);
 	});
 
@@ -63,19 +63,19 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 	context('runMode', function () {
 
 		it('returns default if not set', function() {
-			deepEqual(mainModule.LCHLauncherOptions({}).runMode, mainModule.LCHLauncherModeCommit);
+			deepEqual(mainModule.LCHLauncherOptions({}).runMode, mainModule.LCHLauncherModeCommit());
 		});
 
 		it('ignores if not valid', function() {
 			deepEqual(mainModule.LCHLauncherOptions({
 				runMode: 'alfa',
-			}).runMode, mainModule.LCHLauncherModeCommit);
+			}).runMode, mainModule.LCHLauncherModeCommit());
 		});
 
 		it('returns inputData', function() {
 			deepEqual(mainModule.LCHLauncherOptions({
-				runMode: mainModule.LCHLauncherModePreview,
-			}).runMode, mainModule.LCHLauncherModePreview);
+				runMode: mainModule.LCHLauncherModePreview(),
+			}).runMode, mainModule.LCHLauncherModePreview());
 		});
 		
 	});
@@ -86,7 +86,7 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 
 	it('throws error if param1 not array', function() {
 		throws(function() {
-			mainModule.LCHLauncherUIRecipesForMode(null, mainModule.LCHLauncherModeCommit);
+			mainModule.LCHLauncherUIRecipesForMode(null, mainModule.LCHLauncherModeCommit());
 		}, /LCHErrorInputInvalid/);
 	});
 
@@ -97,13 +97,13 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 	});
 
 	it('excludes if not object', function() {
-		deepEqual(mainModule.LCHLauncherUIRecipesForMode([null], mainModule.LCHLauncherModeCommit), []);
+		deepEqual(mainModule.LCHLauncherUIRecipesForMode([null], mainModule.LCHLauncherModeCommit()), []);
 	});
 
 	it('excludes if multiple LCHRecipeInputTypes', function() {
 		deepEqual(mainModule.LCHLauncherUIRecipesForMode([{
 			LCHRecipeInputTypes: 'alfa,bravo',
-		}], mainModule.LCHLauncherModeCommit), []);
+		}], mainModule.LCHLauncherModeCommit()), []);
 	});
 
 	context('LCHLauncherModeCommit', function() {
@@ -111,7 +111,7 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 		it('excludes all', function() {
 			deepEqual(mainModule.LCHLauncherUIRecipesForMode([{
 				LCHRecipeCallback () {},
-			}], mainModule.LCHLauncherModeCommit), []);
+			}], mainModule.LCHLauncherModeCommit()), []);
 		});
 
 		it('includes if Command', function() {
@@ -119,7 +119,7 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 				LCHRecipeName: 'alfa',
 				LCHRecipeCallback () {},
 			};
-			deepEqual(mainModule.LCHLauncherUIRecipesForMode([item], mainModule.LCHLauncherModeCommit), [item]);
+			deepEqual(mainModule.LCHLauncherUIRecipesForMode([item], mainModule.LCHLauncherModeCommit()), [item]);
 		});
 
 		context.skip('if Action', function() {
@@ -130,7 +130,7 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 					LCHRecipeInputTypes: 'String,String',
 					_LCHLauncherGenerated: true,
 					LCHRecipeCallback (bravo, charlie) {},
-				}], mainModule.LCHLauncherModeCommit), []);
+				}], mainModule.LCHLauncherModeCommit()), []);
 			});
 			
 			it('excludes if LCHRecipeInputTypes not String', function() {
@@ -139,7 +139,7 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 					LCHRecipeInputTypes: 'bravo',
 					_LCHLauncherGenerated: true,
 					LCHRecipeCallback (charlie) {},
-				}], mainModule.LCHLauncherModeCommit), []);
+				}], mainModule.LCHLauncherModeCommit()), []);
 			});
 			
 			it('excludes if _LCHLauncherGenerated not true', function() {
@@ -148,7 +148,7 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 					LCHRecipeInputTypes: 'String',
 					_LCHLauncherGenerated: 'bravo',
 					LCHRecipeCallback (charlie) {},
-				}], mainModule.LCHLauncherModeCommit), []);
+				}], mainModule.LCHLauncherModeCommit()), []);
 			});
 
 			it('includes', function() {
@@ -158,7 +158,7 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 					_LCHLauncherGenerated: true,
 					LCHRecipeCallback (bravo) {},
 				};
-				deepEqual(mainModule.LCHLauncherUIRecipesForMode([item], mainModule.LCHLauncherModeCommit), [item]);
+				deepEqual(mainModule.LCHLauncherUIRecipesForMode([item], mainModule.LCHLauncherModeCommit()), [item]);
 			});
 
 		});
@@ -170,7 +170,7 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 		it('excludes all', function() {
 			deepEqual(mainModule.LCHLauncherUIRecipesForMode([{
 				LCHRecipeCallback () {},
-			}], mainModule.LCHLauncherModePreview), []);
+			}], mainModule.LCHLauncherModePreview()), []);
 		});
 
 		it('includes if Command', function() {
@@ -178,7 +178,7 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 				LCHRecipeName: 'alfa',
 				LCHRecipeCallback () {},
 			};
-			deepEqual(mainModule.LCHLauncherUIRecipesForMode([item], mainModule.LCHLauncherModePreview), [item]);
+			deepEqual(mainModule.LCHLauncherUIRecipesForMode([item], mainModule.LCHLauncherModePreview()), [item]);
 		});
 
 	});

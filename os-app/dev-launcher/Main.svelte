@@ -145,7 +145,7 @@ let _PromptActiveIndex = 0;
 let _AllPromptRecipes = LCHLauncherUIRecipesForMode(allRecipes, LCHOptionsObject().runMode);
 let _AllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
 (function StartPromptObjects() {
-	if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
+	if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
 		 return _PromptObjects.push(...[{
 			LCHPromptClass: 'LCHLauncherSubjectPrompt',
 			LCHPromptHeading: OLSKLocalized('LCHLauncherSubjectPromptHeadingText'),
@@ -180,7 +180,7 @@ let _AllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
 		LCHPromptResultsThrottle: false,
 	 });
 
-	if (LCHOptionsObject().runMode !== LCHLauncherModePreview) {
+	if (LCHOptionsObject().runMode !== LCHLauncherModePreview()) {
 		return;
 	}
 
@@ -210,7 +210,7 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 	})();
 
 	(function SetMatchStop() {
-		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
 			return;
 		}
 
@@ -224,7 +224,7 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 	})();
 
 	(function ThrottleInput() {
-		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
 			return;
 		}
 
@@ -245,7 +245,7 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 	})();
 
 	(function ThrottleResults() {
-		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
 			return;
 		}
 		
@@ -267,19 +267,19 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 
 	(function SetItems() {
 		ActivePromptItemsShouldUpdate((function() {
-			if (LCHOptionsObject().runMode === LCHLauncherModePipe && !_PromptObjects[_PromptActiveIndex].LCHPromptFilterText && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === false) {
+			if (LCHOptionsObject().runMode === LCHLauncherModePipe() && !_PromptObjects[_PromptActiveIndex].LCHPromptFilterText && _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === false) {
 				return _PromptObjects[_PromptActiveIndex].LCHPromptItemsVisible;
 			}
 			
 			if (!_PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
-				return LCHOptionsObject().runMode === LCHLauncherModePreview ? _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll : [];
+				return LCHOptionsObject().runMode === LCHLauncherModePreview() ? _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll : [];
 			}
 
 			let results = fuzzysort.go(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText, _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll, {
 				key: 'LCHRecipeName',
 			});
 
-			if (LCHOptionsObject().runMode === LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptItemsVisible.length && !results.length) {
+			if (LCHOptionsObject().runMode === LCHLauncherModePipe() && _PromptObjects[_PromptActiveIndex].LCHPromptItemsVisible.length && !results.length) {
 				if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
 					OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 				}
@@ -313,7 +313,7 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 	(function SetItemSelected() {
 		_PromptObjects[_PromptActiveIndex].LCHPromptItemSelected = inputData;
 
-		if (LCHOptionsObject().runMode !== LCHLauncherModePreview) {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePreview()) {
 			return;
 		}
 
@@ -325,7 +325,7 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 	}
 
 	(function UpdateActionsForSubject() {
-		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
 			return;
 		}
 
@@ -350,7 +350,7 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 
 function ActivePromptIndexShouldUpdate (inputData) {
 	(function CancelThrottle() {
-		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
 			return;
 		}
 
@@ -383,14 +383,14 @@ function CompositionIsValid () {
 }
 
 async function LauncherShouldTerminate () {
-	if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
+	if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
 		await apiStart({
 			LCHCompositionAction: _PromptObjects[1].LCHPromptItemSelected,
 			LCHCompositionSubjectPrimary: _PromptObjects[0].LCHPromptItemSelected,
 		});
 	}
 
-	if (LCHOptionsObject().runMode !== LCHLauncherModePreview) {
+	if (LCHOptionsObject().runMode !== LCHLauncherModePreview()) {
 		await apiStart(_PromptObjects[0].LCHPromptItemSelected);
 	}
 
@@ -413,7 +413,7 @@ function ActivePromptTextItemShouldUpdate(inputData) {
 	})();
 }
 
-let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModePreview ? dataObjects : [];
+let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModePreview() ? dataObjects : [];
 import OLSKThrottle from 'OLSKThrottle';
 
 let rootElement;
@@ -421,7 +421,7 @@ let rootElement;
 let inputElement;
 import { onMount } from 'svelte';
 onMount(function () {
-	if (LCHOptionsObject().runMode === LCHLauncherModePipe) {
+	if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
 		return;
 	}
 	
@@ -520,11 +520,11 @@ const mod = {
 	_commandHandleEventKeydownEscape (event) {
 		event.preventDefault();
 
-		if (LCHOptionsObject().runMode === LCHLauncherModePipe && mod.ValuePromptResultsIsVisible()) {
+		if (LCHOptionsObject().runMode === LCHLauncherModePipe() && mod.ValuePromptResultsIsVisible()) {
 			return mod.ValuePromptResultsIsVisible(false);
 		}
 
-		if (LCHOptionsObject().runMode !== LCHLauncherModePipe && _PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe() && _PromptObjects[_PromptActiveIndex].LCHPromptFilterText) {
 			return ActivePromptFilterTextShouldUpdate('');
 		}
 
@@ -533,7 +533,7 @@ const mod = {
 	_commandHandleEventKeydownTab (event) {
 		event.preventDefault();
 
-		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
 			return;
 		}
 
@@ -549,7 +549,7 @@ const mod = {
 		LauncherShouldTerminate();
 	},
 	_commandHandleEventKeydownArrow (event) {
-		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
 			return
 		};
 
@@ -566,7 +566,7 @@ const mod = {
 		OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 	},
 	_commandHandleEventKeydownArrowDown (event) {
-		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
 			return
 		};
 
@@ -584,7 +584,7 @@ const mod = {
 		OLSKThrottle.OLSKThrottleSkip(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle);
 	},
 	_commandHandleEventKeydownDot (event) {
-		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
 			return;
 		}
 
@@ -612,7 +612,7 @@ const mod = {
 		_PromptObjects[1].LCHPromptItemSelected = null;
 	},
 	_commandHandleEventKeydownBackspace (event) {
-		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
 			return;
 		}
 
@@ -656,7 +656,7 @@ const mod = {
 			return;
 		};
 
-		if (LCHOptionsObject().runMode !== LCHLauncherModePipe) {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
 			return;
 		}
 
@@ -681,17 +681,17 @@ const mod = {
 	<div class="Bezel">
 		{#each _PromptObjects as e}
 			<div class={ e.LCHPromptClass } class:LCHLauncherPromptSelected={ _PromptObjects[_PromptActiveIndex] === e } on:click={ () => ActivePromptIndexShouldUpdate(_PromptObjects.indexOf(e) ) }>
-				{#if LCHOptionsObject().runMode === LCHLauncherModePipe}
+				{#if LCHOptionsObject().runMode === LCHLauncherModePipe()}
 					<strong class="LCHLauncherPromptHeading" class:LCHLauncherPromptHeadingMatchStop={ e.LCHPromptMatchStop }>{ e.LCHPromptFilterText && e.LCHPromptFilterText.toUpperCase() || e.LCHPromptHeading }</strong>
 				{/if}
 
-				<LCHLauncherPrompt PromptItems={ e.LCHPromptItemsVisible } on:ResultListDispatchArrow={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) } ItemSelected={ e.LCHPromptItemSelected } on:ResultListDispatchClick={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) || LauncherShouldTerminate() } ItemSelectedHidden={ LCHOptionsObject().runMode !== LCHLauncherModePipe || e.LCHPromptTextItemMode } ResultsHidden={ e.LCHPromptResultsThrottle !== false }>
+				<LCHLauncherPrompt PromptItems={ e.LCHPromptItemsVisible } on:ResultListDispatchArrow={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) } ItemSelected={ e.LCHPromptItemSelected } on:ResultListDispatchClick={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) || LauncherShouldTerminate() } ItemSelectedHidden={ LCHOptionsObject().runMode !== LCHLauncherModePipe() || e.LCHPromptTextItemMode } ResultsHidden={ e.LCHPromptResultsThrottle !== false }>
 					{#if e.LCHPromptClass === 'LCHLauncherSubjectPrompt' && !e.LCHPromptTextItemMode }
 						<span class="LCHLauncherSubjectPromptPlaceholder">{ OLSKLocalized('LCHLauncherSubjectPromptPlaceholderText') }</span>
 					{/if}
 
 					{#if e.LCHPromptClass === 'LCHLauncherFilterPrompt' }
-						<input placeholder="{ LCHOptionsObject().runMode === LCHLauncherModePreview ? OLSKLocalized('LCHLauncherInputPlaceholderPreview') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ _PromptObjects[0].LCHPromptFilterText } bind:this={ inputElement } on:input={ () => ActivePromptFilterTextShouldUpdate(this.value) } id="LCHLauncherFilterInput" />
+						<input placeholder="{ LCHOptionsObject().runMode === LCHLauncherModePreview() ? OLSKLocalized('LCHLauncherInputPlaceholderPreview') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ _PromptObjects[0].LCHPromptFilterText } bind:this={ inputElement } on:input={ () => ActivePromptFilterTextShouldUpdate(this.value) } id="LCHLauncherFilterInput" />
 					{/if}
 
 					{#if ['LCHLauncherFilterPrompt', 'LCHLauncherActionPrompt'].indexOf(e.LCHPromptClass) === -1 && e.LCHPromptTextItemMode }

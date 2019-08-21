@@ -13,10 +13,8 @@ export const LCHLauncherOptions = function (inputData) {
 
 	if (inputData.runMode) {
 		// #mysterious Why doesn't function equivalency work here?
-		// LCHLauncherModes().indexOf(inputData.runMode) always returns -1
-		outputData.runMode = LCHLauncherModes()[LCHLauncherModes().map(function (e) {
-			return e.toString();
-		}).indexOf(inputData.runMode.toString())] || outputData.runMode;
+		//  always returns -1
+		outputData.runMode = LCHLauncherModes()[LCHLauncherModes().indexOf(inputData.runMode)] || outputData.runMode;
 	}
 
 	if (inputData.languageCode) {
@@ -40,9 +38,9 @@ export const LCHLauncherModePipe = function () {
 
 export const LCHLauncherModes = function () {
 	return [
-		LCHLauncherModeCommit,
-		LCHLauncherModePreview,
-		LCHLauncherModePipe,
+		LCHLauncherModeCommit(),
+		LCHLauncherModePreview(),
+		LCHLauncherModePipe(),
 	];
 };
 
@@ -65,7 +63,7 @@ export const LCHLauncherUIRecipesForMode = function (param1, param2) {
 			return false;
 		}
 
-		if (param2 === LCHLauncherModeCommit) {
+		if (param2 === LCHLauncherModeCommit()) {
 			return LCHRecipesModelIsCommand(e);
 			// if (LCHRecipesModelIsCommand(e)) {
 			// 	return true;
@@ -88,7 +86,7 @@ export const LCHLauncherUIRecipesForMode = function (param1, param2) {
 			// };
 		}
 
-		if (param2 === LCHLauncherModePreview) {
+		if (param2 === LCHLauncherModePreview()) {
 			return LCHRecipesModelIsCommand(e);
 		}
 		

@@ -5,9 +5,9 @@ export const AppClass = function (inputData) {
 	_AppClass = inputData;
 };
 
-export const kRunModeDefault = LCHLauncherModeCommit;
-export const kRunModePreview = LCHLauncherModePreview;
-export const kRunModePipe = LCHLauncherModePipe;
+export const kRunModeDefault = LCHLauncherModeCommit();
+export const kRunModePreview = LCHLauncherModePreview();
+export const kRunModePipe = LCHLauncherModePipe();
 
 let appContainer, appInstance;
 
