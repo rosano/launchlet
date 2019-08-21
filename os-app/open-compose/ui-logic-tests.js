@@ -90,7 +90,7 @@ describe('LCHComposeLogicValidCompileTokens', function testLCHComposeLogicValidC
 		deepEqual(mainModule.LCHComposeLogicValidCompileTokens(), [
 			'LCHCompileToken_AppBehaviour',
 			'LCHCompileToken_AppStyle',
-			'LCHCompileToken_DocumenntObjects',
+			'LCHCompileToken_DocumentObjects',
 			'LCHCompileToken_AppLanguageCode',
 		]);
 	});
@@ -119,7 +119,7 @@ describe('LCHComposeLogicBoomarkletStringFor', function testLCHComposeLogicBooma
 		throws(function() {
 			mainModule.LCHComposeLogicBoomarkletStringFor({
 				LCHCompileToken_AppStyle: '',
-				LCHCompileToken_DocumenntObjects: [],
+				LCHCompileToken_DocumentObjects: [],
 				LCHCompileToken_AppLanguageCode: '',
 			});
 		}, /LCHErrorInputInvalid/);
@@ -141,10 +141,10 @@ describe('LCHComposeLogicBoomarkletStringFor', function testLCHComposeLogicBooma
 		}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_AppBehaviour', 'alfa'));
 	});
 
-	it('replaces LCHCompileToken_DocumenntObjects', function() {
+	it('replaces LCHCompileToken_DocumentObjects', function() {
 		deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
-			LCHCompileToken_DocumenntObjects: [],
-		}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_DocumenntObjects', '[]'));
+			LCHCompileToken_DocumentObjects: [],
+		}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_DocumentObjects', '[]'));
 	});
 
 	it('replaces LCHCompileToken_AppLanguageCode', function() {

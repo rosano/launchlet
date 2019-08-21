@@ -26,7 +26,7 @@ export const LCHComposeLogicValidCompileTokens = function (inputData) {
 	return [
 		'LCHCompileToken_AppBehaviour',
 		'LCHCompileToken_AppStyle',
-		'LCHCompileToken_DocumenntObjects',
+		'LCHCompileToken_DocumentObjects',
 		'LCHCompileToken_AppLanguageCode',
 		];
 };
@@ -57,7 +57,7 @@ export const LCHComposeLogicBoomarkletTemplate = function () {
 			window.LCHBookmarklet.AppInstance = new (window.LCHBookmarklet.uiBehaviour())({
 				target: sandboxContainer,
 				props: {
-					dataObjects: _protectFromCompiler(`LCHCompileToken_DocumenntObjects`),
+					dataObjects: _protectFromCompiler(`LCHCompileToken_DocumentObjects`),
 					completionHandler () {
 						return window.LCHBookmarklet.instanceDestroy();
 					},
@@ -93,7 +93,7 @@ export const LCHComposeLogicBoomarkletStringFor = function (inputData, OLSK_TEST
 	return Object.keys(inputData).reduce(function (coll, item) {
 		let itemReplacement = inputData[item];
 
-		if (item === 'LCHCompileToken_DocumenntObjects') {
+		if (item === 'LCHCompileToken_DocumentObjects') {
 			itemReplacement = `[${ inputData[item].map(_LCHComposeRecipeStub).map(_LCHComposeLogicRecipeJSON) }]`;
 		}
 
