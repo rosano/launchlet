@@ -92,6 +92,7 @@ describe('LCHComposeLogicValidCompileTokens', function testLCHComposeLogicValidC
 			'LCHCompileToken_AppStyle',
 			'LCHCompileToken_DocumentObjects',
 			'LCHCompileToken_AppLanguageCode',
+			'LCHCompileToken_LCHLauncherMode',
 		]);
 	});
 

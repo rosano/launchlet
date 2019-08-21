@@ -28,6 +28,7 @@ export const LCHComposeLogicValidCompileTokens = function (inputData) {
 		'LCHCompileToken_AppStyle',
 		'LCHCompileToken_DocumentObjects',
 		'LCHCompileToken_AppLanguageCode',
+		'LCHCompileToken_LCHLauncherMode',
 		];
 };
 
