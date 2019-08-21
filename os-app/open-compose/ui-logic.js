@@ -123,9 +123,14 @@ export const _LCHComposeRecipeStub = function (inputData) {
 
 	return Object.assign(validKeys.reduce(function (coll, item) {
 		coll[item] = LCHFormulaTo(LCHFormulaFrom(inputData), 'LCHRecipe')[item];
+
 		return coll;
 	}, {}), inputData.LCHDocumentBody ? {
 		LCHRecipeCallback: _LCHClosureString(inputData),
+	} : {}, inputData.LCHDocumentOutputTypeCanonicalExampleBody ? {
+		LCHRecipeOutputTypeCanonicalExampleCallback: _LCHClosureString({
+			LCHDocumentBody: inputData.LCHDocumentOutputTypeCanonicalExampleBody,
+		}),
 	} : {});
 };
 
@@ -152,7 +157,11 @@ export const _LCHComposeLogicRecipeJSON = function (inputData) {
 		outputData.LCHRecipeCallback = '__LCHRecipeCallback__';
 	};
 
-	return JSON.stringify(outputData).replace('"__LCHRecipeCallback__"', inputData.LCHRecipeCallback);
+	if (inputData.LCHRecipeOutputTypeCanonicalExampleCallback) {
+		outputData.LCHRecipeOutputTypeCanonicalExampleCallback = '__LCHRecipeOutputTypeCanonicalExampleCallback__';
+	};
+
+	return JSON.stringify(outputData).replace('"__LCHRecipeCallback__"', inputData.LCHRecipeCallback).replace('"__LCHRecipeOutputTypeCanonicalExampleCallback__"', inputData.LCHRecipeOutputTypeCanonicalExampleCallback);
 };
 
 export const LCHComposeLogicBookmarkletBinaryFor = function (inputData) {
