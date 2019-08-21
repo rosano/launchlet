@@ -2,7 +2,7 @@ import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 
 import * as LCHStorageClient from '../_shared/LCHStorageClient/main.js';
 import * as RSModuleProtocol_lch_documents from '../_shared/rs-modules/lch_documents/rs-module.js';
-import { LCHComposeLogicSort } from './ui-logic.js';
+import { LCHComposeSort } from './ui-logic.js';
 
 import * as LCHFormulasAction from '../_shared/rs-modules/lch_documents/action.js';
 
@@ -24,7 +24,7 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 			DocumentsAllStore.update(function (val) {
 				return val.filter(function (e) { // @Hotfix Dropbox sending DelegateAdd
 					return e.LCHDocumentID !== inputData.LCHDocumentID;
-				}).concat(inputData).sort(LCHComposeLogicSort);
+				}).concat(inputData).sort(LCHComposeSort);
 			});
 
 			modelDidChange.set(Date.now());

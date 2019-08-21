@@ -7,7 +7,7 @@ import { LCHComposeDefaultFocusNode } from './_shared.js';
 import * as LCHFormulasAction from '../_shared/rs-modules/lch_documents/action.js';
 import * as LCHFormulasMetal from '../_shared/rs-modules/lch_documents/metal.js';
 import { LCHFormulasModelPostJSONParse } from '../_shared/rs-modules/lch_documents/model.js';
-import { LCHComposeFilterFunction, LCHComposeLogicSort } from './ui-logic.js';
+import { LCHComposeFilterFunction, LCHComposeSort } from './ui-logic.js';
 import { OLSKLocalized } from '../_shared/common/global.js';
 import { storageClient, DocumentsAllStore, DocumentSelectedStore } from './persistence.js';
 
@@ -96,7 +96,7 @@ const mod = {
 		});
 
 		DocumentsAllStore.update(function (val) {
-			return val.concat(item).sort(LCHComposeLogicSort);
+			return val.concat(item).sort(LCHComposeSort);
 		});
 
 		return mod.commandDocumentSelect(item);

@@ -1,4 +1,4 @@
-import { throws, doesNotThrow, deepEqual } from 'assert';
+import { throws, deepEqual } from 'assert';
 
 import * as mainModule from './ui-logic.js';
 
@@ -58,7 +58,7 @@ describe('LCHComposeFilterFunction', function testLCHComposeFilterFunction() {
 
 });
 
-describe('LCHComposeLogicSort', function testLCHComposeLogicSort() {
+describe('LCHComposeSort', function testLCHComposeSort() {
 
 	it('sorts by LCHDocumentModificationDate descending', function() {
 		let item1 = {
@@ -68,7 +68,7 @@ describe('LCHComposeLogicSort', function testLCHComposeLogicSort() {
 			LCHDocumentModificationDate: new Date(1),
 		};
 
-		deepEqual([item1, item2].sort(mainModule.LCHComposeLogicSort), [item2, item1]);
+		deepEqual([item1, item2].sort(mainModule.LCHComposeSort), [item2, item1]);
 	});
 
 	it('sorts by LCHDocumentCreationDate descending if no LCHDocumentModificationDate', function() {
@@ -79,236 +79,7 @@ describe('LCHComposeLogicSort', function testLCHComposeLogicSort() {
 			LCHDocumentCreationDate: new Date(1),
 		};
 
-		deepEqual([item1, item2].sort(mainModule.LCHComposeLogicSort), [item2, item1]);
-	});
-
-});
-
-describe('LCHComposeLogicValidCompileTokens', function testLCHComposeLogicValidCompileTokens() {
-
-	it('returns array', function() {
-		deepEqual(mainModule.LCHComposeLogicValidCompileTokens(), [
-			'LCHCompileToken_AppBehaviour',
-			'LCHCompileToken_AppStyle',
-			'LCHCompileToken_DocumentObjects',
-			'LCHCompileToken_AppLanguageCode',
-			'LCHCompileToken_LCHLauncherMode',
-		]);
-	});
-
-});
-
-describe('LCHComposeLogicBoomarkletTemplate', function testLCHComposeLogicBoomarkletTemplate() {
-
-	it('contains LCHComposeLogicValidCompileTokens', function() {
-		deepEqual(mainModule.LCHComposeLogicValidCompileTokens().filter(function (e) {
-			return mainModule.LCHComposeLogicBoomarkletTemplate.toString().match(e);
-		}), mainModule.LCHComposeLogicValidCompileTokens());
-	});
-
-});
-
-describe('LCHComposeLogicBoomarkletStringFor', function testLCHComposeLogicBoomarkletStringFor() {
-
-	it('throws error if not object', function() {
-		throws(function() {
-			mainModule.LCHComposeLogicBoomarkletStringFor(null);
-		}, /LCHErrorInputInvalid/);
-	});
-
-	it('throws error if without all tokens', function() {
-		throws(function() {
-			mainModule.LCHComposeLogicBoomarkletStringFor(mainModule.LCHComposeLogicValidCompileTokens().reduce(function (coll, item) {
-				if (item !== 'LCHCompileToken_DocumentObjects') {
-					coll[item] = '';
-				};
-
-				return coll;
-			}, {}));
-		}, /LCHErrorInputInvalid/);
-	});
-
-	it('replaces all tokens', function() {
-		let item = mainModule.LCHComposeLogicBoomarkletStringFor(mainModule.LCHComposeLogicValidCompileTokens().reduce(function (coll, item) {
-			coll[item] = item === 'LCHCompileToken_DocumentObjects' ? [] : '';
-
-			return coll;
-		}, {}));
-		deepEqual(mainModule.LCHComposeLogicValidCompileTokens().filter(function (e) {
-			return !item.match(e);
-		}), mainModule.LCHComposeLogicValidCompileTokens());
-	});
-
-	it('throws no error if OLSK_TESTING', function() {
-		doesNotThrow(function() {
-			mainModule.LCHComposeLogicBoomarkletStringFor({}, 'OLSK_TESTING');
-		}, /LCHErrorInputInvalid/);
-	});
-
-	it('replaces wraps', function() {
-		deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2'));
-	});
-
-	it('replaces LCHCompileToken_AppBehaviour', function() {
-		deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
-			LCHCompileToken_AppBehaviour: 'alfa',
-		}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_AppBehaviour', 'alfa'));
-	});
-
-	it('replaces LCHCompileToken_DocumentObjects', function() {
-		deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
-			LCHCompileToken_DocumentObjects: [],
-		}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_DocumentObjects', '[]'));
-	});
-
-	it('replaces LCHCompileToken_AppLanguageCode', function() {
-		deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
-			LCHCompileToken_AppLanguageCode: 'alfa',
-		}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_AppLanguageCode', 'alfa'));
-	});
-
-	it('strips sourceMap js', function () {
-		deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
-			LCHCompileToken_AppBehaviour: `alfa//# sourceMappingURL=ui-behaviour.js.mapbravo`,
-		}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_AppBehaviour', 'alfabravo'));
-	});
-
-	it('strips livereload', function () {
-		deepEqual(mainModule.LCHComposeLogicBoomarkletStringFor({
-			LCHCompileToken_AppBehaviour: `alfa(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':1234567890/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');bravo`,
-		}, 'OLSK_TESTING'), mainModule.LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHCompileToken_AppBehaviour', 'alfabravo'));
-	});
-
-});
-
-describe('_LCHClosureString', function test_LCHClosureString() {
-
-	it('throws error if not object', function() {
-		throws(function() {
-			mainModule._LCHClosureString(null);
-		}, /LCHErrorInputInvalid/);
-	});
-
-	it('throws error if LCHDocumentBody not string', function() {
-		throws(function() {
-			mainModule._LCHClosureString({});
-		}, /LCHErrorInputInvalid/);
-	});
-
-	it('returns string', function() {
-		deepEqual(mainModule._LCHClosureString({
-			LCHDocumentBody: 'alfa',
-		}), 'function () { alfa }');
-	});
-
-	context('LCHDocumentArgs', function() {
-
-		it('populates LCHClosureString', function() {
-			deepEqual(mainModule._LCHClosureString({
-				LCHDocumentBody: 'alfa',
-				LCHDocumentArgs: 'bravo',
-			}), 'function (bravo) { alfa }');
-		});
-
-	});
-
-});
-
-describe('_LCHComposeLogicRecipeJSON', function test_LCHComposeLogicRecipeJSON() {
-
-	it('throws error if not object', function() {
-		throws(function() {
-			mainModule._LCHComposeLogicRecipeJSON(null);
-		}, /LCHErrorInputInvalid/);
-	});
-
-	it('returns string', function() {
-		deepEqual(mainModule._LCHComposeLogicRecipeJSON({}), '{}');
-	});
-
-	it('stringifies inputData', function() {
-		deepEqual(mainModule._LCHComposeLogicRecipeJSON({
-			alfa: 'bravo',
-			charlie: true,
-		}), '{"alfa":"bravo","charlie":true}');
-	});
-
-	it('prints LCHRecipeCallback directly', function() {
-		deepEqual(mainModule._LCHComposeLogicRecipeJSON({
-			LCHRecipeCallback: 'function () { alfa }',
-		}), '{"LCHRecipeCallback":function () { alfa }}');
-	});
-
-	it('prints LCHRecipeCallback with line breaks', function() {
-		deepEqual(mainModule._LCHComposeLogicRecipeJSON({
-			LCHRecipeCallback: `
-bravo
-`,
-		}), `{"LCHRecipeCallback":\nbravo\n}`);
-	});
-
-	it('prints LCHRecipeOutputTypeCanonicalExampleCallback directly', function() {
-		deepEqual(mainModule._LCHComposeLogicRecipeJSON({
-			LCHRecipeOutputTypeCanonicalExampleCallback: 'function () { alfa }',
-		}), '{"LCHRecipeOutputTypeCanonicalExampleCallback":function () { alfa }}');
-	});
-
-});
-
-describe('_LCHComposeRecipeStub', function test_LCHComposeRecipeStub() {
-
-	it('throws error if not object', function() {
-		throws(function() {
-			mainModule._LCHComposeRecipeStub(null);
-		}, /LCHErrorInputInvalid/);
-	});
-
-	it('returns object', function() {
-		deepEqual(mainModule._LCHComposeRecipeStub({}), {});
-	});
-
-	it('converts formula fields', function() {
-		deepEqual(mainModule._LCHComposeRecipeStub({
-			LCHDocumentName: '',
-		}), {
-			LCHRecipeName: '',
-		});
-	});
-
-	it('ignores others', function() {
-		deepEqual(mainModule._LCHComposeRecipeStub({
-			alfa: '',
-		}), {});
-	});
-
-	it('wraps LCHDocumentBody in closure', function() {
-		deepEqual(mainModule._LCHComposeRecipeStub({
-			LCHDocumentBody: 'alfa',
-		}), {
-			LCHRecipeCallback: 'function () { alfa }',
-		});
-	});
-
-	it('wraps LCHDocumentOutputTypeCanonicalExampleBody in closure', function() {
-		deepEqual(mainModule._LCHComposeRecipeStub({
-			LCHDocumentOutputTypeCanonicalExampleBody: 'alfa',
-		}), {
-			LCHRecipeOutputTypeCanonicalExampleCallback: 'function () { alfa }',
-		});
-	});
-
-});
-
-describe('LCHComposeLogicBookmarkletBinaryFor', function testLCHComposeLogicBookmarkletBinaryFor() {
-
-	it('throws error if not string', function() {
-		throws(function() {
-			mainModule.LCHComposeLogicBookmarkletBinaryFor(null);
-		}, /LCHErrorInputInvalid/);
-	});
-
-	it('returns string', function() {
-		deepEqual(mainModule.LCHComposeLogicBookmarkletBinaryFor('function() { return; }'), 'javascript:(function()%20%7B%20return%3B%20%7D)();');
+		deepEqual([item1, item2].sort(mainModule.LCHComposeSort), [item2, item1]);
 	});
 
 });

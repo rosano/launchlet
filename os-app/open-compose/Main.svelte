@@ -3,7 +3,7 @@ import OLSKViewportContent from 'OLSKViewportContent';
 import ModuleHeader from './ModuleHeader.svelte';
 import ModuleMaster from './ModuleMaster.svelte';
 import ModuleDetail from './ModuleDetail.svelte';
-import ModuleCompile from './ModuleCompile.svelte';
+import LCHCompile from './modules/LCHCompile/main.svelte';
 import OLSKServiceWorker from '../_shared/_external/OLSKServiceWorker/Main.svelte';
 
 import { OLSKLocalized, _LCHIsTestingBehaviour } from '../_shared/common/global.js';
@@ -35,7 +35,7 @@ const mod = {
 	<ModuleDetail />
 </OLSKViewportContent>
 
-<ModuleCompile />
+<LCHCompile />
 
 </div>
 

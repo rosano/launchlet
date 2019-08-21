@@ -1,14 +1,14 @@
 <script>
-import { DocumentsAllStore, modelDidChange } from './persistence.js';
-import { LCHComposeLogicBoomarkletStringFor, LCHComposeLogicBookmarkletBinaryFor } from './ui-logic.js';
-import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../dev-launcher/ui-logic.js';
+import { DocumentsAllStore, modelDidChange } from '../../persistence.js';
+import { LCHCompileBoomarkletStringFor, LCHCompileBookmarkletBinaryFor } from './ui-logic.js';
+import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../../../dev-launcher/ui-logic.js';
 
 let javascriptComposed, javascriptBinary = '';
 
 import { onMount } from 'svelte';
 onMount(function () {
 	modelDidChange.subscribe(function (val) {
-		javascriptComposed = LCHComposeLogicBoomarkletStringFor({
+		javascriptComposed = LCHCompileBoomarkletStringFor({
 			LCHCompileToken_AppStyle: window.LCHComposeLauncherStyle.textContent,
 			LCHCompileToken_AppBehaviour: window.LCHComposeLauncherBehaviour.textContent,
 			LCHCompileToken_DocumentObjects: $DocumentsAllStore.map(function (e) {
@@ -28,7 +28,7 @@ onMount(function () {
 			LCHCompileToken_LCHLauncherMode: LCHLauncherModeCommit(),
 		});
 
-		javascriptBinary = LCHComposeLogicBookmarkletBinaryFor(javascriptComposed);
+		javascriptBinary = LCHCompileBookmarkletBinaryFor(javascriptComposed);
 	});
 });
 </script>
