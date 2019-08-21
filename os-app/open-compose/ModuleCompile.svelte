@@ -1,6 +1,7 @@
 <script>
 import { DocumentsAllStore, modelDidChange } from './persistence.js';
 import { LCHComposeLogicBoomarkletStringFor, LCHComposeLogicBookmarkletBinaryFor } from './ui-logic.js';
+import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../dev-launcher/ui-logic.js';
 
 let javascriptComposed, javascriptBinary = '';
 
@@ -24,6 +25,7 @@ onMount(function () {
 				}, {});
 			}),
 			LCHCompileToken_AppLanguageCode: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
+			LCHCompileToken_LCHLauncherMode: LCHLauncherModeCommit(),
 		});
 
 		javascriptBinary = LCHComposeLogicBookmarkletBinaryFor(javascriptComposed);

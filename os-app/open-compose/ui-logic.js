@@ -22,7 +22,7 @@ export const LCHComposeLogicSort = function (a, b) {
 	return b.LCHDocumentCreationDate - a.LCHDocumentCreationDate;
 };
 
-export const LCHComposeLogicValidCompileTokens = function (inputData) {
+export const LCHComposeLogicValidCompileTokens = function () {
 	return [
 		'LCHCompileToken_AppBehaviour',
 		'LCHCompileToken_AppStyle',
@@ -64,6 +64,7 @@ export const LCHComposeLogicBoomarkletTemplate = function () {
 					},
 					optionsObject: {
 						languageCode: 'LCHCompileToken_AppLanguageCode',
+						runMode: 'LCHCompileToken_LCHLauncherMode',
 					},
 				}
 			});
@@ -101,7 +102,6 @@ export const LCHComposeLogicBoomarkletStringFor = function (inputData, OLSK_TEST
 		if (item === 'LCHCompileToken_AppStyle') {
 			itemReplacement = `\`${ inputData[item] }\``;
 		}
-
 
 		return coll.replace(item,  itemReplacement);
 	}, LCHComposeLogicBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2'))
