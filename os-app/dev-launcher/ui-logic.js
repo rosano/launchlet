@@ -59,7 +59,7 @@ export const LCHLauncherUIRecipesForMode = function (param1, param2) {
 			return false;
 		}
 
-		if (typeof e.LCHRecipeInputTypes === 'string' && e.LCHRecipeInputTypes.includes(',')) {
+		if (typeof e.LCHRecipeInputTypes === 'string' && e.LCHRecipeInputTypes.split(',').length > 2) {
 			return false;
 		}
 

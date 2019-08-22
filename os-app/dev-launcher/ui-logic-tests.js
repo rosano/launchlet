@@ -100,9 +100,15 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 		deepEqual(mainModule.LCHLauncherUIRecipesForMode([null], mainModule.LCHLauncherModeCommit()), []);
 	});
 
-	it('excludes if multiple LCHRecipeInputTypes', function() {
+	it.skip('excludes if multiple LCHRecipeInputTypes', function() {
 		deepEqual(mainModule.LCHLauncherUIRecipesForMode([{
 			LCHRecipeInputTypes: 'alfa,bravo',
+		}], mainModule.LCHLauncherModeCommit()), []);
+	});
+
+	it('excludes if more than two LCHRecipeInputTypes', function() {
+		deepEqual(mainModule.LCHLauncherUIRecipesForMode([{
+			LCHRecipeInputTypes: 'alfa,bravo,charlie',
 		}], mainModule.LCHLauncherModeCommit()), []);
 	});
 
