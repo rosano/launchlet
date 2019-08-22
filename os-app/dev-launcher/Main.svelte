@@ -378,18 +378,6 @@ function ActivePromptIndexShouldUpdate (inputData) {
 	})();
 }
 
-async function LauncherShouldTerminate () {
-	if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
-		await apiStart(mod.DataComposition());
-	}
-
-	if (LCHOptionsObject().runMode !== LCHLauncherModePreview()) {
-		await apiStart(_PromptObjects[0].LCHPromptItemSelected);
-	}
-
-	mod.commandExit();
-}
-
 function ActivePromptTextItemShouldUpdate(inputData) {
 	(function SetTextItem() {
 		_PromptObjects[_PromptActiveIndex].LCHPromptTextItem = inputData
@@ -552,7 +540,7 @@ const mod = {
 			return;
 		}
 
-		LauncherShouldTerminate();
+		mod.commandTerminate();
 	},
 	_commandHandleEventKeydownArrow (event) {
 		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
@@ -674,6 +662,17 @@ const mod = {
 
 		ActivePromptFilterTextShouldUpdate(!_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle ? event.key : _PromptObjects[_PromptActiveIndex].LCHPromptFilterText + event.key);
 	},
+	async commandTerminate () {
+		if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
+			await apiStart(mod.DataComposition());
+		}
+
+		if (LCHOptionsObject().runMode !== LCHLauncherModePreview()) {
+			await apiStart(_PromptObjects[0].LCHPromptItemSelected);
+		}
+
+		mod.commandExit();
+	},
 	commandExit () {
 		if (typeof completionHandler !== 'function') {
 			return;
@@ -698,7 +697,7 @@ const mod = {
 		<strong class="LCHLauncherPromptHeading" class:LCHLauncherPromptHeadingMatchStop={ e.LCHPromptMatchStop }>{ e.LCHPromptFilterText && e.LCHPromptFilterText.toUpperCase() || e.LCHPromptHeading }</strong>
 	{/if}
 
-	<LCHLauncherPrompt PromptItems={ e.LCHPromptItemsVisible } on:ResultListDispatchArrow={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) } ItemSelected={ e.LCHPromptItemSelected } on:ResultListDispatchClick={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) || LauncherShouldTerminate() } ItemSelectedHidden={ LCHOptionsObject().runMode !== LCHLauncherModePipe() || e.LCHPromptTextItemMode } ResultsHidden={ e.LCHPromptResultsThrottle !== false }>
+	<LCHLauncherPrompt PromptItems={ e.LCHPromptItemsVisible } on:ResultListDispatchArrow={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) } ItemSelected={ e.LCHPromptItemSelected } on:ResultListDispatchClick={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) || mod.commandTerminate() } ItemSelectedHidden={ LCHOptionsObject().runMode !== LCHLauncherModePipe() || e.LCHPromptTextItemMode } ResultsHidden={ e.LCHPromptResultsThrottle !== false }>
 		{#if e.LCHPromptClass === 'LCHLauncherSubjectPrompt' && !e.LCHPromptTextItemMode }
 			<span class="LCHLauncherSubjectPromptPlaceholder">{ OLSKLocalized('LCHLauncherSubjectPromptPlaceholderText') }</span>
 		{/if}
