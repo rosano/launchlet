@@ -323,11 +323,11 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 		return;
 	}
 
-	(function UpdateActionsForSubject() {
-		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
-			return;
-		}
+	if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
+		return;
+	}
 
+	(function UpdateActionsForSubject() {
 		if (!_PromptObjects[_PromptActiveIndex].LCHPromptItemSelected) {
 			_PromptObjects[1].LCHPromptItemsVisible = _PromptObjects[1].LCHPromptItemsAll = [];
 			_PromptObjects[1].LCHPromptItemSelected = null;
