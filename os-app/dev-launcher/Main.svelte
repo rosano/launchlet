@@ -378,18 +378,9 @@ function ActivePromptIndexShouldUpdate (inputData) {
 	})();
 }
 
-function CompositionIsValid () {
-	return !_PromptObjects.filter(function (e) {
-		return !e.LCHPromptItemSelected;
-	}).length;
-}
-
 async function LauncherShouldTerminate () {
 	if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
-		await apiStart({
-			LCHCompositionAction: _PromptObjects[1].LCHPromptItemSelected,
-			LCHCompositionSubjectPrimary: _PromptObjects[0].LCHPromptItemSelected,
-		});
+		await apiStart(mod.DataComposition());
 	}
 
 	if (LCHOptionsObject().runMode !== LCHLauncherModePreview()) {
@@ -460,6 +451,8 @@ function handleDidFinish() {
 }
 
 import { LCHLauncherKeyboardEventIsTextInput } from './ui-logic.js';
+import { LCHCompositionModelErrors } from './api.js'
+import { LCHRunCommandRecipe } from './recipes/LCHRunCommand/main.js';
 const mod = {
 
 	// VALUE
@@ -477,6 +470,22 @@ const mod = {
 		};
 
 		_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = inputData ? false : undefined;
+	},
+
+	// DATA
+
+	DataComposition () {
+		if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
+			return {
+				LCHCompositionAction: _PromptObjects[1].LCHPromptItemSelected,
+				LCHCompositionSubjectPrimary: _PromptObjects[0].LCHPromptItemSelected,
+			};
+		};
+
+		return {
+			LCHCompositionAction: LCHRunCommandRecipe(),
+			LCHCompositionSubjectPrimary: _PromptObjects[0].LCHPromptItemSelected,
+		};
 	},
 
 	// INTERFACE
@@ -547,7 +556,7 @@ const mod = {
 		event.preventDefault();
 		event.stopPropagation();
 
-		if (!CompositionIsValid()) {
+		if (LCHCompositionModelErrors(mod.DataComposition())) {
 			return;
 		}
 
