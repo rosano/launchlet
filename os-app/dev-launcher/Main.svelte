@@ -158,6 +158,7 @@ let _AllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
 			LCHPromptMatchStop: false,
 			LCHPromptResultsThrottle: undefined,
 			LCHPromptTextItem: '',
+			LCHPromptIsVisible: true,
 		}, {
 			LCHPromptClass: 'LCHLauncherActionPrompt',
 			LCHPromptHeading: OLSKLocalized('LCHLauncherActionPromptHeadingText'),
@@ -168,6 +169,7 @@ let _AllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
 			LCHPromptFilterText: '',
 			LCHPromptMatchStop: false,
 			LCHPromptResultsThrottle: undefined,
+			LCHPromptIsVisible: true,
 		}]);
 	}
 
@@ -177,6 +179,7 @@ let _AllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
 		LCHPromptItemsAll: _AllPromptRecipes,
 		LCHPromptFilterText: '',
 		LCHPromptResultsThrottle: false,
+		LCHPromptIsVisible: true,
 	 });
 
 	if (LCHOptionsObject().runMode !== LCHLauncherModePreview()) {
@@ -682,33 +685,41 @@ const mod = {
 <svelte:window on:keydown={ mod.interfaceDidKeydown } on:click={ mod.interfaceDidClickBody } on:touchstart={ mod.interfaceDidClickBody }/>
 
 <div class="Container" bind:this={ rootElement }>
-	<div class="Bezel">
-		{#each _PromptObjects as e}
-			<div class={ e.LCHPromptClass } class:LCHLauncherPromptSelected={ _PromptObjects[_PromptActiveIndex] === e } on:click={ () => ActivePromptIndexShouldUpdate(_PromptObjects.indexOf(e) ) }>
-				{#if LCHOptionsObject().runMode === LCHLauncherModePipe()}
-					<strong class="LCHLauncherPromptHeading" class:LCHLauncherPromptHeadingMatchStop={ e.LCHPromptMatchStop }>{ e.LCHPromptFilterText && e.LCHPromptFilterText.toUpperCase() || e.LCHPromptHeading }</strong>
-				{/if}
 
-				<LCHLauncherPrompt PromptItems={ e.LCHPromptItemsVisible } on:ResultListDispatchArrow={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) } ItemSelected={ e.LCHPromptItemSelected } on:ResultListDispatchClick={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) || LauncherShouldTerminate() } ItemSelectedHidden={ LCHOptionsObject().runMode !== LCHLauncherModePipe() || e.LCHPromptTextItemMode } ResultsHidden={ e.LCHPromptResultsThrottle !== false }>
-					{#if e.LCHPromptClass === 'LCHLauncherSubjectPrompt' && !e.LCHPromptTextItemMode }
-						<span class="LCHLauncherSubjectPromptPlaceholder">{ OLSKLocalized('LCHLauncherSubjectPromptPlaceholderText') }</span>
-					{/if}
+<div class="Bezel">
 
-					{#if e.LCHPromptClass === 'LCHLauncherFilterPrompt' }
-						<input placeholder="{ LCHOptionsObject().runMode === LCHLauncherModePreview() ? OLSKLocalized('LCHLauncherInputPlaceholderPreview') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ _PromptObjects[0].LCHPromptFilterText } bind:this={ inputElement } on:input={ () => ActivePromptFilterTextShouldUpdate(this.value) } id="LCHLauncherFilterInput" />
-					{/if}
+{#each _PromptObjects as e}
 
-					{#if ['LCHLauncherFilterPrompt', 'LCHLauncherActionPrompt'].indexOf(e.LCHPromptClass) === -1 && e.LCHPromptTextItemMode }
-						<input bind:value={ _PromptObjects[0].LCHPromptTextItem } on:input={ () => ActivePromptTextItemShouldUpdate(this.value) } class="LCHLauncherPromptTextItemInput" autofocus />
-					{/if}
-				</LCHLauncherPrompt>
-			</div>
-		{/each}
+{#if e.LCHPromptIsVisible}
+	<div class={ e.LCHPromptClass } class:LCHLauncherPromptSelected={ _PromptObjects[_PromptActiveIndex] === e } on:click={ () => ActivePromptIndexShouldUpdate(_PromptObjects.indexOf(e) ) }>
+		{#if LCHOptionsObject().runMode === LCHLauncherModePipe()}
+			<strong class="LCHLauncherPromptHeading" class:LCHLauncherPromptHeadingMatchStop={ e.LCHPromptMatchStop }>{ e.LCHPromptFilterText && e.LCHPromptFilterText.toUpperCase() || e.LCHPromptHeading }</strong>
+		{/if}
+
+		<LCHLauncherPrompt PromptItems={ e.LCHPromptItemsVisible } on:ResultListDispatchArrow={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) } ItemSelected={ e.LCHPromptItemSelected } on:ResultListDispatchClick={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) || LauncherShouldTerminate() } ItemSelectedHidden={ LCHOptionsObject().runMode !== LCHLauncherModePipe() || e.LCHPromptTextItemMode } ResultsHidden={ e.LCHPromptResultsThrottle !== false }>
+			{#if e.LCHPromptClass === 'LCHLauncherSubjectPrompt' && !e.LCHPromptTextItemMode }
+				<span class="LCHLauncherSubjectPromptPlaceholder">{ OLSKLocalized('LCHLauncherSubjectPromptPlaceholderText') }</span>
+			{/if}
+
+			{#if e.LCHPromptClass === 'LCHLauncherFilterPrompt' }
+				<input placeholder="{ LCHOptionsObject().runMode === LCHLauncherModePreview() ? OLSKLocalized('LCHLauncherInputPlaceholderPreview') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ _PromptObjects[0].LCHPromptFilterText } bind:this={ inputElement } on:input={ () => ActivePromptFilterTextShouldUpdate(this.value) } id="LCHLauncherFilterInput" />
+			{/if}
+
+			{#if ['LCHLauncherFilterPrompt', 'LCHLauncherActionPrompt'].indexOf(e.LCHPromptClass) === -1 && e.LCHPromptTextItemMode }
+				<input bind:value={ _PromptObjects[0].LCHPromptTextItem } on:input={ () => ActivePromptTextItemShouldUpdate(this.value) } class="LCHLauncherPromptTextItemInput" autofocus />
+			{/if}
+		</LCHLauncherPrompt>
 	</div>
+{/if}
+
+{/each}
+
+</div>
 	
-	{#if $secondaryComponent}
-		<svelte:component this={ $secondaryComponent.LCHInstanceClass } {...$secondaryComponent.LCHInstanceOptions} />
-	{/if}
+{#if $secondaryComponent}
+	<svelte:component this={ $secondaryComponent.LCHInstanceClass } {...$secondaryComponent.LCHInstanceOptions} />
+{/if}
+
 </div>
 
 <style>
