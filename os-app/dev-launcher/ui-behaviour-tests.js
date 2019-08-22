@@ -638,10 +638,6 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 		context('ObjectPrompt', function () {
 
 			before(async function () {
-
-			});
-
-			it('on startup', async function() {
 				await browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
 				
 				browser.OLSKFireKeyboardEvent(browser.window, '.');
@@ -651,15 +647,25 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 				await browser.wait({element: LCHLauncherPromptTextItemInput});
 
-				browser.OLSKFireKeyboardEvent(browser.window, 'o');
-				browser.OLSKFireKeyboardEvent(browser.window, 'b');
-				browser.OLSKFireKeyboardEvent(browser.window, 'j');
-				await browser.wait({element: LCHLauncherActionPromptItemSelected});
+				browser.assert.elements(LCHLauncherObjectPrompt, 0);
 
+				browser.OLSKFireKeyboardEvent(browser.window, 's');
+				browser.OLSKFireKeyboardEvent(browser.window, 'w');
+				await browser.wait({element: LCHLauncherActionPromptItemSelected});
 				browser.assert.elements(LCHLauncherActionPromptItemSelected, 1);
-				browser.assert.text(LCHLauncherActionPromptItemSelected, 'LCHLauncherTestObject');
+				browser.assert.text(LCHLauncherActionPromptItemSelected, 'Search With');
+			});
+
+			it('shows LCHLauncherObjectPrompt', async function() {
 				browser.assert.elements(LCHLauncherObjectPrompt, 1);
+			});
+
+			it('localizes LCHLauncherObjectPromptHeading', async function() {
 				browser.assert.text(LCHLauncherObjectPromptHeading, 'Object');
+			});
+
+			it('selects first object', async function() {
+				browser.assert.text(LCHLauncherObjectPromptItemSelected, 'Wikipedia');
 			});
 
 		});
