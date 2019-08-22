@@ -1026,7 +1026,7 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 			],
 		});
 	});
-
+	
 	it('returns object if LCHCompositionSubjectPrimary not Subject', function() {
 		deepEqual(mainModule.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
 			LCHCompositionSubjectPrimary: kTesting.StubRecipeObjectValid(),
@@ -1051,6 +1051,15 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 
 	it('returns null', function() {
 		deepEqual(mainModule.LCHCompositionModelErrors(kTesting.StubCompositionObjectValid()), null);
+	});
+
+	it('returns null if running command', function() {
+		deepEqual(mainModule.LCHCompositionModelErrors({
+			LCHCompositionAction: Object.assign(kTesting.StubRecipeObjectAction(), {
+				LCHRecipeInputTypes: 'Command'
+			}),
+			LCHCompositionSubjectPrimary: kTesting.StubRecipeObjectCommand(),
+		}), null);
 	});
 
 	context('LCHCompositionSubjectSecondary', function() {

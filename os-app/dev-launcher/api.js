@@ -420,6 +420,8 @@ export const LCHCompositionModelErrors = function(inputData) {
 		errors.LCHCompositionSubjectPrimary = [
 			'LCHErrorInputInvalid',
 		];
+	} else if (inputData.LCHCompositionAction.LCHRecipeInputTypes === 'Command' && LCHRecipesModelIsCommand(inputData.LCHCompositionSubjectPrimary)) {
+
 	}
 
 	// if (!LCHRecipesModelIsSubject(inputData.LCHCompositionSubjectPrimary)) {
