@@ -66,9 +66,7 @@ import {
 	LCHAPITypeEquivalenceMapForRecipes,
 } from './api.js';
 import { LCHLauncherStandardRecipes } from './recipes/recipes.js';
-const allRecipes = LCHLauncherConvertTypeServiceSearch(LCHLauncherStandardRecipes().concat(dataObjects), function (inputData) {
-	return OLSKFormatted(OLSKLocalized('LCHLauncherTestConvertTypeServiceSearchTextFormat'), inputData);
-});
+const allRecipes = LCHLauncherStandardRecipes().concat(dataObjects);
 
 const api = LCHAPIObjectFor(allRecipes);
 const apiTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes);
