@@ -14,6 +14,9 @@ Object.entries({
 	LCHLauncherActionPrompt: '.LCHLauncherActionPrompt',
 	LCHLauncherActionPromptHeading: '.LCHLauncherActionPrompt .LCHLauncherPromptHeading',
 	LCHLauncherActionPromptItemSelected: '.LCHLauncherActionPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem',
+	LCHLauncherObjectPrompt: '.LCHLauncherObjectPrompt',
+	LCHLauncherObjectPromptHeading: '.LCHLauncherObjectPrompt .LCHLauncherPromptHeading',
+	LCHLauncherObjectPromptItemSelected: '.LCHLauncherObjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem',
 	LCHLauncherPromptTextItemInput: '.LCHLauncherPromptTextItemInput',
 
 	LCHLauncherListItem: '.LCHLauncherResultListItem',
@@ -628,6 +631,35 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				
 				});
 			
+			});
+
+		});
+
+		context('ObjectPrompt', function () {
+
+			before(async function () {
+
+			});
+
+			it('on startup', async function() {
+				await browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
+				
+				browser.OLSKFireKeyboardEvent(browser.window, '.');
+				await browser.wait({element: LCHLauncherPromptTextItemInput});
+				
+				browser.fill(LCHLauncherPromptTextItemInput, 'alfa');
+				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+				await browser.wait({element: LCHLauncherPromptTextItemInput});
+
+				browser.OLSKFireKeyboardEvent(browser.window, 'o');
+				browser.OLSKFireKeyboardEvent(browser.window, 'b');
+				browser.OLSKFireKeyboardEvent(browser.window, 'j');
+				await browser.wait({element: LCHLauncherActionPromptItemSelected});
+
+				browser.assert.elements(LCHLauncherActionPromptItemSelected, 1);
+				browser.assert.text(LCHLauncherActionPromptItemSelected, 'LCHLauncherTestObject');
+				browser.assert.elements(LCHLauncherObjectPrompt, 1);
+				browser.assert.text(LCHLauncherObjectPromptHeading, 'Object');
 			});
 
 		});

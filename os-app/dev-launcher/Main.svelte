@@ -170,6 +170,17 @@ let _AllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
 			LCHPromptMatchStop: false,
 			LCHPromptResultsThrottle: undefined,
 			LCHPromptIsVisible: true,
+		}, {
+			LCHPromptClass: 'LCHLauncherObjectPrompt',
+			LCHPromptHeading: OLSKLocalized('LCHLauncherObjectPromptHeadingText'),
+			LCHPromptItemsVisible: [],
+			LCHPromptItemsAll: [],
+			// LCHPromptItemSelected: null,
+			LCHPromptInputThrottle: undefined,
+			LCHPromptFilterText: '',
+			LCHPromptMatchStop: false,
+			LCHPromptResultsThrottle: undefined,
+			LCHPromptIsVisible: false,
 		}]);
 	}
 
@@ -311,6 +322,7 @@ function ActivePromptItemsShouldUpdate (inputData) {
 	})();
 }
 
+import { LCHRecipesModelActionTakesObject } from './api.js';
 function ActivePromptItemSelectedShouldUpdate (inputData) {
 	(function SetItemSelected() {
 		_PromptObjects[_PromptActiveIndex].LCHPromptItemSelected = inputData;
@@ -322,15 +334,15 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 		apiStart(_PromptObjects[0].LCHPromptItemSelected);
 	})();
 
-	if (_PromptActiveIndex !== 0) {
-		return;
-	}
-
 	if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
 		return;
 	}
 
 	(function UpdateActionsForSubject() {
+		if (_PromptActiveIndex !== 0) {
+			return;
+		}
+
 		if (!_PromptObjects[_PromptActiveIndex].LCHPromptItemSelected) {
 			_PromptObjects[1].LCHPromptItemsVisible = _PromptObjects[1].LCHPromptItemsAll = [];
 			delete _PromptObjects[1].LCHPromptItemSelected;
@@ -347,6 +359,14 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 		_PromptObjects[1].LCHPromptItemsVisible = _PromptObjects[1].LCHPromptItemsAll;
 
 		_PromptObjects[1].LCHPromptItemSelected = _PromptObjects[1].LCHPromptItemsVisible[0];
+	})();
+
+	(function UpdateObjectsForAction() {
+		if (_PromptActiveIndex !== 1) {
+			return;
+		}
+
+		_PromptObjects[2].LCHPromptIsVisible = LCHRecipesModelActionTakesObject(_PromptObjects[_PromptActiveIndex].LCHPromptItemSelected);
 	})();
 }
 
@@ -461,6 +481,7 @@ const mod = {
 			return {
 				LCHCompositionAction: _PromptObjects[1].LCHPromptItemSelected,
 				LCHCompositionSubjectPrimary: _PromptObjects[0].LCHPromptItemSelected,
+				LCHCompositionSubjectSecondary: _PromptObjects[2].LCHPromptItemSelected,
 			};
 		};
 
