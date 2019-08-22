@@ -416,13 +416,19 @@ export const LCHCompositionModelErrors = function(inputData) {
 		];
 	}
 
-	if (!LCHRecipesModelIsSubject(inputData.LCHCompositionSubjectPrimary)) {
+	if (!inputData.LCHCompositionSubjectPrimary) {
 		errors.LCHCompositionSubjectPrimary = [
 			'LCHErrorInputInvalid',
 		];
 	}
 
-	if (inputData.LCHCompositionAction.LCHRecipeInputTypes && LCHRecipeInputTypesForString(inputData.LCHCompositionAction.LCHRecipeInputTypes).indexOf(inputData.LCHCompositionSubjectPrimary.LCHRecipeOutputType) === -1) {
+	// if (!LCHRecipesModelIsSubject(inputData.LCHCompositionSubjectPrimary)) {
+	// 	errors.LCHCompositionSubjectPrimary = [
+	// 		'LCHErrorInputInvalid',
+	// 	];
+	// }
+
+	else if (inputData.LCHCompositionAction.LCHRecipeInputTypes && LCHRecipeInputTypesForString(inputData.LCHCompositionAction.LCHRecipeInputTypes).indexOf(inputData.LCHCompositionSubjectPrimary.LCHRecipeOutputType) === -1) {
 		errors.LCHCompositionSubjectPrimary = [
 			'LCHErrorInputInvalid',
 		];

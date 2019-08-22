@@ -1017,6 +1017,16 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 		});
 	});
 
+	it('returns object if LCHCompositionSubjectPrimary blank', function() {
+		deepEqual(mainModule.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
+			LCHCompositionSubjectPrimary: undefined,
+		})), {
+			LCHCompositionSubjectPrimary: [
+				'LCHErrorInputInvalid',
+			],
+		});
+	});
+
 	it('returns object if LCHCompositionSubjectPrimary not Subject', function() {
 		deepEqual(mainModule.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
 			LCHCompositionSubjectPrimary: kTesting.StubRecipeObjectValid(),
