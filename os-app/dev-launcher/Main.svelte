@@ -378,22 +378,6 @@ function ActivePromptIndexShouldUpdate (inputData) {
 	})();
 }
 
-function ActivePromptTextItemShouldUpdate(inputData) {
-	(function SetTextItem() {
-		_PromptObjects[_PromptActiveIndex].LCHPromptTextItem = inputData
-	})();
-
-	(function SetItems() {
-		ActivePromptItemsShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptTextItem ? [{
-			LCHRecipeName: _PromptObjects[_PromptActiveIndex].LCHPromptTextItem,
-			LCHRecipeCallback () {
-				return inputData;
-			},
-			LCHRecipeOutputType: 'String',
-		}] : []);
-	})();
-}
-
 let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModePreview() ? dataObjects : [];
 import OLSKThrottle from 'OLSKThrottle';
 
@@ -442,7 +426,22 @@ const mod = {
 			return _PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode;
 		};
 
-		_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = inputData
+		_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = inputData;
+	},
+	ValuePromptTextItem(inputData) {
+		if (typeof inputData === 'undefined') {
+			return _PromptObjects[_PromptActiveIndex].LCHPromptTextItem;
+		};
+
+		_PromptObjects[_PromptActiveIndex].LCHPromptTextItem = inputData;
+
+		ActivePromptItemsShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptTextItem ? [{
+			LCHRecipeName: _PromptObjects[_PromptActiveIndex].LCHPromptTextItem,
+			LCHRecipeCallback () {
+				return inputData;
+			},
+			LCHRecipeOutputType: 'String',
+		}] : []);
 	},
 	ValuePromptResultsIsVisible (inputData) {
 		if (typeof inputData === 'undefined') {
@@ -492,7 +491,7 @@ const mod = {
 				return mod.ValuePromptModeText(false) || true;
 			},
 			Tab () {
-				if (!_PromptObjects[_PromptActiveIndex].LCHPromptTextItem) {
+				if (!mod.ValuePromptTextItem()) {
 					return true;
 				};
 				
@@ -595,9 +594,9 @@ const mod = {
 		mod.ValuePromptResultsIsVisible(false);
 		mod.ValuePromptModeText(true)
 		ActivePromptFilterTextShouldUpdate('');
-		ActivePromptTextItemShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptTextItem)
+		mod.ValuePromptTextItem(mod.ValuePromptTextItem())
 
-		if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItem) {
+		if (mod.ValuePromptTextItem()) {
 			return;
 		};
 
@@ -707,7 +706,7 @@ const mod = {
 		{/if}
 
 		{#if ['LCHLauncherFilterPrompt', 'LCHLauncherActionPrompt'].indexOf(e.LCHPromptClass) === -1 && e.LCHPromptTextItemMode }
-			<input bind:value={ _PromptObjects[0].LCHPromptTextItem } on:input={ () => ActivePromptTextItemShouldUpdate(this.value) } class="LCHLauncherPromptTextItemInput" autofocus />
+			<input bind:value={ _PromptObjects[0].LCHPromptTextItem } on:input={ () => mod.ValuePromptTextItem(this.value) } class="LCHLauncherPromptTextItemInput" autofocus />
 		{/if}
 	</LCHLauncherPrompt>
 </div>
