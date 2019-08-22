@@ -28,8 +28,8 @@ const kTesting = {
 	StubRecipeObjectAction() {
 		return Object.assign(kTesting.StubRecipeObjectValid(), {
 			LCHRecipeName: 'alfa',
-			LCHRecipeInputTypes: 'bravo, charlie',
-			LCHRecipeCallback (delta, bravo) {},
+			LCHRecipeInputTypes: 'bravo',
+			LCHRecipeCallback (charlie) {},
 		});
 	},
 	StubRecipeObjectType() {
@@ -524,7 +524,10 @@ describe('LCHRecipesModelActionTakesObject', function testLCHRecipesModelActionT
 	});
 
 	it('returns true', function() {
-		deepEqual(mainModule.LCHRecipesModelActionTakesObject(kTesting.StubRecipeObjectAction()), true);
+		deepEqual(mainModule.LCHRecipesModelActionTakesObject(Object.assign(kTesting.StubRecipeObjectAction(), {
+			LCHRecipeInputTypes: 'alfa, bravo',
+			LCHRecipeCallback (charlie, delta) {},
+		})), true);
 	});
 
 });
@@ -1015,6 +1018,16 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 	});
 
 	it('returns object if LCHCompositionSubjectPrimary not Subject', function() {
+		deepEqual(mainModule.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
+			LCHCompositionSubjectPrimary: kTesting.StubRecipeObjectValid(),
+		})), {
+			LCHCompositionSubjectPrimary: [
+				'LCHErrorInputInvalid',
+			],
+		});
+	});
+
+	it('returns object if type mismatch', function() {
 		deepEqual(mainModule.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
 			LCHCompositionSubjectPrimary: kTesting.StubRecipeObjectValid(),
 		})), {
