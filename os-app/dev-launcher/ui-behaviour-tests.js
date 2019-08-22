@@ -668,6 +668,13 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				browser.assert.text(LCHLauncherObjectPromptItemSelected, 'Wikipedia');
 			});
 
+			it('allows Tab', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+				await browser.wait({element: LCHLauncherPromptTextItemInput});
+
+				browser.assert.hasClass(LCHLauncherObjectPrompt, 'LCHLauncherPromptSelected');
+			});
+
 		});
 
 	});

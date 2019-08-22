@@ -568,7 +568,7 @@ const mod = {
 			return;
 		}
 
-		mod.ValuePromptActiveIndex(!_PromptActiveIndex ? 1 : 0);
+		mod.ValuePromptActiveIndex(!_PromptActiveIndex ? 1 : (_PromptActiveIndex === 1 && _PromptObjects[2].LCHPromptIsVisible ? 2 : 0));
 	},
 	_commandHandleEventKeydownEnter (event) {
 		event.preventDefault();
