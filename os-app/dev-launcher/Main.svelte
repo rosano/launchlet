@@ -329,7 +329,7 @@ function ActivePromptItemsShouldUpdate (inputData) {
 	})();
 }
 
-import { LCHRecipesModelActionTakesObject } from './api.js';
+import { LCHRecipesModelActionTakesObject, LCHRecipeInputTypesForString } from './api.js';
 function ActivePromptItemSelectedShouldUpdate (inputData) {
 	(function SetItemSelected() {
 		_PromptObjects[_PromptActiveIndex].LCHPromptItemSelected = inputData;
@@ -359,7 +359,7 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 
 		_PromptObjects[1].LCHPromptItemsAll = _AllActions.filter(function (e) {
 			return apiTypeEquivalenceMap[inputData.LCHRecipeOutputType || 'Command'].filter(function (type) {
-				return e.LCHRecipeInputTypes.indexOf(type) !== -1;
+				return LCHRecipeInputTypesForString(e.LCHRecipeInputTypes).shift() === type;
 			}).length;
 		});
 
