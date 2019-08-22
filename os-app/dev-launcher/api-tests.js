@@ -1047,6 +1047,9 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 
 		it('returns object if LCHCompositionSubjectSecondary not Subject', function() {
 			deepEqual(mainModule.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
+				LCHCompositionAction: Object.assign(kTesting.StubRecipeObjectAction(), {
+					LCHRecipeInputTypes: 'bravo, bravo',
+				}),
 				LCHCompositionSubjectSecondary: kTesting.StubRecipeObjectValid(),
 			})), {
 				LCHCompositionSubjectSecondary: [
@@ -1055,20 +1058,32 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 			});
 		});
 
-	it('returns object if type mismatch', function() {
-		deepEqual(mainModule.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
-			LCHCompositionAction: Object.assign(kTesting.StubRecipeObjectAction(), {
-				LCHRecipeInputTypes: 'bravo, bravo',
-			}),
-			LCHCompositionSubjectSecondary: Object.assign(kTesting.StubRecipeObjectSubject(), {
-				LCHRecipeOutputType: 'alfa',
-			}),
-		})), {
-			LCHCompositionSubjectSecondary: [
-				'LCHErrorInputInvalid',
-			],
+		it('returns object if LCHCompositionSubjectSecondary type mismatch', function() {
+			deepEqual(mainModule.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
+				LCHCompositionAction: Object.assign(kTesting.StubRecipeObjectAction(), {
+					LCHRecipeInputTypes: 'bravo, bravo',
+				}),
+				LCHCompositionSubjectSecondary: Object.assign(kTesting.StubRecipeObjectSubject(), {
+					LCHRecipeOutputType: 'alfa',
+				}),
+			})), {
+				LCHCompositionSubjectSecondary: [
+					'LCHErrorInputInvalid',
+				],
+			});
 		});
-	});
+
+		it('returns object if LCHCompositionSubjectSecondary blank', function() {
+			deepEqual(mainModule.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
+				LCHCompositionAction: Object.assign(kTesting.StubRecipeObjectAction(), {
+					LCHRecipeInputTypes: 'bravo, bravo',
+				}),
+			})), {
+				LCHCompositionSubjectSecondary: [
+					'LCHErrorInputInvalid',
+				],
+			});
+		});
 
 		it('returns null', function() {
 			deepEqual(mainModule.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {

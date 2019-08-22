@@ -428,6 +428,12 @@ export const LCHCompositionModelErrors = function(inputData) {
 		];
 	}
 
+	if (inputData.LCHCompositionAction.LCHRecipeInputTypes && LCHRecipeInputTypesForString(inputData.LCHCompositionAction.LCHRecipeInputTypes).length === 2 && !inputData.LCHCompositionSubjectSecondary) {
+		errors.LCHCompositionSubjectSecondary = [
+			'LCHErrorInputInvalid',
+		];
+	};
+
 	if (inputData.LCHCompositionSubjectSecondary !== undefined) {
 		if (!LCHRecipesModelIsSubject(inputData.LCHCompositionSubjectSecondary)) {
 			errors.LCHCompositionSubjectSecondary = [
