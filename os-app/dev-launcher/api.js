@@ -422,6 +422,12 @@ export const LCHCompositionModelErrors = function(inputData) {
 		];
 	}
 
+	if (inputData.LCHCompositionAction.LCHRecipeInputTypes && LCHRecipeInputTypesForString(inputData.LCHCompositionAction.LCHRecipeInputTypes).indexOf(inputData.LCHCompositionSubjectPrimary.LCHRecipeOutputType) === -1) {
+		errors.LCHCompositionSubjectPrimary = [
+			'LCHErrorInputInvalid',
+		];
+	}
+
 	if (inputData.LCHCompositionSubjectSecondary !== undefined) {
 		if (!LCHRecipesModelIsSubject(inputData.LCHCompositionSubjectSecondary)) {
 			errors.LCHCompositionSubjectSecondary = [

@@ -1029,7 +1029,9 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 
 	it('returns object if type mismatch', function() {
 		deepEqual(mainModule.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
-			LCHCompositionSubjectPrimary: kTesting.StubRecipeObjectValid(),
+			LCHCompositionSubjectPrimary: Object.assign(kTesting.StubRecipeObjectSubject(), {
+				LCHRecipeOutputType: 'alfa',
+			}),
 		})), {
 			LCHCompositionSubjectPrimary: [
 				'LCHErrorInputInvalid',
