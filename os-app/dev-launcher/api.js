@@ -434,6 +434,12 @@ export const LCHCompositionModelErrors = function(inputData) {
 				'LCHErrorInputInvalid',
 			];
 		}
+
+		if (inputData.LCHCompositionAction.LCHRecipeInputTypes && LCHRecipeInputTypesForString(inputData.LCHCompositionAction.LCHRecipeInputTypes).indexOf(inputData.LCHCompositionSubjectSecondary.LCHRecipeOutputType) === -1) {
+			errors.LCHCompositionSubjectSecondary = [
+				'LCHErrorInputInvalid',
+			];
+		}
 	}
 
 	return Object.entries(errors).length ? errors : null;

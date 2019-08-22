@@ -1055,6 +1055,21 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 			});
 		});
 
+	it('returns object if type mismatch', function() {
+		deepEqual(mainModule.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
+			LCHCompositionAction: Object.assign(kTesting.StubRecipeObjectAction(), {
+				LCHRecipeInputTypes: 'bravo, bravo',
+			}),
+			LCHCompositionSubjectSecondary: Object.assign(kTesting.StubRecipeObjectSubject(), {
+				LCHRecipeOutputType: 'alfa',
+			}),
+		})), {
+			LCHCompositionSubjectSecondary: [
+				'LCHErrorInputInvalid',
+			],
+		});
+	});
+
 		it('returns null', function() {
 			deepEqual(mainModule.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
 				LCHCompositionSubjectSecondary: kTesting.StubRecipeObjectSubject(),
