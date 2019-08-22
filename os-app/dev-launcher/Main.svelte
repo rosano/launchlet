@@ -152,7 +152,7 @@ let _AllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
 			LCHPromptItemsAll: _AllPromptRecipes.filter(LCHRecipesModelIsSubject).filter(function (e) {
 				return !e.LCHRecipeOutputType || (Object.keys(apiTypeEquivalenceMap).indexOf(e.LCHRecipeOutputType) !== -1);
 			}),
-			LCHPromptItemSelected: null,
+			// LCHPromptItemSelected: null,
 			LCHPromptInputThrottle: undefined,
 			LCHPromptFilterText: '',
 			LCHPromptMatchStop: false,
@@ -163,7 +163,7 @@ let _AllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
 			LCHPromptHeading: OLSKLocalized('LCHLauncherActionPromptHeadingText'),
 			LCHPromptItemsVisible: [],
 			LCHPromptItemsAll: [],
-			LCHPromptItemSelected: null,
+			// LCHPromptItemSelected: null,
 			LCHPromptInputThrottle: undefined,
 			LCHPromptFilterText: '',
 			LCHPromptMatchStop: false,
@@ -330,7 +330,7 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 	(function UpdateActionsForSubject() {
 		if (!_PromptObjects[_PromptActiveIndex].LCHPromptItemSelected) {
 			_PromptObjects[1].LCHPromptItemsVisible = _PromptObjects[1].LCHPromptItemsAll = [];
-			_PromptObjects[1].LCHPromptItemSelected = null;
+			delete _PromptObjects[1].LCHPromptItemSelected;
 
 			return;
 		}
@@ -611,7 +611,7 @@ const mod = {
 
 		_PromptObjects[1].LCHPromptItemsAll = [];
 		_PromptObjects[1].LCHPromptItemsVisible = [];
-		_PromptObjects[1].LCHPromptItemSelected = null;
+		delete _PromptObjects[1].LCHPromptItemSelected;
 	},
 	_commandHandleEventKeydownBackspace (event) {
 		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
