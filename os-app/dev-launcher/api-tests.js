@@ -1007,6 +1007,16 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 		}, /LCHErrorInputInvalid/);
 	});
 
+	it('returns object if LCHCompositionAction not present', function() {
+		deepEqual(mainModule.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
+			LCHCompositionAction: undefined,
+		})), {
+			LCHCompositionAction: [
+				'LCHErrorInputNotPresent',
+			],
+		});
+	});
+
 	it('returns object if LCHCompositionAction not Action', function() {
 		deepEqual(mainModule.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
 			LCHCompositionAction: kTesting.StubRecipeObjectValid(),
@@ -1022,7 +1032,7 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 			LCHCompositionSubjectPrimary: undefined,
 		})), {
 			LCHCompositionSubjectPrimary: [
-				'LCHErrorInputInvalid',
+				'LCHErrorInputNotPresent',
 			],
 		});
 	});

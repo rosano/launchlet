@@ -408,18 +408,30 @@ export const LCHCompositionModelErrors = function(inputData) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	const errors = {};
-
-	if (!LCHRecipesModelIsAction(inputData.LCHCompositionAction)) {
-		errors.LCHCompositionAction = [
-			'LCHErrorInputInvalid',
-		];
+	if (!inputData.LCHCompositionAction) {
+		return {
+			LCHCompositionAction: [
+				'LCHErrorInputNotPresent',
+			],
+		};
 	}
 
+	if (!LCHRecipesModelIsAction(inputData.LCHCompositionAction)) {
+		return {
+			LCHCompositionAction: [
+				'LCHErrorInputInvalid',
+			],
+		};
+	}
+
+	const errors = {};
+
 	if (!inputData.LCHCompositionSubjectPrimary) {
-		errors.LCHCompositionSubjectPrimary = [
-			'LCHErrorInputInvalid',
-		];
+		return {
+			LCHCompositionSubjectPrimary: [
+				'LCHErrorInputNotPresent',
+			],
+		};
 	} else if (inputData.LCHCompositionAction.LCHRecipeInputTypes === 'Command' && LCHRecipesModelIsCommand(inputData.LCHCompositionSubjectPrimary)) {
 
 	}
