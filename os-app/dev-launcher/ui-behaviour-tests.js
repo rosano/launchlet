@@ -10,8 +10,10 @@ Object.entries({
 	LCHLauncherSubjectPrompt: '.LCHLauncherSubjectPrompt',
 	LCHLauncherSubjectPromptHeading: '.LCHLauncherSubjectPrompt .LCHLauncherPromptHeading',
 	LCHLauncherSubjectPromptPlaceholder: '.LCHLauncherSubjectPromptPlaceholder',
+	LCHLauncherSubjectPromptItemSelected: '.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem',
 	LCHLauncherActionPrompt: '.LCHLauncherActionPrompt',
 	LCHLauncherActionPromptHeading: '.LCHLauncherActionPrompt .LCHLauncherPromptHeading',
+	LCHLauncherActionPromptItemSelected: '.LCHLauncherActionPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem',
 	LCHLauncherPromptTextItemInput: '.LCHLauncherPromptTextItemInput',
 
 	LCHLauncherListItem: '.LCHLauncherResultListItem',
@@ -19,8 +21,6 @@ Object.entries({
 	LCHLauncherPipeItem: '.LCHLauncherPipeItem',
 	LCHLauncherResultList: '.LCHLauncherResultList',
 	LCHLauncherResultListItem: '.LCHLauncherResultListItem',
-	LCHLauncherSubjectPromptItemSelected: '.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem',
-	LCHLauncherActionPromptItemSelected: '.LCHLauncherActionPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
