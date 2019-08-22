@@ -126,7 +126,7 @@ async function apiStart(inputData) {
 				LCHInstanceOptions: Object.assign(inputData.LCHComponentDescriptorProps, {
 					completionHandler: function () {
 						secondaryComponent.set(null);
-						handleDidFinish();
+						mod.commandExit();
 					},
 				}),
 			});
@@ -387,7 +387,7 @@ async function LauncherShouldTerminate () {
 		await apiStart(_PromptObjects[0].LCHPromptItemSelected);
 	}
 
-	handleDidFinish();
+	mod.commandExit();
 }
 
 function ActivePromptTextItemShouldUpdate(inputData) {
@@ -441,14 +441,6 @@ afterUpdate(function () {
 		inline: 'nearest',
 	});
 });
-
-function handleDidFinish() {
-	if (typeof completionHandler !== 'function') {
-		return;
-	}
-
-	return completionHandler();
-}
 
 import { LCHLauncherKeyboardEventIsTextInput } from './ui-logic.js';
 import { LCHCompositionModelErrors } from './api.js'
