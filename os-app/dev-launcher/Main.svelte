@@ -140,15 +140,24 @@ import { LCHLauncherUIRecipesForMode } from './ui-logic.js';
 let _PromptObjects = [];
 let _PromptActiveIndex = 0;
 let _AllPromptRecipes = LCHLauncherUIRecipesForMode(allRecipes, LCHOptionsObject().runMode);
+let _AllSubjects = _AllPromptRecipes.filter(LCHRecipesModelIsSubject).filter(function (e) {
+	return !e.LCHRecipeOutputType || (Object.keys(apiTypeEquivalenceMap).indexOf(e.LCHRecipeOutputType) !== -1);
+});
 let _AllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
+let _ActionableTypesForPrimarySubject = Object.keys(apiTypeEquivalenceMap).filter(function (type) {
+	return _AllActions.filter(function (e) {
+		return LCHRecipeInputTypesForString(e.LCHRecipeInputTypes).shift() === type;
+	}).length;
+});
+
 (function StartPromptObjects() {
 	if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
 		 return _PromptObjects.push(...[{
 			LCHPromptClass: 'LCHLauncherSubjectPrompt',
 			LCHPromptHeading: OLSKLocalized('LCHLauncherSubjectPromptHeadingText'),
 			LCHPromptItemsVisible: [],
-			LCHPromptItemsAll: _AllPromptRecipes.filter(LCHRecipesModelIsSubject).filter(function (e) {
-				return !e.LCHRecipeOutputType || (Object.keys(apiTypeEquivalenceMap).indexOf(e.LCHRecipeOutputType) !== -1);
+			LCHPromptItemsAll: _AllSubjects.filter(function (e) {
+				return !e.LCHRecipeOutputType || _ActionableTypesForPrimarySubject.indexOf(e.LCHRecipeOutputType) !== -1;
 			}),
 			// LCHPromptItemSelected: null,
 			LCHPromptInputThrottle: undefined,
