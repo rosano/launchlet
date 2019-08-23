@@ -34,7 +34,6 @@ describe('LCHPrimitiveBoolRecipe', function testLCHPrimitiveBoolRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHPrimitiveBoolRecipe(), {
-			LCHRecipeName: 'Boolean',
 			LCHRecipeSignature: 'Bool',
 			LCHRecipeCallback: mainModule.LCHPrimitiveBoolCallback,
 		});
