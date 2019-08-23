@@ -19,7 +19,7 @@ export const LCHSearchActionURLFrom = function(param1, param2) {
 };
 
 export const LCHSearchWithCallback = function(param1, param2) {
-	return this.api.fn('LCHURLOpen')(LCHSearchActionURLFrom(param2.LCHRecipeCallback(), param1));
+	return this.api.fn('LCHURLOpen')(LCHSearchActionURLFrom(param2, param1));
 };
 
 export const LCHSearchWithRecipe = function() {

@@ -53,11 +53,7 @@ describe('LCHSearchWithCallback', function testLCHSearchWithCallback() {
 					};
 				},
 			},
-		})('alfa', {
-			LCHRecipeCallback: function () {
-				return `example.com/LCHSEARCHTOKEN1+LCHSEARCHTOKEN2`;
-			},
-		}), ['example.com/alfa', 'bravo']);
+		})('alfa', `example.com/LCHSEARCHTOKEN1+LCHSEARCHTOKEN2`), ['example.com/alfa', 'bravo']);
 	});
 
 });
@@ -86,11 +82,7 @@ describe('LCHSearchForCallback', function testLCHSearchForCallback() {
 					};
 				},
 			},
-		})({
-			LCHRecipeCallback: function () {
-				return `example.com/LCHSEARCHTOKEN1+LCHSEARCHTOKEN2`;
-			},
-		}, 'alfa'), ['example.com/alfa', 'bravo']);
+		})(`example.com/LCHSEARCHTOKEN1+LCHSEARCHTOKEN2`, 'alfa'), ['example.com/alfa', 'bravo']);
 	});
 
 });
