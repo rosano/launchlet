@@ -649,7 +649,6 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 
 				browser.assert.elements(LCHLauncherObjectPrompt, 0);
 
-				browser.OLSKFireKeyboardEvent(browser.window, 's');
 				browser.OLSKFireKeyboardEvent(browser.window, 'w');
 				await browser.wait({element: LCHLauncherActionPromptItemSelected});
 				browser.assert.elements(LCHLauncherActionPromptItemSelected, 1);
@@ -668,18 +667,40 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				browser.assert.text(LCHLauncherObjectPromptItemSelected, 'Wikipedia');
 			});
 
-			it('allows Tab', async function() {
+			it('selects LCHLauncherObjectPrompt on Tab', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 				await browser.wait({element: LCHLauncherPromptTextItemInput});
 
 				browser.assert.hasClass(LCHLauncherObjectPrompt, 'LCHLauncherPromptSelected');
 			});
 
-			it('ignores Dot', async function() {
+			it('ignores Dot if not String', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, '.');
 				await browser.wait({element: LCHLauncherPromptTextItemInput});
 				
 				browser.assert.elements(LCHLauncherPromptTextItemInput, 0);
+			});
+
+			it('selects LCHLauncherSubjectPrompt on Tab', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+				await browser.wait({element: LCHLauncherPromptTextItemInput});
+
+				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
+			});
+
+			it('focuses LCHLauncherObjectPrompt if one action', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'w');
+				await browser.wait({element: LCHLauncherPromptTextItemInput});
+
+				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+				await browser.wait({element: LCHLauncherPromptTextItemInput});
+
+				browser.assert.hasClass(LCHLauncherObjectPrompt, 'LCHLauncherPromptSelected');
+			});
+				
+			it('shows LCHLauncherPromptTextItemInput if String', function() {
+				browser.assert.elements(LCHLauncherPromptTextItemInput, 1);
+				browser.assert.attribute(LCHLauncherPromptTextItemInput, 'autofocus', '');
 			});
 
 		});

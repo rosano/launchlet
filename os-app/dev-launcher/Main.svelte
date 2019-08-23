@@ -455,12 +455,25 @@ const mod = {
 			_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
 		})();
 
-		if (!_PromptObjects[inputData].LCHPromptItemsAll.length) {
+		if (!_PromptObjects[1].LCHPromptItemsAll.length) {
 			return;
 		};
 
 		(function SetIndexActive() {
 			_PromptActiveIndex = inputData;
+		})();
+
+		(function ActivateDotMode() {
+			if (_PromptActiveIndex !== 2) {
+				return;
+			};
+
+			if (LCHRecipeInputTypesForString(_PromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop() !== 'String') {
+				return;
+			};
+
+			mod.ValuePromptModeText(true)
+			mod.ValuePromptTextItem(mod.ValuePromptTextItem())
 		})();
 	},
 	ValuePromptModeText (inputData) {
@@ -572,7 +585,21 @@ const mod = {
 			return;
 		}
 
-		mod.ValuePromptActiveIndex(!_PromptActiveIndex ? 1 : (_PromptActiveIndex === 1 && _PromptObjects[2].LCHPromptIsVisible ? 2 : 0));
+		mod.ValuePromptActiveIndex((function () {
+			if (!_PromptActiveIndex && _PromptObjects[2].LCHPromptIsVisible && _PromptObjects[1].LCHPromptItemsAll.length === 1) {
+				return 2;
+			};
+
+			if (!_PromptActiveIndex) {
+				return 1;
+			};
+
+			if (_PromptActiveIndex === 1 && _PromptObjects[2].LCHPromptIsVisible) {
+				return 2;
+			};
+
+			return 0;
+		})());
 	},
 	_commandHandleEventKeydownEnter (event) {
 		event.preventDefault();
