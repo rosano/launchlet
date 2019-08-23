@@ -727,6 +727,16 @@ describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenc
 		});
 	});
 
+	it('maps if _LCHRecipeNonEquivalenceTypes', function() {
+		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([kTesting.StubRecipeObjectType(), Object.assign(kTesting.StubRecipeObjectType(), {
+			LCHRecipeSignature: 'echo',
+			_LCHRecipeNonEquivalenceTypes: 'alfa',
+		})]), {
+			alfa: ['alfa'],
+			echo: ['echo'],
+		});
+	});
+
 });
 
 describe('LCHAPIActionsForType', function testLCHAPIActionsForType() {

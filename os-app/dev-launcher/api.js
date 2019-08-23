@@ -286,6 +286,14 @@ export const LCHAPITypeEquivalenceMapForRecipes = function(inputData) {
 
 	return validRecipes.reduce(function (coll, item) {
 		coll[item.LCHRecipeSignature] = validRecipes.filter(function (e) {
+			if (e._LCHRecipeNonEquivalenceTypes && e._LCHRecipeNonEquivalenceTypes.includes(item.LCHRecipeSignature)) {
+				return false;
+			};
+
+			if (item._LCHRecipeNonEquivalenceTypes && item._LCHRecipeNonEquivalenceTypes.includes(e.LCHRecipeSignature)) {
+				return false;
+			};
+
 			return item.LCHRecipeCallback(e.LCHRecipeOutputTypeCanonicalExampleCallback());
 		}).map(function (e) {
 			return e.LCHRecipeSignature;

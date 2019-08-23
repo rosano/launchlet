@@ -23,5 +23,6 @@ export const LCHPrimitiveServiceSearchURLTemplateRecipe = function() {
 		LCHRecipeOutputType: 'Bool',
 		LCHRecipeOutputTypeCanonicalExampleCallback: LCHPrimitiveStringCanonicalExampleCallback,
 		LCHRecipeSignature: 'ServiceSearchURLTemplate',
+		_LCHRecipeNonEquivalenceTypes: 'String,URL',
 	};
 };
