@@ -11,7 +11,7 @@ import * as LCHCopyToClipboard from './LCHCopyToClipboard/main.js';
 import * as LCHDateLocalOffsetSubtracted from './LCHDateLocalOffsetSubtracted/main.js';
 import * as LCHLargeType from './LCHLargeType/main.js';
 import * as LCHRunCommand from './LCHRunCommand/main.js';
-import * as LCHSearchWith from './LCHSearchWith/main.js';
+import * as LCHSearchAction from './LCHSearchAction/main.js';
 import * as LCHServiceSearchWikipedia from './LCHServiceSearchWikipedia/main.js';
 import * as LCHURLOpen from './LCHURLOpen/main.js';
 
@@ -30,7 +30,7 @@ export const LCHLauncherStandardRecipes = function() {
 		LCHDateLocalOffsetSubtracted,
 		LCHLargeType,
 		LCHRunCommand,
-		LCHSearchWith,
+		LCHSearchAction,
 		LCHServiceSearchWikipedia,
 		LCHURLOpen,
 	].map(function (e) {
