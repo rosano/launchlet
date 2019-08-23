@@ -261,7 +261,7 @@ describe('LCHRecipesModelIsCommand', function testLCHRecipesModelIsCommand() {
 
 	it('returns false if arguments', function() {
 		deepEqual(mainModule.LCHRecipesModelIsCommand(Object.assign(kTesting.StubRecipeObjectCommand(), {
-			LCHRecipeCallback (alfa) {},
+			LCHRecipeInputTypes: 'alfa',
 		})), false);
 	});
 
@@ -293,7 +293,7 @@ describe('LCHRecipesModelIsSubject', function testLCHRecipesModelIsSubject() {
 
 	it('returns false if arguments', function() {
 		deepEqual(mainModule.LCHRecipesModelIsSubject(Object.assign(kTesting.StubRecipeObjectSubject(), {
-			LCHRecipeCallback (alfa) {},
+			LCHRecipeInputTypes: 'alfa',
 		})), false);
 	});
 

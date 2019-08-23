@@ -89,7 +89,7 @@ export const LCHRecipesModelIsCommand = function(inputData) {
 		return false;
 	}
 	
-	if (inputData.LCHRecipeCallback.length) {
+	if (inputData.LCHRecipeInputTypes) {
 		return false;
 	}
 
@@ -109,7 +109,7 @@ export const LCHRecipesModelIsSubject = function(inputData) {
 		return false;
 	}
 	
-	if (inputData.LCHRecipeCallback.length) {
+	if (inputData.LCHRecipeInputTypes) {
 		return false;
 	}
 
