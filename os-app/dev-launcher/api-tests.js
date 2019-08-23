@@ -323,17 +323,17 @@ describe('LCHRecipesModelIsAction', function testLCHRecipesModelIsAction() {
 		})), false);
 	});
 
-	it('returns false if no arguments', function() {
-		deepEqual(mainModule.LCHRecipesModelIsAction(Object.assign(kTesting.StubRecipeObjectAction(), {
-			LCHRecipeCallback () {},
-		})), false);
-	});
-
 	it('returns false if no LCHRecipeInputTypes', function() {
 		deepEqual(mainModule.LCHRecipesModelIsAction(Object.assign(kTesting.StubRecipeObjectAction(), {
 			LCHRecipeInputTypes: undefined,
 		})), false);
 	});
+
+	// it('returns false if no arguments', function() {
+	// 	deepEqual(mainModule.LCHRecipesModelIsAction(Object.assign(kTesting.StubRecipeObjectAction(), {
+	// 		LCHRecipeCallback () {},
+	// 	})), false);
+	// });
 
 	it('returns true', function() {
 		deepEqual(mainModule.LCHRecipesModelIsAction(kTesting.StubRecipeObjectAction()), true);

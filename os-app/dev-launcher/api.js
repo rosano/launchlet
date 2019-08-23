@@ -133,9 +133,9 @@ export const LCHRecipesModelIsAction = function(inputData) {
 		return false;
 	}
 	
-	if (!inputData.LCHRecipeCallback.length) {
-		return false;
-	}
+	// if (!inputData.LCHRecipeCallback.length) {
+	// 	return false;
+	// }
 
 	return true;
 };
