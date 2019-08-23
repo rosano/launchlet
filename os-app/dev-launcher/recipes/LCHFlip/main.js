@@ -3,7 +3,7 @@ export const LCHFlip = function(param1, param2) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	return (function() {
+	return function() {
 		return param1.apply(param2, Array.from(arguments).reverse());
-	});
+	};
 };
