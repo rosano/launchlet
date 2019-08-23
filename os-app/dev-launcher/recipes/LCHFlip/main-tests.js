@@ -4,30 +4,32 @@ import * as mainModule from './main.js';
 
 describe('LCHFlip', function testLCHFlip() {
 
-	it('throws error if param1 not function', function() {
+	it('throws error if not function', function() {
 		throws(function() {
-			mainModule.LCHFlip(null, []);
+			mainModule.LCHFlip(null);
 		}, /LCHErrorInputInvalid/);
 	});
 
-	it('throws error if param2 not array', function() {
-		throws(function() {
-			mainModule.LCHFlip(function() {}, null);
-		}, /LCHErrorInputInvalid/);
+	it('returns function', function() {
+		deepEqual(typeof mainModule.LCHFlip(function() {}, []), 'function');
 	});
 
-	it('calls api with result', function() {
-		deepEqual(mainModule.LCHFlip(function(param1, param2) {
-			return [param1, param2];
-		}, ['alfa', 'bravo']), ['bravo', 'alfa']);
-	});
-
-	it('passes param3 to this', function() {
+	it('passes param2 to this', function() {
 		deepEqual(mainModule.LCHFlip(function() {
 			return this.alfa;
-		}, [], {
+		}, {
 			alfa: 'bravo',
-		}), 'bravo');
+		})(), 'bravo');
+	});
+
+	context('function', function () {
+		
+		it('reverses parameters', function () {
+			deepEqual(mainModule.LCHFlip(function() {
+				return Array.from(arguments);
+			})('alfa', 'bravo'), ['bravo', 'alfa']);
+		});
+	
 	});
 
 });
