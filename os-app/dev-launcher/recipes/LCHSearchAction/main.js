@@ -1,4 +1,4 @@
-export const LCHSearchWithURLFrom = function(param1, param2) {
+export const LCHSearchActionURLFrom = function(param1, param2) {
 	if (typeof param1 !== 'string') {
 		throw new Error('LCHErrorInputInvalid');
 	}
@@ -19,7 +19,7 @@ export const LCHSearchWithURLFrom = function(param1, param2) {
 };
 
 export const LCHSearchWithCallback = function(param1, param2) {
-	return this.api.fn('LCHURLOpen')(LCHSearchWithURLFrom(param2.LCHRecipeCallback(), param1));
+	return this.api.fn('LCHURLOpen')(LCHSearchActionURLFrom(param2.LCHRecipeCallback(), param1));
 };
 
 export const LCHSearchWithRecipe = function() {
