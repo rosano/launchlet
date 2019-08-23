@@ -76,7 +76,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 
 	});
 
-	context('LCHLauncherModePipe', function () {
+	context.only('LCHLauncherModePipe', function () {
 
 		before(function() {
 			return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
@@ -673,6 +673,13 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				await browser.wait({element: LCHLauncherPromptTextItemInput});
 
 				browser.assert.hasClass(LCHLauncherObjectPrompt, 'LCHLauncherPromptSelected');
+			});
+
+			it('ignores Dot', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, '.');
+				await browser.wait({element: LCHLauncherPromptTextItemInput});
+				
+				browser.assert.elements(LCHLauncherPromptTextItemInput, 0);
 			});
 
 		});

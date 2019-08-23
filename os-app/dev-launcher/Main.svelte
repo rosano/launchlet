@@ -622,7 +622,7 @@ const mod = {
 
 		event.preventDefault();
 
-		if (_PromptActiveIndex === 1) {
+		if (_PromptActiveIndex !== 0) {
 			return;
 		};
 		
