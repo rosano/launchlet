@@ -21,6 +21,7 @@ export const LCHSearchActionURLFrom = function(param1, param2) {
 export const LCHSearchWithCallback = function(param1, param2) {
 	return this.api.fn('LCHURLOpen')(LCHSearchActionURLFrom(param2.LCHRecipeCallback(), param1));
 };
+import * as mainModule from './main.js';
 
 export const LCHSearchWithRecipe = function() {
 	return {
@@ -28,5 +29,19 @@ export const LCHSearchWithRecipe = function() {
 		LCHRecipeSignature: 'LCHSearchWith',
 		LCHRecipeInputTypes: 'String,ServiceSearchURLTemplate',
 		LCHRecipeCallback: LCHSearchWithCallback,
+	};
+};
+
+import { LCHFlip } from '../LCHFlip/main.js';
+export const LCHSearchForCallback = function() {
+	return LCHFlip(LCHSearchWithCallback, this)(...arguments);
+};
+
+export const LCHSearchForRecipe = function() {
+	return {
+		LCHRecipeName: 'Search For',
+		LCHRecipeSignature: 'LCHSearchFor',
+		LCHRecipeInputTypes: 'ServiceSearchURLTemplate,String',
+		LCHRecipeCallback: LCHSearchForCallback,
 	};
 };

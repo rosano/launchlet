@@ -74,3 +74,36 @@ describe('LCHSearchWithRecipe', function testLCHSearchWithRecipe() {
 	});
 
 });
+
+describe('LCHSearchForCallback', function testLCHSearchForCallback() {
+
+	it('calls LCHFlip with LCHSearchWithCallback', async function() {
+		deepEqual(mainModule.LCHSearchForCallback.bind({
+			api: {
+				fn () {
+					return function (inputData) {
+						return [inputData, 'bravo'];
+					};
+				},
+			},
+		})({
+			LCHRecipeCallback: function () {
+				return `example.com/LCHSEARCHTOKEN1+LCHSEARCHTOKEN2`;
+			},
+		}, 'alfa'), ['example.com/alfa', 'bravo']);
+	});
+
+});
+
+describe('LCHSearchForRecipe', function testLCHSearchForRecipe() {
+
+	it('returns LCHRecipe', async function() {
+		deepEqual(mainModule.LCHSearchForRecipe(), {
+			LCHRecipeName: 'Search For',
+			LCHRecipeSignature: 'LCHSearchFor',
+			LCHRecipeInputTypes: 'ServiceSearchURLTemplate,String',
+			LCHRecipeCallback: mainModule.LCHSearchForCallback,
+		});
+	});
+
+});
