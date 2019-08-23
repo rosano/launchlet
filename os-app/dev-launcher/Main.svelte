@@ -369,15 +369,19 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 	})();
 
 	(function UpdateObjectsForAction() {
-		if (_PromptActiveIndex !== 1) {
+		if (_PromptActiveIndex > 1) {
 			return;
 		}
 
-		_PromptObjects[2].LCHPromptIsVisible = LCHRecipesModelActionTakesObject(_PromptObjects[_PromptActiveIndex].LCHPromptItemSelected);
+		if (!_PromptObjects[1].LCHPromptItemSelected) {
+			return;
+		}
+
+		_PromptObjects[2].LCHPromptIsVisible = LCHRecipesModelActionTakesObject(_PromptObjects[1].LCHPromptItemSelected);
 
 		_PromptObjects[2].LCHPromptItemsAll = !_PromptObjects[2].LCHPromptIsVisible ? [] : _AllSubjects.filter(function (e) {
-			return apiTypeEquivalenceMap[LCHRecipeInputTypesForString(_PromptObjects[_PromptActiveIndex].LCHPromptItemSelected.LCHRecipeInputTypes).pop()].indexOf(e.LCHRecipeOutputType) !== -1;
-			});
+			return apiTypeEquivalenceMap[LCHRecipeInputTypesForString(_PromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop()].indexOf(e.LCHRecipeOutputType) !== -1;
+		});
 
 		_PromptObjects[2].LCHPromptItemsVisible = _PromptObjects[2].LCHPromptItemsAll;
 
