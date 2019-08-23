@@ -517,11 +517,11 @@ describe('LCHRecipesModelActionTakesObject', function testLCHRecipesModelActionT
 		})), false);
 	});
 
-	it('returns false if less than two arguments', function() {
-		deepEqual(mainModule.LCHRecipesModelActionTakesObject(Object.assign(kTesting.StubRecipeObjectAction(), {
-			LCHRecipeCallback (alfa) {},
-		})), false);
-	});
+	// it('returns false if less than two arguments', function() {
+	// 	deepEqual(mainModule.LCHRecipesModelActionTakesObject(Object.assign(kTesting.StubRecipeObjectAction(), {
+	// 		LCHRecipeCallback (alfa) {},
+	// 	})), false);
+	// });
 
 	it('returns true', function() {
 		deepEqual(mainModule.LCHRecipesModelActionTakesObject(Object.assign(kTesting.StubRecipeObjectAction(), {
@@ -554,11 +554,11 @@ describe('LCHRecipesModelActionTakesParams', function testLCHRecipesModelActionT
 		})), false);
 	});
 
-	it('returns false if arguments count not match LCHRecipeInputTypes', function() {
-		deepEqual(mainModule.LCHRecipesModelActionTakesParams(Object.assign(kTesting.StubRecipeObjectAction(), {
-			LCHRecipeCallback (alfa, bravo, charlie) {},
-		})), false);
-	});
+	// it('returns false if arguments count not match LCHRecipeInputTypes', function() {
+	// 	deepEqual(mainModule.LCHRecipesModelActionTakesParams(Object.assign(kTesting.StubRecipeObjectAction(), {
+	// 		LCHRecipeCallback (alfa, bravo, charlie) {},
+	// 	})), false);
+	// });
 
 	it('returns true', function() {
 		deepEqual(mainModule.LCHRecipesModelActionTakesParams(Object.assign(kTesting.StubRecipeObjectAction(), {

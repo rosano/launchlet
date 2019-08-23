@@ -217,9 +217,9 @@ export const LCHRecipesModelActionTakesObject = function(inputData) {
 		return false;
 	}
 	
-	if (inputData.LCHRecipeCallback.length < 2) {
-		return false;
-	}
+	// if (inputData.LCHRecipeCallback.length < 2) {
+	// 	return false;
+	// }
 
 	return true;
 };
@@ -237,9 +237,9 @@ export const LCHRecipesModelActionTakesParams = function(inputData) {
 		return false;
 	}
 	
-	if (inputData.LCHRecipeCallback.length !== LCHRecipeInputTypesForString(inputData.LCHRecipeInputTypes).length) {
-		return false;
-	}
+	// if (inputData.LCHRecipeCallback.length !== LCHRecipeInputTypesForString(inputData.LCHRecipeInputTypes).length) {
+	// 	return false;
+	// }
 
 	return true;
 };
