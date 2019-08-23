@@ -48,7 +48,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 			browser.fill(LCHLauncherFilterInput, 'a');
 			await browser.wait({element: LCHLauncherListItem});
 
-			browser.assert.elements(LCHLauncherListItem, 5);
+			browser.assert.elements(LCHLauncherListItem, 6);
 		});
 
 	});
@@ -71,7 +71,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 			browser.fill(LCHLauncherFilterInput, 'a');
 			await browser.wait({element: LCHLauncherListItem});
 
-			browser.assert.elements(LCHLauncherListItem, 5);
+			browser.assert.elements(LCHLauncherListItem, 6);
 		});
 
 	});
@@ -123,7 +123,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				await browser.wait({element: LCHLauncherResultList});
 
 				browser.assert.elements(LCHLauncherResultList, 1);
-				browser.assert.elements(LCHLauncherResultListItem, 5);
+				browser.assert.elements(LCHLauncherResultListItem, 6);
 			});
 
 			it('selects first list item', async function() {
@@ -144,7 +144,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				await browser.wait({element: LCHLauncherResultList});
 				browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
 				browser.assert.elements(LCHLauncherResultList, 1);
-				browser.assert.elements(LCHLauncherResultListItem, 5);
+				browser.assert.elements(LCHLauncherResultListItem, 6);
 			});
 
 			it('skips throttle on ArrowUp', async function() {
@@ -159,7 +159,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				await browser.wait({element: LCHLauncherResultList});
 				browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
 				browser.assert.elements(LCHLauncherResultList, 1);
-				browser.assert.elements(LCHLauncherResultListItem, 5);
+				browser.assert.elements(LCHLauncherResultListItem, 6);
 			});
 
 			it('hides list on Escape', async function() {
@@ -222,7 +222,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 
 				it('keeps matched results', async function() {
 					browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
-					browser.assert.elements(LCHLauncherResultListItem, 5);
+					browser.assert.elements(LCHLauncherResultListItem, 6);
 				});
 
 				it('passes MatchStop to LCHLauncherPromptHeading', async function() {
@@ -236,7 +236,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					deepEqual(browser.query(LCHLauncherSubjectPromptHeading).textContent, 'AXX');
 					browser.assert.elements(LCHLauncherResultList, 1);
 					browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
-					browser.assert.elements(LCHLauncherResultListItem, 5);
+					browser.assert.elements(LCHLauncherResultListItem, 6);
 				});
 
 				it('removes MatchStop on keydown', async function() {
@@ -261,7 +261,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 
 					browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
 					browser.assert.elements(LCHLauncherResultList, 1);
-					browser.assert.elements(LCHLauncherResultListItem, 5);
+					browser.assert.elements(LCHLauncherResultListItem, 6);
 
 					browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
 					await browser.wait({element: LCHLauncherSubjectPromptItemSelected});
@@ -274,7 +274,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				it('keeps results', function() {
 					browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
 					browser.assert.elements(LCHLauncherResultList, 1);
-					browser.assert.elements(LCHLauncherResultListItem, 5);
+					browser.assert.elements(LCHLauncherResultListItem, 6);
 				});
 
 			});
@@ -305,7 +305,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					deepEqual(browser.query(LCHLauncherSubjectPromptHeading).textContent, 'A');
 					browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
 					browser.assert.elements(LCHLauncherResultList, 1);
-					browser.assert.elements(LCHLauncherResultListItem, 5);
+					browser.assert.elements(LCHLauncherResultListItem, 6);
 
 					browser.OLSKFireKeyboardEvent(browser.window, 'b');
 					await browser.wait({element: LCHLauncherResultList});
@@ -905,7 +905,7 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 			browser.fill(LCHLauncherFilterInput, 'a');
 			await browser.wait({element: LCHLauncherListItem});
 			
-			browser.assert.elements(LCHLauncherListItem, 5);
+			browser.assert.elements(LCHLauncherListItem, 6);
 		});
 
 		it('selects first item', async function() {
