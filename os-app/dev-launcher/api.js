@@ -294,7 +294,7 @@ export const LCHAPITypeEquivalenceMapForRecipes = function(inputData) {
 				return false;
 			};
 
-			return item.LCHRecipeCallback(e.LCHRecipeOutputTypeCanonicalExampleCallback());
+			return e.LCHRecipeCallback(item.LCHRecipeOutputTypeCanonicalExampleCallback());
 		}).map(function (e) {
 			return e.LCHRecipeSignature;
 		});

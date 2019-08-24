@@ -697,6 +697,34 @@ describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenc
 		});
 	});
 
+	it('maps if one equivalent', function() {
+		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([
+			{
+				LCHRecipeSignature: 'String',
+				LCHRecipeCallback (inputData) {
+					return typeof inputData === 'string';
+				},
+				LCHRecipeOutputType: 'Bool',
+				LCHRecipeOutputTypeCanonicalExampleCallback () {
+					return 'alfa';
+				},
+			},
+			{
+				LCHRecipeSignature: 'URL',
+				LCHRecipeCallback (inputData) {
+					return inputData === 'http';
+				},
+				LCHRecipeOutputType: 'Bool',
+				LCHRecipeOutputTypeCanonicalExampleCallback () {
+					return 'http';
+				},
+			},
+		]), {
+			String: ['String'],
+			URL: ['String', 'URL'],
+		});
+	});
+
 	it('excludes if duplicate', function() {
 		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([
 			Object.assign(kTesting.StubRecipeObjectType(), {
