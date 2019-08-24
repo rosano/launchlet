@@ -7,7 +7,7 @@ export const LCHPrimitiveURLCallback = function(inputData) {
 		return false;
 	}
 
-	if (!(new URLParser(inputData)).hostname) {
+	if (!(new URLParser(inputData, {})).hostname) { // To parse an input independently of the browser's current URL (e.g. for functionality parity with the library in a Node environment), pass an empty location object as the second parameter
 		return false;
 	}
 
