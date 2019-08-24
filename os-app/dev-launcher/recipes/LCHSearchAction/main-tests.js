@@ -26,6 +26,10 @@ describe('LCHSearchActionURLFrom', function testLCHSearchActionURLFrom() {
 			deepEqual(mainModule.LCHSearchActionURLFrom('alfa?LCHSEARCHTOKEN', 'bravo'), 'alfa?bravo');
 		});
 
+		it('replaces case insensitive', function() {
+			deepEqual(mainModule.LCHSearchActionURLFrom('alfa?lchsearchtoken', 'bravo'), 'alfa?bravo');
+		});
+
 		it('substitutes spaces', function() {
 			deepEqual(mainModule.LCHSearchActionURLFrom('LCHSEARCHTOKEN', 'bravo charlie'), 'bravo+charlie');
 		});
