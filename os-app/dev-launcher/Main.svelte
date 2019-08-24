@@ -557,6 +557,9 @@ const mod = {
 				return mod.ValuePromptDotModeEnabled(false) || true;
 			},
 			Tab () {
+				event.preventDefault();
+				event.stopPropagation();
+				
 				if (!mod.ValuePromptDotModeText()) {
 					return true;
 				};
