@@ -330,6 +330,7 @@ function ActivePromptItemsShouldUpdate (inputData) {
 }
 
 import { LCHRecipesModelActionTakesObject, LCHRecipeInputTypesForString } from './api.js';
+import { LCHLauncherActionComparator } from './ui-logic.js';
 function ActivePromptItemSelectedShouldUpdate (inputData) {
 	(function SetItemSelected() {
 		_PromptObjects[_PromptActiveIndex].LCHPromptItemSelected = inputData;
@@ -361,7 +362,7 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 			return apiTypeEquivalenceMap[inputData.LCHRecipeOutputType || 'Command'].filter(function (type) {
 				return LCHRecipeInputTypesForString(e.LCHRecipeInputTypes).shift() === type;
 			}).length;
-		});
+		}).sort(LCHLauncherActionComparator(inputData.LCHRecipeOutputType || 'Command'));
 
 		_PromptObjects[1].LCHPromptItemsVisible = _PromptObjects[1].LCHPromptItemsAll;
 
@@ -428,6 +429,7 @@ afterUpdate(function () {
 import { LCHLauncherKeyboardEventIsTextInput } from './ui-logic.js';
 import { LCHCompositionModelErrors } from './api.js'
 import { LCHRunCommandRecipe } from './recipes/LCHRunCommand/main.js';
+import { LCHPrimitiveURLCallback } from './recipes/PrimitiveURL/main.js';
 const mod = {
 
 	// VALUE
@@ -495,7 +497,7 @@ const mod = {
 			LCHRecipeCallback () {
 				return inputData;
 			},
-			LCHRecipeOutputType: 'String',
+			LCHRecipeOutputType: LCHPrimitiveURLCallback(_PromptObjects[_PromptActiveIndex].LCHPromptTextItem) ? 'URL' : 'String',
 		}] : []);
 	},
 	ValuePromptResultsIsVisible (inputData) {

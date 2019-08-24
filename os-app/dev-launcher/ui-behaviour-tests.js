@@ -453,6 +453,13 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					browser.assert.elements(LCHLauncherPipeItem, 1)
 				});
 
+				it('upates actions for type', async function() {
+					browser.fill(LCHLauncherPromptTextItemInput, 'https://example.com')
+					await browser.wait({element: LCHLauncherPipeItem});
+
+					browser.assert.text(LCHLauncherPipeItem, 'Open URL')
+				});
+
 				it('shows no actions if empty', async function() {
 					browser.fill(LCHLauncherPromptTextItemInput, '')
 					await browser.wait({element: LCHLauncherPromptTextItemInput});
