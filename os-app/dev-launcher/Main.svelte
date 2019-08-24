@@ -476,7 +476,7 @@ const mod = {
 			};
 
 			mod.ValuePromptDotModeEnabled(true)
-			mod.ValuePromptDotMode(mod.ValuePromptDotMode())
+			mod.ValuePromptDotModeText(mod.ValuePromptDotModeText())
 		})();
 	},
 	ValuePromptDotModeEnabled (inputData) {
@@ -486,7 +486,7 @@ const mod = {
 
 		_PromptObjects[_PromptActiveIndex].LCHPromptDotModeEnabled = inputData;
 	},
-	ValuePromptDotMode(inputData) {
+	ValuePromptDotModeText(inputData) {
 		if (typeof inputData === 'undefined') {
 			return _PromptObjects[_PromptActiveIndex].LCHPromptDotModeText;
 		};
@@ -557,7 +557,7 @@ const mod = {
 				return mod.ValuePromptDotModeEnabled(false) || true;
 			},
 			Tab () {
-				if (!mod.ValuePromptDotMode()) {
+				if (!mod.ValuePromptDotModeText()) {
 					return true;
 				};
 				
@@ -674,9 +674,9 @@ const mod = {
 		mod.ValuePromptResultsIsVisible(false);
 		mod.ValuePromptDotModeEnabled(true)
 		ActivePromptFilterTextShouldUpdate('');
-		mod.ValuePromptDotMode(mod.ValuePromptDotMode())
+		mod.ValuePromptDotModeText(mod.ValuePromptDotModeText())
 
-		if (mod.ValuePromptDotMode()) {
+		if (mod.ValuePromptDotModeText()) {
 			return;
 		};
 
@@ -784,7 +784,7 @@ const mod = {
 		{/if}
 
 		{#if ['LCHLauncherFilterPrompt', 'LCHLauncherActionPrompt'].indexOf(e.LCHPromptClass) === -1 && e.LCHPromptDotModeEnabled }
-			<input bind:value={ e.LCHPromptDotModeText } on:input={ () => mod.ValuePromptDotMode(this.value) } class="LCHLauncherPromptDotModeInput" autofocus />
+			<input bind:value={ e.LCHPromptDotModeText } on:input={ () => mod.ValuePromptDotModeText(this.value) } class="LCHLauncherPromptDotModeInput" autofocus />
 		{/if}
 	</LCHLauncherPrompt>
 </div>
