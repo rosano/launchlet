@@ -85,6 +85,12 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestConvertTypeServiceSearch',
 					LCHRecipeOutputType: 'URL',
 				}, {
+					LCHRecipeName: 'string subject',
+					LCHRecipeCallback: function () {
+						return 'hello'
+					},
+					LCHRecipeOutputType: 'String',
+				}, {
 					LCHRecipeName: 'LCHLauncherTestInvalid',
 				}]),
 				completionHandler () {

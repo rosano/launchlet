@@ -381,7 +381,7 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 
 		_PromptObjects[2].LCHPromptIsVisible = LCHRecipesModelActionTakesObject(_PromptObjects[1].LCHPromptItemSelected);
 
-		_PromptObjects[2].LCHPromptItemsAll = !_PromptObjects[2].LCHPromptIsVisible ? [] : _AllSubjects.filter(function (e) {
+		_PromptObjects[2].LCHPromptItemsAll = !_PromptObjects[2].LCHPromptIsVisible || LCHRecipeInputTypesForString(_PromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop() === 'String' ? [] : _AllSubjects.filter(function (e) {
 			return apiTypeEquivalenceMap[LCHRecipeInputTypesForString(_PromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop()].indexOf(e.LCHRecipeOutputType) !== -1;
 		});
 

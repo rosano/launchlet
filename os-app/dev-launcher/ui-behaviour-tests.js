@@ -694,11 +694,15 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 
 				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
 			});
-
-			it('focuses LCHLauncherObjectPrompt if one action', async function() {
+				
+			it('excludes string objects', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'w');
 				await browser.wait({element: LCHLauncherPromptDotModeInput});
 
+				browser.assert.elements(LCHLauncherObjectPromptItemSelected, 0);
+			});
+
+			it('focuses LCHLauncherObjectPrompt if one action', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 				await browser.wait({element: LCHLauncherPromptDotModeInput});
 
