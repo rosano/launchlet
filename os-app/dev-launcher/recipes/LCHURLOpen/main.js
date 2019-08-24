@@ -8,6 +8,7 @@ export const LCHURLOpenCallback = function(inputData) {
 
 export const LCHURLOpenRecipe = function() {
 	return {
+		LCHRecipeName: 'Open URL',
 		LCHRecipeSignature: 'LCHURLOpen',
 		LCHRecipeInputTypes: 'URL',
 		LCHRecipeCallback: LCHURLOpenCallback,
