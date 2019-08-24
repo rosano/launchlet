@@ -783,7 +783,7 @@ const mod = {
 		{/if}
 
 		{#if ['LCHLauncherFilterPrompt', 'LCHLauncherActionPrompt'].indexOf(e.LCHPromptClass) === -1 && e.LCHPromptTextItemMode }
-			<input bind:value={ _PromptObjects[0].LCHPromptTextItem } on:input={ () => mod.ValuePromptTextItem(this.value) } class="LCHLauncherPromptTextItemInput" autofocus />
+			<input bind:value={ e.LCHPromptTextItem } on:input={ () => mod.ValuePromptTextItem(this.value) } class="LCHLauncherPromptTextItemInput" autofocus />
 		{/if}
 	</LCHLauncherPrompt>
 </div>
