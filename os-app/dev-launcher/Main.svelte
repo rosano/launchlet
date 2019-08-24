@@ -534,6 +534,13 @@ const mod = {
 
 		mod.commandExit();
 	},
+	interfaceDidClickPrompt (inputData) {
+		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
+			return;
+		};
+
+		mod.ValuePromptActiveIndex(_PromptObjects.indexOf(inputData))
+	},
 	interfaceDidKeydown (event) {
 		mod.commandHandleEventKeydown(event);
 	},
@@ -761,7 +768,7 @@ const mod = {
 
 {#if e.LCHPromptIsVisible}
 
-<div class={ e.LCHPromptClass } class:LCHLauncherPromptSelected={ _PromptObjects[_PromptActiveIndex] === e } on:click={ () => mod.ValuePromptActiveIndex(_PromptObjects.indexOf(e) ) }>
+<div class={ e.LCHPromptClass } class:LCHLauncherPromptSelected={ _PromptObjects[_PromptActiveIndex] === e } on:click={ () => mod.interfaceDidClickPrompt(e) }>
 	{#if LCHOptionsObject().runMode === LCHLauncherModePipe()}
 		<strong class="LCHLauncherPromptHeading" class:LCHLauncherPromptHeadingMatchStop={ e.LCHPromptMatchStop }>{ e.LCHPromptFilterText && e.LCHPromptFilterText.toUpperCase() || e.LCHPromptHeading }</strong>
 	{/if}

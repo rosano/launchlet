@@ -48,7 +48,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 			browser.fill(LCHLauncherFilterInput, 'a');
 			await browser.wait({element: LCHLauncherListItem});
 
-			browser.assert.elements(LCHLauncherListItem, 6);
+			browser.assert.elements(LCHLauncherListItem, 5);
 		});
 
 	});
@@ -71,12 +71,12 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 			browser.fill(LCHLauncherFilterInput, 'a');
 			await browser.wait({element: LCHLauncherListItem});
 
-			browser.assert.elements(LCHLauncherListItem, 6);
+			browser.assert.elements(LCHLauncherListItem, 5);
 		});
 
 	});
 
-	context.only('LCHLauncherModePipe', function () {
+	context('LCHLauncherModePipe', function () {
 
 		before(function() {
 			return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
@@ -933,7 +933,7 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 			browser.fill(LCHLauncherFilterInput, 'a');
 			await browser.wait({element: LCHLauncherListItem});
 			
-			browser.assert.elements(LCHLauncherListItem, 6);
+			browser.assert.elements(LCHLauncherListItem, 5);
 		});
 
 		it('selects first item', async function() {
