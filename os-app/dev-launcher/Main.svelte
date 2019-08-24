@@ -755,8 +755,6 @@ const mod = {
 
 <div class="Container" bind:this={ rootElement }>
 
-<div class="Bezel">
-
 {#each _PromptObjects as e}
 
 {#if e.LCHPromptIsVisible}
@@ -791,14 +789,16 @@ const mod = {
 	<svelte:component this={ $secondaryComponent.LCHInstanceClass } {...$secondaryComponent.LCHInstanceOptions} />
 {/if}
 
-</div>
-
 <style>
 .Container {
 	--__LaunchletWidth: 400px;
 	--__LaunchletSharedPadding: 5px;
 
 	width: var(--__LaunchletWidth);
+	padding: var(--__LaunchletSharedPadding);
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	box-shadow: 0 0 10px 0px #e6e6e6;
 
 	position: fixed;
 	top: 0;
@@ -806,24 +806,14 @@ const mod = {
 	margin: 0 0 0 calc(var(--__LaunchletWidth) / -2);
 	z-index: 999999999;
 
-	font-family: 'Lucida Grande', 'Helvetica', sans-serif;
-	
-	/*font-size: 16pt;*/
 	color: black;
+	background: #e6e6e6;
+	font-family: 'Lucida Grande', 'Helvetica', sans-serif;
 
 	/* CompensateExternalStyles */
 	text-align: initial;
-}
 
-.Bezel {
-	padding: var(--__LaunchletSharedPadding);
-	border: 1px solid #cccccc;
-	border-radius: 5px;
-	box-shadow: 0 0 10px 0px #e6e6e6;
-
-	background: #e6e6e6;
-
-	/* __LaunchletBezelFlexboxParent */
+	/* @ContainerFlexbox:Parent */
 	display: flex;
 	flex-direction: column;
 }
@@ -915,16 +905,13 @@ input {
 
 .Container {
 	width: 100%;
-
-	left: 0;
-	margin: 0;
-}
-
-.Bezel {
 	padding: 0;
 	border: none;
 	border-radius: 0;
 	border-bottom: 1px solid #cccccc;
+
+	left: 0;
+	margin: 0;
 }
 
 input {
