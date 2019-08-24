@@ -14,7 +14,7 @@ describe('LCHLargeTextRecipe', function testLCHLargeTextRecipe() {
 
 	it('returns LCHRecipe', async function() {
 		deepEqual(mainModule.LCHLargeTextRecipe(), {
-			LCHRecipeName: 'Large Type',
+			LCHRecipeName: 'Large Text',
 			LCHRecipeSignature: 'LCHLargeText',
 			LCHRecipeInputTypes: 'String',
 			LCHRecipeCallback: mainModule.LCHLargeTextCallback,

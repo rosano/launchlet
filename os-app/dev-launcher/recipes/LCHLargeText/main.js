@@ -59,7 +59,7 @@ export const LCHLargeTextCallback = function(inputData) {
 
 export const LCHLargeTextRecipe = function() {
 	return {
-		LCHRecipeName: 'Large Type',
+		LCHRecipeName: 'Large Text',
 		LCHRecipeSignature: 'LCHLargeText',
 		LCHRecipeInputTypes: 'String',
 		LCHRecipeCallback: LCHLargeTextCallback,
