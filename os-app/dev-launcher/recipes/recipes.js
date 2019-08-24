@@ -9,7 +9,7 @@ import * as ServiceSearch from './TypeServiceSearch/main.js';
 
 import * as LCHCopyToClipboard from './LCHCopyToClipboard/main.js';
 import * as LCHDateLocalOffsetSubtracted from './LCHDateLocalOffsetSubtracted/main.js';
-import * as LCHLargeType from './LCHLargeType/main.js';
+import * as LCHLargeText from './LCHLargeText/main.js';
 import * as LCHRunCommand from './LCHRunCommand/main.js';
 import * as LCHSearchAction from './LCHSearchAction/main.js';
 import * as LCHServiceSearchWikipedia from './LCHServiceSearchWikipedia/main.js';
@@ -28,7 +28,7 @@ export const LCHLauncherStandardRecipes = function() {
 		
 		LCHCopyToClipboard,
 		LCHDateLocalOffsetSubtracted,
-		LCHLargeType,
+		LCHLargeText,
 		LCHRunCommand,
 		LCHSearchAction,
 		LCHServiceSearchWikipedia,

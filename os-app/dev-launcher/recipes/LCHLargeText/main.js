@@ -1,10 +1,10 @@
-export const LCHLargeTypeCallback = function(inputData) {
+export const LCHLargeTextCallback = function(inputData) {
 	if (typeof document === 'undefined') {
 		return;
 	};
 
 	const item = document.createElement('div');
-	item.id = 'LCHLargeTypeContainer';
+	item.id = 'LCHLargeTextContainer';
 	item.textContent = inputData;
 	
 	item.style.display = 'block'
@@ -38,11 +38,11 @@ export const LCHLargeTypeCallback = function(inputData) {
 	});
 };
 
-export const LCHLargeTypeRecipe = function() {
+export const LCHLargeTextRecipe = function() {
 	return {
 		LCHRecipeName: 'Large Type',
-		LCHRecipeSignature: 'LCHLargeType',
+		LCHRecipeSignature: 'LCHLargeText',
 		LCHRecipeInputTypes: 'String',
-		LCHRecipeCallback: LCHLargeTypeCallback,
+		LCHRecipeCallback: LCHLargeTextCallback,
 	};
 };
