@@ -1105,7 +1105,7 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 			before(async function() {
 				await browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
 
-				browser.OLSKFireKeyboardEvent(browser.window, 'a');
+				browser.OLSKFireKeyboardEvent(browser.window, 'w');
 				await browser.wait({element: LCHLauncherResultList});
 			});
 			
@@ -1122,18 +1122,21 @@ describe('LCHLauncherInteraction', function testLCHLauncherInteraction() {
 
 			it('updates on Tab', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-				await browser.wait({element: LCHLauncherSubjectPrompt});
+				await browser.wait({element: LCHLauncherObjectPrompt});
 				
-				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
+				browser.assert.hasClass(LCHLauncherObjectPrompt, 'LCHLauncherPromptSelected');
 			});
 
 			it('updates on Shift Tab', async function() {
+				browser.click(LCHLauncherActionPrompt);
+				await browser.wait({element: LCHLauncherActionPrompt});
+
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab', {
 					shiftKey: true,
 				});
 				await browser.wait({element: LCHLauncherSubjectPrompt});
 				
-				browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
+				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
 			});
 
 			it('does nothing on click if no subject', async function() {

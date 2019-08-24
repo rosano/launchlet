@@ -427,7 +427,7 @@ afterUpdate(function () {
 	});
 });
 
-import { LCHLauncherKeyboardEventIsTextInput } from './ui-logic.js';
+import { LCHLauncherKeyboardEventIsTextInput, LCHLauncherConstrainIndex } from './ui-logic.js';
 import { LCHCompositionModelErrors } from './api.js'
 import { LCHRunCommandRecipe } from './recipes/LCHRunCommand/main.js';
 import { LCHPrimitiveURLCallback } from './recipes/PrimitiveURL/main.js';
@@ -598,21 +598,15 @@ const mod = {
 			return;
 		}
 
-		mod.ValuePromptActiveIndex((function () {
+		mod.ValuePromptActiveIndex(LCHLauncherConstrainIndex(_PromptObjects.filter(function (e) {
+			return e.LCHPromptIsVisible;
+		}), _PromptActiveIndex + (event.shiftKey ? -1 : 1) * (function () {
 			if (!_PromptActiveIndex && _PromptObjects[2].LCHPromptIsVisible && _PromptObjects[1].LCHPromptItemsAll.length === 1) {
 				return 2;
 			};
 
-			if (!_PromptActiveIndex) {
-				return 1;
-			};
-
-			if (_PromptActiveIndex === 1 && _PromptObjects[2].LCHPromptIsVisible) {
-				return 2;
-			};
-
-			return 0;
-		})());
+			return 1;
+		})()));
 	},
 	_commandHandleEventKeydownEnter (event) {
 		event.preventDefault();
