@@ -86,12 +86,6 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 					LCHRecipeOutputType: 'URL',
 				}, {
 					LCHRecipeName: 'LCHLauncherTestInvalid',
-				}, {
-					LCHRecipeName: 'LCHLauncherTestObject',
-					LCHRecipeInputTypes: 'String,String',
-					LCHRecipeCallback (param1, param2) {
-						document.querySelector('input').value = [param1, param2].join('-');
-					},
 				}]),
 				completionHandler () {
 					let span = document.createElement('span');
