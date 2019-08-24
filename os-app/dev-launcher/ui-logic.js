@@ -171,3 +171,40 @@ export const LCHLauncherKeyboardEventIsTextInput = function (inputData) {
 	
 	return true;
 };
+
+export const LCHLauncherActionComparator = function (inputData) {
+	if (typeof inputData !== 'string') {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	return function (a, b) {
+		const param1s = [
+			a.LCHRecipeInputTypes.split(',')[0],
+			b.LCHRecipeInputTypes.split(',')[0],
+		];
+		const param2s = [
+			a.LCHRecipeInputTypes.split(',')[1],
+			b.LCHRecipeInputTypes.split(',')[1],
+		];
+
+		if (param1s[0] === inputData && param1s[1] === inputData) {
+			if (!param2s[0] && param2s[1]) {
+				return -1;
+			};
+
+			if (param2s[0] && !param2s[1]) {
+				return 1;
+			};
+		};
+
+		if (param1s[0] === inputData && param1s[1] !== inputData) {
+			return -1;
+		};
+
+		if (param1s[1] === inputData && param1s[0] !== inputData) {
+			return 1;
+		};
+
+		return 1;
+	};
+};

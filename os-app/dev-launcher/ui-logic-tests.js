@@ -431,3 +431,54 @@ describe('LCHLauncherKeyboardEventIsTextInput', function testLCHLauncherKeyboard
 	});
 
 });
+
+describe('LCHLauncherActionComparator', function testLCHLauncherActionComparator() {
+
+	it('throws error if not string', function() {
+		throws(function() {
+			mainModule.LCHLauncherActionComparator(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns function', function () {
+		deepEqual(typeof mainModule.LCHLauncherActionComparator(''), 'function');
+	});
+
+	context('function', function () {
+
+		it('does nothing if no match', function() {
+			const items = [
+				{ LCHRecipeInputTypes: 'alfa'},
+				{ LCHRecipeInputTypes: 'bravo'},
+			];
+			deepEqual(items.slice().sort(mainModule.LCHLauncherActionComparator('')), items);
+		});
+
+		it('does nothing if matches second param', function() {
+			const items = [
+				{ LCHRecipeInputTypes: 'alfa'},
+				{ LCHRecipeInputTypes: 'bravo,charlie'},
+			];
+			deepEqual(items.slice().sort(mainModule.LCHLauncherActionComparator('charlie')), items);
+		});
+
+		it('ranks higher if match first param', function() {
+			const items = [
+				{ LCHRecipeInputTypes: 'alfa'},
+				{ LCHRecipeInputTypes: 'bravo,charlie'},
+			];
+			deepEqual(items.slice().sort(mainModule.LCHLauncherActionComparator('bravo')), items.slice().reverse());
+		});
+
+		it('ranks higher if single param', function() {
+			const items = [
+				{ LCHRecipeInputTypes: 'alfa'},
+				{ LCHRecipeInputTypes: 'alfa, bravo'},
+				{ LCHRecipeInputTypes: 'alfa'},
+			];
+			deepEqual(items.slice().sort(mainModule.LCHLauncherActionComparator('alfa')), [items[0], items[2], items[1]]);
+		});
+	
+	});
+
+});
