@@ -1,5 +1,5 @@
 <script>
-import { LCHLauncherResultListConstrainIndex } from './ui-logic.js';
+import { LCHLauncherConstrainIndex } from '../../ui-logic.js';
 
 export let ListItems = [];
 
@@ -21,12 +21,12 @@ const mod = {
 	interfaceDidKeydown(event) {
 		const handlerFunctions = {
 			ArrowUp () {
-				mod.ResultListDispatchArrow(ListItems[LCHLauncherResultListConstrainIndex(ListItems, ListItems.indexOf(ItemSelected) - 1)]);
+				mod.ResultListDispatchArrow(ListItems[LCHLauncherConstrainIndex(ListItems, ListItems.indexOf(ItemSelected) - 1)]);
 
 				return event.preventDefault();
 			},
 			ArrowDown () {
-				mod.ResultListDispatchArrow(ListItems[LCHLauncherResultListConstrainIndex(ListItems, ListItems.indexOf(ItemSelected) + 1)]);
+				mod.ResultListDispatchArrow(ListItems[LCHLauncherConstrainIndex(ListItems, ListItems.indexOf(ItemSelected) + 1)]);
 				
 				return event.preventDefault();
 			},
