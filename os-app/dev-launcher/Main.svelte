@@ -187,6 +187,7 @@ let _ActionableTypesForPrimarySubject = Object.keys(apiTypeEquivalenceMap).filte
 			LCHPromptFilterText: '',
 			LCHPromptMatchStop: false,
 			LCHPromptResultsThrottle: undefined,
+			LCHPromptTextItem: '',
 			LCHPromptIsVisible: false,
 		}]);
 	}
