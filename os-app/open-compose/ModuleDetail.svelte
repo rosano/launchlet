@@ -175,6 +175,10 @@ const mod = {
 			return val;
 		});
 
+		if (_LCHIsTestingBehaviour()) {
+			return;
+		};
+
 		if (!throttleMap[$DocumentSelectedStore.LCHDocumentID]) {
 			throttleMap[$DocumentSelectedStore.LCHDocumentID] = {
 				OLSKThrottleDuration: 500,
