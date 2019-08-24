@@ -18,7 +18,7 @@ export const LCHTypeServiceSearchCanonicalExampleCallback = function() {
 	return {
 		LCHRecipeName: 'alfa',
 		LCHRecipeCallback () {
-			return 'http://example.com?q=LCHSEARCHTOKEN1+LCHSEARCHTOKEN2'
+			return 'http://example.com?q=LCHSEARCHTOKEN'
 		},
 		LCHRecipeOutputType: 'ServiceSearchURLTemplate',
 	};

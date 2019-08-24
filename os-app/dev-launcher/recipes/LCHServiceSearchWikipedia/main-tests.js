@@ -5,7 +5,7 @@ import * as mainModule from './main.js';
 describe('LCHServiceSearchWikipediaCallback', function testLCHServiceSearchWikipediaCallback() {
 
 	it('returns string', async function() {
-		deepEqual(mainModule.LCHServiceSearchWikipediaCallback(), 'https://en.wikipedia.org/w/index.php?search=LCHSEARCHTOKEN1+LCHSEARCHTOKEN2');
+		deepEqual(mainModule.LCHServiceSearchWikipediaCallback(), 'https://en.wikipedia.org/w/index.php?search=LCHSEARCHTOKEN');
 	});
 
 });

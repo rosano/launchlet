@@ -5,7 +5,7 @@ export const LCHPrimitiveServiceSearchURLTemplateCallback = function(inputData) 
 		return false;
 	}
 
-	if (!inputData.match(/LCHSEARCHTOKEN1.*LCHSEARCHTOKEN2/i)) {
+	if (!inputData.match(/LCHSEARCHTOKEN/i)) {
 		return false;
 	}
 
@@ -13,7 +13,7 @@ export const LCHPrimitiveServiceSearchURLTemplateCallback = function(inputData) 
 };
 
 export const LCHPrimitiveStringCanonicalExampleCallback = function() {
-	return 'http://example.com?q=LCHSEARCHTOKEN1+LCHSEARCHTOKEN2';
+	return 'http://example.com?q=LCHSEARCHTOKEN';
 };
 
 export const LCHPrimitiveServiceSearchURLTemplateRecipe = function() {

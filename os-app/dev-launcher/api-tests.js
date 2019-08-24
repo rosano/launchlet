@@ -478,7 +478,7 @@ describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertT
 							return [param1, param2.LCHRecipeCallback()];
 						},
 					})
-				})('alfa'), ['alfa', 'http://example.com?q=LCHSEARCHTOKEN1+LCHSEARCHTOKEN2']);
+				})('alfa'), ['alfa', 'http://example.com?q=LCHSEARCHTOKEN']);
 			});
 			
 		});

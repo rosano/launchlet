@@ -7,15 +7,13 @@ export const LCHSearchActionURLFrom = function(param1, param2) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	let match = param1.match(/LCHSEARCHTOKEN1(.*)LCHSEARCHTOKEN2/i);
-
-	if (!match || !match[1]) {
+	if (!param1.match(/LCHSEARCHTOKEN/i)) {
 		return param1;
 	};
 
-	return param1.replace(match[0], param2.split(' ').map(function (e) {
+	return param1.replace(/LCHSEARCHTOKEN/i, param2.split(' ').map(function (e) {
 		return encodeURIComponent(e);
-	}).join(match[1]));
+	}).join('+'));
 };
 
 export const LCHSearchWithCallback = function(param1, param2) {

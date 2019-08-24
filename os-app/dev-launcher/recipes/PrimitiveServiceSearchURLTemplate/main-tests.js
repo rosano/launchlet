@@ -9,27 +9,15 @@ describe('LCHPrimitiveServiceSearchURLTemplateCallback', function testLCHPrimiti
 	});
 
 	it('returns false if no token match', function() {
-		deepEqual(mainModule.LCHPrimitiveServiceSearchURLTemplateCallback('http://example.com?q=LCHSEARCHTOKEN1+LCHSEARCHTOKEN'), false);
+		deepEqual(mainModule.LCHPrimitiveServiceSearchURLTemplateCallback('http://example.com?q=LCHSEARCHTOKE'), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mainModule.LCHPrimitiveServiceSearchURLTemplateCallback('http://example.com?q=LCHSEARCHTOKEN1+LCHSEARCHTOKEN2'), true);
-	});
-
-	it('matches +', function() {
-		deepEqual(mainModule.LCHPrimitiveServiceSearchURLTemplateCallback('http://example.com?q=LCHSEARCHTOKEN1+LCHSEARCHTOKEN2'), true);
-	});
-
-	it('matches space', function() {
-		deepEqual(mainModule.LCHPrimitiveServiceSearchURLTemplateCallback('http://example.com?q=LCHSEARCHTOKEN1 LCHSEARCHTOKEN2'), true);
-	});
-
-	it('matches encoded space', function() {
-		deepEqual(mainModule.LCHPrimitiveServiceSearchURLTemplateCallback('http://example.com?q=LCHSEARCHTOKEN1%20LCHSEARCHTOKEN2'), true);
+		deepEqual(mainModule.LCHPrimitiveServiceSearchURLTemplateCallback('http://example.com?q=LCHSEARCHTOKEN1'), true);
 	});
 
 	it('matches lowercase', function() {
-		deepEqual(mainModule.LCHPrimitiveServiceSearchURLTemplateCallback('http://example.com?q=lchsearchtoken1+lchsearchtoken2'), true);
+		deepEqual(mainModule.LCHPrimitiveServiceSearchURLTemplateCallback('http://example.com?q=lchsearchtoken'), true);
 	});
 
 });
@@ -37,7 +25,7 @@ describe('LCHPrimitiveServiceSearchURLTemplateCallback', function testLCHPrimiti
 describe('LCHPrimitiveStringCanonicalExampleCallback', function testLCHPrimitiveStringCanonicalExampleCallback() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHPrimitiveStringCanonicalExampleCallback(), 'http://example.com?q=LCHSEARCHTOKEN1+LCHSEARCHTOKEN2');
+		deepEqual(mainModule.LCHPrimitiveStringCanonicalExampleCallback(), 'http://example.com?q=LCHSEARCHTOKEN');
 	});
 
 });

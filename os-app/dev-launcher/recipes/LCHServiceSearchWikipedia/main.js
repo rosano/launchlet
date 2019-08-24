@@ -1,5 +1,5 @@
 export const LCHServiceSearchWikipediaCallback = function() {
-	return 'https://en.wikipedia.org/w/index.php?search=LCHSEARCHTOKEN1+LCHSEARCHTOKEN2';
+	return 'https://en.wikipedia.org/w/index.php?search=LCHSEARCHTOKEN';
 };
 
 export const LCHServiceSearchWikipediaRecipe = function() {
