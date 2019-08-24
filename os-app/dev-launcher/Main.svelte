@@ -164,7 +164,7 @@ let _ActionableTypesForPrimarySubject = Object.keys(apiTypeEquivalenceMap).filte
 			LCHPromptFilterText: '',
 			LCHPromptMatchStop: false,
 			LCHPromptResultsThrottle: undefined,
-			LCHPromptTextItem: '',
+			LCHPromptDotModeItem: '',
 			LCHPromptIsVisible: true,
 		}, {
 			LCHPromptClass: 'LCHLauncherActionPrompt',
@@ -187,7 +187,7 @@ let _ActionableTypesForPrimarySubject = Object.keys(apiTypeEquivalenceMap).filte
 			LCHPromptFilterText: '',
 			LCHPromptMatchStop: false,
 			LCHPromptResultsThrottle: undefined,
-			LCHPromptTextItem: '',
+			LCHPromptDotModeItem: '',
 			LCHPromptIsVisible: false,
 		}]);
 	}
@@ -476,29 +476,29 @@ const mod = {
 			};
 
 			mod.ValuePromptModeText(true)
-			mod.ValuePromptTextItem(mod.ValuePromptTextItem())
+			mod.ValuePromptDotMode(mod.ValuePromptDotMode())
 		})();
 	},
 	ValuePromptModeText (inputData) {
 		if (typeof inputData === 'undefined') {
-			return _PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode;
+			return _PromptObjects[_PromptActiveIndex].LCHPromptDotModeItemMode;
 		};
 
-		_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode = inputData;
+		_PromptObjects[_PromptActiveIndex].LCHPromptDotModeItemMode = inputData;
 	},
-	ValuePromptTextItem(inputData) {
+	ValuePromptDotMode(inputData) {
 		if (typeof inputData === 'undefined') {
-			return _PromptObjects[_PromptActiveIndex].LCHPromptTextItem;
+			return _PromptObjects[_PromptActiveIndex].LCHPromptDotModeItem;
 		};
 
-		_PromptObjects[_PromptActiveIndex].LCHPromptTextItem = inputData;
+		_PromptObjects[_PromptActiveIndex].LCHPromptDotModeItem = inputData;
 
-		ActivePromptItemsShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptTextItem ? [{
-			LCHRecipeName: _PromptObjects[_PromptActiveIndex].LCHPromptTextItem,
+		ActivePromptItemsShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptDotModeItem ? [{
+			LCHRecipeName: _PromptObjects[_PromptActiveIndex].LCHPromptDotModeItem,
 			LCHRecipeCallback () {
 				return inputData;
 			},
-			LCHRecipeOutputType: LCHPrimitiveURLCallback(_PromptObjects[_PromptActiveIndex].LCHPromptTextItem) ? 'URL' : 'String',
+			LCHRecipeOutputType: LCHPrimitiveURLCallback(_PromptObjects[_PromptActiveIndex].LCHPromptDotModeItem) ? 'URL' : 'String',
 		}] : []);
 	},
 	ValuePromptResultsIsVisible (inputData) {
@@ -548,7 +548,7 @@ const mod = {
 
 	// COMMAND
 	
-	_commandHandleEventKeydownModeTextItem (event) {
+	_commandHandleEventKeydownModeDotMode (event) {
 		const handlerFunctions = {
 			Escape () {
 				event.preventDefault();
@@ -557,7 +557,7 @@ const mod = {
 				return mod.ValuePromptModeText(false) || true;
 			},
 			Tab () {
-				if (!mod.ValuePromptTextItem()) {
+				if (!mod.ValuePromptDotMode()) {
 					return true;
 				};
 				
@@ -674,9 +674,9 @@ const mod = {
 		mod.ValuePromptResultsIsVisible(false);
 		mod.ValuePromptModeText(true)
 		ActivePromptFilterTextShouldUpdate('');
-		mod.ValuePromptTextItem(mod.ValuePromptTextItem())
+		mod.ValuePromptDotMode(mod.ValuePromptDotMode())
 
-		if (mod.ValuePromptTextItem()) {
+		if (mod.ValuePromptDotMode()) {
 			return;
 		};
 
@@ -704,10 +704,10 @@ const mod = {
 
 		_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = undefined;
 
-		_PromptObjects[_PromptActiveIndex].LCHPromptTextItem = '';
+		_PromptObjects[_PromptActiveIndex].LCHPromptDotModeItem = '';
 	},
 	commandHandleEventKeydown (event) {
-		if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode && mod._commandHandleEventKeydownModeTextItem(event)) {
+		if (_PromptObjects[_PromptActiveIndex].LCHPromptDotModeItemMode && mod._commandHandleEventKeydownModeDotMode(event)) {
 			return;
 		};
 
@@ -725,7 +725,7 @@ const mod = {
 			return handlerFunctions[event.key](event);
 		}
 
-		if (_PromptObjects[_PromptActiveIndex].LCHPromptTextItemMode) {
+		if (_PromptObjects[_PromptActiveIndex].LCHPromptDotModeItemMode) {
 			return;
 		};
 
@@ -774,8 +774,8 @@ const mod = {
 		<strong class="LCHLauncherPromptHeading" class:LCHLauncherPromptHeadingMatchStop={ e.LCHPromptMatchStop }>{ e.LCHPromptFilterText && e.LCHPromptFilterText.toUpperCase() || e.LCHPromptHeading }</strong>
 	{/if}
 
-	<LCHLauncherPrompt PromptItems={ e.LCHPromptItemsVisible } on:ResultListDispatchArrow={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) } ItemSelected={ e.LCHPromptItemSelected } on:ResultListDispatchClick={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) || mod.commandTerminate() } ItemSelectedHidden={ LCHOptionsObject().runMode !== LCHLauncherModePipe() || e.LCHPromptTextItemMode } ResultsHidden={ e.LCHPromptResultsThrottle !== false }>
-		{#if e.LCHPromptClass === 'LCHLauncherSubjectPrompt' && !e.LCHPromptTextItemMode }
+	<LCHLauncherPrompt PromptItems={ e.LCHPromptItemsVisible } on:ResultListDispatchArrow={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) } ItemSelected={ e.LCHPromptItemSelected } on:ResultListDispatchClick={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) || mod.commandTerminate() } ItemSelectedHidden={ LCHOptionsObject().runMode !== LCHLauncherModePipe() || e.LCHPromptDotModeItemMode } ResultsHidden={ e.LCHPromptResultsThrottle !== false }>
+		{#if e.LCHPromptClass === 'LCHLauncherSubjectPrompt' && !e.LCHPromptDotModeItemMode }
 			<span class="LCHLauncherSubjectPromptPlaceholder">{ OLSKLocalized('LCHLauncherSubjectPromptPlaceholderText') }</span>
 		{/if}
 
@@ -783,8 +783,8 @@ const mod = {
 			<input placeholder="{ LCHOptionsObject().runMode === LCHLauncherModePreview() ? OLSKLocalized('LCHLauncherInputPlaceholderPreview') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ _PromptObjects[0].LCHPromptFilterText } bind:this={ inputElement } on:input={ () => ActivePromptFilterTextShouldUpdate(this.value) } id="LCHLauncherFilterInput" />
 		{/if}
 
-		{#if ['LCHLauncherFilterPrompt', 'LCHLauncherActionPrompt'].indexOf(e.LCHPromptClass) === -1 && e.LCHPromptTextItemMode }
-			<input bind:value={ e.LCHPromptTextItem } on:input={ () => mod.ValuePromptTextItem(this.value) } class="LCHLauncherPromptTextItemInput" autofocus />
+		{#if ['LCHLauncherFilterPrompt', 'LCHLauncherActionPrompt'].indexOf(e.LCHPromptClass) === -1 && e.LCHPromptDotModeItemMode }
+			<input bind:value={ e.LCHPromptDotModeItem } on:input={ () => mod.ValuePromptDotMode(this.value) } class="LCHLauncherPromptDotModeInput" autofocus />
 		{/if}
 	</LCHLauncherPrompt>
 </div>

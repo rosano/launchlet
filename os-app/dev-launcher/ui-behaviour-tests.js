@@ -17,7 +17,7 @@ Object.entries({
 	LCHLauncherObjectPrompt: '.LCHLauncherObjectPrompt',
 	LCHLauncherObjectPromptHeading: '.LCHLauncherObjectPrompt .LCHLauncherPromptHeading',
 	LCHLauncherObjectPromptItemSelected: '.LCHLauncherObjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem',
-	LCHLauncherPromptTextItemInput: '.LCHLauncherPromptTextItemInput',
+	LCHLauncherPromptDotModeInput: '.LCHLauncherPromptDotModeInput',
 
 	LCHLauncherListItem: '.LCHLauncherResultListItem',
 
@@ -38,7 +38,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 		
 		it('on startup', function() {
 			browser.assert.elements(LCHLauncherFilterInput, 1);
-			browser.assert.elements(LCHLauncherPromptTextItemInput, 0);
+			browser.assert.elements(LCHLauncherPromptDotModeInput, 0);
 			browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 0);
 
 			browser.assert.elements(LCHLauncherListItem, 0);
@@ -61,7 +61,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 		
 		it('on startup', function() {
 			browser.assert.elements(LCHLauncherFilterInput, 1);
-			browser.assert.elements(LCHLauncherPromptTextItemInput, 0);
+			browser.assert.elements(LCHLauncherPromptDotModeInput, 0);
 			browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 0);
 
 			browser.assert.elements(LCHLauncherListItem, 13);
@@ -84,7 +84,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 		
 		it('on startup', function() {
 			browser.assert.elements(LCHLauncherFilterInput, 0);
-			browser.assert.elements(LCHLauncherPromptTextItemInput, 0);
+			browser.assert.elements(LCHLauncherPromptDotModeInput, 0);
 			browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 1);
 
 			browser.assert.elements(LCHLauncherListItem, 0);
@@ -353,7 +353,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 		
 		});
 
-		context('TextItemInput', function () {
+		context('DotModeInput', function () {
 
 			before(function() {
 				return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
@@ -363,31 +363,31 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				
 				it('hides LCHLauncherSubjectPromptPlaceholder', async function() {
 					browser.OLSKFireKeyboardEvent(browser.window, '.');
-					await browser.wait({element: LCHLauncherPromptTextItemInput});
+					await browser.wait({element: LCHLauncherPromptDotModeInput});
 					
 					browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 0);
 				});
 					
-				it('shows LCHLauncherPromptTextItemInput', function() {
-					browser.assert.elements(LCHLauncherPromptTextItemInput, 1);
-					browser.assert.attribute(LCHLauncherPromptTextItemInput, 'autofocus', '')
+				it('shows LCHLauncherPromptDotModeInput', function() {
+					browser.assert.elements(LCHLauncherPromptDotModeInput, 1);
+					browser.assert.attribute(LCHLauncherPromptDotModeInput, 'autofocus', '')
 				});
 
 				it('focuses input', function() { // #move interaction
-					deepEqual(browser.document.activeElement, browser.query(LCHLauncherPromptTextItemInput))
+					deepEqual(browser.document.activeElement, browser.query(LCHLauncherPromptDotModeInput))
 				});
 			
 			});
 				
 			context('on Escape', function () {
 				
-				it('hide LCHLauncherPromptTextItemInput', function() {
-					browser.assert.elements(LCHLauncherPromptTextItemInput, 1);
+				it('hide LCHLauncherPromptDotModeInput', function() {
+					browser.assert.elements(LCHLauncherPromptDotModeInput, 1);
 				});
 					
 				it('shows LCHLauncherSubjectPromptPlaceholder', async function() {
 					browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
-					await browser.wait({element: LCHLauncherPromptTextItemInput});
+					await browser.wait({element: LCHLauncherPromptDotModeInput});
 					
 					browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 1);
 				});
@@ -401,7 +401,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					await browser.wait({element: LCHLauncherResultList});
 
 					browser.OLSKFireKeyboardEvent(browser.window, '.');
-					await browser.wait({element: LCHLauncherPromptTextItemInput});
+					await browser.wait({element: LCHLauncherPromptDotModeInput});
 				});
 				
 				it('hides results', async function() {
@@ -439,7 +439,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 
 				before(async function () {
 					browser.OLSKFireKeyboardEvent(browser.window, '.');
-					await browser.wait({element: LCHLauncherPromptTextItemInput});
+					await browser.wait({element: LCHLauncherPromptDotModeInput});
 				});
 				
 				it('shows no actions', async function() {
@@ -447,22 +447,22 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				});
 
 				it('shows actions if filled', async function() {
-					browser.fill(LCHLauncherPromptTextItemInput, 'alfa')
+					browser.fill(LCHLauncherPromptDotModeInput, 'alfa')
 					await browser.wait({element: LCHLauncherPipeItem});
 
 					browser.assert.elements(LCHLauncherPipeItem, 1)
 				});
 
 				it('upates actions for type', async function() {
-					browser.fill(LCHLauncherPromptTextItemInput, 'https://example.com')
+					browser.fill(LCHLauncherPromptDotModeInput, 'https://example.com')
 					await browser.wait({element: LCHLauncherPipeItem});
 
 					browser.assert.text(LCHLauncherPipeItem, 'Open URL')
 				});
 
 				it('shows no actions if empty', async function() {
-					browser.fill(LCHLauncherPromptTextItemInput, '')
-					await browser.wait({element: LCHLauncherPromptTextItemInput});
+					browser.fill(LCHLauncherPromptDotModeInput, '')
+					await browser.wait({element: LCHLauncherPromptDotModeInput});
 
 					browser.assert.elements(LCHLauncherPipeItem, 0)
 				});
@@ -470,7 +470,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				context('on Escape', function () {
 
 					before(function () {
-						browser.fill(LCHLauncherPromptTextItemInput, 'bravo')
+						browser.fill(LCHLauncherPromptDotModeInput, 'bravo')
 						browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 						return browser.wait({element: LCHLauncherPipeItem});
 					});
@@ -485,11 +485,11 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 
 					before(async function () {
 						browser.OLSKFireKeyboardEvent(browser.window, '.');
-						await browser.wait({element: LCHLauncherPromptTextItemInput});
+						await browser.wait({element: LCHLauncherPromptDotModeInput});
 
-						browser.fill(LCHLauncherPromptTextItemInput, '')
+						browser.fill(LCHLauncherPromptDotModeInput, '')
 						browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-						await browser.wait({element: LCHLauncherPromptTextItemInput});
+						await browser.wait({element: LCHLauncherPromptDotModeInput});
 					});
 					
 					it('does nothing if empty', async function() {
@@ -497,11 +497,11 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 						browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 0)
 
 						browser.OLSKFireKeyboardEvent(browser.window, '.');
-						await browser.wait({element: LCHLauncherPromptTextItemInput});
+						await browser.wait({element: LCHLauncherPromptDotModeInput});
 
-						browser.fill(LCHLauncherPromptTextItemInput, 'charlie')
+						browser.fill(LCHLauncherPromptDotModeInput, 'charlie')
 						browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-						await browser.wait({element: LCHLauncherPromptTextItemInput});
+						await browser.wait({element: LCHLauncherPromptDotModeInput});
 					});
 					
 					it('shows text item as pipe item', async function() {
@@ -530,7 +530,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 						await browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
 
 						browser.OLSKFireKeyboardEvent(browser.window, '.');
-						await browser.wait({element: LCHLauncherPromptTextItemInput});
+						await browser.wait({element: LCHLauncherPromptDotModeInput});
 
 						browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
 						await browser.wait({element: LCHLauncherSubjectPromptPlaceholder});
@@ -542,9 +542,9 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					
 					it('executes composition', async function() {
 						browser.OLSKFireKeyboardEvent(browser.window, '.');
-						await browser.wait({element: LCHLauncherPromptTextItemInput});
+						await browser.wait({element: LCHLauncherPromptDotModeInput});
 
-						browser.fill(LCHLauncherPromptTextItemInput, 'delta')
+						browser.fill(LCHLauncherPromptDotModeInput, 'delta')
 						await browser.wait({element: LCHLauncherPipeItem});
 
 						browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
@@ -589,9 +589,9 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					await browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
 
 					browser.OLSKFireKeyboardEvent(browser.window, '.');
-					await browser.wait({element: LCHLauncherPromptTextItemInput});
+					await browser.wait({element: LCHLauncherPromptDotModeInput});
 
-					browser.fill(LCHLauncherPromptTextItemInput, 'alfa')
+					browser.fill(LCHLauncherPromptDotModeInput, 'alfa')
 					await browser.wait({element: LCHLauncherPipeItem});
 
 					browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
@@ -602,11 +602,11 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 
 					before(async function () {
 						browser.OLSKFireKeyboardEvent(browser.window, '.');
-						await browser.wait({element: LCHLauncherPromptTextItemInput});
+						await browser.wait({element: LCHLauncherPromptDotModeInput});
 					});
 					
 					it('shows previous text input', async function() {
-						browser.assert.input(LCHLauncherPromptTextItemInput, 'alfa')
+						browser.assert.input(LCHLauncherPromptDotModeInput, 'alfa')
 					});
 					
 					it('shows actions', async function() {
@@ -625,11 +625,11 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 						await browser.wait({element: LCHLauncherSubjectPromptPlaceholder});
 
 						browser.OLSKFireKeyboardEvent(browser.window, '.');
-						await browser.wait({element: LCHLauncherPromptTextItemInput});
+						await browser.wait({element: LCHLauncherPromptDotModeInput});
 					});
 					
 					it('shows empty text', async function() {
-						browser.assert.input(LCHLauncherPromptTextItemInput, '')
+						browser.assert.input(LCHLauncherPromptDotModeInput, '')
 					});
 					
 					it('shows no actions', async function() {
@@ -648,11 +648,11 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				await browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
 				
 				browser.OLSKFireKeyboardEvent(browser.window, '.');
-				await browser.wait({element: LCHLauncherPromptTextItemInput});
+				await browser.wait({element: LCHLauncherPromptDotModeInput});
 				
-				browser.fill(LCHLauncherPromptTextItemInput, 'alfa');
+				browser.fill(LCHLauncherPromptDotModeInput, 'alfa');
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-				await browser.wait({element: LCHLauncherPromptTextItemInput});
+				await browser.wait({element: LCHLauncherPromptDotModeInput});
 
 				browser.assert.elements(LCHLauncherObjectPrompt, 0);
 
@@ -676,38 +676,38 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 
 			it('selects LCHLauncherObjectPrompt on Tab', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-				await browser.wait({element: LCHLauncherPromptTextItemInput});
+				await browser.wait({element: LCHLauncherPromptDotModeInput});
 
 				browser.assert.hasClass(LCHLauncherObjectPrompt, 'LCHLauncherPromptSelected');
 			});
 
 			it('ignores Dot if not String', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, '.');
-				await browser.wait({element: LCHLauncherPromptTextItemInput});
+				await browser.wait({element: LCHLauncherPromptDotModeInput});
 				
-				browser.assert.elements(LCHLauncherPromptTextItemInput, 0);
+				browser.assert.elements(LCHLauncherPromptDotModeInput, 0);
 			});
 
 			it('selects LCHLauncherSubjectPrompt on Tab', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-				await browser.wait({element: LCHLauncherPromptTextItemInput});
+				await browser.wait({element: LCHLauncherPromptDotModeInput});
 
 				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
 			});
 
 			it('focuses LCHLauncherObjectPrompt if one action', async function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'w');
-				await browser.wait({element: LCHLauncherPromptTextItemInput});
+				await browser.wait({element: LCHLauncherPromptDotModeInput});
 
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-				await browser.wait({element: LCHLauncherPromptTextItemInput});
+				await browser.wait({element: LCHLauncherPromptDotModeInput});
 
 				browser.assert.hasClass(LCHLauncherObjectPrompt, 'LCHLauncherPromptSelected');
 			});
 				
-			it('shows LCHLauncherPromptTextItemInput if String', function() {
-				browser.assert.elements(LCHLauncherPromptTextItemInput, 1);
-				browser.assert.attribute(LCHLauncherPromptTextItemInput, 'autofocus', '');
+			it('shows LCHLauncherPromptDotModeInput if String', function() {
+				browser.assert.elements(LCHLauncherPromptDotModeInput, 1);
+				browser.assert.attribute(LCHLauncherPromptDotModeInput, 'autofocus', '');
 			});
 
 		});
