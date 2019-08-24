@@ -3,35 +3,54 @@ export const LCHLargeTextCallback = function(inputData) {
 		return;
 	};
 
-	const item = document.createElement('div');
-	item.id = 'LCHLargeTextContainer';
-	item.textContent = inputData;
+	const div = document.createElement('div');
+	div.id = 'LCHLargeTextContainer';
+
+	for (let [key, value] of Object.entries({
+		width: '100%',
+
+		position: 'fixed',
+		top: '45%',
+		left: '0',
+
+		textAlign: 'center',
+
+		cursor: 'default',
+	})) {
+		div.style[key] = value;
+	}
+
+	const span = document.createElement('span');
+	span.textContent = inputData;
+	div.appendChild(span);
+
+	for (let [key, value] of Object.entries({
+		display: 'block-inline',
+		borderRadius: '20px',
+		boxShadow: '0 0 10px 0px hsla(0, 0%, 0%, 0.1)',
+		padding: '20px',
+
+		background: 'hsla(0, 0%, 0%, 0.8)',
+		color: 'white',
+		fontFamily: 'Arial',
+		fontSize: '72pt',
+		fontWeight: 'bold',
+		textAlign: 'center',
+		textShadow: '5px 5px 10px hsla(0, 0%, 0%, 0.5)',
+		overflowWrap: 'break-word',
+	})) {
+		span.style[key] = value;
+	}
 	
-	item.style.display = 'block'
-	item.style.borderRadius = '20px'
-	item.style.boxShadow = '0 0 10px 0px hsla(0, 0%, 0%, 0.1)';
-	item.style.padding = '20px'
-
-	item.style.background = 'hsla(0, 0%, 0%, 0.8)'
-	item.style.color = 'white'
-	item.style.fontFamily = 'Arial'
-	item.style.fontSize = '72pt'
-	item.style.fontWeight = 'bold'
-	item.style.textAlign = 'center'
-	item.style.textShadow = '5px 5px 10px hsla(0, 0%, 0%, 0.5)'
-	item.style.overflowWrap = 'break-word'
-
-	item.style.cursor = 'default'
-
-	document.body.appendChild(item);
+	document.body.appendChild(div);
 
 	let handler = function (event) {
-		if (event.target === item) {
+		if (event.target === div) {
 	  	return;
 		}
 		
 		window.removeEventListener('click', handler);
-		item.remove()
+		div.remove()
 	}
 	setTimeout(function () {
 		window.addEventListener('click', handler)
