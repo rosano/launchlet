@@ -53,6 +53,8 @@ import { LCHRecipesModelErrorsFor } from './api.js';
 	dataObjects.push(...pageFormulas.map(function (e) {
 		delete e.LCHRecipeURLFilter;
 		delete e.LCHRecipeIsAutomatic;
+
+		e._LCHRecipeSource = window.location.host;
 		
 		return e;
 	}).filter(function(e) {
