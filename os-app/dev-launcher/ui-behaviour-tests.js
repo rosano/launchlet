@@ -671,7 +671,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 			});
 
 			it('selects first object', async function() {
-				browser.assert.text(LCHLauncherObjectPromptItemSelected, 'Wikipedia');
+				browser.assert.text(`${ LCHLauncherObjectPromptItemSelected } .LCHLauncherPipeItemTitle`, 'Wikipedia');
 			});
 
 			it('selects LCHLauncherObjectPrompt on Tab', async function() {

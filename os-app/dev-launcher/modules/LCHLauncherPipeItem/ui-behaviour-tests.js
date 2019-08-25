@@ -2,7 +2,10 @@ import { deepEqual } from 'assert';
 
 const browser = new OLSKBrowser();
 const kDefaultRoutePath = '/modules/LCHLauncherPipeItem';
+
 const LCHLauncherPipeItem = '.LCHLauncherPipeItem';
+const LCHLauncherPipeItemTitle = '.LCHLauncherPipeItemTitle';
+const LCHLauncherPipeItemSubtitle = '.LCHLauncherPipeItemSubtitle';
 
 describe('LCHLauncherPipeItemDiscovery', function testLCHLauncherPipeItemDiscovery() {
 
@@ -12,29 +15,24 @@ describe('LCHLauncherPipeItemDiscovery', function testLCHLauncherPipeItemDiscove
 	
 	it('on startup', function() {
 		browser.assert.elements(LCHLauncherPipeItem, 1);
+		browser.assert.elements(LCHLauncherPipeItemTitle, 1);
+		browser.assert.elements(LCHLauncherPipeItemSubtitle, 1);
 	});
 
 });
 
-describe('LCHLauncherPipeItemLanguage', function testLCHLauncherPipeItemLanguage() {
+describe('LCHLauncherPipeItemInteraction', function testLCHLauncherPipeItemInteraction() {
 
-	['en'].forEach(function (languageCode) {
-
-		context(languageCode, function () {
-
-			const uLocalized = function (inputData) {
-				return OLSKTestingLocalized(inputData, languageCode);
-			};
-
-			before(function() {
-				return browser.visit(kDefaultRoutePath);
-			});
-
-			it('on startup', function() {
-				deepEqual(browser.query(LCHLauncherPipeItem).textContent, 'alfa');
-			});
-
-		});
-		
+	before(function() {
+		return browser.visit(kDefaultRoutePath);
 	});
+	
+	it('binds PipeItemTitle', function() {
+		deepEqual(browser.query(LCHLauncherPipeItemTitle).textContent, 'StubPipeItemTitle');
+	});
+	
+	it('binds PipeItemSubtitle', function() {
+		deepEqual(browser.query(LCHLauncherPipeItemSubtitle).textContent, 'StubPipeItemSubtitle');
+	});
+
 });
