@@ -78,6 +78,7 @@ let languageDictionary = {};
 (function LCHMochaStorage() {
 	let moduleSlugs = [
 		'lch_documents',
+		'lch_settings',
 	];
 
 	const uSerial = function (inputData) {
