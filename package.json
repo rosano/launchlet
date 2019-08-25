@@ -27,9 +27,6 @@
     "// FRONTEND NORMALIZE CSS": null,
     "normalize.css": "latest",
     "OLSKLayout": "olsk/OLSKLayout",
-    "OLSKViewportContent": "olsk/OLSKViewportContent",
-    "OLSKToolbar": "olsk/OLSKToolbar",
-    "OLSKToolbarElementGroup": "olsk/OLSKToolbarElementGroup",
 
     "// FRONDEND EDITOR": null,
     "codemirror": "rosano/CodeMirror#add-distribution",
@@ -52,6 +49,11 @@
     "// FRONTEND EXPORT": null,
     "jszip": "latest",
     "file-saver": "latest",
+
+    "// FRONTEND APP FLEXBOX": null,
+    "OLSKViewportContent": "olsk/OLSKViewportContent",
+    "OLSKToolbar": "olsk/OLSKToolbar",
+    "OLSKToolbarElementGroup": "olsk/OLSKToolbarElementGroup",
 
     "// FRONTEND FILTER INPUT": null,
     "OLSKInputWrapper": "olsk/OLSKInputWrapper",
