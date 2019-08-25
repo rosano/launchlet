@@ -50,7 +50,7 @@ describe('LCHCompileLanguage', function testLCHCompileLanguage() {
 
 });
 
-describe.skip('LCHCompileInteraction', function testLCHCompileInteraction() {
+describe.only('LCHCompileInteraction', function testLCHCompileInteraction() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
@@ -58,28 +58,40 @@ describe.skip('LCHCompileInteraction', function testLCHCompileInteraction() {
 
 	context('LCHCompileEnablePipeToggle', function() {
 
-		let item;
+		// let item;
 
-		before(async function () {
-			await uCreateItem(browser);
+		// before(async function () {
+		// 	await uCreateItem(browser);
 
-			item = browser.query(LCHComposeBuildLink).href;
+		// 	item = browser.query(LCHComposeBuildLink).href;
+		// });
+
+		// it.skip('compiles with LCHLauncherModeCommit if not checked', async function () {
+		// 	browser.assert.input(LCHCompileEnablePipeToggle, 'on');
+		// 	await browser.wait({ element: LCHComposeBuildLink });
+
+		// 	deepEqual(item.includes("runMode: 'kLCHLauncherModeCommit'"), true);
+		// 	deepEqual(item.includes("runMode: 'kLCHLauncherModePipe'"), false);
+		// });
+
+		// it.skip('compiles with Pipe mode if checked', async function () {
+		// 	await browser.check(LCHCompileEnablePipeToggle);
+		// 	await browser.wait({ element: LCHComposeBuildLink });
+
+		// 	deepEqual(item.includes("runMode: 'kLCHLauncherModeCommit'"), false);
+		// 	deepEqual(item.includes("runMode: 'kLCHLauncherModePipe'"), true);
+		// });
+
+		it('defaults to not checked', async function () {
+			deepEqual(browser.query(LCHCompileEnablePipeToggle).checked, false)
 		});
 
-		it('compiles with LCHLauncherModeCommit if not checked', async function () {
-			browser.assert.input(LCHCompileEnablePipeToggle, 'on');
-			await browser.wait({ element: LCHComposeBuildLink });
-
-			deepEqual(item.includes("runMode: 'kLCHLauncherModeCommit'"), true);
-			deepEqual(item.includes("runMode: 'kLCHLauncherModePipe'"), false);
-		});
-
-		it('compiles with Pipe mode if checked', async function () {
+		it('binds LCHSettingCompileEnablePipe', async function () {
 			await browser.check(LCHCompileEnablePipeToggle);
-			await browser.wait({ element: LCHComposeBuildLink });
+			deepEqual(browser.query(LCHCompileEnablePipeToggle).checked, true)
 
-			deepEqual(item.includes("runMode: 'kLCHLauncherModeCommit'"), false);
-			deepEqual(item.includes("runMode: 'kLCHLauncherModePipe'"), true);
+			await browser.reload();
+			deepEqual(browser.query(LCHCompileEnablePipeToggle).checked, true)
 		});
 
 	});
