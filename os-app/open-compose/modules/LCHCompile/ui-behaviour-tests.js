@@ -4,7 +4,7 @@ const browser = new OLSKBrowser();
 const kDefaultRoutePath = '/';
 
 Object.entries({
-	LCHCompileEnablePipeToggle: '#LCHCompileEnablePipeToggle',
+	LCHCompileModePipeEnabledToggle: '#LCHCompileModePipeEnabledToggle',
 
 	async uCreateItem (browser) {
 		browser.pressButton(LCHComposeCreateButton);
@@ -21,7 +21,7 @@ describe('LCHCompileDiscovery', function testLCHCompileDiscovery() {
 	});
 	
 	it('on startup', function() {
-		browser.assert.elements(LCHCompileEnablePipeToggle, 1);
+		browser.assert.elements(LCHCompileModePipeEnabledToggle, 1);
 	});
 
 });
@@ -41,7 +41,7 @@ describe('LCHCompileLanguage', function testLCHCompileLanguage() {
 			});
 
 			it('localizes interface', function() {
-				browser.assert.text(`label[for=${ LCHCompileEnablePipeToggle.replace('#', '') }]`, uLocalized('LCHCompileEnablePipeToggleLabelText'))
+				browser.assert.text(`label[for=${ LCHCompileModePipeEnabledToggle.replace('#', '') }]`, uLocalized('LCHCompileModePipeEnabledToggleLabelText'))
 			});
 
 		});
@@ -50,13 +50,13 @@ describe('LCHCompileLanguage', function testLCHCompileLanguage() {
 
 });
 
-describe.only('LCHCompileInteraction', function testLCHCompileInteraction() {
+describe('LCHCompileInteraction', function testLCHCompileInteraction() {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
 	});
 
-	context('LCHCompileEnablePipeToggle', function() {
+	context('LCHCompileModePipeEnabledToggle', function() {
 
 		// let item;
 
@@ -67,7 +67,7 @@ describe.only('LCHCompileInteraction', function testLCHCompileInteraction() {
 		// });
 
 		// it.skip('compiles with LCHLauncherModeCommit if not checked', async function () {
-		// 	browser.assert.input(LCHCompileEnablePipeToggle, 'on');
+		// 	browser.assert.input(LCHCompileModePipeEnabledToggle, 'on');
 		// 	await browser.wait({ element: LCHComposeBuildLink });
 
 		// 	deepEqual(item.includes("runMode: 'kLCHLauncherModeCommit'"), true);
@@ -75,7 +75,7 @@ describe.only('LCHCompileInteraction', function testLCHCompileInteraction() {
 		// });
 
 		// it.skip('compiles with Pipe mode if checked', async function () {
-		// 	await browser.check(LCHCompileEnablePipeToggle);
+		// 	await browser.check(LCHCompileModePipeEnabledToggle);
 		// 	await browser.wait({ element: LCHComposeBuildLink });
 
 		// 	deepEqual(item.includes("runMode: 'kLCHLauncherModeCommit'"), false);
@@ -83,15 +83,15 @@ describe.only('LCHCompileInteraction', function testLCHCompileInteraction() {
 		// });
 
 		it('defaults to not checked', async function () {
-			deepEqual(browser.query(LCHCompileEnablePipeToggle).checked, false)
+			deepEqual(browser.query(LCHCompileModePipeEnabledToggle).checked, false)
 		});
 
-		it('binds LCHSettingCompileEnablePipe', async function () {
-			await browser.check(LCHCompileEnablePipeToggle);
-			deepEqual(browser.query(LCHCompileEnablePipeToggle).checked, true)
+		it.skip('binds LCHSettingComposeModePipeEnabled', async function () {
+			await browser.check(LCHCompileModePipeEnabledToggle);
+			deepEqual(browser.query(LCHCompileModePipeEnabledToggle).checked, true)
 
 			await browser.reload();
-			deepEqual(browser.query(LCHCompileEnablePipeToggle).checked, true)
+			deepEqual(browser.query(LCHCompileModePipeEnabledToggle).checked, true);
 		});
 
 	});
