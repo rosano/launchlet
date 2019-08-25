@@ -33,7 +33,6 @@ Object.entries({
 	LCHComposeFormURLFilterField: '#LCHComposeFormURLFilterField',
 	LCHComposeFormIsAutomaticField: '#LCHComposeFormIsAutomaticField',
 
-	LCHComposeReloadButton: '#LCHComposeReloadButton',
 
 	LCHComposeBuildLink: '#LCHComposeBuildLink',
 

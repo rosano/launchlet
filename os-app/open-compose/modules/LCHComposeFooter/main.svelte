@@ -1,7 +1,10 @@
 <script>
-import { OLSKLocalized } from '../../../_shared/common/global.js';
+import OLSKToolbar from 'OLSKToolbar';
+import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
+import OLSKReloadButton from 'OLSKReloadButton';
 import RCSLanguageSwitcher from '../../../_shared/RCSLanguageSwitcher/Main.svelte';
 
+import { OLSKLocalized } from '../../../_shared/common/global.js';
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
@@ -26,11 +29,16 @@ const mod = {
 
 <footer class="Container">
 
-<!-- <button on:click={ mod.interfaceExportButtonDidClick }>Export</button> -->
+	<OLSKToolbar>
+		<OLSKToolbarElementGroup>
+			<OLSKReloadButton OLSKLocalized={ OLSKLocalized } />
 
-<!-- <input type="file" accept=".json" on:change={ mod.interfaceImportButtonDidClick } /> -->
+			<!-- <button on:click={ mod.interfaceExportButtonDidClick }>Export</button> -->
 
-<RCSLanguageSwitcher />
+			<!-- <input type="file" accept=".json" on:change={ mod.interfaceImportButtonDidClick } /> -->
+		</OLSKToolbarElementGroup>
+		<RCSLanguageSwitcher />
+	</OLSKToolbar>
 	
 </footer>
 
