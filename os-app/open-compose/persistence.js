@@ -2,6 +2,7 @@ import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 
 import * as LCHStorageClient from '../_shared/LCHStorageClient/main.js';
 import * as RSModuleProtocol_lch_documents from '../_shared/rs-modules/lch_documents/rs-module.js';
+import * as RSModuleProtocol_lch_settings from '../_shared/rs-modules/lch_settings/rs-module.js';
 import { LCHComposeSort } from './ui-logic.js';
 
 import * as LCHFormulasAction from '../_shared/rs-modules/lch_documents/action.js';
@@ -61,6 +62,7 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 			modelDidChange.set(Date.now());
 		},
 	}),
+	RSModuleProtocol_lch_settings.RSModuleProtocolModuleForChangeDelegate(),
 ]);
 
 let remoteStorage = storageClient.remoteStorage;
