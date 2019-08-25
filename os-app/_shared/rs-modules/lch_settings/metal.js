@@ -1,54 +1,36 @@
-(function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-	typeof define === 'function' && define.amd ? define(['exports'], factory) :
-	(factory((global.LCHSettingsMetal = global.LCHSettingsMetal || {})));
-}(this, (function (exports) { 'use strict';
+import * as LCHSettingsModel from './model.js';
 
-	const LCHSettingsModel = typeof require === 'undefined' ? window.LCHSettingsModel : require('./model.js');
+export const LCHSettingsMetalWrite = async function(storageClient, inputData) {
+	if (typeof inputData !== 'object' || inputData === null) {
+		return Promise.reject(new Error('LCHErrorInputInvalid'));
+	}
 
-	//_ LCHSettingsMetalWrite
+	let errors = LCHSettingsModel.LCHSettingsModelErrorsFor(inputData);
+	if (errors) {
+		return Promise.resolve({
+			LCHErrors: errors,
+		});
+	}
 
-	exports.LCHSettingsMetalWrite = async function(storageClient, inputData) {
-		if (typeof inputData !== 'object' || inputData === null) {
-			return Promise.reject(new Error('LCHErrorInputInvalid'));
-		}
+	return await storageClient.lch_settings.writeObject(inputData.LCHSettingKey, inputData);
+};
 
-		let errors = LCHSettingsModel.LCHSettingsModelErrorsFor(inputData);
-		if (errors) {
-			return Promise.resolve({
-				LCHErrors: errors,
-			});
-		}
+export const LCHSettingsMetalRead = async function(storageClient, inputData) {
+	if (typeof inputData !== 'string') {
+		return Promise.reject(new Error('LCHErrorInputInvalid'));
+	}
 
-		return await storageClient.lch_settings.writeObject(inputData.LCHSettingKey, inputData);
-	};
+	return await storageClient.lch_settings.readObject(inputData);
+};
 
-	//_ LCHSettingsMetalRead
+export const LCHSettingsMetalList = async function(storageClient) {
+	return await storageClient.lch_settings.listObjects();
+};
 
-	exports.LCHSettingsMetalRead = async function(storageClient, inputData) {
-		if (typeof inputData !== 'string') {
-			return Promise.reject(new Error('LCHErrorInputInvalid'));
-		}
+export const LCHSettingsMetalDelete = async function(storageClient, inputData) {
+	if (typeof inputData !== 'string') {
+		return Promise.reject(new Error('LCHErrorInputInvalid'));
+	}
 
-		return await storageClient.lch_settings.readObject(inputData);
-	};
-
-	//_ LCHSettingsMetalList
-
-	exports.LCHSettingsMetalList = async function(storageClient) {
-		return await storageClient.lch_settings.listObjects();
-	};
-
-	//_ LCHSettingsMetalDelete
-
-	exports.LCHSettingsMetalDelete = async function(storageClient, inputData) {
-		if (typeof inputData !== 'string') {
-			return Promise.reject(new Error('LCHErrorInputInvalid'));
-		}
-
-		return await storageClient.lch_settings.deleteObject(inputData);
-	};
-
-	Object.defineProperty(exports, '__esModule', { value: true });
-
-})));
+	return await storageClient.lch_settings.deleteObject(inputData);
+};
