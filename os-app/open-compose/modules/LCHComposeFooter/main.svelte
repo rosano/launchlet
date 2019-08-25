@@ -1,20 +1,20 @@
 <script>
-import { OLSKLocalized } from '../_shared/common/global.js';
-import RCSLanguageSwitcher from '../_shared/RCSLanguageSwitcher/Main.svelte';
+import { OLSKLocalized } from '../../../_shared/common/global.js';
+import RCSLanguageSwitcher from '../../../_shared/RCSLanguageSwitcher/Main.svelte';
 
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
 const mod = {
 	interfaceExportButtonDidClick () {
-		dispatch('ModuleHeaderDispatchExport');
+		dispatch('FooterDispatchExport');
 	},
 	interfaceImportButtonDidClick (event) {
 		let inputElement = event.target;
 		let reader = new FileReader();
 		
 		reader.onload = function (event) {
-			dispatch('ModuleHeaderDispatchImport', event.target.result);
+			dispatch('FooterDispatchImport', event.target.result);
 			
 			inputElement.value = null;
 		};
@@ -24,20 +24,19 @@ const mod = {
 }
 </script>
 
-<header class="Container">
+<footer class="Container">
 
-<h1>{ OLSKLocalized('LCHComposeTitle') }</h1>
+<!-- <button on:click={ mod.interfaceExportButtonDidClick }>Export</button> -->
 
-<button on:click={ mod.interfaceExportButtonDidClick }>Export</button>
-
-<input type="file" accept=".json" on:change={ mod.interfaceImportButtonDidClick } />
+<!-- <input type="file" accept=".json" on:change={ mod.interfaceImportButtonDidClick } /> -->
 
 <RCSLanguageSwitcher />
 	
-</header>
+</footer>
 
 <style>
 .Container {
+	border-top: var(--LCHBorderStyle);
 	/* AppContainerFlexboxChild */
 	flex-shrink: 0;
 
@@ -53,7 +52,7 @@ h1 {
 	font-size: 20px;
 }
 
-:global(#RCSLanguageSwitcher) {
+.Container :global(#RCSLanguageSwitcher) {
 	padding: 10px;
 
 	font-size: 13px;

@@ -1,6 +1,6 @@
 <script>
 import OLSKViewportContent from 'OLSKViewportContent';
-import ModuleHeader from './ModuleHeader.svelte';
+import LCHComposeFooter from './modules/LCHComposeFooter/main.svelte';
 import ModuleMaster from './ModuleMaster.svelte';
 import ModuleDetail from './ModuleDetail.svelte';
 import LCHCompile from './modules/LCHCompile/main.svelte';
@@ -17,10 +17,10 @@ onMount(function () {
 
 let masterInstance;
 const mod = {
-	ModuleHeaderDispatchExport () {
+	FooterDispatchExport () {
 		masterInstance.DocumentsExport();
 	},
-	ModuleHeaderDispatchImport (event) {
+	FooterDispatchImport (event) {
 		masterInstance.DocumentsImport(event.detail);
 	},
 }
@@ -28,14 +28,14 @@ const mod = {
 
 <div class="Container OLSKViewport" class:OLSKIsLoading={ $isLoading }>
 
-<ModuleHeader on:ModuleHeaderDispatchExport={ mod.ModuleHeaderDispatchExport } on:ModuleHeaderDispatchImport={ mod.ModuleHeaderDispatchImport } />
-
 <OLSKViewportContent>
 	<ModuleMaster bind:this={ masterInstance } />
 	<ModuleDetail />
 </OLSKViewportContent>
 
 <LCHCompile CompileDocuments={ $DocumentsAllStore } OLSKLocalized={ OLSKLocalized } />
+
+<LCHComposeFooter on:FooterDispatchExport={ mod.FooterDispatchExport } on:FooterDispatchImport={ mod.FooterDispatchImport } />
 
 </div>
 

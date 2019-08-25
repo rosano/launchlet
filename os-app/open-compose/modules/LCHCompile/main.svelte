@@ -67,4 +67,7 @@ const mod = {
 </div>
 
 <style>
+.Container {
+	border-top: var(--LCHBorderStyle);
+}
 </style>
