@@ -6,6 +6,7 @@ const kDefaultRoutePath = '/modules/LCHLauncherPipeItem';
 const LCHLauncherPipeItem = '.LCHLauncherPipeItem';
 const LCHLauncherPipeItemTitle = '.LCHLauncherPipeItemTitle';
 const LCHLauncherPipeItemSubtitle = '.LCHLauncherPipeItemSubtitle';
+const LCHLauncherPipeItemSource = '.LCHLauncherPipeItemSource';
 
 describe('LCHLauncherPipeItemDiscovery', function testLCHLauncherPipeItemDiscovery() {
 
@@ -17,6 +18,7 @@ describe('LCHLauncherPipeItemDiscovery', function testLCHLauncherPipeItemDiscove
 		browser.assert.elements(LCHLauncherPipeItem, 1);
 		browser.assert.elements(LCHLauncherPipeItemTitle, 1);
 		browser.assert.elements(LCHLauncherPipeItemSubtitle, 1);
+		browser.assert.elements(LCHLauncherPipeItemSource, 1);
 	});
 
 });
@@ -33,6 +35,10 @@ describe('LCHLauncherPipeItemInteraction', function testLCHLauncherPipeItemInter
 	
 	it('binds PipeItemSubtitle', function() {
 		deepEqual(browser.query(LCHLauncherPipeItemSubtitle).textContent, 'StubPipeItemSubtitle');
+	});
+	
+	it('binds PipeItemSource', function() {
+		deepEqual(browser.query(LCHLauncherPipeItemSource).textContent, 'StubPipeItemSource');
 	});
 
 });

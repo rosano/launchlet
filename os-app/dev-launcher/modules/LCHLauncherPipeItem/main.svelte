@@ -1,6 +1,7 @@
 <script>
 export let PipeItemTitle = '';
 export let PipeItemSubtitle = '';
+export let PipeItemSource = '';
 </script>
 
 <div class="LCHLauncherPipeItem">
@@ -9,6 +10,11 @@ export let PipeItemSubtitle = '';
 	{#if PipeItemSubtitle}
 		<br>
 		<span class="LCHLauncherPipeItemSubtitle">{ PipeItemSubtitle }</span>
+	{/if}
+	
+	{#if PipeItemSource}
+		<br>
+		<span class="LCHLauncherPipeItemSource">{ PipeItemSource }</span>
 	{/if}
 </div>
 
@@ -20,9 +26,13 @@ export let PipeItemSubtitle = '';
 	color: hsl(0, 0%, 0%);
 }
 
-.LCHLauncherPipeItemSubtitle {	
+.LCHLauncherPipeItemSubtitle, .LCHLauncherPipeItemSource {	
 	font-size: 7.5pt;
 	opacity: 0.4;
+}
+
+.LCHLauncherPipeItemSource {	
+	font-style: italic;
 }
 
 @media screen and (max-width: 760px) {
