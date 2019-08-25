@@ -179,20 +179,18 @@ const mod = {
 			return;
 		};
 
-		if (!throttleMap[$DocumentSelectedStore.LCHDocumentID]) {
-			throttleMap[$DocumentSelectedStore.LCHDocumentID] = {
+		OLSKThrottle.OLSKThrottleMappedTimeoutFor(throttleMap, $DocumentSelectedStore.LCHDocumentID, function (inputData) {
+			return {
 				OLSKThrottleDuration: 500,
 				OLSKThrottleCallback: async function () {
-					delete throttleMap[$DocumentSelectedStore.LCHDocumentID];
+					delete throttleMap[inputData.LCHDocumentID];
 
-					await LCHFormulasAction.LCHFormulasActionUpdate(storageClient, $DocumentSelectedStore);
+					await LCHFormulasAction.LCHFormulasActionUpdate(storageClient, inputData);
 
 					modelDidChange.set(Date.now());
 				},
-			};	
-		}
-
-		OLSKThrottle.OLSKThrottleTimeoutFor(throttleMap[$DocumentSelectedStore.LCHDocumentID]);
+			};
+		}, $DocumentSelectedStore);
 	},
 	async commandDocumentDelete() {
 		if (!window.confirm(OLSKLocalized('LCHComposeListItemDeletePromptText'))) {
