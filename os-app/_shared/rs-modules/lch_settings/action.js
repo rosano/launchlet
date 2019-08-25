@@ -29,10 +29,10 @@ export const _LCHSettingsActionGet = async function(storageClient, inputData) {
 
 export const LCHSettingsActionProperty = async function(storageClient, param1, param2) {
 	if (typeof param2 === 'undefined') {
-		return await exports._LCHSettingsActionGet(storageClient, param1);
+		return await _LCHSettingsActionGet(storageClient, param1);
 	}
 
-	return await exports._LCHSettingsActionSet(storageClient, param1, param2);
+	return await _LCHSettingsActionSet(storageClient, param1, param2);
 };
 
 export const LCHSettingsActionDelete = async function(storageClient, inputData) {
