@@ -35,7 +35,7 @@ module.exports = {
 			preprocess: {
 				style({ content, filename }) {
 					return {
-						code: (filename.match(pathPackage.join(__dirname, 'Main.svelte')) ? module.exports.LCHRollupPrefixSelector(module.exports.LCHRollupGrabContainerSelector(content), require('fs').readFileSync(pathPackage.join(__dirname, '../_shared/_external/normalize.css/normalize.css'), 'utf8')) : '') + content,
+						code: (filename.match(pathPackage.join(__dirname, 'Main.svelte')) ? module.exports.LCHRollupPrefixSelector(module.exports.LCHRollupGrabContainerSelector(content), require('fs').readFileSync(pathPackage.join(__dirname, '../_shared/__external/normalize.css/normalize.css'), 'utf8')) : '') + content,
 						map: ''
 					};
 				},
@@ -48,7 +48,7 @@ module.exports = {
 
 			// extract component CSS into separate file for better performance
 			css: function (css) {
-				return css.write(pathPackage.join(pathPackage.dirname(inputData.input), '_compiled/ui-style.css'));
+				return css.write(pathPackage.join(pathPackage.dirname(inputData.input), '__compiled/ui-style.css'));
 			},
 		}));
 

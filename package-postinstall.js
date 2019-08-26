@@ -40,7 +40,7 @@
 		// pass tests
 		'OLSKInputWrapper',
 		'OLSKReloadButton',
-	], pathPackage.join(__dirname, 'node_modules'), pathPackage.join(__dirname, 'os-app/_shared/_external'));
+	], pathPackage.join(__dirname, 'node_modules'), pathPackage.join(__dirname, 'os-app/_shared/__external'));
 })();
 
 //# OLSKPostinstallRollup
