@@ -7,9 +7,9 @@ os-cache
 os-workspace-testing
 
 # BUILD
-dist/*
-!dist/package.json
-!dist/npm-prepublish.js
+os-app/dev-package/_distribution/*
+!os-app/dev-package/_distribution/package.json
+!os-app/dev-package/_distribution/npm-prepublish.js
 os-app/_shared/_external
 os-app/**/_compiled
 
