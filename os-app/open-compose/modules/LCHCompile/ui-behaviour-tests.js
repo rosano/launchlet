@@ -41,7 +41,7 @@ describe('LCHCompileLanguage', function testLCHCompileLanguage() {
 			});
 
 			it('localizes interface', function() {
-				browser.assert.text(`label[for=${ LCHCompileModePipeEnabledToggle.replace('#', '') }]`, uLocalized('LCHCompileModePipeEnabledToggleLabelText'))
+				browser.assert.text(`label[for=${ LCHCompileModePipeEnabledToggle.replace('#', '') }]`, uLocalized('LCHCompileModePipeEnabledToggleLabelText'));
 			});
 
 		});
@@ -83,12 +83,12 @@ describe('LCHCompileInteraction', function testLCHCompileInteraction() {
 		// });
 
 		it('defaults to not checked', async function () {
-			deepEqual(browser.query(LCHCompileModePipeEnabledToggle).checked, false)
+			deepEqual(browser.query(LCHCompileModePipeEnabledToggle).checked, false);
 		});
 
 		it.skip('binds LCHSettingComposeModePipeEnabled', async function () {
 			await browser.check(LCHCompileModePipeEnabledToggle);
-			deepEqual(browser.query(LCHCompileModePipeEnabledToggle).checked, true)
+			deepEqual(browser.query(LCHCompileModePipeEnabledToggle).checked, true);
 
 			await browser.reload();
 			deepEqual(browser.query(LCHCompileModePipeEnabledToggle).checked, true);

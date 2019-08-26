@@ -5,7 +5,7 @@ export const LCHCompileValidCompileTokens = function () {
 		'LCHCompileToken_DocumentObjects',
 		'LCHCompileToken_AppLanguageCode',
 		'LCHCompileToken_LCHLauncherMode',
-		];
+	];
 };
 
 export const LCHCompileBoomarkletTemplate = function () {
@@ -132,11 +132,11 @@ export const _LCHCompileRecipeJSON = function (inputData) {
 
 	if (inputData.LCHRecipeCallback) {
 		outputData.LCHRecipeCallback = '__LCHRecipeCallback__';
-	};
+	}
 
 	if (inputData.LCHRecipeOutputTypeCanonicalExampleCallback) {
 		outputData.LCHRecipeOutputTypeCanonicalExampleCallback = '__LCHRecipeOutputTypeCanonicalExampleCallback__';
-	};
+	}
 
 	return JSON.stringify(outputData).replace('"__LCHRecipeCallback__"', inputData.LCHRecipeCallback).replace('"__LCHRecipeOutputTypeCanonicalExampleCallback__"', inputData.LCHRecipeOutputTypeCanonicalExampleCallback);
 };

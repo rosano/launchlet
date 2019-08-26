@@ -53,7 +53,7 @@ describe('LCHSearchWithCallback', function testLCHSearchWithCallback() {
 					};
 				},
 			},
-		})('alfa', `example.com/LCHSEARCHTOKEN`), ['example.com/alfa', 'bravo']);
+		})('alfa', 'example.com/LCHSEARCHTOKEN'), ['example.com/alfa', 'bravo']);
 	});
 
 });
@@ -82,7 +82,7 @@ describe('LCHSearchForCallback', function testLCHSearchForCallback() {
 					};
 				},
 			},
-		})(`example.com/LCHSEARCHTOKEN`, 'alfa'), ['example.com/alfa', 'bravo']);
+		})('example.com/LCHSEARCHTOKEN', 'alfa'), ['example.com/alfa', 'bravo']);
 	});
 
 });

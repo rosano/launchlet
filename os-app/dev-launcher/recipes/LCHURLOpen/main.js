@@ -1,7 +1,7 @@
 export const LCHURLOpenCallback = function(inputData) {
 	if (!inputData) {
 		return;
-	};
+	}
 
 	window.open(inputData, '_blank').focus();
 };

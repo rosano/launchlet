@@ -341,11 +341,11 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'a');
 				await browser.wait({element: LCHLauncherSubjectPromptHeading});
 
-				browser.assert.text(LCHLauncherSubjectPromptHeading, 'A')
+				browser.assert.text(LCHLauncherSubjectPromptHeading, 'A');
 
 				browser.OLSKFireKeyboardEvent(browser.window, 'a');
 				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-				await browser.wait({duration: LCHLauncherThrottleDuration})
+				await browser.wait({duration: LCHLauncherThrottleDuration});
 
 				browser.assert.elements(LCHLauncherResultList, 0);
 
@@ -370,11 +370,11 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					
 				it('shows LCHLauncherPromptDotModeInput', function() {
 					browser.assert.elements(LCHLauncherPromptDotModeInput, 1);
-					browser.assert.attribute(LCHLauncherPromptDotModeInput, 'autofocus', '')
+					browser.assert.attribute(LCHLauncherPromptDotModeInput, 'autofocus', '');
 				});
 
 				it('focuses input', function() { // #move interaction
-					deepEqual(browser.document.activeElement, browser.query(LCHLauncherPromptDotModeInput))
+					deepEqual(browser.document.activeElement, browser.query(LCHLauncherPromptDotModeInput));
 				});
 			
 			});
@@ -409,11 +409,11 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				});
 
 				it('clears filter text', function() {
-					browser.assert.text(LCHLauncherSubjectPromptHeading, 'Subject') // #move language
+					browser.assert.text(LCHLauncherSubjectPromptHeading, 'Subject'); // #move language
 				});
 
 				it('clears actions', function() {
-					browser.assert.elements(LCHLauncherPipeItem, 0)
+					browser.assert.elements(LCHLauncherPipeItem, 0);
 				});
 			
 			});
@@ -443,40 +443,40 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 				});
 				
 				it('shows no actions', async function() {
-					browser.assert.elements(LCHLauncherPipeItem, 0)
+					browser.assert.elements(LCHLauncherPipeItem, 0);
 				});
 
 				it('shows actions if filled', async function() {
-					browser.fill(LCHLauncherPromptDotModeInput, 'alfa')
+					browser.fill(LCHLauncherPromptDotModeInput, 'alfa');
 					await browser.wait({element: LCHLauncherPipeItem});
 
-					browser.assert.elements(LCHLauncherPipeItem, 1)
+					browser.assert.elements(LCHLauncherPipeItem, 1);
 				});
 
 				it('upates actions for type', async function() {
-					browser.fill(LCHLauncherPromptDotModeInput, 'https://example.com')
+					browser.fill(LCHLauncherPromptDotModeInput, 'https://example.com');
 					await browser.wait({element: LCHLauncherPipeItem});
 
-					browser.assert.text(LCHLauncherPipeItem, 'Open URL')
+					browser.assert.text(LCHLauncherPipeItem, 'Open URL');
 				});
 
 				it('shows no actions if empty', async function() {
-					browser.fill(LCHLauncherPromptDotModeInput, '')
+					browser.fill(LCHLauncherPromptDotModeInput, '');
 					await browser.wait({element: LCHLauncherPromptDotModeInput});
 
-					browser.assert.elements(LCHLauncherPipeItem, 0)
+					browser.assert.elements(LCHLauncherPipeItem, 0);
 				});
 
 				context('on Escape', function () {
 
 					before(function () {
-						browser.fill(LCHLauncherPromptDotModeInput, 'bravo')
+						browser.fill(LCHLauncherPromptDotModeInput, 'bravo');
 						browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 						return browser.wait({element: LCHLauncherPipeItem});
 					});
 					
 					it('shows text item as pipe item', async function() {
-						browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1)
+						browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
 					});
 				
 				});
@@ -487,25 +487,25 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 						browser.OLSKFireKeyboardEvent(browser.window, '.');
 						await browser.wait({element: LCHLauncherPromptDotModeInput});
 
-						browser.fill(LCHLauncherPromptDotModeInput, '')
+						browser.fill(LCHLauncherPromptDotModeInput, '');
 						browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 						await browser.wait({element: LCHLauncherPromptDotModeInput});
 					});
 					
 					it('does nothing if empty', async function() {
 						browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
-						browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 0)
+						browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 0);
 
 						browser.OLSKFireKeyboardEvent(browser.window, '.');
 						await browser.wait({element: LCHLauncherPromptDotModeInput});
 
-						browser.fill(LCHLauncherPromptDotModeInput, 'charlie')
+						browser.fill(LCHLauncherPromptDotModeInput, 'charlie');
 						browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 						await browser.wait({element: LCHLauncherPromptDotModeInput});
 					});
 					
 					it('shows text item as pipe item', async function() {
-						browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1)
+						browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
 					});
 					
 					it('selects next prompt', async function() {
@@ -516,7 +516,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 						browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
 						await browser.wait({element: '#LCHCopyToClipboardButton'});
 
-						browser.click('#LCHCopyToClipboardButton')
+						browser.click('#LCHCopyToClipboardButton');
 						await browser.wait({element: '#LCHLauncherTestDidFinish'});
 
 						browser.assert.elements('#LCHLauncherTestDidFinish', 1);
@@ -544,13 +544,13 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 						browser.OLSKFireKeyboardEvent(browser.window, '.');
 						await browser.wait({element: LCHLauncherPromptDotModeInput});
 
-						browser.fill(LCHLauncherPromptDotModeInput, 'delta')
+						browser.fill(LCHLauncherPromptDotModeInput, 'delta');
 						await browser.wait({element: LCHLauncherPipeItem});
 
 						browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
 						await browser.wait({element: '#LCHCopyToClipboardButton'});
 
-						browser.click('#LCHCopyToClipboardButton')
+						browser.click('#LCHCopyToClipboardButton');
 						await browser.wait({element: '#LCHLauncherTestDidFinish'});
 
 						browser.assert.elements('#LCHLauncherTestDidFinish', 1);
@@ -591,7 +591,7 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					browser.OLSKFireKeyboardEvent(browser.window, '.');
 					await browser.wait({element: LCHLauncherPromptDotModeInput});
 
-					browser.fill(LCHLauncherPromptDotModeInput, 'alfa')
+					browser.fill(LCHLauncherPromptDotModeInput, 'alfa');
 					await browser.wait({element: LCHLauncherPipeItem});
 
 					browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
@@ -606,11 +606,11 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					});
 					
 					it('shows previous text input', async function() {
-						browser.assert.input(LCHLauncherPromptDotModeInput, 'alfa')
+						browser.assert.input(LCHLauncherPromptDotModeInput, 'alfa');
 					});
 					
 					it('shows actions', async function() {
-						browser.assert.elements(LCHLauncherPipeItem, 1)
+						browser.assert.elements(LCHLauncherPipeItem, 1);
 					});
 				
 				});
@@ -629,11 +629,11 @@ describe('LCHLauncherAccess', function testLCHLauncherAccess() {
 					});
 					
 					it('shows empty text', async function() {
-						browser.assert.input(LCHLauncherPromptDotModeInput, '')
+						browser.assert.input(LCHLauncherPromptDotModeInput, '');
 					});
 					
 					it('shows no actions', async function() {
-						browser.assert.elements(LCHLauncherPipeItem, 0)
+						browser.assert.elements(LCHLauncherPipeItem, 0);
 					});
 				
 				});

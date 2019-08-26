@@ -220,16 +220,16 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 	(function ClearFilterTextOnSubsequentPrompts() {
 		for (var i = 0; i < _PromptObjects.length; i++) {
 			if (!i) {
-				continue
-			};
+				continue;
+			}
 
 			if (i === _PromptActiveIndex) {
-				continue
-			};
+				continue;
+			}
 
 			_PromptObjects[i].LCHPromptFilterText = '';
 			_PromptObjects[i].LCHPromptMatchStop = false;
-		};
+		}
 	})();
 
 	(function SetMatchStop() {
@@ -426,7 +426,7 @@ afterUpdate(function () {
 });
 
 import { LCHLauncherKeyboardEventIsTextInput, LCHLauncherConstrainIndex } from './ui-logic.js';
-import { LCHCompositionModelErrors } from './api.js'
+import { LCHCompositionModelErrors } from './api.js';
 import { LCHRunCommandRecipe } from './recipes/LCHRunCommand/main.js';
 import { LCHPrimitiveURLCallback } from './recipes/PrimitiveURL/main.js';
 const mod = {
@@ -436,7 +436,7 @@ const mod = {
 	ValuePromptActiveIndex (inputData) {
 		if (typeof inputData === 'undefined') {
 			return _PromptActiveIndex;
-		};
+		}
 
 		(function CancelThrottle() {
 			if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
@@ -458,7 +458,7 @@ const mod = {
 
 		if (!_PromptObjects[1].LCHPromptItemsAll.length) {
 			return;
-		};
+		}
 
 		(function SetIndexActive() {
 			_PromptActiveIndex = inputData;
@@ -467,27 +467,27 @@ const mod = {
 		(function ActivateDotMode() {
 			if (_PromptActiveIndex !== 2) {
 				return;
-			};
+			}
 
 			if (LCHRecipeInputTypesForString(_PromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop() !== 'String') {
 				return;
-			};
+			}
 
-			mod.ValuePromptDotModeEnabled(true)
-			mod.ValuePromptDotModeText(mod.ValuePromptDotModeText())
+			mod.ValuePromptDotModeEnabled(true);
+			mod.ValuePromptDotModeText(mod.ValuePromptDotModeText());
 		})();
 	},
 	ValuePromptDotModeEnabled (inputData) {
 		if (typeof inputData === 'undefined') {
 			return _PromptObjects[_PromptActiveIndex].LCHPromptDotModeEnabled;
-		};
+		}
 
 		_PromptObjects[_PromptActiveIndex].LCHPromptDotModeEnabled = inputData;
 	},
 	ValuePromptDotModeText(inputData) {
 		if (typeof inputData === 'undefined') {
 			return _PromptObjects[_PromptActiveIndex].LCHPromptDotModeText;
-		};
+		}
 
 		_PromptObjects[_PromptActiveIndex].LCHPromptDotModeText = inputData;
 
@@ -502,7 +502,7 @@ const mod = {
 	ValuePromptResultsIsVisible (inputData) {
 		if (typeof inputData === 'undefined') {
 			return _PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === false;
-		};
+		}
 
 		_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = inputData ? false : undefined;
 	},
@@ -516,7 +516,7 @@ const mod = {
 				LCHCompositionSubjectPrimary: _PromptObjects[0].LCHPromptItemSelected,
 				LCHCompositionSubjectSecondary: _PromptObjects[2].LCHPromptItemSelected,
 			};
-		};
+		}
 
 		return {
 			LCHCompositionAction: LCHRunCommandRecipe(),
@@ -536,9 +536,9 @@ const mod = {
 	interfaceDidClickPrompt (inputData) {
 		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
 			return;
-		};
+		}
 
-		mod.ValuePromptActiveIndex(_PromptObjects.indexOf(inputData))
+		mod.ValuePromptActiveIndex(_PromptObjects.indexOf(inputData));
 	},
 	interfaceDidKeydown (event) {
 		mod.commandHandleEventKeydown(event);
@@ -560,20 +560,20 @@ const mod = {
 				
 				if (!mod.ValuePromptDotModeText()) {
 					return true;
-				};
+				}
 				
-				return mod.ValuePromptDotModeEnabled(false)
+				return mod.ValuePromptDotModeEnabled(false);
 			},
 			Enter () {
-				return mod.ValuePromptDotModeEnabled(false)
+				return mod.ValuePromptDotModeEnabled(false);
 			},
 		};
 
 		if (!handlerFunctions[event.key]) {
 			return true;
-		};
+		}
 
-		return handlerFunctions[event.key]()
+		return handlerFunctions[event.key]();
 	},
 	_commandHandleEventKeydownEscape (event) {
 		event.preventDefault();
@@ -601,7 +601,7 @@ const mod = {
 		}), _PromptActiveIndex + (event.shiftKey ? -1 : 1) * (function () {
 			if (!_PromptActiveIndex && _PromptObjects[2].LCHPromptIsVisible && _PromptObjects[1].LCHPromptItemsAll.length === 1) {
 				return 2;
-			};
+			}
 
 			return 1;
 		})()));
@@ -618,8 +618,8 @@ const mod = {
 	},
 	_commandHandleEventKeydownArrow (event) {
 		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
-			return
-		};
+			return;
+		}
 
 		event.preventDefault();
 
@@ -635,8 +635,8 @@ const mod = {
 	},
 	_commandHandleEventKeydownArrowDown (event) {
 		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
-			return
-		};
+			return;
+		}
 
 		event.preventDefault();
 
@@ -660,20 +660,20 @@ const mod = {
 
 		if (_PromptActiveIndex !== 0) {
 			return;
-		};
+		}
 		
 		if (OLSKThrottle.OLSKThrottleInputDataIsThrottleObject(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle)) {
 			clearTimeout(_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle._OLSKThrottleTimeoutID);
 		}
 
 		mod.ValuePromptResultsIsVisible(false);
-		mod.ValuePromptDotModeEnabled(true)
+		mod.ValuePromptDotModeEnabled(true);
 		ActivePromptFilterTextShouldUpdate('');
-		mod.ValuePromptDotModeText(mod.ValuePromptDotModeText())
+		mod.ValuePromptDotModeText(mod.ValuePromptDotModeText());
 
 		if (mod.ValuePromptDotModeText()) {
 			return;
-		};
+		}
 
 		_PromptObjects[1].LCHPromptItemsAll = [];
 		_PromptObjects[1].LCHPromptItemsVisible = [];
@@ -704,7 +704,7 @@ const mod = {
 	commandHandleEventKeydown (event) {
 		if (_PromptObjects[_PromptActiveIndex].LCHPromptDotModeEnabled && mod._commandHandleEventKeydownModeDotMode(event)) {
 			return;
-		};
+		}
 
 		const handlerFunctions = {
 			Escape: mod._commandHandleEventKeydownEscape,
@@ -722,7 +722,7 @@ const mod = {
 
 		if (_PromptObjects[_PromptActiveIndex].LCHPromptDotModeEnabled) {
 			return;
-		};
+		}
 
 		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
 			return;
@@ -754,7 +754,7 @@ const mod = {
 
 		return completionHandler();
 	},
-}
+};
 </script>
 <svelte:window on:keydown={ mod.interfaceDidKeydown } on:click={ mod.interfaceDidClickBody } on:touchstart={ mod.interfaceDidClickBody }/>
 

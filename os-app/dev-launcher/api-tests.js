@@ -965,9 +965,9 @@ describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 				LCHRecipeCallback() {
 					this.api.fn = function () {
 						return function () {
-							return 'charlie'
-						}
-					}
+							return 'charlie';
+						};
+					};
 					return this.api.fn('alfa')('bravo');
 				},
 				LCHRecipeSignature: 'charlie',
@@ -1025,7 +1025,7 @@ describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 				LCHRecipeCallback(inputData) {
 					this.api.alfa = function () {
 						return `bye ${ inputData }`;
-					}
+					};
 					
 					return this.api.alfa(inputData);
 				},

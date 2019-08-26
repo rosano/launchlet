@@ -23,7 +23,7 @@ const mod = {
 	FooterDispatchImport (event) {
 		masterInstance.DocumentsImport(event.detail);
 	},
-}
+};
 </script>
 
 <div class="Container OLSKViewport" class:OLSKIsLoading={ $isLoading }>

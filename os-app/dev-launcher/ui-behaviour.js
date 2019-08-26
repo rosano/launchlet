@@ -87,7 +87,7 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 				}, {
 					LCHRecipeName: 'string subject',
 					LCHRecipeCallback: function () {
-						return 'hello'
+						return 'hello';
 					},
 					LCHRecipeOutputType: 'String',
 				}, {

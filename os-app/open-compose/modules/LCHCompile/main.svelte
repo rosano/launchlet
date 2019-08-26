@@ -13,7 +13,7 @@ let _ValueModePipeEnabled = false;
 import { onMount } from 'svelte';
 onMount(function () {
 	modelDidChange.subscribe(function () {
-		mod.ReactJavascriptComposition()
+		mod.ReactJavascriptComposition();
 	});
 });
 const mod = {
@@ -23,7 +23,7 @@ const mod = {
 	ValueModePipeEnabled(inputData) {
 		if (typeof inputData === 'undefined') {
 			return _ValueModePipeEnabled;
-		};
+		}
 
 		_ValueModePipeEnabled = inputData;
 

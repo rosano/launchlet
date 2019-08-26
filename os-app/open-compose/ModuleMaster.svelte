@@ -21,14 +21,14 @@ export const DocumentsExport = function() {
 	const fileName = [
 		'dev.launchlet.export',
 		(new Date()).toJSON(),
-	].join(' ')
+	].join(' ');
 
 	zip.file(`${ fileName }.json`, JSON.stringify($DocumentsAllStore));
 	
 	zip.generateAsync({type: 'blob'}).then(function (content) {
 		saveAs(content, `${ fileName }.zip`);
 	});	
-}
+};
 
 export const DocumentsImport = async function(inputData) {
 	let outputData;
@@ -40,14 +40,14 @@ export const DocumentsImport = async function(inputData) {
 
 	if (!Array.isArray(outputData)) {
 		return;
-	};
+	}
 
 	await Promise.all(outputData.map(function (e) {
-		return LCHFormulasMetal.LCHFormulasMetalWrite(storageClient, LCHFormulasModelPostJSONParse(e))
+		return LCHFormulasMetal.LCHFormulasMetalWrite(storageClient, LCHFormulasModelPostJSONParse(e));
 	}));
 
 	DocumentsAllStore.set(await LCHFormulasAction.LCHFormulasActionList(storageClient));
-}
+};
 
 let _DocumentsVisible = [];
 const mod = {
@@ -62,7 +62,7 @@ const mod = {
 	valueFilterInputText(inputData) {
 		if (typeof inputData === 'undefined') {
 			return $FilterInputTextStore;
-		};
+		}
 
 		FilterInputTextStore.set(inputData);
 	},
@@ -110,7 +110,7 @@ const mod = {
 	reactDocumentsVisible() {
 		if (!$FilterInputTextStore) {
 			return _DocumentsVisible = $DocumentsAllStore;
-		};
+		}
 
 		_DocumentsVisible = $DocumentsAllStore.filter(LCHComposeFilterFunction($FilterInputTextStore));
 	},
@@ -119,8 +119,8 @@ const mod = {
 
 	lifecycleComponentDidMount() {
 		setTimeout(function () {
-			LCHComposeDefaultFocusNode().focus()
-		}, 200)
+			LCHComposeDefaultFocusNode().focus();
+		}, 200);
 	},
 };
 

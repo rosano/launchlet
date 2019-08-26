@@ -1,7 +1,7 @@
 export const LCHLargeTextCallback = function(inputData) {
 	if (typeof document === 'undefined') {
 		return;
-	};
+	}
 
 	const div = document.createElement('div');
 	div.id = 'LCHLargeTextContainer';
@@ -50,10 +50,10 @@ export const LCHLargeTextCallback = function(inputData) {
 		}
 		
 		window.removeEventListener('click', handler);
-		div.remove()
-	}
+		div.remove();
+	};
 	setTimeout(function () {
-		window.addEventListener('click', handler)
+		window.addEventListener('click', handler);
 	});
 };
 

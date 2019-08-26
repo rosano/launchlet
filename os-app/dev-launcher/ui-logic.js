@@ -190,20 +190,20 @@ export const LCHLauncherActionComparator = function (inputData) {
 		if (param1s[0] === inputData && param1s[1] === inputData) {
 			if (!param2s[0] && param2s[1]) {
 				return -1;
-			};
+			}
 
 			if (param2s[0] && !param2s[1]) {
 				return 1;
-			};
-		};
+			}
+		}
 
 		if (param1s[0] === inputData && param1s[1] !== inputData) {
 			return -1;
-		};
+		}
 
 		if (param1s[1] === inputData && param1s[0] !== inputData) {
 			return 1;
-		};
+		}
 
 		return 1;
 	};

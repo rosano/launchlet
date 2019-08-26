@@ -9,7 +9,7 @@ export const LCHSearchActionURLFrom = function(param1, param2) {
 
 	if (!param1.match(/LCHSEARCHTOKEN/i)) {
 		return param1;
-	};
+	}
 
 	return param1.replace(/LCHSEARCHTOKEN/i, param2.split(' ').map(function (e) {
 		return encodeURIComponent(e);

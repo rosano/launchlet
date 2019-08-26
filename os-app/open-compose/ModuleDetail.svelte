@@ -2,7 +2,7 @@
 import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
-import LCHEditor from './modules/LCHEditor/main.svelte'
+import LCHEditor from './modules/LCHEditor/main.svelte';
 
 import * as LCHFormulasAction from '../_shared/rs-modules/lch_documents/action.js';
 
@@ -120,7 +120,7 @@ DocumentSelectedStore.subscribe(function (val) {
 	if (val && (val !== _DocumentSelected)) {
 		setTimeout(function () {
 			document.querySelector('#LCHComposeFormNameField').focus();
-		})
+		});
 
 		_DocumentSelected = val;
 	}
@@ -177,7 +177,7 @@ const mod = {
 
 		if (_LCHIsTestingBehaviour()) {
 			return;
-		};
+		}
 
 		OLSKThrottle.OLSKThrottleMappedTimeoutFor(throttleMap, $DocumentSelectedStore.LCHDocumentID, function (inputData) {
 			return {

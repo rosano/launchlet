@@ -288,15 +288,15 @@ export const LCHAPITypeEquivalenceMapForRecipes = function(inputData) {
 		coll[item.LCHRecipeSignature] = validRecipes.filter(function (e) {
 			if (item === e) {
 				return true;
-			};
+			}
 
 			if (e._LCHRecipeNonEquivalenceTypes && e._LCHRecipeNonEquivalenceTypes.includes(item.LCHRecipeSignature)) {
 				return false;
-			};
+			}
 
 			if (item._LCHRecipeNonEquivalenceTypes && item._LCHRecipeNonEquivalenceTypes.includes(e.LCHRecipeSignature)) {
 				return false;
-			};
+			}
 
 			return e.LCHRecipeCallback(item.LCHRecipeOutputTypeCanonicalExampleCallback());
 		}).map(function (e) {
@@ -405,7 +405,7 @@ export const LCHAPIObjectFor = function(inputData) {
 			coll[item.LCHRecipeSignature] = item.LCHRecipeCallback.bind({
 				api: outputData,
 			});
-		};
+		}
 
 		return coll;
 	}, {}));
@@ -464,7 +464,7 @@ export const LCHCompositionModelErrors = function(inputData) {
 		errors.LCHCompositionSubjectSecondary = [
 			'LCHErrorInputInvalid',
 		];
-	};
+	}
 
 	if (inputData.LCHCompositionSubjectSecondary !== undefined) {
 		if (!LCHRecipesModelIsSubject(inputData.LCHCompositionSubjectSecondary)) {

@@ -11,7 +11,7 @@ export const OLSKLocalized = function(translationConstant) {
 };
 
 import OLSKString from 'OLSKString';
-export const OLSKFormatted = OLSKString.OLSKStringWithFormat
+export const OLSKFormatted = OLSKString.OLSKStringWithFormat;
 
 import { writable } from 'svelte/store';
 export const secondaryComponent = writable(null);

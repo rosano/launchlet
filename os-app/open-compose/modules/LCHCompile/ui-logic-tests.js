@@ -39,7 +39,7 @@ describe('LCHCompileBoomarkletStringFor', function testLCHCompileBoomarkletStrin
 			mainModule.LCHCompileBoomarkletStringFor(mainModule.LCHCompileValidCompileTokens().reduce(function (coll, item) {
 				if (item !== 'LCHCompileToken_DocumentObjects') {
 					coll[item] = '';
-				};
+				}
 
 				return coll;
 			}, {}));

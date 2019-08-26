@@ -22,9 +22,9 @@ const mod = {
 			inputElement.value = null;
 		};
 
-		reader.readAsText(event.target.files.item(0))
+		reader.readAsText(event.target.files.item(0));
 	},
-}
+};
 </script>
 
 <footer class="Container">

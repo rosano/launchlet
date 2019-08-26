@@ -21,7 +21,7 @@ const uSort = function (inputData) {
 		
 		return e;
 	});
-}
+};
 
 describe('LCHLauncherStandardRecipes', function testLCHLauncherStandardRecipes() {
 

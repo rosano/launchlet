@@ -35,7 +35,7 @@ const mod = {
 		handlerFunctions[event.code] && handlerFunctions[event.code]();
 	},
 
-}
+};
 </script>
 <svelte:window on:keydown={ mod.interfaceDidKeydown } />
 
