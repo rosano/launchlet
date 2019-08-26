@@ -4,12 +4,7 @@ const pathPackage = require('path');
 
 const production = !process.env.ROLLUP_WATCH;
 
-(function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-		typeof define === 'function' && define.amd ? define(['exports'], factory) :
-			(factory((global.LCHRollupConfigCustom = global.LCHRollupConfigCustom || {})));
-}(this, (function (exports) { 'use strict'; Object.defineProperty(exports, '__esModule', { value: true }); let mod = {}; Object.assign(exports, mod = {
-
+module.exports = {
 	LCHRollupGrabContainerSelector (inputData) {
 		if (typeof inputData !== 'string') {
 			throw new Error('LCHErrorInputInvalid');
@@ -23,7 +18,6 @@ const production = !process.env.ROLLUP_WATCH;
 
 		return match[1];
 	},
-
 	LCHRollupPrefixSelector (param1, param2) {
 		if (typeof param1 !== 'string') {
 			throw new Error('LCHErrorInputInvalid');
@@ -35,14 +29,13 @@ const production = !process.env.ROLLUP_WATCH;
 
 		return param2.replace(/\n(.*)\{/g, `\n${ param1 } :global($1) {`).replace(/body|html/g, '').replace(/ \:global\( \)/g, '');
 	},
-	
 	OLSKRollupConfigCustomFor (inputData) {
 		inputData.plugins.splice(0, 1, svelte({
 
 			preprocess: {
 				style({ content, filename }) {
 					return {
-						code: (filename.match(pathPackage.join(__dirname, 'Main.svelte')) ? mod.LCHRollupPrefixSelector(mod.LCHRollupGrabContainerSelector(content), require('fs').readFileSync(pathPackage.join(__dirname, '../_shared/_external/normalize.css/normalize.css'), 'utf8')) : '') + content,
+						code: (filename.match(pathPackage.join(__dirname, 'Main.svelte')) ? module.exports.LCHRollupPrefixSelector(module.exports.LCHRollupGrabContainerSelector(content), require('fs').readFileSync(pathPackage.join(__dirname, '../_shared/_external/normalize.css/normalize.css'), 'utf8')) : '') + content,
 						map: ''
 					};
 				},
@@ -60,6 +53,5 @@ const production = !process.env.ROLLUP_WATCH;
 		}));
 
 		return inputData;
-	},
-	
-}); })));
+	},	
+};
