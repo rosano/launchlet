@@ -4,7 +4,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 import LCHEditor from './modules/LCHEditor/main.svelte';
 
-import * as LCHFormulasAction from '../_shared/rs-modules/lch_documents/action.js';
+import * as LCHDocumentAction from '../_shared/LCHDocument/action.js';
 
 import { OLSKLocalized, _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 import { storageClient, DocumentsAllStore, DocumentSelectedStore, modelDidChange } from './persistence.js';
@@ -185,7 +185,7 @@ const mod = {
 				OLSKThrottleCallback: async function () {
 					delete throttleMap[inputData.LCHDocumentID];
 
-					await LCHFormulasAction.LCHFormulasActionUpdate(storageClient, inputData);
+					await LCHDocumentAction.LCHDocumentActionUpdate(storageClient, inputData);
 
 					modelDidChange.set(Date.now());
 				},
@@ -203,7 +203,7 @@ const mod = {
 			});
 		});
 
-		await LCHFormulasAction.LCHFormulasActionDelete(storageClient, $DocumentSelectedStore.LCHDocumentID);
+		await LCHDocumentAction.LCHDocumentActionDelete(storageClient, $DocumentSelectedStore.LCHDocumentID);
 
 		return DocumentSelectedStore.set(null);
 	},

@@ -1,11 +1,11 @@
 import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 
 import * as LCHStorageClient from '../_shared/LCHStorageClient/main.js';
-import * as RSModuleProtocol_lch_documents from '../_shared/rs-modules/lch_documents/rs-module.js';
-import * as RSModuleProtocol_lch_settings from '../_shared/rs-modules/lch_settings/rs-module.js';
-import { LCHComposeSort } from './ui-logic.js';
+import { LCHStorageModule } from '../_shared/LCHStorageModule/main.js';
+import { LCHDocumentStorage } from '../_shared/LCHDocument/storage.js';
+import { LCHSettingStorage } from '../_shared/LCHSetting/storage.js';
 
-import * as LCHFormulasAction from '../_shared/rs-modules/lch_documents/action.js';
+import { LCHComposeSort } from './ui-logic.js';
 
 import { writable } from 'svelte/store';
 
@@ -19,50 +19,57 @@ DocumentSelectedStore.subscribe(function (val) {
 	_DocumentSelected = val;
 });
 export const storageClient = LCHStorageClient.LCHStorageClientForModules([
-	RSModuleProtocol_lch_documents.RSModuleProtocolModuleForChangeDelegate({
-		OLSKChangeDelegateAdd: function (inputData) {
-			// console.log('OLSKChangeDelegateAdd', inputData);
-			DocumentsAllStore.update(function (val) {
-				return val.filter(function (e) { // @Hotfix Dropbox sending DelegateAdd
-					return e.LCHDocumentID !== inputData.LCHDocumentID;
-				}).concat(inputData).sort(LCHComposeSort);
-			});
+	LCHStorageModule([
+		LCHDocumentStorage,
+		LCHSettingStorage,
+		].map(function (e) {
+			return {
+				LCHCollectionStorageGenerator: e,
+				LCHCollectionChangeDelegate: e === LCHDocumentStorage ? {
+					OLSKChangeDelegateAdd: function (inputData) {
+						// console.log('OLSKChangeDelegateAdd', inputData);
+						DocumentsAllStore.update(function (val) {
+							return val.filter(function (e) { // @Hotfix Dropbox sending DelegateAdd
+								return e.LCHDocumentID !== inputData.LCHDocumentID;
+							}).concat(inputData).sort(LCHComposeSort);
+						});
 
-			modelDidChange.set(Date.now());
-		},
-		OLSKChangeDelegateRemove: function (inputData) {
-			// console.log('OLSKChangeDelegateRemove', inputData);
+						modelDidChange.set(Date.now());
+					},
+					OLSKChangeDelegateRemove: function (inputData) {
+						// console.log('OLSKChangeDelegateRemove', inputData);
 
-			if (_DocumentSelected && (_DocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
-				DocumentSelectedStore.set(null);
+						if (_DocumentSelected && (_DocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
+							DocumentSelectedStore.set(null);
+						}
+
+						DocumentsAllStore.update(function (val) {
+							return val.filter(function (e) {
+								return e.LCHDocumentID !== inputData.LCHDocumentID;
+							});
+						});
+
+						modelDidChange.set(Date.now());
+					},
+					OLSKChangeDelegateUpdate: function (inputData) {
+						// console.log('OLSKChangeDelegateUpdate', inputData);
+						if (_DocumentSelected && (_DocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
+							DocumentSelectedStore.update(function (val) {
+								return Object.assign(val, inputData);
+							});
+						}
+
+						DocumentsAllStore.update(function (val) {
+							return val.map(function (e) {
+								return Object.assign(e, e.LCHDocumentID === inputData.LCHDocumentID ? inputData : {});
+							});
+						});
+
+						modelDidChange.set(Date.now());
+					},
+				} : null,
 			}
-
-			DocumentsAllStore.update(function (val) {
-				return val.filter(function (e) {
-					return e.LCHDocumentID !== inputData.LCHDocumentID;
-				});
-			});
-
-			modelDidChange.set(Date.now());
-		},
-		OLSKChangeDelegateUpdate: function (inputData) {
-			// console.log('OLSKChangeDelegateUpdate', inputData);
-			if (_DocumentSelected && (_DocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
-				DocumentSelectedStore.update(function (val) {
-					return Object.assign(val, inputData);
-				});
-			}
-
-			DocumentsAllStore.update(function (val) {
-				return val.map(function (e) {
-					return Object.assign(e, e.LCHDocumentID === inputData.LCHDocumentID ? inputData : {});
-				});
-			});
-
-			modelDidChange.set(Date.now());
-		},
-	}),
-	RSModuleProtocol_lch_settings.RSModuleProtocolModuleForChangeDelegate(),
+		})),
 ]);
 
 let remoteStorage = storageClient.remoteStorage;
@@ -78,7 +85,7 @@ remoteStorage.on('ready', async () => {
 
 	isLoading.set(false);
 
-	await remoteStorage.lch_documents.init();
+	await remoteStorage.launchlet.lch_documents.init();
 
 	// setupFinalize(); remove loading class
 });

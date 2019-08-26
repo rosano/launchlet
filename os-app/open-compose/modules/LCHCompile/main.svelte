@@ -3,7 +3,7 @@ export let CompileDocuments = [];
 export let OLSKLocalized = null;
 
 import { storageClient, modelDidChange } from '../../persistence.js';
-import * as LCHSettingsAction from '../../../_shared/rs-modules/lch_settings/action.js';
+import * as LCHSettingsAction from '../../../_shared/LCHSetting/action.js';
 import { LCHCompileBoomarkletStringFor, LCHCompileBookmarkletBinaryFor } from './ui-logic.js';
 import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../../../dev-launcher/ui-logic.js';
 

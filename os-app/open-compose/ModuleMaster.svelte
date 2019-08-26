@@ -4,9 +4,9 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 import { LCHComposeDefaultFocusNode } from './_shared.js';
 
-import * as LCHFormulasAction from '../_shared/rs-modules/lch_documents/action.js';
-import * as LCHFormulasMetal from '../_shared/rs-modules/lch_documents/metal.js';
-import { LCHFormulasModelPostJSONParse } from '../_shared/rs-modules/lch_documents/model.js';
+import * as LCHDocumentAction from '../_shared/LCHDocument/action.js';
+import * as LCHDocumentMetal from '../_shared/LCHDocument/metal.js';
+import { LCHDocumentModelPostJSONParse } from '../_shared/LCHDocument/model.js';
 import { LCHComposeFilterFunction, LCHComposeSort } from './ui-logic.js';
 import { OLSKLocalized } from '../_shared/common/global.js';
 import { storageClient, DocumentsAllStore, DocumentSelectedStore } from './persistence.js';
@@ -43,10 +43,10 @@ export const DocumentsImport = async function(inputData) {
 	}
 
 	await Promise.all(outputData.map(function (e) {
-		return LCHFormulasMetal.LCHFormulasMetalWrite(storageClient, LCHFormulasModelPostJSONParse(e));
+		return LCHDocumentMetal.LCHDocumentMetalWrite(storageClient, LCHDocumentModelPostJSONParse(e));
 	}));
 
-	DocumentsAllStore.set(await LCHFormulasAction.LCHFormulasActionList(storageClient));
+	DocumentsAllStore.set(await LCHDocumentAction.LCHDocumentActionList(storageClient));
 };
 
 let _DocumentsVisible = [];
@@ -82,7 +82,7 @@ const mod = {
 	// COMMAND
 
 	async commandDocumentCreate() {
-		let item = await LCHFormulasAction.LCHFormulasActionCreate(storageClient, {
+		let item = await LCHDocumentAction.LCHDocumentActionCreate(storageClient, {
 			LCHDocumentName: '',
 			LCHDocumentInputTypes: '',
 			LCHDocumentArgs: '',
@@ -108,6 +108,7 @@ const mod = {
 	// REACT
 
 	reactDocumentsVisible() {
+		console.log($DocumentsAllStore);
 		if (!$FilterInputTextStore) {
 			return _DocumentsVisible = $DocumentsAllStore;
 		}

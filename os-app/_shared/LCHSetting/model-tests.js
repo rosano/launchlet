@@ -11,16 +11,16 @@ const kTesting = {
 	},
 };
 
-describe('LCHSettingsModelErrorsFor', function testLCHSettingsModelErrorsFor() {
+describe('LCHSettingModelErrorsFor', function testLCHSettingModelErrorsFor() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mainModule.LCHSettingsModelErrorsFor(null);
+			mainModule.LCHSettingModelErrorsFor(null);
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns object if LCHSettingKey not string', function() {
-		deepEqual(mainModule.LCHSettingsModelErrorsFor(Object.assign(kTesting.StubSettingObjectValid(), {
+		deepEqual(mainModule.LCHSettingModelErrorsFor(Object.assign(kTesting.StubSettingObjectValid(), {
 			LCHSettingKey: null,
 		})), {
 			LCHSettingKey: [
@@ -30,7 +30,7 @@ describe('LCHSettingsModelErrorsFor', function testLCHSettingsModelErrorsFor() {
 	});
 
 	it('returns object if LCHSettingKey not filled', function() {
-		deepEqual(mainModule.LCHSettingsModelErrorsFor(Object.assign(kTesting.StubSettingObjectValid(), {
+		deepEqual(mainModule.LCHSettingModelErrorsFor(Object.assign(kTesting.StubSettingObjectValid(), {
 			LCHSettingKey: ' ',
 		})), {
 			LCHSettingKey: [
@@ -40,7 +40,7 @@ describe('LCHSettingsModelErrorsFor', function testLCHSettingsModelErrorsFor() {
 	});
 
 	it('returns object if LCHSettingValue not string', function() {
-		deepEqual(mainModule.LCHSettingsModelErrorsFor(Object.assign(kTesting.StubSettingObjectValid(), {
+		deepEqual(mainModule.LCHSettingModelErrorsFor(Object.assign(kTesting.StubSettingObjectValid(), {
 			LCHSettingValue: null,
 		})), {
 			LCHSettingValue: [
@@ -50,7 +50,7 @@ describe('LCHSettingsModelErrorsFor', function testLCHSettingsModelErrorsFor() {
 	});
 
 	it('returns null', function() {
-		deepEqual(mainModule.LCHSettingsModelErrorsFor(kTesting.StubSettingObjectValid()), null);
+		deepEqual(mainModule.LCHSettingModelErrorsFor(kTesting.StubSettingObjectValid()), null);
 	});
 
 });

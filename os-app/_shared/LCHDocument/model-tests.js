@@ -117,14 +117,14 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 
 });
 
-describe('LCHFormulasModelPreJSONSchemaValidate', function testLCHFormulasModelPreJSONSchemaValidate() {
+describe('LCHDocumentModelPreJSONSchemaValidate', function testLCHDocumentModelPreJSONSchemaValidate() {
 
 	it('returns input', function() {
-		deepEqual(mainModule.LCHFormulasModelPreJSONSchemaValidate({}), {});
+		deepEqual(mainModule.LCHDocumentModelPreJSONSchemaValidate({}), {});
 	});
 
 	it('returns input with LCHDocumentCreationDate as string', function() {
-		deepEqual(mainModule.LCHFormulasModelPreJSONSchemaValidate({
+		deepEqual(mainModule.LCHDocumentModelPreJSONSchemaValidate({
 			LCHDocumentCreationDate: new Date('2018-12-09T19:07:01.902Z'),
 		}), {
 			LCHDocumentCreationDate: '2018-12-09T19:07:01.902Z',
@@ -132,7 +132,7 @@ describe('LCHFormulasModelPreJSONSchemaValidate', function testLCHFormulasModelP
 	});
 
 	it('returns input with LCHDocumentModificationDate as string', function() {
-		deepEqual(mainModule.LCHFormulasModelPreJSONSchemaValidate({
+		deepEqual(mainModule.LCHDocumentModelPreJSONSchemaValidate({
 			LCHDocumentModificationDate: new Date('2018-12-09T19:07:01.902Z'),
 		}), {
 			LCHDocumentModificationDate: '2018-12-09T19:07:01.902Z',
@@ -141,18 +141,18 @@ describe('LCHFormulasModelPreJSONSchemaValidate', function testLCHFormulasModelP
 
 });
 
-describe('LCHFormulasModelPostJSONParse', function testLCHFormulasModelPostJSONParse() {
+describe('LCHDocumentModelPostJSONParse', function testLCHDocumentModelPostJSONParse() {
 
 	it('returns input null', function() {
-		deepEqual(mainModule.LCHFormulasModelPostJSONParse(null), null);
+		deepEqual(mainModule.LCHDocumentModelPostJSONParse(null), null);
 	});
 
 	it('returns input object', function() {
-		deepEqual(mainModule.LCHFormulasModelPostJSONParse({}), {});
+		deepEqual(mainModule.LCHDocumentModelPostJSONParse({}), {});
 	});
 
 	it('returns input with LCHDocumentCreationDate as date', function() {
-		deepEqual(mainModule.LCHFormulasModelPostJSONParse({
+		deepEqual(mainModule.LCHDocumentModelPostJSONParse({
 			LCHDocumentCreationDate: '2018-12-09T19:07:01.902Z',
 		}), {
 			LCHDocumentCreationDate: new Date('2018-12-09T19:07:01.902Z'),
@@ -160,7 +160,7 @@ describe('LCHFormulasModelPostJSONParse', function testLCHFormulasModelPostJSONP
 	});
 
 	it('returns input with LCHDocumentModificationDate as date', function() {
-		deepEqual(mainModule.LCHFormulasModelPostJSONParse({
+		deepEqual(mainModule.LCHDocumentModelPostJSONParse({
 			LCHDocumentModificationDate: '2018-12-09T19:07:01.902Z',
 		}), {
 			LCHDocumentModificationDate: new Date('2018-12-09T19:07:01.902Z'),

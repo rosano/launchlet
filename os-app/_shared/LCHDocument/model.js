@@ -1,4 +1,4 @@
-import { LCHFormulaModelErrorsFor, LCHFormulaFrom, LCHFormulaTo } from '../../LCHFormula/main.js';
+import { LCHFormulaModelErrorsFor, LCHFormulaFrom, LCHFormulaTo } from '../LCHFormula/main.js';
 
 export const LCHDocumentModelErrorsFor = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
@@ -54,7 +54,7 @@ export const LCHDocumentModelErrorsFor = function(inputData) {
 	return Object.entries(errors).length ? errors : null;
 };
 
-export const LCHFormulasModelPreJSONSchemaValidate = function(inputData) {
+export const LCHDocumentModelPreJSONSchemaValidate = function(inputData) {
 	if (inputData.LCHDocumentCreationDate) {
 		inputData.LCHDocumentCreationDate = inputData.LCHDocumentCreationDate.toISOString();
 	}
@@ -66,7 +66,7 @@ export const LCHFormulasModelPreJSONSchemaValidate = function(inputData) {
 	return inputData;
 };
 
-export const LCHFormulasModelPostJSONParse = function(inputData) {
+export const LCHDocumentModelPostJSONParse = function(inputData) {
 	if (!inputData) {
 		return inputData;
 	}
