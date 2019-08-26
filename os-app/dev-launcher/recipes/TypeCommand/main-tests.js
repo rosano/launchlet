@@ -34,18 +34,18 @@ describe('LCHTypeStringCanonicalExampleCallback', function testLCHTypeStringCano
 		deepEqual(typeof mainModule.LCHTypeStringCanonicalExampleCallback(), 'object');
 	});
 
-	context('LCHRecipeCallback', function() {
-		
-		it('returns function', function() {
-			deepEqual(typeof mainModule.LCHTypeStringCanonicalExampleCallback().LCHRecipeCallback, 'function');
-		});
-
-	});
-
 	context('LCHRecipeName', function() {
 		
 		it('returns string', function() {
 			deepEqual(mainModule.LCHTypeStringCanonicalExampleCallback().LCHRecipeName, 'alfa');
+		});
+
+	});
+
+	context('LCHRecipeCallback', function() {
+		
+		it('returns function', function() {
+			deepEqual(typeof mainModule.LCHTypeStringCanonicalExampleCallback().LCHRecipeCallback, 'function');
 		});
 
 	});

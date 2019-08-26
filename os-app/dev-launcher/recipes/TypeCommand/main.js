@@ -16,8 +16,8 @@ export const LCHTypeCommandCallback = function(inputData) {
 
 export const LCHTypeStringCanonicalExampleCallback = function() {
 	return {
-		LCHRecipeCallback () {},
 		LCHRecipeName: 'alfa',
+		LCHRecipeCallback () {},
 	};
 };
 
