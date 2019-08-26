@@ -4,12 +4,9 @@ import * as mainModule from './main.js';
 
 describe('LCHRunCommandCallback', function testLCHRunCommandCallback() {
 
-	it('returns LCHRecipeCallback result', async function() {
-		deepEqual(mainModule.LCHRunCommandCallback({
-			LCHRecipeCallback: function () {
-				return 'alfa';
-			},
-		})(), 'alfa');
+	it('returns inputData', async function() {
+		const item = function () {};
+		deepEqual(mainModule.LCHRunCommandCallback(item), item);
 	});
 
 });
