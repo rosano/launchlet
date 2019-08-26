@@ -5,6 +5,8 @@ export const LCHCompileValidCompileTokens = function () {
 		'LCHCompileToken_DocumentObjects',
 		'LCHCompileToken_AppLanguageCode',
 		'LCHCompileToken_LCHLauncherMode',
+		'LCHCompileToken_LCHComposeRecipeName',
+		'LCHCompileToken_LCHComposeRecipeCallbackOutput',
 	];
 };
 
@@ -34,7 +36,13 @@ export const LCHCompileBoomarkletTemplate = function () {
 			window.LCHBookmarklet.AppInstance = new (window.LCHBookmarklet.uiBehaviour())({
 				target: sandboxContainer,
 				props: {
-					dataObjects: _protectFromCompiler(`LCHCompileToken_DocumentObjects`),
+					dataObjects: _protectFromCompiler(`LCHCompileToken_DocumentObjects`).concat({
+						LCHRecipeName: 'LCHCompileToken_LCHComposeRecipeName',
+						LCHRecipeCallback () {
+							return 'LCHCompileToken_LCHComposeRecipeCallbackOutput';
+						},
+						LCHRecipeOutputType: 'URL',
+					}),
 					completionHandler () {
 						return window.LCHBookmarklet.instanceDestroy();
 					},

@@ -59,6 +59,8 @@ const mod = {
 			}),
 			LCHCompileToken_AppLanguageCode: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 			LCHCompileToken_LCHLauncherMode: mod.ValueModePipeEnabled() ? LCHLauncherModePipe() : LCHLauncherModeCommit(),
+			LCHCompileToken_LCHComposeRecipeName: OLSKLocalized('LCHComposeTitle'),
+			LCHCompileToken_LCHComposeRecipeCallbackOutput: window.location.href,
 		});
 
 		JavascriptCompositionBinary = LCHCompileBookmarkletBinaryFor(JavascriptComposition);

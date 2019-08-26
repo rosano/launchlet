@@ -11,6 +11,8 @@ describe('LCHCompileValidCompileTokens', function testLCHCompileValidCompileToke
 			'LCHCompileToken_DocumentObjects',
 			'LCHCompileToken_AppLanguageCode',
 			'LCHCompileToken_LCHLauncherMode',
+			'LCHCompileToken_LCHComposeRecipeName',
+			'LCHCompileToken_LCHComposeRecipeCallbackOutput',
 		]);
 	});
 
