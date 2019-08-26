@@ -20,9 +20,9 @@
 	);
 })();
 
-//# OLSKBuildExternalAssets
+//# OLSKPostinstallExternalAssets
 
-(function OLSKBuildExternalAssets() {
+(function OLSKPostinstallExternalAssets() {
 	const OLSKAssets = require('./node_modules/OLSKApp/modules/OLSKAssets/main.js');
 	const pathPackage = require('path');
 
@@ -41,4 +41,14 @@
 		'OLSKInputWrapper',
 		'OLSKReloadButton',
 	], pathPackage.join(__dirname, 'node_modules'), pathPackage.join(__dirname, 'os-app/_shared/_external'));
+})();
+
+//# OLSKPostinstallRollup
+
+(function OLSKPostinstallRollup() {
+	if (process.env.NODE_ENV !== 'production') {
+		return;
+	}
+
+	require('child_process').exec('npm run svelte-build');
 })();
