@@ -31,10 +31,6 @@ export let PipeItemSource = '';
 	opacity: 0.4;
 }
 
-.LCHLauncherPipeItemSource {	
-	font-style: italic;
-}
-
 @media screen and (max-width: 760px) {
 
 .LCHLauncherPipeItem {
