@@ -2,7 +2,7 @@
 
 exports.OLSKControllerRoutes = function() {
 	return {
-		LCHComposeRoute: {
+		LCHVitrineRoute: {
 			OLSKRoutePath: '/',
 			OLSKRouteMethod: 'get',
 			OLSKRouteFunction: function (req, res, next) {

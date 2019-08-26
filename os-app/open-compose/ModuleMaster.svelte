@@ -108,7 +108,6 @@ const mod = {
 	// REACT
 
 	reactDocumentsVisible() {
-		console.log($DocumentsAllStore);
 		if (!$FilterInputTextStore) {
 			return _DocumentsVisible = $DocumentsAllStore;
 		}
