@@ -8,9 +8,6 @@ exports.OLSKControllerRoutes = function() {
 			OLSKRoutePath: '/package',
 			OLSKRouteMethod: 'get',
 			OLSKRouteFunction: function(req, res, next) {
-				require('../../node_modules/OLSKApp/modules/OLSKAssets/main.js').OLSKAssetsCopyAssetsFromTo([
-					'dist',
-				], pathPackage.join(__dirname, '../../'), pathPackage.join(__dirname, '__compiled'));
 				return res.render(req.OLSKLive.OLSKLivePathJoin(__dirname, 'view'), {});
 			},
 			OLSKRouteLanguages: ['en'],
@@ -22,7 +19,7 @@ exports.OLSKControllerRoutes = function() {
 
 exports.OLSKControllerSharedStaticAssetFolders = function() {
 	return [
-		'__compiled/dist',
+		'__compiled',
 	];
 };
 
