@@ -1,4 +1,5 @@
 const svelte = require('rollup-plugin-svelte');
+const autoPreprocess = require('svelte-preprocess');
 
 const pathPackage = require('path');
 
@@ -32,14 +33,18 @@ module.exports = {
 	OLSKRollupConfigCustomFor (inputData) {
 		inputData.plugins.splice(0, 1, svelte({
 
-			preprocess: {
-				style({ content, filename }) {
-					return {
-						code: (filename.match(pathPackage.join(__dirname, 'Main.svelte')) ? module.exports.LCHRollupPrefixSelector(module.exports.LCHRollupGrabContainerSelector(content), require('fs').readFileSync(pathPackage.join(__dirname, '../_shared/__external/normalize.css/normalize.css'), 'utf8')) : '') + content,
-						map: ''
-					};
+			preprocess: [
+				autoPreprocess({}),
+				{
+					style({ content, filename }) {
+						console.log(content, filename);
+						return {
+							code: (filename.match(pathPackage.join(__dirname, 'Main.svelte')) ? module.exports.LCHRollupPrefixSelector(module.exports.LCHRollupGrabContainerSelector(content), require('fs').readFileSync(pathPackage.join(__dirname, '../_shared/__external/normalize.css/normalize.css'), 'utf8')) : '') + content,
+							map: ''
+						};
+					}
 				},
-			},
+				],
 
 			// --- COPY PREVIOUS CONFIGURATION ---
 

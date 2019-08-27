@@ -46,7 +46,7 @@ export default globPackage.sync(['os-app/**/rollup-start.js'], {
 				// enable run-time checks when not in production
 				dev: !production,
 
-			preprocess: autoPreprocess({ /* options */ }),
+				preprocess: autoPreprocess({ /* options */ }),
 
 				// extract component CSS into separate file for better performance
 				css: function (css) {

@@ -1,0 +1,155 @@
+.Container {
+	--__LaunchletWidth: 400px;
+	--__LaunchletSharedPadding: 5px;
+
+	width: var(--__LaunchletWidth);
+	padding: var(--__LaunchletSharedPadding);
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	box-shadow: 0 0 10px 0px #e6e6e6;
+
+	position: fixed;
+	top: 0;
+	left: 50%;
+	margin: 0 0 0 calc(var(--__LaunchletWidth) / -2);
+	z-index: 999999999;
+
+	color: black;
+	background: #e6e6e6;
+	font-family: 'Lucida Grande', 'Helvetica', sans-serif;
+
+	/* CompensateExternalStyles */
+	text-align: initial;
+
+	/* @ContainerFlexbox:Parent */
+	display: flex;
+	flex-direction: column;
+}
+
+xxx .Container :global(.LCHLauncherZoneInput) {
+	/* DisableTextSelection */
+	pointer-events: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+xxx input {
+	padding: 6px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+
+	background: #f3f3f3;
+	color: #3f3f3f;
+
+	/* BrowserDefaultOutline */
+	outline: none;
+}
+
+input {
+	border: none;
+
+	background: none;
+	color: #3f3f3f;
+
+	/* BrowserDefaultOutline */
+	outline: none;
+}
+
+.LCHLauncherPromptHeading {
+	padding: 3px;
+
+	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+	font-size: 8pt;
+	color: hsl(0, 0%, 60%);
+
+	/* ContainerDivSpacingHotfix */
+	display: block;
+}
+
+.LCHLauncherPromptHeadingMatchStop {
+	color: #fd6666;
+}
+
+.Container :global(.LCHLauncherResultList) {
+	width: 95%;
+	padding-left: 5px;
+	border-left: 1px solid hsl(0, 0%, 80%);
+
+	margin: 5px;
+	margin-right: none;
+
+	color: black;
+
+	/* @LCHLauncherResultListCapAndScroll */
+	max-height: 165px;
+	overflow-y: scroll;
+}
+
+.Container :global(.LCHLauncherResultListItem) {
+	/* CapWidth */
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.LCHLauncherPromptSelected :global(.LCHLauncherZoneInputBezel), .LCHLauncherPromptSelected :global(.LCHLauncherResultListItemSelected) {
+	background: hsl(0, 0%, 85%);
+}
+
+.LCHLauncherSubjectPromptPlaceholder {
+	display: inline-block;
+
+	font-size: 8pt;
+	color: hsl(0, 0%, 20%);
+
+	/* @LCHLauncherZoneInputBezelFlexbox:Child */
+	align-self: center;
+}
+
+@media screen and (max-width: 760px) {
+
+.Container {
+	width: 100%;
+	padding: 0;
+	border: none;
+	border-radius: 0;
+	border-bottom: 1px solid #cccccc;
+
+	left: 0;
+	margin: 0;
+}
+
+input {
+	width: 100%;
+	padding: 10px;
+	border: none;
+	border-radius: 0;
+	border-bottom: 1px solid #cccccc;
+
+	background: #f3f3f3;
+	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+	font-size: 16pt;
+}
+
+.Container :global(.LCHLauncherResultList) {
+	width: 100%;
+	padding-left: 0;
+	border-left: none;
+
+	margin: 0;
+
+	/* @LCHLauncherResultListCapAndScroll */
+	max-height: 220px;
+
+  /* MobileSafariSmoothScrolling */
+	-webkit-overflow-scrolling: touch;
+}
+
+.LCHLauncherPromptSelected :global(.LCHLauncherZoneInputBezel), .LCHLauncherPromptSelected :global(.LCHLauncherResultListItemSelected) {
+	background: hsl(0, 0%, 80%);
+}
+
+}
