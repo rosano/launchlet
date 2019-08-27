@@ -1,7 +1,7 @@
 import { deepEqual } from 'assert';
 
 const browser = new OLSKBrowser();
-const kDefaultRoutePath = '/';
+const kDefaultRoutePath = require('../../controller.js').OLSKControllerRoutes().LCHComposeRoute.OLSKRoutePath;
 
 Object.entries({
 	OLSKReloadButton: '.OLSKReloadButton',
