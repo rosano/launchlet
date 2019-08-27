@@ -76,6 +76,7 @@ let remoteStorage = storageClient.remoteStorage;
 
 remoteStorage.setApiKeys({
 	dropbox: window.atob(window.OLSKPublicConstants('LCHDropboxAppKey')),
+	googledrive: window.atob(window.OLSKPublicConstants('LCHGoogleClientKey')),
 });
 
 remoteStorage.on('ready', async () => {

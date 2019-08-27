@@ -10,6 +10,7 @@ exports.OLSKControllerRoutes = function() {
 					LCHComposeLauncherStyle: require('fs').readFileSync(req.OLSKLive.OLSKLivePathJoin(__dirname, '../dev-launcher/__compiled/ui-style.css'), 'utf8'),
 					LCHComposeLauncherBehaviour: require('fs').readFileSync(req.OLSKLive.OLSKLivePathJoin(__dirname, '../dev-launcher/__compiled/ui-behaviour.js'), 'utf8'),
 					LCHDropboxAppKey: Buffer.from(process.env.LCH_DROPBOX_APP_KEY).toString('base64'),
+					LCHGoogleClientKey: Buffer.from(process.env.LCH_GOOGLE_CLIENT_KEY).toString('base64'),
 				});
 			},
 			OLSKRouteLanguages: ['en'],
