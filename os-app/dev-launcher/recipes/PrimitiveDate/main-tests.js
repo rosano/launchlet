@@ -34,7 +34,7 @@ describe('LCHPrimitiveDateRecipe', function testLCHPrimitiveDateRecipe() {
 			LCHRecipeSignature: 'Date',
 			LCHRecipeCallback: mainModule.LCHPrimitiveDateCallback,
 			LCHRecipeOutputType: 'Bool',
-			LCHRecipeOutputTypeCanonicalExampleCallback: mainModule.LCHPrimitiveDateCanonicalExampleCallback,
+			LCHRecipeCanonicalExampleCallback: mainModule.LCHPrimitiveDateCanonicalExampleCallback,
 		});
 	});
 

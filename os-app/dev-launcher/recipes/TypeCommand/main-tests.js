@@ -60,7 +60,7 @@ describe('LCHTypeCommandRecipe', function testLCHTypeCommandRecipe() {
 			LCHRecipeSignature: 'Command',
 			LCHRecipeCallback: mainModule.LCHTypeCommandCallback,
 			LCHRecipeOutputType: 'Bool',
-			LCHRecipeOutputTypeCanonicalExampleCallback: mainModule.LCHTypeStringCanonicalExampleCallback,
+			LCHRecipeCanonicalExampleCallback: mainModule.LCHTypeStringCanonicalExampleCallback,
 		});
 	});
 

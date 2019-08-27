@@ -55,9 +55,9 @@ export const LCHRecipesModelErrorsFor = function(inputData) {
 		}
 	}
 
-	if (inputData.LCHRecipeOutputTypeCanonicalExampleCallback !== undefined) {
-		if (typeof inputData.LCHRecipeOutputTypeCanonicalExampleCallback !== 'function') {
-			errors.LCHRecipeOutputTypeCanonicalExampleCallback = [
+	if (inputData.LCHRecipeCanonicalExampleCallback !== undefined) {
+		if (typeof inputData.LCHRecipeCanonicalExampleCallback !== 'function') {
+			errors.LCHRecipeCanonicalExampleCallback = [
 				'LCHErrorNotFunction',
 			];
 		}
@@ -151,7 +151,7 @@ export const LCHRecipesModelIsType = function(inputData) {
 		return false;
 	}
 
-	if (!inputData.LCHRecipeOutputTypeCanonicalExampleCallback) {
+	if (!inputData.LCHRecipeCanonicalExampleCallback) {
 		return false;
 	}
 
@@ -277,7 +277,7 @@ export const LCHAPITypeEquivalenceMapForRecipes = function(inputData) {
 			return false;
 		}
 
-		if (!e.LCHRecipeCallback(e.LCHRecipeOutputTypeCanonicalExampleCallback())) {
+		if (!e.LCHRecipeCallback(e.LCHRecipeCanonicalExampleCallback())) {
 			return false;
 		}
 
@@ -304,7 +304,7 @@ export const LCHAPITypeEquivalenceMapForRecipes = function(inputData) {
 				return false;
 			}
 
-			return e.LCHRecipeCallback(item.LCHRecipeOutputTypeCanonicalExampleCallback());
+			return e.LCHRecipeCallback(item.LCHRecipeCanonicalExampleCallback());
 		}).map(function (e) {
 			return e.LCHRecipeSignature;
 		});

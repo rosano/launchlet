@@ -263,9 +263,9 @@ const mod = {
 	</p>
 
 	{#if $DocumentSelectedStore.LCHDocumentOutputType === 'Bool'}
-		<p class="LCHComposeFormOutputTypeCanonicalExampleBody">
+		<p class="LCHComposeFormCanonicalExampleBody">
 			{#if _LCHIsTestingBehaviour()}
-				<textarea bind:value={ $DocumentSelectedStore.LCHDocumentOutputTypeCanonicalExampleBody } on:input={ mod.commandDocumentSave } id="LCHComposeFormOutputTypeCanonicalExampleBodyDebugField"></textarea>
+				<textarea bind:value={ $DocumentSelectedStore.LCHDocumentCanonicalExampleBody } on:input={ mod.commandDocumentSave } id="LCHComposeFormCanonicalExampleBodyDebugField"></textarea>
 			{/if}
 
 			<LCHEditor EditorOptions={ {
@@ -282,8 +282,8 @@ const mod = {
 					Tab: false,
 				},
 			} } on:EditorDispatchValueChanged={ (event) => mod._EditorDispatchValueChanged({
-			LCHDocumentOutputTypeCanonicalExampleBody: event.detail,
-		}) } EditorInitialValue={ $DocumentSelectedStore.LCHDocumentOutputTypeCanonicalExampleBody } />
+			LCHDocumentCanonicalExampleBody: event.detail,
+		}) } EditorInitialValue={ $DocumentSelectedStore.LCHDocumentCanonicalExampleBody } />
 		</p>
 	{/if}
 

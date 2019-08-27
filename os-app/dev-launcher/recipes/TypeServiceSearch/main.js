@@ -30,6 +30,6 @@ export const LCHTypeServiceSearchRecipe = function() {
 		LCHRecipeSignature: 'ServiceSearch',
 		LCHRecipeCallback: LCHTypeServiceSearchCallback,
 		LCHRecipeOutputType: 'Bool',
-		LCHRecipeOutputTypeCanonicalExampleCallback: LCHTypeServiceSearchCanonicalExampleCallback,
+		LCHRecipeCanonicalExampleCallback: LCHTypeServiceSearchCanonicalExampleCallback,
 	};
 };

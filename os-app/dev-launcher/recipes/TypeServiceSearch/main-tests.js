@@ -71,7 +71,7 @@ describe('LCHTypeServiceSearchRecipe', function testLCHTypeServiceSearchRecipe()
 			LCHRecipeName: 'Search Service',
 			LCHRecipeCallback: mainModule.LCHTypeServiceSearchCallback,
 			LCHRecipeOutputType: 'Bool',
-			LCHRecipeOutputTypeCanonicalExampleCallback: mainModule.LCHTypeServiceSearchCanonicalExampleCallback,
+			LCHRecipeCanonicalExampleCallback: mainModule.LCHTypeServiceSearchCanonicalExampleCallback,
 			LCHRecipeSignature: 'ServiceSearch',
 		});
 	});

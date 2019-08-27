@@ -20,6 +20,6 @@ export const LCHPrimitiveDateRecipe = function() {
 		LCHRecipeSignature: 'Date',
 		LCHRecipeCallback: LCHPrimitiveDateCallback,
 		LCHRecipeOutputType: 'Bool',
-		LCHRecipeOutputTypeCanonicalExampleCallback: LCHPrimitiveDateCanonicalExampleCallback,
+		LCHRecipeCanonicalExampleCallback: LCHPrimitiveDateCanonicalExampleCallback,
 	};
 };

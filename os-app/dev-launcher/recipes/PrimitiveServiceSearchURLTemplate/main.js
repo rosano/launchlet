@@ -21,7 +21,7 @@ export const LCHPrimitiveServiceSearchURLTemplateRecipe = function() {
 		LCHRecipeName: 'Search Service URL Template',
 		LCHRecipeCallback: LCHPrimitiveServiceSearchURLTemplateCallback,
 		LCHRecipeOutputType: 'Bool',
-		LCHRecipeOutputTypeCanonicalExampleCallback: LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback,
+		LCHRecipeCanonicalExampleCallback: LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback,
 		LCHRecipeSignature: 'ServiceSearchURLTemplate',
 		_LCHRecipeNonEquivalenceTypes: 'String,URL',
 	};

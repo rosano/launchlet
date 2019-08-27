@@ -43,9 +43,9 @@ export const LCHDocumentModelErrorsFor = function(inputData) {
 		}
 	}
 
-	if (inputData.LCHDocumentOutputTypeCanonicalExampleBody !== undefined) {
-		if (typeof inputData.LCHDocumentOutputTypeCanonicalExampleBody !== 'string') {
-			errors.LCHDocumentOutputTypeCanonicalExampleBody = [
+	if (inputData.LCHDocumentCanonicalExampleBody !== undefined) {
+		if (typeof inputData.LCHDocumentCanonicalExampleBody !== 'string') {
+			errors.LCHDocumentCanonicalExampleBody = [
 				'LCHErrorNotString',
 			];
 		}

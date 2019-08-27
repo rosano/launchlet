@@ -167,10 +167,10 @@ bravo
 		}), `{"LCHRecipeCallback":\nbravo\n}`);
 	});
 
-	it('prints LCHRecipeOutputTypeCanonicalExampleCallback directly', function() {
+	it('prints LCHRecipeCanonicalExampleCallback directly', function() {
 		deepEqual(mainModule._LCHCompileRecipeJSON({
-			LCHRecipeOutputTypeCanonicalExampleCallback: 'function () { alfa }',
-		}), '{"LCHRecipeOutputTypeCanonicalExampleCallback":function () { alfa }}');
+			LCHRecipeCanonicalExampleCallback: 'function () { alfa }',
+		}), '{"LCHRecipeCanonicalExampleCallback":function () { alfa }}');
 	});
 
 });
@@ -209,11 +209,11 @@ describe('_LCHComposeRecipeStub', function test_LCHComposeRecipeStub() {
 		});
 	});
 
-	it('wraps LCHDocumentOutputTypeCanonicalExampleBody in closure', function() {
+	it('wraps LCHDocumentCanonicalExampleBody in closure', function() {
 		deepEqual(mainModule._LCHComposeRecipeStub({
-			LCHDocumentOutputTypeCanonicalExampleBody: 'alfa',
+			LCHDocumentCanonicalExampleBody: 'alfa',
 		}), {
-			LCHRecipeOutputTypeCanonicalExampleCallback: 'function () { alfa }',
+			LCHRecipeCanonicalExampleCallback: 'function () { alfa }',
 		});
 	});
 

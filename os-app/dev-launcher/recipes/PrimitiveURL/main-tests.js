@@ -76,7 +76,7 @@ describe('LCHPrimitiveURLRecipe', function testLCHPrimitiveURLRecipe() {
 			LCHRecipeSignature: 'URL',
 			LCHRecipeCallback: mainModule.LCHPrimitiveURLCallback,
 			LCHRecipeOutputType: 'Bool',
-			LCHRecipeOutputTypeCanonicalExampleCallback: mainModule.LCHPrimitiveStringCanonicalExampleCallback,
+			LCHRecipeCanonicalExampleCallback: mainModule.LCHPrimitiveStringCanonicalExampleCallback,
 		});
 	});
 

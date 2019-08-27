@@ -38,7 +38,7 @@ describe('LCHPrimitiveServiceSearchURLTemplateRecipe', function testLCHPrimitive
 			LCHRecipeSignature: 'ServiceSearchURLTemplate',
 			LCHRecipeCallback: mainModule.LCHPrimitiveServiceSearchURLTemplateCallback,
 			LCHRecipeOutputType: 'Bool',
-			LCHRecipeOutputTypeCanonicalExampleCallback: mainModule.LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback,
+			LCHRecipeCanonicalExampleCallback: mainModule.LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback,
 			_LCHRecipeNonEquivalenceTypes: 'String,URL',
 		});
 	});

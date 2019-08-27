@@ -26,8 +26,8 @@ Object.entries({
 	LCHComposeDetailCallbackBodyInput: '.LCHComposeDetailCallbackBody .CodeMirror',
 	LCHComposeDetailCallbackBodyInputDebug: '#LCHComposeDetailCallbackBodyInputDebug',
 	LCHComposeFormOutputTypeField: '#LCHComposeFormOutputTypeField',
-	LCHComposeFormOutputTypeCanonicalExampleBodyField: '.LCHComposeFormOutputTypeCanonicalExampleBody .CodeMirror',
-	LCHComposeFormOutputTypeCanonicalExampleBodyDebugField: '#LCHComposeFormOutputTypeCanonicalExampleBodyDebugField',
+	LCHComposeFormCanonicalExampleBodyField: '.LCHComposeFormCanonicalExampleBody .CodeMirror',
+	LCHComposeFormCanonicalExampleBodyDebugField: '#LCHComposeFormCanonicalExampleBodyDebugField',
 	LCHComposeDetailStyleInput: '.LCHComposeDetailStyle .CodeMirror',
 	LCHComposeDetailStyleInputDebug: '#LCHComposeDetailStyleInputDebug',
 	LCHComposeFormURLFilterField: '#LCHComposeFormURLFilterField',
@@ -88,8 +88,8 @@ describe('LCHComposeDiscovery', function testLCHComposeDiscovery() {
 		browser.assert.elements(LCHComposeDetailCallbackBodyInput, 1);
 		browser.assert.elements(LCHComposeDetailCallbackBodyInputDebug, 1);
 		browser.assert.elements(LCHComposeFormOutputTypeField, 1);
-		browser.assert.elements(LCHComposeFormOutputTypeCanonicalExampleBodyField, 0);
-		browser.assert.elements(LCHComposeFormOutputTypeCanonicalExampleBodyDebugField, 0);
+		browser.assert.elements(LCHComposeFormCanonicalExampleBodyField, 0);
+		browser.assert.elements(LCHComposeFormCanonicalExampleBodyDebugField, 0);
 		browser.assert.elements(LCHComposeFormSignatureField, 1);
 		browser.assert.elements(LCHComposeFormURLFilterField, 1);
 		browser.assert.elements(LCHComposeFormIsAutomaticField, 0);
@@ -121,20 +121,20 @@ describe('LCHComposeDiscovery', function testLCHComposeDiscovery() {
 
 	context.skip('LCHComposeFormOutputTypeField', function () {
 		
-		it('shows LCHComposeFormOutputTypeCanonicalExampleBodyField if Bool', async function() {
+		it('shows LCHComposeFormCanonicalExampleBodyField if Bool', async function() {
 			browser.fill(LCHComposeFormOutputTypeField, 'Bool');
-			await browser.wait({ element: LCHComposeFormOutputTypeCanonicalExampleBodyField });
+			await browser.wait({ element: LCHComposeFormCanonicalExampleBodyField });
 
-			browser.assert.elements(LCHComposeFormOutputTypeCanonicalExampleBodyField, 1);
-			browser.assert.elements(LCHComposeFormOutputTypeCanonicalExampleBodyDebugField, 1);
+			browser.assert.elements(LCHComposeFormCanonicalExampleBodyField, 1);
+			browser.assert.elements(LCHComposeFormCanonicalExampleBodyDebugField, 1);
 		});
 
-		it('hides LCHComposeFormOutputTypeCanonicalExampleBodyField', async function() {
+		it('hides LCHComposeFormCanonicalExampleBodyField', async function() {
 			browser.fill(LCHComposeFormOutputTypeField, 'alfa');
-			await browser.wait({ element: LCHComposeFormOutputTypeCanonicalExampleBodyField });
+			await browser.wait({ element: LCHComposeFormCanonicalExampleBodyField });
 
-			browser.assert.elements(LCHComposeFormOutputTypeCanonicalExampleBodyField, 0);
-			browser.assert.elements(LCHComposeFormOutputTypeCanonicalExampleBodyDebugField, 0);
+			browser.assert.elements(LCHComposeFormCanonicalExampleBodyField, 0);
+			browser.assert.elements(LCHComposeFormCanonicalExampleBodyDebugField, 0);
 		});
 	
 	});

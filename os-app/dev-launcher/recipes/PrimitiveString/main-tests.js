@@ -30,7 +30,7 @@ describe('LCHPrimitiveStringRecipe', function testLCHPrimitiveStringRecipe() {
 			LCHRecipeSignature: 'String',
 			LCHRecipeCallback: mainModule.LCHPrimitiveStringCallback,
 			LCHRecipeOutputType: 'Bool',
-			LCHRecipeOutputTypeCanonicalExampleCallback: mainModule.LCHPrimitiveStringCanonicalExampleCallback,
+			LCHRecipeCanonicalExampleCallback: mainModule.LCHPrimitiveStringCanonicalExampleCallback,
 		});
 	});
 

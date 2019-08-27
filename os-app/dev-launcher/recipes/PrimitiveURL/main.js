@@ -24,6 +24,6 @@ export const LCHPrimitiveURLRecipe = function() {
 		LCHRecipeSignature: 'URL',
 		LCHRecipeCallback: LCHPrimitiveURLCallback,
 		LCHRecipeOutputType: 'Bool',
-		LCHRecipeOutputTypeCanonicalExampleCallback: LCHPrimitiveStringCanonicalExampleCallback,
+		LCHRecipeCanonicalExampleCallback: LCHPrimitiveStringCanonicalExampleCallback,
 	};
 };

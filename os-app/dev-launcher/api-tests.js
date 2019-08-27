@@ -39,7 +39,7 @@ const kTesting = {
 				return typeof inputData.bravo === 'string';
 			},
 			LCHRecipeOutputType: 'Bool',
-			LCHRecipeOutputTypeCanonicalExampleCallback () {
+			LCHRecipeCanonicalExampleCallback () {
 				return {
 					bravo: 'charlie',
 				};
@@ -260,13 +260,13 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 
 	});
 
-	context('LCHRecipeOutputTypeCanonicalExampleCallback', function() {
+	context('LCHRecipeCanonicalExampleCallback', function() {
 
-		it('returns object if LCHRecipeOutputTypeCanonicalExampleCallback not function', function() {
+		it('returns object if LCHRecipeCanonicalExampleCallback not function', function() {
 			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeOutputTypeCanonicalExampleCallback: null,
+				LCHRecipeCanonicalExampleCallback: null,
 			})), {
-				LCHRecipeOutputTypeCanonicalExampleCallback: [
+				LCHRecipeCanonicalExampleCallback: [
 					'LCHErrorNotFunction',
 				],
 			});
@@ -274,7 +274,7 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 
 		it('returns null', function() {
 			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeOutputTypeCanonicalExampleCallback () {},
+				LCHRecipeCanonicalExampleCallback () {},
 			})), null);
 		});
 
@@ -404,9 +404,9 @@ describe('LCHRecipesModelIsType', function testLCHRecipesModelIsType() {
 		})), false);
 	});
 
-	it('returns false if no LCHRecipeOutputTypeCanonicalExampleCallback', function() {
+	it('returns false if no LCHRecipeCanonicalExampleCallback', function() {
 		deepEqual(mainModule.LCHRecipesModelIsType(Object.assign(kTesting.StubRecipeObjectType(), {
-			LCHRecipeOutputTypeCanonicalExampleCallback: undefined,
+			LCHRecipeCanonicalExampleCallback: undefined,
 		})), false);
 	});
 
@@ -464,7 +464,7 @@ describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertT
 	});
 
 	it('returns inputData', function() {
-		let item = Object.assign(LCHTypeServiceSearchRecipe().LCHRecipeOutputTypeCanonicalExampleCallback(), {
+		let item = Object.assign(LCHTypeServiceSearchRecipe().LCHRecipeCanonicalExampleCallback(), {
 			LCHRecipeOutputType: 'alfa',
 		});
 		deepEqual(mainModule.LCHLauncherConvertTypeServiceSearch([item]), [item]);
@@ -476,7 +476,7 @@ describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertT
 
 	context('TypeServiceSearch', function() {
 
-		const item = mainModule.LCHLauncherConvertTypeServiceSearch([LCHTypeServiceSearchRecipe().LCHRecipeOutputTypeCanonicalExampleCallback()], function (inputData) {
+		const item = mainModule.LCHLauncherConvertTypeServiceSearch([LCHTypeServiceSearchRecipe().LCHRecipeCanonicalExampleCallback()], function (inputData) {
 			return `Search: ${ inputData }`;
 		})[0];
 
@@ -682,7 +682,7 @@ describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenc
 
 	it('excludes if not valid', function() {
 		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([Object.assign(kTesting.StubRecipeObjectType(), {
-			LCHRecipeOutputTypeCanonicalExampleCallback: undefined,
+			LCHRecipeCanonicalExampleCallback: undefined,
 		})]), {});
 	});
 
@@ -692,9 +692,9 @@ describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenc
 		})]), {});
 	});
 
-	it('excludes if LCHRecipeOutputTypeCanonicalExampleCallback fails', function() {
+	it('excludes if LCHRecipeCanonicalExampleCallback fails', function() {
 		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([Object.assign(kTesting.StubRecipeObjectType(), {
-			LCHRecipeOutputTypeCanonicalExampleCallback () {
+			LCHRecipeCanonicalExampleCallback () {
 				return {
 					delta: 'charlie',
 				};
@@ -734,7 +734,7 @@ describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenc
 				LCHRecipeCallback (inputData) {
 					return typeof inputData.foxtrot === 'string';
 				},
-				LCHRecipeOutputTypeCanonicalExampleCallback () {
+				LCHRecipeCanonicalExampleCallback () {
 					return {
 						foxtrot: 'golf',
 					};
@@ -754,7 +754,7 @@ describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenc
 					return typeof inputData === 'string';
 				},
 				LCHRecipeOutputType: 'Bool',
-				LCHRecipeOutputTypeCanonicalExampleCallback () {
+				LCHRecipeCanonicalExampleCallback () {
 					return 'alfa';
 				},
 			},
@@ -764,7 +764,7 @@ describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenc
 					return inputData === 'http';
 				},
 				LCHRecipeOutputType: 'Bool',
-				LCHRecipeOutputTypeCanonicalExampleCallback () {
+				LCHRecipeCanonicalExampleCallback () {
 					return 'http';
 				},
 			},
@@ -780,7 +780,7 @@ describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenc
 				LCHRecipeCallback (inputData) {
 					return typeof inputData.foxtrot === 'string';
 				},
-				LCHRecipeOutputTypeCanonicalExampleCallback () {
+				LCHRecipeCanonicalExampleCallback () {
 					return {
 						foxtrot: 'charlie',
 					};
@@ -792,7 +792,7 @@ describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenc
 				LCHRecipeCallback (inputData) {
 					return typeof inputData.foxtrot === 'string';
 				},
-				LCHRecipeOutputTypeCanonicalExampleCallback () {
+				LCHRecipeCanonicalExampleCallback () {
 					return {
 						foxtrot: 'golf',
 					};

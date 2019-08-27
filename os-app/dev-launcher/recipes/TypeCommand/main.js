@@ -27,6 +27,6 @@ export const LCHTypeCommandRecipe = function() {
 		LCHRecipeSignature: 'Command',
 		LCHRecipeCallback: LCHTypeCommandCallback,
 		LCHRecipeOutputType: 'Bool',
-		LCHRecipeOutputTypeCanonicalExampleCallback: LCHTypeStringCanonicalExampleCallback,
+		LCHRecipeCanonicalExampleCallback: LCHTypeStringCanonicalExampleCallback,
 	};
 };

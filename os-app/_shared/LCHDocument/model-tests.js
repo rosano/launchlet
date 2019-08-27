@@ -95,13 +95,13 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 
 	});
 
-	context('LCHDocumentOutputTypeCanonicalExampleBody', function() {
+	context('LCHDocumentCanonicalExampleBody', function() {
 
 		it('returns object if not string', function() {
 			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-				LCHDocumentOutputTypeCanonicalExampleBody: null,
+				LCHDocumentCanonicalExampleBody: null,
 			})), {
-				LCHDocumentOutputTypeCanonicalExampleBody: [
+				LCHDocumentCanonicalExampleBody: [
 					'LCHErrorNotString',
 				],
 			});
@@ -109,7 +109,7 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 
 		it('returns null', function() {
 			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
-				LCHDocumentOutputTypeCanonicalExampleBody: '',
+				LCHDocumentCanonicalExampleBody: '',
 			})), null);
 		});
 

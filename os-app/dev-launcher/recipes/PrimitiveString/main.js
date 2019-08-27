@@ -12,6 +12,6 @@ export const LCHPrimitiveStringRecipe = function() {
 		LCHRecipeSignature: 'String',
 		LCHRecipeCallback: LCHPrimitiveStringCallback,
 		LCHRecipeOutputType: 'Bool',
-		LCHRecipeOutputTypeCanonicalExampleCallback: LCHPrimitiveStringCanonicalExampleCallback,
+		LCHRecipeCanonicalExampleCallback: LCHPrimitiveStringCanonicalExampleCallback,
 	};
 };

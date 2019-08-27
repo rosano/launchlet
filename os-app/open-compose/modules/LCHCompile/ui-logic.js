@@ -112,9 +112,9 @@ export const _LCHComposeRecipeStub = function (inputData) {
 		return coll;
 	}, {}), inputData.LCHDocumentBody ? {
 		LCHRecipeCallback: _LCHClosureString(inputData),
-	} : {}, inputData.LCHDocumentOutputTypeCanonicalExampleBody ? {
-		LCHRecipeOutputTypeCanonicalExampleCallback: _LCHClosureString({
-			LCHDocumentBody: inputData.LCHDocumentOutputTypeCanonicalExampleBody,
+	} : {}, inputData.LCHDocumentCanonicalExampleBody ? {
+		LCHRecipeCanonicalExampleCallback: _LCHClosureString({
+			LCHDocumentBody: inputData.LCHDocumentCanonicalExampleBody,
 		}),
 	} : {});
 };
@@ -142,11 +142,11 @@ export const _LCHCompileRecipeJSON = function (inputData) {
 		outputData.LCHRecipeCallback = '__LCHRecipeCallback__';
 	}
 
-	if (inputData.LCHRecipeOutputTypeCanonicalExampleCallback) {
-		outputData.LCHRecipeOutputTypeCanonicalExampleCallback = '__LCHRecipeOutputTypeCanonicalExampleCallback__';
+	if (inputData.LCHRecipeCanonicalExampleCallback) {
+		outputData.LCHRecipeCanonicalExampleCallback = '__LCHRecipeCanonicalExampleCallback__';
 	}
 
-	return JSON.stringify(outputData).replace('"__LCHRecipeCallback__"', inputData.LCHRecipeCallback).replace('"__LCHRecipeOutputTypeCanonicalExampleCallback__"', inputData.LCHRecipeOutputTypeCanonicalExampleCallback);
+	return JSON.stringify(outputData).replace('"__LCHRecipeCallback__"', inputData.LCHRecipeCallback).replace('"__LCHRecipeCanonicalExampleCallback__"', inputData.LCHRecipeCanonicalExampleCallback);
 };
 
 export const LCHCompileBookmarkletBinaryFor = function (inputData) {
