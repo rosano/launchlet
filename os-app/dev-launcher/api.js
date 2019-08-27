@@ -13,58 +13,44 @@ export const LCHRecipesModelErrorsFor = function(inputData) {
 		];
 	}
 
-	if (inputData.LCHRecipeName !== undefined) {
-		if (typeof inputData.LCHRecipeName === 'string' && !inputData.LCHRecipeName) {
-			errors.LCHRecipeName = [
-				'LCHErrorNotFilled',
-			];
-		}
-
-		if (typeof inputData.LCHRecipeName === 'string' && inputData.LCHRecipeName.trim() !== inputData.LCHRecipeName) {
+	if (typeof inputData.LCHRecipeName === 'string') {
+		if (inputData.LCHRecipeName.trim() !== inputData.LCHRecipeName) {
 			errors.LCHRecipeName = [
 				'LCHErrorNotTrimmed',
 			];
 		}
+
+		if (!inputData.LCHRecipeName.trim()) {
+			errors.LCHRecipeName = [
+				'LCHErrorNotFilled',
+			];
+		}
 	}
 
-	if (inputData.LCHRecipeInputTypes !== undefined && typeof inputData.LCHRecipeInputTypes === 'string') {
+	if (typeof inputData.LCHRecipeInputTypes === 'string') {
 		if (inputData.LCHRecipeInputTypes.trim() !== inputData.LCHRecipeInputTypes) {
 			errors.LCHRecipeInputTypes = [
 				'LCHErrorNotTrimmed',
 			];
 		}
 
-		if (inputData.LCHRecipeInputTypes.trim() === '') {
+		if (!inputData.LCHRecipeInputTypes.trim()) {
 			errors.LCHRecipeInputTypes = [
 				'LCHErrorNotFilled',
 			];
 		}
 	}
 
-	if (inputData.LCHRecipeOutputType !== undefined && typeof inputData.LCHRecipeOutputType === 'string') {
+	if (typeof inputData.LCHRecipeOutputType === 'string') {
 		if (inputData.LCHRecipeOutputType.trim() !== inputData.LCHRecipeOutputType) {
 			errors.LCHRecipeOutputType = [
 				'LCHErrorNotTrimmed',
 			];
 		}
 
-		if (inputData.LCHRecipeOutputType.trim() === '') {
+		if (!inputData.LCHRecipeOutputType.trim()) {
 			errors.LCHRecipeOutputType = [
 				'LCHErrorNotFilled',
-			];
-		}
-	}
-
-	if (inputData.LCHRecipeOutputType === 'Bool') {
-		if (!inputData.LCHRecipeOutputTypeCanonicalExampleCallback) {
-			errors.LCHRecipeOutputTypeCanonicalExampleCallback = [
-				'LCHErrorNotPresent',
-			];
-		}
-
-		if (!inputData.LCHRecipeSignature) {
-			errors.LCHRecipeSignature = [
-				'LCHErrorNotPresent',
 			];
 		}
 	}
@@ -75,6 +61,18 @@ export const LCHRecipesModelErrorsFor = function(inputData) {
 				'LCHErrorNotFunction',
 			];
 		}
+	}
+
+	if (typeof inputData.LCHRecipeSignature === 'string') {
+		if (!inputData.LCHRecipeSignature.trim()) {
+			errors.LCHRecipeSignature = [
+				'LCHErrorNotFilled',
+			];
+		} else if (inputData.LCHRecipeSignature.trim() !== inputData.LCHRecipeSignature) {
+			errors.LCHRecipeSignature = [
+				'LCHErrorNotTrimmed',
+			];
+		};
 	}
 
 	return Object.entries(errors).length ? errors : null;
