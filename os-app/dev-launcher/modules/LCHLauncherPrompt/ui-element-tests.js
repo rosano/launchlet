@@ -8,7 +8,7 @@ const LCHLauncherPromptItemSelected = '.LCHLauncherZoneInput .LCHLauncherPipeIte
 const LCHLauncherResultList = '.LCHLauncherResultList';
 const LCHLauncherResultListItem = '.LCHLauncherResultListItem';
 
-describe('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
+describe('LCHLauncherPromptUIElement', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
@@ -63,53 +63,3 @@ describe('LCHLauncherPromptElements', function testLCHLauncherPromptElements() {
 	});
 
 });
-
-describe('LCHLauncherPromptLanguage', function testLCHLauncherPromptLanguage() {
-
-	before(function() {
-		return browser.visit(kDefaultRoutePath);
-	});
-
-	it('on startup', function() {
-		browser.assert.text('#LCHLauncherPromptStubItemSelected', 'undefined');
-	});
-
-	it('does nothing on set', async function() {
-		browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
-		await browser.wait({element: LCHLauncherResultListItem});
-
-		browser.assert.text('#LCHLauncherPromptStubItemSelected', 'undefined');
-	});
-	
-	it('on set selected', async function() {
-		await browser.pressButton('#LCHLauncherPromptTestSetStubItemSelected');
-		
-		browser.assert.text('#LCHLauncherPromptStubItemSelected', 'bravo');
-	});
-
-});
-
-describe('LCHLauncherPromptInteraction', function testLCHLauncherPromptInteraction() {
-
-	before(function() {
-		return browser.visit(kDefaultRoutePath);
-	});
-	
-	it('bubbles ResultListDispatchArrow', async function() {
-		browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
-		await browser.wait({element: LCHLauncherResultListItem});
-
-		browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
-		await browser.wait({element: LCHLauncherResultListItem});
-
-		browser.assert.text('#LCHLauncherResultListTestResultListDispatchArrow', '1');
-	});
-	
-	it('bubbles ResultListDispatchClick', async function() {
-		await browser.click(LCHLauncherResultListItem);
-
-		browser.assert.text('#LCHLauncherResultListTestResultListDispatchClick', '1');
-	});
-
-});
-
