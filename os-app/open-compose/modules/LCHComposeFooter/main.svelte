@@ -42,32 +42,4 @@ const mod = {
 	
 </footer>
 
-<style>
-.Container {
-	border-top: var(--LCHBorderStyle);
-	/* AppContainerFlexboxChild */
-	flex-shrink: 0;
-
-	/* ContainerFlexboxParent */
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-h1 {
-	margin: 0;
-
-	font-size: 20px;
-}
-
-.Container :global(#RCSLanguageSwitcher) {
-	padding: 10px;
-
-	font-size: 13px;
-}
-
-:global(#RCSLanguageSwitcher span) {
-	/* browser quirks */
-	padding-left: 4px;
-}
-</style>
+<style src="./ui-style.css"></style>

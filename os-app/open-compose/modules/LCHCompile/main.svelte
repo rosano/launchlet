@@ -97,8 +97,4 @@ mod.SetupEverything();
 
 </div>
 
-<style>
-.Container {
-	border-top: var(--LCHBorderStyle);
-}
-</style>
+<style src="./ui-style.css"></style>

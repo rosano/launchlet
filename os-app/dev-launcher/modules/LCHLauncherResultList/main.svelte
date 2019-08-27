@@ -51,8 +51,4 @@ const mod = {
 	<slot name="LCHLauncherResultListEmpty"></slot>
 {/if}
 
-<style>
-.LCHLauncherResultListItem {
-	cursor: pointer;
-}
-</style>
+<style src="./ui-style.css"></style>
