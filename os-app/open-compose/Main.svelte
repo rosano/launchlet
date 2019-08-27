@@ -48,38 +48,4 @@ const mod = {
 	<OLSKServiceWorker OLSKLocalized={ OLSKLocalized } registrationRoute={ window.OLSKCanonicalFor('LCHServiceWorkerRoute') } />
 {/if}
 
-<style>
-.Container {
-	--LCHBorderStyle: 1px solid #ddd;
-	
-	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
-	font-size: 9pt;
-}
-
-#LCHComposeStorageWidget :global(#remotestorage-widget) {
-	bottom: 0;
-	right: 0;
-}
-
-.LCHComposeDebug {
-	display: none;
-
-	font-family: sans-serif;
-}
-
-.LCHComposeDebug button {
-	padding: 10px;
-	border: 1px solid #bbb;
-
-	margin: 10px;
-}
-
-#LCHComposeStorageWidget :global(.remotestorage-widget-error-state + .LCHComposeDebug) {
-	display: unset;
-
-	position: absolute;
-	bottom: 100px;
-	right: 0;
-}
-
-</style>
+<style src="./ui-style.css"></style>
