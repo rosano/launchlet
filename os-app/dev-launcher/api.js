@@ -313,6 +313,30 @@ export const LCHAPITypeEquivalenceMapForRecipes = function(inputData) {
 	}, {});
 };
 
+export const LCHAPITypeNameMap = function(inputData) {
+	if (!Array.isArray(inputData)) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	const validRecipes = inputData.filter(function (e) {
+		if (LCHRecipesModelErrorsFor(e)) {
+			return false;
+		}
+
+		return LCHRecipesModelIsType(e);
+	});
+
+	return validRecipes.reduce(function (coll, item) {
+		if (coll[item.LCHRecipeSignature]) {
+			return coll;
+		};
+
+		coll[item.LCHRecipeSignature] = item.LCHRecipeName || item.LCHRecipeSignature;
+
+		return coll;
+	}, {});
+};
+
 export const LCHAPIActionsForType = function(param1, param2) {
 	if (typeof param1 !== 'string') {
 		throw new Error('LCHErrorInputInvalid');

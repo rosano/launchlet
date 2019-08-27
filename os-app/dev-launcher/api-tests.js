@@ -816,6 +816,63 @@ describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenc
 
 });
 
+describe('LCHAPITypeNameMap', function testLCHAPITypeNameMap() {
+
+	it('throws error if not array', function() {
+		throws(function() {
+			mainModule.LCHAPITypeNameMap(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns object', function() {
+		deepEqual(typeof mainModule.LCHAPITypeNameMap([]), 'object');
+	});
+
+	it('excludes if not valid', function() {
+		deepEqual(mainModule.LCHAPITypeNameMap([Object.assign(kTesting.StubRecipeObjectType(), {
+			LCHRecipeSignature: '',
+		})]), {});
+	});
+
+	it('excludes if not Type', function() {
+		deepEqual(mainModule.LCHAPITypeNameMap([Object.assign(kTesting.StubRecipeObjectType(), {
+			LCHRecipeSignature: undefined,
+		})]), {});
+	});
+
+	it('creates map for single', function() {
+		deepEqual(mainModule.LCHAPITypeNameMap([kTesting.StubRecipeObjectType()]), {
+			alfa: 'alfa',
+		});
+	});
+
+	it('creates map for multiple', function() {
+		deepEqual(mainModule.LCHAPITypeNameMap([kTesting.StubRecipeObjectType(), Object.assign(kTesting.StubRecipeObjectType(), {
+			LCHRecipeSignature: 'bravo',
+		})]), {
+			alfa: 'alfa',
+			bravo: 'bravo',
+		});
+	});
+
+	it('maps if LCHRecipeName', function() {
+		deepEqual(mainModule.LCHAPITypeNameMap([Object.assign(kTesting.StubRecipeObjectType(), {
+			LCHRecipeName: 'bravo',
+		})]), {
+			alfa: 'bravo',
+		});
+	});
+
+	it('excludes duplicates', function() {
+		deepEqual(mainModule.LCHAPITypeNameMap([kTesting.StubRecipeObjectType(), Object.assign(kTesting.StubRecipeObjectType(), {
+			LCHRecipeName: 'bravo',
+		})]), {
+			alfa: 'alfa',
+		});
+	});
+
+});
+
 describe('LCHAPIActionsForType', function testLCHAPIActionsForType() {
 
 	it('throws error if param1 not string', function() {
