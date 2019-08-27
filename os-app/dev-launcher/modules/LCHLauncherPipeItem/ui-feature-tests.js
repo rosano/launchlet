@@ -8,22 +8,7 @@ const LCHLauncherPipeItemTitle = '.LCHLauncherPipeItemTitle';
 const LCHLauncherPipeItemSubtitle = '.LCHLauncherPipeItemSubtitle';
 const LCHLauncherPipeItemSource = '.LCHLauncherPipeItemSource';
 
-describe('LCHLauncherPipeItemDiscovery', function testLCHLauncherPipeItemDiscovery() {
-
-	before(function() {
-		return browser.visit(kDefaultRoutePath);
-	});
-	
-	it('on startup', function() {
-		browser.assert.elements(LCHLauncherPipeItem, 1);
-		browser.assert.elements(LCHLauncherPipeItemTitle, 1);
-		browser.assert.elements(LCHLauncherPipeItemSubtitle, 1);
-		browser.assert.elements(LCHLauncherPipeItemSource, 1);
-	});
-
-});
-
-describe('LCHLauncherPipeItemInteraction', function testLCHLauncherPipeItemInteraction() {
+describe('LCHLauncherPipeItemUIFeature', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
