@@ -1,4 +1,5 @@
 import svelte from 'rollup-plugin-svelte';
+import autoPreprocess from 'svelte-preprocess'
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
@@ -45,10 +46,12 @@ export default globPackage.sync(['os-app/**/rollup-start.js'], {
 				// enable run-time checks when not in production
 				dev: !production,
 
+			preprocess: autoPreprocess({ /* options */ }),
+
 				// extract component CSS into separate file for better performance
 				css: function (css) {
 					return css.write(pathPackage.join(pathPackage.dirname(e), '__compiled/ui-style.css'));
-				}
+				},
 			}),
 
 			// If you have external dependencies installed from
