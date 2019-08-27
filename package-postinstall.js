@@ -50,5 +50,5 @@
 		return;
 	}
 
-	require('child_process').exec('npm run svelte-build');
+	require('child_process').execSync('npm run svelte-build');
 })();
