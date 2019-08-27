@@ -35,7 +35,19 @@ export const LCHDocumentStorage = function (privateClient, publicClient, changeD
 	return {
 		LCHStorageCollection: kCollection,
 		LCHStorageType: kType,
-		LCHStorageModelErrors: LCHDocumentModel.LCHDocumentModelErrorsFor({}),
+		LCHStorageModelErrors: Object.entries(LCHDocumentModel.LCHDocumentModelErrorsFor({}, {
+			LCHOptionValidateIfNotPresent: true,
+		})).map(function (e) {
+			if (Object.keys(LCHDocumentModel.LCHDocumentModelErrorsFor({})).indexOf(e[0]) === -1) {
+				e[1].push('__RSOptional');
+			};
+
+			return e;
+		}).reduce(function (coll, item) {
+			coll[item[0]] = item[1];
+
+			return coll;
+		}, {}),
 		LCHStorageExports: {
 			init: function () {
 				return privateClient.cache(LCHDocumentStoragePath());
