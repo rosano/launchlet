@@ -3,7 +3,7 @@ import { deepEqual } from 'assert';
 const browser = new OLSKBrowser();
 const kDefaultRoutePath = require('../../controller.js').OLSKControllerRoutes().LCHComposeRoute.OLSKRoutePath;
 
-describe('LCHCompileUILocalization', function () {
+describe('LCHCompileUILocalize', function () {
 
 	['en'].forEach(function (languageCode) {
 
