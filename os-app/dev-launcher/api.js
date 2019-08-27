@@ -151,6 +151,14 @@ export const LCHRecipesModelIsType = function(inputData) {
 		return false;
 	}
 
+	if (!inputData.LCHRecipeOutputTypeCanonicalExampleCallback) {
+		return false;
+	}
+
+	if (!inputData.LCHRecipeSignature) {
+		return false;
+	}
+
 	return true;
 };
 

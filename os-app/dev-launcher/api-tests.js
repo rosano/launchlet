@@ -404,6 +404,18 @@ describe('LCHRecipesModelIsType', function testLCHRecipesModelIsType() {
 		})), false);
 	});
 
+	it('returns false if no LCHRecipeOutputTypeCanonicalExampleCallback', function() {
+		deepEqual(mainModule.LCHRecipesModelIsType(Object.assign(kTesting.StubRecipeObjectType(), {
+			LCHRecipeOutputTypeCanonicalExampleCallback: undefined,
+		})), false);
+	});
+
+	it('returns false if no LCHRecipeSignature', function() {
+		deepEqual(mainModule.LCHRecipesModelIsType(Object.assign(kTesting.StubRecipeObjectType(), {
+			LCHRecipeSignature: undefined,
+		})), false);
+	});
+
 	it('returns true', function() {
 		deepEqual(mainModule.LCHRecipesModelIsType(kTesting.StubRecipeObjectType()), true);
 	});
