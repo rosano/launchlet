@@ -5,7 +5,7 @@
 	const fsPackage = require('fs');
 	const pathPackage = require('path');
 
-	let sourceDir = pathPackage.join(__dirname, '../os-app/dev-package/_compiled/dist');
+	let sourceDir = pathPackage.join(__dirname, '../__compiled');
 	return globPackage.sync('launchlet*', {
 		matchBase: true,
 		cwd: sourceDir,
