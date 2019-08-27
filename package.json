@@ -1,7 +1,6 @@
 {
   "scripts": {
     "start": "node ./os-start.js",
-    "preinstall": "node ./package-preinstall.js",
     "postinstall": "node ./package-postinstall.js",
 
     "svelte-build": "rollup -c rollup-config.js",
