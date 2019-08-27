@@ -90,6 +90,12 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 		deepEqual(mainModule.LCHRecipesModelErrorsFor(kTesting.StubRecipeObjectValid()), null);
 	});
 
+	it('returns object if LCHOptionValidateIfNotPresent', function() {
+		deepEqual(Array.isArray(Object.keys(mainModule.LCHRecipesModelErrorsFor(kTesting.StubRecipeObjectValid(), {
+			LCHOptionValidateIfNotPresent: true,
+		}))), true);
+	});
+
 	context('LCHRecipeName', function() {
 
 		it('returns object if not filled', function() {

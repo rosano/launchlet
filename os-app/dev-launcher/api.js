@@ -1,6 +1,6 @@
 import { LCHFormulaModelErrorsFor, LCHFormulaFrom, LCHFormulaTo } from '../_shared/LCHFormula/main.js';
 
-export const LCHRecipesModelErrorsFor = function(inputData) {
+export const LCHRecipesModelErrorsFor = function(inputData, options = {}) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
 	}
@@ -55,7 +55,7 @@ export const LCHRecipesModelErrorsFor = function(inputData) {
 		}
 	}
 
-	if (inputData.LCHRecipeCanonicalExampleCallback !== undefined) {
+	if (inputData.LCHRecipeCanonicalExampleCallback !== undefined || options.LCHOptionValidateIfNotPresent) {
 		if (typeof inputData.LCHRecipeCanonicalExampleCallback !== 'function') {
 			errors.LCHRecipeCanonicalExampleCallback = [
 				'LCHErrorNotFunction',

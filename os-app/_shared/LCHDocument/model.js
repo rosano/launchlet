@@ -1,6 +1,6 @@
 import { LCHFormulaModelErrorsFor, LCHFormulaFrom, LCHFormulaTo } from '../LCHFormula/main.js';
 
-export const LCHDocumentModelErrorsFor = function(inputData) {
+export const LCHDocumentModelErrorsFor = function(inputData, options = {}) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
 	}
@@ -35,7 +35,7 @@ export const LCHDocumentModelErrorsFor = function(inputData) {
 		];
 	}
 
-	if (inputData.LCHDocumentArgs !== undefined) {
+	if (inputData.LCHDocumentArgs !== undefined || options.LCHOptionValidateIfNotPresent) {
 		if (typeof inputData.LCHDocumentArgs !== 'string') {
 			errors.LCHDocumentArgs = [
 				'LCHErrorNotString',
@@ -43,7 +43,7 @@ export const LCHDocumentModelErrorsFor = function(inputData) {
 		}
 	}
 
-	if (inputData.LCHDocumentCanonicalExampleBody !== undefined) {
+	if (inputData.LCHDocumentCanonicalExampleBody !== undefined || options.LCHOptionValidateIfNotPresent) {
 		if (typeof inputData.LCHDocumentCanonicalExampleBody !== 'string') {
 			errors.LCHDocumentCanonicalExampleBody = [
 				'LCHErrorNotString',

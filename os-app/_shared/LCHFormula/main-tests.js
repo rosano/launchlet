@@ -14,6 +14,12 @@ describe('LCHFormulaModelErrorsFor', function testLCHFormulaModelErrorsFor() {
 		deepEqual(LCHFormulaModelErrorsFor({}), null);
 	});
 
+	it('returns object if LCHOptionValidateIfNotPresent', function() {
+		deepEqual(Array.isArray(Object.keys(LCHFormulaModelErrorsFor({}, {
+			LCHOptionValidateIfNotPresent: true,
+		}))), true);
+	});
+
 	context('LCHFormulaName', function() {
 
 		it('returns object if not string', function() {

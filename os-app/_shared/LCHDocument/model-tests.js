@@ -75,6 +75,12 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 		deepEqual(mainModule.LCHDocumentModelErrorsFor(kTesting.StubFormulaObjectValid()), null);
 	});
 
+	it('returns object if LCHOptionValidateIfNotPresent', function() {
+		deepEqual(Array.isArray(Object.keys(mainModule.LCHDocumentModelErrorsFor(kTesting.StubFormulaObjectValid(), {
+			LCHOptionValidateIfNotPresent: true,
+		}))), true);
+	});
+
 	context('LCHDocumentArgs', function() {
 
 		it('returns object if not string', function() {

@@ -1,11 +1,11 @@
-export const LCHFormulaModelErrorsFor = function(inputData) {
+export const LCHFormulaModelErrorsFor = function(inputData, options = {}) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
 	const errors = {};
 
-	if (inputData.LCHFormulaName !== undefined) {
+	if (inputData.LCHFormulaName !== undefined || options.LCHOptionValidateIfNotPresent) {
 		if (typeof inputData.LCHFormulaName !== 'string') {
 			errors.LCHFormulaName = [
 				'LCHErrorNotString',
@@ -13,7 +13,7 @@ export const LCHFormulaModelErrorsFor = function(inputData) {
 		}
 	}
 
-	if (inputData.LCHFormulaSignature !== undefined) {
+	if (inputData.LCHFormulaSignature !== undefined || options.LCHOptionValidateIfNotPresent) {
 		if (typeof inputData.LCHFormulaSignature !== 'string') {
 			errors.LCHFormulaSignature = [
 				'LCHErrorNotString',
@@ -21,7 +21,7 @@ export const LCHFormulaModelErrorsFor = function(inputData) {
 		}
 	}
 
-	if (inputData.LCHFormulaInputTypes !== undefined) {
+	if (inputData.LCHFormulaInputTypes !== undefined || options.LCHOptionValidateIfNotPresent) {
 		if (typeof inputData.LCHFormulaInputTypes !== 'string') {
 			errors.LCHFormulaInputTypes = [
 				'LCHErrorNotString',
@@ -29,7 +29,7 @@ export const LCHFormulaModelErrorsFor = function(inputData) {
 		}
 	}
 
-	if (inputData.LCHFormulaOutputType !== undefined) {
+	if (inputData.LCHFormulaOutputType !== undefined || options.LCHOptionValidateIfNotPresent) {
 		if (typeof inputData.LCHFormulaOutputType !== 'string') {
 			errors.LCHFormulaOutputType = [
 				'LCHErrorNotString',
@@ -37,7 +37,7 @@ export const LCHFormulaModelErrorsFor = function(inputData) {
 		}
 	}
 
-	if (inputData.LCHFormulaURLFilter !== undefined) {
+	if (inputData.LCHFormulaURLFilter !== undefined || options.LCHOptionValidateIfNotPresent) {
 		if (typeof inputData.LCHFormulaURLFilter !== 'string') {
 			errors.LCHFormulaURLFilter = [
 				'LCHErrorNotString',
@@ -45,7 +45,7 @@ export const LCHFormulaModelErrorsFor = function(inputData) {
 		}
 	}
 
-	if (inputData.LCHFormulaIsAutomatic !== undefined) {
+	if (inputData.LCHFormulaIsAutomatic !== undefined || options.LCHOptionValidateIfNotPresent) {
 		if (typeof inputData.LCHFormulaIsAutomatic !== 'boolean') {
 			errors.LCHFormulaIsAutomatic = [
 				'LCHErrorNotBoolean',
@@ -53,7 +53,7 @@ export const LCHFormulaModelErrorsFor = function(inputData) {
 		}
 	}
 
-	if (inputData.LCHFormulaStyle !== undefined) {
+	if (inputData.LCHFormulaStyle !== undefined || options.LCHOptionValidateIfNotPresent) {
 		if (typeof inputData.LCHFormulaStyle !== 'string') {
 			errors.LCHFormulaStyle = [
 				'LCHErrorNotString',
