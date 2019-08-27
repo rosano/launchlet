@@ -37,7 +37,6 @@ module.exports = {
 				autoPreprocess({}),
 				{
 					style({ content, filename }) {
-						console.log(content, filename);
 						return {
 							code: (filename.match(pathPackage.join(__dirname, 'Main.svelte')) ? module.exports.LCHRollupPrefixSelector(module.exports.LCHRollupGrabContainerSelector(content), require('fs').readFileSync(pathPackage.join(__dirname, '../_shared/__external/normalize.css/normalize.css'), 'utf8')) : '') + content,
 							map: ''
