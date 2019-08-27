@@ -22,10 +22,10 @@ describe('LCHPrimitiveServiceSearchURLTemplateCallback', function testLCHPrimiti
 
 });
 
-describe('LCHPrimitiveStringCanonicalExampleCallback', function testLCHPrimitiveStringCanonicalExampleCallback() {
+describe('LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback', function testLCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHPrimitiveStringCanonicalExampleCallback(), 'http://example.com?q=LCHSEARCHTOKEN');
+		deepEqual(mainModule.LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback(), 'http://example.com?q=LCHSEARCHTOKEN');
 	});
 
 });
@@ -38,7 +38,7 @@ describe('LCHPrimitiveServiceSearchURLTemplateRecipe', function testLCHPrimitive
 			LCHRecipeSignature: 'ServiceSearchURLTemplate',
 			LCHRecipeCallback: mainModule.LCHPrimitiveServiceSearchURLTemplateCallback,
 			LCHRecipeOutputType: 'Bool',
-			LCHRecipeOutputTypeCanonicalExampleCallback: mainModule.LCHPrimitiveStringCanonicalExampleCallback,
+			LCHRecipeOutputTypeCanonicalExampleCallback: mainModule.LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback,
 			_LCHRecipeNonEquivalenceTypes: 'String,URL',
 		});
 	});

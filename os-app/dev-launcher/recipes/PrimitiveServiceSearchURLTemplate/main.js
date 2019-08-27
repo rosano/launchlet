@@ -12,7 +12,7 @@ export const LCHPrimitiveServiceSearchURLTemplateCallback = function(inputData) 
 	return true;
 };
 
-export const LCHPrimitiveStringCanonicalExampleCallback = function() {
+export const LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback = function() {
 	return 'http://example.com?q=LCHSEARCHTOKEN';
 };
 
@@ -21,7 +21,7 @@ export const LCHPrimitiveServiceSearchURLTemplateRecipe = function() {
 		LCHRecipeName: 'Search Service URL Template',
 		LCHRecipeCallback: LCHPrimitiveServiceSearchURLTemplateCallback,
 		LCHRecipeOutputType: 'Bool',
-		LCHRecipeOutputTypeCanonicalExampleCallback: LCHPrimitiveStringCanonicalExampleCallback,
+		LCHRecipeOutputTypeCanonicalExampleCallback: LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback,
 		LCHRecipeSignature: 'ServiceSearchURLTemplate',
 		_LCHRecipeNonEquivalenceTypes: 'String,URL',
 	};
