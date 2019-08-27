@@ -33,9 +33,9 @@ const mod = {
 		<OLSKToolbarElementGroup>
 			<OLSKReloadButton OLSKLocalized={ OLSKLocalized } />
 
-			<!-- <button on:click={ mod.interfaceExportButtonDidClick }>Export</button> -->
+			<button on:click={ mod.interfaceExportButtonDidClick }>Export</button>
 
-			<!-- <input type="file" accept=".json" on:change={ mod.interfaceImportButtonDidClick } /> -->
+			<input type="file" accept=".json" on:change={ mod.interfaceImportButtonDidClick } />
 		</OLSKToolbarElementGroup>
 		<RCSLanguageSwitcher />
 	</OLSKToolbar>
