@@ -3,54 +3,7 @@ import { deepEqual } from 'assert';
 const browser = new OLSKBrowser();
 const kDefaultRoutePath = require('../../controller.js').OLSKControllerRoutes().LCHComposeRoute.OLSKRoutePath;
 
-Object.entries({
-	LCHCompileModePipeEnabledToggle: '#LCHCompileModePipeEnabledToggle',
-
-	async uCreateItem (browser) {
-		browser.pressButton(LCHComposeCreateButton);
-		await browser.wait({ element: LCHComposeListItem });
-	},
-}).map(function (e) {
-	return global[e.shift()]  = e.pop();
-});
-
-describe('LCHCompileDiscovery', function testLCHCompileDiscovery() {
-
-	before(function() {
-		return browser.visit(kDefaultRoutePath);
-	});
-	
-	it('on startup', function() {
-		browser.assert.elements(LCHCompileModePipeEnabledToggle, 1);
-	});
-
-});
-
-describe('LCHCompileLanguage', function testLCHCompileLanguage() {
-
-	['en'].forEach(function (languageCode) {
-
-		context(languageCode, function () {
-
-			const uLocalized = function (inputData) {
-				return OLSKTestingLocalized(inputData, languageCode);
-			};
-
-			before(function() {
-				return browser.visit(`${ languageCode }${ kDefaultRoutePath }`);
-			});
-
-			it('localizes interface', function() {
-				browser.assert.text(`label[for=${ LCHCompileModePipeEnabledToggle.replace('#', '') }]`, uLocalized('LCHCompileModePipeEnabledToggleLabelText'));
-			});
-
-		});
-		
-	});
-
-});
-
-describe('LCHCompileInteraction', function testLCHCompileInteraction() {
+describe('LCHCompileUIFeature', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
