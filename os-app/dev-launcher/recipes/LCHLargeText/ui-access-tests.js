@@ -1,7 +1,8 @@
 import { deepEqual } from 'assert';
 
-
 const browser = new OLSKBrowser();
+const kDefaultRoutePath = '/launcher?loadRecipes=LCHLargeText';
+
 Object.entries({
 	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
 
@@ -10,9 +11,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-const kDefaultRoutePath = '/launcher?loadRecipes=LCHLargeText';
-
-describe('LCHLargeTextUITestDiscovery', function testDiscovery() {
+describe('LCHLargeTextUIAccess', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
@@ -44,24 +43,6 @@ describe('LCHLargeTextUITestDiscovery', function testDiscovery() {
 		await browser.wait({element: LCHLauncherListItem});
 
 		browser.assert.elements(LCHLargeTextContainer, 0);
-	});
-
-});
-
-describe('LCHLargeTextUITestInteraction', function testInteraction() {
-
-	before(function() {
-		return browser.visit(kDefaultRoutePath);
-	});
-	
-	it('displays input', async function() {
-		browser.fill(LCHLauncherFilterInput, 'LCHLargeTextTest');
-		await browser.wait({element: LCHLauncherListItem});
-
-		browser.click(LCHLauncherListItem);
-		await browser.wait({element: LCHLargeTextContainer});
-
-		browser.assert.text(LCHLargeTextContainer, 'LCHLargeTextAlfa');
 	});
 
 });
