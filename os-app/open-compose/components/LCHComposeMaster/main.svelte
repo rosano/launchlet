@@ -2,14 +2,14 @@
 import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
-import { LCHComposeDefaultFocusNode } from './_shared.js';
+import { LCHComposeDefaultFocusNode } from '../../_shared.js';
 
-import * as LCHDocumentAction from '../_shared/LCHDocument/action.js';
-import * as LCHDocumentMetal from '../_shared/LCHDocument/metal.js';
-import { LCHDocumentModelPostJSONParse } from '../_shared/LCHDocument/model.js';
-import { LCHComposeFilterFunction, LCHComposeSort } from './ui-logic.js';
-import { OLSKLocalized } from '../_shared/common/global.js';
-import { storageClient, DocumentsAllStore, DocumentSelectedStore } from './persistence.js';
+import * as LCHDocumentAction from '../../../_shared/LCHDocument/action.js';
+import * as LCHDocumentMetal from '../../../_shared/LCHDocument/metal.js';
+import { LCHDocumentModelPostJSONParse } from '../../../_shared/LCHDocument/model.js';
+import { LCHComposeFilterFunction, LCHComposeSort } from '../../ui-logic.js';
+import { OLSKLocalized } from '../../../_shared/common/global.js';
+import { storageClient, DocumentsAllStore, DocumentSelectedStore } from '../../persistence.js';
 
 import { writable } from 'svelte/store';
 import OLSKInputWrapper from 'OLSKInputWrapper';

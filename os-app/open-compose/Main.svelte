@@ -1,7 +1,7 @@
 <script>
 import OLSKViewportContent from 'OLSKViewportContent';
 import LCHComposeFooter from './components/LCHComposeFooter/main.svelte';
-import ModuleMaster from './ModuleMaster.svelte';
+import LCHComposeMaster from './components/LCHComposeMaster/main.svelte';
 import LCHComposeDetail from './components/LCHComposeDetail/main.svelte';
 import LCHCompile from './components/LCHCompile/main.svelte';
 import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/Main.svelte';
@@ -29,7 +29,7 @@ const mod = {
 <div class="Container OLSKViewport" class:OLSKIsLoading={ $isLoading }>
 
 <OLSKViewportContent>
-	<ModuleMaster bind:this={ masterInstance } />
+	<LCHComposeMaster bind:this={ masterInstance } />
 	<LCHComposeDetail />
 </OLSKViewportContent>
 
