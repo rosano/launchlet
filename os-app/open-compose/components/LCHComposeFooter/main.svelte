@@ -2,7 +2,7 @@
 import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import OLSKReloadButton from 'OLSKReloadButton';
-import RCSLanguageSwitcher from '../../../_shared/RCSLanguageSwitcher/mainx.svelte';
+import RCSLanguageSwitcher from '../../../_shared/RCSLanguageSwitcher/main.svelte';
 
 import { OLSKLocalized } from '../../../_shared/common/global.js';
 import { createEventDispatcher } from 'svelte';
