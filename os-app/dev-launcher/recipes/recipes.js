@@ -6,20 +6,19 @@ import * as URL from './primitives/URL/main.js';
 
 import * as Command from './types/LCHTypeCommand/main.js';
 import * as ServiceSearch from './types/ServiceSearch/main.js';
+import * as SubjectContainer from './types/SubjectContainer/main.js';
+
+import * as LCHDateLocalOffsetSubtracted from './functions/LCHDateLocalOffsetSubtracted/main.js';
+
+import * as LCHActiveDocumentLinkElements from './subjects/LCHActiveDocumentLinkElements/main.js';
 
 import * as LCHCopyToClipboard from './actions/LCHCopyToClipboard/main.js';
-import * as LCHDateLocalOffsetSubtracted from './functions/LCHDateLocalOffsetSubtracted/main.js';
 import * as LCHLargeText from './actions/LCHLargeText/main.js';
 import * as LCHRunCommand from './actions/LCHRunCommand/main.js';
 import * as LCHSearchAction from './actions/LCHSearchAction/main.js';
 import * as LCHServiceSearchWikipedia from './actions/LCHServiceSearchWikipedia/main.js';
-import * as LCHURLOpen from './actions/LCHURLOpen/main.js';
-
-import * as SubjectContainer from './types/SubjectContainer/main.js';
-
-import * as LCHActiveDocumentLinkElements from './subjects/LCHActiveDocumentLinkElements/main.js';
-
 import * as LCHSubjectContainerShowContents from './actions/LCHSubjectContainerShowContents/main.js';
+import * as LCHURLOpen from './actions/LCHURLOpen/main.js';
 
 export const LCHLauncherStandardRecipes = function() {
 	return [].concat.apply([], [
@@ -31,20 +30,19 @@ export const LCHLauncherStandardRecipes = function() {
 		
 		Command,
 		ServiceSearch,
+		SubjectContainer,
 		
-		LCHCopyToClipboard,
+		LCHActiveDocumentLinkElements,
+
 		LCHDateLocalOffsetSubtracted,
+
+		LCHCopyToClipboard,
 		LCHLargeText,
 		LCHRunCommand,
 		LCHSearchAction,
 		LCHServiceSearchWikipedia,
-		LCHURLOpen,
-
-		SubjectContainer,
-
-		LCHActiveDocumentLinkElements,
-
 		LCHSubjectContainerShowContents,
+		LCHURLOpen,
 	].map(function (e) {
 		return Object.entries(e).filter(function (e) {
 			return e.shift().includes('Recipe');
