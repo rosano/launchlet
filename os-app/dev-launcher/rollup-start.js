@@ -1,3 +1,3 @@
-import Main from './Main.svelte';
+import Main from './mainx.svelte';
 
 export default Main;
