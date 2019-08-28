@@ -1,2 +1,2 @@
-import _LCHCopyToClipboard from './LCHCopyToClipboard/Main.svelte';
+import _LCHCopyToClipboard from './actions/LCHCopyToClipboard/Main.svelte';
 export const LCHCopyToClipboard = _LCHCopyToClipboard;
