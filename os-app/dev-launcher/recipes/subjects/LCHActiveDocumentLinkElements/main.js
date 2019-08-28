@@ -20,6 +20,7 @@ export const LCHLinkElements = function(inputData) {
 };
 
 export const LCHActiveDocumentLinkElementsCallback = function() {
+	return LCHLinkElements(document);
 };
 
 export const LCHActiveDocumentLinkElementsRecipe = function() {

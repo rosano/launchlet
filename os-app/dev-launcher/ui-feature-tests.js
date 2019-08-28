@@ -276,6 +276,26 @@ describe('LCHLauncherUIFeature', function () {
 			
 		});
 
+		context('SubjectContainer', function testSubjectContainer () {
+
+			before(async function() {
+				return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
+			});
+
+			it('shows subject', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'a');
+				browser.OLSKFireKeyboardEvent(browser.window, 'd');
+				await browser.wait({element: LCHLauncherSubjectPromptItemSelected});
+
+				browser.assert.text(LCHLauncherSubjectPromptItemSelected, 'Active Document Link Elements SubjectContainer');
+			});
+
+			it('shows action', async function() {
+				browser.assert.text(LCHLauncherActionPromptItemSelected, 'Show Contents');
+			});
+
+		});
+
 	});
 		
 	context('shared', function () {

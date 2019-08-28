@@ -1,4 +1,5 @@
 export const LCHSubjectContainerShowContentsCallback = function(inputData) {
+	return inputData;
 };
 
 export const LCHSubjectContainerShowContentsRecipe = function() {

@@ -510,3 +510,58 @@ describe('LCHLauncherConstrainIndex', function testLCHLauncherConstrainIndex() {
 	});
 
 });
+
+describe('LCHLauncherReloadableSubjects', function testLCHLauncherReloadableSubjects() {
+
+	it('throws error if not array', function() {
+		throws(function() {
+			mainModule.LCHLauncherReloadableSubjects(null, 0);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns array', function() {
+		deepEqual(mainModule.LCHLauncherReloadableSubjects([]), []);
+	});
+
+	it('excludes if undefined', function() {
+		deepEqual(mainModule.LCHLauncherReloadableSubjects([undefined]), []);
+	});
+
+	it('excludes if null', function() {
+		deepEqual(mainModule.LCHLauncherReloadableSubjects([null]), []);
+	});
+
+	it('excludes if string', function() {
+		deepEqual(mainModule.LCHLauncherReloadableSubjects(['alfa']), []);
+	});
+
+	it('excludes if not valid', function() {
+		deepEqual(mainModule.LCHLauncherReloadableSubjects([{}]), []);
+	});
+
+	it('excludes if not subject', function() {
+		deepEqual(mainModule.LCHLauncherReloadableSubjects([{
+			LCHRecipeName: 'alfa',
+			LCHRecipeCallback () {},
+		}]), []);
+	});
+
+	it('includes', function() {
+		const item = {
+			LCHRecipeName: 'alfa',
+			LCHRecipeCallback () {},
+			LCHRecipeOutputType: 'bravo',
+		};
+		deepEqual(mainModule.LCHLauncherReloadableSubjects([item]), [item]);
+	});
+
+	it('flattens nested arrays', function() {
+		const item = {
+			LCHRecipeName: 'alfa',
+			LCHRecipeCallback () {},
+			LCHRecipeOutputType: 'bravo',
+		};
+		deepEqual(mainModule.LCHLauncherReloadableSubjects([[item]]), [item]);
+	});
+
+});

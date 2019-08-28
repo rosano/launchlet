@@ -436,7 +436,7 @@ afterUpdate(function () {
 	});
 });
 
-import { LCHLauncherKeyboardEventIsTextInput, LCHLauncherConstrainIndex } from './ui-logic.js';
+import { LCHLauncherKeyboardEventIsTextInput, LCHLauncherConstrainIndex, LCHLauncherReloadableSubjects } from './ui-logic.js';
 import { LCHCompositionModelErrors } from './api.js';
 import { LCHRunCommandRecipe } from './recipes/actions/LCHRunCommand/main.js';
 import { LCHPrimitiveURLCallback } from './recipes/primitives/URL/main.js';
@@ -747,9 +747,29 @@ const mod = {
 
 		ActivePromptFilterTextShouldUpdate(!_PromptObjects[_PromptActiveIndex].LCHPromptInputThrottle ? event.key : _PromptObjects[_PromptActiveIndex].LCHPromptFilterText + event.key);
 	},
+	commandReloadSubjects (inputData) {
+		let reloadSubjects = LCHLauncherReloadableSubjects([inputData]);
+
+		console.log(inputData, reloadSubjects);
+		
+		if (!reloadSubjects.length) {
+			return false;
+		};
+
+		_PromptObjects[0].LCHPromptItemsVisible = [];
+		_PromptObjects[0].LCHPromptItemsAll = reloadSubjects;
+
+		mod.ValuePromptActiveIndex(0);
+
+		ActivePromptItemSelectedShouldUpdate(reloadSubjects[0]);
+		
+		return true;
+	},
 	async commandTerminate () {
 		if (LCHOptionsObject().runMode === LCHLauncherModePipe()) {
-			await apiStart(mod.DataComposition());
+			if (mod.commandReloadSubjects(await apiStart(mod.DataComposition()))) {
+				return;
+			};
 		}
 
 		if (LCHOptionsObject().runMode !== LCHLauncherModePreview()) {

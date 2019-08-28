@@ -2,7 +2,12 @@ import { throws, deepEqual } from 'assert';
 
 import * as mainModule from './main.js';
 
-describe('LCHSubjectContainerShowContentsCallback', function testLCHSubjectContainerShowContentsCallback() {
+describe('LCHSubjectContainerShowContentsCallback', function testLCHSubjectContainerShowContentsCallback(inputData) {
+
+	it('returns inputData', async function() {
+		const item = function () {};
+		deepEqual(mainModule.LCHSubjectContainerShowContentsCallback(item), item);
+	});
 
 });
 

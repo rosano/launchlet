@@ -229,3 +229,25 @@ export const LCHLauncherConstrainIndex = function (param1, param2) {
 	return param2;
 };
 
+import { LCHRecipesModelErrorsFor, LCHRecipesModelIsSubject } from './api.js';
+export const LCHLauncherReloadableSubjects = function (inputData) {
+	if (!Array.isArray(inputData)) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	return [].concat.apply([], inputData).filter(function (e) {
+		if (typeof e !== 'object' || e === null) {
+			return false;
+		}
+
+		if (LCHRecipesModelErrorsFor(e)) {
+			return false;
+		};
+
+		if (!LCHRecipesModelIsSubject(e)) {
+			return false;
+		};
+
+		return true;
+	});
+};
