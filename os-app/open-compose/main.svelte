@@ -4,7 +4,7 @@ import LCHComposeFooter from './components/LCHComposeFooter/main.svelte';
 import LCHComposeMaster from './components/LCHComposeMaster/main.svelte';
 import LCHComposeDetail from './components/LCHComposeDetail/main.svelte';
 import LCHCompile from './components/LCHCompile/main.svelte';
-import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/Main.svelte';
+import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svelte';
 
 import { OLSKLocalized, _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 import { storageClient, isLoading, DocumentsAllStore } from './persistence.js';
