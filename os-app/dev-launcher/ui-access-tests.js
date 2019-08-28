@@ -122,7 +122,7 @@ describe('LCHLauncherUIAccess', function() {
 				await browser.wait({element: LCHLauncherResultList});
 
 				browser.assert.elements(LCHLauncherResultList, 1);
-				browser.assert.elements(LCHLauncherResultListItem, 6);
+				browser.assert.elements(LCHLauncherResultListItem, 7);
 			});
 
 			it('selects first list item', async function() {
@@ -143,7 +143,7 @@ describe('LCHLauncherUIAccess', function() {
 				await browser.wait({element: LCHLauncherResultList});
 				browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
 				browser.assert.elements(LCHLauncherResultList, 1);
-				browser.assert.elements(LCHLauncherResultListItem, 6);
+				browser.assert.elements(LCHLauncherResultListItem, 7);
 			});
 
 			it('skips throttle on ArrowUp', async function() {
@@ -158,7 +158,7 @@ describe('LCHLauncherUIAccess', function() {
 				await browser.wait({element: LCHLauncherResultList});
 				browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
 				browser.assert.elements(LCHLauncherResultList, 1);
-				browser.assert.elements(LCHLauncherResultListItem, 6);
+				browser.assert.elements(LCHLauncherResultListItem, 7);
 			});
 
 			it('hides list on Escape', async function() {
@@ -221,7 +221,7 @@ describe('LCHLauncherUIAccess', function() {
 
 				it('keeps matched results', async function() {
 					browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
-					browser.assert.elements(LCHLauncherResultListItem, 6);
+					browser.assert.elements(LCHLauncherResultListItem, 7);
 				});
 
 				it('passes MatchStop to LCHLauncherPromptHeading', async function() {
@@ -235,7 +235,7 @@ describe('LCHLauncherUIAccess', function() {
 					deepEqual(browser.query(LCHLauncherSubjectPromptHeading).textContent, 'AXX');
 					browser.assert.elements(LCHLauncherResultList, 1);
 					browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
-					browser.assert.elements(LCHLauncherResultListItem, 6);
+					browser.assert.elements(LCHLauncherResultListItem, 7);
 				});
 
 				it('removes MatchStop on keydown', async function() {
@@ -260,7 +260,7 @@ describe('LCHLauncherUIAccess', function() {
 
 					browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
 					browser.assert.elements(LCHLauncherResultList, 1);
-					browser.assert.elements(LCHLauncherResultListItem, 6);
+					browser.assert.elements(LCHLauncherResultListItem, 7);
 
 					browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
 					await browser.wait({element: LCHLauncherSubjectPromptItemSelected});
@@ -273,7 +273,7 @@ describe('LCHLauncherUIAccess', function() {
 				it('keeps results', function() {
 					browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
 					browser.assert.elements(LCHLauncherResultList, 1);
-					browser.assert.elements(LCHLauncherResultListItem, 6);
+					browser.assert.elements(LCHLauncherResultListItem, 7);
 				});
 
 			});
@@ -304,7 +304,7 @@ describe('LCHLauncherUIAccess', function() {
 					deepEqual(browser.query(LCHLauncherSubjectPromptHeading).textContent, 'A');
 					browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
 					browser.assert.elements(LCHLauncherResultList, 1);
-					browser.assert.elements(LCHLauncherResultListItem, 6);
+					browser.assert.elements(LCHLauncherResultListItem, 7);
 
 					browser.OLSKFireKeyboardEvent(browser.window, 'b');
 					await browser.wait({element: LCHLauncherResultList});
