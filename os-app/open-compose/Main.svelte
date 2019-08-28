@@ -2,7 +2,7 @@
 import OLSKViewportContent from 'OLSKViewportContent';
 import LCHComposeFooter from './components/LCHComposeFooter/main.svelte';
 import ModuleMaster from './ModuleMaster.svelte';
-import ModuleDetail from './ModuleDetail.svelte';
+import LCHComposeDetail from './components/LCHComposeDetail/main.svelte';
 import LCHCompile from './components/LCHCompile/main.svelte';
 import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/Main.svelte';
 
@@ -30,7 +30,7 @@ const mod = {
 
 <OLSKViewportContent>
 	<ModuleMaster bind:this={ masterInstance } />
-	<ModuleDetail />
+	<LCHComposeDetail />
 </OLSKViewportContent>
 
 <LCHCompile CompileDocuments={ $DocumentsAllStore } OLSKLocalized={ OLSKLocalized } />

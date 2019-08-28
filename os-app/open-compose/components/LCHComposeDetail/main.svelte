@@ -2,12 +2,12 @@
 import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
-import LCHEditor from './components/LCHEditor/main.svelte';
+import LCHEditor from '../LCHEditor/main.svelte';
 
-import * as LCHDocumentAction from '../_shared/LCHDocument/action.js';
+import * as LCHDocumentAction from '../../../_shared/LCHDocument/action.js';
 
-import { OLSKLocalized, _LCHIsTestingBehaviour } from '../_shared/common/global.js';
-import { storageClient, DocumentsAllStore, DocumentSelectedStore, modelDidChange } from './persistence.js';
+import { OLSKLocalized, _LCHIsTestingBehaviour } from '../../../_shared/common/global.js';
+import { storageClient, DocumentsAllStore, DocumentSelectedStore, modelDidChange } from '../../persistence.js';
 
 import { afterUpdate } from 'svelte';
 
