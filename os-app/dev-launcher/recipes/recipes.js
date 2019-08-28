@@ -17,6 +17,8 @@ import * as LCHURLOpen from './LCHURLOpen/main.js';
 
 import * as LCHActiveDocumentLinkElements from './subjects/LCHActiveDocumentLinkElements/main.js';
 
+import * as SubjectContainer from './types/SubjectContainer/main.js';
+
 export const LCHLauncherStandardRecipes = function() {
 	return [].concat.apply([], [
 		Bool,
@@ -37,6 +39,8 @@ export const LCHLauncherStandardRecipes = function() {
 		LCHURLOpen,
 
 		LCHActiveDocumentLinkElements,
+
+		SubjectContainer,
 	].map(function (e) {
 		return Object.entries(e).filter(function (e) {
 			return e.shift().includes('Recipe');
