@@ -63,6 +63,7 @@ describe('LCHTypeSubjectContainerRecipe', function testLCHTypeSubjectContainerRe
 			LCHRecipeOutputType: 'Bool',
 			LCHRecipeCanonicalExampleCallback: mainModule.LCHTypeSubjectContainerCanonicalExampleCallback,
 			LCHRecipeSignature: 'SubjectContainer',
+			_LCHRecipeTypeIsExclusive: true,
 		});
 	});
 

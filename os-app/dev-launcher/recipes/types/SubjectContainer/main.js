@@ -25,5 +25,6 @@ export const LCHTypeSubjectContainerRecipe = function() {
 		LCHRecipeCallback: LCHTypeSubjectContainerCallback,
 		LCHRecipeOutputType: 'Bool',
 		LCHRecipeCanonicalExampleCallback: LCHTypeSubjectContainerCanonicalExampleCallback,
+		_LCHRecipeTypeIsExclusive: true,
 	};
 };
