@@ -4,7 +4,7 @@ import * as ServiceSearchURLTemplate from './primitives/ServiceSearchURLTemplate
 import * as String from './primitives/String/main.js';
 import * as URL from './primitives/URL/main.js';
 
-import * as Command from './TypeCommand/main.js';
+import * as Command from './types/LCHTypeCommand/main.js';
 import * as ServiceSearch from './types/ServiceSearch/main.js';
 
 import * as LCHCopyToClipboard from './actions/LCHCopyToClipboard/main.js';
