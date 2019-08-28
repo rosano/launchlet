@@ -749,8 +749,6 @@ const mod = {
 	},
 	commandReloadSubjects (inputData) {
 		let reloadSubjects = LCHLauncherReloadableSubjects([inputData]);
-
-		console.log(inputData, reloadSubjects);
 		
 		if (!reloadSubjects.length) {
 			return false;

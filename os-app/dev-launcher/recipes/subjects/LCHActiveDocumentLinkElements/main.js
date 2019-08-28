@@ -15,6 +15,10 @@ export const LCHLinkElements = function(inputData) {
 	}).map(function (e) {
 		return {
 			LCHRecipeName: e.textContent.trim() || e.title.trim(),
+			LCHRecipeCallback () {
+				return e;
+			},
+			LCHRecipeOutputType: 'DOMElement',
 		};
 	});
 };

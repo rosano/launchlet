@@ -294,6 +294,13 @@ describe('LCHLauncherUIFeature', function () {
 				browser.assert.text(LCHLauncherActionPromptItemSelected, 'Show Contents');
 			});
 
+			it('reloads subjects', async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
+				await browser.wait({element: LCHLauncherSubjectPromptItemSelected });
+
+				browser.assert.text(LCHLauncherSubjectPromptItemSelected, 'alfa DOMElement');
+			});
+			
 		});
 
 	});

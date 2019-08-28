@@ -49,6 +49,10 @@ describe('LCHLinkElements', function testLCHLinkElements() {
 		deepEqual(mainModule.LCHLinkElements(JSDOM.fragment('<a href="#" title="bravo">alfa</a>')).pop().LCHRecipeName, 'alfa');
 	});
 
+	it('sets LCHRecipeOutputType to DOMElement', function() {
+		deepEqual(mainModule.LCHLinkElements(JSDOM.fragment('<a href="#" title="#">alfa</a>')).pop().LCHRecipeOutputType, 'DOMElement');
+	});
+
 });
 
 describe('LCHActiveDocumentLinkElementsCallback', function testLCHActiveDocumentLinkElementsCallback() {
