@@ -12,6 +12,7 @@ import * as SubjectContainer from './types/SubjectContainer/main.js';
 import * as LCHDateLocalOffsetSubtracted from './functions/LCHDateLocalOffsetSubtracted/main.js';
 
 import * as LCHActiveDocumentLinkElements from './subjects/LCHActiveDocumentLinkElements/main.js';
+import * as LCHActiveDocumentInputElements from './subjects/LCHActiveDocumentInputElements/main.js';
 
 import * as LCHCopyToClipboard from './actions/LCHCopyToClipboard/main.js';
 import * as LCHDOMElementFocus from './actions/LCHDOMElementFocus/main.js';
@@ -36,6 +37,7 @@ export const LCHLauncherStandardRecipes = function() {
 		SubjectContainer,
 		
 		LCHActiveDocumentLinkElements,
+		LCHActiveDocumentInputElements,
 
 		LCHDateLocalOffsetSubtracted,
 
