@@ -1,4 +1,4 @@
-import { LCHPrimitiveURLCallback } from '../PrimitiveURL/main.js';
+import { LCHPrimitiveURLCallback } from '../URL/main.js';
 
 export const LCHPrimitiveServiceSearchURLTemplateCallback = function(inputData) {
 	if (!LCHPrimitiveURLCallback(inputData)) {

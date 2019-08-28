@@ -1,8 +1,8 @@
-import * as Bool from './PrimitiveBool/main.js';
-import * as Date from './PrimitiveDate/main.js';
-import * as ServiceSearchURLTemplate from './PrimitiveServiceSearchURLTemplate/main.js';
-import * as String from './PrimitiveString/main.js';
-import * as URL from './PrimitiveURL/main.js';
+import * as Bool from './primitives/Bool/main.js';
+import * as Date from './primitives/Date/main.js';
+import * as ServiceSearchURLTemplate from './primitives/ServiceSearchURLTemplate/main.js';
+import * as String from './primitives/String/main.js';
+import * as URL from './primitives/URL/main.js';
 
 import * as Command from './TypeCommand/main.js';
 import * as ServiceSearch from './TypeServiceSearch/main.js';
