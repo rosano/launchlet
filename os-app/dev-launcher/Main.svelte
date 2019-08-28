@@ -427,7 +427,7 @@ afterUpdate(function () {
 
 import { LCHLauncherKeyboardEventIsTextInput, LCHLauncherConstrainIndex } from './ui-logic.js';
 import { LCHCompositionModelErrors } from './api.js';
-import { LCHRunCommandRecipe } from './recipes/LCHRunCommand/main.js';
+import { LCHRunCommandRecipe } from './recipes/actions/LCHRunCommand/main.js';
 import { LCHPrimitiveURLCallback } from './recipes/primitives/URL/main.js';
 const mod = {
 
