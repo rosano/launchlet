@@ -67,7 +67,7 @@ import {
 	LCHLauncherConvertTypeServiceSearch,
 	LCHAPITypeEquivalenceMapForRecipes,
 } from './api.js';
-import { LCHLauncherStandardRecipes } from './recipes/recipes.js';
+import { LCHLauncherStandardRecipes } from './recipes/main.js';
 const allRecipes = LCHLauncherStandardRecipes().concat(dataObjects);
 
 const api = LCHAPIObjectFor(allRecipes);

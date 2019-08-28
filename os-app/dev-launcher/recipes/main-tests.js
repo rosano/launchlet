@@ -1,6 +1,6 @@
 import { throws, deepEqual } from 'assert';
 
-import * as mainModule from './recipes.js';
+import * as mainModule from './main.js';
 
 const uSort = function (inputData) {
 	return inputData.map(function (e) {
