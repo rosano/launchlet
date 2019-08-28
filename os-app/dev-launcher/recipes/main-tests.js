@@ -26,7 +26,7 @@ const uSort = function (inputData) {
 describe('LCHLauncherStandardRecipes', function testLCHLauncherStandardRecipes() {
 
 	it('returns LCHFormulaObject for each folder', function() {
-		deepEqual(uSort(mainModule.LCHLauncherStandardRecipes()), uSort([].concat.apply([], require('glob').sync('*main.js', {
+		deepEqual(uSort(mainModule.LCHLauncherStandardRecipes()), uSort([].concat.apply([], require('glob').sync('*/**/main.js', {
 		  matchBase: true,
 		  cwd: __dirname,
 		}).map(function (e) {
