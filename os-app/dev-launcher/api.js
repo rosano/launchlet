@@ -182,7 +182,7 @@ export const LCHRecipesModelIsTask = function(inputData) {
 	return true;
 };
 
-import { LCHTypeServiceSearchRecipe } from './recipes/TypeServiceSearch/main.js';
+import { LCHTypeServiceSearchRecipe } from './recipes/types/ServiceSearch/main.js';
 export const LCHLauncherConvertTypeServiceSearch = function(inputData, _stringCallback) {
 	if (!Array.isArray(inputData)) {
 		throw new Error('LCHErrorInputInvalid');

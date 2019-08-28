@@ -460,7 +460,7 @@ describe('LCHRecipesModelIsTask', function testLCHRecipesModelIsTask() {
 
 });
 
-import { LCHTypeServiceSearchRecipe } from './recipes/TypeServiceSearch/main.js';
+import { LCHTypeServiceSearchRecipe } from './recipes/types/ServiceSearch/main.js';
 describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertTypeServiceSearch() {
 
 	it('throws error if not array', function() {
