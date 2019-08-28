@@ -8,7 +8,7 @@ import * as Command from './TypeCommand/main.js';
 import * as ServiceSearch from './TypeServiceSearch/main.js';
 
 import * as LCHCopyToClipboard from './LCHCopyToClipboard/main.js';
-import * as LCHDateLocalOffsetSubtracted from './LCHDateLocalOffsetSubtracted/main.js';
+import * as LCHDateLocalOffsetSubtracted from './functions/LCHDateLocalOffsetSubtracted/main.js';
 import * as LCHLargeText from './LCHLargeText/main.js';
 import * as LCHRunCommand from './LCHRunCommand/main.js';
 import * as LCHSearchAction from './LCHSearchAction/main.js';
