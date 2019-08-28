@@ -15,6 +15,8 @@ import * as LCHSearchAction from './LCHSearchAction/main.js';
 import * as LCHServiceSearchWikipedia from './LCHServiceSearchWikipedia/main.js';
 import * as LCHURLOpen from './LCHURLOpen/main.js';
 
+import * as LCHActiveDocumentLinkElements from './subjects/LCHActiveDocumentLinkElements/main.js';
+
 export const LCHLauncherStandardRecipes = function() {
 	return [].concat.apply([], [
 		Bool,
@@ -33,6 +35,8 @@ export const LCHLauncherStandardRecipes = function() {
 		LCHSearchAction,
 		LCHServiceSearchWikipedia,
 		LCHURLOpen,
+
+		LCHActiveDocumentLinkElements,
 	].map(function (e) {
 		return Object.entries(e).filter(function (e) {
 			return e.shift().includes('Recipe');
