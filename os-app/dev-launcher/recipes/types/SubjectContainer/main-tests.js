@@ -47,7 +47,7 @@ describe('LCHTypeSubjectContainerCanonicalExampleCallback', function testLCHType
 	context('LCHRecipeOutputType', function() {
 		
 		it('assigns string', function() {
-			deepEqual(mainModule.LCHTypeSubjectContainerCanonicalExampleCallback().LCHRecipeOutputType, '[Subject]');
+			deepEqual(mainModule.LCHTypeSubjectContainerCanonicalExampleCallback().LCHRecipeOutputType, 'SubjectContainer');
 		});
 
 	});

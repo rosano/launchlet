@@ -3,7 +3,7 @@ export const LCHTypeSubjectContainerCallback = function(inputData) {
 		return false;
 	}
 	
-	if (inputData.LCHRecipeOutputType !== '[Subject]') {
+	if (inputData.LCHRecipeOutputType !== 'SubjectContainer') {
 		return false;
 	}
 
@@ -14,7 +14,7 @@ export const LCHTypeSubjectContainerCanonicalExampleCallback = function() {
 	return {
 		LCHRecipeName: 'alfa',
 		LCHRecipeCallback () {},
-		LCHRecipeOutputType: '[Subject]',
+		LCHRecipeOutputType: 'SubjectContainer',
 	};
 };
 

@@ -61,7 +61,7 @@ describe('LCHActiveDocumentLinkElementsRecipe', function testLCHActiveDocumentLi
 		deepEqual(mainModule.LCHActiveDocumentLinkElementsRecipe(), {
 			LCHRecipeName: 'Active Document Link Elements',
 			LCHRecipeCallback: mainModule.LCHActiveDocumentLinkElementsCallback,
-			LCHRecipeOutputType: '[Subject]',
+			LCHRecipeOutputType: 'SubjectContainer',
 			LCHRecipeSignature: 'LCHActiveDocumentLinkElements',
 		});
 	});

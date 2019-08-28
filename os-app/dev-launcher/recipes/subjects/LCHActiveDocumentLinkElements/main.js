@@ -25,7 +25,7 @@ export const LCHActiveDocumentLinkElementsCallback = function() {
 export const LCHActiveDocumentLinkElementsRecipe = function() {
 	return {
 		LCHRecipeName: 'Active Document Link Elements',
-		LCHRecipeOutputType: '[Subject]',
+		LCHRecipeOutputType: 'SubjectContainer',
 		LCHRecipeCallback: LCHActiveDocumentLinkElementsCallback,
 		LCHRecipeSignature: 'LCHActiveDocumentLinkElements',
 	};
