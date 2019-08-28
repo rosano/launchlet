@@ -2,8 +2,8 @@
 import { OLSKLocalized, OLSKFormatted } from './_shared.js';
 import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 
-import LCHLauncherPrompt from './modules/LCHLauncherPrompt/main.svelte';
-import LCHLauncherPipeItem from './modules/LCHLauncherPipeItem/main.svelte';
+import LCHLauncherPrompt from './components/LCHLauncherPrompt/main.svelte';
+import LCHLauncherPipeItem from './components/LCHLauncherPipeItem/main.svelte';
 
 import {
 	LCHOptionsObject,

@@ -1,7 +1,7 @@
 import { deepEqual } from 'assert';
 
 const browser = new OLSKBrowser();
-const kDefaultRoutePath = '/modules/LCHLauncherPrompt';
+const kDefaultRoutePath = '/components/LCHLauncherPrompt';
 
 const LCHLauncherPrompt = '.LCHLauncherPrompt';
 const LCHLauncherPromptItemSelected = '.LCHLauncherZoneInput .LCHLauncherPipeItem';

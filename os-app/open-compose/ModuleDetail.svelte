@@ -2,7 +2,7 @@
 import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
-import LCHEditor from './modules/LCHEditor/main.svelte';
+import LCHEditor from './components/LCHEditor/main.svelte';
 
 import * as LCHDocumentAction from '../_shared/LCHDocument/action.js';
 

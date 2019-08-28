@@ -1,6 +1,6 @@
 import { deepEqual } from 'assert';
 const browser = new OLSKBrowser();
-const kDefaultRoutePath = '/modules/LCHLauncherResultList';
+const kDefaultRoutePath = '/components/LCHLauncherResultList';
 
 const LCHLauncherResultList = '.LCHLauncherResultList';
 const LCHLauncherResultListItem = '.LCHLauncherResultListItem';
