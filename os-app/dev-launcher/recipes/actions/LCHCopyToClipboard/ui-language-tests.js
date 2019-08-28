@@ -1,7 +1,7 @@
 import { deepEqual } from 'assert';
 
 const browser = new OLSKBrowser();
-const kDefaultRoutePath = '/launcher?loadRecipes=LCHCopyToClipboard';
+const kDefaultRoutePath = '/launcher?loadRecipes=actions/LCHCopyToClipboard';
 
 describe('LCHCopyToClipboardUILanguage', function () {
 

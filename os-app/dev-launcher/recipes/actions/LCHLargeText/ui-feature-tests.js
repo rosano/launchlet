@@ -1,7 +1,7 @@
 import { deepEqual } from 'assert';
 
 const browser = new OLSKBrowser();
-const kDefaultRoutePath = '/launcher?loadRecipes=LCHLargeText';
+const kDefaultRoutePath = '/launcher?loadRecipes=actions/LCHLargeText';
 
 describe('LCHLargeTextUIFeature', function () {
 
