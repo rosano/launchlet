@@ -334,17 +334,17 @@ describe('LCHRecipesModelIsSubject', function testLCHRecipesModelIsSubject() {
 		})), false);
 	});
 
-	it('returns false if arguments', function() {
-		deepEqual(mainModule.LCHRecipesModelIsSubject(Object.assign(kTesting.StubRecipeObjectSubject(), {
-			LCHRecipeInputTypes: 'alfa',
-		})), false);
-	});
-
-	// it('returns false if no LCHRecipeOutputType', function() {
+	// it('returns false if arguments', function() {
 	// 	deepEqual(mainModule.LCHRecipesModelIsSubject(Object.assign(kTesting.StubRecipeObjectSubject(), {
-	// 		LCHRecipeOutputType: undefined,
+	// 		LCHRecipeInputTypes: 'alfa',
 	// 	})), false);
 	// });
+
+	it('returns false if no LCHRecipeOutputType', function() {
+		deepEqual(mainModule.LCHRecipesModelIsSubject(Object.assign(kTesting.StubRecipeObjectSubject(), {
+			LCHRecipeOutputType: undefined,
+		})), false);
+	});
 
 	it('returns true', function() {
 		deepEqual(mainModule.LCHRecipesModelIsSubject(kTesting.StubRecipeObjectSubject()), true);

@@ -135,6 +135,7 @@ async function apiStart(inputData) {
 }
 
 import {
+	LCHRecipesModelIsCommand,
 	LCHRecipesModelIsSubject,
 	LCHRecipesModelIsAction,
 } from './api.js';
@@ -142,7 +143,17 @@ import { LCHLauncherUIRecipesForMode } from './ui-logic.js';
 let _PromptObjects = [];
 let _PromptActiveIndex = 0;
 let _AllPromptRecipes = LCHLauncherUIRecipesForMode(allRecipes, LCHOptionsObject().runMode);
-let _AllSubjects = _AllPromptRecipes.filter(LCHRecipesModelIsSubject).filter(function (e) {
+let _AllSubjects = _AllPromptRecipes.filter(function (e) {
+	if (LCHRecipesModelIsSubject(e)) {
+		return true;
+	};
+
+	if (LCHRecipesModelIsCommand(e)) {
+		return true;
+	};
+
+	return false;
+}).filter(function (e) {
 	return !e.LCHRecipeOutputType || (Object.keys(apiTypeEquivalenceMap).indexOf(e.LCHRecipeOutputType) !== -1);
 });
 let _AllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
