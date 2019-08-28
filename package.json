@@ -81,6 +81,11 @@
     "svelte": "3.9.0",
     "svelte-preprocess": "latest",
 
-    "eslint-plugin-svelte3": "latest"
+    "eslint-plugin-svelte3": "latest",
+
+    "// DOM MANIPULATOIN": null,
+    "jsdom": "latest",
+
+    "// I sacrifice myself for the commas of others": null    
   }
 }
