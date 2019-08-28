@@ -9,11 +9,11 @@ import * as ServiceSearch from './TypeServiceSearch/main.js';
 
 import * as LCHCopyToClipboard from './actions/LCHCopyToClipboard/main.js';
 import * as LCHDateLocalOffsetSubtracted from './functions/LCHDateLocalOffsetSubtracted/main.js';
-import * as LCHLargeText from './LCHLargeText/main.js';
-import * as LCHRunCommand from './LCHRunCommand/main.js';
-import * as LCHSearchAction from './LCHSearchAction/main.js';
-import * as LCHServiceSearchWikipedia from './LCHServiceSearchWikipedia/main.js';
-import * as LCHURLOpen from './LCHURLOpen/main.js';
+import * as LCHLargeText from './actions/LCHLargeText/main.js';
+import * as LCHRunCommand from './actions/LCHRunCommand/main.js';
+import * as LCHSearchAction from './actions/LCHSearchAction/main.js';
+import * as LCHServiceSearchWikipedia from './actions/LCHServiceSearchWikipedia/main.js';
+import * as LCHURLOpen from './actions/LCHURLOpen/main.js';
 
 import * as SubjectContainer from './types/SubjectContainer/main.js';
 
