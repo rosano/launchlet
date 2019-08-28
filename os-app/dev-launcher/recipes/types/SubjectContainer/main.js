@@ -1,4 +1,4 @@
-export const SubjectContainerCallback = function(inputData) {
+export const LCHTypeSubjectContainerCallback = function(inputData) {
 	if (!inputData.LCHRecipeName) {
 		return false;
 	}
@@ -10,7 +10,7 @@ export const SubjectContainerCallback = function(inputData) {
 	return true;
 };
 
-export const SubjectContainerCanonicalExampleCallback = function() {
+export const LCHTypeSubjectContainerCanonicalExampleCallback = function() {
 	return {
 		LCHRecipeName: 'alfa',
 		LCHRecipeCallback () {},
@@ -18,12 +18,12 @@ export const SubjectContainerCanonicalExampleCallback = function() {
 	};
 };
 
-export const SubjectContainerRecipe = function() {
+export const LCHTypeSubjectContainerRecipe = function() {
 	return {
 		LCHRecipeName: 'Subject Container',
 		LCHRecipeSignature: 'SubjectContainer',
-		LCHRecipeCallback: SubjectContainerCallback,
+		LCHRecipeCallback: LCHTypeSubjectContainerCallback,
 		LCHRecipeOutputType: 'Bool',
-		LCHRecipeCanonicalExampleCallback: SubjectContainerCanonicalExampleCallback,
+		LCHRecipeCanonicalExampleCallback: LCHTypeSubjectContainerCanonicalExampleCallback,
 	};
 };
