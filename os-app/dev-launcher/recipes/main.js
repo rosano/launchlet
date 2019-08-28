@@ -1,5 +1,6 @@
 import * as Bool from './primitives/Bool/main.js';
 import * as Date from './primitives/Date/main.js';
+import * as DOMElement from './primitives/LCHPrimitiveDOMElement/main.js';
 import * as ServiceSearchURLTemplate from './primitives/ServiceSearchURLTemplate/main.js';
 import * as String from './primitives/String/main.js';
 import * as URL from './primitives/URL/main.js';
@@ -13,6 +14,7 @@ import * as LCHDateLocalOffsetSubtracted from './functions/LCHDateLocalOffsetSub
 import * as LCHActiveDocumentLinkElements from './subjects/LCHActiveDocumentLinkElements/main.js';
 
 import * as LCHCopyToClipboard from './actions/LCHCopyToClipboard/main.js';
+import * as LCHDOMElementFocus from './actions/LCHDOMElementFocus/main.js';
 import * as LCHLargeText from './actions/LCHLargeText/main.js';
 import * as LCHRunCommand from './actions/LCHRunCommand/main.js';
 import * as LCHSearchAction from './actions/LCHSearchAction/main.js';
@@ -24,6 +26,7 @@ export const LCHLauncherStandardRecipes = function() {
 	return [].concat.apply([], [
 		Bool,
 		Date,
+		DOMElement,
 		ServiceSearchURLTemplate,
 		String,
 		URL,
@@ -37,6 +40,7 @@ export const LCHLauncherStandardRecipes = function() {
 		LCHDateLocalOffsetSubtracted,
 
 		LCHCopyToClipboard,
+		LCHDOMElementFocus,
 		LCHLargeText,
 		LCHRunCommand,
 		LCHSearchAction,
