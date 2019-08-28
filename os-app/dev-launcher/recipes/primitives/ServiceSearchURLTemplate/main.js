@@ -23,6 +23,6 @@ export const LCHPrimitiveServiceSearchURLTemplateRecipe = function() {
 		LCHRecipeOutputType: 'Bool',
 		LCHRecipeCanonicalExampleCallback: LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback,
 		LCHRecipeSignature: 'ServiceSearchURLTemplate',
-		_LCHRecipeNonEquivalenceTypes: 'String,URL',
+		_LCHRecipeTypeIsExclusive: true,
 	};
 };

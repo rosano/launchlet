@@ -296,11 +296,11 @@ export const LCHAPITypeEquivalenceMapForRecipes = function(inputData) {
 				return true;
 			}
 
-			if (e._LCHRecipeNonEquivalenceTypes && e._LCHRecipeNonEquivalenceTypes.includes(item.LCHRecipeSignature)) {
+			if (e._LCHRecipeTypeIsExclusive) {
 				return false;
 			}
 
-			if (item._LCHRecipeNonEquivalenceTypes && item._LCHRecipeNonEquivalenceTypes.includes(e.LCHRecipeSignature)) {
+			if (item._LCHRecipeTypeIsExclusive) {
 				return false;
 			}
 

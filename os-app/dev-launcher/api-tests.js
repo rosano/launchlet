@@ -810,10 +810,10 @@ describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenc
 		});
 	});
 
-	it('maps if _LCHRecipeNonEquivalenceTypes', function() {
+	it('maps if _LCHRecipeTypeIsExclusive', function() {
 		deepEqual(mainModule.LCHAPITypeEquivalenceMapForRecipes([kTesting.StubRecipeObjectType(), Object.assign(kTesting.StubRecipeObjectType(), {
 			LCHRecipeSignature: 'echo',
-			_LCHRecipeNonEquivalenceTypes: 'alfa',
+			_LCHRecipeTypeIsExclusive: true,
 		})]), {
 			alfa: ['alfa'],
 			echo: ['echo'],
