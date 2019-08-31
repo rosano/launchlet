@@ -1,5 +1,5 @@
 (function() {
-	if (process.env.OLSK_TESTING_BEHAVIOUR !== 'true') {
+	if (process.env.OLSK_TESTING_BEHAVIOUR === 'true') {
 		return;
 	}
 
