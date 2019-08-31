@@ -1,10 +1,14 @@
-var livereload = require('livereload');
-var server = livereload.createServer({
-	extraExts: [
-		'md',
-	],
-});
-server.watch(__dirname);
+(function() {
+	if (process.env.OLSK_TESTING_BEHAVIOUR !== 'true') {
+		return;
+	}
+
+	require('livereload').createServer({
+		extraExts: [
+			'md',
+		],
+	}).watch(__dirname);
+})();
 
 //_ OLSKControllerRoutes
 
