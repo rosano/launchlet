@@ -12,7 +12,7 @@ import { OLSKLocalized } from '../../../_shared/common/global.js';
 import { storageClient, DocumentsAllStore, DocumentSelectedStore } from '../../persistence.js';
 
 import { writable } from 'svelte/store';
-import OLSKInputWrapper from 'OLSKInputWrapper';
+import OLSKInputWrapper from '../../../_shared/__external/OLSKInputWrapper/main.svelte';
 let FilterInputTextStore = writable('');
 
 export const DocumentsExport = function() {

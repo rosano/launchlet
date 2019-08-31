@@ -1,7 +1,7 @@
 <script>
 import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
-import OLSKReloadButton from 'OLSKReloadButton';
+import OLSKReloadButton from '../../../_shared/__external/OLSKReloadButton/main.svelte';
 import RCSLanguageSwitcher from '../../../_shared/RCSLanguageSwitcher/main.svelte';
 
 import { OLSKLocalized } from '../../../_shared/common/global.js';
