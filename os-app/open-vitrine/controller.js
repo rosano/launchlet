@@ -6,6 +6,7 @@
 	require('livereload').createServer({
 		extraExts: [
 			'md',
+			'ejs',
 		],
 	}).watch(__dirname);
 })();
