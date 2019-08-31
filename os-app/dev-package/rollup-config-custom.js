@@ -1,3 +1,5 @@
+const autoPreprocess = require('svelte-preprocess');
+
 module.exports = {
 	OLSKRollupConfigCustomFor (inputData) {
 		const production = !process.env.ROLLUP_WATCH;
@@ -16,6 +18,7 @@ module.exports = {
 				return e.name === 'svelte';
 			}).pop()), 1, svelte({
 				css (css) {
+					console.log();
 					// css.code = require('fs').readFileSync(pathPackage.join(__dirname, '../dev-launcher/__compiled/ui-style.css'), 'utf8').replace('ui-style', 'launchlet');
 					return css.write(pathPackage.join(__dirname, '__compiled/launchlet.css'));
 				},
@@ -24,6 +27,8 @@ module.exports = {
 
 				// enable run-time checks when not in production
 				dev: !production,
+
+				preprocess: autoPreprocess({ /* options */ }),
 			}));
 		})();
 
