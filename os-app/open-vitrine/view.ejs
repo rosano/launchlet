@@ -3,9 +3,12 @@ locals.OLSKPageTitle = OLSKLocalized('LCHVitrineTitle');
 locals.OLSKPageDescription = OLSKLocalized('LCHVitrineDescription');
 locals.OLSKPageAssets = [
 	'/_shared/__external/normalize.css/normalize.css',
+	'ui-style.css',
 ];
 %>
 
 <%- include('../_shared/common/layout-header.ejs') %>
-<h1><%= OLSKLocalized('LCHVitrineTitle') %></h1>
+
+<%- LCHVitrineContent %>
+
 <%- include('../_shared/common/layout-footer.ejs') %>
