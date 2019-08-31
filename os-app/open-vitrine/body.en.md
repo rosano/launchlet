@@ -18,6 +18,8 @@ Presents a list of commands and runs on `Enter`. Try any of the following comman
 - "Copy page info"
 - "Send email"
 
+LCHVitrineDemoButtonCommitToken
+
 ## Preview mode
 
 Presents a list of commands and runs on select, Try jumping through the headings in this document:

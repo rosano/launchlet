@@ -5,6 +5,8 @@ const kDefaultRoutePath = require('./controller.js').OLSKControllerRoutes().LCHV
 
 Object.entries({
 	RCSLanguageSwitcher: '#RCSLanguageSwitcher',
+
+	LCHVitrineDemoButtonCommit: '.LCHVitrineDemoButtonCommit',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -19,6 +21,10 @@ describe('LCHVitrineUIAccess', function () {
 
 		it('shows RCSLanguageSwitcher', async function() {
 			browser.assert.elements(RCSLanguageSwitcher, 1)
+		});
+
+		it('shows LCHVitrineDemoButtonCommit', async function() {
+			browser.assert.elements(LCHVitrineDemoButtonCommit, 1)
 		});
 		
 	});

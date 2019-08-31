@@ -16,6 +16,8 @@ locals.OLSKPageLivereload = process.env.NODE_ENV === 'development';
 
 <hr>
 
-<%- LCHVitrineContent %>
+<%- OLSKStringReplaceTokens(LCHVitrineContent, {
+	LCHVitrineDemoButtonCommitToken: `<button class="LCHVitrineDemoButtonCommit">${ OLSKLocalized('LCHVitrineDemoButtonText') }</button>`
+}) %>
 
 <%- include('../_shared/common/layout-footer.ejs') %>
