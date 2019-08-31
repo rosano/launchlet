@@ -27,6 +27,7 @@ Presents a list of commands and runs on select, Try jumping through the headings
 Organizes items into subjects and verbs. Try
 - "Wikipedia" and "Search For"
 - ?"date" and "copy to clipboard"
+- ? active page links
 - ? "current url" "share to pocket"
 - ? wayback machine
 
