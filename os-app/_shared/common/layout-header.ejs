@@ -41,6 +41,13 @@
 	</script>`);
 	}
 
+	if (locals.OLSKPageLivereload) {
+		outputData.push(`<script>
+  document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
+  ':35729/livereload.js?snipver=1"></' + 'script>')
+</script>`)
+	};
+
 	let pathToTag = function (e) {
 		let path = (e[0] === '/' ? '' : `/${ locals.OLSKSharedPageControllerSlug }/`).concat(e);
 

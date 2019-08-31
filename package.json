@@ -86,6 +86,8 @@
 
     "eslint-plugin-svelte3": "latest",
 
+    "livereload": "latest",
+
     "// DOM MANIPULATOIN": null,
     "jsdom": "latest",
 
