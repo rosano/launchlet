@@ -21,8 +21,9 @@ exports.OLSKControllerRoutes = function() {
 			OLSKRouteFunction: function (req, res, next) {
 				return res.render(require('path').join(__dirname, 'view'), {
 					LCHVitrineContent: require('OLSKString').OLSKStringReplaceTokens(require('marked')(require('fs').readFileSync(require('path').join(__dirname, `body.${ res.locals.OLSKSharedPageCurrentLanguage }.md`), 'utf-8')), {
-						LCHVitrineTokenComposeURL: res.locals.OLSKCanonicalLocalizedFor('LCHComposeRoute')
+						LCHVitrineTokenComposeURL: res.locals.OLSKCanonicalLocalizedFor('LCHComposeRoute'),
 					}),
+					OLSKStringReplaceTokens: require('OLSKString').OLSKStringReplaceTokens,
 				});
 			},
 			OLSKRouteLanguages: ['en'],
