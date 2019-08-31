@@ -62,6 +62,9 @@
     "// FRONTEND RELOAD BUTTON": null,
     "OLSKReloadButton": "olsk/OLSKReloadButton",
 
+    "// LCHVitrine content": null,
+    "marked": "latest",
+
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {
