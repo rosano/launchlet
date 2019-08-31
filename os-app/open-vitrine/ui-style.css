@@ -1,0 +1,13 @@
+body {
+	padding: 10px;
+	max-width: 400px;
+
+	margin: auto;
+
+	font-family: 'Lucida Grande', sans-serif;
+	font-size: 11pt;
+}
+
+h1, h2,  h3 {
+	font-family: 'Helvetica Neue';
+}
