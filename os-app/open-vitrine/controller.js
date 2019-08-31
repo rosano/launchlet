@@ -1,3 +1,11 @@
+var livereload = require('livereload');
+var server = livereload.createServer({
+	extraExts: [
+		'md',
+	],
+});
+server.watch(__dirname);
+
 //_ OLSKControllerRoutes
 
 exports.OLSKControllerRoutes = function() {
