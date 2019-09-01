@@ -8,10 +8,6 @@ os-workspace-testing
 
 # BUILD
 os-app/**/__*/*
-!os-app/dev-package/__distribution/
-os-app/dev-package/__distribution/*
-!os-app/dev-package/__distribution/package.json
-!os-app/dev-package/__distribution/package-prepublish.js
 
 # LOCAL
 .env

@@ -1,9 +1,0 @@
-{
-  "name": "launchlet",
-  "scripts": {
-    "prepublish": "node ./package-prepublish.js"
-  },
-  "files": [
-  	"launchlet*"
-  ]
-}
