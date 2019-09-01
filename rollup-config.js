@@ -46,36 +46,33 @@ export default globPackage.sync(['os-app/**/rollup-start.js'], {
 				// enable run-time checks when not in production
 				dev: !production,
 
+				// CSS PREPROCESSING
 				preprocess: autoPreprocess({ /* options */ }),
 
-				// extract component CSS into separate file for better performance
+				// CSS SEPERATE FILE
 				css: function (css) {
 					return css.write(pathPackage.join(pathPackage.dirname(e), '__compiled/ui-style.css'));
 				},
 			}),
 
-			// If you have external dependencies installed from
-			// npm, you'll most likely need these plugins. In
-			// some cases you'll need additional configuration —
-			// consult the documentation for details:
-			// https://github.com/rollup/rollup-plugin-commonjs
+			// NPM MODULES
 			resolve({
 				browser: true
 			}),
 			commonjs(),
+
+			// I18N
 			i18n({
 				baseDirectory: 'os-app',
 			}),
 
-			// Watch the `public` directory and refresh the
-			// browser on changes when not in production
+			// LIVERELOAD
 			!production && livereload({
 				watch: pathPackage.join(pathPackage.dirname(e), '__compiled'),
 				port: 5000 + i,
 			}),
 
-			// If we're building for production (npm run build
-			// instead of npm run dev), minify
+			// MINIFY
 			production && terser()
 		],
 	});
