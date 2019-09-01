@@ -26,7 +26,7 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 				},
 				{
 					LCHRecipeCallback: function () {
-						document.querySelector('input').value = 'LCHPageFormulas';
+						document.querySelector('input').value = 'AutomaticRunningOfPageRecipes';
 					},
 					LCHRecipeURLFilter: 'loc',
 					LCHRecipeIsAutomatic: true,
