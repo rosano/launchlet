@@ -7,6 +7,26 @@ export const LCHDocumentStoragePath = function(inputData) {
 	return `${ kCollection }/${ inputData || '' }`;
 };
 
+export const XYZDocumentChangeDelegateProperty = function(inputData) {
+	if (typeof inputData !== 'object' || inputData === null) {
+		return;
+	}
+
+	if (inputData.origin === 'remote' && typeof inputData.oldValue === 'undefined' && typeof inputData.newValue !== 'undefined') {
+		return 'OLSKChangeDelegateCreate';
+	};
+
+	if (inputData.origin === 'remote' && typeof inputData.oldValue !== 'undefined' && typeof inputData.newValue !== 'undefined') {
+		return 'OLSKChangeDelegateUpdate';
+	};
+
+	if (inputData.origin === 'remote' && typeof inputData.oldValue !== 'undefined' && typeof inputData.newValue === 'undefined') {
+		return 'OLSKChangeDelegateDelete';
+	};
+
+	return;
+};
+
 export const LCHDocumentStorage = function (privateClient, publicClient, changeDelegate) {
 	privateClient.on('change', function (event) {
 		if (!changeDelegate) {
