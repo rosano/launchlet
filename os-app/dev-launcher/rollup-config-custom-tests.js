@@ -1,6 +1,6 @@
 import { throws, doesNotThrow, deepEqual } from 'assert';
 
-import * as mainModule from './rollup-config-custom.js';
+import mainModule from './rollup-config-custom.js';
 
 describe('LCHRollupGrabContainerSelector', function testLCHRollupGrabContainerSelector() {
 
