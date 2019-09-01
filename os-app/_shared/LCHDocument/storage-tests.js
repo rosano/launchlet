@@ -75,6 +75,18 @@ const kTesting = {
 	},
 };
 
+describe('XYZDocumentChangeDelegateMethods', function testXYZDocumentChangeDelegateMethods() {
+
+	it('returns array', function() {
+		deepEqual(mainModule.XYZDocumentChangeDelegateMethods(), [
+			'OLSKChangeDelegateCreate',
+			'OLSKChangeDelegateUpdate',
+			'OLSKChangeDelegateDelete',
+			]);
+	})
+
+});
+
 describe('XYZDocumentChangeDelegateProperty', function testXYZDocumentChangeDelegateProperty() {
 
 	it('returns undefined', function() {
@@ -103,6 +115,28 @@ describe('XYZDocumentChangeDelegateProperty', function testXYZDocumentChangeDele
 
 	it('returns string if remote delete', function() {
 		deepEqual(mainModule.XYZDocumentChangeDelegateProperty(kTesting.StubChangeObjectRemoteDelete()), 'OLSKChangeDelegateDelete');
+	});
+
+});
+
+describe('XYZDocumentChangeDelegateInput', function testXYZDocumentChangeDelegateInput() {
+
+	it('throws if not valid', function() {
+		throws(function () {
+			mainModule.XYZDocumentChangeDelegateInput('alfa');
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns newValue if OLSKChangeDelegateCreate', function() {
+		deepEqual(mainModule.XYZDocumentChangeDelegateInput('OLSKChangeDelegateCreate'), 'newValue');
+	});
+
+	it('returns newValue if OLSKChangeDelegateUpdate', function() {
+		deepEqual(mainModule.XYZDocumentChangeDelegateInput('OLSKChangeDelegateUpdate'), 'newValue');
+	});
+
+	it('returns oldValue if OLSKChangeDelegateDelete', function() {
+		deepEqual(mainModule.XYZDocumentChangeDelegateInput('OLSKChangeDelegateDelete'), 'oldValue');
 	});
 
 });

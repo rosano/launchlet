@@ -7,6 +7,14 @@ export const LCHDocumentStoragePath = function(inputData) {
 	return `${ kCollection }/${ inputData || '' }`;
 };
 
+export const XYZDocumentChangeDelegateMethods = function() {
+	return [
+		'OLSKChangeDelegateCreate',
+		'OLSKChangeDelegateUpdate',
+		'OLSKChangeDelegateDelete',
+		];
+};
+
 export const XYZDocumentChangeDelegateProperty = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		return;
@@ -25,6 +33,14 @@ export const XYZDocumentChangeDelegateProperty = function(inputData) {
 	};
 
 	return;
+};
+
+export const XYZDocumentChangeDelegateInput = function(inputData) {
+	if (XYZDocumentChangeDelegateMethods().indexOf(inputData) === -1) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	return inputData === 'OLSKChangeDelegateDelete' ? 'oldValue' : 'newValue';
 };
 
 export const LCHDocumentStorage = function (privateClient, publicClient, changeDelegate) {
