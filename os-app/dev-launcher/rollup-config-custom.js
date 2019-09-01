@@ -1,11 +1,11 @@
-const svelte = require('rollup-plugin-svelte');
-const autoPreprocess = require('svelte-preprocess');
+import svelte from 'rollup-plugin-svelte';
+import autoPreprocess from 'svelte-preprocess';
 
-const pathPackage = require('path');
+import pathPackage from 'path';
 
 const production = !process.env.ROLLUP_WATCH;
 
-module.exports = {
+export default {
 	LCHRollupGrabContainerSelector (inputData) {
 		if (typeof inputData !== 'string') {
 			throw new Error('LCHErrorInputInvalid');
