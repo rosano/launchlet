@@ -73,19 +73,7 @@
     "OLSKDisk": "olsk/OLSKDisk",
     "zombie": "latest",
 
-    "npm-run-all": "latest",
-    "rollup": "latest",
-    "rollup-plugin-commonjs": "latest",
-    "rollup-plugin-livereload": "latest",
-    "rollup-plugin-node-resolve": "latest",
-    "rollup-plugin-svelte": "latest",
-    "rollup-plugin-terser": "latest",
-    "olsk-rollup-i18n": "latest",
-    "sirv-cli": "latest",
-    "svelte": "3.9.0",
-    "svelte-preprocess": "latest",
-
-    "eslint-plugin-svelte3": "latest",
+    "OLSKRollup": "olsk/OLSKRollup",
 
     "livereload": "latest",
 
