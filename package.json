@@ -69,16 +69,21 @@
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {
+    "// MOCHA PREPROCESS": null,
     "OLSKTesting": "olsk/OLSKTesting",
-    "OLSKDisk": "olsk/OLSKDisk",
-    "zombie": "latest",
 
+    "// UI TESTS": null,
+    "zombie": "latest",
+    "jsdom": "latest",
+
+    "// SVELTE": null,
     "OLSKRollup": "olsk/OLSKRollup",
 
+    "// LIVERELOAD": null,
     "livereload": "latest",
 
-    "// DOM MANIPULATOIN": null,
-    "jsdom": "latest",
+    "// PRODUCTION BUILD": null,
+    "OLSKDisk": "olsk/OLSKDisk",
 
     "// I sacrifice myself for the commas of others": null    
   }
