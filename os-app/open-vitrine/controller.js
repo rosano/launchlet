@@ -3,6 +3,10 @@
 		return;
 	}
 
+	if (process.env.NODE_ENV !== 'development') {
+		return;
+	}
+
 	require('livereload').createServer({
 		extraExts: [
 			'md',
