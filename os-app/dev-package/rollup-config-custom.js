@@ -1,6 +1,6 @@
-import autoPreprocess from 'svelte-preprocess';
+const autoPreprocess = require('svelte-preprocess');
 
-export default {
+module.exports = {
 	OLSKRollupConfigCustomFor (inputData) {
 		const production = !process.env.ROLLUP_WATCH;
 

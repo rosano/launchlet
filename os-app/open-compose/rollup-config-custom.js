@@ -1,4 +1,4 @@
-export default {
+module.exports = {
 	OLSKRollupConfigCustomFor (inputData) {
 		(function StripTerser() {
 			inputData.plugins = inputData.plugins.filter(function (e) {
