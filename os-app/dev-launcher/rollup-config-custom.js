@@ -5,6 +5,7 @@ const pathPackage = require('path');
 
 const production = !process.env.ROLLUP_WATCH;
 
+const { OLSKRollupSvelteConfig } = require('OLSKRollup')
 module.exports = {
 	LCHRollupGrabContainerSelector (inputData) {
 		if (typeof inputData !== 'string') {
@@ -30,29 +31,26 @@ module.exports = {
 
 		return param2.replace(/\n(.*)\{/g, `\n${ param1 } :global($1) {`).replace(/body|html/g, '').replace(/ \:global\( \)/g, '');
 	},
-	OLSKRollupConfigCustomFor (inputData) {
+	OLSKRollupConfigCustomFor (inputData, options = {}) {
+		if (typeof inputData !== 'object' || inputData === null) {
+			throw new Error('LCHErrorInputInvalid');
+		}
+
 		inputData.plugins.splice(inputData.plugins.filter(function (e) {
 			return e.name === 'svelte';
-		}).pop(), 1, svelte({
-			preprocess: [autoPreprocess({}), {
-				style({ content, filename }) {
-					return {
-						code: (filename.match(pathPackage.join(__dirname, 'main.svelte')) ? module.exports.LCHRollupPrefixSelector(module.exports.LCHRollupGrabContainerSelector(content), require('fs').readFileSync(pathPackage.join(__dirname, '../_shared/__external/normalize.css/normalize.css'), 'utf8')) : '') + content,
-						map: ''
-					};
-				}
-			}],
-
-			// --- COPY PREVIOUS CONFIGURATION ---
-
-			// enable run-time checks when not in production
-			dev: !production,
-
-			// extract component CSS into separate file for better performance
-			css: function (css) {
-				return css.write(pathPackage.join(pathPackage.dirname(inputData.input), '__compiled/ui-style.css'));
-			},
-		}));
+		}).pop(), 1, svelte(Object.assign(OLSKRollupSvelteConfig(options), {
+			preprocess: [
+				autoPreprocess({}),
+				{
+					style({ content, filename }) {
+						return {
+							code: (filename.match(pathPackage.join(__dirname, 'main.svelte')) ? module.exports.LCHRollupPrefixSelector(module.exports.LCHRollupGrabContainerSelector(content), require('fs').readFileSync(pathPackage.join(__dirname, '../_shared/__external/normalize.css/normalize.css'), 'utf8')) : '') + content,
+							map: ''
+						};
+					}
+				},
+			],
+		})));
 
 		return inputData;
 	},	
