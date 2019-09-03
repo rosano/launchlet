@@ -20,7 +20,7 @@ export const LCHCompileBoomarkletTemplate = function () {
 		uiBehaviour: function () {
 			_protectFromCompiler(`LCHCompileToken_AppBehaviour`);
 
-			return Main;
+			return this.Main;
 		},
 		instanceCreate: function () {
 			if (window.LCHBookmarklet.AppInstance) {
