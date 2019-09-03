@@ -111,7 +111,7 @@ describe('LCHLauncherRollupConfigCustom', function testLCHLauncherRollupConfigCu
 	it('sets output.format', function() {
 		deepEqual(mainModule.LCHLauncherRollupConfigCustom({
 			output: {},
-		}).output.format, 'esm');
+		}).output.format, 'umd');
 	});
 
 });

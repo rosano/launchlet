@@ -35,7 +35,7 @@ module.exports = {
 			throw new Error('LCHErrorInputInvalid');
 		}
 
-		inputData.output.format = 'esm';
+		inputData.output.format = 'umd';
 
 		if (!inputData.plugins) {
 			return inputData
