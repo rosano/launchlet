@@ -111,15 +111,6 @@ describe('OLSKRollupConfigCustomFor', function testOLSKRollupConfigCustomFor() {
 	it('sets output.format', function() {
 		deepEqual(mainModule.OLSKRollupConfigCustomFor({
 			output: {},
-	});
-
-	it('removes livereload', function() {
-		deepEqual(mainModule.OLSKRollupConfigCustomFor({
-			output: {},
-			plugins: [{
-				name: 'livereload',
-			}],
-		}).plugins, []);
 		}).output.format, 'esm');
 	});
 

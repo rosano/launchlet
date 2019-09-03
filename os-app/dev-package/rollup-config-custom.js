@@ -10,6 +10,10 @@ module.exports = {
 
 		inputData.output.file = pathPackage.join(__dirname, '__compiled/launchlet.js');
 
+		inputData.plugins.splice(inputData.plugins.filter(function (e) {
+			return e.name === 'livereload';
+		}).pop(), 1);
+
 		if (!inputData.plugins.length) {
 			return inputData
 		};

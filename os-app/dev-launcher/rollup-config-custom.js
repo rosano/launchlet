@@ -42,14 +42,6 @@ module.exports = {
 		};
 
 		inputData.plugins.splice(inputData.plugins.filter(function (e) {
-			return e.name === 'livereload';
-		}).pop(), 1);
-
-		if (!inputData.plugins.length) {
-			return inputData
-		};
-
-		inputData.plugins.splice(inputData.plugins.filter(function (e) {
 			return e.name === 'svelte';
 		}).pop(), 1, require('rollup-plugin-svelte')(Object.assign(require('OLSKRollup').OLSKRollupSvelteConfig(options), {
 			preprocess: [

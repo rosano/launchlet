@@ -24,4 +24,13 @@ describe('OLSKRollupConfigCustomFor', function testOLSKRollupConfigCustomFor() {
 		}).output.file, require('path').join(__dirname, '__compiled/launchlet.js'));
 	});
 
+	it('removes livereload', function() {
+		deepEqual(mainModule.OLSKRollupConfigCustomFor({
+			output: {},
+			plugins: [{
+				name: 'livereload',
+			}],
+		}).plugins, []);
+	});
+
 });
