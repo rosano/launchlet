@@ -30,5 +30,7 @@ module.exports = {
 
 		return inputData;
 	},
-	OLSKRollupConfigCustomFor: module.exports.LCHPackageRollupConfigCustom,	
+	OLSKRollupConfigCustom (inputData, options) {
+		return module.exports.LCHPackageRollupConfigCustom(inputData, options);
+	},
 };

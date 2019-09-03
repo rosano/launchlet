@@ -59,5 +59,7 @@ module.exports = {
 
 		return inputData;
 	},
-	OLSKRollupConfigCustom: module.exports.LCHLauncherRollupConfigCustom,
+	OLSKRollupConfigCustom (inputData, options) {
+		return module.exports.LCHLauncherRollupConfigCustom(inputData, options);
+	}
 };
