@@ -99,3 +99,25 @@ display: none;
 	});
 
 });
+
+describe('OLSKRollupConfigCustomFor', function testOLSKRollupConfigCustomFor() {
+
+	it('throws error if not object', function() {
+		throws(function() {
+			mainModule.OLSKRollupConfigCustomFor(null);
+		}, /LCHErrorInputInvalid/);
+	})
+
+	it('sets output.format', function() {
+		deepEqual(mainModule.OLSKRollupConfigCustomFor({
+			output: {},
+			plugins: [],
+		}), {
+			output: {
+				format: 'esm',
+			},
+			plugins: [],
+		});
+	});
+
+});

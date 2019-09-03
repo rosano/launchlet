@@ -5,7 +5,6 @@ const pathPackage = require('path');
 
 const production = !process.env.ROLLUP_WATCH;
 
-const { OLSKRollupSvelteConfig } = require('OLSKRollup')
 module.exports = {
 	LCHRollupGrabContainerSelector (inputData) {
 		if (typeof inputData !== 'string') {
@@ -36,9 +35,17 @@ module.exports = {
 			throw new Error('LCHErrorInputInvalid');
 		}
 
-		inputData.plugins.splice(inputData.plugins.filter(function (e) {
+		inputData.output.format = 'esm';
+
+		let _svelteModule = inputData.plugins.filter(function (e) {
 			return e.name === 'svelte';
-		}).pop(), 1, svelte(Object.assign(OLSKRollupSvelteConfig(options), {
+		}).pop()
+
+		if (!_svelteModule) {
+			return inputData
+		};
+
+		inputData.plugins.splice(_svelteModule, 1, !_svelteModule ? _svelteModule : svelte(Object.assign(require('OLSKRollup').OLSKRollupSvelteConfig(options), {
 			preprocess: [
 				autoPreprocess({}),
 				{
