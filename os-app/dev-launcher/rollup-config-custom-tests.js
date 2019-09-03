@@ -120,4 +120,13 @@ describe('OLSKRollupConfigCustomFor', function testOLSKRollupConfigCustomFor() {
 		});
 	});
 
+	it('removes livereload', function() {
+		deepEqual(mainModule.OLSKRollupConfigCustomFor({
+			output: {},
+			plugins: [{
+				name: 'livereload',
+			}],
+		}).plugins, []);
+	});
+
 });

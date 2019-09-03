@@ -37,6 +37,14 @@ module.exports = {
 
 		inputData.output.format = 'esm';
 
+		if (!inputData.plugins) {
+			return inputData
+		};
+
+		inputData.plugins.splice(inputData.plugins.filter(function (e) {
+			return e.name === 'livereload';
+		}).pop(), 1);
+
 		if (!inputData.plugins.length) {
 			return inputData
 		};
