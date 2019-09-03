@@ -10,17 +10,17 @@ module.exports = {
 
 		inputData.output.file = pathPackage.join(__dirname, '__compiled/launchlet.js');
 
-		inputData.plugins.splice(inputData.plugins.filter(function (e) {
+		inputData.plugins.splice(inputData.plugins.indexOf(inputData.plugins.filter(function (e) {
 			return e.name === 'livereload';
-		}).pop(), 1);
+		}).pop()), 1);
 
 		if (!inputData.plugins.length) {
 			return inputData
 		};
 
-		inputData.plugins.splice(inputData.plugins.filter(function (e) {
+		inputData.plugins.splice(inputData.plugins.indexOf(inputData.plugins.filter(function (e) {
 			return e.name === 'svelte';
-		}).pop(), 1, require('rollup-plugin-svelte')(Object.assign(require('OLSKRollup').OLSKRollupSvelteConfig(options), {
+		}).pop()), 1, require('rollup-plugin-svelte')(Object.assign(require('OLSKRollup').OLSKRollupSvelteConfig(options), {
 			css (css) {
 				css.code = require('fs').readFileSync(pathPackage.join(__dirname, '../dev-launcher/__compiled/ui-style.css'), 'utf8').replace('ui-style', 'launchlet');
 

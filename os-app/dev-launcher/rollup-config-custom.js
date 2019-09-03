@@ -41,9 +41,9 @@ module.exports = {
 			return inputData
 		};
 
-		inputData.plugins.splice(inputData.plugins.filter(function (e) {
+		inputData.plugins.splice(inputData.plugins.indexOf(inputData.plugins.filter(function (e) {
 			return e.name === 'svelte';
-		}).pop(), 1, require('rollup-plugin-svelte')(Object.assign(require('OLSKRollup').OLSKRollupSvelteConfig(options), {
+		}).pop()), 1, require('rollup-plugin-svelte')(Object.assign(require('OLSKRollup').OLSKRollupSvelteConfig(options), {
 			preprocess: [
 				autoPreprocess({}),
 				{
