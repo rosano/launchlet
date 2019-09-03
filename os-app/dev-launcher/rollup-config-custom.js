@@ -37,15 +37,13 @@ module.exports = {
 
 		inputData.output.format = 'esm';
 
-		let _svelteModule = inputData.plugins.filter(function (e) {
-			return e.name === 'svelte';
-		}).pop()
-
-		if (!_svelteModule) {
+		if (!inputData.plugins.length) {
 			return inputData
 		};
 
-		inputData.plugins.splice(_svelteModule, 1, !_svelteModule ? _svelteModule : svelte(Object.assign(require('OLSKRollup').OLSKRollupSvelteConfig(options), {
+		inputData.plugins.splice(inputData.plugins.filter(function (e) {
+			return e.name === 'svelte';
+		}).pop(), 1, require('rollup-plugin-svelte')(Object.assign(require('OLSKRollup').OLSKRollupSvelteConfig(options), {
 			preprocess: [
 				autoPreprocess({}),
 				{
