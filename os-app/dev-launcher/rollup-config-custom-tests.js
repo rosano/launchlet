@@ -2,56 +2,56 @@ import { throws, doesNotThrow, deepEqual } from 'assert';
 
 import * as mainModule from './rollup-config-custom.js';
 
-describe('LCHRollupGrabContainerSelector', function testLCHRollupGrabContainerSelector() {
+describe('LCHLauncherRollupGrabContainerSelector', function testLCHLauncherRollupGrabContainerSelector() {
 
 	it('throws error if not string', function() {
 		throws(function() {
-			mainModule.LCHRollupGrabContainerSelector(null);
+			mainModule.LCHLauncherRollupGrabContainerSelector(null);
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('throws error if no identifier', function() {
 		throws(function() {
-			mainModule.LCHRollupGrabContainerSelector('.Containerr {');
+			mainModule.LCHLauncherRollupGrabContainerSelector('.Containerr {');
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('throws error if no bracket', function() {
 		throws(function() {
-			mainModule.LCHRollupGrabContainerSelector('.Container');
+			mainModule.LCHLauncherRollupGrabContainerSelector('.Container');
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHRollupGrabContainerSelector('.Container {'), '.Container');
+		deepEqual(mainModule.LCHLauncherRollupGrabContainerSelector('.Container {'), '.Container');
 	});
 
 	it('matches if leading space', function() {
-		deepEqual(mainModule.LCHRollupGrabContainerSelector(' .Container {'), '.Container');
+		deepEqual(mainModule.LCHLauncherRollupGrabContainerSelector(' .Container {'), '.Container');
 	});
 
 	it('matches if no bracket space', function() {
-		deepEqual(mainModule.LCHRollupGrabContainerSelector('.Container{'), '.Container');
+		deepEqual(mainModule.LCHLauncherRollupGrabContainerSelector('.Container{'), '.Container');
 	});
 
 });
 
-describe('LCHRollupPrefixSelector', function testLCHRollupPrefixSelector() {
+describe('LCHLauncherRollupPrefixSelector', function testLCHLauncherRollupPrefixSelector() {
 
 	it('throws error if param1 not string', function() {
 		throws(function() {
-			mainModule.LCHRollupPrefixSelector(null, '');
+			mainModule.LCHLauncherRollupPrefixSelector(null, '');
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('throws error if param2 not string', function() {
 		throws(function() {
-			mainModule.LCHRollupPrefixSelector('', null);
+			mainModule.LCHLauncherRollupPrefixSelector('', null);
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('prefixes with identifier single', function() {
-		deepEqual(mainModule.LCHRollupPrefixSelector('alfa', `\ntemplate {
+		deepEqual(mainModule.LCHLauncherRollupPrefixSelector('alfa', `\ntemplate {
 display: none;
 }
 
@@ -67,7 +67,7 @@ display: none;
 	});
 
 	it('prefixes with identifier multiple', function() {
-		deepEqual(mainModule.LCHRollupPrefixSelector('alfa', `\ntemplate, sidebar {
+		deepEqual(mainModule.LCHLauncherRollupPrefixSelector('alfa', `\ntemplate, sidebar {
 display: none;
 }
 
@@ -83,7 +83,7 @@ display: none;
 	});
 
 	it('strips body', function() {
-		deepEqual(mainModule.LCHRollupPrefixSelector('alfa', `\nbody {
+		deepEqual(mainModule.LCHLauncherRollupPrefixSelector('alfa', `\nbody {
 display: none;
 }`), `\nalfa {
 display: none;
@@ -91,7 +91,7 @@ display: none;
 	});
 
 	it('strips html', function() {
-		deepEqual(mainModule.LCHRollupPrefixSelector('alfa', `\nhtml {
+		deepEqual(mainModule.LCHLauncherRollupPrefixSelector('alfa', `\nhtml {
 display: none;
 }`), `\nalfa {
 display: none;
@@ -100,16 +100,16 @@ display: none;
 
 });
 
-describe('OLSKRollupConfigCustomFor', function testOLSKRollupConfigCustomFor() {
+describe('LCHLauncherRollupConfigCustom', function testLCHLauncherRollupConfigCustom() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mainModule.OLSKRollupConfigCustomFor(null);
+			mainModule.LCHLauncherRollupConfigCustom(null);
 		}, /LCHErrorInputInvalid/);
 	})
 
 	it('sets output.format', function() {
-		deepEqual(mainModule.OLSKRollupConfigCustomFor({
+		deepEqual(mainModule.LCHLauncherRollupConfigCustom({
 			output: {},
 		}).output.format, 'esm');
 	});

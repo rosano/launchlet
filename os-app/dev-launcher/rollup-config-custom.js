@@ -6,7 +6,7 @@ const pathPackage = require('path');
 const production = !process.env.ROLLUP_WATCH;
 
 module.exports = {
-	LCHRollupGrabContainerSelector (inputData) {
+	LCHLauncherRollupGrabContainerSelector (inputData) {
 		if (typeof inputData !== 'string') {
 			throw new Error('LCHErrorInputInvalid');
 		}
@@ -19,7 +19,7 @@ module.exports = {
 
 		return match[1];
 	},
-	LCHRollupPrefixSelector (param1, param2) {
+	LCHLauncherRollupPrefixSelector (param1, param2) {
 		if (typeof param1 !== 'string') {
 			throw new Error('LCHErrorInputInvalid');
 		}
@@ -30,7 +30,7 @@ module.exports = {
 
 		return param2.replace(/\n(.*)\{/g, `\n${ param1 } :global($1) {`).replace(/body|html/g, '').replace(/ \:global\( \)/g, '');
 	},
-	OLSKRollupConfigCustomFor (inputData, options = {}) {
+	LCHLauncherRollupConfigCustom (inputData, options = {}) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('LCHErrorInputInvalid');
 		}
@@ -49,7 +49,7 @@ module.exports = {
 				{
 					style({ content, filename }) {
 						return {
-							code: (filename.match(pathPackage.join(__dirname, 'main.svelte')) ? module.exports.LCHRollupPrefixSelector(module.exports.LCHRollupGrabContainerSelector(content), require('fs').readFileSync(pathPackage.join(__dirname, '../_shared/__external/normalize.css/normalize.css'), 'utf8')) : '') + content,
+							code: (filename.match(pathPackage.join(__dirname, 'main.svelte')) ? module.exports.LCHLauncherRollupPrefixSelector(module.exports.LCHLauncherRollupGrabContainerSelector(content), require('fs').readFileSync(pathPackage.join(__dirname, '../_shared/__external/normalize.css/normalize.css'), 'utf8')) : '') + content,
 							map: ''
 						};
 					}
@@ -58,5 +58,6 @@ module.exports = {
 		})));
 
 		return inputData;
-	},	
+	},
+	OLSKRollupConfigCustom: module.exports.LCHLauncherRollupConfigCustom,
 };
