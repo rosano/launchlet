@@ -131,3 +131,11 @@ describe('instanceExists', function testinstanceExists() {
 	});
 
 });
+
+describe('LCHPackageStyle', function testLCHPackageStyle() {
+
+	it('contains normalize', function() {
+		deepEqual(require('fs').readFileSync(require('path').join(__dirname, '__compiled/launchlet.css'), 'utf8').match(/\{(.*00%)\}/)[1], 'line-height:1.15;-webkit-text-size-adjust:100%');
+	});
+
+});
