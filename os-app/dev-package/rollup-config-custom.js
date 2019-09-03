@@ -1,7 +1,7 @@
 const pathPackage = require('path');
 
 module.exports = {
-	OLSKRollupConfigCustomFor (inputData, options) {
+	LCHPackageRollupConfigCustom (inputData, options) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('LCHErrorInputInvalid');
 		}
@@ -29,5 +29,6 @@ module.exports = {
 		})));
 
 		return inputData;
-	},	
+	},
+	OLSKRollupConfigCustomFor: module.exports.LCHPackageRollupConfigCustom,	
 };

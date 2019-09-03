@@ -2,30 +2,30 @@ import { throws, doesNotThrow, deepEqual } from 'assert';
 
 import * as mainModule from './rollup-config-custom.js';
 
-describe('OLSKRollupConfigCustomFor', function testOLSKRollupConfigCustomFor() {
+describe('LCHPackageRollupConfigCustom', function testLCHPackageRollupConfigCustom() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mainModule.OLSKRollupConfigCustomFor(null);
+			mainModule.LCHPackageRollupConfigCustom(null);
 		}, /LCHErrorInputInvalid/);
 	})
 
 	it('sets output.name', function() {
-		deepEqual(mainModule.OLSKRollupConfigCustomFor({
+		deepEqual(mainModule.LCHPackageRollupConfigCustom({
 			output: {},
 			plugins: [],
 		}).output.name, 'Launchlet');
 	});
 
 	it('sets output.file', function() {
-		deepEqual(mainModule.OLSKRollupConfigCustomFor({
+		deepEqual(mainModule.LCHPackageRollupConfigCustom({
 			output: {},
 			plugins: [],
 		}).output.file, require('path').join(__dirname, '__compiled/launchlet.js'));
 	});
 
 	it('removes livereload', function() {
-		deepEqual(mainModule.OLSKRollupConfigCustomFor({
+		deepEqual(mainModule.LCHPackageRollupConfigCustom({
 			output: {},
 			plugins: [{
 				name: 'livereload',
