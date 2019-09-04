@@ -289,6 +289,10 @@ describe('LCHLauncherPatternMatchesURL', function testLCHLauncherPatternMatchesU
 		deepEqual(mainModule.LCHLauncherPatternMatchesURL('', 'alfa'), true);
 	});
 
+	it('returns true if param1 wildcard', function() {
+		deepEqual(mainModule.LCHLauncherPatternMatchesURL('*', 'alfa'), true);
+	});
+
 
 	it('returns false if no match', function() {
 		deepEqual(mainModule.LCHLauncherPatternMatchesURL('bravo', 'alfa'), false);

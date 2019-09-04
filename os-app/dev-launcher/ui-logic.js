@@ -127,6 +127,10 @@ export const LCHLauncherPatternMatchesURL = function (param1, param2) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
+	if (param1 === '*') {
+		return true;
+	};
+
 	let match = param1.match(/^\/(.*)\/(\w*)/i);
 
 	if (!match || !match.shift()) {
