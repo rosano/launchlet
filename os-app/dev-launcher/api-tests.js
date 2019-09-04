@@ -108,23 +108,6 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 			});
 		});
 
-		it('returns object if contains untrimmed whitespace', function() {
-			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeName: ' alfa',
-			})), {
-				LCHRecipeName: [
-					'LCHErrorNotTrimmed',
-				],
-			});
-			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeName: 'alfa ',
-			})), {
-				LCHRecipeName: [
-					'LCHErrorNotTrimmed',
-				],
-			});
-		});
-
 		it('returns object if only whitespace', function() {
 			deepEqual(mainModule.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeName: ' ',

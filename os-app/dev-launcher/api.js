@@ -14,12 +14,6 @@ export const LCHRecipesModelErrorsFor = function(inputData, options = {}) {
 	}
 
 	if (typeof inputData.LCHRecipeName === 'string') {
-		if (inputData.LCHRecipeName.trim() !== inputData.LCHRecipeName) {
-			errors.LCHRecipeName = [
-				'LCHErrorNotTrimmed',
-			];
-		}
-
 		if (!inputData.LCHRecipeName.trim()) {
 			errors.LCHRecipeName = [
 				'LCHErrorNotFilled',
