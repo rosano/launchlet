@@ -312,6 +312,7 @@ describe('LCHLauncherPatternMatchesURL', function testLCHLauncherPatternMatchesU
 		deepEqual(mainModule.LCHLauncherPatternMatchesURL('/\\d/', 'alfa'), false);
 		deepEqual(mainModule.LCHLauncherPatternMatchesURL('/A/', 'alfa'), false);
 		deepEqual(mainModule.LCHLauncherPatternMatchesURL('/A/i', 'alfa'), true);
+		deepEqual(mainModule.LCHLauncherPatternMatchesURL('/alfa?bravo/', 'alfbravo'), true);
 	});
 
 });
