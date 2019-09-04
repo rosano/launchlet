@@ -45,7 +45,13 @@ const mod = {
 			LCHCompileToken_AppStyle: window.LCHComposeLauncherStyle.textContent,
 			LCHCompileToken_AppBehaviour: window.LCHComposeLauncherBehaviour.textContent,
 			LCHCompileToken_DocumentObjects: CompileDocuments.map(function (e) {
-				return Object.entries(e).filter(function (e) {
+				return Object.entries(e).map(function (e) {
+					if (e[0] === 'LCHDocumentBody' && !e[1]) { // #purge
+						e[1] = 'return'
+					};
+
+					return e;
+				}).filter(function (e) {
 					if (typeof e[1] === 'string' && !e[1]) {
 						return false;
 					}
