@@ -44,19 +44,35 @@ describe('LCHActiveDocumentsFocusElements', function testLCHActiveDocumentsFocus
 		});
 
 		it('includes if textContent', function() {
-			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#">alfa</a>')).pop().LCHRecipeName, 'alfa');
+			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#">alfa</a>')).length, 1);
 		});
 
 		it('includes if title', function() {
-			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#" title="alfa"></a>')).pop().LCHRecipeName, 'alfa');
+			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#" title="alfa"></a>')).length, 1);
 		});
 
-		it('prefers textContent if both', function() {
-			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#" title="alfa">bravo</a>')).pop().LCHRecipeName, 'bravo');
+		context('LCHRecipeName', function () {
+			
+			it('sets to textContent', function() {
+				deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#" >alfa</a>')).pop().LCHRecipeName, 'alfa');
+			});
+
+			it('sets to title', function() {
+				deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#" title="alfa"></a>')).pop().LCHRecipeName, 'alfa');
+			});
+
+			it('prefers textContent', function() {
+				deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#" title="alfa">bravo</a>')).pop().LCHRecipeName, 'bravo');
+			});
+		
 		});
 
-		it('sets LCHRecipeOutputType to DOMElement', function() {
-			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#" title="#">alfa</a>')).pop().LCHRecipeOutputType, 'DOMElement');
+		context('LCHRecipeOutputType', function () {
+			
+			it('sets to DOMElement', function() {
+				deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#" title="#">alfa</a>')).pop().LCHRecipeOutputType, 'DOMElement');
+			});
+		
 		});
 	
 	});
