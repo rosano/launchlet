@@ -2,7 +2,7 @@
 const LCHFocusElementsSelector= [
 	'a[href]:not([tabindex="-1"])',
   // 'area[href]:not([tabindex="-1"])',
-  // 'input:not([disabled]):not([tabindex="-1"])',
+  'input:not([disabled]):not([tabindex="-1"]):not([type="hidden"])',
   // 'select:not([disabled]):not([tabindex="-1"])',
   // 'textarea:not([disabled]):not([tabindex="-1"])',
   // 'button:not([disabled]):not([tabindex="-1"])',
@@ -15,19 +15,53 @@ export const LCHActiveDocumentsFocusElements = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null || typeof inputData.querySelectorAll !== 'function') {
 		throw new Error('LCHErrorInputInvalid');
 	}
+
+	const aggregate = {
+		ids: {},
+	};
+
 	return [].concat.apply([], inputData.querySelectorAll(LCHFocusElementsSelector)).filter(function (e) {
-		if (!e.href) {
-			return false;
-		};
-		
-		if (!e.textContent.trim() && !e.title.trim()) {
-			return false;
-		};
-		
-		return true;
+
+		return {
+			'A': function FocusElementAnchorFilter (e) {
+				if (!e.href) {
+					return false;
+				};
+				
+				if (!e.textContent.trim() && !e.title.trim()) {
+					return false;
+				};
+				
+				return true;
+			},
+			'INPUT': function FocusElementInputFilter (e) {
+				if (!aggregate.labels) {
+					aggregate.labels = Array.from(inputData.querySelectorAll('label'));
+				};
+
+				aggregate.ids[e.id] = aggregate.labels.filter(function (label) {
+					return label.getAttribute('for') === e.id;
+				}).map(function (e) {
+					return e.textContent.trim();
+				}).shift();
+
+				if (!e.name.trim() && !e.placeholder.trim() && !aggregate.ids[e.id]) {
+					return false;
+				};
+
+				return true;
+			}
+		}[e.tagName](e);
 	}).map(function (e) {
 		return {
-			LCHRecipeName: e.textContent.trim() || e.title.trim(),
+			LCHRecipeName: {
+				'A': function FocusElementAnchorText (e) {
+					return e.textContent.trim() || e.title.trim()
+				},
+				'INPUT': function FocusElementInputText (e) {
+					return aggregate.ids[e.id] || e.placeholder.trim() || e.name.trim();
+				}
+			}[e.tagName](e),
 			LCHRecipeCallback () {
 				return e;
 			},
