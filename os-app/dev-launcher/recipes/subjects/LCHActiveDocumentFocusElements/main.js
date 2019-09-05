@@ -21,7 +21,6 @@ export const LCHActiveDocumentsFocusElements = function(inputData) {
 	};
 
 	return [].concat.apply([], inputData.querySelectorAll(LCHFocusElementsSelector)).filter(function (e) {
-
 		return {
 			'A': function FocusElementAnchorFilter (e) {
 				if (!e.href) {
@@ -62,13 +61,13 @@ export const LCHActiveDocumentsFocusElements = function(inputData) {
 	}).map(function (e) {
 		return {
 			LCHRecipeName: {
-				'A': function FocusElementAnchorText (e) {
+				'A': function FocusElementAnchorNameg (e) {
 					return e.textContent.trim() || e.title.trim()
 				},
-				'INPUT': function FocusElementInputText (e) {
+				'INPUT': function FocusElementInputNameg (e) {
 					return aggregate.ids[e.id] || e.placeholder.trim() || e.name.trim();
 				},
-				'BUTTON': function FocusElementButtonText (e) {
+				'BUTTON': function FocusElementButtonName (e) {
 					return e.textContent.trim();
 				},
 			}[e.tagName](e),
@@ -86,7 +85,7 @@ export const LCHActiveDocumentFocusElementsCallback = function() {
 
 export const LCHActiveDocumentFocusElementsRecipe = function() {
 	return {
-		LCHRecipeName: 'Active Document Link Elements',
+		LCHRecipeName: 'Active Document Focus Elements',
 		LCHRecipeOutputType: 'SubjectContainer',
 		LCHRecipeCallback: LCHActiveDocumentFocusElementsCallback,
 		LCHRecipeSignature: 'LCHActiveDocumentFocusElements',

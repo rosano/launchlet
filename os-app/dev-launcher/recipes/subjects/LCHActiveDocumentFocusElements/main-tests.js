@@ -199,7 +199,7 @@ describe('LCHActiveDocumentFocusElementsRecipe', function testLCHActiveDocumentF
 
 	it('returns LCHRecipe', async function() {
 		deepEqual(mainModule.LCHActiveDocumentFocusElementsRecipe(), {
-			LCHRecipeName: 'Active Document Link Elements',
+			LCHRecipeName: 'Active Document Focus Elements',
 			LCHRecipeCallback: mainModule.LCHActiveDocumentFocusElementsCallback,
 			LCHRecipeOutputType: 'SubjectContainer',
 			LCHRecipeSignature: 'LCHActiveDocumentFocusElements',

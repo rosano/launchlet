@@ -287,7 +287,7 @@ describe('LCHLauncherUIFeature', function () {
 				browser.OLSKFireKeyboardEvent(browser.window, 'd');
 				await browser.wait({element: LCHLauncherSubjectPromptItemSelected});
 
-				browser.assert.text(LCHLauncherSubjectPromptItemSelected, 'Active Document Link Elements SubjectContainer');
+				browser.assert.text(LCHLauncherSubjectPromptItemSelected, 'Active Document Focus Elements SubjectContainer');
 			});
 
 			it('shows action', async function() {
