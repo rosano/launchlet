@@ -5,7 +5,7 @@ const LCHFocusElementsSelector= [
   'input:not([disabled]):not([tabindex="-1"]):not([type="hidden"])',
   // 'select:not([disabled]):not([tabindex="-1"])',
   // 'textarea:not([disabled]):not([tabindex="-1"])',
-  // 'button:not([disabled]):not([tabindex="-1"])',
+  'button:not([disabled]):not([tabindex="-1"])',
   // 'iframe:not([tabindex="-1"])',
   // '[tabindex]:not([tabindex="-1"])',
   // '[contentEditable=true]:not([tabindex="-1"])',
@@ -50,6 +50,13 @@ export const LCHActiveDocumentsFocusElements = function(inputData) {
 				};
 
 				return true;
+			},
+			'BUTTON': function FocusElementButtonFilter (e) {
+				if (!e.textContent.trim()) {
+					return false;
+				};
+
+				return true;
 			}
 		}[e.tagName](e);
 	}).map(function (e) {
@@ -60,7 +67,10 @@ export const LCHActiveDocumentsFocusElements = function(inputData) {
 				},
 				'INPUT': function FocusElementInputText (e) {
 					return aggregate.ids[e.id] || e.placeholder.trim() || e.name.trim();
-				}
+				},
+				'BUTTON': function FocusElementButtonText (e) {
+					return e.textContent.trim();
+				},
 			}[e.tagName](e),
 			LCHRecipeCallback () {
 				return e;

@@ -153,6 +153,42 @@ describe('LCHActiveDocumentsFocusElements', function testLCHActiveDocumentsFocus
 	
 	});
 
+	context('FocusElementButton', function testFocusElementButton () {
+		
+		it('excludes if textContent only whitespace', function() {
+			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<button> </button>')), []);
+		});
+		
+		it('excludes if disabled', function() {
+			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<button disabled>alfa</button>')), []);
+		});
+		
+		it('excludes if tabindex -1', function() {
+			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<button tabindex="-1">alfa</button>')), []);
+		});
+
+		it('includes', function() {
+			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<button>alfa</button>')).length, 1);
+		});
+
+		context('LCHRecipeName', function () {
+
+			it('sets to textContent', function() {
+				deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<button>alfa</button>')).pop().LCHRecipeName, 'alfa');
+			});
+		
+		});
+
+		context('LCHRecipeOutputType', function () {
+
+			it('assigns DOMElement', function() {
+				deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<button>alfa</button>')).pop().LCHRecipeOutputType, 'DOMElement');
+			});
+		
+		});
+	
+	});
+
 });
 
 describe('LCHActiveDocumentFocusElementsCallback', function testLCHActiveDocumentFocusElementsCallback() {
