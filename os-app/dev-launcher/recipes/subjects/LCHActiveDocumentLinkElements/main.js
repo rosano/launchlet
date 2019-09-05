@@ -1,8 +1,13 @@
+// https://stackoverflow.com/questions/1599660/which-html-elements-can-receive-focus
+const LCHFocusElementsSelector= [
+	'a[href]:not([tabindex="-1"])',
+].join(',')
+
 export const LCHLinkElements = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null || typeof inputData.querySelectorAll !== 'function') {
 		throw new Error('LCHErrorInputInvalid');
 	}
-	return [].concat.apply([], inputData.querySelectorAll('a')).filter(function (e) {
+	return [].concat.apply([], inputData.querySelectorAll(LCHFocusElementsSelector)).filter(function (e) {
 		if (!e.href) {
 			return false;
 		};

@@ -37,6 +37,10 @@ describe('LCHLinkElements', function testLCHLinkElements() {
 		deepEqual(mainModule.LCHLinkElements(JSDOM.fragment('<a href="#" title=" "></a>')), []);
 	});
 
+	it('excludes if tabindex -1', function() {
+		deepEqual(mainModule.LCHLinkElements(JSDOM.fragment('<a href="#" tabindex="-1">alfa</a>')), []);
+	});
+
 	it('includes if textContent', function() {
 		deepEqual(mainModule.LCHLinkElements(JSDOM.fragment('<a href="#">alfa</a>')).pop().LCHRecipeName, 'alfa');
 	});
@@ -46,7 +50,7 @@ describe('LCHLinkElements', function testLCHLinkElements() {
 	});
 
 	it('prefers textContent if both', function() {
-		deepEqual(mainModule.LCHLinkElements(JSDOM.fragment('<a href="#" title="bravo">alfa</a>')).pop().LCHRecipeName, 'alfa');
+		deepEqual(mainModule.LCHLinkElements(JSDOM.fragment('<a href="#" title="alfa">bravo</a>')).pop().LCHRecipeName, 'bravo');
 	});
 
 	it('sets LCHRecipeOutputType to DOMElement', function() {
