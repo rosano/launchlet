@@ -389,8 +389,12 @@ input[type=text] {
 
 .FormContainer :global(.CodeMirror-scroll) {
 	/* CodeMirrorAdjustHeightToContent */
-	min-height: 100px;
 	max-height: 350px;
+}
+
+.FormContainer .LCHComposeDetailCallbackBody :global(.CodeMirror-scroll) {
+	/* CodeMirrorAdjustHeightToContent */
+	min-height: 100px;
 }
 
 .FormContainer :global(.CodeMirror-empty) {
