@@ -16,7 +16,7 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 		moi.setupLauncher();
 	},
 	setupFormulas() {
-		window.LCHPageFormulas = function () {
+		window.LCHPageRecipes = function () {
 			return _LCHLauncherRecipes.concat([
 				{
 					LCHRecipeName: 'Hello',

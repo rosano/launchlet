@@ -32,14 +32,14 @@ describe('LCHLauncherUILocalize', function () {
 					browser.assert.text(`${ LCHLauncherListItem }:first-child`, 'Alfa');
 				});
 
-				it('shows _LCHRecipeSource for LCHPageFormulas', async function() {
+				it('shows _LCHRecipeSource for LCHPageRecipes', async function() {
 					browser.fill(LCHLauncherFilterInput, 'h');
 					await browser.wait({element: LCHLauncherListItem});
 
 					browser.assert.text(`${ LCHLauncherListItem }:first-child`, 'Hello loc.tests');
 				});
 
-				it('skips LCHPageFormulas tasks', async function() {
+				it('skips LCHPageRecipes tasks', async function() {
 					await browser.wait({element: LCHLauncherFilterInput});
 
 					browser.assert.input('#LCHLauncherTestInputSingleLine', '');

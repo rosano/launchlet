@@ -11,7 +11,7 @@ describe('LCHLauncherUISafety', function () {
 			return browser.visit(kDefaultRoutePath);
 		});
 		
-		it('strips LCHRecipeIsAutomatic from LCHPageFormulas', async function() {
+		it('strips LCHRecipeIsAutomatic from LCHPageRecipes', async function() {
 			browser.assert.input('input', '');
 		});
 
