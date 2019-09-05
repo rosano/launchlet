@@ -1,9 +1,17 @@
 // https://stackoverflow.com/questions/1599660/which-html-elements-can-receive-focus
 const LCHFocusElementsSelector= [
 	'a[href]:not([tabindex="-1"])',
+  // 'area[href]:not([tabindex="-1"])',
+  // 'input:not([disabled]):not([tabindex="-1"])',
+  // 'select:not([disabled]):not([tabindex="-1"])',
+  // 'textarea:not([disabled]):not([tabindex="-1"])',
+  // 'button:not([disabled]):not([tabindex="-1"])',
+  // 'iframe:not([tabindex="-1"])',
+  // '[tabindex]:not([tabindex="-1"])',
+  // '[contentEditable=true]:not([tabindex="-1"])',
 ].join(',')
 
-export const LCHLinkElements = function(inputData) {
+export const LCHActiveDocumentsFocusElements = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null || typeof inputData.querySelectorAll !== 'function') {
 		throw new Error('LCHErrorInputInvalid');
 	}
@@ -28,15 +36,15 @@ export const LCHLinkElements = function(inputData) {
 	});
 };
 
-export const LCHActiveDocumentLinkElementsCallback = function() {
-	return LCHLinkElements(document);
+export const LCHActiveDocumentFocusElementsCallback = function() {
+	return LCHActiveDocumentsFocusElements(document);
 };
 
-export const LCHActiveDocumentLinkElementsRecipe = function() {
+export const LCHActiveDocumentFocusElementsRecipe = function() {
 	return {
 		LCHRecipeName: 'Active Document Link Elements',
 		LCHRecipeOutputType: 'SubjectContainer',
-		LCHRecipeCallback: LCHActiveDocumentLinkElementsCallback,
-		LCHRecipeSignature: 'LCHActiveDocumentLinkElements',
+		LCHRecipeCallback: LCHActiveDocumentFocusElementsCallback,
+		LCHRecipeSignature: 'LCHActiveDocumentFocusElements',
 	};
 };
