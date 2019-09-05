@@ -8,6 +8,7 @@ import * as LCHDocumentAction from '../../../_shared/LCHDocument/action.js';
 
 import { OLSKLocalized, _LCHIsTestingBehaviour } from '../../../_shared/common/global.js';
 import { storageClient, DocumentsAllStore, DocumentSelectedStore, modelDidChange } from '../../persistence.js';
+import { LCHComposeSort } from '../../ui-logic.js';
 
 import { afterUpdate } from 'svelte';
 
@@ -192,6 +193,17 @@ const mod = {
 			};
 		}, $DocumentSelectedStore);
 	},
+	async commandDocumentClone() {
+		let item = await LCHDocumentAction.LCHDocumentActionCreate(storageClient, Object.assign(Object.assign({}, $DocumentSelectedStore), {
+			LCHDocumentID: undefined,
+		}));
+
+		DocumentsAllStore.update(function (val) {
+			return val.concat(item).sort(LCHComposeSort);
+		});
+
+		// return mod.commandDocumentSelect(item);
+	},
 	async commandDocumentDelete() {
 		if (!window.confirm(OLSKLocalized('LCHComposeListItemDeletePromptText'))) {
 			return;
@@ -217,7 +229,7 @@ const mod = {
 <header id="LCHComposeDetailToolbar">
 	<OLSKToolbar OLSKToolbarJustify={ true }>
 		<OLSKToolbarElementGroup>
-			<button on:click={ mod.commandDocumentDelete } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" id="LCHComposeDetailToolbarCloneButton" title={ OLSKLocalized('LCHComposeListItemToolbarCloneButtonText') }>{ OLSKLocalized('LCHComposeListItemToolbarCloneButtonText') }</button>
+			<button on:click={ mod.commandDocumentClone } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" id="LCHComposeDetailToolbarCloneButton" title={ OLSKLocalized('LCHComposeListItemToolbarCloneButtonText') }>{ OLSKLocalized('LCHComposeListItemToolbarCloneButtonText') }</button>
 			<button on:click={ mod.commandDocumentDelete } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" id="LCHComposeDetailToolbarDiscardButton" title={ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }>{ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }</button>
 		</OLSKToolbarElementGroup>
 	</OLSKToolbar>
