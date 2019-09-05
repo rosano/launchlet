@@ -21,40 +21,44 @@ describe('LCHActiveDocumentsFocusElements', function testLCHActiveDocumentsFocus
 		deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('')), []);
 	});
 
-	it('excludes if no href', function() {
-		deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="">alfa</a>')), []);
-	});
+	context('FocusElementAnchor', function testFocusElementAnchor () {
 
-	it('excludes if no textContent or title', function() {
-		deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#"></a>')), []);
-	});
+		it('excludes if no href', function() {
+			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="">alfa</a>')), []);
+		});
 
-	it('excludes if textContent only whitespace', function() {
-		deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#"> </a>')), []);
-	});
+		it('excludes if no textContent or title', function() {
+			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#"></a>')), []);
+		});
 
-	it('excludes if title only whitespace', function() {
-		deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#" title=" "></a>')), []);
-	});
+		it('excludes if textContent only whitespace', function() {
+			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#"> </a>')), []);
+		});
 
-	it('excludes if tabindex -1', function() {
-		deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#" tabindex="-1">alfa</a>')), []);
-	});
+		it('excludes if title only whitespace', function() {
+			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#" title=" "></a>')), []);
+		});
 
-	it('includes if textContent', function() {
-		deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#">alfa</a>')).pop().LCHRecipeName, 'alfa');
-	});
+		it('excludes if tabindex -1', function() {
+			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#" tabindex="-1">alfa</a>')), []);
+		});
 
-	it('includes if title', function() {
-		deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#" title="alfa"></a>')).pop().LCHRecipeName, 'alfa');
-	});
+		it('includes if textContent', function() {
+			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#">alfa</a>')).pop().LCHRecipeName, 'alfa');
+		});
 
-	it('prefers textContent if both', function() {
-		deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#" title="alfa">bravo</a>')).pop().LCHRecipeName, 'bravo');
-	});
+		it('includes if title', function() {
+			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#" title="alfa"></a>')).pop().LCHRecipeName, 'alfa');
+		});
 
-	it('sets LCHRecipeOutputType to DOMElement', function() {
-		deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#" title="#">alfa</a>')).pop().LCHRecipeOutputType, 'DOMElement');
+		it('prefers textContent if both', function() {
+			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#" title="alfa">bravo</a>')).pop().LCHRecipeName, 'bravo');
+		});
+
+		it('sets LCHRecipeOutputType to DOMElement', function() {
+			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#" title="#">alfa</a>')).pop().LCHRecipeOutputType, 'DOMElement');
+		});
+	
 	});
 
 });
