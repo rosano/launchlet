@@ -33,6 +33,7 @@ describe('LCHComposeUILocalize', function () {
 
 				deepEqual(browser.query(LCHComposeListItem).textContent.trim().length, 26);
 
+				browser.assert.attribute(LCHComposeDetailToolbarCloneButton, 'title', uLocalized('LCHComposeListItemToolbarCloneButtonText'));
 				browser.assert.attribute(LCHComposeDetailToolbarDiscardButton, 'title', uLocalized('LCHComposeListItemToolbarDeleteButtonText'));
 
 				browser.assert.attribute(LCHComposeFormNameField, 'placeholder', uLocalized('LCHComposeFormNameFieldPlaceholderText'));

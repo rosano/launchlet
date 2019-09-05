@@ -6,6 +6,7 @@ LCHComposeToolbarCreateButtonText: Create
 LCHComposeDetailPlaceholderText: No Item Selected
 LCHComposeListItemToolbarCollapseButtonText: Collapse
 LCHComposeListItemToolbarRevealButtonText: Reveal
+LCHComposeListItemToolbarCloneButtonText: Clone
 LCHComposeListItemToolbarDeleteButtonText: Delete
 LCHComposeListItemDeletePromptText: Are you sure?
 LCHComposeFormNameFieldPlaceholderText: Name (e.g. Say Hello)

@@ -16,6 +16,7 @@ Object.entries({
 	LCHComposeDetailToolbar: '#LCHComposeDetailToolbar',
 	LCHComposeDetailToolbarBackButton: '#LCHComposeDetailToolbarBackButton',
 
+	LCHComposeDetailToolbarCloneButton: '#LCHComposeDetailToolbarCloneButton',
 	LCHComposeDetailToolbarDiscardButton: '#LCHComposeDetailToolbarDiscardButton',
 
 	LCHComposeDetailFormContainer: '.FormContainer',
@@ -79,6 +80,7 @@ describe('LCHComposeUIAccess', function () {
 		browser.assert.elements(LCHComposeDetailPlaceholderContainer, 0);
 
 		browser.assert.elements(LCHComposeDetailToolbar, 1);
+		browser.assert.elements(LCHComposeDetailToolbarCloneButton, 1);
 		browser.assert.elements(LCHComposeDetailToolbarDiscardButton, 1);
 
 		browser.assert.elements(LCHComposeDetailFormContainer, 1);
