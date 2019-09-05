@@ -287,7 +287,7 @@ const mod = {
 				lineNumbers: true,
 				lineWrapping: true,
 
-				placeholder: OLSKLocalized('LCHComposeFormScriptFieldPlaceholderText'),
+				placeholder: OLSKLocalized('LCHComposeFormCanonicalExampleBodyFieldPlaceholderText'),
 				
 			  keyMap: 'sublime',
 
