@@ -27,30 +27,48 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHLauncherUIAccess', function() {
+describe('LCHLauncherUIAccessCommit', function () {
 
-	context('LCHLauncherModeCommit', function () {
+	before(function() {
+		return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModeCommit`);
+	});
 
-		before(function() {
-			return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModeCommit`);
-		});
+	context('Startup', function testCommitStartup () {
 		
-		it('on startup', function() {
-			browser.assert.elements(LCHLauncherFilterInput, 1);
-			browser.assert.elements(LCHLauncherPromptDotModeInput, 0);
-			browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 0);
-
-			browser.assert.elements(LCHLauncherListItem, 0);
+		it('shows LCHLauncherFilterInput', function() {
+			browser.assert.elements(LCHLauncherFilterInput, 1)
 		});
 
-		it('on filter', async function() {
+		it('hides LCHLauncherPromptDotModeInput', function() {
+			browser.assert.elements(LCHLauncherPromptDotModeInput, 0)
+		});
+
+		it('hides LCHLauncherSubjectPromptPlaceholder', function() {
+			browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 0)
+		});
+
+		it('hides LCHLauncherListItem', function() {
+			browser.assert.elements(LCHLauncherListItem, 0)
+		});
+	
+	});
+
+	context('Filter', function testCommitFilter () {
+
+		before(async function () {
 			browser.fill(LCHLauncherFilterInput, 'a');
 			await browser.wait({element: LCHLauncherListItem});
-
-			browser.assert.elements(LCHLauncherListItem, 5);
 		});
 
+		it('shows LCHLauncherListItem', function() {
+			browser.assert.elements(LCHLauncherListItem, 5)
+		});
+	
 	});
+
+});
+
+describe('LCHLauncherUIAccess', function() {
 
 	context('LCHLauncherModePreview', function () {
 
