@@ -19,11 +19,11 @@ describe('LCHVitrineUIAccess', function () {
 	
 	context('Startup', function testStartup() {
 
-		it('shows RCSLanguageSwitcher', async function() {
+		it('shows RCSLanguageSwitcher', function() {
 			browser.assert.elements(RCSLanguageSwitcher, 1)
 		});
 
-		it('shows LCHVitrineDemoButtonCommit', async function() {
+		it('shows LCHVitrineDemoButtonCommit', function() {
 			browser.assert.elements(LCHVitrineDemoButtonCommit, 1)
 		});
 		
