@@ -109,6 +109,75 @@ describe('LCHLauncherUIAccessPreview', function () {
 
 });
 
+describe('LCHLauncherTestURLFilter', function testLCHLauncherTestURLFilter () {
+
+	context('no match', function () {
+		
+		before(async function() {
+			await browser.visit(kDefaultRoutePath);
+
+			browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestURLFilter');
+			await browser.wait({element: LCHLauncherListItem});
+		});
+
+		it('hides LCHLauncherListItem', function() {
+			browser.assert.elements(LCHLauncherListItem, 0);
+		});
+	
+	});
+
+	context('match', function () {
+		
+		before(async function() {
+			await browser.visit(`${ kDefaultRoutePath }?LCHLauncherTestURLFilter`);
+			
+			browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestURLFilter');
+			await browser.wait({element: LCHLauncherListItem});
+		});
+
+		it('shows LCHLauncherListItem', function() {
+			browser.assert.elements(LCHLauncherListItem, 1);
+		});
+	
+	});
+
+});
+
+describe('LCHLauncherTestStyle', function testLCHLauncherTestStyle () {
+
+	before(async function() {
+		await browser.visit(`${ kDefaultRoutePath }?LCHLauncherTestStyle`);
+
+		browser.assert.elements('body style', 0);
+
+		browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestStyle');
+		await browser.wait({element: LCHLauncherListItem});
+
+		browser.click(LCHLauncherListItem);
+	});
+
+	it('inserts style element', function() {
+		browser.assert.elements('body style', 1);
+	});
+
+});
+
+// #purge
+// describe('LCHLauncherTestConvertTypeServiceSearch', function () {
+
+// 	before(function() {
+// 		return browser.visit(`${ kDefaultRoutePath }?LCHLauncherTestConvertTypeServiceSearch`);
+// 	});
+
+// 	it('shows one item', async function() {
+// 		browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestConvertTypeServiceSearch');
+// 		await browser.wait({element: LCHLauncherListItem});
+
+// 		browser.assert.elements(LCHLauncherListItem, 1);
+// 	});
+
+// });
+
 describe('LCHLauncherUIAccess', function() {
 
 	context('LCHLauncherModePipe', function () {
@@ -747,59 +816,6 @@ describe('LCHLauncherUIAccess', function() {
 			it('shows LCHLauncherPromptDotModeInput if String', function() {
 				browser.assert.elements(LCHLauncherPromptDotModeInput, 1);
 				browser.assert.attribute(LCHLauncherPromptDotModeInput, 'autofocus', '');
-			});
-
-		});
-
-	});
-
-	context('shared', function () {
-
-		context('LCHLauncherTestURLFilter', function () {
-
-			before(function() {
-				return browser.visit(`${ kDefaultRoutePath }?LCHLauncherTestURLFilter`);
-			});
-
-			it('shows url specific item', async function() {
-				browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestURLFilter');
-				await browser.wait({element: LCHLauncherListItem});
-
-				browser.assert.elements(LCHLauncherListItem, 1);
-			});
-
-		});
-
-		context('LCHLauncherTestStyle', function () {
-
-			before(function() {
-				return browser.visit(`${ kDefaultRoutePath }?LCHLauncherTestStyle`);
-			});
-
-			it('shows url specific item', async function() {
-				browser.assert.elements('body style', 0);
-
-				browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestStyle');
-				await browser.wait({element: LCHLauncherListItem});
-
-				browser.click(LCHLauncherListItem);
-
-				browser.assert.elements('body style', 1);
-			});
-
-		});
-
-		context.skip('LCHLauncherTestConvertTypeServiceSearch', function () {
-
-			before(function() {
-				return browser.visit(`${ kDefaultRoutePath }?LCHLauncherTestConvertTypeServiceSearch`);
-			});
-
-			it('shows one item', async function() {
-				browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestConvertTypeServiceSearch');
-				await browser.wait({element: LCHLauncherListItem});
-
-				browser.assert.elements(LCHLauncherListItem, 1);
 			});
 
 		});
