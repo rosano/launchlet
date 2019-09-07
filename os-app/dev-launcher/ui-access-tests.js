@@ -114,16 +114,37 @@ describe('LCHLauncherUIAccessPipe', function () {
 	before(function() {
 		return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
 	});
-	
-	it('on startup', function() {
-		browser.assert.elements(LCHLauncherFilterInput, 0);
-		browser.assert.elements(LCHLauncherPromptDotModeInput, 0);
-		browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 1);
 
-		browser.assert.elements(LCHLauncherListItem, 0);
-		browser.assert.elements(LCHLauncherResultList, 0);
-		browser.assert.elements(LCHLauncherResultListItem, 0);
-		browser.assert.elements(LCHLauncherPipeItem, 0);
+	context('Startup', function testPipeStartup () {
+		
+		it('hides LCHLauncherFilterInput', function() {
+			browser.assert.elements(LCHLauncherFilterInput, 0)
+		});
+
+		it('hides LCHLauncherPromptDotModeInput', function() {
+			browser.assert.elements(LCHLauncherPromptDotModeInput, 0)
+		});
+
+		it('shows LCHLauncherSubjectPromptPlaceholder', function() {
+			browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 1)
+		});
+
+		it('hides LCHLauncherListItem', function() {
+			browser.assert.elements(LCHLauncherListItem, 0)
+		});
+
+		it('hides LCHLauncherResultList', function() {
+			browser.assert.elements(LCHLauncherResultList, 0)
+		});
+
+		it('hides LCHLauncherResultListItem', function() {
+			browser.assert.elements(LCHLauncherResultListItem, 0)
+		});
+
+		it('hides LCHLauncherPipeItem', function() {
+			browser.assert.elements(LCHLauncherPipeItem, 0)
+		});
+	
 	});
 	
 	context('on keydown', function() {
