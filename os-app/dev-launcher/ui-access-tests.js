@@ -384,7 +384,7 @@ describe('LCHLauncherUIAccessPipe', function () {
 
 	});
 
-	context('Tab', function () {
+	context('Tab', function () { // #move:feature
 
 		it('cancels throttle', async function() {
 			await browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
