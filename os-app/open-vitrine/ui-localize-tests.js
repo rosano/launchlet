@@ -1,35 +1,31 @@
 import { deepEqual } from 'assert';
 
 const browser = new OLSKBrowser();
-const kDefaultRoutePath = require('./controller.js').OLSKControllerRoutes().LCHVitrineRoute.OLSKRoutePath;
+const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().LCHVitrineRoute;
 
-describe('LCHVitrineUILocalize', function () {
+kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
-['en'].forEach(function (languageCode) {
+const uLocalized = function (inputData) {
+	return OLSKTestingLocalized(inputData, languageCode);
+};
 
-describe(languageCode, function () {
-
-	const uLocalized = function (inputData) {
-		return OLSKTestingLocalized(inputData, languageCode);
-	};
+describe(`LCHVitrineUILocalize-${ languageCode }`, function () {
 
 	before(function() {
-		return browser.visit(`${ languageCode }${ kDefaultRoutePath }`);
+		return browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }`);
 	});
 
 	context('Startup', function testStartup() {
 
-		it('localizes body', async function() {
+		it('localizes body', function() {
 			browser.assert.text('#launchlet', 'Launchlet')
 		});
 
-		it('localizes LCHVitrineDemoButtonCommit', async function() {
+		it('localizes LCHVitrineDemoButtonCommit', function() {
 			browser.assert.text(LCHVitrineDemoButtonCommit, uLocalized('LCHVitrineDemoButtonText'))
 		});
 		
 	});
-
-});
 
 });
 
