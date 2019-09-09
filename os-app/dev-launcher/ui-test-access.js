@@ -1,7 +1,6 @@
 import { deepEqual } from 'assert';
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
 
-const browser = new OLSKBrowser();
 const kDefaultRoutePath = require('./controller.js').OLSKControllerRoutes().LCHLauncherRoute.OLSKRoutePath;
 
 Object.entries({

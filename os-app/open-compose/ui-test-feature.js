@@ -1,6 +1,5 @@
 import { deepEqual } from 'assert';
 
-const browser = new OLSKBrowser();
 const kDefaultRoutePath = require('./controller.js').OLSKControllerRoutes().LCHComposeRoute.OLSKRoutePath;
 
 describe('LCHComposeUIFeature', function () {

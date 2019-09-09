@@ -1,6 +1,5 @@
 import { deepEqual } from 'assert';
 
-const browser = new OLSKBrowser();
 const kDefaultRoutePath = require('./controller.js').OLSKControllerRoutes().LCHVitrineRoute.OLSKRoutePath;
 
 describe('LCHVitrineUIFeature', function () {

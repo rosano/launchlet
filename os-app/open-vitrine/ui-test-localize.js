@@ -1,6 +1,5 @@
 import { deepEqual } from 'assert';
 
-const browser = new OLSKBrowser();
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().LCHVitrineRoute;
 
 kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
