@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node ./os-start.js",
+    "start": "olsk-app",
     "preinstall": "node ./package-preinstall.js",
     "postinstall": "node ./package-postinstall.js",
 
