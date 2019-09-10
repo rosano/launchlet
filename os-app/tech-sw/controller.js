@@ -10,7 +10,7 @@ exports.OLSKControllerRoutes = function() {
 			OLSKRoutePath: '/sw.js',
 			OLSKRouteMethod: 'get',
 			OLSKRouteFunction: function(req, res, next) {
-				return res.type('js').send(OLSKServiceWorker.OLSKServiceWorkerViewForVersionID(kLCHServiceWorkerVersionID.toString()));
+				return res.type('js').send(OLSKServiceWorker.OLSKServiceWorkerView(kLCHServiceWorkerVersionID.toString()));
 			},
 		},
 	};
