@@ -7,7 +7,7 @@ export const LCHOptionsObject = function(inputData) {
 let localizationDictionary = JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`);
 import OLSKInternational from 'OLSKInternational';
 export const OLSKLocalized = function(translationConstant) {
-	return OLSKInternational.OLSKInternationalLocalizedStringWithTranslationKeyAndTranslationDictionary(translationConstant, localizationDictionary[LCHOptionsObject().languageCode]);
+	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, localizationDictionary[LCHOptionsObject().languageCode]);
 };
 
 import OLSKString from 'OLSKString';
