@@ -12,6 +12,9 @@ import { LCHComposeBuildBoomarkletStringFor, LCHComposeBuildBookmarkletBinaryFor
 import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../../../dev-launcher/ui-logic.js';
 import { modelDidChange } from '../../model.js'
 
+import { storageClient } from '../../persistence.js';
+import * as LCHSettingsAction from '../../../_shared/LCHSetting/action.js';
+
 let JavascriptComposition, JavascriptCompositionBinary = '';
 
 import { createEventDispatcher } from 'svelte';
@@ -20,6 +23,10 @@ const mod = {
 
 	ModelDidChange () {
 		mod.ReactJavascriptComposition();
+	},
+
+	async BuildPairExtensionDispatchPublicKeyUpdate (inputData) {;
+		await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposePublicKey', inputData.detail)
 	},
 
 	// VALUE
@@ -104,7 +111,7 @@ modelDidChange.subscribe(mod.ModelDidChange);
 {/if}
 
 {#if mod.ValuePairExtensionIsVisible()}
-	<LCHComposeBuildPairExtension />
+	<LCHComposeBuildPairExtension on:BuildPairExtensionDispatchPublicKeyUpdate={ mod.BuildPairExtensionDispatchPublicKeyUpdate } />
 {/if}
 
 </div>

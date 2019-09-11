@@ -16,9 +16,9 @@ describe('LCHComposeBuildPairExtensionUIForm', function () {
 			}), 'string');
 		});
 		
-		it('sends no BuildPairExtensionDispatchUpdate', function() {
-			browser.assert.text('#LCHComposeBuildPairExtensionDispatchUpdate', '0');
-			browser.assert.text('#LCHComposeBuildPairExtensionDispatchUpdateText', '');
+		it('sends no BuildPairExtensionDispatchPublicKeyUpdate', function() {
+			browser.assert.text('#LCHComposeBuildPairExtensionDispatchPublicKeyUpdate', '0');
+			browser.assert.text('#LCHComposeBuildPairExtensionDispatchPublicKeyUpdateText', '');
 		});
 	
 	});
@@ -38,9 +38,9 @@ describe('LCHComposeBuildPairExtensionUIForm', function () {
 			browser.assert.elements(LCHBuildPairExtensionSubmitButton, 0);
 		});
 		
-		it('sends BuildPairExtensionDispatchUpdate', function() {
-			browser.assert.text('#LCHComposeBuildPairExtensionDispatchUpdate', '1');
-			browser.assert.text('#LCHComposeBuildPairExtensionDispatchUpdateText', 'alfa');
+		it('sends BuildPairExtensionDispatchPublicKeyUpdate', function() {
+			browser.assert.text('#LCHComposeBuildPairExtensionDispatchPublicKeyUpdate', '1');
+			browser.assert.text('#LCHComposeBuildPairExtensionDispatchPublicKeyUpdateText', 'alfa');
 		});
 	
 	});

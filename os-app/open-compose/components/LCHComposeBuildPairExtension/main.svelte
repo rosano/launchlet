@@ -37,7 +37,7 @@ const mod = {
 
 		mod.ValueFormIsVisible(false)
 
-		dispatch('BuildPairExtensionDispatchUpdate', outputData);
+		dispatch('BuildPairExtensionDispatchPublicKeyUpdate', outputData);
 	},
 
 }

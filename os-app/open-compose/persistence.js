@@ -73,11 +73,10 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 ]);
 
 let remoteStorage = storageClient.remoteStorage;
-
-remoteStorage.setApiKeys({
+remoteStorage.setApiKeys(window.OLSKPublicConstants('LCHDropboxAppKey') ? {
 	dropbox: window.atob(window.OLSKPublicConstants('LCHDropboxAppKey')),
 	googledrive: window.atob(window.OLSKPublicConstants('LCHGoogleClientKey')),
-});
+} : {});
 
 remoteStorage.on('ready', async () => {
 	if (!_LCHIsTestingBehaviour()) {
