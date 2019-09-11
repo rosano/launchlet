@@ -28,11 +28,17 @@ const mod = {
 	// INTERFACE
 
 	InterfaceSubmitButtonDidClick () {
+		mod.CommandValidateInput()
+	},
+
+	// COMMAND
+
+	CommandValidateInput () {
 		if (!LCHComposeBuildPairExtensionPublicKeyIsValid(BuildPairExtensionPublicKey)) {
 			return mod.ValueAlertIsVisible(true)
 		};
 
-		return mod.ValueFormIsVisible(false)
+		mod.ValueFormIsVisible(false)
 	},
 
 }
