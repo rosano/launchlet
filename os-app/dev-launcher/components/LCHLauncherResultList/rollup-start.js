@@ -1,6 +1,6 @@
-import App from './stub-view.svelte';
+import RollupStart from './stub-view.svelte';
 
-const LCHLauncherResultList = new App({
+const LCHLauncherResultList = new RollupStart({
 	target: document.body,
 });
 

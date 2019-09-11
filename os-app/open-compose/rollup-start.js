@@ -1,6 +1,6 @@
-import App from './main.svelte';
+import RollupStart from './main.svelte';
 
-const LCHCompose = new App({
+const LCHCompose = new RollupStart({
 	target: document.body,
 });
 

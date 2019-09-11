@@ -1,6 +1,6 @@
-import App from './main.svelte';
+import RollupStart from './main.svelte';
 
-const LCHLauncherPipeItem = new App({
+const LCHLauncherPipeItem = new RollupStart({
 	target: document.body,
 });
 
