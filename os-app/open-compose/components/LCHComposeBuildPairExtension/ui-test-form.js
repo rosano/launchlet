@@ -45,4 +45,20 @@ describe('LCHComposeBuildPairExtensionUIForm', function () {
 	
 	});
 
+	context('PreloadPublicKey', function testPreloadPublicKey () {
+		
+		before(function () {
+			return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?BuildPairExtensionPublicKey=alfa`);
+		});
+		
+		it('hides LCHBuildPairExtensionPublicKeyField', function() {
+			browser.assert.elements(LCHBuildPairExtensionPublicKeyField, 0);
+		});
+		
+		it('hides LCHBuildPairExtensionSubmitButton', function() {
+			browser.assert.elements(LCHBuildPairExtensionSubmitButton, 0);
+		});
+	
+	});
+
 });

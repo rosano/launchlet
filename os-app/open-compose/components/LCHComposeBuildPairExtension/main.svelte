@@ -11,7 +11,7 @@ const mod = {
 
 	// VALUE
 
-	_ValueFormIsVisible: true,
+	_ValueFormIsVisible: !BuildPairExtensionPublicKey,
 	ValueFormIsVisible(inputData) {
 		if (typeof inputData === 'undefined') {
 			return mod._ValueFormIsVisible;
