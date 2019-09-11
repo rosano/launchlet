@@ -5,8 +5,11 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 Object.entries({
 	LCHBuildPairExtensionPublicKeyField: '.LCHBuildPairExtensionPublicKeyField',
 	LCHBuildPairExtensionSubmitButton: '.LCHBuildPairExtensionSubmitButton',
-	LCHBuildPairExtensionUnpairButton: '.LCHBuildPairExtensionUnpairButton',
+	
 	LCHBuildPairExtensionStatusWaiting: '.LCHBuildPairExtensionStatusWaiting',
+	LCHBuildPairExtensionStatusFailed: '.LCHBuildPairExtensionStatusFailed',
+	
+	LCHBuildPairExtensionUnpairButton: '.LCHBuildPairExtensionUnpairButton',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -27,6 +30,10 @@ describe('LCHComposeBuildPairExtensionUIAccess', function () {
 	
 	it('shows LCHBuildPairExtensionStatusWaiting', function() {
 		browser.assert.elements(LCHBuildPairExtensionStatusWaiting, 1);
+	});
+	
+	it('hides LCHBuildPairExtensionStatusFailed', function() {
+		browser.assert.elements(LCHBuildPairExtensionStatusFailed, 0);
 	});
 	
 	it('hides LCHBuildPairExtensionUnpairButton', function() {

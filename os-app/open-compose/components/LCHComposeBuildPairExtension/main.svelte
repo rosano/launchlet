@@ -1,13 +1,27 @@
 <script>
 export let BuildPairExtensionPublicKey = '';
 
-import { OLSKLocalized } from '../../../_shared/common/global.js';
+import { OLSKLocalized, _LCHIsTestingBehaviour } from '../../../_shared/common/global.js';
 import { LCHComposeBuildPairExtensionPublicKeyIsValid } from './ui-logic.js';
 
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
 const mod = {
+
+	MessageReceived(event) {
+		// We only accept messages from ourselves
+	  if (event.source !== window && !_LCHIsTestingBehaviour()) {
+	    return;
+	  }
+
+  	// We only accept messages from ourselves
+    // if (not launchlet.dev) {
+    //   return;
+    // }
+
+	  mod.CommandValidateMessageData(event.data);
+	},
 
 	// VALUE
 
@@ -19,11 +33,19 @@ const mod = {
 
 		mod._ValueFormIsVisible = inputData
 	},
+	_ValueStatus: 'kStatusWaiting',
+	ValueStatus(inputData) {
+		if (typeof inputData === 'undefined') {
+			return mod._ValueStatus;
+		}
+
+		mod._ValueStatus = inputData
+	},
 
 	// INTERFACE
 
 	InterfaceSubmitButtonDidClick () {
-		mod.CommandValidateInput()
+		mod.CommandValidatePublicKey(BuildPairExtensionPublicKey.trim())
 	},
 	InterfaceUnpairButtonDidClick () {
 		dispatch('BuildPairExtensionDispatchPublicKeyUpdate', '');
@@ -31,19 +53,28 @@ const mod = {
 
 	// COMMAND
 
-	CommandValidateInput () {
-		const outputData = BuildPairExtensionPublicKey.trim()
-
-		if (!LCHComposeBuildPairExtensionPublicKeyIsValid(outputData)) {
+	CommandValidatePublicKey (inputData) {
+		if (!LCHComposeBuildPairExtensionPublicKeyIsValid(inputData)) {
 			return window.alert(OLSKLocalized('LCHBuildPairExtensionAlertText'));
 		};
 
 		mod.ValueFormIsVisible(false)
 
-		dispatch('BuildPairExtensionDispatchPublicKeyUpdate', outputData);
+		dispatch('BuildPairExtensionDispatchPublicKeyUpdate', inputData);
+	},
+	CommandValidateMessageData (inputData) {
+		if (typeof inputData !== 'object' || inputData === null) {
+			return;
+		}
+
+		if (inputData.LBXMessageResponse !== 'bravo') {
+			return mod.ValueStatus('kStatusFailed');
+		};
 	},
 
 }
+
+window.addEventListener('message', mod.MessageReceived, false);
 </script>
 
 <div class="LCHComposeBuildPairExtension">
@@ -56,7 +87,13 @@ const mod = {
 	<button class="LCHBuildPairExtensionUnpairButton" on:click={ mod.InterfaceUnpairButtonDidClick }>{ OLSKLocalized('LCHBuildPairExtensionUnpairButtonText') }</button>
 {/if}
 
-<span class="LCHBuildPairExtensionStatusWaiting"></span>
+{#if mod._ValueStatus === 'kStatusWaiting' }
+	<span class="LCHBuildPairExtensionStatusWaiting"></span>
+{/if}
+
+{#if mod._ValueStatus === 'kStatusFailed' }
+	<span class="LCHBuildPairExtensionStatusFailed"></span>
+{/if}
 
 </div>
 
