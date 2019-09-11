@@ -4,6 +4,7 @@ export let BuildInitializeModePipeEnabled;
 export let BuildAppStyle;
 export let BuildAppBehaviour;
 export let BuildAppLanguageCode;
+export let BuildPublicKey = null;
 
 import { OLSKLocalized } from '../../../_shared/common/global.js';
 import { LCHComposeBuildBoomarkletStringFor, LCHComposeBuildBookmarkletBinaryFor } from './ui-logic.js';
@@ -22,7 +23,7 @@ const mod = {
 
 	// VALUE
 
-	_ValuePairExtensionIsVisible: false,
+	_ValuePairExtensionIsVisible: !!BuildPublicKey,
 	ValuePairExtensionIsVisible(inputData) {
 		if (typeof inputData === 'undefined') {
 			return mod._ValuePairExtensionIsVisible;
