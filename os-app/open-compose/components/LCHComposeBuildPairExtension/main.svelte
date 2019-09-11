@@ -1,7 +1,7 @@
 <script>
 export let BuildPairExtensionPublicKey = '';
 
-import { OLSKLocalized } from '../../../../../_shared/common/global.js';
+import { OLSKLocalized } from '../../../_shared/common/global.js';
 import { LCHComposeBuildPairExtensionPublicKeyIsValid } from './ui-logic.js';
 
 const mod = {
