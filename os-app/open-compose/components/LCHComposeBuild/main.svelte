@@ -4,7 +4,6 @@ export let BuildInitializeModePipeEnabled;
 export let BuildAppStyle;
 export let BuildAppBehaviour;
 export let BuildAppLanguageCode;
-export let BuildPublicKey = null;
 
 import LCHComposeBuildPairExtension from '../LCHComposeBuildPairExtension/main.svelte';
 import { OLSKLocalized } from '../../../_shared/common/global.js';
@@ -31,7 +30,17 @@ const mod = {
 
 	// VALUE
 
-	_ValuePairExtensionIsVisible: !!BuildPublicKey,
+	_ValuePublicKey: null,
+	ValuePublicKey(inputData) {
+		if (typeof inputData === 'undefined') {
+			return mod._ValuePublicKey;
+		}
+
+		mod._ValuePublicKey = inputData
+
+		mod.ValuePairExtensionIsVisible(!!inputData)
+	},
+	_ValuePairExtensionIsVisible: false,
 	ValuePairExtensionIsVisible(inputData) {
 		if (typeof inputData === 'undefined') {
 			return mod._ValuePairExtensionIsVisible;
@@ -85,9 +94,26 @@ const mod = {
 		JavascriptCompositionBinary = LCHComposeBuildBookmarkletBinaryFor(JavascriptComposition);
 	},
 
+	// SETUP
+
+	SetupEverything() {
+		mod.SetupPublicKey()
+	},
+	async SetupPublicKey() {
+		mod.ValuePublicKey(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposePublicKey'));
+	},
+
+	// LIFECYCLE
+
+	LifecycleComponentWillMount() {
+		mod.SetupEverything()
+	},
+
 };
 
 modelDidChange.subscribe(mod.ModelDidChange);
+
+mod.LifecycleComponentWillMount();
 </script>
 	
 <div class="Container">
@@ -111,7 +137,7 @@ modelDidChange.subscribe(mod.ModelDidChange);
 {/if}
 
 {#if mod.ValuePairExtensionIsVisible()}
-	<LCHComposeBuildPairExtension on:BuildPairExtensionDispatchPublicKeyUpdate={ mod.BuildPairExtensionDispatchPublicKeyUpdate } />
+	<LCHComposeBuildPairExtension BuildPairExtensionPublicKey={ mod._ValuePublicKey } on:BuildPairExtensionDispatchPublicKeyUpdate={ mod.BuildPairExtensionDispatchPublicKeyUpdate } />
 {/if}
 
 </div>
