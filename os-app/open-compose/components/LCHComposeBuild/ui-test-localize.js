@@ -14,8 +14,12 @@ describe(`LCHComposeUILocalize-${ languageCode }`, function () {
 		return browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }`);
 	});
 
-	it('localizes interface', function() {
+	it('localizes LCHComposeBuildModePipeEnabledToggle', function() {
 		browser.assert.text(`label[for=${ LCHComposeBuildModePipeEnabledToggle.replace('#', '') }]`, uLocalized('LCHComposeBuildModePipeEnabledToggleLabelText'));
+	});
+
+	it('localizes LCHComposeBuildPairButton', function() {
+		browser.assert.text(LCHComposeBuildPairButton, uLocalized('LCHComposeBuildPairButtonText'));
 	});
 
 });

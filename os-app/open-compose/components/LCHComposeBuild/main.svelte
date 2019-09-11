@@ -83,7 +83,7 @@ modelDidChange.subscribe(mod.ModelDidChange);
 	<a id="LCHComposeBuildLink" href="{ JavascriptCompositionBinary }"  accesskey="r">Try it</a>
 </p>
 
-<button class="LCHComposeBuildPairButton"></button>
+<button class="LCHComposeBuildPairButton">{ OLSKLocalized('LCHComposeBuildPairButtonText') }</button>
 
 </div>
 
