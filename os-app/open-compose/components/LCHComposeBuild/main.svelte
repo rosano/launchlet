@@ -83,6 +83,8 @@ modelDidChange.subscribe(mod.ModelDidChange);
 	<a id="LCHComposeBuildLink" href="{ JavascriptCompositionBinary }"  accesskey="r">Try it</a>
 </p>
 
+<button class="LCHComposeBuildPairButton"></button>
+
 </div>
 
 <style src="./ui-style.css"></style>
