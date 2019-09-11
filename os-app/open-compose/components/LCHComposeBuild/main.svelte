@@ -6,6 +6,7 @@ export let BuildAppBehaviour;
 export let BuildAppLanguageCode;
 export let BuildPublicKey = null;
 
+import LCHComposeBuildPairExtension from './components/LCHComposeBuildPairExtension/main.svelte';
 import { OLSKLocalized } from '../../../_shared/common/global.js';
 import { LCHComposeBuildBoomarkletStringFor, LCHComposeBuildBookmarkletBinaryFor } from './ui-logic.js';
 import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../../../dev-launcher/ui-logic.js';
@@ -103,7 +104,7 @@ modelDidChange.subscribe(mod.ModelDidChange);
 {/if}
 
 {#if mod.ValuePairExtensionIsVisible()}
-	<div class="LCHComposeBuildPairExtension"></div>
+	<LCHComposeBuildPairExtension />
 {/if}
 
 </div>
