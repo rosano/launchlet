@@ -43,9 +43,11 @@ const mod = {
 }
 </script>
 
+<div class="LCHComposeBuildPairExtension">
 {#if mod._ValueFormIsVisible}
 	<textarea class="LCHBuildPairExtensionPublicKeyField" placeholder="{ OLSKLocalized('LCHBuildPairExtensionPublicKeyFieldLabel') }" bind:value={ BuildPairExtensionPublicKey } ></textarea>
 	<button class="LCHBuildPairExtensionSubmitButton" on:click={ mod.InterfaceSubmitButtonDidClick }>{ OLSKLocalized('LCHBuildPairExtensionSubmitButtonLabel') }</button>
 {/if}
+</div>
 
 <style src="./ui-style.css"></style>
