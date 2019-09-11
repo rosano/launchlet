@@ -1,4 +1,4 @@
-export const LCHComposeBuildValidCompileTokens = function () {
+export const LCHComposeBuildValidBuildTokens = function () {
 	return [
 		'LCHComposeBuildToken_AppBehaviour',
 		'LCHComposeBuildToken_AppStyle',
@@ -70,7 +70,7 @@ export const LCHComposeBuildBoomarkletStringFor = function (inputData, OLSK_TEST
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	if (!OLSK_TESTING && LCHComposeBuildValidCompileTokens().filter(function (e) {
+	if (!OLSK_TESTING && LCHComposeBuildValidBuildTokens().filter(function (e) {
 		return typeof inputData[e] === 'undefined';
 	}).length) {
 		throw new Error('LCHErrorInputInvalid');

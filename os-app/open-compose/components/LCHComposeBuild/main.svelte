@@ -1,9 +1,9 @@
 <script>
-export let CompileDocuments = [];
-export let CompileInitializeModePipeEnabled;
-export let CompileAppStyle;
-export let CompileAppBehaviour;
-export let CompileAppLanguageCode;
+export let BuildDocuments = [];
+export let BuildInitializeModePipeEnabled;
+export let BuildAppStyle;
+export let BuildAppBehaviour;
+export let BuildAppLanguageCode;
 
 import { OLSKLocalized } from '../../../_shared/common/global.js';
 import { LCHComposeBuildBoomarkletStringFor, LCHComposeBuildBookmarkletBinaryFor } from './ui-logic.js';
@@ -23,7 +23,7 @@ const mod = {
 	// INTERFACE
 
 	async InterfaceModePipeEnabledToggleDidInput() {
-		dispatch('CompileDispatchModePipeEnabledToggleDidInput', CompileInitializeModePipeEnabled);
+		dispatch('BuildDispatchModePipeEnabledToggleDidInput', BuildInitializeModePipeEnabled);
 
 		modelDidChange.set(Date.now());
 	},
@@ -32,9 +32,9 @@ const mod = {
 
 	ReactJavascriptComposition() {
 		JavascriptComposition = LCHComposeBuildBoomarkletStringFor({
-			LCHComposeBuildToken_AppStyle: CompileAppStyle,
-			LCHComposeBuildToken_AppBehaviour: CompileAppBehaviour,
-			LCHComposeBuildToken_DocumentObjects: CompileDocuments.map(function (e) {
+			LCHComposeBuildToken_AppStyle: BuildAppStyle,
+			LCHComposeBuildToken_AppBehaviour: BuildAppBehaviour,
+			LCHComposeBuildToken_DocumentObjects: BuildDocuments.map(function (e) {
 				return Object.entries(e).map(function (e) {
 					if (e[0] === 'LCHDocumentBody' && !e[1]) { // #purge
 						e[1] = 'return'
@@ -53,8 +53,8 @@ const mod = {
 					return coll;
 				}, {});
 			}),
-			LCHComposeBuildToken_AppLanguageCode: CompileAppLanguageCode,
-			LCHComposeBuildToken_LCHLauncherMode: CompileInitializeModePipeEnabled ? LCHLauncherModePipe() : LCHLauncherModeCommit(),
+			LCHComposeBuildToken_AppLanguageCode: BuildAppLanguageCode,
+			LCHComposeBuildToken_LCHLauncherMode: BuildInitializeModePipeEnabled ? LCHLauncherModePipe() : LCHLauncherModeCommit(),
 			LCHComposeBuildToken_LCHComposeRecipeName: OLSKLocalized('LCHComposeTitle'),
 			LCHComposeBuildToken_LCHComposeRecipeCallbackOutput: window.location.href,
 		});
@@ -71,7 +71,7 @@ modelDidChange.subscribe(mod.ModelDidChange);
 
 <p>
 	<label for="LCHComposeBuildModePipeEnabledToggle">{ OLSKLocalized('LCHComposeBuildModePipeEnabledToggleLabelText') }</label>
-	<input type="checkbox" bind:checked={ CompileInitializeModePipeEnabled } on:change={ mod.InterfaceModePipeEnabledToggleDidInput } id="LCHComposeBuildModePipeEnabledToggle" />
+	<input type="checkbox" bind:checked={ BuildInitializeModePipeEnabled } on:change={ mod.InterfaceModePipeEnabledToggleDidInput } id="LCHComposeBuildModePipeEnabledToggle" />
 
 </p>
 

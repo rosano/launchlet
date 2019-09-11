@@ -3,8 +3,8 @@ import Module from './main.svelte';
 </script>
 
 <Module
-	CompileInitializeModePipeEnabled={ false }
-	CompileAppStyle={ '' }
-	CompileAppBehaviour={ '' }
-	CompileAppLanguageCode={ window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage') }
+	BuildInitializeModePipeEnabled={ false }
+	BuildAppStyle={ '' }
+	BuildAppBehaviour={ '' }
+	BuildAppLanguageCode={ window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage') }
 />

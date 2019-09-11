@@ -2,10 +2,10 @@ import { throws, doesNotThrow, deepEqual } from 'assert';
 
 import * as mainModule from './ui-logic.js';
 
-describe('LCHComposeBuildValidCompileTokens', function testLCHComposeBuildValidCompileTokens() {
+describe('LCHComposeBuildValidBuildTokens', function testLCHComposeBuildValidBuildTokens() {
 
 	it('returns array', function() {
-		deepEqual(mainModule.LCHComposeBuildValidCompileTokens(), [
+		deepEqual(mainModule.LCHComposeBuildValidBuildTokens(), [
 			'LCHComposeBuildToken_AppBehaviour',
 			'LCHComposeBuildToken_AppStyle',
 			'LCHComposeBuildToken_DocumentObjects',
@@ -20,10 +20,10 @@ describe('LCHComposeBuildValidCompileTokens', function testLCHComposeBuildValidC
 
 describe('LCHComposeBuildBoomarkletTemplate', function testLCHComposeBuildBoomarkletTemplate() {
 
-	it('contains LCHComposeBuildValidCompileTokens', function() {
-		deepEqual(mainModule.LCHComposeBuildValidCompileTokens().filter(function (e) {
+	it('contains LCHComposeBuildValidBuildTokens', function() {
+		deepEqual(mainModule.LCHComposeBuildValidBuildTokens().filter(function (e) {
 			return mainModule.LCHComposeBuildBoomarkletTemplate.toString().match(e);
-		}), mainModule.LCHComposeBuildValidCompileTokens());
+		}), mainModule.LCHComposeBuildValidBuildTokens());
 	});
 
 });
@@ -38,7 +38,7 @@ describe('LCHComposeBuildBoomarkletStringFor', function testLCHComposeBuildBooma
 
 	it('throws error if without all tokens', function() {
 		throws(function() {
-			mainModule.LCHComposeBuildBoomarkletStringFor(mainModule.LCHComposeBuildValidCompileTokens().reduce(function (coll, item) {
+			mainModule.LCHComposeBuildBoomarkletStringFor(mainModule.LCHComposeBuildValidBuildTokens().reduce(function (coll, item) {
 				if (item !== 'LCHComposeBuildToken_DocumentObjects') {
 					coll[item] = '';
 				}
@@ -49,14 +49,14 @@ describe('LCHComposeBuildBoomarkletStringFor', function testLCHComposeBuildBooma
 	});
 
 	it('replaces all tokens', function() {
-		let item = mainModule.LCHComposeBuildBoomarkletStringFor(mainModule.LCHComposeBuildValidCompileTokens().reduce(function (coll, item) {
+		let item = mainModule.LCHComposeBuildBoomarkletStringFor(mainModule.LCHComposeBuildValidBuildTokens().reduce(function (coll, item) {
 			coll[item] = item === 'LCHComposeBuildToken_DocumentObjects' ? [] : '';
 
 			return coll;
 		}, {}));
-		deepEqual(mainModule.LCHComposeBuildValidCompileTokens().filter(function (e) {
+		deepEqual(mainModule.LCHComposeBuildValidBuildTokens().filter(function (e) {
 			return !item.match(e);
-		}), mainModule.LCHComposeBuildValidCompileTokens());
+		}), mainModule.LCHComposeBuildValidBuildTokens());
 	});
 
 	it('throws no error if OLSK_TESTING', function() {

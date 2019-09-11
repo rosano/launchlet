@@ -24,7 +24,7 @@ const mod = {
 	FooterDispatchImport (event) {
 		masterInstance.DocumentsImport(event.detail);
 	},
-	CompileDispatchModePipeEnabledToggleDidInput (event) {
+	BuildDispatchModePipeEnabledToggleDidInput (event) {
 		LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposeModePipeEnabled', event.detail.toString())
 	},
 
@@ -68,13 +68,13 @@ mod.LifecycleComponentWillMount();
 </OLSKViewportContent>
 
 <LCHComposeBuild
-	CompileInitializeModePipeEnabled={ mod._ValueInitializeModePipeEnabled }
-	CompileDocuments={ $DocumentsAllStore }
-	CompileAppStyle={ window.LCHComposeLauncherStyle.textContent }
-	CompileAppBehaviour={ window.LCHComposeLauncherBehaviour.textContent }
-	CompileAppLanguageCode={ window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage') }
+	BuildInitializeModePipeEnabled={ mod._ValueInitializeModePipeEnabled }
+	BuildDocuments={ $DocumentsAllStore }
+	BuildAppStyle={ window.LCHComposeLauncherStyle.textContent }
+	BuildAppBehaviour={ window.LCHComposeLauncherBehaviour.textContent }
+	BuildAppLanguageCode={ window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage') }
 
-	on:CompileDispatchModePipeEnabledToggleDidInput={ mod.CompileDispatchModePipeEnabledToggleDidInput }
+	on:BuildDispatchModePipeEnabledToggleDidInput={ mod.BuildDispatchModePipeEnabledToggleDidInput }
 	/>
 
 <LCHComposeFooter on:FooterDispatchExport={ mod.FooterDispatchExport } on:FooterDispatchImport={ mod.FooterDispatchImport } />
