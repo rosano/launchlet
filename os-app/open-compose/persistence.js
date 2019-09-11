@@ -11,7 +11,6 @@ import { writable } from 'svelte/store';
 
 export const DocumentsAllStore = writable([]);
 export const DocumentSelectedStore = writable(null);
-export const modelDidChange = writable(null);
 export const isLoading = writable(true);
 
 let _DocumentSelected;
