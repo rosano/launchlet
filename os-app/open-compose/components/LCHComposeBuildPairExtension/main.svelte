@@ -55,6 +55,9 @@ const mod = {
 {#if !mod._ValueFormIsVisible}
 	<button class="LCHBuildPairExtensionUnpairButton" on:click={ mod.InterfaceUnpairButtonDidClick }>{ OLSKLocalized('LCHBuildPairExtensionUnpairButtonText') }</button>
 {/if}
+
+<span class="LCHBuildPairExtensionStatusWaiting"></span>
+
 </div>
 
 <style src="./ui-style.css"></style>

@@ -6,6 +6,7 @@ Object.entries({
 	LCHBuildPairExtensionPublicKeyField: '.LCHBuildPairExtensionPublicKeyField',
 	LCHBuildPairExtensionSubmitButton: '.LCHBuildPairExtensionSubmitButton',
 	LCHBuildPairExtensionUnpairButton: '.LCHBuildPairExtensionUnpairButton',
+	LCHBuildPairExtensionStatusWaiting: '.LCHBuildPairExtensionStatusWaiting',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -22,6 +23,10 @@ describe('LCHComposeBuildPairExtensionUIAccess', function () {
 	
 	it('shows LCHBuildPairExtensionSubmitButton', function() {
 		browser.assert.elements(LCHBuildPairExtensionSubmitButton, 1);
+	});
+	
+	it('shows LCHBuildPairExtensionStatusWaiting', function() {
+		browser.assert.elements(LCHBuildPairExtensionStatusWaiting, 1);
 	});
 	
 	it('hides LCHBuildPairExtensionUnpairButton', function() {
