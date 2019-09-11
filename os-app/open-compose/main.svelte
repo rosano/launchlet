@@ -72,6 +72,7 @@ mod.LifecycleComponentWillMount();
 	CompileDocuments={ $DocumentsAllStore }
 	OLSKLocalized={ OLSKLocalized }
 	CompileAppStyle={ window.LCHComposeLauncherStyle.textContent }
+	CompileAppBehaviour={ window.LCHComposeLauncherBehaviour.textContent }
 
 	on:CompileDispatchModePipeEnabledToggleDidInput={ mod.CompileDispatchModePipeEnabledToggleDidInput }
 	/>

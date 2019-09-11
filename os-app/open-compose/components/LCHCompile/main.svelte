@@ -3,6 +3,7 @@ export let CompileDocuments = [];
 export let OLSKLocalized = null;
 export let CompileInitializeModePipeEnabled;
 export let CompileAppStyle;
+export let CompileAppBehaviour;
 
 import { LCHCompileBoomarkletStringFor, LCHCompileBookmarkletBinaryFor } from './ui-logic.js';
 import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../../../dev-launcher/ui-logic.js';
@@ -30,8 +31,8 @@ const mod = {
 
 	ReactJavascriptComposition() {
 		JavascriptComposition = LCHCompileBoomarkletStringFor({
-			LCHCompileToken_AppStyle: window.LCHComposeLauncherStyle.textContent,
-			LCHCompileToken_AppBehaviour: window.LCHComposeLauncherBehaviour.textContent,
+			LCHCompileToken_AppStyle: CompileAppStyle,
+			LCHCompileToken_AppBehaviour: CompileAppBehaviour,
 			LCHCompileToken_DocumentObjects: CompileDocuments.map(function (e) {
 				return Object.entries(e).map(function (e) {
 					if (e[0] === 'LCHDocumentBody' && !e[1]) { // #purge
