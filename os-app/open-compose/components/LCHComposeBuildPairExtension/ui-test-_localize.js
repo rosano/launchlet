@@ -28,6 +28,19 @@ describe(`LCHComposeUILocalize-${ languageCode }`, function () {
 		}), uLocalized('LCHBuildPairExtensionAlertText'))
 	});
 
+	context('SubmitValid', function testSubmitValid () {
+		
+		before(function () {
+			browser.fill(LCHBuildPairExtensionPublicKeyField, 'alfa')
+			browser.click(LCHBuildPairExtensionSubmitButton)
+		});
+		
+		it('localizes LCHBuildPairExtensionUnpairButton', function() {
+			browser.assert.text(LCHBuildPairExtensionUnpairButton, uLocalized('LCHBuildPairExtensionUnpairButtonText'));
+		});
+	
+	});
+
 });
 
 });

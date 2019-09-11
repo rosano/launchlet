@@ -48,6 +48,9 @@ const mod = {
 	<textarea class="LCHBuildPairExtensionPublicKeyField" placeholder="{ OLSKLocalized('LCHBuildPairExtensionPublicKeyFieldLabel') }" bind:value={ BuildPairExtensionPublicKey } autofocus ></textarea>
 	<button class="LCHBuildPairExtensionSubmitButton" on:click={ mod.InterfaceSubmitButtonDidClick }>{ OLSKLocalized('LCHBuildPairExtensionSubmitButtonLabel') }</button>
 {/if}
+{#if !mod._ValueFormIsVisible}
+	<button class="LCHBuildPairExtensionUnpairButton" on:click={ mod.InterfaceUnpairButtonDidClick }>{ OLSKLocalized('LCHBuildPairExtensionUnpairButtonText') }</button>
+{/if}
 </div>
 
 <style src="./ui-style.css"></style>
