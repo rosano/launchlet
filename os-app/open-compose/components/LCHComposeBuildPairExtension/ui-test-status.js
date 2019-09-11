@@ -26,4 +26,22 @@ describe('LCHComposeBuildPairExtensionUIStatus', function () {
 	
 	});
 
+	context('Success', function testSuccess () {
+		
+		before(function () {
+			browser.evaluate(`window.postMessage({
+				LBXMessageResponse: 'bravo',
+			}, window.location.href)`)
+		});
+		
+		it('hides LCHBuildPairExtensionStatusWaiting', function() {
+			browser.assert.elements(LCHBuildPairExtensionStatusWaiting, 0);
+		});
+		
+		it('hides LCHBuildPairExtensionStatusFailed', function() {
+			browser.assert.elements(LCHBuildPairExtensionStatusFailed, 0);
+		});
+	
+	});
+
 });

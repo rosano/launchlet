@@ -67,9 +67,7 @@ const mod = {
 			return;
 		}
 
-		if (inputData.LBXMessageResponse !== 'bravo') {
-			return mod.ValueStatus('kStatusFailed');
-		};
+		mod.ValueStatus(inputData.LBXMessageResponse === 'bravo' ? 'kStatusSuccess' : 'kStatusFailed')
 	},
 
 }
