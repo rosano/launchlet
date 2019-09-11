@@ -9,19 +9,11 @@ describe('LCHComposeBuildPairExtensionUIForm', function () {
 	});
 
 	context('SubmitInvalid', function testSubmitInvalid () {
-
-		let didAlert = false;
-
-		before(function () {
-			return browser.OLSKAlert(function () {
-				browser.pressButton(LCHBuildPairExtensionSubmitButton)
-			}, function () {
-				didAlert = true;
-			});
-		});
 	
 		it('alerts', function() {
-			deepEqual(didAlert, true);
+			deepEqual(typeof browser.OLSKAlert(function () {
+				browser.pressButton(LCHBuildPairExtensionSubmitButton)
+			}), 'string');
 		});
 	
 	});

@@ -34,6 +34,7 @@
 		return await new Promise(async function (resolve, reject) {
 			browser.OLSKConfirmCallback = function (dialog) {
 				delete browser.OLSKConfirmCallback;
+
 				return resolve(param2 ? param2(dialog) : dialog);
 			};
 
@@ -47,16 +48,19 @@
 	  });
 	});
 	
-	Browser.prototype.OLSKAlert = async function(param1, param2) {
-		let browser = this;
-		return await new Promise(async function (resolve, reject) {
-			browser.OLSKAlertCallback = function (dialog) {
-				delete browser.OLSKAlertCallback;
-				return resolve(param2 ? param2(dialog) : dialog);
-			};
+	Browser.prototype.OLSKAlert = function(inputData) {
+		let outputData = undefined;
 
-			param1();
-		});
+		let browser = this;
+		browser.OLSKAlertCallback = function (dialog) {
+			delete browser.OLSKAlertCallback;
+
+			outputData = dialog;
+		};
+
+		inputData();
+
+		return outputData;
 	};
 
 	global.OLSKBrowser = Browser;
