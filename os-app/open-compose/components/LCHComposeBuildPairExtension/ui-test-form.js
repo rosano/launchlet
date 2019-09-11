@@ -8,6 +8,10 @@ describe('LCHComposeBuildPairExtensionUIForm', function () {
 		return browser.visit(kDefaultRoute.OLSKRoutePath);
 	});
 
+	it('focuses textarea', function() {
+		browser.assert.hasFocus(LCHBuildPairExtensionPublicKeyField)
+	});
+
 	context('SubmitInvalid', function testSubmitInvalid () {
 	
 		it('alerts', function() {
