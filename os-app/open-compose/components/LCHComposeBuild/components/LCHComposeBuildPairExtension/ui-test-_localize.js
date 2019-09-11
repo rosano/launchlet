@@ -18,6 +18,10 @@ describe(`LCHComposeUILocalize-${ languageCode }`, function () {
 		browser.assert.attribute(LCHBuildPairExtensionPublicKeyField, 'placeholder', uLocalized('LCHBuildPairExtensionPublicKeyFieldLabel'))
 	});
 
+	it('localizes LCHBuildPairExtensionSubmitButton', function () {
+		browser.assert.text(LCHBuildPairExtensionSubmitButton, uLocalized('LCHBuildPairExtensionSubmitButtonLabel'))
+	});
+
 });
 
 });
