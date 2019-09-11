@@ -7,5 +7,5 @@ import Module from './main.svelte';
 	BuildAppStyle={ '' }
 	BuildAppBehaviour={ '' }
 	BuildAppLanguageCode={ window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage') }
-	{...Object.fromEntries((new URLSearchParams(window.location.search)).entries())}
+	{...Object.fromEntries((new window.URLSearchParams(window.location.search)).entries())}
 />
