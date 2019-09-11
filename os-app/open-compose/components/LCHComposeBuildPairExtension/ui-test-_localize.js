@@ -22,6 +22,12 @@ describe(`LCHComposeUILocalize-${ languageCode }`, function () {
 		browser.assert.text(LCHBuildPairExtensionSubmitButton, uLocalized('LCHBuildPairExtensionSubmitButtonLabel'))
 	});
 
+	it('localizes alert', function () {
+		deepEqual(browser.OLSKAlert(function () {
+			browser.pressButton(LCHBuildPairExtensionSubmitButton)
+		}), uLocalized('LCHBuildPairExtensionAlertText'))
+	});
+
 });
 
 });

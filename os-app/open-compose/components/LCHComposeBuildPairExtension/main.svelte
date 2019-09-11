@@ -35,7 +35,7 @@ const mod = {
 
 	CommandValidateInput () {
 		if (!LCHComposeBuildPairExtensionPublicKeyIsValid(BuildPairExtensionPublicKey.trim())) {
-			return window.alert('hello');
+			return window.alert(OLSKLocalized('LCHBuildPairExtensionAlertText'));
 		};
 
 		mod.ValueFormIsVisible(false)
