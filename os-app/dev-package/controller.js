@@ -3,7 +3,7 @@ const pathPackage = require('path');
 //_ OLSKControllerRoutes
 
 exports.OLSKControllerRoutes = function() {
-	return process.env.NODE_ENV === 'production' ? {} : {
+	return {
 		LCHPackageRoute: {
 			OLSKRoutePath: '/package',
 			OLSKRouteMethod: 'get',
@@ -11,6 +11,7 @@ exports.OLSKControllerRoutes = function() {
 				return res.render(req.OLSKLive.OLSKLivePathJoin(__dirname, 'view'), {});
 			},
 			OLSKRouteLanguages: ['en'],
+			OLSKRouteIsHidden: process.env.NODE_ENV === 'production',
 		},
 	};
 };

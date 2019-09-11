@@ -1,7 +1,7 @@
 //_ OLSKControllerRoutes
 
 exports.OLSKControllerRoutes = function() {
-	return process.env.NODE_ENV === 'production' ? {} : {
+	return {
 		LCHLauncherRoute: {
 			OLSKRoutePath: '/launcher',
 			OLSKRouteMethod: 'get',
@@ -11,6 +11,7 @@ exports.OLSKControllerRoutes = function() {
 				});
 			},
 			OLSKRouteLanguages: ['en'],
+			OLSKRouteIsHidden: process.env.NODE_ENV === 'production',
 		},
 	};
 };
