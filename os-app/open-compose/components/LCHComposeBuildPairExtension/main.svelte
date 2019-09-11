@@ -4,6 +4,9 @@ export let BuildPairExtensionPublicKey = '';
 import { OLSKLocalized } from '../../../_shared/common/global.js';
 import { LCHComposeBuildPairExtensionPublicKeyIsValid } from './ui-logic.js';
 
+import { createEventDispatcher } from 'svelte';
+const dispatch = createEventDispatcher();
+
 const mod = {
 
 	// VALUE
@@ -34,11 +37,15 @@ const mod = {
 	// COMMAND
 
 	CommandValidateInput () {
-		if (!LCHComposeBuildPairExtensionPublicKeyIsValid(BuildPairExtensionPublicKey.trim())) {
+		const outputData = BuildPairExtensionPublicKey.trim()
+
+		if (!LCHComposeBuildPairExtensionPublicKeyIsValid(outputData)) {
 			return window.alert(OLSKLocalized('LCHBuildPairExtensionAlertText'));
 		};
 
 		mod.ValueFormIsVisible(false)
+
+		dispatch('BuildPairExtensionDispatchUpdate', outputData);
 	},
 
 }
