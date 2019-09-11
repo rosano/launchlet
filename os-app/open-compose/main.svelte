@@ -8,6 +8,7 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 
 import { OLSKLocalized, _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 import { storageClient, isLoading, DocumentsAllStore } from './persistence.js';
+import * as LCHSettingsAction from '../_shared/LCHSetting/action.js';
 
 import { onMount } from 'svelte';
 import Widget from 'remotestorage-widget';
@@ -23,7 +24,40 @@ const mod = {
 	FooterDispatchImport (event) {
 		masterInstance.DocumentsImport(event.detail);
 	},
+	CompileDispatchModePipeEnabledToggleDidInput (event) {
+		LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposeModePipeEnabled', event.detail.toString())
+	},
+
+	// VALUE
+
+	_ValueInitializeModePipeEnabled: undefined,
+	ValueInitializeModePipeEnabled(inputData) {
+		if (typeof inputData === 'undefined') {
+			return mod._ValueInitializeModePipeEnabled;
+		}
+
+		mod._ValueInitializeModePipeEnabled = inputData === 'true'
+	},
+
+	// SETUP
+
+	SetupEverything() {
+		mod.SetupValueInitializeModePipeEnabled()
+	},
+	async SetupValueInitializeModePipeEnabled() {
+		mod.ValueInitializeModePipeEnabled(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposeModePipeEnabled'))
+	},
+
+	// LIFECYCLE
+
+	LifecycleComponentWillMount() {
+		mod.SetupEverything()
+	},
+
 };
+
+mod.LifecycleComponentWillMount();
+
 </script>
 
 <div class="Container OLSKViewport" class:OLSKIsLoading={ $isLoading }>
@@ -33,7 +67,7 @@ const mod = {
 	<LCHComposeDetail />
 </OLSKViewportContent>
 
-<LCHCompile CompileDocuments={ $DocumentsAllStore } OLSKLocalized={ OLSKLocalized } />
+<LCHCompile CompileDocuments={ $DocumentsAllStore } OLSKLocalized={ OLSKLocalized } CompileInitializeModePipeEnabled={ mod._ValueInitializeModePipeEnabled } on:CompileDispatchModePipeEnabledToggleDidInput={ mod.CompileDispatchModePipeEnabledToggleDidInput } />
 
 <LCHComposeFooter on:FooterDispatchExport={ mod.FooterDispatchExport } on:FooterDispatchImport={ mod.FooterDispatchImport } />
 

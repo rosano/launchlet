@@ -1,41 +1,28 @@
 <script>
 export let CompileDocuments = [];
 export let OLSKLocalized = null;
+export let CompileInitializeModePipeEnabled = false;
 
-import { storageClient, modelDidChange } from '../../persistence.js';
-import * as LCHSettingsAction from '../../../_shared/LCHSetting/action.js';
 import { LCHCompileBoomarkletStringFor, LCHCompileBookmarkletBinaryFor } from './ui-logic.js';
 import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../../../dev-launcher/ui-logic.js';
+import { modelDidChange } from '../../model.js'
 
 let JavascriptComposition, JavascriptCompositionBinary = '';
-let _ValueModePipeEnabled = false;
 
-import { onMount } from 'svelte';
-onMount(function () {
-	modelDidChange.subscribe(function () {
-		mod.ReactJavascriptComposition();
-	});
-});
+import { createEventDispatcher } from 'svelte';
+const dispatch = createEventDispatcher();
 const mod = {
 
-	// VALUE
-
-	ValueModePipeEnabled(inputData) {
-		if (typeof inputData === 'undefined') {
-			return _ValueModePipeEnabled;
-		}
-
-		_ValueModePipeEnabled = inputData;
-
+	ModelDidChange () {
 		mod.ReactJavascriptComposition();
 	},
 
 	// INTERFACE
 
 	async InterfaceModePipeEnabledToggleDidInput() {
-		mod.ReactJavascriptComposition();
-		
-		await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposeModePipeEnabled', mod.ValueModePipeEnabled().toString());
+		dispatch('CompileDispatchModePipeEnabledToggleDidInput', CompileInitializeModePipeEnabled);
+
+		modelDidChange.set(Date.now());
 	},
 
 	// REACT
@@ -64,7 +51,7 @@ const mod = {
 				}, {});
 			}),
 			LCHCompileToken_AppLanguageCode: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
-			LCHCompileToken_LCHLauncherMode: mod.ValueModePipeEnabled() ? LCHLauncherModePipe() : LCHLauncherModeCommit(),
+			LCHCompileToken_LCHLauncherMode: CompileInitializeModePipeEnabled ? LCHLauncherModePipe() : LCHLauncherModeCommit(),
 			LCHCompileToken_LCHComposeRecipeName: OLSKLocalized('LCHComposeTitle'),
 			LCHCompileToken_LCHComposeRecipeCallbackOutput: window.location.href,
 		});
@@ -72,24 +59,16 @@ const mod = {
 		JavascriptCompositionBinary = LCHCompileBookmarkletBinaryFor(JavascriptComposition);
 	},
 
-	// SETUP
-
-	SetupEverything() {
-		mod.SetupValueModePipeEnabled();
-	},
-	async SetupValueModePipeEnabled() {
-		mod.ValueModePipeEnabled(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposeModePipeEnabled'));
-	},
 };
 
-mod.SetupEverything();
+modelDidChange.subscribe(mod.ModelDidChange);
 </script>
 	
 <div class="Container">
 
 <p>
 	<label for="LCHCompileModePipeEnabledToggle">{ OLSKLocalized('LCHCompileModePipeEnabledToggleLabelText') }</label>
-	<input type="checkbox" bind:checked={ _ValueModePipeEnabled } on:change={ mod.InterfaceModePipeEnabledToggleDidInput } id="LCHCompileModePipeEnabledToggle" />
+	<input type="checkbox" bind:checked={ CompileInitializeModePipeEnabled } on:change={ mod.InterfaceModePipeEnabledToggleDidInput } id="LCHCompileModePipeEnabledToggle" />
 
 </p>
 
