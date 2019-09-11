@@ -34,7 +34,7 @@ const mod = {
 	// COMMAND
 
 	CommandValidateInput () {
-		if (!LCHComposeBuildPairExtensionPublicKeyIsValid(BuildPairExtensionPublicKey)) {
+		if (!LCHComposeBuildPairExtensionPublicKeyIsValid(BuildPairExtensionPublicKey.trim())) {
 			return mod.ValueAlertIsVisible(true)
 		};
 

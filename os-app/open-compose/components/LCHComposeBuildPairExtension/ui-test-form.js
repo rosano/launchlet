@@ -24,7 +24,7 @@ describe('LCHComposeBuildPairExtensionUIForm', function () {
 	context('SubmitValid', function testSubmitValid () {
 		
 		before(function () {
-			browser.fill(LCHBuildPairExtensionPublicKeyField, 'alfa')
+			browser.fill(LCHBuildPairExtensionPublicKeyField, ' alfa ') // #spec trim
 			browser.click(LCHBuildPairExtensionSubmitButton)
 			return browser.wait({ elements: LCHBuildPairExtensionErrorAlert })
 		});
