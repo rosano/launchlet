@@ -1,11 +1,11 @@
 <script>
 export let CompileDocuments = [];
-export let OLSKLocalized = null;
 export let CompileInitializeModePipeEnabled;
 export let CompileAppStyle;
 export let CompileAppBehaviour;
 export let CompileAppLanguageCode;
 
+import { OLSKLocalized } from '../../../_shared/common/global.js';
 import { LCHCompileBoomarkletStringFor, LCHCompileBookmarkletBinaryFor } from './ui-logic.js';
 import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../../../dev-launcher/ui-logic.js';
 import { modelDidChange } from '../../model.js'

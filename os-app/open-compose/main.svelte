@@ -70,7 +70,6 @@ mod.LifecycleComponentWillMount();
 <LCHCompile
 	CompileInitializeModePipeEnabled={ mod._ValueInitializeModePipeEnabled }
 	CompileDocuments={ $DocumentsAllStore }
-	OLSKLocalized={ OLSKLocalized }
 	CompileAppStyle={ window.LCHComposeLauncherStyle.textContent }
 	CompileAppBehaviour={ window.LCHComposeLauncherBehaviour.textContent }
 	CompileAppLanguageCode={ window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage') }
