@@ -67,7 +67,14 @@ mod.LifecycleComponentWillMount();
 	<LCHComposeDetail />
 </OLSKViewportContent>
 
-<LCHCompile CompileDocuments={ $DocumentsAllStore } OLSKLocalized={ OLSKLocalized } CompileInitializeModePipeEnabled={ mod._ValueInitializeModePipeEnabled } on:CompileDispatchModePipeEnabledToggleDidInput={ mod.CompileDispatchModePipeEnabledToggleDidInput } />
+<LCHCompile
+	CompileInitializeModePipeEnabled={ mod._ValueInitializeModePipeEnabled }
+	CompileDocuments={ $DocumentsAllStore }
+	OLSKLocalized={ OLSKLocalized }
+	CompileAppStyle={ window.LCHComposeLauncherStyle.textContent }
+
+	on:CompileDispatchModePipeEnabledToggleDidInput={ mod.CompileDispatchModePipeEnabledToggleDidInput }
+	/>
 
 <LCHComposeFooter on:FooterDispatchExport={ mod.FooterDispatchExport } on:FooterDispatchImport={ mod.FooterDispatchImport } />
 

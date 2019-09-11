@@ -1,7 +1,8 @@
 <script>
 export let CompileDocuments = [];
 export let OLSKLocalized = null;
-export let CompileInitializeModePipeEnabled = false;
+export let CompileInitializeModePipeEnabled;
+export let CompileAppStyle;
 
 import { LCHCompileBoomarkletStringFor, LCHCompileBookmarkletBinaryFor } from './ui-logic.js';
 import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../../../dev-launcher/ui-logic.js';
