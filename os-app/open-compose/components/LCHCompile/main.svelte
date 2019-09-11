@@ -4,6 +4,7 @@ export let OLSKLocalized = null;
 export let CompileInitializeModePipeEnabled;
 export let CompileAppStyle;
 export let CompileAppBehaviour;
+export let CompileAppLanguageCode;
 
 import { LCHCompileBoomarkletStringFor, LCHCompileBookmarkletBinaryFor } from './ui-logic.js';
 import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../../../dev-launcher/ui-logic.js';
@@ -52,7 +53,7 @@ const mod = {
 					return coll;
 				}, {});
 			}),
-			LCHCompileToken_AppLanguageCode: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
+			LCHCompileToken_AppLanguageCode: CompileAppLanguageCode,
 			LCHCompileToken_LCHLauncherMode: CompileInitializeModePipeEnabled ? LCHLauncherModePipe() : LCHLauncherModeCommit(),
 			LCHCompileToken_LCHComposeRecipeName: OLSKLocalized('LCHComposeTitle'),
 			LCHCompileToken_LCHComposeRecipeCallbackOutput: window.location.href,

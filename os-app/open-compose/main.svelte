@@ -73,6 +73,7 @@ mod.LifecycleComponentWillMount();
 	OLSKLocalized={ OLSKLocalized }
 	CompileAppStyle={ window.LCHComposeLauncherStyle.textContent }
 	CompileAppBehaviour={ window.LCHComposeLauncherBehaviour.textContent }
+	CompileAppLanguageCode={ window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage') }
 
 	on:CompileDispatchModePipeEnabledToggleDidInput={ mod.CompileDispatchModePipeEnabledToggleDidInput }
 	/>
