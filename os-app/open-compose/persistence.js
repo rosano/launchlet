@@ -6,6 +6,7 @@ import { LCHDocumentStorage } from '../_shared/LCHDocument/storage.js';
 import { LCHSettingStorage } from '../_shared/LCHSetting/storage.js';
 
 import { LCHComposeSort } from './ui-logic.js';
+import { modelDidChange } from './model.js';
 
 import { writable } from 'svelte/store';
 
