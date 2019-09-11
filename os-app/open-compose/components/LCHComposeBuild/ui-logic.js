@@ -1,24 +1,24 @@
-export const LCHCompileValidCompileTokens = function () {
+export const LCHComposeBuildValidCompileTokens = function () {
 	return [
-		'LCHCompileToken_AppBehaviour',
-		'LCHCompileToken_AppStyle',
-		'LCHCompileToken_DocumentObjects',
-		'LCHCompileToken_AppLanguageCode',
-		'LCHCompileToken_LCHLauncherMode',
-		'LCHCompileToken_LCHComposeRecipeName',
-		'LCHCompileToken_LCHComposeRecipeCallbackOutput',
+		'LCHComposeBuildToken_AppBehaviour',
+		'LCHComposeBuildToken_AppStyle',
+		'LCHComposeBuildToken_DocumentObjects',
+		'LCHComposeBuildToken_AppLanguageCode',
+		'LCHComposeBuildToken_LCHLauncherMode',
+		'LCHComposeBuildToken_LCHComposeRecipeName',
+		'LCHComposeBuildToken_LCHComposeRecipeCallbackOutput',
 	];
 };
 
-export const LCHCompileBoomarkletTemplate = function () {
+export const LCHComposeBuildBoomarkletTemplate = function () {
 	let _protectFromCompiler = console.log;
 
 	window.LCHBookmarklet = {
 		uiStyle: function () {
-			return _protectFromCompiler(`LCHCompileToken_AppStyle`);
+			return _protectFromCompiler(`LCHComposeBuildToken_AppStyle`);
 		},
 		uiBehaviour: function () {
-			_protectFromCompiler(`LCHCompileToken_AppBehaviour`);
+			_protectFromCompiler(`LCHComposeBuildToken_AppBehaviour`);
 
 			return this.Main;
 		},
@@ -36,10 +36,10 @@ export const LCHCompileBoomarkletTemplate = function () {
 			window.LCHBookmarklet.AppInstance = new (window.LCHBookmarklet.uiBehaviour())({
 				target: sandboxContainer,
 				props: {
-					dataObjects: _protectFromCompiler(`LCHCompileToken_DocumentObjects`).concat({
-						LCHRecipeName: 'LCHCompileToken_LCHComposeRecipeName',
+					dataObjects: _protectFromCompiler(`LCHComposeBuildToken_DocumentObjects`).concat({
+						LCHRecipeName: 'LCHComposeBuildToken_LCHComposeRecipeName',
 						LCHRecipeCallback () {
-							return 'LCHCompileToken_LCHComposeRecipeCallbackOutput';
+							return 'LCHComposeBuildToken_LCHComposeRecipeCallbackOutput';
 						},
 						LCHRecipeOutputType: 'URL',
 					}),
@@ -47,8 +47,8 @@ export const LCHCompileBoomarkletTemplate = function () {
 						return window.LCHBookmarklet.instanceDestroy();
 					},
 					optionsObject: {
-						languageCode: 'LCHCompileToken_AppLanguageCode',
-						runMode: 'LCHCompileToken_LCHLauncherMode',
+						languageCode: 'LCHComposeBuildToken_AppLanguageCode',
+						runMode: 'LCHComposeBuildToken_LCHLauncherMode',
 					},
 				}
 			});
@@ -65,12 +65,12 @@ export const LCHCompileBoomarkletTemplate = function () {
 	window.LCHBookmarklet.instanceCreate();
 };
 
-export const LCHCompileBoomarkletStringFor = function (inputData, OLSK_TESTING) {
+export const LCHComposeBuildBoomarkletStringFor = function (inputData, OLSK_TESTING) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	if (!OLSK_TESTING && LCHCompileValidCompileTokens().filter(function (e) {
+	if (!OLSK_TESTING && LCHComposeBuildValidCompileTokens().filter(function (e) {
 		return typeof inputData[e] === 'undefined';
 	}).length) {
 		throw new Error('LCHErrorInputInvalid');
@@ -79,16 +79,16 @@ export const LCHCompileBoomarkletStringFor = function (inputData, OLSK_TESTING) 
 	return Object.keys(inputData).reduce(function (coll, item) {
 		let itemReplacement = inputData[item];
 
-		if (item === 'LCHCompileToken_DocumentObjects') {
-			itemReplacement = `[${ inputData[item].map(_LCHComposeRecipeStub).map(_LCHCompileRecipeJSON) }]`;
+		if (item === 'LCHComposeBuildToken_DocumentObjects') {
+			itemReplacement = `[${ inputData[item].map(_LCHComposeRecipeStub).map(_LCHComposeBuildRecipeJSON) }]`;
 		}
 
-		if (item === 'LCHCompileToken_AppStyle') {
+		if (item === 'LCHComposeBuildToken_AppStyle') {
 			itemReplacement = `\`${ inputData[item] }\``;
 		}
 
 		return coll.replace(item,  itemReplacement);
-	}, LCHCompileBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2'))
+	}, LCHComposeBuildBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2'))
 			.replace(`(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':`, '__LIVERELOADSTART__')
 			.replace(`/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');`, '__LIVERELOADEND__')
 			.replace(/__LIVERELOADSTART__.*__LIVERELOADEND__/, '')
@@ -131,7 +131,7 @@ export const _LCHClosureString = function(inputData) {
 	return `function (${ inputData.LCHDocumentArgs || '' }) { ${ inputData.LCHDocumentBody } }`;
 };
 
-export const _LCHCompileRecipeJSON = function (inputData) {
+export const _LCHComposeBuildRecipeJSON = function (inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
 	}
@@ -149,7 +149,7 @@ export const _LCHCompileRecipeJSON = function (inputData) {
 	return JSON.stringify(outputData).replace('"__LCHRecipeCallback__"', inputData.LCHRecipeCallback).replace('"__LCHRecipeCanonicalExampleCallback__"', inputData.LCHRecipeCanonicalExampleCallback);
 };
 
-export const LCHCompileBookmarkletBinaryFor = function (inputData) {
+export const LCHComposeBuildBookmarkletBinaryFor = function (inputData) {
 	if (typeof inputData !== 'string') {
 		throw new Error('LCHErrorInputInvalid');
 	}

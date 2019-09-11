@@ -6,7 +6,7 @@ export let CompileAppBehaviour;
 export let CompileAppLanguageCode;
 
 import { OLSKLocalized } from '../../../_shared/common/global.js';
-import { LCHCompileBoomarkletStringFor, LCHCompileBookmarkletBinaryFor } from './ui-logic.js';
+import { LCHComposeBuildBoomarkletStringFor, LCHComposeBuildBookmarkletBinaryFor } from './ui-logic.js';
 import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../../../dev-launcher/ui-logic.js';
 import { modelDidChange } from '../../model.js'
 
@@ -31,10 +31,10 @@ const mod = {
 	// REACT
 
 	ReactJavascriptComposition() {
-		JavascriptComposition = LCHCompileBoomarkletStringFor({
-			LCHCompileToken_AppStyle: CompileAppStyle,
-			LCHCompileToken_AppBehaviour: CompileAppBehaviour,
-			LCHCompileToken_DocumentObjects: CompileDocuments.map(function (e) {
+		JavascriptComposition = LCHComposeBuildBoomarkletStringFor({
+			LCHComposeBuildToken_AppStyle: CompileAppStyle,
+			LCHComposeBuildToken_AppBehaviour: CompileAppBehaviour,
+			LCHComposeBuildToken_DocumentObjects: CompileDocuments.map(function (e) {
 				return Object.entries(e).map(function (e) {
 					if (e[0] === 'LCHDocumentBody' && !e[1]) { // #purge
 						e[1] = 'return'
@@ -53,13 +53,13 @@ const mod = {
 					return coll;
 				}, {});
 			}),
-			LCHCompileToken_AppLanguageCode: CompileAppLanguageCode,
-			LCHCompileToken_LCHLauncherMode: CompileInitializeModePipeEnabled ? LCHLauncherModePipe() : LCHLauncherModeCommit(),
-			LCHCompileToken_LCHComposeRecipeName: OLSKLocalized('LCHComposeTitle'),
-			LCHCompileToken_LCHComposeRecipeCallbackOutput: window.location.href,
+			LCHComposeBuildToken_AppLanguageCode: CompileAppLanguageCode,
+			LCHComposeBuildToken_LCHLauncherMode: CompileInitializeModePipeEnabled ? LCHLauncherModePipe() : LCHLauncherModeCommit(),
+			LCHComposeBuildToken_LCHComposeRecipeName: OLSKLocalized('LCHComposeTitle'),
+			LCHComposeBuildToken_LCHComposeRecipeCallbackOutput: window.location.href,
 		});
 
-		JavascriptCompositionBinary = LCHCompileBookmarkletBinaryFor(JavascriptComposition);
+		JavascriptCompositionBinary = LCHComposeBuildBookmarkletBinaryFor(JavascriptComposition);
 	},
 
 };
@@ -70,8 +70,8 @@ modelDidChange.subscribe(mod.ModelDidChange);
 <div class="Container">
 
 <p>
-	<label for="LCHCompileModePipeEnabledToggle">{ OLSKLocalized('LCHCompileModePipeEnabledToggleLabelText') }</label>
-	<input type="checkbox" bind:checked={ CompileInitializeModePipeEnabled } on:change={ mod.InterfaceModePipeEnabledToggleDidInput } id="LCHCompileModePipeEnabledToggle" />
+	<label for="LCHComposeBuildModePipeEnabledToggle">{ OLSKLocalized('LCHComposeBuildModePipeEnabledToggleLabelText') }</label>
+	<input type="checkbox" bind:checked={ CompileInitializeModePipeEnabled } on:change={ mod.InterfaceModePipeEnabledToggleDidInput } id="LCHComposeBuildModePipeEnabledToggle" />
 
 </p>
 

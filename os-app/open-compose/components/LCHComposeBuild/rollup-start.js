@@ -1,7 +1,7 @@
 import RollupStart from './stub-view.svelte';
 
-const LCHCompile = new RollupStart({
+const LCHComposeBuild = new RollupStart({
 	target: document.body,
 });
 
-export default LCHCompile;
+export default LCHComposeBuild;

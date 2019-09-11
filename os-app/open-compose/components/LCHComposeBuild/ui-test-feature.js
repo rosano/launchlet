@@ -2,13 +2,13 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHCompileUIFeature', function () {
+describe('LCHComposeBuildUIFeature', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoute.OLSKRoutePath);
 	});
 
-	context('LCHCompileModePipeEnabledToggle', function() {
+	context('LCHComposeBuildModePipeEnabledToggle', function() {
 
 		// let item;
 
@@ -19,7 +19,7 @@ describe('LCHCompileUIFeature', function () {
 		// });
 
 		// it.skip('compiles with LCHLauncherModeCommit if not checked', async function () {
-		// 	browser.assert.input(LCHCompileModePipeEnabledToggle, 'on');
+		// 	browser.assert.input(LCHComposeBuildModePipeEnabledToggle, 'on');
 		// 	await browser.wait({ element: LCHComposeBuildLink });
 
 		// 	deepEqual(item.includes("runMode: 'kLCHLauncherModeCommit'"), true);
@@ -27,7 +27,7 @@ describe('LCHCompileUIFeature', function () {
 		// });
 
 		// it.skip('compiles with Pipe mode if checked', async function () {
-		// 	await browser.check(LCHCompileModePipeEnabledToggle);
+		// 	await browser.check(LCHComposeBuildModePipeEnabledToggle);
 		// 	await browser.wait({ element: LCHComposeBuildLink });
 
 		// 	deepEqual(item.includes("runMode: 'kLCHLauncherModeCommit'"), false);
@@ -35,15 +35,15 @@ describe('LCHCompileUIFeature', function () {
 		// });
 
 		it('defaults to not checked', async function () {
-			deepEqual(browser.query(LCHCompileModePipeEnabledToggle).checked, false);
+			deepEqual(browser.query(LCHComposeBuildModePipeEnabledToggle).checked, false);
 		});
 
 		it.skip('binds LCHSettingComposeModePipeEnabled', async function () {
-			await browser.check(LCHCompileModePipeEnabledToggle);
-			deepEqual(browser.query(LCHCompileModePipeEnabledToggle).checked, true);
+			await browser.check(LCHComposeBuildModePipeEnabledToggle);
+			deepEqual(browser.query(LCHComposeBuildModePipeEnabledToggle).checked, true);
 
 			await browser.reload();
-			deepEqual(browser.query(LCHCompileModePipeEnabledToggle).checked, true);
+			deepEqual(browser.query(LCHComposeBuildModePipeEnabledToggle).checked, true);
 		});
 
 	});

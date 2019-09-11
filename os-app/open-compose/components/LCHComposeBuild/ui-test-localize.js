@@ -15,7 +15,7 @@ describe(`LCHComposeUILocalize-${ languageCode }`, function () {
 	});
 
 	it('localizes interface', function() {
-		browser.assert.text(`label[for=${ LCHCompileModePipeEnabledToggle.replace('#', '') }]`, uLocalized('LCHCompileModePipeEnabledToggleLabelText'));
+		browser.assert.text(`label[for=${ LCHComposeBuildModePipeEnabledToggle.replace('#', '') }]`, uLocalized('LCHComposeBuildModePipeEnabledToggleLabelText'));
 	});
 
 });

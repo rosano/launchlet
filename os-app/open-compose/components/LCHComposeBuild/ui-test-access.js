@@ -3,7 +3,7 @@ import { deepEqual } from 'assert';
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
-	LCHCompileModePipeEnabledToggle: '#LCHCompileModePipeEnabledToggle',
+	LCHComposeBuildModePipeEnabledToggle: '#LCHComposeBuildModePipeEnabledToggle',
 
 	async uCreateItem (browser) {
 		browser.pressButton(LCHComposeCreateButton);
@@ -13,14 +13,14 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHCompileUIAccess', function () {
+describe('LCHComposeBuildUIAccess', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoute.OLSKRoutePath);
 	});
 	
 	it('on startup', function() {
-		browser.assert.elements(LCHCompileModePipeEnabledToggle, 1);
+		browser.assert.elements(LCHComposeBuildModePipeEnabledToggle, 1);
 	});
 
 });
