@@ -1,27 +1,23 @@
 import { deepEqual } from 'assert';
 
-const kDefaultRoutePath = require('../../controller.js').OLSKControllerRoutes().LCHComposeRoute.OLSKRoutePath;
+const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHCompileUILocalize', function () {
+kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
-	['en'].forEach(function (languageCode) {
+const uLocalized = function (inputData) {
+	return OLSKTestingLocalized(inputData, languageCode);
+};
 
-		context(languageCode, function () {
+describe(`LCHComposeUILocalize-${ languageCode }`, function () {
 
-			const uLocalized = function (inputData) {
-				return OLSKTestingLocalized(inputData, languageCode);
-			};
-
-			before(function() {
-				return browser.visit(`${ languageCode }${ kDefaultRoutePath }`);
-			});
-
-			it('localizes interface', function() {
-				browser.assert.text(`label[for=${ LCHCompileModePipeEnabledToggle.replace('#', '') }]`, uLocalized('LCHCompileModePipeEnabledToggleLabelText'));
-			});
-
-		});
-		
+	before(function() {
+		return browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }`);
 	});
+
+	it('localizes interface', function() {
+		browser.assert.text(`label[for=${ LCHCompileModePipeEnabledToggle.replace('#', '') }]`, uLocalized('LCHCompileModePipeEnabledToggleLabelText'));
+	});
+
+});
 
 });
