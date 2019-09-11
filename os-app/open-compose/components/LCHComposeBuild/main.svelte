@@ -20,12 +20,26 @@ const mod = {
 		mod.ReactJavascriptComposition();
 	},
 
+	// VALUE
+
+	_ValuePairExtensionIsVisible: false,
+	ValuePairExtensionIsVisible(inputData) {
+		if (typeof inputData === 'undefined') {
+			return mod._ValuePairExtensionIsVisible;
+		}
+
+		mod._ValuePairExtensionIsVisible = inputData
+	},
+
 	// INTERFACE
 
-	async InterfaceModePipeEnabledToggleDidInput() {
+	InterfaceModePipeEnabledToggleDidInput() {
 		dispatch('BuildDispatchModePipeEnabledToggleDidInput', BuildInitializeModePipeEnabled);
 
 		modelDidChange.set(Date.now());
+	},
+	InterfaceModePairButtonDidClick() {
+		mod.ValuePairExtensionIsVisible(!mod.ValuePairExtensionIsVisible())
 	},
 
 	// REACT
@@ -83,7 +97,13 @@ modelDidChange.subscribe(mod.ModelDidChange);
 	<a id="LCHComposeBuildLink" href="{ JavascriptCompositionBinary }"  accesskey="r">Try it</a>
 </p>
 
-<button class="LCHComposeBuildPairButton">{ OLSKLocalized('LCHComposeBuildPairButtonText') }</button>
+{#if !mod.ValuePairExtensionIsVisible()}
+	<button class="LCHComposeBuildPairButton" on:click={ mod.InterfaceModePairButtonDidClick }>{ OLSKLocalized('LCHComposeBuildPairButtonText') }</button>
+{/if}
+
+{#if mod.ValuePairExtensionIsVisible()}
+	<div class="LCHComposeBuildPairExtension"></div>
+{/if}
 
 </div>
 
