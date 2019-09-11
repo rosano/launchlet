@@ -15,8 +15,6 @@
 	}).watch(__dirname);
 })();
 
-//_ OLSKControllerRoutes
-
 exports.OLSKControllerRoutes = function() {
 	return {
 		LCHVitrineRoute: {

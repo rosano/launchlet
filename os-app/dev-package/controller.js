@@ -1,7 +1,5 @@
 const pathPackage = require('path');
 
-//_ OLSKControllerRoutes
-
 exports.OLSKControllerRoutes = function() {
 	return {
 		LCHPackageRoute: {

@@ -1,5 +1,3 @@
-//_ OLSKControllerRoutes
-
 exports.OLSKControllerRoutes = function() {
 	return {
 		LCHLauncherResultListStubRoute: {
