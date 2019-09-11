@@ -1,10 +1,10 @@
 <script>
 export let BuildPairExtensionPublicKey = null;
 
-const mod = {};
+import { OLSKLocalized } from '../../../../../_shared/common/global.js';
 </script>
 	
-<textarea class="LCHBuildPairExtensionPublicKeyField"></textarea>
+<textarea class="LCHBuildPairExtensionPublicKeyField" placeholder="{ OLSKLocalized('LCHBuildPairExtensionPublicKeyFieldLabel') }"></textarea>
 <button class="LCHBuildPairExtensionSubmitButton"></button>
 
 <style src="./ui-style.css"></style>

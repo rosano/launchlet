@@ -14,6 +14,10 @@ describe(`LCHComposeUILocalize-${ languageCode }`, function () {
 		return browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }`);
 	});
 
+	it('localizes LCHBuildPairExtensionPublicKeyField', function () {
+		browser.assert.attribute(LCHBuildPairExtensionPublicKeyField, 'placeholder', uLocalized('LCHBuildPairExtensionPublicKeyFieldLabel'))
+	});
+
 });
 
 });
