@@ -19,14 +19,6 @@ const mod = {
 
 		mod._ValueFormIsVisible = inputData
 	},
-	_ValueAlertIsVisible: false,
-	ValueAlertIsVisible(inputData) {
-		if (typeof inputData === 'undefined') {
-			return mod._ValueAlertIsVisible;
-		}
-
-		mod._ValueAlertIsVisible = inputData
-	},
 
 	// INTERFACE
 
