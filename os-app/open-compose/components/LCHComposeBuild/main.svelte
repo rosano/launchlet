@@ -24,8 +24,8 @@ const mod = {
 		mod.ReactJavascriptComposition();
 	},
 
-	async BuildPairExtensionDispatchPublicKeyUpdate (inputData) {;
-		await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposePublicKey', inputData.detail)
+	BuildPairExtensionDispatchPublicKeyUpdate (inputData) {
+		mod.CommandStorePublicKey(inputData.detail)
 	},
 
 	// VALUE
@@ -58,6 +58,14 @@ const mod = {
 	},
 	InterfaceModePairButtonDidClick() {
 		mod.ValuePairExtensionIsVisible(!mod.ValuePairExtensionIsVisible())
+	},
+
+	// COMMANd
+
+	async CommandStorePublicKey(inputData) {
+		await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposePublicKey', inputData)
+		
+		mod.ValuePublicKey(inputData)
 	},
 
 	// REACT
