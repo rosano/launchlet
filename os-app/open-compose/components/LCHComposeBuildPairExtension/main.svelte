@@ -35,7 +35,7 @@ const mod = {
 
 	CommandValidateInput () {
 		if (!LCHComposeBuildPairExtensionPublicKeyIsValid(BuildPairExtensionPublicKey.trim())) {
-			return mod.ValueAlertIsVisible(true)
+			return window.alert('hello');
 		};
 
 		mod.ValueFormIsVisible(false)
@@ -45,10 +45,6 @@ const mod = {
 </script>
 
 {#if mod._ValueFormIsVisible}
-	{#if mod._ValueAlertIsVisible}
-		<p class="LCHBuildPairExtensionErrorAlert"></p>
-	{/if}
-
 	<textarea class="LCHBuildPairExtensionPublicKeyField" placeholder="{ OLSKLocalized('LCHBuildPairExtensionPublicKeyFieldLabel') }" bind:value={ BuildPairExtensionPublicKey } ></textarea>
 	<button class="LCHBuildPairExtensionSubmitButton" on:click={ mod.InterfaceSubmitButtonDidClick }>{ OLSKLocalized('LCHBuildPairExtensionSubmitButtonLabel') }</button>
 {/if}

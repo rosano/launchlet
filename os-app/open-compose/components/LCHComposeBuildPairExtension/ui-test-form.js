@@ -9,14 +9,19 @@ describe('LCHComposeBuildPairExtensionUIForm', function () {
 	});
 
 	context('SubmitInvalid', function testSubmitInvalid () {
-		
+
+		let didAlert = false;
+
 		before(function () {
-			browser.click(LCHBuildPairExtensionSubmitButton)
-			return browser.wait({ elements: LCHBuildPairExtensionErrorAlert })
+			return browser.OLSKAlert(function () {
+				browser.pressButton(LCHBuildPairExtensionSubmitButton)
+			}, function () {
+				didAlert = true;
+			});
 		});
 	
-		it('shows LCHBuildPairExtensionErrorAlert', function() {
-			browser.assert.elements(LCHBuildPairExtensionErrorAlert, 1);
+		it('alerts', function() {
+			deepEqual(didAlert, true);
 		});
 	
 	});
@@ -26,11 +31,6 @@ describe('LCHComposeBuildPairExtensionUIForm', function () {
 		before(function () {
 			browser.fill(LCHBuildPairExtensionPublicKeyField, ' alfa ') // #spec trim
 			browser.click(LCHBuildPairExtensionSubmitButton)
-			return browser.wait({ elements: LCHBuildPairExtensionErrorAlert })
-		});
-	
-		it('hides LCHBuildPairExtensionErrorAlert', function() {
-			browser.assert.elements(LCHBuildPairExtensionErrorAlert, 0);
 		});
 		
 		it('hides LCHBuildPairExtensionPublicKeyField', function() {

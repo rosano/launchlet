@@ -41,6 +41,24 @@
 		});
 	};
 
+	Browser.extend(function(browser) {
+	  browser.on('alert', function(dialog) {
+	    return browser.OLSKAlertCallback ? browser.OLSKAlertCallback(dialog) : dialog;
+	  });
+	});
+	
+	Browser.prototype.OLSKAlert = async function(param1, param2) {
+		let browser = this;
+		return await new Promise(async function (resolve, reject) {
+			browser.OLSKAlertCallback = function (dialog) {
+				delete browser.OLSKAlertCallback;
+				return resolve(param2 ? param2(dialog) : dialog);
+			};
+
+			param1();
+		});
+	};
+
 	global.OLSKBrowser = Browser;
 
 	global.browser = new OLSKBrowser();

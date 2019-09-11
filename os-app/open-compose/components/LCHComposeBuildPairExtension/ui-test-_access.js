@@ -3,7 +3,6 @@ import { deepEqual } from 'assert';
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
-	LCHBuildPairExtensionErrorAlert: '.LCHBuildPairExtensionErrorAlert',
 	LCHBuildPairExtensionPublicKeyField: '.LCHBuildPairExtensionPublicKeyField',
 	LCHBuildPairExtensionSubmitButton: '.LCHBuildPairExtensionSubmitButton',
 }).map(function (e) {
@@ -14,10 +13,6 @@ describe('LCHComposeBuildPairExtensionUIAccess', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoute.OLSKRoutePath);
-	});
-	
-	it('hides LCHBuildPairExtensionErrorAlert', function() {
-		browser.assert.elements(LCHBuildPairExtensionErrorAlert, 0);
 	});
 	
 	it('shows LCHBuildPairExtensionPublicKeyField', function() {
