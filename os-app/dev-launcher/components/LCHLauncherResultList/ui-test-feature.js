@@ -1,5 +1,5 @@
 import { deepEqual } from 'assert';
-const kDefaultRoutePath = '/components/LCHLauncherResultList';
+const kDefaultRoutePath = '/stubs/LCHLauncherResultList';
 
 const LCHLauncherResultList = '.LCHLauncherResultList';
 const LCHLauncherResultListItem = '.LCHLauncherResultListItem';

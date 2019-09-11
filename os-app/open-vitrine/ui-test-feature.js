@@ -7,7 +7,7 @@ describe('LCHVitrineUIFeature', function () {
 context('LCHVitrineDemoButtonCommit', function testLCHVitrineDemoButtonCommit () {
 
 	before(function() {
-		return browser.visit(kDefaultRoutePath.OLSKRoutePath);
+		return browser.visit(kDefaultRoute.OLSKRoutePath);
 	});
 	
 	it('shows launcher', async function() {

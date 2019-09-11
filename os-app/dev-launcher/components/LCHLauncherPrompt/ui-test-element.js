@@ -1,6 +1,6 @@
 import { deepEqual } from 'assert';
 
-const kDefaultRoutePath = '/components/LCHLauncherPrompt';
+const kDefaultRoutePath = '/stubs/LCHLauncherPrompt';
 
 const LCHLauncherPrompt = '.LCHLauncherPrompt';
 const LCHLauncherPromptItemSelected = '.LCHLauncherZoneInput .LCHLauncherPipeItem';

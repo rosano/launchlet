@@ -1,7 +1,7 @@
 exports.OLSKControllerRoutes = function() {
 	return {
-		LCHLauncherPipeItemRoute: {
-			OLSKRoutePath: '/components/LCHLauncherPipeItem',
+		LCHLauncherPipeItemStubRoute: {
+			OLSKRoutePath: '/stubs/LCHLauncherPipeItem',
 			OLSKRouteMethod: 'get',
 			OLSKRouteFunction: function(req, res, next) {
 				return res.render(req.OLSKLive.OLSKLivePathJoin(__dirname, 'stub-view'));
