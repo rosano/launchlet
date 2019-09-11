@@ -19,5 +19,5 @@ const mod = {
 <p>
 	<strong>BuildPairExtensionDispatchPublicKeyUpdate</strong>
 	<span id="LCHComposeBuildPairExtensionDispatchPublicKeyUpdate">0</span>
-	<span id="LCHComposeBuildPairExtensionDispatchPublicKeyUpdateText"></span>
+	<span id="LCHComposeBuildPairExtensionDispatchPublicKeyUpdateText">undefined</span>
 </p>

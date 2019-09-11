@@ -22,7 +22,7 @@ describe('LCHComposeBuildPairExtensionUIForm', function () {
 		
 		it('sends no BuildPairExtensionDispatchPublicKeyUpdate', function() {
 			browser.assert.text('#LCHComposeBuildPairExtensionDispatchPublicKeyUpdate', '0');
-			browser.assert.text('#LCHComposeBuildPairExtensionDispatchPublicKeyUpdateText', '');
+			browser.assert.text('#LCHComposeBuildPairExtensionDispatchPublicKeyUpdateText', 'undefined');
 		});
 	
 	});
