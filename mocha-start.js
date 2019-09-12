@@ -7,61 +7,7 @@
 
 	Browser.localhost('loc.tests', 3000);
 	
-	Browser.prototype.OLSKFireKeyboardEvent = function(target, keyCode, eventOptions = {}) {
-		const event = this.window.document.createEvent('HTMLEvents');
-		event.initEvent('keydown', true, true);
-		event.which = event.keyCode = event.key = event.code = keyCode;
-
-		target = typeof target === 'string' ? this.query(target) : target;
-
-		if (!target) {
-			throw new Error('no target');
-		}
-
-		target.dispatchEvent(Object.assign(event, eventOptions));
-
-		return this._wait(null);
-	};
-
-	Browser.extend(function(browser) {
-	  browser.on('confirm', function(dialog) {
-	    return browser.OLSKConfirmCallback ? browser.OLSKConfirmCallback(dialog) : dialog;
-	  });
-	});
-	
-	Browser.prototype.OLSKConfirm = async function(param1, param2) {
-		let browser = this;
-		return await new Promise(async function (resolve, reject) {
-			browser.OLSKConfirmCallback = function (dialog) {
-				delete browser.OLSKConfirmCallback;
-
-				return resolve(param2 ? param2(dialog) : dialog);
-			};
-
-			param1();
-		});
-	};
-
-	Browser.extend(function(browser) {
-	  browser.on('alert', function(dialog) {
-	    return browser.OLSKAlertCallback ? browser.OLSKAlertCallback(dialog) : dialog;
-	  });
-	});
-	
-	Browser.prototype.OLSKAlert = function(inputData) {
-		let outputData = undefined;
-
-		let browser = this;
-		browser.OLSKAlertCallback = function (dialog) {
-			delete browser.OLSKAlertCallback;
-
-			outputData = dialog;
-		};
-
-		inputData();
-
-		return outputData;
-	};
+	require('OLSKTesting')._OLSKTestingZombieExtend(Browser);
 
 	global.OLSKBrowser = Browser;
 
