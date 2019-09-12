@@ -36,6 +36,17 @@ describe('LCHComposeBuildUIPair', function () {
 	
 	});
 
+	context('ModelChange', function testModelChange () {
+		
+		it('posts message with LBXPayloadEncryptedData', async function() {
+			deepEqual(typeof (await browser.OLSKMessageAsync(async function () {
+				await browser.check(LCHComposeBuildModePipeEnabledToggle);
+				await browser.wait({ element: LCHComposeBuildModePipeEnabledToggle })
+			})).LBXPayloadEncryptedData, 'string')
+		});
+	
+	});
+
 	context('RemoveKeys', function testRemoveKeys () {
 		
 		it('posts no message', async function() {

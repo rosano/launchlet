@@ -112,6 +112,12 @@ const mod = {
 		});
 
 		JavascriptCompositionBinary = LCHComposeBuildBookmarkletBinaryFor(JavascriptComposition);
+
+		if (!mod.ValuePublicKey()) {
+			return;
+		};
+
+		mod.CommandSendPayload()
 	},
 
 	// SETUP
