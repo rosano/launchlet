@@ -1,10 +1,13 @@
 <script>
 export let BuildPairExtensionPublicKey = '';
-export const DispatchSendPayload = function(inputData) {
-	mod.CommandPostPayload(inputData)
+export const DispatchSendPayload = function(param1, param2) {
+	mod.CommandPostPayload(param1)
+
+	mod.ValuePayloadHash(param2)
 };
 
 import { OLSKLocalized, _LCHIsTestingBehaviour } from '../../../_shared/common/global.js';
+import { LCHResponseIsValid } from './logic.js';
 import { LCHComposeBuildPairExtensionPublicKeyIsValid } from './ui-logic.js';
 
 import { createEventDispatcher } from 'svelte';
@@ -44,6 +47,14 @@ const mod = {
 
 		mod._ValueStatus = inputData
 	},
+	_ValuePayloadHash: undefined,
+	ValuePayloadHash(inputData) {
+		if (typeof inputData === 'undefined') {
+			return mod._ValuePayloadHash;
+		}
+
+		mod._ValuePayloadHash = inputData
+	},
 
 	// INTERFACE
 
@@ -66,11 +77,11 @@ const mod = {
 		dispatch('BuildPairExtensionDispatchPublicKeyUpdate', inputData);
 	},
 	CommandValidateMessageData (inputData) {
-		if (typeof inputData !== 'object' || inputData === null) {
+		if (!LCHResponseIsValid(inputData)) {
 			return;
-		}
+		};
 
-		mod.ValueStatus(inputData.LBXMessageResponse === 'bravo' ? 'kStatusSuccess' : 'kStatusFailed')
+		mod.ValueStatus(inputData.LCHResponseString === mod.ValuePayloadHash() ? 'kStatusSuccess' : 'kStatusFailed')
 	},
 	CommandPostPayload (inputData) {
 		window.postMessage({
