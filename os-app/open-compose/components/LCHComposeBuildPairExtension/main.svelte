@@ -1,5 +1,8 @@
 <script>
 export let BuildPairExtensionPublicKey = '';
+export const DispatchSendPayload = function(inputData) {
+	mod.CommandPostPayload(inputData)
+};
 
 import { OLSKLocalized, _LCHIsTestingBehaviour } from '../../../_shared/common/global.js';
 import { LCHComposeBuildPairExtensionPublicKeyIsValid } from './ui-logic.js';
@@ -68,6 +71,11 @@ const mod = {
 		}
 
 		mod.ValueStatus(inputData.LBXMessageResponse === 'bravo' ? 'kStatusSuccess' : 'kStatusFailed')
+	},
+	CommandPostPayload (inputData) {
+		window.postMessage({
+			LBXPayloadEncryptedData: inputData,
+		}, window.location.href);
 	},
 
 }

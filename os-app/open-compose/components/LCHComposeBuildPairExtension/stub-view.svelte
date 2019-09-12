@@ -5,7 +5,7 @@ const mod = {
 
 	StubBuildPairExtensionDispatchPublicKeyUpdate (inputData) {
 		window.LCHComposeBuildPairExtensionDispatchPublicKeyUpdate.innerHTML = parseInt(window.LCHComposeBuildPairExtensionDispatchPublicKeyUpdate.innerHTML) + 1;	
-		window.LCHComposeBuildPairExtensionDispatchPublicKeyUpdateText.innerHTML = inputData.detail;	
+		window.LCHComposeBuildPairExtensionDispatchPublicKeyUpdateText.innerHTML = inputData.detail;
 	},
 
 };

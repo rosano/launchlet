@@ -67,6 +67,12 @@ const mod = {
 		
 		mod.ValuePublicKey(inputData)
 	},
+	_LCHComposeBuildPairExtension: undefined,
+	CommandSendPayload() {
+		mod._LCHComposeBuildPairExtension.DispatchSendPayload(cryptico.encrypt(JSON.stringify({
+				LBXPayloadBookmarklet: JavascriptComposition,
+			}), mod.ValuePublicKey()).cipher)
+	},
 
 	// REACT
 
@@ -145,7 +151,7 @@ mod.LifecycleComponentWillMount();
 {/if}
 
 {#if mod.ValuePairExtensionIsVisible()}
-	<LCHComposeBuildPairExtension BuildPairExtensionPublicKey={ mod._ValuePublicKey } on:BuildPairExtensionDispatchPublicKeyUpdate={ mod.BuildPairExtensionDispatchPublicKeyUpdate } />
+	<LCHComposeBuildPairExtension BuildPairExtensionPublicKey={ mod._ValuePublicKey } on:BuildPairExtensionDispatchPublicKeyUpdate={ mod.BuildPairExtensionDispatchPublicKeyUpdate } bind:this={ mod._LCHComposeBuildPairExtension } />
 {/if}
 
 </div>
