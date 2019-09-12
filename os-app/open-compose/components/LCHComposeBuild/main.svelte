@@ -25,7 +25,7 @@ const mod = {
 	},
 
 	BuildPairExtensionDispatchPublicKeyUpdate (inputData) {
-		mod.CommandStorePublicKey(inputData.detail)
+		mod.CommandUpdatePublicKey(inputData.detail)
 	},
 
 	// VALUE
@@ -60,9 +60,9 @@ const mod = {
 		mod.ValuePairExtensionIsVisible(!mod.ValuePairExtensionIsVisible())
 	},
 
-	// COMMANd
+	// COMMAND
 
-	async CommandStorePublicKey(inputData) {
+	async CommandUpdatePublicKey(inputData) {
 		await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposePublicKey', inputData)
 		
 		mod.ValuePublicKey(inputData)

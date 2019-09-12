@@ -3,7 +3,7 @@ import Module from './main.svelte';
 
 const mod = {
 
-	BuildPairExtensionDispatchPublicKeyUpdate (inputData) {
+	StubBuildPairExtensionDispatchPublicKeyUpdate (inputData) {
 		window.LCHComposeBuildPairExtensionDispatchPublicKeyUpdate.innerHTML = parseInt(window.LCHComposeBuildPairExtensionDispatchPublicKeyUpdate.innerHTML) + 1;	
 		window.LCHComposeBuildPairExtensionDispatchPublicKeyUpdateText.innerHTML = inputData.detail;	
 	},
@@ -13,7 +13,7 @@ const mod = {
 
 <Module
 	{...Object.fromEntries((new window.URLSearchParams(window.location.search)).entries())}
-	on:BuildPairExtensionDispatchPublicKeyUpdate={ mod.BuildPairExtensionDispatchPublicKeyUpdate }
+	on:BuildPairExtensionDispatchPublicKeyUpdate={ mod.StubBuildPairExtensionDispatchPublicKeyUpdate }
 />
 
 <p>
