@@ -119,8 +119,8 @@ const mod = {
 	SetupEverything() {
 		mod.SetupPublicKey()
 	},
-	async SetupPublicKey() {
-		mod.ValuePublicKey(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposePublicKey'));
+	SetupPublicKey() {
+		LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposePublicKey').then(mod.ValuePublicKey);
 	},
 
 	// LIFECYCLE
@@ -131,9 +131,9 @@ const mod = {
 
 };
 
-modelDidChange.subscribe(mod.ModelDidChange);
-
 mod.LifecycleComponentWillMount();
+
+modelDidChange.subscribe(mod.ModelDidChange);
 </script>
 	
 <div class="Container">
