@@ -66,6 +66,12 @@ const mod = {
 		await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposePublicKey', inputData)
 		
 		mod.ValuePublicKey(inputData)
+
+		if (!inputData) {
+			return;
+		};
+
+		mod.CommandSendPayload()
 	},
 	_LCHComposeBuildPairExtension: undefined,
 	CommandSendPayload() {
