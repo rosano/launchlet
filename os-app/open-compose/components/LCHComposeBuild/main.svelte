@@ -65,7 +65,7 @@ const mod = {
 	async CommandUpdatePublicKey(inputData) {
 		await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposePublicKey', inputData)
 		
-		mod.ValuePublicKey(inputData)
+		mod.ValuePublicKey(JSON.parse(inputData || 'null'))
 
 		if (!inputData) {
 			return;
@@ -74,11 +74,12 @@ const mod = {
 		mod.CommandSendPayload()
 	},
 	_LCHComposeBuildPairExtension: undefined,
-	CommandSendPayload() {
-		mod._CommandEncrypt(JSON.stringify({
+	async CommandSendPayload() {
+		const payloadHash = Math.random().toString();
+		mod._LCHComposeBuildPairExtension.DispatchSendPayload(await mod._CommandEncrypt(JSON.stringify({
 			LBXPayloadBookmarklet: JavascriptComposition,
-			LBXPayloadHash: Math.random().toString(),
-		}), mod.ValuePublicKey()).then(mod._LCHComposeBuildPairExtension.DispatchSendPayload)
+			LBXPayloadHash: payloadHash,
+		}), mod.ValuePublicKey()), payloadHash)
 	},
 	async _CommandEncrypt (param1, param2) {
 		return new Promise(function (resolve, reject) {
@@ -134,7 +135,7 @@ const mod = {
 		mod.SetupPublicKey()
 	},
 	async SetupPublicKey() {
-		mod.ValuePublicKey(JSON.parse(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposePublicKey')));
+		mod.ValuePublicKey(JSON.parse(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposePublicKey') || 'null'));
 	},
 
 	// LIFECYCLE
