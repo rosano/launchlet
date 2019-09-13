@@ -1,4 +1,3 @@
-//# ROCOHotfixZombieForUITests
 (function ROCOHotfixSimplecryptoForUITests() {
 	if (process.env.NODE_ENV === 'production') {
 		return;
@@ -33,8 +32,6 @@
 	);
 })();
 
-//# ROCOHotfixULIDForBrowserTesting
-
 (function ROCOHotfixULIDForBrowserTesting() {
 	if (process.env.NODE_ENV === 'production') {
 		return;
@@ -54,8 +51,6 @@
 			'export { replaceCharAt, incrementBase32, randomChar, encodeTime, encodeRandom, decodeTime, detectPrng, factory, monotonicFactory };')
 	);
 })();
-
-//# OLSKPostinstallExternalAssets
 
 (function OLSKPostinstallExternalAssets() {
 	const OLSKAssets = require('./node_modules/OLSKApp/modules/OLSKAssets/main.js');
@@ -78,8 +73,6 @@
 		'OLSKReloadButton',
 	], pathPackage.join(__dirname, 'node_modules'), pathPackage.join(__dirname, 'os-app/_shared/__external'));
 })();
-
-//# OLSKPostinstallRollup
 
 (function OLSKPostinstallRollup() {
 	if (process.env.NODE_ENV !== 'production') {
