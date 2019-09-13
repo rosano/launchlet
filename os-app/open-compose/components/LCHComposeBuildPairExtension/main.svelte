@@ -81,7 +81,7 @@ const mod = {
 			return;
 		};
 
-		mod.ValueStatus(inputData.LBXResponseHash === mod.ValuePayloadHash() ? 'kStatusSuccess' : 'kStatusFailed')
+		mod.ValueStatus(inputData.LBXResponseHash === (_LCHIsTestingBehaviour() ? 'LBX_TESTING_RESPONSE_HASH' : mod.ValuePayloadHash()) ? 'kStatusSuccess' : 'kStatusFailed')
 	},
 	CommandPostPayload (inputData) {
 		window.postMessage({

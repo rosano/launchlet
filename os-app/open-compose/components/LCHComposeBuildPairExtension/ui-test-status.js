@@ -30,7 +30,7 @@ describe('LCHComposeBuildPairExtensionUIStatus', function () {
 		
 		before(function () {
 			browser.evaluate(`window.postMessage({
-				LBXResponseHash: 'bravo',
+				LBXResponseHash: 'LBX_TESTING_RESPONSE_HASH',
 			}, window.location.href)`)
 		});
 		
