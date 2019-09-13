@@ -34,7 +34,7 @@ Object.entries({
 	LCHComposeFormIsAutomaticField: '#LCHComposeFormIsAutomaticField',
 
 
-	LCHComposeBuildLink: '#LCHComposeBuildLink',
+	LCHComposeBuildAnchor: '#LCHComposeBuildAnchor',
 
 	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
 
@@ -65,8 +65,8 @@ describe('LCHComposeUIAccess', function () {
 		browser.assert.elements(LCHComposeDetailToolbar, 0);
 		browser.assert.elements(LCHComposeDetailFormContainer, 0);
 
-		browser.assert.elements(LCHComposeBuildLink, 1);
-		browser.assert.attribute(LCHComposeBuildLink, 'accesskey', 'r');
+		browser.assert.elements(LCHComposeBuildAnchor, 1);
+		browser.assert.attribute(LCHComposeBuildAnchor, 'accesskey', 'r');
 
 		browser.assert.elements(LCHLauncherFilterInput, 0);
 	});
@@ -155,7 +155,7 @@ describe('LCHComposeUIAccess', function () {
 	});
 
 	it.skip('on run', async function() {
-		browser.click(LCHComposeBuildLink);
+		browser.click(LCHComposeBuildAnchor);
 		await browser.wait({ element: LCHLauncherFilterInput });
 
 		browser.assert.elements(LCHLauncherFilterInput, 1);

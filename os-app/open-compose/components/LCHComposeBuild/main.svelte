@@ -164,7 +164,7 @@ modelDidChange.subscribe(mod.ModelDidChange);
 </p>
 
 <p>
-	<a id="LCHComposeBuildLink" href="{ JavascriptCompositionBinary }"  accesskey="r">Try it</a>
+	<a id="LCHComposeBuildAnchor" href="{ JavascriptCompositionBinary }"  accesskey="r">Try it</a>
 </p>
 
 {#if !mod.ValuePairExtensionIsVisible()}

@@ -22,8 +22,8 @@ describe('LCHComposeUILocalize', function () {
 
 				browser.assert.text(LCHComposeDetailPlaceholderContainer, uLocalized('LCHComposeDetailPlaceholderText'));
 
-				browser.assert.text(LCHComposeBuildLink, 'Try it');
-				// deepEqual(browser.query(LCHComposeBuildLink).href.slice(0, 11), 'javascript:');
+				browser.assert.text(LCHComposeBuildAnchor, 'Try it');
+				// deepEqual(browser.query(LCHComposeBuildAnchor).href.slice(0, 11), 'javascript:');
 				// deepEqual(item.href.includes('Launchlet'), true);
 			});
 
