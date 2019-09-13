@@ -105,6 +105,7 @@ window.addEventListener('message', mod.MessageReceived, false);
 {/if}
 
 {#if mod.ValueStatus() === 'kStatusWaiting' }
+	<span class="LCHBuildPairExtensionStatusWaiting">{ OLSKLocalized('LCHBuildPairExtensionStatusWaitingText') }</span>
 {/if}
 
 {#if mod.ValueStatus() === 'kStatusFailed' }

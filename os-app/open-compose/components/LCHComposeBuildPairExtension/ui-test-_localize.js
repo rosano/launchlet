@@ -22,10 +22,14 @@ describe(`LCHComposeUILocalize-${ languageCode }`, function () {
 		browser.assert.text(LCHBuildPairExtensionSubmitButton, uLocalized('LCHBuildPairExtensionSubmitButtonLabel'))
 	});
 
-	it('localizes alert', function () {
+	it('localizes LCHBuildPairExtensionAlert', function () {
 		deepEqual(browser.OLSKAlert(function () {
 			browser.pressButton(LCHBuildPairExtensionSubmitButton)
 		}), uLocalized('LCHBuildPairExtensionAlertText'))
+	});
+
+	it('localizes LCHBuildPairExtensionStatusWaiting', function () {
+		browser.assert.text(LCHBuildPairExtensionStatusWaiting, uLocalized('LCHBuildPairExtensionStatusWaitingText'))
 	});
 
 	context('SubmitValid', function testSubmitValid () {
