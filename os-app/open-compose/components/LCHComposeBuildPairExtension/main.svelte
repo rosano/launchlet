@@ -109,6 +109,7 @@ window.addEventListener('message', mod.MessageReceived, false);
 {/if}
 
 {#if mod.ValueStatus() === 'kStatusFailed' }
+	<span class="LCHBuildPairExtensionStatusFailed">{ OLSKLocalized('LCHBuildPairExtensionStatusFailedText') }</span>
 {/if}
 
 </div>

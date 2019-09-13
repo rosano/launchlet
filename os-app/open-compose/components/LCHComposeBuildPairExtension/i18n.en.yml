@@ -3,3 +3,4 @@ LCHBuildPairExtensionSubmitButtonLabel: Submit
 LCHBuildPairExtensionUnpairButtonText: Unpair
 LCHBuildPairExtensionAlertText: Input invalid
 LCHBuildPairExtensionStatusWaitingText: Waiting
+LCHBuildPairExtensionStatusFailedText: Failed

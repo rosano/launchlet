@@ -45,6 +45,20 @@ describe(`LCHComposeUILocalize-${ languageCode }`, function () {
 	
 	});
 
+	context('Failed', function testFailed () {
+		
+		before(function () {
+			browser.evaluate(`window.postMessage({
+				LBXResponseHash: 'alfa',
+			}, window.location.href)`)
+		});
+		
+		it('localizes LCHBuildPairExtensionStatusFailed', function() {
+			browser.assert.text(LCHBuildPairExtensionStatusFailed, uLocalized('LCHBuildPairExtensionStatusFailedText'))
+		});
+	
+	});
+
 });
 
 });
