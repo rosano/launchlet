@@ -10,7 +10,7 @@ Object.entries({
 	LCHBuildPairExtensionStatusFailed: '.LCHBuildPairExtensionStatusFailed',
 	LCHBuildPairExtensionStatusFailedError: '.LCHBuildPairExtensionStatusFailedError',
 	
-	LCHBuildPairExtensionUnpairButton: '.LCHBuildPairExtensionUnpairButton',
+	LCHBuildPairExtensionDeleteKeyButton: '.LCHBuildPairExtensionDeleteKeyButton',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -41,8 +41,8 @@ describe('LCHComposeBuildPairExtensionUIAccess', function () {
 		browser.assert.elements(LCHBuildPairExtensionStatusFailedError, 0);
 	});
 	
-	it('hides LCHBuildPairExtensionUnpairButton', function() {
-		browser.assert.elements(LCHBuildPairExtensionUnpairButton, 0);
+	it('hides LCHBuildPairExtensionDeleteKeyButton', function() {
+		browser.assert.elements(LCHBuildPairExtensionDeleteKeyButton, 0);
 	});
 
 	context('SubmitValid', function testSubmitValid () {
@@ -52,8 +52,8 @@ describe('LCHComposeBuildPairExtensionUIAccess', function () {
 			browser.click(LCHBuildPairExtensionSubmitButton)
 		});
 		
-		it('shows LCHBuildPairExtensionUnpairButton', function() {
-			browser.assert.elements(LCHBuildPairExtensionUnpairButton, 1);
+		it('shows LCHBuildPairExtensionDeleteKeyButton', function() {
+			browser.assert.elements(LCHBuildPairExtensionDeleteKeyButton, 1);
 		});
 	
 	});

@@ -28,7 +28,7 @@ describe('LCHComposeBuildUIPair', function () {
 		it('posts message with LBXPayloadEncryptedData', async function() {
 			deepEqual(typeof (await browser.OLSKMessageAsync(function () {
 				browser.click(LCHBuildPairExtensionSubmitButton)
-				return browser.wait({ element: LCHBuildPairExtensionUnpairButton })
+				return browser.wait({ element: LCHBuildPairExtensionDeleteKeyButton })
 			})).LBXPayloadEncryptedData, 'string')
 		});
 	
@@ -49,7 +49,7 @@ describe('LCHComposeBuildUIPair', function () {
 		
 		it('posts no message', async function() {
 			deepEqual(typeof (await browser.OLSKMessageAsync(function () {
-				browser.click(LCHBuildPairExtensionUnpairButton)
+				browser.click(LCHBuildPairExtensionDeleteKeyButton)
 				return browser.wait({ element: LCHComposeBuildPairButton })
 			})), 'undefined')
 		});

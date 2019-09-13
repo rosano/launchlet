@@ -39,8 +39,8 @@ describe(`LCHComposeUILocalize-${ languageCode }`, function () {
 			browser.click(LCHBuildPairExtensionSubmitButton)
 		});
 		
-		it('localizes LCHBuildPairExtensionUnpairButton', function() {
-			browser.assert.text(LCHBuildPairExtensionUnpairButton, uLocalized('LCHBuildPairExtensionUnpairButtonText'));
+		it('localizes LCHBuildPairExtensionDeleteKeyButton', function() {
+			browser.assert.text(LCHBuildPairExtensionDeleteKeyButton, uLocalized('LCHBuildPairExtensionDeleteKeyButtonText'));
 		});
 	
 	});

@@ -69,7 +69,7 @@ const mod = {
 	InterfaceSubmitButtonDidClick () {
 		mod.CommandValidatePublicKey(BuildPairExtensionPublicKey.trim())
 	},
-	InterfaceUnpairButtonDidClick () {
+	InterfaceDeleteKeyButtonDidClick () {
 		dispatch('BuildPairExtensionDispatchPublicKeyUpdate', '');
 	},
 
@@ -113,7 +113,7 @@ window.addEventListener('message', mod.MessageReceived, false);
 {/if}
 
 {#if !mod.ValueFormIsVisible()}
-	<button class="LCHBuildPairExtensionUnpairButton" on:click={ mod.InterfaceUnpairButtonDidClick }>{ OLSKLocalized('LCHBuildPairExtensionUnpairButtonText') }</button>
+	<button class="LCHBuildPairExtensionDeleteKeyButton" on:click={ mod.InterfaceDeleteKeyButtonDidClick }>{ OLSKLocalized('LCHBuildPairExtensionDeleteKeyButtonText') }</button>
 {/if}
 
 {#if mod.ValueStatus() === 'kStatusWaiting' }
