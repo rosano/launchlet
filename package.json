@@ -1,6 +1,5 @@
 {
   "scripts": {
-    "install": "git clone --depth 1 https://github.com/wwwtyro/cryptico.git node_modules/cryptico",
     "preinstall": "node ./package-preinstall.js",
     "postinstall": "node ./package-postinstall.js",
     
@@ -67,6 +66,9 @@
     "// LCHVitrine content": null,
     "marked": "latest",
     "OLSKString": "olsk/OLSKString",
+
+    "// WEBCRYPTO": null,
+    "simplecrypto": "encryb/simplecrypto",
 
     "// I sacrifice myself for the commas of others": null
   },

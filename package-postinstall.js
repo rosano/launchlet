@@ -55,7 +55,7 @@
 		'clipboard',
 		'jszip',
 		'file-saver',
-		'cryptico',
+		'simplecrypto',
 
 		// pass tests
 		'OLSKInputWrapper',

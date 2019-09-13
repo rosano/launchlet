@@ -75,9 +75,17 @@ const mod = {
 	},
 	_LCHComposeBuildPairExtension: undefined,
 	CommandSendPayload() {
-		mod._LCHComposeBuildPairExtension.DispatchSendPayload(cryptico.encrypt(JSON.stringify({
-				LBXPayloadBookmarklet: JavascriptComposition,
-			}), mod.ValuePublicKey()).cipher)
+		mod._CommandEncrypt(JSON.stringify({
+			LBXPayloadBookmarklet: JavascriptComposition,
+			LBXPayloadHash: Math.random().toString(),
+		}), mod.ValuePublicKey()).then(mod._LCHComposeBuildPairExtension.DispatchSendPayload)
+	},
+	async _CommandEncrypt (param1, param2) {
+		return new Promise(function (resolve, reject) {
+			return simpleCrypto.asym.importEncryptPublicKey(param2, reject, function (inputData) {
+				return simpleCrypto.asym.encrypt(inputData, (new TextEncoder()).encode(param1), reject, resolve);
+			})
+		})
 	},
 
 	// REACT
@@ -125,8 +133,8 @@ const mod = {
 	SetupEverything() {
 		mod.SetupPublicKey()
 	},
-	SetupPublicKey() {
-		LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposePublicKey').then(mod.ValuePublicKey);
+	async SetupPublicKey() {
+		mod.ValuePublicKey(JSON.parse(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposePublicKey')));
 	},
 
 	// LIFECYCLE
