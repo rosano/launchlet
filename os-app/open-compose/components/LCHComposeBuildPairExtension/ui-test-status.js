@@ -12,7 +12,7 @@ describe('LCHComposeBuildPairExtensionUIStatus', function () {
 		
 		before(function () {
 			browser.evaluate(`window.postMessage({
-				LCHResponseString: 'alfa',
+				LBXResponseHash: 'alfa',
 			}, window.location.href)`)
 		});
 		
@@ -30,7 +30,7 @@ describe('LCHComposeBuildPairExtensionUIStatus', function () {
 		
 		before(function () {
 			browser.evaluate(`window.postMessage({
-				LCHResponseString: 'bravo',
+				LBXResponseHash: 'bravo',
 			}, window.location.href)`)
 		});
 		

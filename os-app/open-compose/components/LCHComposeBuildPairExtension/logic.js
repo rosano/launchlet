@@ -1,10 +1,20 @@
-export const LCHResponseIsValid = function(inputData) {
+export const LBXResponseIsValid = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw 'LCHErrorInputInvalid'
 	}
 
-	if (typeof inputData.LCHResponseString !== 'string') {
+	if (typeof inputData.LBXResponseHash !== 'string') {
 		return false;
+	};
+	
+	if (typeof inputData.LBXResponseError !== 'undefined') {
+		if (typeof inputData.LBXResponseError !== 'string') {
+			return false;
+		};
+
+		if (!inputData.LBXResponseError.trim()) {
+			return false;
+		};
 	};
 	
 	return true;
