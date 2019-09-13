@@ -22,8 +22,12 @@ describe('LCHComposeBuildBoomarkletTemplate', function testLCHComposeBuildBoomar
 
 	it('contains LCHComposeBuildValidBuildTokens', function() {
 		deepEqual(mainModule.LCHComposeBuildValidBuildTokens().filter(function (e) {
-			return mainModule.LCHComposeBuildBoomarkletTemplate.toString().match(e);
+			return mainModule.LCHComposeBuildBoomarkletTemplate().match(e);
 		}), mainModule.LCHComposeBuildValidBuildTokens());
+	});
+
+	it('wraps _LCHComposeBuildBoomarkletTemplate in iife', function() {
+		deepEqual(mainModule.LCHComposeBuildBoomarkletTemplate(), `(${ mainModule._LCHComposeBuildBoomarkletTemplate.toString() })()`);
 	});
 
 });
@@ -66,37 +70,37 @@ describe('LCHComposeBuildBoomarkletStringFor', function testLCHComposeBuildBooma
 	});
 
 	it('replaces wraps', function() {
-		deepEqual(mainModule.LCHComposeBuildBoomarkletStringFor({}, 'OLSK_TESTING'), mainModule.LCHComposeBuildBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2'));
+		deepEqual(mainModule.LCHComposeBuildBoomarkletStringFor({}, 'OLSK_TESTING'), mainModule.LCHComposeBuildBoomarkletTemplate().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2'));
 	});
 
 	it('replaces LCHComposeBuildToken_AppBehaviour', function() {
 		deepEqual(mainModule.LCHComposeBuildBoomarkletStringFor({
 			LCHComposeBuildToken_AppBehaviour: 'alfa',
-		}, 'OLSK_TESTING'), mainModule.LCHComposeBuildBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHComposeBuildToken_AppBehaviour', 'alfa'));
+		}, 'OLSK_TESTING'), mainModule.LCHComposeBuildBoomarkletTemplate().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHComposeBuildToken_AppBehaviour', 'alfa'));
 	});
 
 	it('replaces LCHComposeBuildToken_DocumentObjects', function() {
 		deepEqual(mainModule.LCHComposeBuildBoomarkletStringFor({
 			LCHComposeBuildToken_DocumentObjects: [],
-		}, 'OLSK_TESTING'), mainModule.LCHComposeBuildBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHComposeBuildToken_DocumentObjects', '[]'));
+		}, 'OLSK_TESTING'), mainModule.LCHComposeBuildBoomarkletTemplate().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHComposeBuildToken_DocumentObjects', '[]'));
 	});
 
 	it('replaces LCHComposeBuildToken_AppLanguageCode', function() {
 		deepEqual(mainModule.LCHComposeBuildBoomarkletStringFor({
 			LCHComposeBuildToken_AppLanguageCode: 'alfa',
-		}, 'OLSK_TESTING'), mainModule.LCHComposeBuildBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHComposeBuildToken_AppLanguageCode', 'alfa'));
+		}, 'OLSK_TESTING'), mainModule.LCHComposeBuildBoomarkletTemplate().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHComposeBuildToken_AppLanguageCode', 'alfa'));
 	});
 
 	it('strips sourceMap js', function () {
 		deepEqual(mainModule.LCHComposeBuildBoomarkletStringFor({
 			LCHComposeBuildToken_AppBehaviour: `alfa//# sourceMappingURL=ui-behaviour.js.mapbravo`,
-		}, 'OLSK_TESTING'), mainModule.LCHComposeBuildBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHComposeBuildToken_AppBehaviour', 'alfabravo'));
+		}, 'OLSK_TESTING'), mainModule.LCHComposeBuildBoomarkletTemplate().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHComposeBuildToken_AppBehaviour', 'alfabravo'));
 	});
 
 	it('strips livereload', function () {
 		deepEqual(mainModule.LCHComposeBuildBoomarkletStringFor({
 			LCHComposeBuildToken_AppBehaviour: `alfa(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':1234567890/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');bravo`,
-		}, 'OLSK_TESTING'), mainModule.LCHComposeBuildBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHComposeBuildToken_AppBehaviour', 'alfabravo'));
+		}, 'OLSK_TESTING'), mainModule.LCHComposeBuildBoomarkletTemplate().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHComposeBuildToken_AppBehaviour', 'alfabravo'));
 	});
 
 });
@@ -228,7 +232,7 @@ describe('LCHComposeBuildBookmarkletBinaryFor', function testLCHComposeBuildBook
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHComposeBuildBookmarkletBinaryFor('function() { return; }'), 'javascript:(function()%20%7B%20return%3B%20%7D)();');
+		deepEqual(mainModule.LCHComposeBuildBookmarkletBinaryFor('(function() { return; })()'), 'javascript:(function()%20%7B%20return%3B%20%7D)()');
 	});
 
 });

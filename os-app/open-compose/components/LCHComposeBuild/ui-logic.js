@@ -10,7 +10,7 @@ export const LCHComposeBuildValidBuildTokens = function () {
 	];
 };
 
-export const LCHComposeBuildBoomarkletTemplate = function () {
+export const _LCHComposeBuildBoomarkletTemplate = function () {
 	let _protectFromCompiler = console.log;
 
 	window.LCHBookmarklet = {
@@ -65,6 +65,10 @@ export const LCHComposeBuildBoomarkletTemplate = function () {
 	window.LCHBookmarklet.instanceCreate();
 };
 
+export const LCHComposeBuildBoomarkletTemplate = function () {
+	return `(${ _LCHComposeBuildBoomarkletTemplate.toString() })()`;
+};
+
 export const LCHComposeBuildBoomarkletStringFor = function (inputData, OLSK_TESTING) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
@@ -88,7 +92,7 @@ export const LCHComposeBuildBoomarkletStringFor = function (inputData, OLSK_TEST
 		}
 
 		return coll.replace(item,  itemReplacement);
-	}, LCHComposeBuildBoomarkletTemplate.toString().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2'))
+	}, LCHComposeBuildBoomarkletTemplate().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2'))
 			.replace(`(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':`, '__LIVERELOADSTART__')
 			.replace(`/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');`, '__LIVERELOADEND__')
 			.replace(/__LIVERELOADSTART__.*__LIVERELOADEND__/, '')
@@ -154,5 +158,5 @@ export const LCHComposeBuildBookmarkletBinaryFor = function (inputData) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	return `javascript:(${ encodeURIComponent(inputData) })();`;
+	return `javascript:${ encodeURIComponent(inputData) }`;
 };
