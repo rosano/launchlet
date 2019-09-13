@@ -6,7 +6,7 @@ export let BuildAppBehaviour;
 export let BuildAppLanguageCode;
 
 import LCHComposeBuildPairExtension from '../LCHComposeBuildPairExtension/main.svelte';
-import { OLSKLocalized } from '../../../_shared/common/global.js';
+import { OLSKLocalized, _LCHIsTestingBehaviour } from '../../../_shared/common/global.js';
 import { LCHComposeBuildBoomarkletStringFor, LCHComposeBuildBookmarkletBinaryFor } from './ui-logic.js';
 import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../../../dev-launcher/ui-logic.js';
 import { modelDidChange } from '../../model.js'
@@ -75,11 +75,11 @@ const mod = {
 	},
 	_LCHComposeBuildPairExtension: undefined,
 	async CommandSendPayload() {
-		const payloadHash = Math.random().toString();
-		mod._LCHComposeBuildPairExtension.DispatchSendPayload(await mod._CommandEncrypt(JSON.stringify({
+		const payload = {
 			LBXPayloadBookmarklet: JavascriptComposition,
-			LBXPayloadHash: payloadHash,
-		}), mod.ValuePublicKey()), payloadHash)
+			LBXPayloadHash: Math.random().toString(),
+		};
+		mod._LCHComposeBuildPairExtension.DispatchSendPayload(_LCHIsTestingBehaviour() ? JSON.stringify(payload) : await mod._CommandEncrypt(JSON.stringify(payload), mod.ValuePublicKey()), payload.LBXPayloadHash)
 	},
 	async _CommandEncrypt (param1, param2) {
 		return new Promise(function (resolve, reject) {
