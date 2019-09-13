@@ -8,6 +8,7 @@ Object.entries({
 	
 	LCHBuildPairExtensionStatusWaiting: '.LCHBuildPairExtensionStatusWaiting',
 	LCHBuildPairExtensionStatusFailed: '.LCHBuildPairExtensionStatusFailed',
+	LCHBuildPairExtensionStatusFailedError: '.LCHBuildPairExtensionStatusFailedError',
 	
 	LCHBuildPairExtensionUnpairButton: '.LCHBuildPairExtensionUnpairButton',
 }).map(function (e) {
@@ -34,6 +35,10 @@ describe('LCHComposeBuildPairExtensionUIAccess', function () {
 	
 	it('hides LCHBuildPairExtensionStatusFailed', function() {
 		browser.assert.elements(LCHBuildPairExtensionStatusFailed, 0);
+	});
+		
+	it('hides LCHBuildPairExtensionStatusFailedError', function() {
+		browser.assert.elements(LCHBuildPairExtensionStatusFailedError, 0);
 	});
 	
 	it('hides LCHBuildPairExtensionUnpairButton', function() {

@@ -47,6 +47,14 @@ const mod = {
 
 		mod._ValueStatus = inputData
 	},
+	_ValueStatusFailedError: '',
+	ValueStatusFailedError(inputData) {
+		if (typeof inputData === 'undefined') {
+			return mod._ValueStatusFailedError;
+		}
+
+		mod._ValueStatusFailedError = inputData
+	},
 	_ValuePayloadHash: undefined,
 	ValuePayloadHash(inputData) {
 		if (typeof inputData === 'undefined') {
@@ -82,6 +90,10 @@ const mod = {
 		};
 
 		mod.ValueStatus(inputData.LBXResponseHash === (_LCHIsTestingBehaviour() ? 'LBX_TESTING_RESPONSE_HASH' : mod.ValuePayloadHash()) ? 'kStatusSuccess' : 'kStatusFailed')
+
+		if (mod.ValueStatus() === 'kStatusFailed') {
+			mod.ValueStatusFailedError(inputData.LBXResponseError)
+		};
 	},
 	CommandPostPayload (inputData) {
 		window.postMessage({
@@ -110,6 +122,7 @@ window.addEventListener('message', mod.MessageReceived, false);
 
 {#if mod.ValueStatus() === 'kStatusFailed' }
 	<span class="LCHBuildPairExtensionStatusFailed">{ OLSKLocalized('LCHBuildPairExtensionStatusFailedText') }</span>
+	<span class="LCHBuildPairExtensionStatusFailedError">{ mod.ValueStatusFailedError() }</span>
 {/if}
 
 </div>
