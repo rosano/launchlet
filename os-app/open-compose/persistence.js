@@ -3,6 +3,7 @@ import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 import * as LCHStorageClient from '../_shared/LCHStorageClient/main.js';
 import { LCHStorageModule } from '../_shared/LCHStorageModule/main.js';
 import { LCHDocumentStorage } from '../_shared/LCHDocument/storage.js';
+import { LCHDocumentActionList } from '../_shared/LCHDocument/action.js';
 import { LCHSettingStorage } from '../_shared/LCHSetting/storage.js';
 
 import { LCHComposeSort } from './ui-logic.js';
@@ -26,8 +27,9 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 			return {
 				LCHCollectionStorageGenerator: e,
 				LCHCollectionChangeDelegate: e === LCHDocumentStorage ? {
-					OLSKChangeDelegateAdd: function (inputData) {
-						// console.log('OLSKChangeDelegateAdd', inputData);
+					OLSKChangeDelegateCreate: function (inputData) {
+						// console.log('OLSKChangeDelegateCreate', inputData);
+
 						DocumentsAllStore.update(function (val) {
 							return val.filter(function (e) { // @Hotfix Dropbox sending DelegateAdd
 								return e.LCHDocumentID !== inputData.LCHDocumentID;
@@ -36,23 +38,9 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 
 						modelDidChange.set(Date.now());
 					},
-					OLSKChangeDelegateRemove: function (inputData) {
-						// console.log('OLSKChangeDelegateRemove', inputData);
-
-						if (_DocumentSelected && (_DocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
-							DocumentSelectedStore.set(null);
-						}
-
-						DocumentsAllStore.update(function (val) {
-							return val.filter(function (e) {
-								return e.LCHDocumentID !== inputData.LCHDocumentID;
-							});
-						});
-
-						modelDidChange.set(Date.now());
-					},
 					OLSKChangeDelegateUpdate: function (inputData) {
 						// console.log('OLSKChangeDelegateUpdate', inputData);
+
 						if (_DocumentSelected && (_DocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
 							DocumentSelectedStore.update(function (val) {
 								return Object.assign(val, inputData);
@@ -62,6 +50,21 @@ export const storageClient = LCHStorageClient.LCHStorageClientForModules([
 						DocumentsAllStore.update(function (val) {
 							return val.map(function (e) {
 								return Object.assign(e, e.LCHDocumentID === inputData.LCHDocumentID ? inputData : {});
+							});
+						});
+
+						modelDidChange.set(Date.now());
+					},
+					OLSKChangeDelegateDelete: function (inputData) {
+						// console.log('OLSKChangeDelegateDelete', inputData);
+
+						if (_DocumentSelected && (_DocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
+							DocumentSelectedStore.set(null);
+						}
+
+						DocumentsAllStore.update(function (val) {
+							return val.filter(function (e) {
+								return e.LCHDocumentID !== inputData.LCHDocumentID;
 							});
 						});
 
@@ -86,6 +89,7 @@ remoteStorage.on('ready', async () => {
 	isLoading.set(false);
 
 	await remoteStorage.launchlet.lch_documents.init();
+	DocumentsAllStore.set(await LCHDocumentActionList(storageClient));
 
 	// setupFinalize(); remove loading class
 });

@@ -1,46 +1,11 @@
 import * as LCHDocumentModel from './model.js';
+import * as OLSKRemoteStorage from 'OLSKRemoteStorage';
 
 const kType = 'lch_document';
 const kCollection = 'lch_documents';
 
 export const LCHDocumentStoragePath = function(inputData) {
 	return `${ kCollection }/${ inputData || '' }`;
-};
-
-export const XYZDocumentChangeDelegateMethods = function() {
-	return [
-		'OLSKChangeDelegateCreate',
-		'OLSKChangeDelegateUpdate',
-		'OLSKChangeDelegateDelete',
-		];
-};
-
-export const XYZDocumentChangeDelegateProperty = function(inputData) {
-	if (typeof inputData !== 'object' || inputData === null) {
-		return;
-	}
-
-	if (inputData.origin === 'remote' && typeof inputData.oldValue === 'undefined' && typeof inputData.newValue !== 'undefined') {
-		return 'OLSKChangeDelegateCreate';
-	};
-
-	if (inputData.origin === 'remote' && typeof inputData.oldValue !== 'undefined' && typeof inputData.newValue !== 'undefined') {
-		return 'OLSKChangeDelegateUpdate';
-	};
-
-	if (inputData.origin === 'remote' && typeof inputData.oldValue !== 'undefined' && typeof inputData.newValue === 'undefined') {
-		return 'OLSKChangeDelegateDelete';
-	};
-
-	return;
-};
-
-export const XYZDocumentChangeDelegateInput = function(inputData) {
-	if (XYZDocumentChangeDelegateMethods().indexOf(inputData) === -1) {
-		throw new Error('LCHErrorInputInvalid');
-	}
-
-	return inputData === 'OLSKChangeDelegateDelete' ? 'oldValue' : 'newValue';
 };
 
 export const LCHDocumentStorage = function (privateClient, publicClient, changeDelegate) {
@@ -53,19 +18,17 @@ export const LCHDocumentStorage = function (privateClient, publicClient, changeD
 			return;
 		};
 
-		if (typeof event.oldValue === 'undefined') {
-			return typeof changeDelegate.OLSKChangeDelegateAdd === 'function' ? changeDelegate.OLSKChangeDelegateAdd(LCHDocumentModel.LCHDocumentModelPostJSONParse(event.newValue)) : console.warn('OLSKChangeDelegateAdd not function');
-		}
+		const delegateMethod = OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateProperty(event);
 
-		if (typeof event.newValue === 'undefined') {
-			return typeof changeDelegate.OLSKChangeDelegateRemove === 'function' ? changeDelegate.OLSKChangeDelegateRemove(event.oldValue) : console.warn('OLSKChangeDelegateRemove not function');
-		}
+		if (!delegateMethod) {
+			return;
+		};
 
-		if (JSON.stringify(event.oldValue) !== JSON.stringify(event.newValue)) {
-			return typeof changeDelegate.OLSKChangeDelegateUpdate === 'function' ? changeDelegate.OLSKChangeDelegateUpdate(LCHDocumentModel.LCHDocumentModelPostJSONParse(event.newValue)) : console.warn('OLSKChangeDelegateUpdate not function');
-		}
+		if (typeof changeDelegate[delegateMethod] !== 'function') {
+			return console.warn(`${ delegateMethod } not function`);
+		};
 
-		console.info(event);
+		changeDelegate[delegateMethod](LCHDocumentModel.LCHDocumentModelPostJSONParse(event[OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateInput(delegateMethod)]));
 	});
 
 	return {
@@ -89,7 +52,7 @@ export const LCHDocumentStorage = function (privateClient, publicClient, changeD
 				return privateClient.cache(LCHDocumentStoragePath());
 			},
 			listObjects: function () {
-				return privateClient.getAll(LCHDocumentStoragePath());
+				return privateClient.getAll(LCHDocumentStoragePath(), false);
 			},
 			writeObject: async function (param1, param2) {
 				await privateClient.storeObject(kType, `${ kCollection }/${ param1 }`, LCHDocumentModel.LCHDocumentModelPreJSONSchemaValidate(param2));

@@ -18,7 +18,7 @@ export const LCHSettingStorage = function (privateClient, publicClient, changeDe
 				return privateClient.cache(LCHSettingStoragePath());
 			},
 			listObjects: function () {
-				return privateClient.getAll(LCHSettingStoragePath());
+				return privateClient.getAll(LCHSettingStoragePath(), false);
 			},
 			writeObject: async function (param1, param2) {
 				await privateClient.storeObject(kType, LCHSettingStoragePath(param1), param2);
