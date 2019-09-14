@@ -21,7 +21,8 @@ locals.OLSKPagePublicConstants = {
 <hr>
 
 <%- OLSKStringReplaceTokens(LCHVitrineContent, {
-	LCHVitrineDemoButtonCommitToken: `<button class="LCHVitrineDemoButtonCommit" onclick="LCHVitrineBehaviour.InterfaceDemoButtonCommitDidClick()">${ OLSKLocalized('LCHVitrineDemoButtonText') }</button>`
+	LCHVitrineDemoButtonCommitToken: `<button class="LCHVitrineDemoButtonCommit" onclick="LCHVitrineBehaviour.InterfaceDemoButtonCommitDidClick()">${ OLSKLocalized('LCHVitrineDemoButtonText') }</button>`,
+	LCHVitrineDemoButtonPreviewToken: `<button class="LCHVitrineDemoButtonPreview" onclick="LCHVitrineBehaviour.InterfaceDemoButtonPreviewDidClick()">${ OLSKLocalized('LCHVitrineDemoButtonText') }</button>`,
 }) %>
 
 <%- include('../_shared/common/layout-footer.ejs') %>

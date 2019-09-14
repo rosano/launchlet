@@ -24,6 +24,8 @@ LCHVitrineDemoButtonCommitToken
 
 Presents a list of commands and runs on select, Try jumping through the headings in this document:
 
+LCHVitrineDemoButtonPreviewToken
+
 ## Pipe mode
 
 Organizes items into subjects and verbs. Try

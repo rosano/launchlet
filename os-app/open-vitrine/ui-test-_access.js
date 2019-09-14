@@ -6,6 +6,7 @@ Object.entries({
 	RCSLanguageSwitcher: '#RCSLanguageSwitcher',
 
 	LCHVitrineDemoButtonCommit: '.LCHVitrineDemoButtonCommit',
+	LCHVitrineDemoButtonPreview: '.LCHVitrineDemoButtonPreview',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -24,6 +25,10 @@ describe('LCHVitrineAccess', function () {
 
 		it('shows LCHVitrineDemoButtonCommit', function() {
 			browser.assert.elements(LCHVitrineDemoButtonCommit, 1)
+		});
+
+		it('shows LCHVitrineDemoButtonPreview', function() {
+			browser.assert.elements(LCHVitrineDemoButtonPreview, 1)
 		});
 		
 	});
