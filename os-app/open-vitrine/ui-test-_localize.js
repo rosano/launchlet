@@ -32,6 +32,10 @@ describe(`LCHVitrineLocalize-${ languageCode }`, function () {
 		it('localizes LCHVitrineDemoButtonPreview', function() {
 			browser.assert.text(LCHVitrineDemoButtonPreview, uLocalized('LCHVitrineDemoButtonText'))
 		});
+
+		it('localizes LCHVitrineDemoButtonPipe', function() {
+			browser.assert.text(LCHVitrineDemoButtonPipe, uLocalized('LCHVitrineDemoButtonText'))
+		});
 		
 	});
 
