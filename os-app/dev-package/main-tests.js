@@ -11,10 +11,10 @@ const kTesting = {
 	},
 };
 
-describe('kRunModeDefault', function testkRunModeDefault() {
+describe('kRunModeCommit', function testkRunModeCommit() {
 
 	it('returns LCHLauncherModeCommit', function() {
-		deepEqual(mainModule.kRunModeDefault, LCHLauncherModeCommit());
+		deepEqual(mainModule.kRunModeCommit, LCHLauncherModeCommit());
 	});
 
 });

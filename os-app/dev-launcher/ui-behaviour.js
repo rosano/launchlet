@@ -113,7 +113,7 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 					app = null;
 				},
 				optionsObject: Object.assign({}, {
-					runMode: Launchlet[(new URLSearchParams(window.location.search)).get('runMode') || 'kRunModeDefault'],
+					runMode: Launchlet[(new URLSearchParams(window.location.search)).get('runMode') || 'kRunModeCommit'],
 				}),
 			},
 		});
