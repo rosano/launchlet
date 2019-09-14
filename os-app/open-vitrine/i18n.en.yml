@@ -1,3 +1,5 @@
 LCHVitrineTitle: Launchlet
 LCHVitrineDescription: Generalized interface for keyboard-based interaction
 LCHVitrineDemoButtonText: Demo
+LCHVitrineDemoRecipeNames:
+  LCHVitrineSendEmail: Send email
