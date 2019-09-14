@@ -39,7 +39,9 @@ let languageDictionary = {};
 	}, {});
 
 	global.OLSKTestingLocalized = function(translationConstant, languageCode) {
-		return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, languageDictionary[languageCode]).replace('TRANSLATION_MISSING', '');
+		let outputData = OLSKInternational.OLSKInternationalLocalizedString(translationConstant, languageDictionary[languageCode]);
+
+		return typeof outputData === 'string' ? outputData.replace('TRANSLATION_MISSING', '') : outputData;
 	};
 
 	global.OLSKTestingStringWithFormat = OLSKString.OLSKStringWithFormat;
