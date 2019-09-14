@@ -67,8 +67,9 @@ describe('LCHVitrineDemoCommit', function () {
 		const elementQuery = 'style.LCHVitrinePageColoursRandomize';
 
 		before(async function () {
-			browser.click(LCHVitrineDemoButtonCommit);
 			browser.query('style').remove()
+			
+			browser.click(LCHVitrineDemoButtonCommit);
 			await browser.wait({element: '#LCHLauncherFilterInput'});
 		});
 
