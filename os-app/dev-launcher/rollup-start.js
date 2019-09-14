@@ -1,3 +1,3 @@
-import Main from './main.svelte';
+import RollupStart from './main.svelte';
 
-export default Main;
+export default RollupStart;
