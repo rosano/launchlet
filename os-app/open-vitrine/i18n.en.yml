@@ -3,7 +3,7 @@ LCHVitrineDescription: Generalized interface for keyboard-based interaction
 LCHVitrineDemoButtonText: Demo
 LCHVitrineDemoRecipeNames:
   LCHVitrinePageColoursRandomize: Randomize page colours
-  LCHVitrineRestorePageColours: Restore page colours
+  LCHVitrinePageColoursRestore: Restore page colours
   LCHVitrineCopyPageInfo: Copy page info
   LCHVitrineSendEmail: Send email
   LCHVitrinePageLinksHighlightAdd: Highlight page links

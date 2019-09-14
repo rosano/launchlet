@@ -54,7 +54,7 @@ describe(`LCHVitrineLocalize-${ languageCode }`, function () {
 			browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRandomize);
 		});
 
-		it('localizes LCHVitrineRestorePageColours', async function() {
+		it('localizes LCHVitrinePageColoursRestore', async function() {
 			await uFilter(uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRandomize);
 			
 			browser.click('.LCHLauncherResultListItem');
@@ -62,9 +62,9 @@ describe(`LCHVitrineLocalize-${ languageCode }`, function () {
 
 			browser.click(LCHVitrineDemoButtonCommit);
 			await browser.wait({element: '#LCHLauncherFilterInput'});
-			await uFilter(uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineRestorePageColours);
+			await uFilter(uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRestore);
 
-			browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineRestorePageColours);
+			browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRestore);
 		});
 
 		it('localizes LCHVitrineCopyPageInfo', async function() {

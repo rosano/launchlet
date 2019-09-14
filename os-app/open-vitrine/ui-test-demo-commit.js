@@ -62,7 +62,7 @@ describe('LCHVitrineDemoCommit', function () {
 	
 	});
 
-	context('LCHVitrineRestorePageColours', function () {
+	context('LCHVitrinePageColoursRestore', function () {
 
 		const elementQuery = 'style.LCHVitrinePageColoursRandomize';
 

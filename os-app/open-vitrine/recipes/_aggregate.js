@@ -1,5 +1,5 @@
 import * as LCHVitrinePageColoursRandomize from './LCHVitrinePageColoursRandomize/main.js';
-import * as LCHVitrineRestorePageColours from './LCHVitrineRestorePageColours/main.js';
+import * as LCHVitrinePageColoursRestore from './LCHVitrinePageColoursRestore/main.js';
 import * as LCHVitrineCopyPageInfo from './LCHVitrineCopyPageInfo/main.js';
 import * as LCHVitrineSendEmail from './LCHVitrineSendEmail/main.js';
 
@@ -9,7 +9,7 @@ import * as LCHVitrineMinimalistDateString from './LCHVitrineMinimalistDateStrin
 export const LCHVitrineRecipes = function() {
 	return [].concat.apply([], [
 		LCHVitrinePageColoursRandomize,
-		LCHVitrineRestorePageColours,
+		LCHVitrinePageColoursRestore,
 		LCHVitrineCopyPageInfo,
 		LCHVitrineSendEmail,
 		LCHVitrinePageLinksHighlightAdd,
