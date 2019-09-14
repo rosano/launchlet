@@ -1,5 +1,3 @@
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
-
 export const LCHVitrineRestorePageColoursIsHidden = function() {
 	return !document.querySelector('style.LCHVitrineRandomizePageColours');
 };

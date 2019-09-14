@@ -1,5 +1,3 @@
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
-
 export const LCHVitrineRandomizePageColoursCallback = function() {
 	let element = document.querySelector('style.LCHVitrineRandomizePageColours')
 	
