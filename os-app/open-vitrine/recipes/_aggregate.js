@@ -4,6 +4,7 @@ import * as LCHVitrineCopyPageInfo from './LCHVitrineCopyPageInfo/main.js';
 import * as LCHVitrineSendEmail from './LCHVitrineSendEmail/main.js';
 
 import * as LCHVitrinePageLinksHighlightAdd from './LCHVitrinePageLinksHighlightAdd/main.js';
+import * as LCHVitrinePageLinksHighlightRemove from './LCHVitrinePageLinksHighlightRemove/main.js';
 import * as LCHVitrineMinimalistDateString from './LCHVitrineMinimalistDateString/main.js';
 
 export const LCHVitrineRecipes = function() {
@@ -13,6 +14,7 @@ export const LCHVitrineRecipes = function() {
 		LCHVitrineCopyPageInfo,
 		LCHVitrineSendEmail,
 		LCHVitrinePageLinksHighlightAdd,
+		LCHVitrinePageLinksHighlightRemove,
 		LCHVitrineMinimalistDateString,
 	].map(function (e) {
 		return Object.entries(e).filter(function (e) {
