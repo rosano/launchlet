@@ -1,5 +1,6 @@
 :root {
 	--LCHVitrineBackground: hsla(0, 0%, 0%, 0.01);
+	--LCHVitrineForeground: hsla(0, 0%, 0%, 1.0);
 }
 
 body {
@@ -10,7 +11,8 @@ body {
 
 	font-family: 'Lucida Grande', sans-serif;
 	font-size: 11pt;
-	background: var(--LCHVitrineBackground)
+	background: var(--LCHVitrineBackground);
+	color: var(--LCHVitrineForeground);
 }
 
 h1, h2,  h3 {
