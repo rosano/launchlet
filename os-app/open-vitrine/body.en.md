@@ -29,8 +29,8 @@ LCHVitrineDemoButtonPreviewToken
 ## Pipe mode
 
 Organizes items into subjects and verbs. Try
-- "Wikipedia" and "Search For"
-- ?"date" and "copy to clipboard"
+- `date` and `Copy to clipboard`
+- `Wikipedia` and `Search For`
 - ? active page links
 - ? "current url" "share to pocket"
 - ? wayback machine
