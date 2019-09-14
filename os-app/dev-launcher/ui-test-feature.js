@@ -320,3 +320,27 @@ describe('LCHLauncherFeature', function () {
 	});
 
 });
+
+describe('LCHLauncherTestIsVisible', function testLCHLauncherTestIsVisible () {
+
+	before(async function() {
+		await browser.visit(`${ kDefaultRoutePath }?LCHLauncherTestIsVisible`);
+
+		browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestIsVisible');
+		await browser.wait({element: LCHLauncherListItem});
+	});
+
+	it('hides recipe', function() {
+		browser.assert.elements(LCHLauncherListItem, 1);
+	});
+
+	it('shows on validation', async function() {
+		browser.evaluate(`document.querySelector('input').value = 'LCHLauncherTestIsVisible1'`)
+
+		browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestIsVisible');
+		await browser.wait({element: `${ LCHLauncherListItem }:nth-child(2)`});
+		
+		browser.assert.elements(LCHLauncherListItem, 2);
+	});
+
+});

@@ -76,6 +76,17 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 					LCHRecipeStyle: 'body { background: red; }',
 					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestStyle',
 				}, {
+					LCHRecipeName: 'LCHLauncherTestIsVisible1',
+					LCHRecipeCallback: function () {},
+					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestIsVisible',
+				}, {
+					LCHRecipeName: 'LCHLauncherTestIsVisible2',
+					LCHRecipeCallback: function () {},
+					LCHRecipeIsVisible: function () {
+						return document.querySelector('input').value === 'LCHLauncherTestIsVisible1';
+					},
+					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestIsVisible',
+				}, {
 					LCHRecipeName: 'LCHLauncherTestLongStringAlfaBravoCharlieDeltaEchoFoxtrotGolfHotel',
 					LCHRecipeCallback: function () {},
 					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestLongString',

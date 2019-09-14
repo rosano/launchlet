@@ -305,7 +305,9 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 				return LCHOptionsObject().runMode === LCHLauncherModePreview() ? _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll : [];
 			}
 
-			let results = fuzzysort.go(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText, _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll, {
+			let results = fuzzysort.go(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText, _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll.filter(function (e) {
+				return e.LCHRecipeIsVisible ? e.LCHRecipeIsVisible() : true;
+			}), {
 				key: 'LCHRecipeName',
 			});
 
