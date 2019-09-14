@@ -9,16 +9,16 @@ const uFilter = function (inputData) {
 
 describe('LCHVitrineDemoCommit', function () {
 
-	before(function() {
-		return browser.visit(kDefaultRoute.OLSKRoutePath);
+	beforeEach(async function () {
+		await browser.visit(kDefaultRoute.OLSKRoutePath);
+		
+		browser.click(LCHVitrineDemoButtonCommit);
+		await browser.wait({element: LCHLauncherFilterInput});
 	});
 
 	describe('LCHVitrineSendEmail', function () {
 		
 		it('opens mailto', async function() {
-			browser.click(LCHVitrineDemoButtonCommit);
-			await browser.wait({element: LCHLauncherFilterInput});
-			
 			await uFilter('send');
 
 			deepEqual(browser.OLSKAlert(function () {
