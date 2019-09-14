@@ -1,3 +1,7 @@
+:root {
+	--LCHVitrineBackground: hsla(0, 0%, 0%, 0.01);
+}
+
 body {
 	padding: 10px;
 	max-width: 400px;
@@ -6,6 +10,7 @@ body {
 
 	font-family: 'Lucida Grande', sans-serif;
 	font-size: 11pt;
+	background: var(--LCHVitrineBackground)
 }
 
 h1, h2,  h3 {
