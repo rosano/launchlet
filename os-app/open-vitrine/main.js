@@ -13,6 +13,12 @@ export const mod = {
 		})
 	},
 
+	InterfaceDemoButtonPreviewDidClick() {
+		setTimeout(function () {
+			mod.CommandDemoPreview();
+		})
+	},
+
 	// COMMAND
 
 	CommandDemoCommit() {
@@ -28,6 +34,19 @@ export const mod = {
 				LCHRecipeName: OLSKLocalized('LCHVitrineDemoRecipeNames')[e],
 			});
 		}));
+	},
+
+	CommandDemoPreview() {
+		Launchlet.instanceCreate([].concat.apply([], document.querySelectorAll('h1,h2')).map(function (e) {
+			return {
+				LCHRecipeName: e.textContent,
+				LCHRecipeCallback () {
+					e.scrollIntoView();
+				},
+			};
+		}), {
+			runMode: Launchlet.kRunModePreview,
+		});
 	},
 
 };
