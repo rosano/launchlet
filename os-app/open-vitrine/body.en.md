@@ -29,6 +29,7 @@ LCHVitrineDemoButtonPreviewToken
 ## Pipe mode
 
 Organizes items into subjects and verbs. Try
+- `LCHVitrineTokenPageLinksHighlightAddName` and `Run Command`
 - `LCHVitrineTokenMinimalistDateStringName` and `Large text`
 - `Wikipedia` and `Search For`
 
