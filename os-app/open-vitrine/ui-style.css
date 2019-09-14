@@ -1,6 +1,6 @@
 :root {
-	--LCHVitrineBackground: hsla(0, 0%, 0%, 0.01);
-	--LCHVitrineForeground: hsla(0, 0%, 0%, 1.0);
+	--LCHVitrineBackground: hsl(0, 0%, 97%);
+	--LCHVitrineForeground: hsl(0, 0%, 0%);
 }
 
 body {
