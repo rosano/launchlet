@@ -98,23 +98,6 @@ describe('LCHVitrineDemoCommit', function () {
 	
 	});
 
-	context('LCHVitrineCopyPageInfo', function () {
-
-		before(async function () {
-			browser.click(LCHVitrineDemoButtonCommit);
-			await browser.wait({element: LCHLauncherFilterInput});
-		});
-		
-		it('copies to clipboard', async function() {
-			await uFilter('info');
-
-			deepEqual(browser.OLSKAlert(function () {
-				browser.click('.LCHLauncherResultListItem');
-			}), 'Copied to clipboard')
-		});
-	
-	});
-
 	context('LCHVitrineSendEmail', function () {
 
 		before(async function () {
@@ -128,6 +111,23 @@ describe('LCHVitrineDemoCommit', function () {
 			deepEqual(browser.OLSKAlert(function () {
 				browser.click('.LCHLauncherResultListItem');
 			}), 'mailto:')
+		});
+	
+	});
+
+	context('LCHVitrineCopyPageInfo', function () {
+
+		before(async function () {
+			browser.click(LCHVitrineDemoButtonCommit);
+			await browser.wait({element: LCHLauncherFilterInput});
+		});
+		
+		it('copies to clipboard', async function() {
+			await uFilter('info');
+
+			deepEqual(browser.OLSKAlert(function () {
+				browser.click('.LCHLauncherResultListItem');
+			}), 'Copied to clipboard')
 		});
 	
 	});
