@@ -9,7 +9,7 @@ You can run Launchlet as a bookmarklet, browser extension, or as a [module] in y
 
 The code is open-source and available on [Github].
 
-The project is freely accessible but if you are in a position to give, please [donate] to support its future development.
+The project is freely accessible but if you are in a position to give, please [donate] to support future development.
 
 ## Commit mode
 
@@ -34,7 +34,4 @@ Organizes items into subjects and verbs. Try
 
 LCHVitrineDemoButtonPipeToken
 
-…
-- [donate]
-- made with love
 - [logo]
