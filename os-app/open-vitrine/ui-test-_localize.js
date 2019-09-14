@@ -81,6 +81,25 @@ describe(`LCHVitrineLocalize-${ languageCode }`, function () {
 		
 	});
 
+	context('DemoPipe', function testDemoPipe() {
+
+		beforeEach(async function () {
+			await browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }`);
+			
+			browser.click(LCHVitrineDemoButtonPipe);
+			await browser.wait({element: '.LCHLauncherSubjectPromptPlaceholder'});
+		});
+
+		it('localizes LCHVitrineMinimalistDateString', async function() {
+			browser.OLSKFireKeyboardEvent(browser.window, 'm');
+			browser.OLSKFireKeyboardEvent(browser.window, 'd');
+			await browser.wait({element: '.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem'});
+			
+			browser.assert.text('.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem .LCHLauncherPipeItemTitle', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineMinimalistDateString);
+		});
+		
+	});
+
 });
 
 });

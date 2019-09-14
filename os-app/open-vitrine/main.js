@@ -56,7 +56,11 @@ export const mod = {
 	},
 
 	CommandDemoPipe() {
-		Launchlet.instanceCreate([], {
+		Launchlet.instanceCreate(_LCHVitrineRecipes.map(function (e) {
+			return Object.assign(e, {
+				LCHRecipeName: OLSKLocalized('LCHVitrineDemoRecipeNames')[e.LCHRecipeSignature],
+			});
+		}), {
 			runMode: Launchlet.kRunModePipe,
 		});
 	},
