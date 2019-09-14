@@ -2,7 +2,7 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoutePath = '/launcher?loadRecipes=actions/LCHCopyToClipboard';
 
-describe('LCHCopyToClipboardFeature', function () {
+describe('LCHCopyToClipboardBehaviour', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
@@ -18,7 +18,7 @@ describe('LCHCopyToClipboardFeature', function () {
 		deepEqual(browser.document.activeElement, browser.query(LCHCopyToClipboardButton));
 	});
 	
-	it.skip('closes on click', async function() {
+	it('closes on click', async function() {
 		browser.pressButton(LCHCopyToClipboardButton);
 		await browser.wait({element: LCHCopyToClipboardButton});
 
