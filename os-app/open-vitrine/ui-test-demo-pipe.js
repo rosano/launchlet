@@ -13,15 +13,39 @@ describe('LCHVitrineDemoPipe', function () {
 		return browser.visit(kDefaultRoute.OLSKRoutePath)
 	});
 
-	context('Startup', function testStartup () {
-		
+	context('LCHVitrineHighlightPageLinks', function testLCHVitrineHighlightPageLinks() {
+
+		const elementQuery = 'style.LCHVitrineHighlightPageLinks';
+
 		before(async function () {
 			browser.click(LCHVitrineDemoButtonPipe);
 			await browser.wait({element: '.LCHLauncherSubjectPromptPlaceholder'});
 		});
 		
-		it('shows placeholder', function() {
-			browser.assert.elements('.LCHLauncherSubjectPromptPlaceholder', 1)
+		it('adds style element', async function() {
+			browser.OLSKFireKeyboardEvent(browser.window, 'h');
+			browser.OLSKFireKeyboardEvent(browser.window, 'p');
+			await browser.wait({element: '.LCHLauncherPipeItem'});
+
+			browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
+			await browser.wait({element: elementQuery});
+
+			browser.assert.elements(elementQuery, 2)
+		});
+		
+		it('sets content', function() {
+			deepEqual(browser.query(elementQuery).innerHTML, 'a { background: yellow; }')
+		});
+		
+		it('hides recipe', async function() {
+				browser.click(LCHVitrineDemoButtonPipe);
+				await browser.wait({element: '.LCHLauncherSubjectPromptPlaceholder'});
+
+				browser.OLSKFireKeyboardEvent(browser.window, 'h');
+				browser.OLSKFireKeyboardEvent(browser.window, 'p');
+				await browser.wait({element: '.LCHLauncherPipeItem'});
+
+				browser.assert.elements('.LCHLauncherPipeItem', 0)
 		});
 	
 	});
