@@ -2,9 +2,7 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().LCHVitrineRoute;
 
-describe('LCHVitrineDemo', function () {
-
-context('LCHVitrineDemoButtonCommit', function testLCHVitrineDemoButtonCommit () {
+describe('LCHVitrineDemoCommit', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoute.OLSKRoutePath);
@@ -16,7 +14,5 @@ context('LCHVitrineDemoButtonCommit', function testLCHVitrineDemoButtonCommit ()
 
 		browser.assert.elements(LCHLauncherFilterInput, 1);
 	});
-
-});
 
 });
