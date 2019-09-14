@@ -6,7 +6,7 @@ export let BuildAppBehaviour;
 export let BuildAppLanguageCode;
 
 import LCHComposeBuildPairExtension from '../LCHComposeBuildPairExtension/main.svelte';
-import { OLSKLocalized, _LCHIsTestingBehaviour } from '../../../_shared/common/global.js';
+import { OLSKLocalized, _LCHIsTestingBehaviour, _LCH_DISABLE_ENCRYPTION } from '../../../_shared/common/global.js';
 import { LCHComposeBuildBoomarkletStringFor, LCHComposeBuildBookmarkletBinaryFor } from './ui-logic.js';
 import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../../../dev-launcher/ui-logic.js';
 import { modelDidChange } from '../../model.js'
@@ -82,6 +82,10 @@ const mod = {
 		mod._LCHComposeBuildPairExtension.DispatchSendPayload(_LCHIsTestingBehaviour() ? JSON.stringify(payload) : await mod._CommandEncrypt(JSON.stringify(payload), mod.ValuePublicKey()), payload.LBXPayloadHash)
 	},
 	async _CommandEncrypt (param1, param2) {
+		if (_LCH_DISABLE_ENCRYPTION()) {
+			return Promise.resolve(param1);
+		};
+
 		return new Promise(function (resolve, reject) {
 			return simpleCrypto.asym.importEncryptPublicKey(param2, reject, function (inputData) {
 				return simpleCrypto.asym.encrypt(inputData, (new TextEncoder()).encode(param1), reject, resolve);

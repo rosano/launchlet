@@ -15,3 +15,7 @@ export const _LCHIsTestingBehaviour = function () {
 
 	return navigator.appName === 'Zombie';
 };
+
+export const _LCH_DISABLE_ENCRYPTION = function () {
+	return true;
+};
