@@ -13,9 +13,9 @@ describe('LCHVitrineDemoPipe', function () {
 		return browser.visit(kDefaultRoute.OLSKRoutePath)
 	});
 
-	context('LCHVitrineHighlightPageLinks', function testLCHVitrineHighlightPageLinks() {
+	context('LCHVitrinePageLinksHighlightAdd', function testLCHVitrinePageLinksHighlightAdd() {
 
-		const elementQuery = 'style.LCHVitrineHighlightPageLinks';
+		const elementQuery = 'style.LCHVitrinePageLinksHighlightAdd';
 
 		before(async function () {
 			browser.click(LCHVitrineDemoButtonPipe);

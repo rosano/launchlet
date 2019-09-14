@@ -90,12 +90,12 @@ describe(`LCHVitrineLocalize-${ languageCode }`, function () {
 			await browser.wait({element: '.LCHLauncherSubjectPromptPlaceholder'});
 		});
 
-		it('localizes LCHVitrineHighlightPageLinks', async function() {
+		it('localizes LCHVitrinePageLinksHighlightAdd', async function() {
 			browser.OLSKFireKeyboardEvent(browser.window, 'h');
 			browser.OLSKFireKeyboardEvent(browser.window, 'p');
 			await browser.wait({element: '.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem'});
 			
-			browser.assert.text('.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem .LCHLauncherPipeItemTitle', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineHighlightPageLinks);
+			browser.assert.text('.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem .LCHLauncherPipeItemTitle', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageLinksHighlightAdd);
 		});
 
 		it('localizes LCHVitrineMinimalistDateString', async function() {

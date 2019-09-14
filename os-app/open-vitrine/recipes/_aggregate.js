@@ -3,7 +3,7 @@ import * as LCHVitrineRestorePageColours from './LCHVitrineRestorePageColours/ma
 import * as LCHVitrineCopyPageInfo from './LCHVitrineCopyPageInfo/main.js';
 import * as LCHVitrineSendEmail from './LCHVitrineSendEmail/main.js';
 
-import * as LCHVitrineHighlightPageLinks from './LCHVitrineHighlightPageLinks/main.js';
+import * as LCHVitrinePageLinksHighlightAdd from './LCHVitrinePageLinksHighlightAdd/main.js';
 import * as LCHVitrineMinimalistDateString from './LCHVitrineMinimalistDateString/main.js';
 
 export const LCHVitrineRecipes = function() {
@@ -12,7 +12,7 @@ export const LCHVitrineRecipes = function() {
 		LCHVitrineRestorePageColours,
 		LCHVitrineCopyPageInfo,
 		LCHVitrineSendEmail,
-		LCHVitrineHighlightPageLinks,
+		LCHVitrinePageLinksHighlightAdd,
 		LCHVitrineMinimalistDateString,
 	].map(function (e) {
 		return Object.entries(e).filter(function (e) {
