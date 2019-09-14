@@ -31,9 +31,6 @@ LCHVitrineDemoButtonPreviewToken
 Organizes items into subjects and verbs. Try
 - `LCHVitrineTokenMinimalistDateStringName` and `Large text`
 - `Wikipedia` and `Search For`
-- ? active page links
-- ? "current url" "share to pocket"
-- ? wayback machine
 
 LCHVitrineDemoButtonPipeToken
 
