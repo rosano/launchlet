@@ -1,7 +1,11 @@
 import { OLSKLocalized } from '../_shared/common/global.js'
 
 import { LCHVitrineRecipes } from './recipes/_aggregate.js'
-const _LCHVitrineRecipes = LCHVitrineRecipes();
+const _LCHVitrineRecipes = LCHVitrineRecipes().map(function (e) {
+	return Object.assign(e, {
+		LCHRecipeName: OLSKLocalized('LCHVitrineDemoRecipeNames')[e.LCHRecipeSignature],
+	});
+});
 
 export const mod = {
 
@@ -28,18 +32,7 @@ export const mod = {
 	// COMMAND
 
 	CommandDemoCommit() {
-		Launchlet.instanceCreate([
-			'LCHVitrineRandomizePageColours',
-			'LCHVitrineRestorePageColours',
-			'LCHVitrineCopyPageInfo',
-			'LCHVitrineSendEmail',
-		].map(function (e) {
-			return Object.assign(_LCHVitrineRecipes.filter(function (item) {
-				return item.LCHRecipeSignature === e;
-			}).shift(), {
-				LCHRecipeName: OLSKLocalized('LCHVitrineDemoRecipeNames')[e],
-			});
-		}));
+		Launchlet.instanceCreate(_LCHVitrineRecipes);
 	},
 
 	CommandDemoPreview() {
@@ -56,11 +49,7 @@ export const mod = {
 	},
 
 	CommandDemoPipe() {
-		Launchlet.instanceCreate(_LCHVitrineRecipes.map(function (e) {
-			return Object.assign(e, {
-				LCHRecipeName: OLSKLocalized('LCHVitrineDemoRecipeNames')[e.LCHRecipeSignature],
-			});
-		}), {
+		Launchlet.instanceCreate(_LCHVitrineRecipes, {
 			runMode: Launchlet.kRunModePipe,
 		});
 	},
