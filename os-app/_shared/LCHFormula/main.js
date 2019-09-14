@@ -37,9 +37,9 @@ export const LCHFormulaModelErrorsFor = function(inputData, options = {}) {
 		}
 	}
 
-	if (inputData.LCHFormulaIsVisible !== undefined) {
-		if (typeof inputData.LCHFormulaIsVisible !== 'function') {
-			errors.LCHFormulaIsVisible = [
+	if (inputData.LCHFormulaIsHidden !== undefined) {
+		if (typeof inputData.LCHFormulaIsHidden !== 'function') {
+			errors.LCHFormulaIsHidden = [
 				'LCHErrorNotFunction',
 			];
 		}

@@ -321,12 +321,12 @@ describe('LCHLauncherFeature', function () {
 
 });
 
-describe('LCHLauncherTestIsVisible', function testLCHLauncherTestIsVisible () {
+describe('LCHLauncherTestIsHidden', function testLCHLauncherTestIsHidden () {
 
 	before(async function() {
-		await browser.visit(`${ kDefaultRoutePath }?LCHLauncherTestIsVisible`);
+		await browser.visit(`${ kDefaultRoutePath }?LCHLauncherTestIsHidden`);
 
-		browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestIsVisible');
+		browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestIsHidden');
 		await browser.wait({element: LCHLauncherListItem});
 	});
 
@@ -335,9 +335,9 @@ describe('LCHLauncherTestIsVisible', function testLCHLauncherTestIsVisible () {
 	});
 
 	it('shows on validation', async function() {
-		browser.evaluate(`document.querySelector('input').value = 'LCHLauncherTestIsVisible1'`)
+		browser.evaluate(`document.querySelector('input').value = 'LCHLauncherTestIsHidden1'`)
 
-		browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestIsVisible');
+		browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestIsHidden');
 		await browser.wait({element: `${ LCHLauncherListItem }:nth-child(2)`});
 		
 		browser.assert.elements(LCHLauncherListItem, 2);

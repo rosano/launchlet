@@ -306,7 +306,7 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 			}
 
 			let results = fuzzysort.go(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText, _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll.filter(function (e) {
-				return e.LCHRecipeIsVisible ? e.LCHRecipeIsVisible() : true;
+				return e.LCHRecipeIsHidden ? !e.LCHRecipeIsHidden() : true;
 			}), {
 				key: 'LCHRecipeName',
 			});

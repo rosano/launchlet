@@ -106,13 +106,13 @@ describe('LCHFormulaModelErrorsFor', function testLCHFormulaModelErrorsFor() {
 
 	});
 
-	context('LCHFormulaIsVisible', function() {
+	context('LCHFormulaIsHidden', function() {
 
 		it('returns object if not function', function() {
 			deepEqual(LCHFormulaModelErrorsFor({
-				LCHFormulaIsVisible: null,
+				LCHFormulaIsHidden: null,
 			}), {
-				LCHFormulaIsVisible: [
+				LCHFormulaIsHidden: [
 					'LCHErrorNotFunction',
 				],
 			});
@@ -120,7 +120,7 @@ describe('LCHFormulaModelErrorsFor', function testLCHFormulaModelErrorsFor() {
 
 		it('returns null', function() {
 			deepEqual(LCHFormulaModelErrorsFor({
-				LCHFormulaIsVisible () {},
+				LCHFormulaIsHidden () {},
 			}), null);
 		});
 

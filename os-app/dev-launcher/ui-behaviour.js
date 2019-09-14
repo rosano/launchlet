@@ -76,16 +76,16 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 					LCHRecipeStyle: 'body { background: red; }',
 					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestStyle',
 				}, {
-					LCHRecipeName: 'LCHLauncherTestIsVisible1',
+					LCHRecipeName: 'LCHLauncherTestIsHidden1',
 					LCHRecipeCallback: function () {},
-					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestIsVisible',
+					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestIsHidden',
 				}, {
-					LCHRecipeName: 'LCHLauncherTestIsVisible2',
+					LCHRecipeName: 'LCHLauncherTestIsHidden2',
 					LCHRecipeCallback: function () {},
-					LCHRecipeIsVisible: function () {
-						return document.querySelector('input').value === 'LCHLauncherTestIsVisible1';
+					LCHRecipeIsHidden: function () {
+						return document.querySelector('input').value !== 'LCHLauncherTestIsHidden1';
 					},
-					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestIsVisible',
+					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestIsHidden',
 				}, {
 					LCHRecipeName: 'LCHLauncherTestLongStringAlfaBravoCharlieDeltaEchoFoxtrotGolfHotel',
 					LCHRecipeCallback: function () {},
