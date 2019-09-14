@@ -7,6 +7,7 @@ Object.entries({
 
 	LCHVitrineDemoButtonCommit: '.LCHVitrineDemoButtonCommit',
 	LCHVitrineDemoButtonPreview: '.LCHVitrineDemoButtonPreview',
+	LCHVitrineDemoButtonPipe: '.LCHVitrineDemoButtonPipe',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -29,6 +30,10 @@ describe('LCHVitrineAccess', function () {
 
 		it('shows LCHVitrineDemoButtonPreview', function() {
 			browser.assert.elements(LCHVitrineDemoButtonPreview, 1)
+		});
+
+		it('shows LCHVitrineDemoButtonPipe', function() {
+			browser.assert.elements(LCHVitrineDemoButtonPipe, 1)
 		});
 		
 	});
