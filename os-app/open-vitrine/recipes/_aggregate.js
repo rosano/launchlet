@@ -3,12 +3,15 @@ import * as LCHVitrineRestorePageColours from './LCHVitrineRestorePageColours/ma
 import * as LCHVitrineCopyPageInfo from './LCHVitrineCopyPageInfo/main.js';
 import * as LCHVitrineSendEmail from './LCHVitrineSendEmail/main.js';
 
+import * as LCHVitrineMinimalistDateString from './LCHVitrineMinimalistDateString/main.js';
+
 export const LCHVitrineRecipes = function() {
 	return [].concat.apply([], [
 		LCHVitrineRandomizePageColours,
 		LCHVitrineRestorePageColours,
 		LCHVitrineCopyPageInfo,
 		LCHVitrineSendEmail,
+		LCHVitrineMinimalistDateString,
 	].map(function (e) {
 		return Object.entries(e).filter(function (e) {
 			return e.shift().includes('Recipe');
