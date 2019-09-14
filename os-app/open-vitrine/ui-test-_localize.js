@@ -2,9 +2,9 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().LCHVitrineRoute;
 
-const uFilter = function (inputData) {
+const uFilter = async function (inputData) {
 	browser.fill(LCHLauncherFilterInput, inputData)
-	return browser.wait({ elemen: '.LCHLauncherResultListItem' })
+	await browser.wait({ element: '.LCHLauncherResultListItem' })
 };
 
 kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
@@ -33,9 +33,17 @@ describe(`LCHVitrineLocalize-${ languageCode }`, function () {
 
 	context('DemoCommit', function testDemoCommit() {
 
-		before(function () {
+		beforeEach(async function () {
+			await browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }`);
+			
 			browser.click(LCHVitrineDemoButtonCommit);
-			return browser.wait({element: LCHLauncherFilterInput});
+			await browser.wait({element: LCHLauncherFilterInput});
+		});
+
+		it('localizes LCHVitrineRandomizePageColours', async function() {
+			await uFilter(uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineRandomizePageColours);
+
+			browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineRandomizePageColours);
 		});
 
 		it('localizes LCHVitrineSendEmail', async function() {

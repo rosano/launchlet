@@ -1,6 +1,7 @@
 import { OLSKLocalized } from '../_shared/common/global.js'
 
 import { LCHVitrineRecipes } from './recipes/_aggregate.js'
+const _LCHVitrineRecipes = LCHVitrineRecipes();
 
 export const mod = {
 
@@ -15,11 +16,14 @@ export const mod = {
 	// COMMAND
 
 	CommandDemoCommit() {
-		Launchlet.instanceCreate(LCHVitrineRecipes().filter(function (e) {
-			return ['LCHVitrineSendEmail'].indexOf(e.LCHRecipeSignature) !== -1
-		}).map(function (e) {
-			return Object.assign(e, {
-				LCHRecipeName: OLSKLocalized('LCHVitrineDemoRecipeNames')[e.LCHRecipeSignature],
+		Launchlet.instanceCreate([
+			'LCHVitrineRandomizePageColours',
+			'LCHVitrineSendEmail',
+		].map(function (e) {
+			return Object.assign(_LCHVitrineRecipes.filter(function (item) {
+				return item.LCHRecipeSignature === e;
+			}).shift(), {
+				LCHRecipeName: OLSKLocalized('LCHVitrineDemoRecipeNames')[e],
 			});
 		}));
 	},
