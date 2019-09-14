@@ -1,5 +1,13 @@
+import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
+
 export const LCHVitrineSendEmailCallback = function() {
-	return window.location.href = 'mailto:';
+	const url = 'mailto:';
+
+	if (OLSK_TESTING_BEHAVIOUR()) {
+		return window.alert(url)
+	};
+
+	window.location.href = url;
 };
 
 export const LCHVitrineSendEmailRecipe = function() {
