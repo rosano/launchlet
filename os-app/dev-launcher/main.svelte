@@ -67,7 +67,7 @@ import {
 	LCHLauncherConvertTypeServiceSearch,
 	LCHAPITypeEquivalenceMapForRecipes,
 } from './api.js';
-import { LCHLauncherStandardRecipes } from './recipes/main.js';
+import { LCHLauncherStandardRecipes } from './recipes/_aggregate.js';
 const allRecipes = LCHLauncherStandardRecipes().concat(dataObjects);
 
 const api = LCHAPIObjectFor(allRecipes);
@@ -105,7 +105,7 @@ import {
 	LCHAPIExecuteComposition,
 	LCHComponentDescriptorsModelErrorsFor,
 } from './api.js';
-import * as apiComponents from './recipes/components.js';
+import * as apiComponents from './recipes/_components.js';
 async function apiStart(inputData) {
 	return await (function (inputData) {
 		if (!inputData) {
