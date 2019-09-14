@@ -37,6 +37,14 @@ export const LCHFormulaModelErrorsFor = function(inputData, options = {}) {
 		}
 	}
 
+	if (inputData.LCHFormulaIsVisible !== undefined) {
+		if (typeof inputData.LCHFormulaIsVisible !== 'function') {
+			errors.LCHFormulaIsVisible = [
+				'LCHErrorNotFunction',
+			];
+		}
+	}
+
 	if (inputData.LCHFormulaURLFilter !== undefined || options.LCHOptionValidateIfNotPresent) {
 		if (typeof inputData.LCHFormulaURLFilter !== 'string') {
 			errors.LCHFormulaURLFilter = [

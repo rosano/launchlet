@@ -106,6 +106,26 @@ describe('LCHFormulaModelErrorsFor', function testLCHFormulaModelErrorsFor() {
 
 	});
 
+	context('LCHFormulaIsVisible', function() {
+
+		it('returns object if not function', function() {
+			deepEqual(LCHFormulaModelErrorsFor({
+				LCHFormulaIsVisible: null,
+			}), {
+				LCHFormulaIsVisible: [
+					'LCHErrorNotFunction',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(LCHFormulaModelErrorsFor({
+				LCHFormulaIsVisible () {},
+			}), null);
+		});
+
+	});
+
 	context('LCHFormulaURLFilter', function() {
 
 		it('returns object if not string', function() {
