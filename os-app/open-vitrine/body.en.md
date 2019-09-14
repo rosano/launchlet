@@ -14,9 +14,9 @@ The project is freely accessible but if you are in a position to give, please [d
 ## Commit mode
 
 Presents a list of commands and runs on `Enter`. Try any of the following commands:
-- "Randomize page colours"
-- "Copy page info"
-- "Send email"
+- `LCHVitrineTokenRandomizePageColoursName`
+- `LCHVitrineTokenCopyPageInfoName`
+- `LCHVitrineTokenSendEmailName`
 
 LCHVitrineDemoButtonCommitToken
 
