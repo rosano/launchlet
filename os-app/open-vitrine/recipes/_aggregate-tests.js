@@ -16,8 +16,8 @@ describe('LCHVitrineRecipes', function testLCHVitrineRecipes() {
 			});
 		}));
 
-		deepEqual(mainModule.LCHVitrineRecipes().filter(function (e) {
-			return !items.filter(function (e2) {
+		deepEqual(items.filter(function (e) {
+			return !mainModule.LCHVitrineRecipes().filter(function (e2) {
 				return e2.LCHRecipeCallback === e.LCHRecipeCallback;
 			}).length;
 		}), []);
