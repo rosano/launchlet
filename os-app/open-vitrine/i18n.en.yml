@@ -7,4 +7,5 @@ LCHVitrineDemoRecipeNames:
   LCHVitrineCopyPageInfo: Copy page info
   LCHVitrineSendEmail: Send email
   LCHVitrinePageLinksHighlightAdd: Highlight page links
+  LCHVitrinePageLinksHighlightRemove: Remove page links highlight
   LCHVitrineMinimalistDateString: Minimalist Date String

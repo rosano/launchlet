@@ -98,6 +98,24 @@ describe(`LCHVitrineLocalize-${ languageCode }`, function () {
 			browser.assert.text('.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem .LCHLauncherPipeItemTitle', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageLinksHighlightAdd);
 		});
 
+		it('localizes LCHVitrinePageLinksHighlightRemove', async function() {
+			browser.OLSKFireKeyboardEvent(browser.window, 'h');
+			browser.OLSKFireKeyboardEvent(browser.window, 'p');
+			await browser.wait({element: '.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem'});
+			
+			browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
+			await browser.wait({element: 'style.LCHVitrinePageLinksHighlightAdd'});
+
+			browser.click(LCHVitrineDemoButtonPipe);
+			await browser.wait({element: '.LCHLauncherSubjectPromptPlaceholder'});
+
+			browser.OLSKFireKeyboardEvent(browser.window, 'r');
+			browser.OLSKFireKeyboardEvent(browser.window, 'h');
+			await browser.wait({element: '.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem'});
+			
+			browser.assert.text('.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem .LCHLauncherPipeItemTitle', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageLinksHighlightRemove);
+		});
+
 		it('localizes LCHVitrineMinimalistDateString', async function() {
 			browser.OLSKFireKeyboardEvent(browser.window, 'm');
 			browser.OLSKFireKeyboardEvent(browser.window, 'd');
