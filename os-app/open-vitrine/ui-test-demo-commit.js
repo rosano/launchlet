@@ -62,6 +62,42 @@ describe('LCHVitrineDemoCommit', function () {
 	
 	});
 
+	context('LCHVitrineRestorePageColours', function () {
+
+		const elementQuery = 'style.LCHVitrineRandomizePageColours';
+
+		before(async function () {
+			browser.click(LCHVitrineDemoButtonCommit);
+			browser.query('style').remove()
+			await browser.wait({element: LCHLauncherFilterInput});
+		});
+
+		let item, initialContent;
+		
+		it('hides recipe', async function() {
+			await uFilter('colour');
+			browser.assert.elements('.LCHLauncherResultListItem', 1)
+		});
+		
+		it('shows after execute sibling', async function() {
+			browser.click('.LCHLauncherResultListItem');
+			await browser.wait({element: elementQuery});
+
+			browser.click(LCHVitrineDemoButtonCommit);
+			await browser.wait({element: LCHLauncherFilterInput});
+			await uFilter('colour');
+			browser.assert.elements('.LCHLauncherResultListItem', 2)
+		});
+		
+		it('removes element', async function() {
+			browser.click('.LCHLauncherResultListItem');
+			await browser.wait({element: elementQuery});
+
+			browser.assert.elements(elementQuery, 0)
+		});
+	
+	});
+
 	context('LCHVitrineSendEmail', function () {
 
 		before(async function () {

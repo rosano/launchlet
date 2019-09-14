@@ -8,6 +8,7 @@ describe('LCHVitrineRestorePageColoursRecipe', function testLCHVitrineRestorePag
 		deepEqual(mainModule.LCHVitrineRestorePageColoursRecipe(), {
 			LCHRecipeCallback: mainModule.LCHVitrineRestorePageColoursCallback,
 			LCHRecipeSignature: 'LCHVitrineRestorePageColours',
+			LCHRecipeIsVisible: mainModule.LCHVitrineRestorePageColoursIsVisible,
 		});
 	});
 

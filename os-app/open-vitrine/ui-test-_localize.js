@@ -47,6 +47,13 @@ describe(`LCHVitrineLocalize-${ languageCode }`, function () {
 		});
 
 		it('localizes LCHVitrineRestorePageColours', async function() {
+			await uFilter(uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineRandomizePageColours);
+			
+			browser.click('.LCHLauncherResultListItem');
+			await browser.wait({element: 'style.LCHVitrineRandomizePageColours'});
+
+			browser.click(LCHVitrineDemoButtonCommit);
+			await browser.wait({element: LCHLauncherFilterInput});
 			await uFilter(uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineRestorePageColours);
 
 			browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineRestorePageColours);
