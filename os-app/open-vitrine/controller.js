@@ -24,7 +24,7 @@ exports.OLSKControllerRoutes = function() {
 				return res.render(require('path').join(__dirname, 'ui-view'), {
 					LCHVitrineContent: require('OLSKString').OLSKStringReplaceTokens(require('marked')(require('fs').readFileSync(require('path').join(__dirname, `body.${ res.locals.OLSKSharedPageCurrentLanguage }.md`), 'utf-8')), {
 						LCHVitrineTokenComposeURL: res.locals.OLSKCanonicalLocalizedFor('LCHComposeRoute'),
-						LCHVitrineTokenRandomizePageColoursName: res.locals.OLSKLocalized('LCHVitrineDemoRecipeNames').LCHVitrineRandomizePageColours,
+						LCHVitrineTokenRandomizePageColoursName: res.locals.OLSKLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRandomize,
 						LCHVitrineTokenCopyPageInfoName: res.locals.OLSKLocalized('LCHVitrineDemoRecipeNames').LCHVitrineCopyPageInfo,
 						LCHVitrineTokenSendEmailName: res.locals.OLSKLocalized('LCHVitrineDemoRecipeNames').LCHVitrineSendEmail,
 						LCHVitrineTokenMinimalistDateStringName: res.locals.OLSKLocalized('LCHVitrineDemoRecipeNames').LCHVitrineMinimalistDateString,

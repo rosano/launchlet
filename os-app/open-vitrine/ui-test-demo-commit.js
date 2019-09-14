@@ -13,9 +13,9 @@ describe('LCHVitrineDemoCommit', function () {
 		return browser.visit(kDefaultRoute.OLSKRoutePath)
 	});
 
-	context('LCHVitrineRandomizePageColours', function () {
+	context('LCHVitrinePageColoursRandomize', function () {
 
-		const elementQuery = 'style.LCHVitrineRandomizePageColours';
+		const elementQuery = 'style.LCHVitrinePageColoursRandomize';
 
 		before(async function () {
 			browser.click(LCHVitrineDemoButtonCommit);
@@ -64,7 +64,7 @@ describe('LCHVitrineDemoCommit', function () {
 
 	context('LCHVitrineRestorePageColours', function () {
 
-		const elementQuery = 'style.LCHVitrineRandomizePageColours';
+		const elementQuery = 'style.LCHVitrinePageColoursRandomize';
 
 		before(async function () {
 			browser.click(LCHVitrineDemoButtonCommit);

@@ -2,7 +2,7 @@ LCHVitrineTitle: Launchlet
 LCHVitrineDescription: Generalized interface for keyboard-based interaction
 LCHVitrineDemoButtonText: Demo
 LCHVitrineDemoRecipeNames:
-  LCHVitrineRandomizePageColours: Randomize page colours
+  LCHVitrinePageColoursRandomize: Randomize page colours
   LCHVitrineRestorePageColours: Restore page colours
   LCHVitrineCopyPageInfo: Copy page info
   LCHVitrineSendEmail: Send email

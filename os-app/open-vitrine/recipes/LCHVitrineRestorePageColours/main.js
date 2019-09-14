@@ -1,9 +1,9 @@
 export const LCHVitrineRestorePageColoursIsHidden = function() {
-	return !document.querySelector('style.LCHVitrineRandomizePageColours');
+	return !document.querySelector('style.LCHVitrinePageColoursRandomize');
 };
 
 export const LCHVitrineRestorePageColoursCallback = function() {
-	document.querySelector('style.LCHVitrineRandomizePageColours').remove()
+	document.querySelector('style.LCHVitrinePageColoursRandomize').remove()
 };
 
 export const LCHVitrineRestorePageColoursRecipe = function() {

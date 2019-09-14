@@ -48,17 +48,17 @@ describe(`LCHVitrineLocalize-${ languageCode }`, function () {
 			await browser.wait({element: '#LCHLauncherFilterInput'});
 		});
 
-		it('localizes LCHVitrineRandomizePageColours', async function() {
-			await uFilter(uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineRandomizePageColours);
+		it('localizes LCHVitrinePageColoursRandomize', async function() {
+			await uFilter(uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRandomize);
 
-			browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineRandomizePageColours);
+			browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRandomize);
 		});
 
 		it('localizes LCHVitrineRestorePageColours', async function() {
-			await uFilter(uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineRandomizePageColours);
+			await uFilter(uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRandomize);
 			
 			browser.click('.LCHLauncherResultListItem');
-			await browser.wait({element: 'style.LCHVitrineRandomizePageColours'});
+			await browser.wait({element: 'style.LCHVitrinePageColoursRandomize'});
 
 			browser.click(LCHVitrineDemoButtonCommit);
 			await browser.wait({element: '#LCHLauncherFilterInput'});
