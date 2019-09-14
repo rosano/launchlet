@@ -4,4 +4,5 @@ LCHVitrineDemoButtonText: Demo
 LCHVitrineDemoRecipeNames:
   LCHVitrineRandomizePageColours: Randomize page colours
   LCHVitrineRestorePageColours: Restore page colours
+  LCHVitrineCopyPageInfo: Copy page info
   LCHVitrineSendEmail: Send email

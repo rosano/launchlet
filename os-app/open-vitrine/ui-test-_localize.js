@@ -59,6 +59,12 @@ describe(`LCHVitrineLocalize-${ languageCode }`, function () {
 			browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineRestorePageColours);
 		});
 
+		it('localizes LCHVitrineCopyPageInfo', async function() {
+			await uFilter(uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineCopyPageInfo);
+
+			browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineCopyPageInfo);
+		});
+
 		it('localizes LCHVitrineSendEmail', async function() {
 			await uFilter(uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineSendEmail);
 

@@ -19,6 +19,7 @@ export const mod = {
 		Launchlet.instanceCreate([
 			'LCHVitrineRandomizePageColours',
 			'LCHVitrineRestorePageColours',
+			'LCHVitrineCopyPageInfo',
 			'LCHVitrineSendEmail',
 		].map(function (e) {
 			return Object.assign(_LCHVitrineRecipes.filter(function (item) {
