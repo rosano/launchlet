@@ -10,7 +10,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHComposeBuildUIAccess', function () {
+describe('LCHComposeBuildAccess', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoute.OLSKRoutePath);

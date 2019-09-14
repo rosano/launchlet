@@ -11,7 +11,7 @@ Object.entries({
 });
 
 
-describe('LCHCopyToClipboardUIVisibility', function () {
+describe('LCHCopyToClipboardVisibility', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);

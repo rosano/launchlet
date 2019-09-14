@@ -2,7 +2,7 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoutePath = '/launcher?loadRecipes=actions/LCHCopyToClipboard';
 
-describe('LCHCopyToClipboardUIFeature', function () {
+describe('LCHCopyToClipboardFeature', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);

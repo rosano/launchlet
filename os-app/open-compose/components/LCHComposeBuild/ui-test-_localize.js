@@ -8,7 +8,7 @@ const uLocalized = function (inputData) {
 	return OLSKTestingLocalized(inputData, languageCode);
 };
 
-describe(`LCHComposeUILocalize-${ languageCode }`, function () {
+describe(`LCHComposeLocalize-${ languageCode }`, function () {
 
 	before(function() {
 		return browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }`);

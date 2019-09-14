@@ -5,7 +5,7 @@ const LCHLauncherResultList = '.LCHLauncherResultList';
 const LCHLauncherResultListItem = '.LCHLauncherResultListItem';
 const LCHLauncherResultListEmpty = '.LCHLauncherResultListEmpty';
 
-describe('LCHLauncherResultListUIElement', function () {
+describe('LCHLauncherResultListElement', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);

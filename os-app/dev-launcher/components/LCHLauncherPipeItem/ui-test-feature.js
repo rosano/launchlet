@@ -7,7 +7,7 @@ const LCHLauncherPipeItemTitle = '.LCHLauncherPipeItemTitle';
 const LCHLauncherPipeItemSubtitle = '.LCHLauncherPipeItemSubtitle';
 const LCHLauncherPipeItemSource = '.LCHLauncherPipeItemSource';
 
-describe('LCHLauncherPipeItemUIFeature', function () {
+describe('LCHLauncherPipeItemFeature', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);

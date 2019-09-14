@@ -26,7 +26,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHLauncherUIAccessCommit', function () {
+describe('LCHLauncherAccessCommit', function () {
 
 	before(function() {
 		return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModeCommit`);
@@ -67,7 +67,7 @@ describe('LCHLauncherUIAccessCommit', function () {
 
 });
 
-describe('LCHLauncherUIAccessPreview', function () {
+describe('LCHLauncherAccessPreview', function () {
 
 	before(function() {
 		return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePreview`);
@@ -108,7 +108,7 @@ describe('LCHLauncherUIAccessPreview', function () {
 
 });
 
-describe('LCHLauncherUIAccessPipe', function () {
+describe('LCHLauncherAccessPipe', function () {
 
 	before(function() {
 		return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);

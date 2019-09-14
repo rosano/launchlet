@@ -10,7 +10,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHLargeTextUIAccess', function () {
+describe('LCHLargeTextAccess', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);

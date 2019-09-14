@@ -10,7 +10,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHComposeFooterUIAccess', function () {
+describe('LCHComposeFooterAccess', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);

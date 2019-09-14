@@ -2,7 +2,7 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHComposeBuildPairExtensionUIDeleteKey', function () {
+describe('LCHComposeBuildPairExtensionDeleteKey', function () {
 
 	before(function() {
 		return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?BuildPairExtensionPublicKey=alfa`);

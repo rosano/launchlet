@@ -2,7 +2,7 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoutePath = '/launcher?loadRecipes=actions/LCHLargeText';
 
-describe('LCHLargeTextUIFeature', function () {
+describe('LCHLargeTextFeature', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);

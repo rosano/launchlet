@@ -2,7 +2,7 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().LCHVitrineRoute;
 
-describe('LCHVitrineUIFeature', function () {
+describe('LCHVitrineDemo', function () {
 
 context('LCHVitrineDemoButtonCommit', function testLCHVitrineDemoButtonCommit () {
 

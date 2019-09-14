@@ -2,7 +2,7 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoutePath = require('./controller.js').OLSKControllerRoutes().LCHLauncherRoute.OLSKRoutePath;
 
-describe('LCHLauncherUIFeature', function () {
+describe('LCHLauncherFeature', function () {
 
 	context('LCHLauncherModeCommit', function () {
 

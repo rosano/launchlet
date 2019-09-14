@@ -9,7 +9,7 @@ const uLocalized = function (inputData) {
 	return OLSKTestingLocalized(inputData, languageCode);
 };
 
-describe(`LCHLauncherUILocalizeCommit-${ languageCode }`, function () {
+describe(`LCHLauncherLocalizeCommit-${ languageCode }`, function () {
 
 	before(function() {
 		return browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModeCommit`);
@@ -25,7 +25,7 @@ describe(`LCHLauncherUILocalizeCommit-${ languageCode }`, function () {
 
 });
 
-describe(`LCHLauncherUILocalizePreview-${ languageCode }`, function () {
+describe(`LCHLauncherLocalizePreview-${ languageCode }`, function () {
 
 	before(function() {
 		return browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModePreview`);
@@ -53,7 +53,7 @@ describe(`LCHLauncherUILocalizePreview-${ languageCode }`, function () {
 
 });
 
-describe(`LCHLauncherUILocalizePipe-${ languageCode }`, function () {
+describe(`LCHLauncherLocalizePipe-${ languageCode }`, function () {
 
 	before(function() {
 		return browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModePipe`);

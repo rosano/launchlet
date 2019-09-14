@@ -2,7 +2,7 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoutePath = '/launcher?loadRecipes=actions/LCHCopyToClipboard';
 
-describe('LCHCopyToClipboardUILanguage', function () {
+describe('LCHCopyToClipboardLanguage', function () {
 
 	['en'].forEach(function (languageCode) {
 

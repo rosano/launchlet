@@ -7,7 +7,7 @@ const LCHLauncherPromptItemSelected = '.LCHLauncherZoneInput .LCHLauncherPipeIte
 const LCHLauncherResultList = '.LCHLauncherResultList';
 const LCHLauncherResultListItem = '.LCHLauncherResultListItem';
 
-describe('LCHLauncherPromptUIFeature', function () {
+describe('LCHLauncherPromptFeature', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);

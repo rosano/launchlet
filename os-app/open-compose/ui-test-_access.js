@@ -46,7 +46,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHComposeUIAccess', function () {
+describe('LCHComposeAccess', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
