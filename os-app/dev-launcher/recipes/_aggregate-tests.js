@@ -4,7 +4,7 @@ import * as mainModule from './_aggregate.js';
 
 describe('LCHLauncherStandardRecipes', function testLCHLauncherStandardRecipes() {
 
-	it('returns LCHFormulaObject for each folder', function() {
+	it('returns LCHRecipe for each folder', function() {
 		const items = [].concat.apply([], require('glob').sync('*/**/main.js', {
 		  matchBase: true,
 		  cwd: __dirname,
