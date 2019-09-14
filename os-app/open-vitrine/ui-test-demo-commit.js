@@ -13,23 +13,6 @@ describe('LCHVitrineDemoCommit', function () {
 		return browser.visit(kDefaultRoute.OLSKRoutePath)
 	});
 
-	context('LCHVitrineSendEmail', function () {
-
-		before(async function () {
-			browser.click(LCHVitrineDemoButtonCommit);
-			await browser.wait({element: LCHLauncherFilterInput});
-		});
-		
-		it('opens mailto', async function() {
-			await uFilter('send');
-
-			deepEqual(browser.OLSKAlert(function () {
-				browser.click('.LCHLauncherResultListItem');
-			}), 'mailto:')
-		});
-	
-	});
-
 	context('LCHVitrineRandomizePageColours', function () {
 
 		const elementQuery = 'style.LCHVitrineRandomizePageColours';
@@ -75,6 +58,23 @@ describe('LCHVitrineDemoCommit', function () {
 		
 		it('updates declarations', async function() {
 			deepEqual(initialContent !== browser.query(elementQuery).innerHTML, true)
+		});
+	
+	});
+
+	context('LCHVitrineSendEmail', function () {
+
+		before(async function () {
+			browser.click(LCHVitrineDemoButtonCommit);
+			await browser.wait({element: LCHLauncherFilterInput});
+		});
+		
+		it('opens mailto', async function() {
+			await uFilter('send');
+
+			deepEqual(browser.OLSKAlert(function () {
+				browser.click('.LCHLauncherResultListItem');
+			}), 'mailto:')
 		});
 	
 	});
