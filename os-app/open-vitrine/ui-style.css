@@ -25,3 +25,9 @@ hr {
 
 	background: black;
 }
+
+.ROCORootLink {
+	width: 200px;
+	display: block;
+	margin: auto;
+}

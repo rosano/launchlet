@@ -34,4 +34,4 @@ Organizes items into subjects and verbs. Try
 
 LCHVitrineDemoButtonPipeToken
 
-- [logo]
+LCHVitrineRosanoLink
