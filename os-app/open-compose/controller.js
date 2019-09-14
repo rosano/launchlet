@@ -4,7 +4,7 @@ exports.OLSKControllerRoutes = function() {
 			OLSKRoutePath: '/compose',
 			OLSKRouteMethod: 'get',
 			OLSKRouteFunction: function (req, res, next) {
-				return res.render(req.OLSKLive.OLSKLivePathJoin(__dirname, 'view'), {
+				return res.render(req.OLSKLive.OLSKLivePathJoin(__dirname, 'ui-view'), {
 					LCHComposeLauncherStyle: require('fs').readFileSync(req.OLSKLive.OLSKLivePathJoin(__dirname, '../dev-launcher/__compiled/ui-style.css'), 'utf8'),
 					LCHComposeLauncherBehaviour: require('fs').readFileSync(req.OLSKLive.OLSKLivePathJoin(__dirname, '../dev-launcher/__compiled/ui-behaviour.js'), 'utf8'),
 					LCHDropboxAppKey: Buffer.from(process.env.LCH_DROPBOX_APP_KEY).toString('base64'),
