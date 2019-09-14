@@ -3,7 +3,7 @@ import { deepEqual } from 'assert';
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().LCHVitrineRoute;
 
 const uFilter = function (inputData) {
-	browser.fill(LCHLauncherFilterInput, inputData)
+	browser.fill('#LCHLauncherFilterInput', inputData)
 	return browser.wait({ elemen: '.LCHLauncherResultListItem' })
 };
 
@@ -19,7 +19,7 @@ describe('LCHVitrineDemoCommit', function () {
 
 		before(async function () {
 			browser.click(LCHVitrineDemoButtonCommit);
-			await browser.wait({element: LCHLauncherFilterInput});
+			await browser.wait({element: '#LCHLauncherFilterInput'});
 		});
 
 		let item, initialContent;
@@ -46,7 +46,7 @@ describe('LCHVitrineDemoCommit', function () {
 		
 		it('updates element', async function() {
 			browser.click(LCHVitrineDemoButtonCommit);
-			await browser.wait({element: LCHLauncherFilterInput});
+			await browser.wait({element: '#LCHLauncherFilterInput'});
 
 			await uFilter('random');
 
@@ -69,7 +69,7 @@ describe('LCHVitrineDemoCommit', function () {
 		before(async function () {
 			browser.click(LCHVitrineDemoButtonCommit);
 			browser.query('style').remove()
-			await browser.wait({element: LCHLauncherFilterInput});
+			await browser.wait({element: '#LCHLauncherFilterInput'});
 		});
 
 		let item, initialContent;
@@ -84,7 +84,7 @@ describe('LCHVitrineDemoCommit', function () {
 			await browser.wait({element: elementQuery});
 
 			browser.click(LCHVitrineDemoButtonCommit);
-			await browser.wait({element: LCHLauncherFilterInput});
+			await browser.wait({element: '#LCHLauncherFilterInput'});
 			await uFilter('colour');
 			browser.assert.elements('.LCHLauncherResultListItem', 2)
 		});
@@ -102,7 +102,7 @@ describe('LCHVitrineDemoCommit', function () {
 
 		before(async function () {
 			browser.click(LCHVitrineDemoButtonCommit);
-			await browser.wait({element: LCHLauncherFilterInput});
+			await browser.wait({element: '#LCHLauncherFilterInput'});
 		});
 		
 		it('opens mailto', async function() {
@@ -119,7 +119,7 @@ describe('LCHVitrineDemoCommit', function () {
 
 		before(async function () {
 			browser.click(LCHVitrineDemoButtonCommit);
-			await browser.wait({element: LCHLauncherFilterInput});
+			await browser.wait({element: '#LCHLauncherFilterInput'});
 		});
 		
 		it('copies to clipboard', async function() {

@@ -3,7 +3,7 @@ import { deepEqual } from 'assert';
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().LCHVitrineRoute;
 
 const uFilter = async function (inputData) {
-	browser.fill(LCHLauncherFilterInput, inputData)
+	browser.fill('#LCHLauncherFilterInput', inputData)
 	await browser.wait({ element: '.LCHLauncherResultListItem' })
 };
 
@@ -37,7 +37,7 @@ describe(`LCHVitrineLocalize-${ languageCode }`, function () {
 			await browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }`);
 			
 			browser.click(LCHVitrineDemoButtonCommit);
-			await browser.wait({element: LCHLauncherFilterInput});
+			await browser.wait({element: '#LCHLauncherFilterInput'});
 		});
 
 		it('localizes LCHVitrineRandomizePageColours', async function() {
@@ -53,7 +53,7 @@ describe(`LCHVitrineLocalize-${ languageCode }`, function () {
 			await browser.wait({element: 'style.LCHVitrineRandomizePageColours'});
 
 			browser.click(LCHVitrineDemoButtonCommit);
-			await browser.wait({element: LCHLauncherFilterInput});
+			await browser.wait({element: '#LCHLauncherFilterInput'});
 			await uFilter(uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineRestorePageColours);
 
 			browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineRestorePageColours);

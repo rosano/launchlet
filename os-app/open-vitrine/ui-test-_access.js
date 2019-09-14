@@ -6,8 +6,6 @@ Object.entries({
 	RCSLanguageSwitcher: '#RCSLanguageSwitcher',
 
 	LCHVitrineDemoButtonCommit: '.LCHVitrineDemoButtonCommit',
-
-	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
