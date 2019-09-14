@@ -19,6 +19,12 @@ export const mod = {
 		})
 	},
 
+	InterfaceDemoButtonPipeDidClick() {
+		setTimeout(function () {
+			mod.CommandDemoPipe();
+		})
+	},
+
 	// COMMAND
 
 	CommandDemoCommit() {
@@ -46,6 +52,12 @@ export const mod = {
 			};
 		}), {
 			runMode: Launchlet.kRunModePreview,
+		});
+	},
+
+	CommandDemoPipe() {
+		Launchlet.instanceCreate([], {
+			runMode: Launchlet.kRunModePipe,
 		});
 	},
 
