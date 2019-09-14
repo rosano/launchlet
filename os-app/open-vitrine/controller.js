@@ -27,6 +27,7 @@ exports.OLSKControllerRoutes = function() {
 						LCHVitrineTokenRandomizePageColoursName: res.locals.OLSKLocalized('LCHVitrineDemoRecipeNames').LCHVitrineRandomizePageColours,
 						LCHVitrineTokenCopyPageInfoName: res.locals.OLSKLocalized('LCHVitrineDemoRecipeNames').LCHVitrineCopyPageInfo,
 						LCHVitrineTokenSendEmailName: res.locals.OLSKLocalized('LCHVitrineDemoRecipeNames').LCHVitrineSendEmail,
+						LCHVitrineTokenMinimalistDateStringName: res.locals.OLSKLocalized('LCHVitrineDemoRecipeNames').LCHVitrineMinimalistDateString,
 					}),
 					OLSKStringReplaceTokens: require('OLSKString').OLSKStringReplaceTokens,
 				});

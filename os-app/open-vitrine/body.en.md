@@ -29,7 +29,7 @@ LCHVitrineDemoButtonPreviewToken
 ## Pipe mode
 
 Organizes items into subjects and verbs. Try
-- `date` and `Copy to clipboard`
+- `LCHVitrineTokenMinimalistDateStringName` and `Large type`
 - `Wikipedia` and `Search For`
 - ? active page links
 - ? "current url" "share to pocket"
