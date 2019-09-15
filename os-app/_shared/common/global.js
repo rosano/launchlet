@@ -4,6 +4,9 @@ export const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, localizationDictionary[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
 };
 
+import OLSKString from 'OLSKString';
+export const OLSKFormatted = OLSKString.OLSKStringWithFormat;
+
 export const _LCHIsTestingBehaviour = function () {
 	if (typeof require !== 'undefined') {
 		return false;

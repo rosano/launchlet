@@ -9,6 +9,7 @@ LCHComposeListItemToolbarRevealButtonText: Reveal
 LCHComposeListItemToolbarCloneButtonText: Clone
 LCHComposeListItemToolbarDeleteButtonText: Delete
 LCHComposeListItemDeletePromptText: Are you sure?
+LCHComposeListItemNameFlaggedFormat: 'Flagged: %@'
 LCHComposeFormNameFieldPlaceholderText: Name (e.g. Say Hello)
 LCHComposeFormInputTypesFieldPlaceholderText: Types (e.g. String, Bool)
 LCHComposeFormScriptFieldPlaceholderText: Function Body (e.g. window.alert('Hello');)

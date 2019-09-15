@@ -11,6 +11,7 @@ describe('LCHComposeLocalize', function () {
 			const uLocalized = function (inputData) {
 				return OLSKTestingLocalized(inputData, languageCode);
 			};
+			const uStringWithFormat = OLSKTestingStringWithFormat;
 
 			before(function() {
 				return browser.visit(`${ languageCode }${ kDefaultRoutePath }`);
@@ -102,6 +103,16 @@ describe('LCHComposeLocalize', function () {
 				deepEqual((await browser.OLSKConfirm(async function () {
 					browser.pressButton(LCHComposeDetailToolbarDiscardButton);
 				})).question, uLocalized('LCHComposeListItemDeletePromptText'));
+			});
+
+			it('on flag', async function() {
+				await uCreateItem(browser);
+
+				browser.fill(LCHComposeFormNameField, 'charlie');
+				browser.fill(LCHComposeFormArgsField, 'eval');
+				await browser.wait({ element: LCHComposeListItem });
+
+				deepEqual(browser.query(LCHComposeListItem).textContent.trim(), uStringWithFormat(uLocalized('LCHComposeListItemNameFlaggedFormat'), 'charlie'));
 			});
 
 		});

@@ -8,7 +8,7 @@ import * as LCHDocumentAction from '../../../_shared/LCHDocument/action.js';
 import * as LCHDocumentMetal from '../../../_shared/LCHDocument/metal.js';
 import { LCHDocumentModelPostJSONParse } from '../../../_shared/LCHDocument/model.js';
 import { LCHComposeFilterFunction, LCHComposeSort } from '../../ui-logic.js';
-import { OLSKLocalized } from '../../../_shared/common/global.js';
+import { OLSKLocalized, OLSKFormatted } from '../../../_shared/common/global.js';
 import { storageClient, DocumentsAllStore, DocumentSelectedStore } from '../../persistence.js';
 
 import { writable } from 'svelte/store';
@@ -149,7 +149,7 @@ DocumentsAllStore.subscribe(mod.reactDocumentsVisible);
 <div class="List">
 	{#each _DocumentsVisible as e}
 		<div on:click={ () => mod.commandDocumentSelect(e) } class="ListItem OLSKLayoutElementTappable" class:LCHComposeListItemFlagged={ e.LCHDocumentIsFlagged }>
-			<strong>{ e.LCHDocumentName || e.LCHDocumentSignature || e.LCHDocumentID }</strong>
+			<strong>{ OLSKFormatted(e.LCHDocumentIsFlagged ? OLSKLocalized('LCHComposeListItemNameFlaggedFormat') : '%@', e.LCHDocumentName || e.LCHDocumentSignature || e.LCHDocumentID) }</strong>
 		</div>
 	{/each}
 </div>
@@ -179,5 +179,9 @@ header {
 	min-height: 40px;
 	padding: 5px;
 	border-bottom: var(--LCHBorderStyle)
+}
+
+.LCHComposeListItemFlagged {
+	background: #ffff66;
 }
 </style>
