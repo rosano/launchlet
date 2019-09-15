@@ -35,7 +35,7 @@ export const LCHSafetyFlags = function(inputData) {
 	}
 
 	return Object.entries(inputData).reduce(function (coll, item) {
-		const flags = _LCHSafetyFlags(item[1]);
+		const flags = typeof item[1] === 'string' ? _LCHSafetyFlags(item[1]) : [];
 		
 		if (flags.length) {
 			(coll = coll || {})[item[0]] = flags

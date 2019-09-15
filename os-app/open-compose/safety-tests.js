@@ -80,4 +80,10 @@ describe('LCHSafetyFlags', function testLCHSafetyFlags() {
 		});
 	});
 
+	it('ignores if not string', function() {
+		deepEqual(mainModule.LCHSafetyFlags({
+			alfa: new Date(),
+		}), null);
+	});
+
 });
