@@ -19,6 +19,7 @@ Object.entries({
 	LCHComposeDetailToolbarDiscardButton: '#LCHComposeDetailToolbarDiscardButton',
 
 	LCHComposeDetailFormContainer: '.FormContainer',
+	LCHComposeFormFlagAlert: '.LCHComposeFormFlagAlert',
 	LCHComposeFormNameField: '#LCHComposeFormNameField',
 	LCHComposeFormSignatureField: '#LCHComposeFormSignatureField',
 	LCHComposeFormInputTypesField: '#LCHComposeFormInputTypesField',

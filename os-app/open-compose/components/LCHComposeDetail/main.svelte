@@ -173,6 +173,8 @@ const mod = {
 	// COMMAND
 
 	async commandDocumentSave() {
+		mod.commandFlagDocument()
+
 		DocumentsAllStore.update(function (val) {
 			return val;
 		});
@@ -221,6 +223,12 @@ const mod = {
 		return DocumentSelectedStore.set(null);
 	},
 
+	commandFlagDocument() {
+		if ($DocumentSelectedStore.LCHDocumentBody.match('eval')) {
+			$DocumentSelectedStore.LCHDocumentIsFlagged = true;
+		};
+	},
+
 };
 </script>
 
@@ -237,6 +245,10 @@ const mod = {
 </header>
 
 <div class="FormContainer">
+	{#if $DocumentSelectedStore.LCHDocumentIsFlagged}
+		<div class="LCHComposeFormFlagAlert"></div>
+	{/if}
+	
 	<p>
 		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentName } on:input={ mod.commandDocumentSave } placeholder="{ OLSKLocalized('LCHComposeFormNameFieldPlaceholderText') }" autofocus id="LCHComposeFormNameField" />
 	</p>
