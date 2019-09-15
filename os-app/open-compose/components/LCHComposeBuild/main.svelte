@@ -129,6 +129,8 @@ const mod = {
 
 					return coll;
 				}, {});
+			}).filter(function (e) {
+				return !e.LCHDocumentIsFlagged;
 			}),
 			LCHComposeBuildToken_AppLanguageCode: BuildAppLanguageCode,
 			LCHComposeBuildToken_LCHLauncherMode: BuildInitializeModePipeEnabled ? LCHLauncherModePipe() : LCHLauncherModeCommit(),

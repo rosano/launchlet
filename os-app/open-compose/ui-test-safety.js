@@ -125,4 +125,28 @@ describe('LCHComposeSafety', function () {
 
 	});
 
+	context('Build', async function testBuild() {
+
+		before(function () {
+			return uCreateItem(browser);
+		});
+
+		it.skip('ignores if flagged', async function() {
+			browser.fill(LCHComposeFormNameField, 'eval2');
+			browser.fill(LCHComposeDetailCallbackBodyInputDebug, 'eval');
+			await browser.wait({ element: LCHComposeFormFlagAlert });
+
+			browser.assert.elements(LCHComposeFormFlagAlert, 1);
+
+			browser.click(LCHComposeBuildAnchor);
+			await browser.wait({ element: '#LCHLauncherFilterInput' });
+
+			browser.fill('#LCHLauncherFilterInput', 'e');
+			await browser.wait({ element: '.LCHLauncherResultListItem' });
+
+			browser.assert.elements('.LCHLauncherResultListItem', 1)
+		});
+
+	});
+
 });
