@@ -1,4 +1,4 @@
-import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
+import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
 
 export const LCHLauncherOptions = function (inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
@@ -112,7 +112,7 @@ export const LCHLauncherUIRecipesForMode = function (param1, param2) {
 // 	};
 // };
 
-export const LCHLauncherThrottleDuration = _LCHIsTestingBehaviour() ? 25 : 1000;
+export const LCHLauncherThrottleDuration = OLSK_TESTING_BEHAVIOUR() ? 25 : 1000;
 
 export const LCHLauncherPatternMatchesURL = function (param1, param2) {
 	if (typeof param1 !== 'string') {
