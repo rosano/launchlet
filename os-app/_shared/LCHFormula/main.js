@@ -69,6 +69,14 @@ export const LCHFormulaModelErrorsFor = function(inputData, options = {}) {
 		}
 	}
 
+	if (inputData.LCHFormulaIsFlagged !== undefined || options.LCHOptionValidateIfNotPresent) {
+		if (typeof inputData.LCHFormulaIsFlagged !== 'boolean') {
+			errors.LCHFormulaIsFlagged = [
+				'LCHErrorNotBoolean',
+			];
+		}
+	}
+
 	return Object.entries(errors).length ? errors : null;
 };
 

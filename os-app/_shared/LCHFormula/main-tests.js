@@ -186,6 +186,26 @@ describe('LCHFormulaModelErrorsFor', function testLCHFormulaModelErrorsFor() {
 
 	});
 
+	context('LCHFormulaIsFlagged', function() {
+
+		it('returns object if not boolean', function() {
+			deepEqual(LCHFormulaModelErrorsFor({
+				LCHFormulaIsFlagged: null,
+			}), {
+				LCHFormulaIsFlagged: [
+					'LCHErrorNotBoolean',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(LCHFormulaModelErrorsFor({
+				LCHFormulaIsFlagged: true,
+			}), null);
+		});
+
+	});
+
 });
 
 import { LCHFormulaFrom } from './main.js';
