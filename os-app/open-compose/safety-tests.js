@@ -2,56 +2,56 @@ import { throws, rejects, deepEqual } from 'assert';
 
 import * as mainModule from './safety.js';
 
-describe('LCHSafetyFlags', function testLCHSafetyFlags() {
+describe('_LCHSafetyFlags', function test_LCHSafetyFlags() {
 
 	it('throws error if not string', function() {
 		throws(function() {
-			mainModule.LCHSafetyFlags(null);
+			mainModule._LCHSafetyFlags(null);
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns array', function() {
-		deepEqual(mainModule.LCHSafetyFlags(''), []);
+		deepEqual(mainModule._LCHSafetyFlags(''), []);
 	});
 
 	it('returns error string if not valid', function() {
-		deepEqual(mainModule.LCHSafetyFlags('eval()'), ['LCHSafetyErrorEvaluatesString']);
+		deepEqual(mainModule._LCHSafetyFlags('eval()'), ['LCHSafetyFlagEvaluatesString']);
 	});
 
-	context('LCHSafetyErrorEvaluatesString', function () {
+	context('LCHSafetyFlagEvaluatesString', function () {
 
 		// Evaluating JavaScript code via eval() and new Function() https://2ality.com/2014/01/eval.html
 
 		it('flags if eval direct', function() {
-			deepEqual(mainModule.LCHSafetyFlags('eval()'), ['LCHSafetyErrorEvaluatesString']);
+			deepEqual(mainModule._LCHSafetyFlags('eval()'), ['LCHSafetyFlagEvaluatesString']);
 		});
 		
 		it('flags if eval indirect variable', function() {
-			deepEqual(mainModule.LCHSafetyFlags('alfa = eval; alfa()'), ['LCHSafetyErrorEvaluatesString']);
+			deepEqual(mainModule._LCHSafetyFlags('alfa = eval; alfa()'), ['LCHSafetyFlagEvaluatesString']);
 		});
 		
 		it('flags if eval indirect call', function() {
-			deepEqual(mainModule.LCHSafetyFlags('eval.call(null)'), ['LCHSafetyErrorEvaluatesString']);
+			deepEqual(mainModule._LCHSafetyFlags('eval.call(null)'), ['LCHSafetyFlagEvaluatesString']);
 		});
 		
 		it('flags if eval indirect window', function() {
-			deepEqual(mainModule.LCHSafetyFlags('window.eval(null)'), ['LCHSafetyErrorEvaluatesString']);
+			deepEqual(mainModule._LCHSafetyFlags('window.eval(null)'), ['LCHSafetyFlagEvaluatesString']);
 		});
 		
 		it('flags if eval indirect reference', function() {
-			deepEqual(mainModule.LCHSafetyFlags('(1, eval)(null)'), ['LCHSafetyErrorEvaluatesString']);
+			deepEqual(mainModule._LCHSafetyFlags('(1, eval)(null)'), ['LCHSafetyFlagEvaluatesString']);
 		});
 		
 		it.skip('ignores if eval other', function() {
-			deepEqual(mainModule.LCHSafetyFlags('eval = console.log; eval()'), []);
+			deepEqual(mainModule._LCHSafetyFlags('eval = console.log; eval()'), []);
 		});
 		
 		it('flags if Function Identifier', function() {
-			deepEqual(mainModule.LCHSafetyFlags('new Function()'), ['LCHSafetyErrorEvaluatesString']);
+			deepEqual(mainModule._LCHSafetyFlags('new Function()'), ['LCHSafetyFlagEvaluatesString']);
 		});
 		
 		it('flags if Function MemberExpression', function() {
-			deepEqual(mainModule.LCHSafetyFlags('window.Function(null)'), ['LCHSafetyErrorEvaluatesString']);
+			deepEqual(mainModule._LCHSafetyFlags('window.Function(null)'), ['LCHSafetyFlagEvaluatesString']);
 		});
 	
 	});
