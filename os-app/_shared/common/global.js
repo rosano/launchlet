@@ -5,8 +5,8 @@ export const OLSKLocalized = function(translationConstant) {
 };
 
 import OLSKString from 'OLSKString';
-export const OLSKFormatted = function (inputData) {
-	return OLSKString.OLSKStringWithFormat(inputData)
+export const OLSKFormatted = function () {
+	return OLSKString.OLSKStringWithFormat.apply(null, arguments)
 };
 
 export const _LCHIsTestingBehaviour = function () {
