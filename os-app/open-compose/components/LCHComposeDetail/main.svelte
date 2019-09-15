@@ -10,7 +10,7 @@ import { OLSKLocalized, _LCHIsTestingBehaviour } from '../../../_shared/common/g
 import { storageClient, DocumentsAllStore, DocumentSelectedStore } from '../../persistence.js';
 import { modelDidChange } from '../../model.js'
 import { LCHComposeSort } from '../../ui-logic.js';
-import { LCHSafetyFlags } from '../../safety.js'
+import { LCHFlags } from '../../safety.js'
 import { LCHFormulaSafeStringFields, LCHFormulaFrom } from '../../../_shared/LCHFormula/main.js'
 
 import { afterUpdate } from 'svelte';
@@ -227,7 +227,7 @@ const mod = {
 
 	commandFlagDocument(inputData) {
 		Object.assign($DocumentSelectedStore, {
-			LCHDocumentIsFlagged: !!LCHSafetyFlags(Object.fromEntries(Object.entries(LCHFormulaFrom(inputData)).filter(function (e) {
+			LCHDocumentIsFlagged: !!LCHFlags(Object.fromEntries(Object.entries(LCHFormulaFrom(inputData)).filter(function (e) {
 				return LCHFormulaSafeStringFields.indexOf(e[0]) === -1
 			}))),
 		})

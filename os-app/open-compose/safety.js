@@ -6,7 +6,7 @@ const flaggedIdentifiers = [
 	'Function',
 ];
 
-export const _LCHSafetyFlags = function(inputData) {
+export const _LCHFlags = function(inputData) {
 	if (typeof inputData !== 'string') {
 		throw new Error('LCHErrorInputInvalid');
 	}
@@ -29,13 +29,13 @@ export const _LCHSafetyFlags = function(inputData) {
 	return outputData;
 };
 
-export const LCHSafetyFlags = function(inputData) {
+export const LCHFlags = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
 	return Object.entries(inputData).reduce(function (coll, item) {
-		const flags = typeof item[1] === 'string' ? _LCHSafetyFlags(item[1]) : [];
+		const flags = typeof item[1] === 'string' ? _LCHFlags(item[1]) : [];
 		
 		if (flags.length) {
 			(coll = coll || {})[item[0]] = flags
