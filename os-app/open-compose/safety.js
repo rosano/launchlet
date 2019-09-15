@@ -28,3 +28,19 @@ export const _LCHSafetyFlags = function(inputData) {
 
 	return outputData;
 };
+
+export const LCHSafetyFlags = function(inputData) {
+	if (typeof inputData !== 'object' || inputData === null) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	return Object.entries(inputData).reduce(function (coll, item) {
+		const flags = _LCHSafetyFlags(item[1]);
+		
+		if (flags.length) {
+			(coll = coll || {})[item[0]] = flags
+		};
+		
+		return coll;
+	}, null);
+};

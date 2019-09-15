@@ -57,3 +57,27 @@ describe('_LCHSafetyFlags', function test_LCHSafetyFlags() {
 	});
 
 });
+
+describe('LCHSafetyFlags', function testLCHSafetyFlags() {
+
+	it('throws error if not object', function() {
+		throws(function() {
+			mainModule.LCHSafetyFlags(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns null', function() {
+		deepEqual(mainModule.LCHSafetyFlags({
+			alfa: 'bravo',
+		}), null);
+	});
+
+	it('returns object if not valid', function() {
+		deepEqual(mainModule.LCHSafetyFlags({
+			alfa: 'eval'
+		}), {
+			alfa: ['LCHSafetyFlagEvaluatesString'],
+		});
+	});
+
+});
