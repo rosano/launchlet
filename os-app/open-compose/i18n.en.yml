@@ -19,3 +19,4 @@ LCHComposeFormSignatureFieldPlaceholderText: Signature (e.g. XYZGreet)
 LCHComposeFormURLFilterFieldPlaceholderText: 'URL Filter (e.g. google.com or /https?://(.*\\.)?google\\.com/i)'
 LCHComposeFormIsAutomaticFieldLabelText: Run automatically
 LCHUpdateReloadText: Reload
+LCHComposeFormFlagAlertText: This recipe will be ignored because it contains potentially unsafe code

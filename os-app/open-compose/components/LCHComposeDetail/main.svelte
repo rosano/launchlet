@@ -250,7 +250,7 @@ const mod = {
 
 <div class="FormContainer">
 	{#if $DocumentSelectedStore.LCHDocumentIsFlagged}
-		<div class="LCHComposeFormFlagAlert"></div>
+		<div class="LCHComposeFormFlagAlert">{ OLSKLocalized('LCHComposeFormFlagAlertText') }</div>
 	{/if}
 	
 	<p>
@@ -364,6 +364,14 @@ header {
 	padding: 5px;
 
 	overflow-y: scroll;
+}
+
+.LCHComposeFormFlagAlert {
+	display: inline-block;
+	padding: 5px;
+	border: 1px solid #808003;
+
+	background: #ffff66;
 }
 
 p:nth-child(1) {

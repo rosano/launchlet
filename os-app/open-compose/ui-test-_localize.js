@@ -113,6 +113,7 @@ describe('LCHComposeLocalize', function () {
 				await browser.wait({ element: LCHComposeListItem });
 
 				deepEqual(browser.query(LCHComposeListItem).textContent.trim(), uStringWithFormat(uLocalized('LCHComposeListItemNameFlaggedFormat'), 'charlie'));
+				browser.assert.text(LCHComposeFormFlagAlert, uLocalized('LCHComposeFormFlagAlertText'));
 			});
 
 		});
