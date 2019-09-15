@@ -148,7 +148,7 @@ DocumentsAllStore.subscribe(mod.reactDocumentsVisible);
 
 <div class="List">
 	{#each _DocumentsVisible as e}
-		<div on:click={ () => mod.commandDocumentSelect(e) } class="ListItem OLSKLayoutElementTappable">
+		<div on:click={ () => mod.commandDocumentSelect(e) } class="ListItem OLSKLayoutElementTappable" class:LCHComposeListItemFlagged={ e.LCHDocumentIsFlagged }>
 			<strong>{ e.LCHDocumentName || e.LCHDocumentSignature || e.LCHDocumentID }</strong>
 		</div>
 	{/each}
