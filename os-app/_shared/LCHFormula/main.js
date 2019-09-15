@@ -1,3 +1,9 @@
+export const LCHFormulaSafeStringFields = [
+	'LCHFormulaID',
+	'LCHFormulaURLFilter',
+	'@context',
+]
+
 export const LCHFormulaModelErrorsFor = function(inputData, options = {}) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
