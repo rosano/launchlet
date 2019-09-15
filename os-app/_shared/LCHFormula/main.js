@@ -1,5 +1,10 @@
 export const LCHFormulaSafeStringFields = [
 	'LCHFormulaID',
+	'LCHFormulaName',
+	'LCHFormulaSignature',
+	'LCHFormulaInputTypes',
+	'LCHFormulaOutputType',
+	'LCHFormulaStyle',
 	'LCHFormulaURLFilter',
 	'@context',
 ]
