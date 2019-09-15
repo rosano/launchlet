@@ -60,6 +60,18 @@ const mod = {
 		mod.ValuePairExtensionIsVisible(!mod.ValuePairExtensionIsVisible())
 	},
 
+	InterfaceRunButtonDidClick(event) {
+		if (!_LCHIsTestingBehaviour()) {
+			return;
+		};
+
+		event.preventDefault();
+		
+		setTimeout(function () {
+			eval(JavascriptComposition)
+		})
+	},
+
 	// COMMAND
 
 	async CommandUpdatePublicKey(inputData) {
@@ -168,7 +180,7 @@ modelDidChange.subscribe(mod.ModelDidChange);
 </p>
 
 <p>
-	<a id="LCHComposeBuildAnchor" href="{ JavascriptCompositionBinary }"  accesskey="r">Try it</a>
+	<a id="LCHComposeBuildAnchor" href="{ JavascriptCompositionBinary }" accesskey="r" on:click={ mod.InterfaceRunButtonDidClick }>Try it</a>
 </p>
 
 {#if !mod.ValuePairExtensionIsVisible()}
