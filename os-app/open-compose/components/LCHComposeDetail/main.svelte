@@ -10,7 +10,7 @@ import { OLSKLocalized, _LCHIsTestingBehaviour } from '../../../_shared/common/g
 import { storageClient, DocumentsAllStore, DocumentSelectedStore } from '../../persistence.js';
 import { modelDidChange } from '../../model.js'
 import { LCHComposeSort } from '../../ui-logic.js';
-import { LCHFlags } from '../../safety.js'
+import { LCHFlags } from '../../../_shared/LCHFlags/main.js'
 import { LCHFormulaSafeStringFields, LCHFormulaFrom } from '../../../_shared/LCHFormula/main.js'
 
 import { afterUpdate } from 'svelte';

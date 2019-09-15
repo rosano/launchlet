@@ -1,6 +1,6 @@
 import { throws, rejects, deepEqual } from 'assert';
 
-import * as mainModule from './safety.js';
+import * as mainModule from './main.js';
 
 describe('_LCHFlags', function test_LCHFlags() {
 
