@@ -71,6 +71,9 @@
     "// WEBCRYPTO": null,
     "simplecrypto": "encryb/simplecrypto",
 
+    "// SAFETY": null,
+    "acorn": "latest",
+
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {
