@@ -118,3 +118,26 @@ export const LCHFormulaTo = function(param1, param2) {
 		return coll;
 	}, {});
 };
+
+export const LCHFormulaToEvaluate = function(inputData) {
+	if (LCHFormulaModelErrorsFor(inputData)) {
+		throw 'LCHErrorInputInvalid';
+	}
+
+	let outputData = Object.fromEntries(Object.entries(inputData).filter(function (e) {
+		return LCHFormulaSafeStringFields.indexOf(e[0]) === -1;
+	}));
+
+	if (outputData.LCHFormulaArgs || outputData.LCHFormulaBody) {
+		outputData.LCHFormulaCallbackRaw = `function (${ outputData.LCHFormulaArgs || '' }) { ${ outputData.LCHFormulaBody || '' } }`;
+		delete outputData.LCHFormulaArgs
+		delete outputData.LCHFormulaBody
+	};
+
+	if (outputData.LCHFormulaCanonicalExampleBody) {
+		outputData.LCHFormulaCanonicalExampleBodyRaw = `function () { ${ outputData.LCHFormulaCanonicalExampleBody || '' } }`;
+		delete outputData.LCHFormulaCanonicalExampleBody
+	};
+
+	return outputData;
+};

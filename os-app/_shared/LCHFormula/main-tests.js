@@ -261,3 +261,56 @@ describe('LCHFormulaTo', function testLCHFormulaTo() {
 	});
 
 });
+
+import { LCHFormulaToEvaluate, LCHFormulaSafeStringFields } from './main.js';
+describe('LCHFormulaToEvaluate', function testLCHFormulaToEvaluate() {
+
+	it('throws error if not valid', function() {
+		throws(function() {
+			LCHFormulaToEvaluate({
+				LCHFormulaName: null,
+			});
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns object', function() {
+		deepEqual(LCHFormulaToEvaluate({}), {});
+	});
+
+	it('removes LCHFormulaSafeStringFields', function() {
+		deepEqual(LCHFormulaToEvaluate(LCHFormulaSafeStringFields.reduce(function (coll, item) {
+			coll[item] = 'alfa';
+			return coll;
+		}, {})), {});
+	});
+
+	it('adds closure from LCHFormulaArgs', function() {
+		deepEqual(LCHFormulaToEvaluate({
+			LCHFormulaArgs: 'alfa',
+		}), {
+			LCHFormulaCallbackRaw: 'function (alfa) {  }',
+		});
+	});
+
+	it('adds closure from LCHFormulaArgs', function() {
+		deepEqual(LCHFormulaToEvaluate({
+			LCHFormulaBody: 'alfa',
+		}), {
+			LCHFormulaCallbackRaw: 'function () { alfa }',
+		});
+	});
+
+	it('adds closure from LCHFormulaCanonicalExampleBody', function() {
+		deepEqual(LCHFormulaToEvaluate({
+			LCHFormulaCanonicalExampleBody: 'alfa',
+		}), {
+			LCHFormulaCanonicalExampleBodyRaw: 'function () { alfa }',
+		});
+	});
+
+	it('does not modify input', function() {
+		const item = {};
+		deepEqual(LCHFormulaToEvaluate(item) !== item, true);
+	});
+
+});
