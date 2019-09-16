@@ -7,6 +7,7 @@ import LCHEditor from '../LCHEditor/main.svelte';
 import * as LCHDocumentAction from '../../../_shared/LCHDocument/action.js';
 
 import { OLSKLocalized, _LCHIsTestingBehaviour } from '../../../_shared/common/global.js';
+import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
 import { storageClient, DocumentsAllStore, DocumentSelectedStore } from '../../persistence.js';
 import { modelDidChange } from '../../model.js'
 import { LCHComposeSort } from '../../ui-logic.js';
