@@ -15,14 +15,14 @@ describe('LCHComposeSafety', function () {
 		});
 
 		it('adds class if flagged', async function() {
-			browser.fill(LCHComposeFormArgsField, 'eval');
+			browser.fill(LCHComposeDetailCallbackBodyInputDebug, 'eval');
 			await browser.wait({ element: LCHComposeFormFlagAlert });
 
 			browser.assert.hasClass(LCHComposeListItem, 'LCHComposeListItemFlagged');
 		});
 
 		it('removes class if not flagged', async function() {
-			browser.fill(LCHComposeFormArgsField, '');
+			browser.fill(LCHComposeDetailCallbackBodyInputDebug, '');
 			await browser.wait({ element: LCHComposeFormFlagAlert });
 
 			browser.assert.attribute(LCHComposeListItem, 'ListItem');
@@ -46,15 +46,8 @@ describe('LCHComposeSafety', function () {
 			browser.assert.elements(LCHComposeFormFlagAlert, 0);
 		});
 
-		it('adds alert if LCHDocumentArgs flagged', async function() {
+		it('adds no alert if LCHDocumentArgs flagged', async function() {
 			browser.fill(LCHComposeFormArgsField, 'eval');
-			await browser.wait({ element: LCHComposeFormFlagAlert });
-
-			browser.assert.elements(LCHComposeFormFlagAlert, 1);
-		});
-
-		it('removes alert if LCHDocumentArgs not flagged', async function() {
-			browser.fill(LCHComposeFormArgsField, 'alfa');
 			await browser.wait({ element: LCHComposeFormFlagAlert });
 
 			browser.assert.elements(LCHComposeFormFlagAlert, 0);

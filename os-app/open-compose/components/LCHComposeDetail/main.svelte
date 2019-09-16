@@ -11,7 +11,7 @@ import { storageClient, DocumentsAllStore, DocumentSelectedStore } from '../../p
 import { modelDidChange } from '../../model.js'
 import { LCHComposeSort } from '../../ui-logic.js';
 import { LCHFlags } from '../../../_shared/LCHFlags/main.js'
-import { LCHFormulaSafeStringFields, LCHFormulaFrom } from '../../../_shared/LCHFormula/main.js'
+import { LCHFormulaFrom, LCHFormulaToEvaluate } from '../../../_shared/LCHFormula/main.js'
 
 import { afterUpdate } from 'svelte';
 
@@ -229,9 +229,7 @@ const mod = {
 
 	commandFlagDocument(inputData) {
 		Object.assign($DocumentSelectedStore, {
-			LCHDocumentIsFlagged: !!LCHFlags(Object.fromEntries(Object.entries(LCHFormulaFrom(inputData)).filter(function (e) {
-				return LCHFormulaSafeStringFields.indexOf(e[0]) === -1
-			}))),
+			LCHDocumentIsFlagged: !!LCHFlags(LCHFormulaToEvaluate(LCHFormulaFrom(inputData))),
 		})
 	},
 

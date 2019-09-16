@@ -129,13 +129,13 @@ export const LCHFormulaToEvaluate = function(inputData) {
 	}));
 
 	if (outputData.LCHFormulaArgs || outputData.LCHFormulaBody) {
-		outputData.LCHFormulaCallbackRaw = `function (${ outputData.LCHFormulaArgs || '' }) { ${ outputData.LCHFormulaBody || '' } }`;
+		outputData.LCHFormulaCallbackRaw = `(function (${ outputData.LCHFormulaArgs || '' }) { ${ outputData.LCHFormulaBody || '' } })`;
 		delete outputData.LCHFormulaArgs
 		delete outputData.LCHFormulaBody
 	};
 
 	if (outputData.LCHFormulaCanonicalExampleBody) {
-		outputData.LCHFormulaCanonicalExampleBodyRaw = `function () { ${ outputData.LCHFormulaCanonicalExampleBody || '' } }`;
+		outputData.LCHFormulaCanonicalExampleBodyRaw = `(function () { ${ outputData.LCHFormulaCanonicalExampleBody || '' } })`;
 		delete outputData.LCHFormulaCanonicalExampleBody
 	};
 

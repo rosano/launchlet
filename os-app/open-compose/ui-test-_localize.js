@@ -109,7 +109,7 @@ describe('LCHComposeLocalize', function () {
 				await uCreateItem(browser);
 
 				browser.fill(LCHComposeFormNameField, 'charlie');
-				browser.fill(LCHComposeFormArgsField, 'eval');
+				browser.fill(LCHComposeDetailCallbackBodyInputDebug, 'eval');
 				await browser.wait({ element: LCHComposeListItem });
 
 				deepEqual(browser.query(LCHComposeListItem).textContent.trim(), uStringWithFormat(uLocalized('LCHComposeListItemNameFlaggedFormat'), 'charlie'));

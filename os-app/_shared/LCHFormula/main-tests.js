@@ -288,7 +288,7 @@ describe('LCHFormulaToEvaluate', function testLCHFormulaToEvaluate() {
 		deepEqual(LCHFormulaToEvaluate({
 			LCHFormulaArgs: 'alfa',
 		}), {
-			LCHFormulaCallbackRaw: 'function (alfa) {  }',
+			LCHFormulaCallbackRaw: '(function (alfa) {  })',
 		});
 	});
 
@@ -296,7 +296,7 @@ describe('LCHFormulaToEvaluate', function testLCHFormulaToEvaluate() {
 		deepEqual(LCHFormulaToEvaluate({
 			LCHFormulaBody: 'alfa',
 		}), {
-			LCHFormulaCallbackRaw: 'function () { alfa }',
+			LCHFormulaCallbackRaw: '(function () { alfa })',
 		});
 	});
 
@@ -304,7 +304,7 @@ describe('LCHFormulaToEvaluate', function testLCHFormulaToEvaluate() {
 		deepEqual(LCHFormulaToEvaluate({
 			LCHFormulaCanonicalExampleBody: 'alfa',
 		}), {
-			LCHFormulaCanonicalExampleBodyRaw: 'function () { alfa }',
+			LCHFormulaCanonicalExampleBodyRaw: '(function () { alfa })',
 		});
 	});
 
