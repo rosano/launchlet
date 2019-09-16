@@ -174,6 +174,7 @@ const mod = {
 	// COMMAND
 
 	async commandDocumentSave() {
+	_SaveThrottleMap: {},
 	_UpdateThrottleMap: {},
 		mod.commandFlagDocument($DocumentSelectedStore)
 
@@ -187,7 +188,14 @@ const mod = {
 			});
 		};
 
-		modelDidChange.set(Date.now());
+		OLSKThrottle.OLSKThrottleMappedTimeoutFor(mod._UpdateThrottleMap, '_UpdateThrottleMapDefault', function (inputData) {
+			return {
+				OLSKThrottleDuration: 500,
+				OLSKThrottleCallback: function () {
+					modelDidChange.set(inputData);
+				},
+			};
+		}, Date.now());
 
 		OLSKThrottle.OLSKThrottleMappedTimeoutFor(mod._SaveThrottleMap, $DocumentSelectedStore.LCHDocumentID, function (inputData) {
 			return {
