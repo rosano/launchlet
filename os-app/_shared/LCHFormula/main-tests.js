@@ -262,6 +262,22 @@ describe('LCHFormulaTo', function testLCHFormulaTo() {
 
 });
 
+import { LCHFormulaSafeStringFields } from './main.js';
+
+describe('LCHFormulaSafeStringFields', function testLCHFormulaSafeStringFields() {
+
+	it('prefixes fields with with LCHFormula', function() {
+		deepEqual(LCHFormulaSafeStringFields.filter(function (e) {
+			if (e === '@context') {
+				return false;
+			};
+
+			return e.indexOf('LCHFormula') !== 0;
+		}), []);
+	});
+
+});
+
 import { LCHFormulaToEvaluate, LCHFormulaSafeStringFields } from './main.js';
 describe('LCHFormulaToEvaluate', function testLCHFormulaToEvaluate() {
 
