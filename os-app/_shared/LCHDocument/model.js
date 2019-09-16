@@ -43,6 +43,14 @@ export const LCHDocumentModelErrorsFor = function(inputData, options = {}) {
 		}
 	}
 
+	if (inputData.LCHDocumentSyntaxErrorMessage !== undefined || options.LCHOptionValidateIfNotPresent) {
+		if (typeof inputData.LCHDocumentSyntaxErrorMessage !== 'string') {
+			errors.LCHDocumentSyntaxErrorMessage = [
+				'LCHErrorNotString',
+			];
+		}
+	}
+
 	if (inputData.LCHDocumentCanonicalExampleBody !== undefined || options.LCHOptionValidateIfNotPresent) {
 		if (typeof inputData.LCHDocumentCanonicalExampleBody !== 'string') {
 			errors.LCHDocumentCanonicalExampleBody = [

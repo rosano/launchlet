@@ -101,6 +101,26 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 
 	});
 
+	context('LCHDocumentSyntaxErrorMessage', function() {
+
+		it('returns object if not string', function() {
+			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+				LCHDocumentSyntaxErrorMessage: null,
+			})), {
+				LCHDocumentSyntaxErrorMessage: [
+					'LCHErrorNotString',
+				],
+			});
+		});
+
+		it('returns null', function() {
+			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+				LCHDocumentSyntaxErrorMessage: 'alfa',
+			})), null);
+		});
+
+	});
+
 	context('LCHDocumentCanonicalExampleBody', function() {
 
 		it('returns object if not string', function() {
