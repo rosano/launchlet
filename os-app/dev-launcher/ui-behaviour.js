@@ -11,6 +11,10 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 
 	// INTERFACE
 
+	InterfaceButtonDidClick() {
+		setTimeout(function () {
+			moi.CommandLaunch();
+		})
 	},
 
 	// COMMAND
