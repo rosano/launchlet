@@ -199,6 +199,10 @@ const mod = {
 				},
 			};
 		}, $DocumentSelectedStore);
+
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			OLSKThrottle.OLSKThrottleSkip(throttleMap[$DocumentSelectedStore.LCHDocumentID])	
+		};
 	},
 	async commandDocumentClone() {
 		let item = await LCHDocumentAction.LCHDocumentActionCreate(storageClient, Object.assign(Object.assign({}, $DocumentSelectedStore), {
