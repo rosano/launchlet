@@ -9,32 +9,13 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 			(factory((global.LCHLauncherBehaviour = global.LCHLauncherBehaviour || {})));
 }(this, (function (exports) { 'use strict'; Object.defineProperty(exports, '__esModule', { value: true }); let moi = {}; Object.assign(exports, moi = {
 
-	//# SETUP
+	// INTERFACE
 
-	setupEverything() {
-		moi.setupFormulas();
-		moi.setupLauncher();
 	},
-	setupFormulas() {
-		window.LCHPageRecipes = function () {
-			return _LCHLauncherRecipes.concat([
-				{
-					LCHRecipeName: 'Hello',
-					LCHRecipeCallback: function () {
-						document.querySelector('textarea').value = 'Hello';
-					},
-				},
-				{
-					LCHRecipeCallback: function () {
-						document.querySelector('input').value = 'AutomaticRunningOfPageRecipes';
-					},
-					LCHRecipeURLFilter: 'loc',
-					LCHRecipeIsAutomatic: true,
-				}
-			]);
-		};
-	},
-	setupLauncher() {
+
+	// COMMAND
+
+	CommandLaunch() {
 		let app = new Main({
 			target: document.getElementById('LCHLauncherTarget'),
 			props: {
@@ -119,7 +100,33 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 		});
 	},
 
-	//# LIFECYCLE
+	// SETUP
+
+	setupEverything() {
+		moi.setupFormulas();
+		moi.CommandLaunch()
+	},
+	setupFormulas() {
+		window.LCHPageRecipes = function () {
+			return _LCHLauncherRecipes.concat([
+				{
+					LCHRecipeName: 'Hello',
+					LCHRecipeCallback: function () {
+						document.querySelector('textarea').value = 'Hello';
+					},
+				},
+				{
+					LCHRecipeCallback: function () {
+						document.querySelector('input').value = 'AutomaticRunningOfPageRecipes';
+					},
+					LCHRecipeURLFilter: 'loc',
+					LCHRecipeIsAutomatic: true,
+				}
+			]);
+		};
+	},
+
+	// LIFECYCLE
 
 	lifecyclePageWillLoad () {
 		moi.setupEverything();

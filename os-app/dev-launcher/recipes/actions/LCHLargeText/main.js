@@ -3,8 +3,8 @@ export const LCHLargeTextCallback = function(inputData) {
 		return;
 	}
 
-	const div = document.createElement('div');
-	div.id = 'LCHLargeTextContainer';
+	const rootElement = document.createElement('div');
+	rootElement.id = 'LCHLargeTextContainer';
 
 	for (let [key, value] of Object.entries({
 		width: '100%',
@@ -17,12 +17,12 @@ export const LCHLargeTextCallback = function(inputData) {
 
 		cursor: 'default',
 	})) {
-		div.style[key] = value;
+		rootElement.style[key] = value;
 	}
 
 	const span = document.createElement('span');
 	span.textContent = inputData;
-	div.appendChild(span);
+	rootElement.appendChild(span);
 
 	for (let [key, value] of Object.entries({
 		display: 'block-inline',
@@ -42,16 +42,18 @@ export const LCHLargeTextCallback = function(inputData) {
 		span.style[key] = value;
 	}
 	
-	document.body.appendChild(div);
+	document.body.appendChild(rootElement);
 
 	let handler = function (event) {
 		if (event.target === div) {
+		if (!event.key && rootElement.contains(event.target)) {
 	  	return;
 		}
 		
 		window.removeEventListener('click', handler);
-		div.remove();
+		rootElement.remove();
 	};
+
 	setTimeout(function () {
 		window.addEventListener('click', handler);
 	});
