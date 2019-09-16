@@ -181,6 +181,8 @@ const mod = {
 			return val;
 		});
 
+		modelDidChange.set(Date.now());
+
 		if (_LCHIsTestingBehaviour()) {
 			return;
 		}
@@ -192,8 +194,6 @@ const mod = {
 					delete throttleMap[inputData.LCHDocumentID];
 
 					await LCHDocumentAction.LCHDocumentActionUpdate(storageClient, inputData);
-
-					modelDidChange.set(Date.now());
 				},
 			};
 		}, $DocumentSelectedStore);
