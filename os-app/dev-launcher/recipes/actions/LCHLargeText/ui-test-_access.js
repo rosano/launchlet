@@ -30,18 +30,4 @@ describe('LCHLargeTextAccess', function () {
 		browser.assert.elements(LCHLargeTextContainer, 1);
 	});
 
-	it('on click inside', async function() {
-		browser.click(LCHLargeTextContainer);
-		await browser.wait({element: LCHLauncherListItem});
-
-		browser.assert.elements(LCHLargeTextContainer, 1);
-	});
-
-	it('on click outside', async function() {
-		browser.click('textarea');
-		await browser.wait({element: LCHLauncherListItem});
-
-		browser.assert.elements(LCHLargeTextContainer, 0);
-	});
-
 });

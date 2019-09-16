@@ -45,17 +45,21 @@ export const LCHLargeTextCallback = function(inputData) {
 	document.body.appendChild(rootElement);
 
 	let handler = function (event) {
-		if (event.target === div) {
+		event.preventDefault();
+
 		if (!event.key && rootElement.contains(event.target)) {
 	  	return;
 		}
 		
 		window.removeEventListener('click', handler);
+		window.removeEventListener('keydown', handler);
+		
 		rootElement.remove();
 	};
 
 	setTimeout(function () {
 		window.addEventListener('click', handler);
+		window.addEventListener('keydown', handler);
 	});
 };
 
