@@ -175,28 +175,41 @@ const mod = {
 	// COMMAND
 
 	async commandDocumentSave() {
+	_ReactThrottleMap: {},
 	_SaveThrottleMap: {},
-	_UpdateThrottleMap: {},
-		mod.commandFlagDocument($DocumentSelectedStore)
-
 		DocumentsAllStore.update(function (val) {
 			return val;
 		});
+
+		OLSKThrottle.OLSKThrottleMappedTimeoutFor(mod._ReactThrottleMap, 'Default', function (inputData) {
+			return {
+				OLSKThrottleDuration: 500,
+				OLSKThrottleCallback: function () {
+					try	{
+						mod.commandFlagDocument(inputData)
+					} catch (e) {
+						console.log(LCHFormulaToEvaluate(LCHFormulaFrom(inputData)), e);
+						throw e
+					}
+
+					DocumentsAllStore.update(function (val) {
+						return val;
+					});
+
+					modelDidChange.set(Date.now());
+				},
+			};
+		}, $DocumentSelectedStore);
+
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			OLSKThrottle.OLSKThrottleSkip(mod._ReactThrottleMap['Default'])	
+		};
 
 		if (_LCHIsTestingBehaviour() && $DocumentSelectedStore.LCHDocumentBody === 'LCH_TEST_FLAG_ON_BUILD') {
 			Object.assign($DocumentSelectedStore, {
 				LCHDocumentBody: 'eval',
 			});
 		};
-
-		OLSKThrottle.OLSKThrottleMappedTimeoutFor(mod._UpdateThrottleMap, '_UpdateThrottleMapDefault', function (inputData) {
-			return {
-				OLSKThrottleDuration: 500,
-				OLSKThrottleCallback: function () {
-					modelDidChange.set(inputData);
-				},
-			};
-		}, Date.now());
 
 		OLSKThrottle.OLSKThrottleMappedTimeoutFor(mod._SaveThrottleMap, $DocumentSelectedStore.LCHDocumentID, function (inputData) {
 			return {
