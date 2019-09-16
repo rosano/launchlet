@@ -174,9 +174,9 @@ const mod = {
 
 	// COMMAND
 
-	async commandDocumentSave() {
 	_ReactThrottleMap: {},
 	_SaveThrottleMap: {},
+	commandDocumentSave() {
 		DocumentsAllStore.update(function (val) {
 			return val;
 		});
