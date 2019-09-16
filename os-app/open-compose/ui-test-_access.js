@@ -155,7 +155,7 @@ describe('LCHComposeAccess', function () {
 		browser.assert.elements(LCHComposeFormIsAutomaticField, 0);
 	});
 
-	it('on run', async function() {
+	it.skip('on run', async function() {
 		browser.click(LCHComposeBuildAnchor);
 		await browser.wait({ element: '#LCHLauncherFilterInput' });
 

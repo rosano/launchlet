@@ -20,7 +20,11 @@ import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 const mod = {
 
-	ModelDidChange () {
+	ModelDidChange (val) {
+		if (!val) {
+			return;
+		};
+
 		mod.ReactJavascriptComposition();
 	},
 
