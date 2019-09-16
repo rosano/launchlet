@@ -110,9 +110,9 @@ describe('LCHComposeLocalize', function () {
 
 				browser.fill(LCHComposeFormNameField, 'charlie');
 				browser.fill(LCHComposeDetailCallbackBodyInputDebug, 'eval');
-				await browser.wait({ element: LCHComposeListItem });
+				await browser.wait({ element: '.LCHComposeListItemFlagged' });
 
-				deepEqual(browser.query(LCHComposeListItem).textContent.trim(), uStringWithFormat(uLocalized('LCHComposeListItemNameFlaggedFormat'), 'charlie'));
+				deepEqual(browser.query('.LCHComposeListItemFlagged').textContent.trim(), uStringWithFormat(uLocalized('LCHComposeListItemNameFlaggedFormat'), 'charlie'));
 				browser.assert.text(LCHComposeFormFlagAlert, uLocalized('LCHComposeFormFlagAlertText'));
 			});
 
