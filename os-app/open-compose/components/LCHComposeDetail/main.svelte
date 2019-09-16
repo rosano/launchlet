@@ -162,7 +162,6 @@ DocumentSelectedStore.subscribe(function (val) {
 	});
 });
 
-let throttleMap = {};
 import OLSKThrottle from 'OLSKThrottle';
 const mod = {
 
@@ -175,6 +174,7 @@ const mod = {
 	// COMMAND
 
 	async commandDocumentSave() {
+	_UpdateThrottleMap: {},
 		mod.commandFlagDocument($DocumentSelectedStore)
 
 		DocumentsAllStore.update(function (val) {
@@ -189,11 +189,11 @@ const mod = {
 
 		modelDidChange.set(Date.now());
 
-		OLSKThrottle.OLSKThrottleMappedTimeoutFor(throttleMap, $DocumentSelectedStore.LCHDocumentID, function (inputData) {
+		OLSKThrottle.OLSKThrottleMappedTimeoutFor(mod._SaveThrottleMap, $DocumentSelectedStore.LCHDocumentID, function (inputData) {
 			return {
 				OLSKThrottleDuration: 500,
 				OLSKThrottleCallback: async function () {
-					delete throttleMap[inputData.LCHDocumentID];
+					delete mod._SaveThrottleMap[inputData.LCHDocumentID];
 
 					await LCHDocumentAction.LCHDocumentActionUpdate(storageClient, inputData);
 				},
@@ -201,7 +201,7 @@ const mod = {
 		}, $DocumentSelectedStore);
 
 		if (OLSK_TESTING_BEHAVIOUR()) {
-			OLSKThrottle.OLSKThrottleSkip(throttleMap[$DocumentSelectedStore.LCHDocumentID])	
+			OLSKThrottle.OLSKThrottleSkip(mod._SaveThrottleMap[$DocumentSelectedStore.LCHDocumentID])	
 		};
 	},
 	async commandDocumentClone() {
