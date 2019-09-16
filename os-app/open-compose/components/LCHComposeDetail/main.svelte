@@ -181,8 +181,13 @@ const mod = {
 			return val;
 		});
 
-		modelDidChange.set(Date.now());
+		if (_LCHIsTestingBehaviour() && $DocumentSelectedStore.LCHDocumentBody === 'LCH_TEST_FLAG_ON_BUILD') {
+			Object.assign($DocumentSelectedStore, {
+				LCHDocumentBody: 'eval',
+			});
+		};
 
+		modelDidChange.set(Date.now());
 
 		OLSKThrottle.OLSKThrottleMappedTimeoutFor(throttleMap, $DocumentSelectedStore.LCHDocumentID, function (inputData) {
 			return {

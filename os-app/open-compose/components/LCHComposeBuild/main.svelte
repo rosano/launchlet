@@ -9,6 +9,8 @@ import LCHComposeBuildPairExtension from '../LCHComposeBuildPairExtension/main.s
 import { OLSKLocalized, _LCHIsTestingBehaviour, _LCH_DISABLE_ENCRYPTION } from '../../../_shared/common/global.js';
 import { LCHComposeBuildBoomarkletStringFor, LCHComposeBuildBookmarkletBinaryFor } from './ui-logic.js';
 import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../../../dev-launcher/ui-logic.js';
+import { LCHFlags } from '../../../_shared/LCHFlags/main.js'
+import { LCHFormulaSafeStringFields, LCHFormulaFrom } from '../../../_shared/LCHFormula/main.js'
 import { modelDidChange } from '../../model.js'
 
 import { storageClient } from '../../persistence.js';
@@ -109,6 +111,14 @@ const mod = {
 		})
 	},
 
+	_CommandFlagDocument(inputData) {
+		return Object.assign(inputData, {
+			LCHDocumentIsFlagged: !!LCHFlags(Object.fromEntries(Object.entries(LCHFormulaFrom(inputData)).filter(function (e) {
+				return LCHFormulaSafeStringFields.indexOf(e[0]) === -1
+			}))),
+		})
+	},
+
 	// REACT
 
 	ReactJavascriptComposition() {
@@ -116,7 +126,7 @@ const mod = {
 			LCHComposeBuildToken_AppStyle: BuildAppStyle,
 			LCHComposeBuildToken_AppBehaviour: BuildAppBehaviour,
 			LCHComposeBuildToken_DocumentObjects: BuildDocuments.map(function (e) {
-				return Object.entries(e).map(function (e) {
+				return Object.entries(mod._CommandFlagDocument(e)).map(function (e) {
 					if (e[0] === 'LCHDocumentBody' && !e[1]) { // #purge
 						e[1] = 'return'
 					};

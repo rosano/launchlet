@@ -32,10 +32,6 @@ describe('LCHComposeSafety', function () {
 
 	context('Detail', async function testDetail() {
 
-		before(function () {
-			return uCreateItem(browser);
-		});
-
 		it('adds no alert if LCHDocumentName flagged', async function() {
 			browser.fill(LCHComposeFormNameField, 'eval');
 			await browser.wait({ element: LCHComposeFormFlagAlert });
@@ -128,15 +124,35 @@ describe('LCHComposeSafety', function () {
 	context('Build', async function testBuild() {
 
 		before(function () {
-			return uCreateItem(browser);
+			browser.fill(LCHComposeFormArgsField, '');
+			browser.fill(LCHComposeFormInputTypesField, '');
+			browser.fill(LCHComposeFormOutputTypeField, '');
+			browser.fill(LCHComposeFormURLFilterField, '');
 		});
 
-		it.skip('ignores if flagged', async function() {
+		it('ignores if flagged', async function() {
+			await uCreateItem(browser);
+
 			browser.fill(LCHComposeFormNameField, 'eval2');
 			browser.fill(LCHComposeDetailCallbackBodyInputDebug, 'eval');
 			await browser.wait({ element: LCHComposeFormFlagAlert });
 
 			browser.assert.elements(LCHComposeFormFlagAlert, 1);
+
+			browser.click(LCHComposeBuildAnchor);
+			await browser.wait({ element: '#LCHLauncherFilterInput' });
+
+			browser.fill('#LCHLauncherFilterInput', 'e');
+			await browser.wait({ element: '.LCHLauncherResultListItem' });
+
+			browser.assert.elements('.LCHLauncherResultListItem', 1)
+		});
+
+		it('flags if invalid', async function() {
+			await uCreateItem(browser);
+
+			browser.fill(LCHComposeFormNameField, 'eval3');
+			browser.fill(LCHComposeDetailCallbackBodyInputDebug, 'LCH_TEST_FLAG_ON_BUILD');
 
 			browser.click(LCHComposeBuildAnchor);
 			await browser.wait({ element: '#LCHLauncherFilterInput' });
