@@ -183,9 +183,6 @@ const mod = {
 
 		modelDidChange.set(Date.now());
 
-		if (_LCHIsTestingBehaviour()) {
-			return;
-		}
 
 		OLSKThrottle.OLSKThrottleMappedTimeoutFor(throttleMap, $DocumentSelectedStore.LCHDocumentID, function (inputData) {
 			return {
