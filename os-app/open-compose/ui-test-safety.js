@@ -74,6 +74,20 @@ describe('LCHComposeSafety', function () {
 			browser.assert.elements(LCHComposeFormFlagAlert, 0);
 		});
 
+		it('adds alert if LCHDocumentBody contains syntax error', async function() {
+			browser.fill(LCHComposeDetailCallbackBodyInputDebug, '{');
+			await browser.wait({ element: LCHComposeFormFlagAlert });
+
+			browser.assert.elements(LCHComposeFormFlagAlert, 1);
+		})
+
+		it('removes alert if LCHDocumentBody contains no syntax error', async function() {
+			browser.fill(LCHComposeDetailCallbackBodyInputDebug, '');
+			await browser.wait({ element: LCHComposeFormFlagAlert });
+
+			browser.assert.elements(LCHComposeFormFlagAlert, 0);
+		});
+
 		it('adds no alert if LCHDocumentOutputType flagged', async function() {
 			browser.fill(LCHComposeFormOutputTypeField, 'eval');
 			await browser.wait({ element: LCHComposeFormFlagAlert });

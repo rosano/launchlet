@@ -116,6 +116,20 @@ describe('LCHComposeLocalize', function () {
 				browser.assert.text(LCHComposeFormFlagAlert, uLocalized('LCHComposeFormFlagAlertText'));
 			});
 
+			it('on syntax error', async function() {
+				browser.fill(LCHComposeDetailCallbackBodyInputDebug, '');
+				await browser.wait({ element: LCHComposeFormFlagAlert });
+				
+				browser.assert.elements(LCHComposeFormFlagAlert, 0)
+
+				browser.fill(LCHComposeDetailCallbackBodyInputDebug, '{');
+				await browser.wait({ element: LCHComposeFormFlagAlert });
+				
+				browser.assert.elements(LCHComposeFormFlagAlert, 1)
+
+				browser.assert.text(LCHComposeFormFlagAlert, 'Unexpected token (1:18)');
+			});
+
 		});
 		
 	});

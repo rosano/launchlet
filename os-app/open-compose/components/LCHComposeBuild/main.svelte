@@ -112,9 +112,22 @@ const mod = {
 	},
 
 	_CommandFlagDocument(inputData) {
-		return Object.assign(inputData, {
-			LCHDocumentIsFlagged: !!LCHFlags(LCHFormulaToEvaluate(LCHFormulaFrom(inputData))),
-		})
+		let outputData = {};
+
+		try {
+			outputData.LCHDocumentIsFlagged = !!LCHFlags(LCHFormulaToEvaluate(LCHFormulaFrom(inputData)));
+		} catch (e) {
+			if (!e.name.match('SyntaxError')) {
+				throw e
+			}
+
+			outputData = {
+				LCHDocumentIsFlagged: true,
+				LCHDocumentSyntaxErrorMessage: e.message,
+			};
+		}
+
+		return Object.assign(inputData, outputData)
 	},
 
 	// REACT

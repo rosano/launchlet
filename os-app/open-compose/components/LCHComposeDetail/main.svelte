@@ -172,7 +172,7 @@ const mod = {
 		mod.commandDocumentSave();
 	},
 
-	// COMMAND
+// COMMAND
 
 	_ReactThrottleMap: {},
 	_SaveThrottleMap: {},
@@ -181,6 +181,12 @@ const mod = {
 			return val;
 		});
 
+		if ($DocumentSelectedStore.LCHDocumentBody === 'LCH_TEST_FLAG_ON_BUILD') {
+			Object.assign($DocumentSelectedStore, {
+				LCHDocumentBody: 'eval',
+			});
+		};
+
 		OLSKThrottle.OLSKThrottleMappedTimeoutFor(mod._ReactThrottleMap, 'Default', function (inputData) {
 			return {
 				OLSKThrottleDuration: 500,
@@ -188,8 +194,18 @@ const mod = {
 					try	{
 						mod.commandFlagDocument(inputData)
 					} catch (e) {
-						console.log(LCHFormulaToEvaluate(LCHFormulaFrom(inputData)), e);
-						throw e
+						if (!e.name.match('SyntaxError')) {
+							throw e
+						}
+
+						Object.assign(inputData, {
+							LCHDocumentIsFlagged: true,
+							LCHDocumentSyntaxErrorMessage: e.message,
+						});
+
+						if (inputData === $DocumentSelectedStore) {
+							$DocumentSelectedStore.LCHDocumentIsFlagged = inputData.LCHDocumentIsFlagged;
+						};
 					}
 
 					DocumentsAllStore.update(function (val) {
@@ -203,12 +219,6 @@ const mod = {
 
 		if (OLSK_TESTING_BEHAVIOUR()) {
 			OLSKThrottle.OLSKThrottleSkip(mod._ReactThrottleMap['Default'])	
-		};
-
-		if (_LCHIsTestingBehaviour() && $DocumentSelectedStore.LCHDocumentBody === 'LCH_TEST_FLAG_ON_BUILD') {
-			Object.assign($DocumentSelectedStore, {
-				LCHDocumentBody: 'eval',
-			});
 		};
 
 		OLSKThrottle.OLSKThrottleMappedTimeoutFor(mod._SaveThrottleMap, $DocumentSelectedStore.LCHDocumentID, function (inputData) {
@@ -256,6 +266,7 @@ const mod = {
 	commandFlagDocument(inputData) {
 		Object.assign($DocumentSelectedStore, {
 			LCHDocumentIsFlagged: !!LCHFlags(LCHFormulaToEvaluate(LCHFormulaFrom(inputData))),
+			LCHDocumentSyntaxErrorMessage: '',
 		})
 	},
 
@@ -276,7 +287,7 @@ const mod = {
 
 <div class="FormContainer">
 	{#if $DocumentSelectedStore.LCHDocumentIsFlagged}
-		<div class="LCHComposeFormFlagAlert">{ OLSKLocalized('LCHComposeFormFlagAlertText') }</div>
+		<div class="LCHComposeFormFlagAlert">{ $DocumentSelectedStore.LCHDocumentSyntaxErrorMessage ? $DocumentSelectedStore.LCHDocumentSyntaxErrorMessage : OLSKLocalized('LCHComposeFormFlagAlertText') }</div>
 	{/if}
 	
 	<p>
