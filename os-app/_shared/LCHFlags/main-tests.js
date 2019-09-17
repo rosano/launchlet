@@ -112,6 +112,34 @@ describe('_LCHFlags', function test_LCHFlags() {
 	
 	});
 
+	context('LCHFlagStateful', function () {
+
+		it('flags if XMLHttpRequest Identifier', function() {
+			deepEqual(mainModule._LCHFlags('XMLHttpRequest'), ['LCHFlagStateful']);
+		});
+
+		it('flags if XMLHttpRequest MemberExpression', function() {
+			deepEqual(mainModule._LCHFlags('window.XMLHttpRequest'), ['LCHFlagStateful']);
+		});
+
+		it('flags if $ Identifier', function() {
+			deepEqual(mainModule._LCHFlags('$'), ['LCHFlagStateful']);
+		});
+
+		it('flags if $ MemberExpression', function() {
+			deepEqual(mainModule._LCHFlags('window.$'), ['LCHFlagStateful']);
+		});
+
+		it('flags if fetch Identifier', function() {
+			deepEqual(mainModule._LCHFlags('fetch'), ['LCHFlagStateful']);
+		});
+
+		it('flags if fetch MemberExpression', function() {
+			deepEqual(mainModule._LCHFlags('window.fetch'), ['LCHFlagStateful']);
+		});
+	
+	});
+
 });
 
 describe('LCHFlags', function testLCHFlags() {

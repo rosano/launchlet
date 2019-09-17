@@ -30,6 +30,10 @@ export const _LCHFlags = function(inputData) {
 		if (['cookie', 'localStorage', 'sessionStorage', 'indexedDB', 'Cache'].indexOf(inputData) !== -1) {
 			outputData.push('LCHFlagStateful')
 		};
+
+		if (['XMLHttpRequest', '$', 'fetch'].indexOf(inputData) !== -1) {
+			outputData.push('LCHFlagStateful')
+		};
 	}
 
 	simple(ast, {
