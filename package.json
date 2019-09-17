@@ -85,7 +85,7 @@
     "jsdom": "latest",
 
     "// SVELTE": null,
-    "svelte": "3.9.0",
+    "svelte": "latest",
     "OLSKRollup": "olsk/OLSKRollup",
 
     "// LIVERELOAD": null,
