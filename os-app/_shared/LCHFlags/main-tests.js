@@ -72,6 +72,46 @@ describe('_LCHFlags', function test_LCHFlags() {
 	
 	});
 
+	context('LCHFlagStateful', function () {
+
+		it('flags if cookie MemberExpression', function() {
+			deepEqual(mainModule._LCHFlags('document.cookie'), ['LCHFlagStateful']);
+		});
+
+		it('flags if localStorage Identifier', function() {
+			deepEqual(mainModule._LCHFlags('localStorage'), ['LCHFlagStateful']);
+		});
+
+		it('flags if localStorage MemberExpression', function() {
+			deepEqual(mainModule._LCHFlags('window.localStorage'), ['LCHFlagStateful']);
+		});
+
+		it('flags if sessionStorage Identifier', function() {
+			deepEqual(mainModule._LCHFlags('sessionStorage'), ['LCHFlagStateful']);
+		});
+
+		it('flags if sessionStorage MemberExpression', function() {
+			deepEqual(mainModule._LCHFlags('window.sessionStorage'), ['LCHFlagStateful']);
+		});
+
+		it('flags if indexedDB Identifier', function() {
+			deepEqual(mainModule._LCHFlags('indexedDB'), ['LCHFlagStateful']);
+		});
+
+		it('flags if indexedDB MemberExpression', function() {
+			deepEqual(mainModule._LCHFlags('window.indexedDB'), ['LCHFlagStateful']);
+		});
+
+		it('flags if Cache Identifier', function() {
+			deepEqual(mainModule._LCHFlags('Cache'), ['LCHFlagStateful']);
+		});
+
+		it('flags if Cache MemberExpression', function() {
+			deepEqual(mainModule._LCHFlags('window.Cache'), ['LCHFlagStateful']);
+		});
+	
+	});
+
 });
 
 describe('LCHFlags', function testLCHFlags() {

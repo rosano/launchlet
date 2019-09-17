@@ -1,11 +1,6 @@
 import { parse } from 'acorn';
 import { simple } from 'acorn-walk';
 
-const flaggedIdentifiers = [
-	'eval',
-	'Function',
-];
-
 export const _LCHFlags = function(inputData) {
 	if (typeof inputData !== 'string') {
 		throw new Error('LCHErrorInputInvalid');
@@ -27,16 +22,22 @@ export const _LCHFlags = function(inputData) {
 
 	let outputData = [];
 
+	function flagIdentifier(inputData) {
+		if (['eval', 'Function'].indexOf(inputData) !== -1) {
+			outputData.push('LCHFlagEvaluatesString')
+		};
+
+		if (['cookie', 'localStorage', 'sessionStorage', 'indexedDB', 'Cache'].indexOf(inputData) !== -1) {
+			outputData.push('LCHFlagStateful')
+		};
+	}
+
 	simple(ast, {
 	  Identifier(node) {
-	  	if (flaggedIdentifiers.indexOf(node.name) !== -1) {
-	  		outputData.push('LCHFlagEvaluatesString')
-	  	};
+	  	flagIdentifier(node.name)
 	  },
 	  MemberExpression(node) {
-	  	if (flaggedIdentifiers.indexOf(node.property.name) !== -1) {
-	  		outputData.push('LCHFlagEvaluatesString')
-	  	};
+	  	flagIdentifier(node.property.name)
 	  },
 	})
 
