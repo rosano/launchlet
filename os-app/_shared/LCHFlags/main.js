@@ -11,9 +11,23 @@ export const _LCHFlags = function(inputData) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
+	let ast = parse(inputData);
+
+	if (!ast.body.length) {
+		return [];
+	};
+
+	if (ast.body.length > 1) {
+		return ['LCHFlagMultipleExpressions']
+	};
+
+	if (ast.body[0].type === 'ExpressionStatement' && ast.body[0].expression.type === 'SequenceExpression' && ast.body[0].expression.expressions.length > 1) {
+		return ['LCHFlagMultipleExpressions']
+	};
+
 	let outputData = [];
 
-	simple(parse(inputData), {
+	simple(ast, {
 	  Identifier(node) {
 	  	if (flaggedIdentifiers.indexOf(node.name) !== -1) {
 	  		outputData.push('LCHFlagEvaluatesString')

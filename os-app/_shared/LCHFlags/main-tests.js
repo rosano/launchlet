@@ -27,7 +27,7 @@ describe('_LCHFlags', function test_LCHFlags() {
 		});
 		
 		it('flags if eval indirect variable', function() {
-			deepEqual(mainModule._LCHFlags('alfa = eval; alfa()'), ['LCHFlagEvaluatesString']);
+			deepEqual(mainModule._LCHFlags('(function () { alfa = eval; alfa() })'), ['LCHFlagEvaluatesString']);
 		});
 		
 		it('flags if eval indirect call', function() {
@@ -43,7 +43,7 @@ describe('_LCHFlags', function test_LCHFlags() {
 		});
 		
 		it.skip('ignores if eval other', function() {
-			deepEqual(mainModule._LCHFlags('eval = console.log; eval()'), []);
+			deepEqual(mainModule._LCHFlags('(function () { eval = console.log; eval() })'), []);
 		});
 		
 		it('flags if Function Identifier', function() {
@@ -52,6 +52,22 @@ describe('_LCHFlags', function test_LCHFlags() {
 		
 		it('flags if Function MemberExpression', function() {
 			deepEqual(mainModule._LCHFlags('window.Function(null)'), ['LCHFlagEvaluatesString']);
+		});
+	
+	});
+
+	context('LCHFlagMultipleExpressions', function () {
+
+		it('flags if multiple expressions at top-level', function() {
+			deepEqual(mainModule._LCHFlags('(function () {});({})'), ['LCHFlagMultipleExpressions']);
+		});
+
+		it('flags if multiple expressions at second-level', function() {
+			deepEqual(mainModule._LCHFlags('(function () {},{})'), ['LCHFlagMultipleExpressions']);
+		});
+		
+		it('ignores if single expression', function() {
+			deepEqual(mainModule._LCHFlags('(function () {})'), []);
 		});
 	
 	});
