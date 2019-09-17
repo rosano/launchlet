@@ -16,12 +16,12 @@ export const _LCHFlags = function(inputData) {
 	simple(parse(inputData), {
 	  Identifier(node) {
 	  	if (flaggedIdentifiers.indexOf(node.name) !== -1) {
-	  		outputData.push('LCHSafetyFlagEvaluatesString')
+	  		outputData.push('LCHFlagEvaluatesString')
 	  	};
 	  },
 	  MemberExpression(node) {
 	  	if (flaggedIdentifiers.indexOf(node.property.name) !== -1) {
-	  		outputData.push('LCHSafetyFlagEvaluatesString')
+	  		outputData.push('LCHFlagEvaluatesString')
 	  	};
 	  },
 	})

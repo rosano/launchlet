@@ -15,31 +15,31 @@ describe('_LCHFlags', function test_LCHFlags() {
 	});
 
 	it('returns error string if not valid', function() {
-		deepEqual(mainModule._LCHFlags('eval()'), ['LCHSafetyFlagEvaluatesString']);
+		deepEqual(mainModule._LCHFlags('eval()'), ['LCHFlagEvaluatesString']);
 	});
 
-	context('LCHSafetyFlagEvaluatesString', function () {
+	context('LCHFlagEvaluatesString', function () {
 
 		// Evaluating JavaScript code via eval() and new Function() https://2ality.com/2014/01/eval.html
 
 		it('flags if eval direct', function() {
-			deepEqual(mainModule._LCHFlags('eval()'), ['LCHSafetyFlagEvaluatesString']);
+			deepEqual(mainModule._LCHFlags('eval()'), ['LCHFlagEvaluatesString']);
 		});
 		
 		it('flags if eval indirect variable', function() {
-			deepEqual(mainModule._LCHFlags('alfa = eval; alfa()'), ['LCHSafetyFlagEvaluatesString']);
+			deepEqual(mainModule._LCHFlags('alfa = eval; alfa()'), ['LCHFlagEvaluatesString']);
 		});
 		
 		it('flags if eval indirect call', function() {
-			deepEqual(mainModule._LCHFlags('eval.call(null)'), ['LCHSafetyFlagEvaluatesString']);
+			deepEqual(mainModule._LCHFlags('eval.call(null)'), ['LCHFlagEvaluatesString']);
 		});
 		
 		it('flags if eval indirect window', function() {
-			deepEqual(mainModule._LCHFlags('window.eval(null)'), ['LCHSafetyFlagEvaluatesString']);
+			deepEqual(mainModule._LCHFlags('window.eval(null)'), ['LCHFlagEvaluatesString']);
 		});
 		
 		it('flags if eval indirect reference', function() {
-			deepEqual(mainModule._LCHFlags('(1, eval)(null)'), ['LCHSafetyFlagEvaluatesString']);
+			deepEqual(mainModule._LCHFlags('(1, eval)(null)'), ['LCHFlagEvaluatesString']);
 		});
 		
 		it.skip('ignores if eval other', function() {
@@ -47,11 +47,11 @@ describe('_LCHFlags', function test_LCHFlags() {
 		});
 		
 		it('flags if Function Identifier', function() {
-			deepEqual(mainModule._LCHFlags('new Function()'), ['LCHSafetyFlagEvaluatesString']);
+			deepEqual(mainModule._LCHFlags('new Function()'), ['LCHFlagEvaluatesString']);
 		});
 		
 		it('flags if Function MemberExpression', function() {
-			deepEqual(mainModule._LCHFlags('window.Function(null)'), ['LCHSafetyFlagEvaluatesString']);
+			deepEqual(mainModule._LCHFlags('window.Function(null)'), ['LCHFlagEvaluatesString']);
 		});
 	
 	});
@@ -76,7 +76,7 @@ describe('LCHFlags', function testLCHFlags() {
 		deepEqual(mainModule.LCHFlags({
 			alfa: 'eval'
 		}), {
-			alfa: ['LCHSafetyFlagEvaluatesString'],
+			alfa: ['LCHFlagEvaluatesString'],
 		});
 	});
 
