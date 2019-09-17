@@ -15,31 +15,31 @@ describe('_LCHFlags', function test_LCHFlags() {
 	});
 
 	it('returns error string if not valid', function() {
-		deepEqual(mainModule._LCHFlags('eval()'), ['LCHFlagEvaluatesString']);
+		deepEqual(mainModule._LCHFlags('eval()'), ['LCHFlagEval']);
 	});
 
-	context('LCHFlagEvaluatesString', function () {
+	context('LCHFlagEval', function () {
 
 		// Evaluating JavaScript code via eval() and new Function() https://2ality.com/2014/01/eval.html
 
 		it('flags if eval direct', function() {
-			deepEqual(mainModule._LCHFlags('eval()'), ['LCHFlagEvaluatesString']);
+			deepEqual(mainModule._LCHFlags('eval()'), ['LCHFlagEval']);
 		});
 		
 		it('flags if eval indirect variable', function() {
-			deepEqual(mainModule._LCHFlags('(function () { alfa = eval; alfa() })'), ['LCHFlagEvaluatesString']);
+			deepEqual(mainModule._LCHFlags('(function () { alfa = eval; alfa() })'), ['LCHFlagEval']);
 		});
 		
 		it('flags if eval indirect call', function() {
-			deepEqual(mainModule._LCHFlags('eval.call(null)'), ['LCHFlagEvaluatesString']);
+			deepEqual(mainModule._LCHFlags('eval.call(null)'), ['LCHFlagEval']);
 		});
 		
 		it('flags if eval indirect window', function() {
-			deepEqual(mainModule._LCHFlags('window.eval(null)'), ['LCHFlagEvaluatesString']);
+			deepEqual(mainModule._LCHFlags('window.eval(null)'), ['LCHFlagEval']);
 		});
 		
 		it('flags if eval indirect reference', function() {
-			deepEqual(mainModule._LCHFlags('(1, eval)(null)'), ['LCHFlagEvaluatesString']);
+			deepEqual(mainModule._LCHFlags('(1, eval)(null)'), ['LCHFlagEval']);
 		});
 		
 		it.skip('ignores if eval other', function() {
@@ -47,11 +47,11 @@ describe('_LCHFlags', function test_LCHFlags() {
 		});
 		
 		it('flags if Function Identifier', function() {
-			deepEqual(mainModule._LCHFlags('new Function()'), ['LCHFlagEvaluatesString']);
+			deepEqual(mainModule._LCHFlags('new Function()'), ['LCHFlagEval']);
 		});
 		
 		it('flags if Function MemberExpression', function() {
-			deepEqual(mainModule._LCHFlags('window.Function(null)'), ['LCHFlagEvaluatesString']);
+			deepEqual(mainModule._LCHFlags('window.Function(null)'), ['LCHFlagEval']);
 		});
 	
 	});
@@ -132,7 +132,7 @@ describe('LCHFlags', function testLCHFlags() {
 		deepEqual(mainModule.LCHFlags({
 			alfa: 'eval'
 		}), {
-			alfa: ['LCHFlagEvaluatesString'],
+			alfa: ['LCHFlagEval'],
 		});
 	});
 

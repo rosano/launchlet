@@ -24,7 +24,7 @@ export const _LCHFlags = function(inputData) {
 
 	function flagIdentifier(inputData) {
 		if (['eval', 'Function'].indexOf(inputData) !== -1) {
-			outputData.push('LCHFlagEvaluatesString')
+			outputData.push('LCHFlagEval')
 		};
 
 		if (['cookie', 'localStorage', 'sessionStorage', 'indexedDB', 'Cache'].indexOf(inputData) !== -1) {
