@@ -11,9 +11,8 @@ import { storageClient, isLoading, DocumentsAllStore } from './persistence.js';
 import * as LCHSettingsAction from '../_shared/LCHSetting/action.js';
 
 import { onMount } from 'svelte';
-import Widget from 'remotestorage-widget';
 onMount(function () {
-	(new Widget(storageClient.remoteStorage)).attach('LCHComposeStorageWidget');	
+	(new window.OLSKStorageWidget(storageClient.remoteStorage)).attach('LCHComposeStorageWidget').backend(document.querySelector('#IconTarget'));
 });
 
 let masterInstance;
@@ -78,10 +77,10 @@ mod.LifecycleComponentWillMount();
 	/>
 
 <LCHComposeFooter on:FooterDispatchExport={ mod.FooterDispatchExport } on:FooterDispatchImport={ mod.FooterDispatchImport } />
+<div id="LCHComposeStorageWidget" class:StorageHidden={ mod.StorageHidden }></div>
 
 </div>
 
-<div id="LCHComposeStorageWidget"></div>
 <div class="LCHComposeDebug" class:LCHComposeDebugError={ false }>
 	<button class="OLSKLayoutButtonNoStyle" onclick="location.reload();">{ OLSKLocalized('LCHUpdateReloadText') }</button>
 </div>
