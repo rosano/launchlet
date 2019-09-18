@@ -5,9 +5,8 @@
 	font-size: 9pt;
 }
 
-#LCHComposeStorageWidget :global(#remotestorage-widget) {
-	bottom: 0;
-	right: 0;
+#LCHComposeStorageWidget {
+	border-top: var(--LCHBorderStyle)
 }
 
 .LCHComposeDebug {
