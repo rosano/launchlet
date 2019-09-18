@@ -34,6 +34,7 @@ Object.entries({
 	LCHComposeFormURLFilterField: '#LCHComposeFormURLFilterField',
 	LCHComposeFormIsAutomaticField: '#LCHComposeFormIsAutomaticField',
 
+	LCHComposeStorageWidget: '#LCHComposeStorageWidget',
 
 	LCHComposeBuildAnchor: '#LCHComposeBuildAnchor',
 
@@ -65,6 +66,9 @@ describe('LCHComposeAccess', function () {
 
 		browser.assert.elements(LCHComposeDetailToolbar, 0);
 		browser.assert.elements(LCHComposeDetailFormContainer, 0);
+
+		browser.assert.elements(LCHComposeStorageWidget, 1);
+		browser.assert.hasClass(LCHComposeStorageWidget, 'StorageHidden');
 
 		browser.assert.elements(LCHComposeBuildAnchor, 1);
 		browser.assert.attribute(LCHComposeBuildAnchor, 'accesskey', 'r');
@@ -192,6 +196,14 @@ describe('LCHComposeAccess', function () {
 			browser.assert.elements(LCHComposeDetailToolbar, 0);
 		});
 		
+	});
+
+	context.skip('LCHComposeFooterStorageButton', function testLCHComposeFooterStorageButton () {
+		
+		it('shows widget', function () {
+			browser.assert.className(LCHComposeStorageWidget, '');
+		});
+	
 	});
 
 });

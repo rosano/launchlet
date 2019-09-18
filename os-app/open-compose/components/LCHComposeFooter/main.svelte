@@ -9,6 +9,13 @@ import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
 const mod = {
+
+	// INTERFACE
+
+	InterfaceStorageButtonDidClick () {
+		dispatch('LCHComposeFootetDispatchStorage')
+	},
+
 	interfaceExportButtonDidClick () {
 		dispatch('FooterDispatchExport');
 	},
@@ -38,6 +45,8 @@ const mod = {
 			<input type="file" accept=".json" on:change={ mod.interfaceImportButtonDidClick } />
 		</OLSKToolbarElementGroup>
 		<RCSLanguageSwitcher />
+
+		<button class="LCHComposeFooterStorageButton" title={ OLSKLocalized('LCHComposeFooterStorageButtonText') } on:click={ mod.InterfaceStorageButtonDidClick }></button>
 	</OLSKToolbar>
 	
 </footer>

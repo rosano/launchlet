@@ -30,3 +30,6 @@
 	bottom: 100px;
 	right: 0;
 }
+.StorageHidden{
+	display: none;
+}

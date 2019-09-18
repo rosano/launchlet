@@ -10,6 +10,7 @@ import { OLSKLocalized, _LCHIsTestingBehaviour } from '../_shared/common/global.
 import { storageClient, isLoading, DocumentsAllStore } from './persistence.js';
 import * as LCHSettingsAction from '../_shared/LCHSetting/action.js';
 
+let FooterRemoteStorageStatus = '';
 import { onMount } from 'svelte';
 onMount(function () {
 	(new window.OLSKStorageWidget(storageClient.remoteStorage)).attach('LCHComposeStorageWidget').backend(document.querySelector('#IconTarget'));
@@ -17,6 +18,7 @@ onMount(function () {
 
 let masterInstance;
 const mod = {
+	
 	FooterDispatchExport () {
 		masterInstance.DocumentsExport();
 	},
@@ -25,6 +27,11 @@ const mod = {
 	},
 	BuildDispatchModePipeEnabledToggleDidInput (event) {
 		LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposeModePipeEnabled', event.detail.toString())
+	},
+
+	StorageHidden: true,
+	LCHComposeFootetDispatchStorage () {
+		mod.StorageHidden = !mod.StorageHidden;
 	},
 
 	// VALUE
@@ -76,8 +83,9 @@ mod.LifecycleComponentWillMount();
 	on:BuildDispatchModePipeEnabledToggleDidInput={ mod.BuildDispatchModePipeEnabledToggleDidInput }
 	/>
 
-<LCHComposeFooter on:FooterDispatchExport={ mod.FooterDispatchExport } on:FooterDispatchImport={ mod.FooterDispatchImport } />
 <div id="LCHComposeStorageWidget" class:StorageHidden={ mod.StorageHidden }></div>
+
+<LCHComposeFooter on:FooterDispatchExport={ mod.FooterDispatchExport } on:FooterDispatchImport={ mod.FooterDispatchImport } { FooterRemoteStorageStatus } on:LCHComposeFootetDispatchStorage={ mod.LCHComposeFootetDispatchStorage } />
 
 </div>
 
