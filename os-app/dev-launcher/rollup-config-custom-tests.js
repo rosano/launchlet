@@ -1,4 +1,4 @@
-import { throws, doesNotThrow, deepEqual } from 'assert';
+import { throw, deepEqual } from 'assert';
 
 import * as mainModule from './rollup-config-custom.js';
 
