@@ -82,7 +82,7 @@ mod.LifecycleComponentWillMount();
 </div>
 
 <div id="LCHComposeStorageWidget"></div>
-<div class="LCHComposeDebug">
+<div class="LCHComposeDebug" class:LCHComposeDebugError={ false }>
 	<button class="OLSKLayoutButtonNoStyle" onclick="location.reload();">{ OLSKLocalized('LCHUpdateReloadText') }</button>
 </div>
 

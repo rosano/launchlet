@@ -23,7 +23,7 @@
 	margin: 10px;
 }
 
-#LCHComposeStorageWidget :global(.remotestorage-widget-error-state + .LCHComposeDebug) {
+.LCHComposeDebug.LCHComposeDebugError {
 	display: unset;
 
 	position: absolute;

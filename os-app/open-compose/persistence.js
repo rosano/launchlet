@@ -118,7 +118,7 @@ remoteStorage.on('ready', async () => {
 			console.debug('error', error);
 		}
 
-		document.querySelector('#LCHComposeStorageWidget').classList.add('remotestorage-widget-error-state');
+		document.querySelector('#LCHComposeDebug').classList.add('LCHComposeDebugError');
 	});
 
 	remoteStorage.on('network-offline', () => {
