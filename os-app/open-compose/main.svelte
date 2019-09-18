@@ -10,7 +10,12 @@ import { OLSKLocalized, _LCHIsTestingBehaviour } from '../_shared/common/global.
 import { storageClient, isLoading, DocumentsAllStore } from './persistence.js';
 import * as LCHSettingsAction from '../_shared/LCHSetting/action.js';
 
-let FooterRemoteStorageStatus = '';
+let LCHComposeFooterStorageStatus = '';
+import * as OLSKRemoteStorage from '../_shared/__external/OLSKRemoteStorage/main.js'
+OLSKRemoteStorage.OLSKRemoteStorageStatus(storageClient.remoteStorage, function (inputData) {
+	LCHComposeFooterStorageStatus = inputData
+}, OLSKLocalized)
+
 import { onMount } from 'svelte';
 onMount(function () {
 	(new window.OLSKStorageWidget(storageClient.remoteStorage)).attach('LCHComposeStorageWidget').backend(document.querySelector('.LCHComposeFooterStorageButton'));
@@ -85,7 +90,7 @@ mod.LifecycleComponentWillMount();
 
 <div id="LCHComposeStorageWidget" class:StorageHidden={ mod.StorageHidden }></div>
 
-<LCHComposeFooter on:FooterDispatchExport={ mod.FooterDispatchExport } on:FooterDispatchImport={ mod.FooterDispatchImport } { FooterRemoteStorageStatus } on:LCHComposeFootetDispatchStorage={ mod.LCHComposeFootetDispatchStorage } />
+<LCHComposeFooter on:FooterDispatchExport={ mod.FooterDispatchExport } on:FooterDispatchImport={ mod.FooterDispatchImport } { LCHComposeFooterStorageStatus } on:LCHComposeFootetDispatchStorage={ mod.LCHComposeFootetDispatchStorage } />
 
 </div>
 

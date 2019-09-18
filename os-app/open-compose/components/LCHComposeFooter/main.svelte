@@ -1,4 +1,6 @@
 <script>
+export let LCHComposeFooterStorageStatus = '';
+
 import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import OLSKReloadButton from '../../../_shared/__external/OLSKReloadButton/main.svelte';
@@ -45,6 +47,8 @@ const mod = {
 			<input type="file" accept=".json" on:change={ mod.interfaceImportButtonDidClick } />
 		</OLSKToolbarElementGroup>
 		<RCSLanguageSwitcher />
+
+		<div class="LCHComposeFooterStorageStatus">{ LCHComposeFooterStorageStatus }</div>
 
 		<button class="LCHComposeFooterStorageButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" title={ OLSKLocalized('LCHComposeFooterStorageButtonText') } on:click={ mod.InterfaceStorageButtonDidClick } class:OSWIconVisible={ false }>
 			<img src="/open-compose/components/LCHComposeFooter/ui-images/LCHComposeFooterStorageButton.svg">

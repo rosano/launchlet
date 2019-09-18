@@ -27,4 +27,16 @@ describe('LCHComposeFooterStorageButton', function testLCHComposeFooterStorageBu
 
 });
 
+describe('LCHComposeFooterStorageStatus', function testLCHComposeFooterStorageStatus () {
+
+	before(function() {
+		return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?LCHComposeFooterStorageStatus=alfa`);
+	});
+
+	it('shows LCHComposeFooterStorageStatus', function () {
+		browser.assert.text(OSWRootRemoteStorageError, 'alfa')
+	});
+
+});
+
 });

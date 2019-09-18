@@ -7,6 +7,7 @@ Object.entries({
 
 	RCSLanguageSwitcher: '#RCSLanguageSwitcher',
 	
+	LCHComposeFooterStorageStatus: '.LCHComposeFooterStorageStatus',
 	LCHComposeFooterStorageButton: '.LCHComposeFooterStorageButton',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
@@ -22,6 +23,10 @@ describe('LCHComposeFooterAccess', function () {
 		browser.assert.elements(OLSKReloadButton, 1);
 		
 		browser.assert.elements(RCSLanguageSwitcher, 1);
+	});
+
+	it('shows LCHComposeFooterStorageStatus', function () {
+		browser.assert.elements(LCHComposeFooterStorageStatus, 1)
 	});
 
 	it('shows LCHComposeFooterStorageButton', function () {
