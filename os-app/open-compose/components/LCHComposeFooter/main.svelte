@@ -46,7 +46,7 @@ const mod = {
 		</OLSKToolbarElementGroup>
 		<RCSLanguageSwitcher />
 
-		<button class="LCHComposeFooterStorageButtonText OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" title={ OLSKLocalized('LCHComposeFooterStorageButtonText') } on:click={ mod.InterfaceStorageButtonDidClick } class:OSWIconVisible={ false }>
+		<button class="LCHComposeFooterStorageButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" title={ OLSKLocalized('LCHComposeFooterStorageButtonText') } on:click={ mod.InterfaceStorageButtonDidClick } class:OSWIconVisible={ false }>
 			<img src="/open-compose/components/LCHComposeFooter/ui-images/LCHComposeFooterStorageButton.svg">
 		</button>
 	</OLSKToolbar>
