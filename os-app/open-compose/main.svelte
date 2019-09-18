@@ -13,7 +13,7 @@ import * as LCHSettingsAction from '../_shared/LCHSetting/action.js';
 let FooterRemoteStorageStatus = '';
 import { onMount } from 'svelte';
 onMount(function () {
-	(new window.OLSKStorageWidget(storageClient.remoteStorage)).attach('LCHComposeStorageWidget').backend(document.querySelector('#IconTarget'));
+	(new window.OLSKStorageWidget(storageClient.remoteStorage)).attach('LCHComposeStorageWidget').backend(document.querySelector('.LCHComposeFooterStorageButton'));
 });
 
 let masterInstance;

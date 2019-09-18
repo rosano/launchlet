@@ -25,3 +25,20 @@ h1 {
 	/* browser quirks */
 	padding-left: 4px;
 }
+
+.LCHComposeFooterStorageButton {
+	padding: 0 5px;
+}
+
+.LCHComposeFooterStorageButton :global(svg,img) {
+	width: 20px;
+	height: 20px;
+}
+
+.LCHComposeFooterStorageButton :global(path, polygon) {
+	fill: black;
+}
+
+.LCHComposeFooterStorageButton.OSWIconVisible img {
+	display: none;
+}

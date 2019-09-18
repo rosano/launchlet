@@ -16,6 +16,11 @@ describe('LCHComposeFooterStorageButton', function testLCHComposeFooterStorageBu
 		browser.click(LCHComposeFooterStorageButton)
 	});
 	
+	it('has class', function () {
+		browser.assert.hasClass(LCHComposeFooterStorageButton, 'OLSKLayoutButtonNoStyle')
+		browser.assert.hasClass(LCHComposeFooterStorageButton, 'OLSKLayoutElementTappable')
+	});
+	
 	it('sends LCHComposeFootetDispatchStorage', function () {
 		browser.assert.text('#TestLCHComposeFootetDispatchStorage', '1')
 	});
