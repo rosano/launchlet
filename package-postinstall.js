@@ -67,6 +67,8 @@
 		'jszip',
 		'file-saver',
 		'simplecrypto',
+		'OLSKRemoteStorage',
+		'OLSKStorageWidget',
 
 		// pass tests
 		'OLSKInputWrapper',
