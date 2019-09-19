@@ -9,6 +9,15 @@
 	align-items: center;
 }
 
+.Container :global(.OLSKToolbar) {
+	flex-grow: 1;
+}
+
+.Container :global(.OLSKToolbar > div) {
+	display: flex;
+	align-items: center;
+}
+
 h1 {
 	margin: 0;
 

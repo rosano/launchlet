@@ -38,21 +38,23 @@ const mod = {
 
 <footer class="Container">
 
-	<OLSKToolbar>
+	<OLSKToolbar OLSKToolbarJustify={ true }>
 		<OLSKToolbarElementGroup>
 			<OLSKReloadButton OLSKLocalized={ OLSKLocalized } />
+			
+			<RCSLanguageSwitcher />
 
 			<!-- <button on:click={ mod.interfaceExportButtonDidClick }>Export</button> -->
 
 			<!-- <input type="file" accept=".json" on:change={ mod.interfaceImportButtonDidClick } /> -->
 		</OLSKToolbarElementGroup>
-		<RCSLanguageSwitcher />
 
-		<div class="LCHComposeFooterStorageStatus">{ LCHComposeFooterStorageStatus }</div>
-
-		<button class="LCHComposeFooterStorageButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" title={ OLSKLocalized('LCHComposeFooterStorageButtonText') } on:click={ mod.InterfaceStorageButtonDidClick } class:OSWIconVisible={ false }>
-			<img src="/open-compose/components/LCHComposeFooter/ui-images/LCHComposeFooterStorageButton.svg">
-		</button>
+		<div>
+			<div class="LCHComposeFooterStorageStatus">{ LCHComposeFooterStorageStatus }</div>
+			<button class="LCHComposeFooterStorageButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" title={ OLSKLocalized('LCHComposeFooterStorageButtonText') } on:click={ mod.InterfaceStorageButtonDidClick } class:OSWIconVisible={ false }>
+				<img src="/open-compose/components/LCHComposeFooter/ui-images/LCHComposeFooterStorageButton.svg">
+			</button>
+		</div>
 	</OLSKToolbar>
 	
 </footer>
