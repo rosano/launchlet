@@ -557,6 +557,10 @@ const mod = {
 		mod.commandHandleEventKeydown(event);
 	},
 
+	InterfaceDotModeFieldDidInput (event) {
+		mod.ValuePromptDotModeText(this.value);
+	},
+
 	// COMMAND
 	
 	_commandHandleEventKeydownModeDotMode (event) {
@@ -806,11 +810,11 @@ const mod = {
 		{/if}
 
 		{#if e.LCHPromptClass === 'LCHLauncherFilterPrompt' }
-			<input placeholder="{ LCHOptionsObject().runMode === LCHLauncherModePreview() ? OLSKLocalized('LCHLauncherInputPlaceholderPreview') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ _PromptObjects[0].LCHPromptFilterText } bind:this={ inputElement } on:input={ () => ActivePromptFilterTextShouldUpdate(this.value) } id="LCHLauncherFilterInput" />
+			<input placeholder="{ LCHOptionsObject().runMode === LCHLauncherModePreview() ? OLSKLocalized('LCHLauncherInputPlaceholderPreview') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ _PromptObjects[0].LCHPromptFilterText } bind:this={ inputElement } on:input={ () => ActivePromptFilterTextShouldUpdate(inputElement.value) } id="LCHLauncherFilterInput" />
 		{/if}
 
 		{#if ['LCHLauncherFilterPrompt', 'LCHLauncherActionPrompt'].indexOf(e.LCHPromptClass) === -1 && e.LCHPromptDotModeEnabled }
-			<input bind:value={ e.LCHPromptDotModeText } on:input={ () => mod.ValuePromptDotModeText(this.value) } class="LCHLauncherPromptDotModeInput" autofocus />
+			<input bind:value={ e.LCHPromptDotModeText } on:input={ mod.InterfaceDotModeFieldDidInput } class="LCHLauncherPromptDotModeInput" autofocus />
 		{/if}
 	</LCHLauncherPrompt>
 </div>
