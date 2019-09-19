@@ -17,6 +17,10 @@ describe(`LCHComposeFooterLocalize-${ languageCode }`, function () {
 	it('localizes LCHComposeFooterStorageButton', function() {
 		browser.assert.attribute(LCHComposeFooterStorageButton, 'title', uLocalized('LCHComposeFooterStorageButtonText'));
 	});
+	
+	it('localizes LCHComposeFooterGuideLink', function() {
+		browser.assert.text(LCHComposeFooterGuideLink, uLocalized('LCHComposeFooterGuideLinkText'));
+	});
 
 });
 

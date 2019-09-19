@@ -1,7 +1,7 @@
 # Launchlet
 _Generalized interface for keyboard-based interaction_
 
-Launchlet is a simple way to add a name to snippets of code and then run it. Inspired by [Quicksilver](https://qsapp.com), it functions primarily via mouseless interaction and lets you access your [Recipes] with a few keyboard strokes. You can also use it to customize websites in the same way as 'userscripts' or 'userstyles'. Optimized to be fast so that you can 'think then do'.
+Launchlet is a simple way to add a name to snippets of code and then run it. Inspired by [Quicksilver](https://qsapp.com), it functions primarily via mouseless interaction and lets you access your [Recipes](LCHVitrineTokenGuideURL) with a few keyboard strokes. You can also use it to customize websites in the same way as 'userscripts' or 'userstyles'. Optimized to be fast so that you can 'think then do'.
 
 You can easily make your own with the [composer](LCHVitrineTokenComposeURL). Check out the demos below for some ideas.
 

@@ -6,6 +6,7 @@ Object.entries({
 	OLSKReloadButton: '.OLSKReloadButton',
 
 	RCSLanguageSwitcher: '#RCSLanguageSwitcher',
+	LCHComposeFooterGuideLink: '.LCHComposeFooterGuideLink',
 	
 	LCHComposeFooterStorageStatus: '.LCHComposeFooterStorageStatus',
 	LCHComposeFooterStorageButton: '.LCHComposeFooterStorageButton',
@@ -23,6 +24,10 @@ describe('LCHComposeFooterAccess', function () {
 		browser.assert.elements(OLSKReloadButton, 1);
 		
 		browser.assert.elements(RCSLanguageSwitcher, 1);
+	});
+
+	it('shows LCHComposeFooterGuideLink', function () {
+		browser.assert.elements(LCHComposeFooterGuideLink, 1)
 	});
 
 	it('shows LCHComposeFooterStorageStatus', function () {

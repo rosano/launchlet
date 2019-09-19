@@ -4,6 +4,22 @@ const kDefaultRoute = require('../../controller.js').OLSKControllerRoutes().LCHC
 
 describe.skip('LCHComposeFooterMisc', function () {
 
+describe('LCHComposeFooterGuideLink', function testLCHComposeFooterGuideLink () {
+
+	before(function() {
+		return browser.visit(kDefaultRoute.OLSKRoutePath);
+	});
+
+	it('links to LCHGuideRoute', function () {
+		browser.assert.attribute(LCHComposeFooterGuideLink, 'href', require('../../../open-guide/controller.js').OLSKControllerRoutes().LCHGuideRoute)
+	});
+
+	it('opens in new window', function () {
+		browser.assert.attribute(LCHComposeFooterGuideLink, 'target', '_blank')
+	});
+
+});
+
 describe('LCHComposeFooterStorageButton', function testLCHComposeFooterStorageButton () {
 
 	before(function() {

@@ -44,6 +44,8 @@ const mod = {
 			
 			<RCSLanguageSwitcher />
 
+			<a class="LCHComposeFooterGuideLink" href={ window.OLSKCanonicalFor('LCHGuideRoute') } target="_blank">{ OLSKLocalized('LCHComposeFooterGuideLinkText') }</a>
+
 			<!-- <button on:click={ mod.interfaceExportButtonDidClick }>Export</button> -->
 
 			<!-- <input type="file" accept=".json" on:change={ mod.interfaceImportButtonDidClick } /> -->
