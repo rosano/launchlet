@@ -1,19 +1,6 @@
-(function() {
-	if (process.env.OLSK_TESTING_BEHAVIOUR === 'true') {
-		return;
-	}
-
-	if (process.env.NODE_ENV !== 'development') {
-		return;
-	}
-
-	require('livereload').createServer({
-		extraExts: [
-			'md',
-			'ejs',
-		],
-	}).watch(__dirname);
-})();
+exports.OLSKControllerUseLivereload = function() {
+	return true;
+};
 
 exports.OLSKControllerRoutes = function() {
 	return {
