@@ -1,1 +1,19 @@
+body {
+	padding: 10px;
 
+	font-family: 'Lucida Grande', sans-serif;
+	font-size: 11pt;
+	background: var(--LCHCommonBackground);
+	color: var(--LCHCommonForeground);
+}
+
+h1, h2,  h3 {
+	font-family: 'Helvetica Neue';
+}
+
+hr {
+	height: 1px;
+	border: none;
+
+	background: black;
+}
