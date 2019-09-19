@@ -1,0 +1,16 @@
+<%
+locals.OLSKPageTitle = OLSKLocalized('LCHGuideTitle');
+locals.OLSKPageDescription = OLSKLocalized('LCHGuideDescription');
+locals.OLSKPageAssets = [
+	'/_shared/__external/normalize.css/normalize.css',
+	'ui-style.css',
+];
+locals.OLSKPageUseLivereload = process.env.NODE_ENV === 'development';
+%>
+
+<%- include('../_shared/common/layout-header.ejs') %>
+
+<%- OLSKStringReplaceTokens(LCHGuideContent, {
+}) %>
+
+<%- include('../_shared/common/layout-footer.ejs') %>
