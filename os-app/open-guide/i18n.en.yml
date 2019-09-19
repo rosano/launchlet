@@ -1,2 +1,9 @@
 LCHGuideTitle: Launchlet Guide
 LCHGuideDescription: Documentation for project
+LCHGuideDocumentFields:
+  LCHDocumentName: Name
+  LCHDocumentBody: Callback
+  LCHDocumentSignature: Signature
+  LCHDocumentInputTypes: Input Types
+  LCHDocumentArgs: Arguments
+  LCHDocumentOutputType: Output Type
