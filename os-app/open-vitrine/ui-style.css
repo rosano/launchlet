@@ -1,8 +1,3 @@
-:root {
-	--LCHVitrineBackground: hsl(0, 0%, 97%);
-	--LCHVitrineForeground: hsl(0, 0%, 0%);
-}
-
 body {
 	padding: 10px;
 	max-width: 400px;
@@ -11,8 +6,8 @@ body {
 
 	font-family: 'Lucida Grande', sans-serif;
 	font-size: 11pt;
-	background: var(--LCHVitrineBackground);
-	color: var(--LCHVitrineForeground);
+	background: var(--LCHCommonBackground);
+	color: var(--LCHCommonForeground);
 }
 
 h1, h2,  h3 {

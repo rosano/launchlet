@@ -36,12 +36,12 @@ describe('LCHVitrineDemoCommit', function () {
 			initialContent = item.innerHTML;
 		});
 		
-		it('sets --LCHVitrineBackground', async function() {
-			deepEqual(initialContent.includes('--LCHVitrineBackground'), true)
+		it('sets --LCHCommonBackground', async function() {
+			deepEqual(initialContent.includes('--LCHCommonBackground'), true)
 		});
 		
-		it('sets --LCHVitrineForeground', async function() {
-			deepEqual(initialContent.includes('--LCHVitrineForeground'), true)
+		it('sets --LCHCommonForeground', async function() {
+			deepEqual(initialContent.includes('--LCHCommonForeground'), true)
 		});
 		
 		it('updates element', async function() {

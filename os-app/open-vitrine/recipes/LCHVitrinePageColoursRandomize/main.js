@@ -7,7 +7,7 @@ export const LCHVitrinePageColoursRandomizeCallback = function() {
 
 	let random = Math.random()
 
-	const match = element.innerHTML.match(/LCHVitrineBackground: hsl\(0\, 0\%\, (.*)\%/)
+	const match = element.innerHTML.match(/LCHCommonBackground: hsl\(0\, 0\%\, (.*)\%/)
 	if (match) {
 		const previous = parseFloat(match.pop()) / 100;
 
@@ -19,8 +19,8 @@ export const LCHVitrinePageColoursRandomizeCallback = function() {
 	element.innerHTML = `
 	body {
 
-	--LCHVitrineBackground: hsl(0, 0%, ${ random * 100 }%);
-	--LCHVitrineForeground: hsl(0, 0%, ${ 100.0 - random * 100 }%);
+	--LCHCommonBackground: hsl(0, 0%, ${ random * 100 }%);
+	--LCHCommonForeground: hsl(0, 0%, ${ 100.0 - random * 100 }%);
 	}
 `
 };
