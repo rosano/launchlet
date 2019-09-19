@@ -65,6 +65,10 @@ describe('_LCHFlags', function test_LCHFlags() {
 		it('flags if multiple expressions at second-level', function() {
 			deepEqual(mainModule._LCHFlags('(function () {},{})'), ['LCHFlagMultipleExpressions']);
 		});
+
+		it('flags if multiple expressions via arguments', function() {
+			deepEqual(mainModule._LCHFlags('(function () {},{})'), ['LCHFlagMultipleExpressions']);
+		});
 		
 		it('ignores if single expression', function() {
 			deepEqual(mainModule._LCHFlags('(function () {})'), []);
