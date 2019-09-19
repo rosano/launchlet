@@ -52,7 +52,7 @@ Running arbitrary JavaScript can be dangerous, and this project comes with no gu
 - dynamic code such as `eval` or `new Function()`
 - stateful code that calls `document.cookie`, `localStorage`, `sessionStorage`, `XMLHttpRequest`, `fetch`
 
-Anyone with security expertise and ideas on how to improve safety in the project is welcome to add an Issue on [GitHub].
+Anyone with security expertise and ideas on how to improve safety in the project is welcome to add a [GitHub Issue].
 
 It is best to run code that is concise and easy to read.
 
@@ -62,7 +62,7 @@ It is best to run code that is concise and easy to read.
 
 Optionally, Launchlet can include Recipes from any page that sets `LCHPageRecipes` on the `window` object to an `Array`. This allows pages to expose their functionality in a way that is accessible to 3rd parties.
 
-For example, when running Launchlet on <a href="https://rosano.ca" target="_blank">rosano.ca</a>, it is possible to choose a 'Send a message' *Command* that is only accessible from that page.
+For example, when running Launchlet on <a href="https://rosano.ca" target="_blank">rosano.ca</a>, it is possible to choose a 'Send a message' *Command* that originates from the page.
 
 * * *
 
@@ -70,6 +70,6 @@ For example, when running Launchlet on <a href="https://rosano.ca" target="_blan
 
 [remoteStorage](https://remotestorage.io) is an incredible open-source technology for synchronizing data between multiple devices and making it available offline.
 
-It allows the same data to be used in different ways by multiple apps. You could think of it like a USB key with your documents that you can plug into websites to work on your stuff.
+It allows the same data to be used in different ways by multiple apps. You could think of it as a USB key for your documents that you can plug into websites to work on your stuff.
 
 If you don't have one, it also works with Dropbox and Google Drive. You can also get one for free from [5apps](https://5apps.com/storage/).
