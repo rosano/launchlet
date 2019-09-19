@@ -1,6 +1,6 @@
 import { deepEqual } from 'assert';
 
-const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
+const kDefaultRoute = require('../../controller.js').OLSKControllerRoutes().LCHComposeRoute;
 
 describe.skip('LCHComposeFooterMisc', function () {
 
