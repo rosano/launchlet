@@ -111,23 +111,21 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 		moi.CommandLaunch()
 	},
 	setupFormulas() {
-		window.LCHPageRecipes = function () {
-			return _LCHLauncherRecipes.concat([
-				{
-					LCHRecipeName: 'Hello',
-					LCHRecipeCallback: function () {
-						document.querySelector('textarea').value = 'Hello';
-					},
+		window.LCHPageRecipes = _LCHLauncherRecipes.concat([
+			{
+				LCHRecipeName: 'Hello',
+				LCHRecipeCallback: function () {
+					document.querySelector('textarea').value = 'Hello';
 				},
-				{
-					LCHRecipeCallback: function () {
-						document.querySelector('input').value = 'AutomaticRunningOfPageRecipes';
-					},
-					LCHRecipeURLFilter: 'loc',
-					LCHRecipeIsAutomatic: true,
-				}
-			]);
-		};
+			},
+			{
+				LCHRecipeCallback: function () {
+					document.querySelector('input').value = 'AutomaticRunningOfPageRecipes';
+				},
+				LCHRecipeURLFilter: 'loc',
+				LCHRecipeIsAutomatic: true,
+			}
+		]);
 	},
 
 	// LIFECYCLE

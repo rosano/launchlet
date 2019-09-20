@@ -40,11 +40,11 @@ import { LCHLauncherPatternMatchesURL } from './ui-logic.js';
 
 import { LCHRecipesModelErrorsFor } from './api.js';
 (function StartPageFormulas() {
-	if (typeof window.LCHPageRecipes !== 'function') {
+	if (!Array.isArray(window.LCHPageRecipes)) {
 		return;
 	}
 
-	let pageFormulas = window.LCHPageRecipes();
+	let pageFormulas = window.LCHPageRecipes;
 
 	if (!Array.isArray(pageFormulas)) {
 		return;
