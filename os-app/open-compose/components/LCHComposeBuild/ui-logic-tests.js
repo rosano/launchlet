@@ -191,7 +191,7 @@ describe('_LCHComposeRecipeStub', function test_LCHComposeRecipeStub() {
 		deepEqual(mainModule._LCHComposeRecipeStub({}), {});
 	});
 
-	it('converts formula fields', function() {
+	it('converts LCHFormula fields', function() {
 		deepEqual(mainModule._LCHComposeRecipeStub({
 			LCHDocumentName: '',
 		}), {

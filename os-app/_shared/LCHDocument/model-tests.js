@@ -3,7 +3,7 @@ import { throws, deepEqual } from 'assert';
 import * as mainModule from './model.js';
 
 const kTesting = {
-	StubFormulaObjectValid: function() {
+	StubDocumentObjectValid: function() {
 		return {
 			LCHDocumentID: 'alfa',
 			LCHDocumentBody: '',
@@ -22,7 +22,7 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 	});
 
 	it('returns object if LCHDocumentID not string', function() {
-		deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+		deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
 			LCHDocumentID: null,
 		})), {
 			LCHDocumentID: [
@@ -32,7 +32,7 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 	});
 
 	it('returns object if LCHDocumentID not filled', function() {
-		deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+		deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
 			LCHDocumentID: ' ',
 		})), {
 			LCHDocumentID: [
@@ -42,7 +42,7 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 	});
 
 	it('returns object if LCHDocumentBody not string', function() {
-		deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+		deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
 			LCHDocumentBody: null,
 		})), {
 			LCHDocumentBody: [
@@ -52,7 +52,7 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 	});
 
 	it('returns object if LCHDocumentCreationDate not date', function() {
-		deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+		deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
 			LCHDocumentCreationDate: new Date('alfa'),
 		})), {
 			LCHDocumentCreationDate: [
@@ -62,7 +62,7 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 	});
 
 	it('returns object if LCHDocumentModificationDate not date', function() {
-		deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+		deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
 			LCHDocumentModificationDate: new Date('alfa'),
 		})), {
 			LCHDocumentModificationDate: [
@@ -72,11 +72,11 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 	});
 
 	it('returns null', function() {
-		deepEqual(mainModule.LCHDocumentModelErrorsFor(kTesting.StubFormulaObjectValid()), null);
+		deepEqual(mainModule.LCHDocumentModelErrorsFor(kTesting.StubDocumentObjectValid()), null);
 	});
 
 	it('returns object if LCHOptionValidateIfNotPresent', function() {
-		deepEqual(Array.isArray(Object.keys(mainModule.LCHDocumentModelErrorsFor(kTesting.StubFormulaObjectValid(), {
+		deepEqual(Array.isArray(Object.keys(mainModule.LCHDocumentModelErrorsFor(kTesting.StubDocumentObjectValid(), {
 			LCHOptionValidateIfNotPresent: true,
 		}))), true);
 	});
@@ -84,7 +84,7 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 	context('LCHDocumentArgs', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
 				LCHDocumentArgs: null,
 			})), {
 				LCHDocumentArgs: [
@@ -94,7 +94,7 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
 				LCHDocumentArgs: 'alfa',
 			})), null);
 		});
@@ -104,7 +104,7 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 	context('LCHDocumentSyntaxErrorMessage', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
 				LCHDocumentSyntaxErrorMessage: null,
 			})), {
 				LCHDocumentSyntaxErrorMessage: [
@@ -114,7 +114,7 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
 				LCHDocumentSyntaxErrorMessage: 'alfa',
 			})), null);
 		});
@@ -124,7 +124,7 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 	context('LCHDocumentCanonicalExampleBody', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
 				LCHDocumentCanonicalExampleBody: null,
 			})), {
 				LCHDocumentCanonicalExampleBody: [
@@ -134,7 +134,7 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubFormulaObjectValid(), {
+			deepEqual(mainModule.LCHDocumentModelErrorsFor(Object.assign(kTesting.StubDocumentObjectValid(), {
 				LCHDocumentCanonicalExampleBody: '',
 			})), null);
 		});

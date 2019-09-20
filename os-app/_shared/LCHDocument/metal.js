@@ -1,11 +1,11 @@
-import * as LCHFormulasModel from './model.js';
+import { LCHDocumentModelErrorsFor, LCHDocumentModelPostJSONParse } from './model.js';
 
 export const LCHDocumentMetalWrite = async function(storageClient, inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		return Promise.reject(new Error('LCHErrorInputInvalid'));
 	}
 
-	let errors = LCHFormulasModel.LCHDocumentModelErrorsFor(inputData);
+	let errors = LCHDocumentModelErrorsFor(inputData);
 	if (errors) {
 		return Promise.resolve({
 			LCHErrors: errors,
@@ -20,14 +20,14 @@ export const LCHDocumentMetalRead = async function(storageClient, inputData) {
 		return Promise.reject(new Error('LCHErrorInputInvalid'));
 	}
 
-	return LCHFormulasModel.LCHDocumentModelPostJSONParse(await storageClient.launchlet.lch_documents.readObject(inputData));
+	return LCHDocumentModelPostJSONParse(await storageClient.launchlet.lch_documents.readObject(inputData));
 };
 
 export const LCHDocumentMetalList = async function(storageClient) {
 	let outputData = await storageClient.launchlet.lch_documents.listObjects();
 
 	for (let key in outputData) {
-		LCHFormulasModel.LCHDocumentModelPostJSONParse(outputData[key]);
+		LCHDocumentModelPostJSONParse(outputData[key]);
 	}
 	
 	return outputData;

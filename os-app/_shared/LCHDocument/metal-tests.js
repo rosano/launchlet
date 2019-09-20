@@ -3,7 +3,7 @@ import { rejects, deepEqual } from 'assert';
 import * as mainModule from './metal.js';
 
 const kTesting = {
-	StubFormulaObjectValid: function() {
+	StubDocumentObjectValid: function() {
 		return {
 			LCHDocumentID: 'alfa',
 			LCHDocumentArgs: 'bravo',
@@ -21,7 +21,7 @@ describe('LCHDocumentMetalWrite', function testLCHDocumentMetalWrite() {
 	});
 
 	it('returns object with LCHErrors if not valid', async function() {
-		deepEqual((await mainModule.LCHDocumentMetalWrite(LCHTestingStorageClient, Object.assign(kTesting.StubFormulaObjectValid(), {
+		deepEqual((await mainModule.LCHDocumentMetalWrite(LCHTestingStorageClient, Object.assign(kTesting.StubDocumentObjectValid(), {
 			LCHDocumentID: null,
 		}))).LCHErrors, {
 			LCHDocumentID: [
@@ -31,9 +31,9 @@ describe('LCHDocumentMetalWrite', function testLCHDocumentMetalWrite() {
 	});
 
 	it('returns LCHDocument', async function() {
-		let item = await mainModule.LCHDocumentMetalWrite(LCHTestingStorageClient, kTesting.StubFormulaObjectValid());
+		let item = await mainModule.LCHDocumentMetalWrite(LCHTestingStorageClient, kTesting.StubDocumentObjectValid());
 
-		deepEqual(item, Object.assign(kTesting.StubFormulaObjectValid(), {
+		deepEqual(item, Object.assign(kTesting.StubDocumentObjectValid(), {
 			'@context': item['@context'],
 		}));
 	});
@@ -51,7 +51,7 @@ describe('LCHDocumentMetalRead', function testLCHDocumentMetalRead() {
 	});
 
 	it('returns LCHDocument', async function() {
-		let item = await mainModule.LCHDocumentMetalWrite(LCHTestingStorageClient, kTesting.StubFormulaObjectValid());
+		let item = await mainModule.LCHDocumentMetalWrite(LCHTestingStorageClient, kTesting.StubDocumentObjectValid());
 
 		deepEqual(await mainModule.LCHDocumentMetalRead(LCHTestingStorageClient, item.LCHDocumentID), item);
 	});
@@ -65,7 +65,7 @@ describe('LCHDocumentMetalList', function testLCHDocumentMetalList() {
 	});
 
 	it('returns existing LCHDocuments', async function() {
-		let item = await mainModule.LCHDocumentMetalWrite(LCHTestingStorageClient, kTesting.StubFormulaObjectValid());
+		let item = await mainModule.LCHDocumentMetalWrite(LCHTestingStorageClient, kTesting.StubDocumentObjectValid());
 		deepEqual(Object.values(await mainModule.LCHDocumentMetalList(LCHTestingStorageClient)), [item]);
 		deepEqual(Object.keys(await mainModule.LCHDocumentMetalList(LCHTestingStorageClient)), [item.LCHDocumentID]);
 	});
@@ -79,13 +79,13 @@ describe('LCHDocumentMetalDelete', function testLCHDocumentMetalDelete() {
 	});
 
 	it('returns statusCode', async function() {
-		deepEqual(await mainModule.LCHDocumentMetalDelete(LCHTestingStorageClient, (await mainModule.LCHDocumentMetalWrite(LCHTestingStorageClient, kTesting.StubFormulaObjectValid())).LCHDocumentID), {
+		deepEqual(await mainModule.LCHDocumentMetalDelete(LCHTestingStorageClient, (await mainModule.LCHDocumentMetalWrite(LCHTestingStorageClient, kTesting.StubDocumentObjectValid())).LCHDocumentID), {
 			statusCode: 200,
 		});
 	});
 
 	it('deletes LCHDocument', async function() {
-		await mainModule.LCHDocumentMetalDelete(LCHTestingStorageClient, (await mainModule.LCHDocumentMetalWrite(LCHTestingStorageClient, kTesting.StubFormulaObjectValid())).LCHDocumentID);
+		await mainModule.LCHDocumentMetalDelete(LCHTestingStorageClient, (await mainModule.LCHDocumentMetalWrite(LCHTestingStorageClient, kTesting.StubDocumentObjectValid())).LCHDocumentID);
 		deepEqual(await mainModule.LCHDocumentMetalList(LCHTestingStorageClient), {});
 	});
 

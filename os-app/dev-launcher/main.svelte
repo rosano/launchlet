@@ -39,18 +39,18 @@ import { LCHLauncherPatternMatchesURL } from './ui-logic.js';
 })();
 
 import { LCHRecipesModelErrorsFor } from './api.js';
-(function StartPageFormulas() {
+(function StartPageRecipes() {
 	if (!Array.isArray(window.LCHPageRecipes)) {
 		return;
 	}
 
-	let pageFormulas = window.LCHPageRecipes;
+	let pageRecipes = window.LCHPageRecipes;
 
-	if (!Array.isArray(pageFormulas)) {
+	if (!Array.isArray(pageRecipes)) {
 		return;
 	}
 
-	dataObjects.push(...pageFormulas.map(function (e) {
+	dataObjects.push(...pageRecipes.map(function (e) {
 		delete e.LCHRecipeURLFilter;
 		delete e.LCHRecipeIsAutomatic;
 
@@ -402,7 +402,6 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 	})();
 }
 
-let formulasDefault = LCHOptionsObject().runMode === LCHLauncherModePreview() ? dataObjects : [];
 import OLSKThrottle from 'OLSKThrottle';
 
 let rootElement;
