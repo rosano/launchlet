@@ -44,7 +44,7 @@ h1 {
 	height: 20px;
 }
 
-.LCHComposeFooterStorageButton :global(path, polygon) {
+.LCHComposeFooterStorageButton :global(path) {
 	fill: black;
 }
 
