@@ -55,3 +55,25 @@ describe('LCHGuideExampleQuoted', function testLCHGuideExampleQuoted() {
 	});
 
 });
+
+describe('LCHGuideExampleTemplate', function testLCHGuideExampleTemplate() {
+
+	it('throws error if not array', function() {
+		throws(function() {
+			mainModule.LCHGuideExampleTemplate(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns string', function() {
+		deepEqual(mainModule.LCHGuideExampleTemplate([]), `<div class="LCHGuideExample">\n\n\n\n</div>`);
+	});
+
+	it('inserts input', function() {
+		deepEqual(mainModule.LCHGuideExampleTemplate(['alfa']), `<div class="LCHGuideExample">\n\nalfa\n\n</div>`);
+	});
+
+	it('joins multiple with newlines', function() {
+		deepEqual(mainModule.LCHGuideExampleTemplate(['alfa', 'bravo']), `<div class="LCHGuideExample">\n\nalfa\n\nbravo\n\n</div>`);
+	});
+
+});
