@@ -36,20 +36,20 @@ describe('LCHGuideExampleFormatted', function testLCHGuideExampleFormatted() {
 
 });
 
-describe('LCHGuideExampleQuotes', function testLCHGuideExampleQuotes() {
+describe('LCHGuideExampleQuoted', function testLCHGuideExampleQuoted() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mainModule.LCHGuideExampleQuotes(null);
+			mainModule.LCHGuideExampleQuoted(null);
 		}, /LCHErrorInputInvalid/);
 	});
 
 	it('returns array', function() {
-		deepEqual(mainModule.LCHGuideExampleQuotes({}), []);
+		deepEqual(mainModule.LCHGuideExampleQuoted({}), []);
 	});
 
 	it('splits into entries', function() {
-		deepEqual(mainModule.LCHGuideExampleQuotes({
+		deepEqual(mainModule.LCHGuideExampleQuoted({
 			alfa: 'bravo',
 		}), ['> **alfa**\n>> bravo']);
 	});

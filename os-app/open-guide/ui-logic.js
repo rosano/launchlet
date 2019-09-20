@@ -14,7 +14,7 @@ exports.LCHGuideExampleFormatted = function (inputData) {
 	return outputData
 };
 
-exports.LCHGuideExampleQuotes = function (inputData) {
+exports.LCHGuideExampleQuoted = function (inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
 	}

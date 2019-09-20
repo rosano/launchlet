@@ -3,9 +3,9 @@ exports.OLSKControllerUseLivereload = function() {
 };
 
 function OLSKRouteFunction (req, res, next) {
-	const { LCHGuideExampleFormatted, LCHGuideExampleQuotes } = require('./ui-logic.js');
+	const { LCHGuideExampleFormatted, LCHGuideExampleQuoted } = require('./ui-logic.js');
 	function LCHGuideExampleTemplate(inputData) {
-		return `<div class="LCHGuideExample">\n\n${ LCHGuideExampleQuotes((function (inputData) {
+		return `<div class="LCHGuideExample">\n\n${ LCHGuideExampleQuoted((function (inputData) {
 			let outputData = {};
 
 			for (key in inputData) {
