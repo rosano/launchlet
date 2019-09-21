@@ -2,7 +2,7 @@
 
 <div class="LCHGuideNotice">
 
-This document is a work-in-progress. Feel free to ask questions on [Stack Overflow](https://stackoverflow.com) or [Super User](https://superuser.com/) tagged with *launchlet*.
+This document is a work-in-progress. Feel free to ask questions tagged with *launchlet* on [Stack Overflow](https://stackoverflow.com) or [Super User](https://superuser.com/).
 
 </div>
 

@@ -13,7 +13,7 @@ The project is freely accessible but if you are in a position to give, please [d
 
 ## Commit mode
 
-Presents a list of commands and runs on `Enter`. Try any of the following commands:
+Presents a list of options and runs on `Enter`. Try any of the following options:
 - `LCHVitrineTokenRandomizePageColoursName`
 - `LCHVitrineTokenCopyPageInfoName`
 - `LCHVitrineTokenSendEmailName`
@@ -22,7 +22,7 @@ LCHVitrineDemoButtonCommitToken
 
 ## Preview mode
 
-Presents a list of commands and runs on select, Try jumping through the headings in this document:
+Presents a list of options and runs on select, Try jumping through the headings in this document:
 
 LCHVitrineDemoButtonPreviewToken
 
