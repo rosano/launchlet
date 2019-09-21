@@ -55,3 +55,5 @@ export const mod = {
 	},
 
 };
+
+window.LCHPageRecipes = _LCHVitrineRecipes.slice();
