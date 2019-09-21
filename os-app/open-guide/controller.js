@@ -14,7 +14,7 @@ function OLSKRouteFunction (req, res, next) {
 		LCHGuideContent: require('marked').setOptions({
 			gfm: true,
 		})(require('OLSKString').OLSKStringReplaceTokens(
-			require('fs').readFileSync(require('path').join(__dirname, `body.${ res.locals.OLSKSharedPageCurrentLanguage }.md`), 'utf-8'),
+			require('fs').readFileSync(require('path').join(__dirname, `text.${ res.locals.OLSKSharedPageCurrentLanguage }.md`), 'utf-8'),
 			Object.assign({
 				LCHGuideTokenExampleCommandV1: _LCHGuideExampleTemplate({
 					LCHDocumentName: 'Say Hello',
