@@ -1002,7 +1002,7 @@ describe.skip('LCHLauncherMiscPipe', function () {
 
 	});
 
-	context('Tab', function () { // #move:feature
+	context('Tab', function () { // #move:misc
 
 		it('cancels throttle', async function() {
 			await browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
