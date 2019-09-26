@@ -1,17 +1,20 @@
 <script>
+export let ListItems = [];
+export let ItemSelected = null;
+
 import { LCHLauncherConstrainIndex } from '../../ui-logic.js';
 
-export let ListItems = [];
-
-export let ItemSelected = null;
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
 const mod = {
 
+	// MESSAGE
+
 	ResultListDispatchArrow(inputData) {
 		dispatch('ResultListDispatchArrow', inputData);
 	},
+
 	ResultListDispatchClick(inputData) {
 		dispatch('ResultListDispatchClick', inputData);
 	},
@@ -48,7 +51,9 @@ const mod = {
 		{/each}
 	</div>
 {:else}
-	<slot name="LCHLauncherResultListEmpty"></slot>
+	<div class="LCHLauncherResultListEmpty">
+		<slot name="LCHLauncherResultListEmpty"></slot>
+	</div>
 {/if}
 
 <style src="./ui-style.css"></style>

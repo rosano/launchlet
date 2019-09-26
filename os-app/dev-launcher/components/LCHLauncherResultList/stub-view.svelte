@@ -1,7 +1,7 @@
 <script>
 import Module from './main.svelte';
-export let TestItems = [];
-export let TestItemSelected = null;
+let TestItems = [];
+let TestItemSelected = null;
 
 let TestResultListDispatchArrow;
 function ResultListDispatchArrow(inputData) {
@@ -20,7 +20,7 @@ function ResultListDispatchClick(inputData) {
 
 <Module ListItems={ TestItems } ItemSelected={ TestItemSelected } let:LCHLauncherResultListItem={ item } on:ResultListDispatchArrow={ (event) => ResultListDispatchArrow(event.detail) } on:ResultListDispatchClick={ (event) => ResultListDispatchClick(event.detail) }>
 	<div>{ item }</div>
-	<em slot="LCHLauncherResultListEmpty" class="LCHLauncherResultListEmpty">TestItemsZero</em>
+	<em slot="LCHLauncherResultListEmpty" class="TestLCHLauncherResultListEmptySlot">TestItemsZero</em>
 </Module>
 
 <hr>
@@ -39,6 +39,13 @@ function ResultListDispatchClick(inputData) {
 <p>
 	<strong>TestResultListDispatchClick</strong>
 	<span id="LCHLauncherResultListTestResultListDispatchClick" bind:this={ TestResultListDispatchClick }>0</span>
+</p>
+
+<p>
+	<strong>TestItems</strong>
+	<button id="LCHLauncherResultListTestSetTestItemsZero" on:click={ () => TestItems = [] }>Zero</button>
+	<button id="LCHLauncherResultListTestSetTestItemsSingle" on:click={ () => TestItems = ['alfa'] }>Single</button>
+	<button id="LCHLauncherResultListTestSetTestItemsMultiple" on:click={ () => TestItems = ['alfa','bravo','charlie'] }>Multiple</button>
 </p>
 
 <style>

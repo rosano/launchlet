@@ -1,49 +1,91 @@
 import { deepEqual } from 'assert';
-const kDefaultRoutePath = '/stubs/LCHLauncherResultList';
 
-const LCHLauncherResultList = '.LCHLauncherResultList';
-const LCHLauncherResultListItem = '.LCHLauncherResultListItem';
-const LCHLauncherResultListEmpty = '.LCHLauncherResultListEmpty';
+const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHLauncherResultListElement', function () {
+Object.entries({
+	LCHLauncherResultList: '.LCHLauncherResultList',
+	LCHLauncherResultListItem: '.LCHLauncherResultListItem',
+	LCHLauncherResultListEmpty: '.LCHLauncherResultListEmpty',
+}).map(function (e) {
+	return global[e.shift()]  = e.pop();
+});
+
+describe('LCHLauncherResultListAccess', function () {
 
 	before(function() {
-		return browser.visit(kDefaultRoutePath);
+		return browser.visit(kDefaultRoute.OLSKRoutePath);
 	});
 	
-	it('on startup', function() {
+	it('hides LCHLauncherResultList', function () {
 		browser.assert.elements(LCHLauncherResultList, 0);
+	});
+
+	it('hides LCHLauncherResultListItem', function () {
 		browser.assert.elements(LCHLauncherResultListItem, 0);
-
-		browser.assert.elements(LCHLauncherResultListEmpty, 1);
 	});
 	
-	it('on set single', async function() {
-		browser.pressButton('#LCHLauncherResultListTestSetTestItemsSingle');
-		await browser.wait({element: LCHLauncherResultListItem});
+	it('shows LCHLauncherResultListEmpty', function () {
+	 	browser.assert.elements(LCHLauncherResultListEmpty, 1);
+	});
+	
+	it('shows TestLCHLauncherResultListEmptySlot', function () {
+	 	browser.assert.elements('.TestLCHLauncherResultListEmptySlot', 1);
+	});
 
-		browser.assert.elements(LCHLauncherResultList, 1);
-		browser.assert.elements(LCHLauncherResultListItem, 1);
+	context('set single', function() {
+
+		before(function () {
+			return browser.pressButton('#LCHLauncherResultListTestSetTestItemsSingle');	
+		});
 		
-		browser.assert.elements(LCHLauncherResultListEmpty, 0);
-	});
-	
-	it('on set multiple', async function() {
-		browser.pressButton('#LCHLauncherResultListTestSetTestItemsMultiple');
-		await browser.wait({element: LCHLauncherResultListItem});
-
-		browser.assert.elements(LCHLauncherResultListItem, 3);
+		it('shows LCHLauncherResultList', function () {
+		 	browser.assert.elements(LCHLauncherResultList, 1);
+		});
 		
-		browser.assert.elements(LCHLauncherResultListEmpty, 0);
+		it('shows LCHLauncherResultListItem', function () {
+		 	browser.assert.elements(LCHLauncherResultListItem, 1);
+		});
+		
+		it('hides LCHLauncherResultListEmpty', function () {
+			browser.assert.elements(LCHLauncherResultListEmpty, 0);
+		});
+
 	});
-	
-	it('on set zero', async function() {
-		await browser.pressButton('#LCHLauncherResultListTestSetTestItemsZero');
 
-		browser.assert.elements(LCHLauncherResultList, 0);
-		browser.assert.elements(LCHLauncherResultListItem, 0);
+	context('set multiple', function() {
 
-		browser.assert.elements(LCHLauncherResultListEmpty, 1);
+		before(function () {
+			return browser.pressButton('#LCHLauncherResultListTestSetTestItemsMultiple');	
+		});
+
+		it('shows LCHLauncherResultListItem', function () {
+			browser.assert.elements(LCHLauncherResultListItem, 3);
+		});
+		
+		it('hides LCHLauncherResultListEmpty', function () {
+			browser.assert.elements(LCHLauncherResultListEmpty, 0);
+		});
+
+	});
+
+	context('set zero', function() {
+
+		before(function () {
+			return browser.pressButton('#LCHLauncherResultListTestSetTestItemsZero');	
+		});
+
+		it('hides LCHLauncherResultList', function () {
+			browser.assert.elements(LCHLauncherResultList, 0);
+		});
+
+		it('hides LCHLauncherResultListItem', function () {
+			browser.assert.elements(LCHLauncherResultListItem, 0);
+		});
+		
+		it('shows LCHLauncherResultListEmpty', function () {
+		 	browser.assert.elements(LCHLauncherResultListEmpty, 1);
+		});
+
 	});
 
 });
