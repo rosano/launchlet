@@ -420,6 +420,27 @@ describe('LCHLauncherMiscPreview', function testLCHLauncherMiscPreview() {
 	
 });
 
+describe('LCHLauncherMiscPipe', function testLCHLauncherMiscPipe() {	
+
+	before(function() {
+		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			StubRecipes: uStubStringify(uStubTwoItems()),
+			runMode: 'kRunModePipe',
+		}));
+	});
+
+	before(function() {
+		browser.assert.input('.TestRecipeOutput', '');	
+	});
+
+	it('assert callbacks count 0')
+
+	it('selects LCHLauncherSubjectPrompt', function() {
+		browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
+	});
+	
+});
+
 describe('LCHLauncherMisc', function () {
 
 	context('LCHLauncherModePipe', function () {
