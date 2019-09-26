@@ -10,12 +10,28 @@ describe('LCHComposeFooterGuideLink', function testLCHComposeFooterGuideLink () 
 		return browser.visit(kDefaultRoute.OLSKRoutePath);
 	});
 
-	it('links to LCHGuideRoute', function () {
+	it('sets href', function () {
 		browser.assert.attribute(LCHComposeFooterGuideLink, 'href', require('../../../open-guide/controller.js').OLSKControllerRoutes().LCHGuideRoute)
 	});
 
-	it('opens in new window', function () {
+	it('sets target', function () {
 		browser.assert.attribute(LCHComposeFooterGuideLink, 'target', '_blank')
+	});
+
+});
+
+describe('LCHComposeFooterDonateLink', function testLCHComposeFooterDonateLink () {
+
+	before(function() {
+		return browser.visit(kDefaultRoute.OLSKRoutePath);
+	});
+
+	it('sets href', function () {
+		browser.assert.attribute(LCHComposeFooterDonateLink, 'href', process.env.LCH_COMPOSE_DONATE_URL)
+	});
+
+	it('sets target', function () {
+		browser.assert.attribute(LCHComposeFooterDonateLink, 'target', '_blank')
 	});
 
 });

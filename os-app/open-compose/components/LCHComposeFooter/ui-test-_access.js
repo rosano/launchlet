@@ -7,6 +7,7 @@ Object.entries({
 
 	RCSLanguageSwitcher: '#RCSLanguageSwitcher',
 	LCHComposeFooterGuideLink: '.LCHComposeFooterGuideLink',
+	LCHComposeFooterDonateLink: '.LCHComposeFooterDonateLink',
 	
 	LCHComposeFooterStorageStatus: '.LCHComposeFooterStorageStatus',
 	LCHComposeFooterStorageButton: '.LCHComposeFooterStorageButton',
@@ -28,6 +29,10 @@ describe('LCHComposeFooterAccess', function () {
 
 	it('shows LCHComposeFooterGuideLink', function () {
 		browser.assert.elements(LCHComposeFooterGuideLink, 1)
+	});
+
+	it('shows LCHComposeFooterDonateLink', function () {
+		browser.assert.elements(LCHComposeFooterDonateLink, 1)
 	});
 
 	it('shows LCHComposeFooterStorageStatus', function () {

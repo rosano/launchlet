@@ -21,6 +21,10 @@ describe(`LCHComposeFooterLocalize-${ languageCode }`, function () {
 	it('localizes LCHComposeFooterGuideLink', function() {
 		browser.assert.text(LCHComposeFooterGuideLink, uLocalized('LCHComposeFooterGuideLinkText'));
 	});
+	
+	it('localizes LCHComposeFooterDonateLink', function() {
+		browser.assert.text(LCHComposeFooterDonateLink, uLocalized('LCHComposeFooterDonateLinkText'));
+	});
 
 });
 
