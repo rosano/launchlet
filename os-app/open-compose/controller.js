@@ -1,3 +1,11 @@
+exports.OLSKControllerSharedMiddlewares = function() {
+	return {
+		LCHComposeRouteGuardMiddleware (req, res, next) {
+			return next(require('./logic.js').LCHComposeRouteGuard(process.env))
+		},
+	};
+};
+
 exports.OLSKControllerRoutes = function() {
 	return {
 		LCHComposeRoute: {
@@ -12,6 +20,9 @@ exports.OLSKControllerRoutes = function() {
 				});
 			},
 			OLSKRouteLanguages: ['en'],
+			OLSKRouteMiddlewares: [
+				'LCHComposeRouteGuardMiddleware',
+			],
 		},
 	};
 };
