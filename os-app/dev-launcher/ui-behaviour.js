@@ -111,7 +111,7 @@ function StubRecipesParse(inputData) {
 				},
 				optionsObject: Object.assign({}, {
 					runMode: Launchlet[(new URLSearchParams(window.location.search)).get('runMode') || 'kRunModeCommit'],
-					LCHOptionIncludePageRecipes: true,
+					LCHOptionIncludePageRecipes: Launchlet[(new URLSearchParams(window.location.search)).get('LCHOptionIncludePageRecipes') || false],
 				}),
 			},
 		});
