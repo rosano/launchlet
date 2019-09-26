@@ -665,23 +665,6 @@ describe('LCHLauncherMisc', function () {
 
 			});
 
-			context('LCHLauncherTestStyle', function () {
-
-				before(function() {
-					return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?LCHLauncherTestStyle`);
-				});
-
-				it('shows url specific item', async function() {
-					browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestStyle');
-					await browser.wait({element: LCHLauncherListItem});
-
-					browser.click(LCHLauncherListItem);
-
-					browser.assert.text('body style', 'body { background: red; }');
-				});
-
-			});
-
 			// #purge
 			// context('LCHLauncherTestConvertTypeServiceSearch', function () {
 
@@ -1422,23 +1405,36 @@ describe('LCHLauncherTestURLFilter', function testLCHLauncherTestURLFilter () {
 
 });
 
-describe('LCHLauncherTestStyle', function testLCHLauncherTestStyle () {
+describe('LCHRecipeStyle', function testLCHRecipeStyle () {
+
+	before(function() {
+		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			StubRecipes: uStubStringify([{
+				LCHRecipeName: 'alfa',
+				LCHRecipeStyle: 'body { background: red; }',
+				LCHRecipeCallback: function () {}, // #purge-callback
+			}]),
+		}));
+	});
+
+	before(function () {
+		browser.assert.elements('body style', 0);
+	});
+
+	before(function () {
+		return browser.fill(LCHLauncherFilterInput, 'alfa');
+	});
 
 	before(async function() {
-		await browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
-			LCHLauncherTestStyle: 'alfa',
-		}));
-
-		browser.assert.elements('body style', 0);
-
-		browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestStyle');
-		await browser.wait({element: LCHLauncherListItem});
-
 		browser.click(LCHLauncherListItem);
 	});
 
 	it('inserts style element', function() {
 		browser.assert.elements('body style', 1);
+	});
+
+	it('inserts style element', function() {
+		browser.assert.text('body style', 'body { background: red; }');
 	});
 
 });

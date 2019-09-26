@@ -68,11 +68,6 @@ function StubRecipesParse(inputData) {
 					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestURLFilter',
 					LCHRecipeIsAutomatic: true,
 				}, {
-					LCHRecipeName: 'LCHLauncherTestStyle',
-					LCHRecipeCallback: function () {},
-					LCHRecipeStyle: 'body { background: red; }',
-					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestStyle',
-				}, {
 					LCHRecipeName: 'LCHLauncherTestIsHidden1',
 					LCHRecipeCallback: function () {},
 					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestIsHidden',
