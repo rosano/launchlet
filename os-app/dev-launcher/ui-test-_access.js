@@ -27,6 +27,31 @@ Object.entries({
 	LCHLauncherObjectPrompt: '.LCHLauncherObjectPrompt',
 	LCHLauncherObjectPromptHeading: '.LCHLauncherObjectPrompt .LCHLauncherPromptHeading',
 	LCHLauncherObjectPromptItemSelected: '.LCHLauncherObjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem',
+
+	uStubTwoItems () {
+		return [
+			{
+				LCHRecipeName: 'alfa',
+				LCHRecipeCallback: function () {
+					return document.querySelector('.TestRecipeOutput').value = 'alfa';
+				},
+			},
+			{
+				LCHRecipeName: 'bravo',
+				LCHRecipeCallback: function () {
+					return document.querySelector('.TestRecipeOutput').value = 'bravo';
+				},
+			},
+		];
+	},
+
+	uStubStringify (inputData) {
+		return JSON.stringify(inputData.map(function (e) {
+			return Object.assign(e, {
+				LCHRecipeCallback: `(${ e.LCHRecipeCallback.toString() })`,
+			});
+		}));
+	},
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -35,6 +60,7 @@ describe('LCHLauncherAccessCommit', function testLCHLauncherAccessCommit () {
 
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			StubRecipes: uStubStringify(uStubTwoItems()),
 			runMode: 'kRunModeCommit',
 		}));
 	});
@@ -66,7 +92,7 @@ describe('LCHLauncherAccessCommit', function testLCHLauncherAccessCommit () {
 		});
 
 		it('shows LCHLauncherListItem', function() {
-			browser.assert.elements(LCHLauncherListItem, 5)
+			browser.assert.elements(LCHLauncherListItem, 2)
 		});
 	
 	});
@@ -77,6 +103,7 @@ describe('LCHLauncherAccessPreview', function testLCHLauncherAccessPreview () {
 
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			StubRecipes: uStubStringify(uStubTwoItems()),
 			runMode: 'kRunModePreview',
 		}));
 	});
@@ -90,7 +117,7 @@ describe('LCHLauncherAccessPreview', function testLCHLauncherAccessPreview () {
 	});
 
 	it('shows LCHLauncherListItem', function() {
-		browser.assert.elements(LCHLauncherListItem, 13)
+		browser.assert.elements(LCHLauncherListItem, 2)
 	});
 
 	it('hides LCHLauncherPromptDotModeInput', function() {
@@ -101,24 +128,13 @@ describe('LCHLauncherAccessPreview', function testLCHLauncherAccessPreview () {
 		browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 0)
 	});
 
-	context('filter', function () {
-
-		before(function () {
-			return browser.fill(LCHLauncherFilterInput, 'a');
-		});
-
-		it('shows LCHLauncherListItem', function() {
-			browser.assert.elements(LCHLauncherListItem, 5)
-		});
-	
-	});
-
 });
 
 describe('LCHLauncherAccessPipe', function testLCHLauncherAccessPipe () {
 
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			StubRecipes: uStubStringify(uStubTwoItems()),
 			runMode: 'kRunModePipe',
 		}));
 	});

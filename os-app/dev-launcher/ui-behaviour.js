@@ -3,6 +3,18 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 	_LCHLauncherRecipes.push(...inputData);
 };
 
+function StubRecipesParse(inputData) {
+	if (!inputData) {
+		return null;
+	};
+
+	return JSON.parse(inputData).map(function (e) {
+		return Object.assign(e, {
+			LCHRecipeCallback: eval(e.LCHRecipeCallback),
+		});
+	});
+}
+
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 		typeof define === 'function' && define.amd ? define(['exports'], factory) :
@@ -23,7 +35,7 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 		let app = new Main({
 			target: document.getElementById('LCHLauncherTarget'),
 			props: {
-				LCHLauncherRecipes: [
+				LCHLauncherRecipes: StubRecipesParse(new URLSearchParams(window.location.search).get('StubRecipes')) || [
 					'Alfa',
 					'Bravo',
 					'Charlie',
