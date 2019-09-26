@@ -98,7 +98,6 @@ describe('LCHRecipeURLFilter', function testLCHRecipeURLFilter () {
 describe('LCHRecipeIsAutomatic', function testLCHRecipeIsAutomatic () {
 
 	const StubRecipes = uStubStringify([{
-		LCHRecipeName: 'alfa',
 		LCHRecipeCallback: function () {
 			document.querySelector('.TestRecipeOutput').value = 'bravo';
 		},
