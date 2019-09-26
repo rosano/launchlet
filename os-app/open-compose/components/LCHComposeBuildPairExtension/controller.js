@@ -3,7 +3,7 @@ exports.OLSKControllerRoutes = function() {
 			OLSKRoutePath: '/stubs/LCHComposeBuildPairExtension',
 			OLSKRouteMethod: 'get',
 			OLSKRouteFunction: function(req, res, next) {
-				return res.render(req.OLSKLive.OLSKLivePathJoin(__dirname, 'stub-view'));
+				return res.render(require('path').join(__dirname, 'stub-view'));
 			},
 			OLSKRouteSignature: 'LCHComposeBuildPairExtensionStubRoute',
 			OLSKRouteLanguages: ['en'],
