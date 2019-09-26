@@ -645,26 +645,6 @@ describe('LCHLauncherMisc', function () {
 				browser.assert.text(`${ LCHLauncherListItem }:first-child`, 'Hello loc.tests');
 			});
 
-			it('skips LCHPageRecipes tasks', async function() {
-				await browser.wait({element: LCHLauncherFilterInput});
-
-				browser.assert.input('#LCHLauncherTestInputSingleLine', '');
-			});
-
-			context('LCHLauncherTestURLFilter', function () {
-
-				before(function() {
-					return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?LCHLauncherTestURLFilter`);
-				});
-
-				it('runs tasks', async function() {
-					await browser.wait({element: LCHLauncherFilterInput});
-
-					browser.assert.input('#LCHLauncherTestInputSingleLine', 'zebra');
-				});
-
-			});
-
 			// #purge
 			// context('LCHLauncherTestConvertTypeServiceSearch', function () {
 
@@ -1369,18 +1349,29 @@ describe('LCHLauncherMiscPipe', function () {
 
 });
 
-describe('LCHLauncherTestURLFilter', function testLCHLauncherTestURLFilter () {
+describe('LCHRecipeURLFilter', function testLCHRecipeURLFilter () {
+
+	const StubRecipes = uStubStringify([{
+		LCHRecipeName: 'alfa',
+		LCHRecipeCallback: function () {
+			document.querySelector('.TestRecipeOutput').value = 'bravo';
+		},
+		LCHRecipeURLFilter: '/\\d{5}/',
+	}]);
 
 	context('no match', function () {
-		
-		before(async function() {
-			await browser.visit(kDefaultRoute.OLSKRoutePath);
 
-			browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestURLFilter');
-			await browser.wait({element: LCHLauncherListItem});
+		before(function() {
+			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+				StubRecipes,
+			}));
+		});
+		
+		before(function() {
+			browser.fill(LCHLauncherFilterInput, 'alfa');
 		});
 
-		it('hides LCHLauncherListItem', function() {
+		it('hides item', function() {
 			browser.assert.elements(LCHLauncherListItem, 0);
 		});
 	
@@ -1388,17 +1379,65 @@ describe('LCHLauncherTestURLFilter', function testLCHLauncherTestURLFilter () {
 
 	context('match', function () {
 		
-		before(async function() {
-			await browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
-				LCHLauncherTestURLFilter: 'alfa',
+		before(function() {
+			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+				StubRecipes,
+				charlie: '12345',
 			}));
-			
-			browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestURLFilter');
-			await browser.wait({element: LCHLauncherListItem});
+		});
+		
+		before(function() {
+			browser.fill(LCHLauncherFilterInput, 'alfa');
 		});
 
-		it('shows LCHLauncherListItem', function() {
+		it('shows item', function() {
 			browser.assert.elements(LCHLauncherListItem, 1);
+		});
+	
+	});
+
+});
+
+describe('LCHRecipeIsAutomatic', function testLCHRecipeIsAutomatic () {
+
+	const StubRecipes = uStubStringify([{
+		LCHRecipeName: 'alfa',
+		LCHRecipeCallback: function () {
+			document.querySelector('.TestRecipeOutput').value = 'bravo';
+		},
+		LCHRecipeURLFilter: '/\\d{5}/',
+		LCHRecipeIsAutomatic: true,
+	}]);
+
+	context('no match', function () {
+
+		before(function() {
+			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+				StubRecipes,
+			}));
+		});
+
+		it('runs no callback', function() {
+			browser.assert.input('.TestRecipeOutput', '');
+		});
+	
+	});
+
+	context('match', function () {
+		
+		before(function() {
+			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+				StubRecipes,
+				charlie: '12345',
+			}));
+		});
+		
+		before(function() {
+			browser.fill(LCHLauncherFilterInput, 'LCHRecipeURLFilter');
+		});
+
+		it('runs callback', function() {
+			browser.assert.input('.TestRecipeOutput', 'bravo');
 		});
 	
 	});
@@ -1425,7 +1464,7 @@ describe('LCHRecipeStyle', function testLCHRecipeStyle () {
 		return browser.fill(LCHLauncherFilterInput, 'alfa');
 	});
 
-	before(async function() {
+	before(function() {
 		browser.click(LCHLauncherListItem);
 	});
 

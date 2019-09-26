@@ -56,12 +56,6 @@ function StubRecipesParse(inputData) {
 						},
 					};
 				}).concat([{
-					LCHRecipeName: 'LCHLauncherTestURLFilter',
-					LCHRecipeCallback: function () {
-						document.querySelector('input').value = 'xylophone';
-					},
-					LCHRecipeURLFilter: 'LCHLauncherTestURLFilter',
-				}, {
 					LCHRecipeCallback: function () {
 						document.querySelector('input').value = 'zebra';
 					},
