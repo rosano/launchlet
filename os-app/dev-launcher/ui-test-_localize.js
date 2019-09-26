@@ -103,7 +103,7 @@ describe(`LCHLauncherLocalizePipe-${ languageCode }`, function () {
 
 });
 
-describe(`shared-${ languageCode }`, function () { // #move:feature
+describe(`LCHLauncherLocalizeShared-${ languageCode }`, function () { // #move:feature
 
 	before(function() {
 		return browser.visit(kDefaultRoute.OLSKRoutePath);
