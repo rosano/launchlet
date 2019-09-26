@@ -499,7 +499,7 @@ describe.only('LCHLauncherMiscPipe', function testLCHLauncherMiscPipe() {
 
 	});
 
-	context('prompts', function() {
+	describe('prompts', function() {
 
 		before(function() {
 			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
@@ -605,30 +605,39 @@ describe.only('LCHLauncherMiscPipe', function testLCHLauncherMiscPipe() {
 		});
 
 	});
+
+	describe('MatchStop', function() {
+
+		before(function() {
+			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+				StubRecipes: uStubStringify(uStubTwoItems()),
+				runMode: 'kRunModePipe',
+			}));
+		});
+
+		before(function() {
+			return browser.OLSKFireKeyboardEvent(browser.window, 'a');
+		});
+			
+		before(function() {
+			browser.assert.hasNoClass(LCHLauncherSubjectPromptHeading, 'LCHLauncherPromptHeadingMatchStop');
+		});
+
+		before(function() {
+			return browser.OLSKFireKeyboardEvent(browser.window, 'x');
+		});
+
+		it('sets class', function() {
+			browser.assert.hasClass(LCHLauncherSubjectPromptHeading, 'LCHLauncherPromptHeadingMatchStop');
+		});
+		
+	});
 	
 });
 
 describe.skip('LCHLauncherMisc', function () {
 
 	context('LCHLauncherModePipe', function () {
-
-		context('MatchStop', function() {
-
-			before(async function() {
-				browser.OLSKFireKeyboardEvent(browser.window, 'a');
-				await browser.wait({element: LCHLauncherSubjectPromptHeading});
-
-				browser.assert.hasNoClass(LCHLauncherSubjectPromptHeading, 'LCHLauncherPromptHeadingMatchStop');
-			});
-
-			it('adds class', async function() {
-				browser.OLSKFireKeyboardEvent(browser.window, 'x');
-				await browser.wait({element: LCHLauncherSubjectPromptHeading});
-
-				browser.assert.hasClass(LCHLauncherSubjectPromptHeading, 'LCHLauncherPromptHeadingMatchStop');
-			});
-			
-		});
 
 		context('SubjectContainer', function testSubjectContainer () {
 
