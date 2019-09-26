@@ -53,7 +53,10 @@ function StubRecipesParse(inputData) {
 	// SETUP
 
 	setupEverything() {
-		moi.SetupPageRecipes();
+		if (params.LCHTestSkipAutomaticLaunch) {
+			return;
+		};
+		
 		moi.CommandLaunch()
 	},
 	SetupPageRecipes() {

@@ -9,11 +9,8 @@ describe('LCHLauncherSafety', function () {
 		before(function() {
 			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 				LCHOptionIncludePageRecipes: true,
+				LCHTestSkipAutomaticLaunch: true,
 			}));
-		});
-
-		before(function () {
-			browser.click('.TestRecipeOutput')
 		});
 
 		before(function () {
