@@ -99,6 +99,7 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 				},
 				optionsObject: Object.assign({}, {
 					runMode: Launchlet[(new URLSearchParams(window.location.search)).get('runMode') || 'kRunModeCommit'],
+					LCHOptionIncludePageRecipes: true,
 				}),
 			},
 		});
