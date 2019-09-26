@@ -170,57 +170,189 @@ describe('results', function () {
 	
 });
 
+describe('LCHLauncherMiscPreview', function() {	
 
+before(function() {
+	return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		StubRecipes: uStubStringify(uStubTwoItems()),
+		runMode: 'kRunModePreview',
+	}));
+});
+
+before(function() {
+	browser.assert.input('.TestRecipeOutput', '');	
+});
+
+it('assert callbacks count 0')
+
+before('shows items', function() {
+	browser.assert.elements(LCHLauncherListItem, 2);
+});
+
+describe('filter', function () {
+
+	context('match', function () {
+		
+		before(function() {
+			browser.fill(LCHLauncherFilterInput, 'a');
+		});
+		
+		it('shows matching items', function() {
+			browser.assert.elements(LCHLauncherListItem, 2);
 		});
 
-		it('does not run item on select', async function() {
-			browser.assert.input('textarea', '');
+		it('selects first item', function() {
+			browser.assert.text('.LCHLauncherResultListItemSelected', 'alfa');
 		});
 
-		it('runs item and closes on click', async function() {
-			browser.fire(browser.queryAll(LCHLauncherListItem)[0], 'click');
-			await browser.wait({element: LCHLauncherListItem});
+		it('assert callbacks count 1')
 
-			browser.assert.input('textarea', 'Alfa');
-
-			browser.assert.elements(LCHLauncherFilterInput, 0);
+		it('runs callback', function() {
+			browser.assert.input('.TestRecipeOutput', 'alfa');	
 		});
-
-		context('shortcuts', function () {
-
-			before(function() {
-				return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
-					runMode: 'kRunModeCommit',
-				}));
-			});
-
-			it('selects next item on ArrowDown', async function() {
-				browser.fill(LCHLauncherFilterInput, 'a');
-				await browser.wait({element: LCHLauncherListItem});
-
-				browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
-				await browser.wait({element: LCHLauncherListItem});
-
-				browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[1], 'LCHLauncherResultListItemSelected');
-			});
-
-			it('selects previous item on ArrowUp', async function() {
-				browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
-				await browser.wait({element: LCHLauncherListItem});
-
-				browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[0], 'LCHLauncherResultListItemSelected');
-			});
-
-			it('runs item and closes on Enter', async function() {
-				browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
-				await browser.wait({element: LCHLauncherListItem});
-
-				browser.assert.elements(LCHLauncherFilterInput, 0);
-			});
-
-		});
-
+	
 	});
+
+	context('match update', function () {
+		
+		before(function() {
+			browser.fill(LCHLauncherFilterInput, 'al');
+		});
+		
+		it('shows matching items', function() {
+			browser.assert.elements(LCHLauncherListItem, 1);
+		});
+
+		it('assert callbacks count 2/3')
+
+		it('runs callback', function() {
+			browser.assert.input('.TestRecipeOutput', 'alfa');	
+		});
+	
+	});
+	
+	context('no match', function () {
+		
+		before(function() {
+			browser.fill(LCHLauncherFilterInput, 'alb');
+		});
+		
+		it('shows no items', function() {
+			browser.assert.elements(LCHLauncherListItem, 0);
+		});
+
+		it('assert callbacks count ?')
+
+		it('runs last match callback', function() {
+			browser.assert.input('.TestRecipeOutput', 'alfa');	
+		});
+	
+	});
+
+});
+
+describe('results', function () {
+
+	before(function() {
+		browser.fill(LCHLauncherFilterInput, 'a');
+	});
+
+	context('ArrowDown', function () {
+		
+		before(function () {
+			return browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
+		});
+
+		it('selects next item', function() {
+			browser.assert.text('.LCHLauncherResultListItemSelected', 'bravo');
+		});
+		
+		it('runs callback', function () {
+			browser.assert.input('.TestRecipeOutput', 'bravo');	
+		});
+	
+	});
+
+	context('ArrowUp', function () {
+		
+		before(function () {
+			return browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
+		});
+
+		it('selects previous item', function() {
+			browser.assert.text('.LCHLauncherResultListItemSelected', 'alfa');
+		});
+		
+		it('runs callback', function () {
+			browser.assert.input('.TestRecipeOutput', 'alfa');
+		});
+	
+	});
+
+	it('mouseover')
+	context.skip('mouseover', function () {
+
+		before(function () {
+			return browser.fire(`${ LCHLauncherListItem }:nth-child(2)`, 'mouseover');
+		});
+		
+		it('sets class', function () {
+			browser.assert.text('.LCHLauncherResultListItemSelected', 'bravo');	
+		});
+		
+		it('runs callback', function () {
+			browser.assert.input('.TestRecipeOutput', 'bravo');	
+		});
+	
+	});
+
+	context('click', function () {
+
+		before(function () {
+			return browser.fire(`${ LCHLauncherListItem }:nth-child(2)`, 'click');
+		});
+
+		it('assert callbacks count ?')
+		
+		it('assert sends did complete')
+		
+		it('hides LCHLauncher', function () {
+			browser.assert.elements(LCHLauncher, 0);
+		});
+	
+	});
+
+	context('Enter', function () {
+
+		before(function () {
+			return browser.pressButton('.TestLauncherInvoke');
+		});
+		
+		before(function() {
+			browser.fill(LCHLauncherFilterInput, 'a');
+		});
+		
+		before(function() {
+			browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
+		});
+
+		it('assert callbacks count ?')
+		
+		it('runs callback', function () {
+			browser.assert.input('textarea', 'alfa');	
+		});
+		
+		it('hides LCHLauncher', function () {
+			browser.assert.elements(LCHLauncher, 0);
+		});
+	
+	});
+
+});
+	
+});
+
+describe('LCHLauncherMisc', function () {
 
 	context('LCHLauncherModePreview', function () {
 
