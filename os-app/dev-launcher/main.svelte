@@ -796,7 +796,7 @@ const mod = {
 </script>
 <svelte:window on:keydown={ mod.interfaceDidKeydown } on:click={ mod.interfaceDidClickBody } on:touchstart={ mod.interfaceDidClickBody }/>
 
-<div class="Container" bind:this={ rootElement }>
+<div class="Container LCHLauncher" bind:this={ rootElement }>
 
 {#each _PromptObjects as e}
 

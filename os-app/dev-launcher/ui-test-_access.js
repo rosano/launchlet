@@ -3,6 +3,8 @@ import { deepEqual } from 'assert';
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
+	LCHLauncher: '.LCHLauncher',
+
 	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
 
 	LCHLauncherListItem: '.LCHLauncherResultListItem',
@@ -35,6 +37,10 @@ describe('LCHLauncherAccessCommit', function testLCHLauncherAccessCommit () {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			runMode: 'kRunModeCommit',
 		}));
+	});
+
+	it('shows LCHLauncher', function() {
+		browser.assert.elements(LCHLauncher, 1)
 	});
 
 	it('shows LCHLauncherFilterInput', function() {
@@ -75,6 +81,10 @@ describe('LCHLauncherAccessPreview', function testLCHLauncherAccessPreview () {
 		}));
 	});
 
+	it('shows LCHLauncher', function() {
+		browser.assert.elements(LCHLauncher, 1)
+	});
+
 	it('shows LCHLauncherFilterInput', function() {
 		browser.assert.elements(LCHLauncherFilterInput, 1)
 	});
@@ -111,6 +121,10 @@ describe('LCHLauncherAccessPipe', function testLCHLauncherAccessPipe () {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			runMode: 'kRunModePipe',
 		}));
+	});
+
+	it('shows LCHLauncher', function() {
+		browser.assert.elements(LCHLauncher, 1)
 	});
 
 	it('hides LCHLauncherFilterInput', function() {
