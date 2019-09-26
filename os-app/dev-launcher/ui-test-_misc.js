@@ -2,7 +2,7 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHLauncherMiscCommit', function() {
+describe('LCHLauncherMiscCommit', function testLCHLauncherMiscCommit() {
 
 before(function() {
 	return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
@@ -166,11 +166,43 @@ describe('results', function () {
 	
 	});
 
-});
+	context('Escape filter', function () {
+
+		before(function () {
+			return browser.pressButton('.TestLauncherInvoke');
+		});
+		
+		before(function() {
+			browser.fill(LCHLauncherFilterInput, 'a');
+		});
+		
+		before(function() {
+			browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+		});
+
+		it('clears filter', function() {
+			browser.assert.input(LCHLauncherFilterInput, '');
+		});
 	
+	});
+
+	context('Escape no filter', function () {
+
+		before(function() {
+			browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+		});
+
+		it('hides LCHLauncher', function() {
+			browser.assert.elements(LCHLauncher, 0);
+		});
+	
+	});
+
 });
 
-describe('LCHLauncherMiscPreview', function() {	
+});
+
+describe('LCHLauncherMiscPreview', function testLCHLauncherMiscPreview() {	
 
 before(function() {
 	return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
@@ -187,6 +219,10 @@ it('assert callbacks count 0')
 
 before('shows items', function() {
 	browser.assert.elements(LCHLauncherListItem, 2);
+});
+
+it('selects no items', async function() {
+	browser.assert.elements('.LCHLauncherResultListItemSelected', 0);
 });
 
 describe('filter', function () {
@@ -300,8 +336,8 @@ describe('results', function () {
 			browser.assert.text('.LCHLauncherResultListItemSelected', 'bravo');	
 		});
 		
-		it('runs callback', function () {
-			browser.assert.input('.TestRecipeOutput', 'bravo');	
+		it('runs no callback', function () {
+			browser.assert.input('.TestRecipeOutput', 'alfa');	
 		});
 	
 	});
@@ -348,100 +384,43 @@ describe('results', function () {
 	
 	});
 
-});
+	context('Escape filter', function () {
+
+		before(function () {
+			return browser.pressButton('.TestLauncherInvoke');
+		});
+		
+		before(function() {
+			browser.fill(LCHLauncherFilterInput, 'a');
+		});
+		
+		before(function() {
+			browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+		});
+
+		it('clears filter', function() {
+			browser.assert.input(LCHLauncherFilterInput, '');
+		});
 	
+	});
+
+	context('Escape no filter', function () {
+
+		before(function() {
+			browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+		});
+
+		it('hides LCHLauncher', function() {
+			browser.assert.elements(LCHLauncher, 0);
+		});
+	
+	});
+
+});
+
 });
 
 describe('LCHLauncherMisc', function () {
-
-	context('LCHLauncherModePreview', function () {
-
-		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
-			runMode: 'kRunModePreview',
-		}));
-		});
-
-		it('selects no items', async function() {
-			browser.assert.elements('.LCHLauncherResultListItemSelected', 0);
-		});
-
-		it.skip('selects item on mouseover', async function() {
-			browser.fire(browser.queryAll(LCHLauncherListItem)[1], 'mouseover');
-			await browser.wait({element: LCHLauncherListItem});
-
-			browser.assert.hasClass(browser.queryAll(LCHLauncherListItem)[1], 'LCHLauncherResultListItemSelected');
-		});
-
-		it('does not run item on mouseover', async function() {
-			browser.assert.input('textarea', '');
-		});
-
-		it('runs first item if filter and match', async function() {
-			browser.fill(LCHLauncherFilterInput, 'a');
-			await browser.wait({element: LCHLauncherListItem});
-			
-			browser.assert.input('textarea', 'Alfa');
-		});
-
-		it('runs item and closes on click', async function() {
-			browser.fire(browser.queryAll(LCHLauncherListItem)[1], 'click');
-			await browser.wait({element: LCHLauncherListItem});
-
-			browser.assert.input('textarea', 'Bravo');
-
-			browser.assert.elements(LCHLauncherFilterInput, 0);
-		});
-
-
-		context('shortcuts', function () {
-
-			before(function() {
-				return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
-			runMode: 'kRunModePreview',
-		}));
-			});
-
-			it('runs item on ArrowDown', async function() {
-				browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
-				await browser.wait({element: LCHLauncherListItem});
-
-				browser.assert.input('textarea', 'Alfa');
-			});
-
-			it('runs item on ArrowUp', async function() {
-				browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
-				await browser.wait({element: LCHLauncherListItem});
-
-				browser.assert.input('textarea', 'Hello');
-			});
-
-			it('closes on Enter', async function() {
-				browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
-				await browser.wait({element: LCHLauncherListItem});
-
-				browser.assert.elements(LCHLauncherFilterInput, 0);
-			});
-
-		});
-
-		context('Escape', function () {
-
-			it('clears filter on Escape', async function() {
-				browser.fill(LCHLauncherFilterInput, 'a');
-				await browser.wait({element: LCHLauncherListItem});
-
-				browser.assert.input(LCHLauncherFilterInput, 'a');
-				
-				browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
-				await browser.wait({element: LCHLauncherFilterInput});
-
-				browser.assert.input(LCHLauncherFilterInput, '');
-			});
-		
-		});
-
-	});
 
 	context('LCHLauncherModePipe', function () {
 		
