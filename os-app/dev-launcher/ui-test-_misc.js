@@ -719,26 +719,46 @@ describe.only('LCHLauncherMiscPipe', function testLCHLauncherMiscPipe() {
 		});
 		
 	});
-	
-});
 
-describe.skip('LCHLauncherMisc', function () {
-
-	context('shared', function () {
+	describe('Escape', function() {
 
 		before(function() {
-			return browser.visit(kDefaultRoute.OLSKRoutePath);
+			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+				StubRecipes: uStubStringify(uStubTwoItems()),
+				runMode: 'kRunModePipe',
+			}));
 		});
 
-		it('closes on Escape', async function() {
-			browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
-			await browser.wait({element: LCHLauncherFilterInput});
+		before(function() {
+			return browser.OLSKFireKeyboardEvent(browser.window, 'a');
+		});
 
-			browser.assert.elements(LCHLauncherFilterInput, 0);
+		before(function() {
+			return browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
+		});
+
+		before(function() {
+			browser.assert.elements(LCHLauncherResultList, 1);
+		});
+
+		before(function() {
+			return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+		});
+
+		it('hides LCHLauncherResultList', function() {
+			browser.assert.elements(LCHLauncherResultList, 0);
+		});
+
+		before(function() {
+			return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+		});
+
+		it('hides LCHLauncher', function() {
+			browser.assert.elements(LCHLauncher, 0);
 		});
 
 	});
-
+	
 });
 
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
