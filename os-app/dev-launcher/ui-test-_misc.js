@@ -632,55 +632,70 @@ describe.only('LCHLauncherMiscPipe', function testLCHLauncherMiscPipe() {
 		});
 		
 	});
+
+	describe('SubjectContainer', function() {
+
+		before(function() {
+			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+				StubRecipes: uStubStringify(uStubTwoItems()),
+				runMode: 'kRunModePipe',
+			}));
+		});
+
+		before(function() {
+			return browser.OLSKFireKeyboardEvent(browser.window, 'a');
+		});
+
+		before(function() {
+			return browser.OLSKFireKeyboardEvent(browser.window, 'd');
+		});
+			
+		before(function() {
+			browser.assert.text(LCHLauncherSubjectPromptItemSelected, 'Active Document Focus Elements SubjectContainer');
+		});
+
+		it('shows action', function() {
+			browser.assert.text(LCHLauncherActionPromptItemSelected, 'Show Contents');
+		});
+
+		context('execute', function () {
+			
+			before(function() {
+				return browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
+			});
+
+			it('reloads subjects', async function() {
+				browser.assert.text(LCHLauncherSubjectPromptItemSelected, 'alfa DOMElement');
+			});
+		
+		});
+		
+	});
+
+	describe('keydown', function() {
+
+		before(function() {
+			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+				StubRecipes: uStubStringify(uStubTwoItems()),
+				runMode: 'kRunModePipe',
+			}));
+		});
+
+		before(function() {
+			return browser.OLSKFireKeyboardEvent(browser.window, 'a');
+		});
+
+		it('sets LCHLauncherSubjectPromptHeading', function() {
+			browser.assert.text(LCHLauncherSubjectPromptHeading, 'A');
+		});
+		
+	});
 	
 });
 
 describe.skip('LCHLauncherMisc', function () {
 
 	context('LCHLauncherModePipe', function () {
-
-		context('SubjectContainer', function testSubjectContainer () {
-
-			before(async function() {
-				return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
-			runMode: 'kRunModePipe',
-		}));
-			});
-
-			it('shows subject', async function() {
-				browser.OLSKFireKeyboardEvent(browser.window, 'a');
-				browser.OLSKFireKeyboardEvent(browser.window, 'd');
-				await browser.wait({element: LCHLauncherSubjectPromptItemSelected});
-
-				browser.assert.text(LCHLauncherSubjectPromptItemSelected, 'Active Document Focus Elements SubjectContainer');
-			});
-
-			it('shows action', async function() {
-				browser.assert.text(LCHLauncherActionPromptItemSelected, 'Show Contents');
-			});
-
-			it('reloads subjects', async function() {
-				browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
-				await browser.wait({element: LCHLauncherSubjectPromptItemSelected });
-
-				browser.assert.text(LCHLauncherSubjectPromptItemSelected, 'alfa DOMElement');
-			});
-			
-		});
-
-
-
-		context('keydown', function () {
-
-			before(function() {
-				return browser.OLSKFireKeyboardEvent(browser.window, 'a');
-			});
-
-			it('sets LCHLauncherSubjectPromptHeading', function() {
-				browser.assert.text(LCHLauncherSubjectPromptHeading, 'A');
-			});
-			
-		});
 
 		context('KeydownBackspace', function testPipeKeydownBackspace() {
 
