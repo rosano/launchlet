@@ -724,48 +724,6 @@ describe.only('LCHLauncherMiscPipe', function testLCHLauncherMiscPipe() {
 
 describe.skip('LCHLauncherMisc', function () {
 
-	context('LCHLauncherModePipe', function () {
-
-		describe(`LCHLauncherLocalizeShared-${ 'en' }`, function () { // #move:feature
-
-			before(function() {
-				return browser.visit(kDefaultRoute.OLSKRoutePath);
-			});
-
-			it('on filter', async function() {
-				browser.fill(LCHLauncherFilterInput, 'a');
-				await browser.wait({element: LCHLauncherListItem});
-
-				browser.assert.text(`${ LCHLauncherListItem }:first-child`, 'Alfa');
-			});
-
-			it('shows _LCHRecipeSource for LCHPageRecipes', async function() {
-				browser.fill(LCHLauncherFilterInput, 'h');
-				await browser.wait({element: LCHLauncherListItem});
-
-				browser.assert.text(`${ LCHLauncherListItem }:first-child`, 'Hello loc.tests');
-			});
-
-			// #purge
-			// context('LCHLauncherTestConvertTypeServiceSearch', function () {
-
-			// 	before(function() {
-			// 		return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?LCHLauncherTestConvertTypeServiceSearch`);
-			// 	});
-
-			// 	it('converts recipe', async function() {
-			// 		browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestConvertTypeServiceSearch');
-			// 		await browser.wait({element: LCHLauncherListItem});
-
-			// 		browser.assert.text(LCHLauncherListItem, uFormatted(uLocalized('LCHLauncherTestConvertTypeServiceSearchTextFormat'), 'LCHLauncherTestConvertTypeServiceSearch'));
-			// 	});
-
-			// });
-
-		});
-
-	});
-		
 	context('shared', function () {
 
 		before(function() {
@@ -1599,48 +1557,74 @@ describe('LCHRecipeStyle', function testLCHRecipeStyle () {
 
 describe('LCHPageRecipes', function testLCHPageRecipes () {
 
-	before(function() {
-		return browser.visit(kDefaultRoute.OLSKRoutePath);
+	context('not enabled', function () {
+		
+		before(function() {
+			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+				StubRecipes: uStubStringify(uStubTwoItems()),
+				LCHTestSkipAutomaticLaunch: true,
+			}));
+		});
+
+		before(function () {
+			browser.assert.elements(LCHLauncher, 0)
+
+			browser.evaluate(`window.LCHPageRecipes = [{
+				LCHRecipeName: 'alfa',
+				LCHRecipeCallback: function () {}, // #purge-callback
+			}]`)
+
+			return browser.pressButton('.TestLauncherInvoke');
+		});
+			
+		before(function () {
+			browser.fill(LCHLauncherFilterInput, 'alfa');
+		});
+
+		it('hides item', function() {
+			browser.assert.elements(LCHLauncherListItem, 1)
+		});
+	
 	});
 
-	before(function () {
-		return browser.evaluate(`LCHLauncherFilterInput`);
+	context('enabled', function () {
+		
+		before(function() {
+			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+				StubRecipes: uStubStringify(uStubTwoItems()),
+				LCHOptionIncludePageRecipes: true,
+				LCHTestSkipAutomaticLaunch: true,
+			}));
+		});
+
+		before(function () {
+			browser.assert.elements(LCHLauncher, 0)
+
+			browser.evaluate(`window.LCHPageRecipes = [{
+				LCHRecipeName: 'alfa',
+				LCHRecipeCallback: function () {}, // #purge-callback
+			}]`)
+
+			return browser.pressButton('.TestLauncherInvoke');
+		});
+			
+		before(function () {
+			browser.fill(LCHLauncherFilterInput, 'alfa');
+		});
+
+		it('shows item', function() {
+			browser.assert.elements(LCHLauncherListItem, 2)
+		});
+
+		it('shows LCHLauncherPipeItemSource', function() {
+			browser.assert.elements(LCHLauncherPipeItemSource, 1)
+		});
+
+		it('sets LCHLauncherPipeItemSource', function() {
+			browser.assert.text(LCHLauncherPipeItemSource, 'loc.tests')
+		});
+	
 	});
-
-	before(function () {
-		return browser.fill(LCHLauncherFilterInput, 'alfa');
-	});
-
-	// it('inserts style element', function() {
-	// 	browser.assert.elements('body style', 1);
-	// });
-
-	// it('inserts style element', function() {
-	// 	browser.assert.text('body style', 'body { background: red; }');
-	// });
-
-
-
-
-	// describe(`LCHLauncherLocalizeShared-${ 'en' }`, function () { // #move:feature
-
-	// 	before(function() {
-	// 		return browser.visit(kDefaultRoute.OLSKRoutePath);
-	// 	});
-
-	// 	it('on filter', async function() {
-	// 		browser.fill(LCHLauncherFilterInput, 'a');
-	// 		await browser.wait({element: LCHLauncherListItem});
-
-	// 		browser.assert.text(`${ LCHLauncherListItem }:first-child`, 'Alfa');
-	// 	});
-
-	// 	it('shows _LCHRecipeSource for LCHPageRecipes', async function() {
-	// 		browser.fill(LCHLauncherFilterInput, 'h');
-	// 		await browser.wait({element: LCHLauncherListItem});
-
-	// 		browser.assert.text(`${ LCHLauncherListItem }:first-child`, 'Hello loc.tests');
-	// 	});
 
 });
 
@@ -1658,6 +1642,23 @@ describe('LCHPageRecipes', function testLCHPageRecipes () {
 // 		await browser.wait({element: LCHLauncherListItem});
 
 // 		browser.assert.elements(LCHLauncherListItem, 1);
+// 	});
+
+// });
+
+
+// #purge
+// context('LCHLauncherTestConvertTypeServiceSearch', function () {
+
+// 	before(function() {
+// 		return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?LCHLauncherTestConvertTypeServiceSearch`);
+// 	});
+
+// 	it('converts recipe', async function() {
+// 		browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestConvertTypeServiceSearch');
+// 		await browser.wait({element: LCHLauncherListItem});
+
+// 		browser.assert.text(LCHLauncherListItem, uFormatted(uLocalized('LCHLauncherTestConvertTypeServiceSearchTextFormat'), 'LCHLauncherTestConvertTypeServiceSearch'));
 // 	});
 
 // });
