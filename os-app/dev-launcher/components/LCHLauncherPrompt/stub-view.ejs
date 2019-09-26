@@ -12,16 +12,16 @@
 
 <p>
 	<strong>ResultsHidden</strong>
-	<input type="checkbox" oninput="Main.$set({ResultsHidden: this.checked})" id="LCHLauncherPromptTestSetResultsHidden" />
+	<input type="checkbox" oninput="LCHLauncherPrompt.$set({ResultsHidden: this.checked})" id="LCHLauncherPromptTestSetResultsHidden" />
 </p>
 
 <p>
 	<strong>PromptItems</strong>
-	<button onclick="Main.$set({StubItems: []})" id="LCHLauncherPromptTestSetPromptItemsZero">Zero</button>
-	<button onclick="Main.$set({StubItems: [{
+	<button onclick="LCHLauncherPrompt.$set({StubItems: []})" id="LCHLauncherPromptTestSetPromptItemsZero">Zero</button>
+	<button onclick="LCHLauncherPrompt.$set({StubItems: [{
 		LCHRecipeName: 'alfa',
 	}]})" id="LCHLauncherPromptTestSetPromptItemsSingle">Single</button>
-	<button onclick="Main.$set({StubItems: [{
+	<button onclick="LCHLauncherPrompt.$set({StubItems: [{
 		LCHRecipeName: 'alfa',
 	},{
 		LCHRecipeName: 'bravo',
