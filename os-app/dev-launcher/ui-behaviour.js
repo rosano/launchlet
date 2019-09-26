@@ -11,6 +11,7 @@ function StubRecipesParse(inputData) {
 	return JSON.parse(inputData).map(function (e) {
 		return Object.assign(e, {
 			LCHRecipeCallback: eval(e.LCHRecipeCallback),
+			LCHRecipeIsHidden: eval(e.LCHRecipeIsHidden),
 		});
 	});
 }
@@ -61,17 +62,6 @@ function StubRecipesParse(inputData) {
 					},
 					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestURLFilter',
 					LCHRecipeIsAutomatic: true,
-				}, {
-					LCHRecipeName: 'LCHLauncherTestIsHidden1',
-					LCHRecipeCallback: function () {},
-					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestIsHidden',
-				}, {
-					LCHRecipeName: 'LCHLauncherTestIsHidden2',
-					LCHRecipeCallback: function () {},
-					LCHRecipeIsHidden: function () {
-						return document.querySelector('input').value !== 'LCHLauncherTestIsHidden1';
-					},
-					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestIsHidden',
 				}, {
 					LCHRecipeName: 'LCHLauncherTestLongStringAlfaBravoCharlieDeltaEchoFoxtrotGolfHotel',
 					LCHRecipeCallback: function () {},

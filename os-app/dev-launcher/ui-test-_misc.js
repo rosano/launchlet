@@ -682,32 +682,6 @@ describe('LCHLauncherMisc', function () {
 
 });
 
-describe('LCHLauncherTestIsHidden', function testLCHLauncherTestIsHidden () {
-
-	before(async function() {
-		await browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
-			LCHLauncherTestIsHidden: 'alfa',
-		}));
-
-		browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestIsHidden');
-		await browser.wait({element: LCHLauncherListItem});
-	});
-
-	it('hides recipe', function() {
-		browser.assert.elements(LCHLauncherListItem, 1);
-	});
-
-	it('shows on validation', async function() {
-		browser.evaluate(`document.querySelector('input').value = 'LCHLauncherTestIsHidden1'`)
-
-		browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestIsHidden');
-		await browser.wait({element: `${ LCHLauncherListItem }:nth-child(2)`});
-		
-		browser.assert.elements(LCHLauncherListItem, 2);
-	});
-
-});
-
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
 
 describe('LCHLauncherMiscPipe', function () {
@@ -1345,6 +1319,50 @@ describe('LCHLauncherMiscPipe', function () {
 			browser.assert.attribute(LCHLauncherPromptDotModeInput, 'autofocus', '');
 		});
 
+	});
+
+});
+
+describe('LCHRecipeIsHidden', function testLCHRecipeIsHidden () {
+
+	before(function() {
+		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			StubRecipes: uStubStringify([{
+				LCHRecipeName: 'alfa',
+				LCHRecipeCallback: function () {}, // #purge-callback
+				LCHRecipeIsHidden: function () {
+					return document.querySelector('.TestRecipeOutput').value !== 'bravo';
+				},
+			}]),
+		}));
+	});
+
+	context('no match', function () {
+
+		before(function() {
+			browser.fill(LCHLauncherFilterInput, 'alfa');
+		});
+
+		it('hides item', function() {
+			browser.assert.elements(LCHLauncherListItem, 0);
+		});
+	
+	});
+
+	context('match', function () {
+		
+		before(function() {
+			browser.fill('.TestRecipeOutput', 'bravo');
+		});
+
+		before(function() {
+			browser.fill(LCHLauncherFilterInput, 'alfa');
+		});
+
+		it('shows item', function() {
+			browser.assert.elements(LCHLauncherListItem, 1);
+		});
+	
 	});
 
 });

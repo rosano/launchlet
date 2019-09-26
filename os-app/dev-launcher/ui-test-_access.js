@@ -49,6 +49,7 @@ Object.entries({
 		return JSON.stringify(inputData.map(function (e) {
 			return Object.assign(e, {
 				LCHRecipeCallback: `(${ e.LCHRecipeCallback.toString() })`,
+				LCHRecipeIsHidden: e.LCHRecipeIsHidden ? `(${ e.LCHRecipeIsHidden.toString() })` : undefined,
 			});
 		}));
 	},
