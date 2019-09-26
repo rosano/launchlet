@@ -40,6 +40,13 @@ function OLSKRouteFunction (req, res, next) {
 					LCHDocumentArgs: 'message',
 					LCHDocumentBody: 'alert(message.toUppercase())',
 				}),
+				LCHGuideTokenExamplePageRecipe: require('./ui-logic.js').LCHGuideStringify({
+					LCHRecipeName: 'Say Hello',
+					LCHRecipeCallback: 'LCHGuideTokenExamplePageRecipeFunction',
+				}),
+				'"LCHGuideTokenExamplePageRecipeFunction"': (function () {
+  alert('Hello');
+ }).toString(),
 			}, res.locals.OLSKLocalized('LCHGuideDocumentFields'))
 			)),
 		OLSKStringReplaceTokens: require('OLSKString').OLSKStringReplaceTokens,
