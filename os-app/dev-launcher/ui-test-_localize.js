@@ -12,7 +12,10 @@ const uLocalized = function (inputData) {
 describe(`LCHLauncherLocalizeCommit-${ languageCode }`, function () {
 
 	before(function() {
-		return browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModeCommit`);
+		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			OLSKRoutingLanguage: languageCode,
+			runMode: 'kRunModeCommit',
+		}));
 	});
 
 	context('Startup', function testCommitStartup() {
@@ -28,7 +31,10 @@ describe(`LCHLauncherLocalizeCommit-${ languageCode }`, function () {
 describe(`LCHLauncherLocalizePreview-${ languageCode }`, function () {
 
 	before(function() {
-		return browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModePreview`);
+		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			OLSKRoutingLanguage: languageCode,
+			runMode: 'kRunModePreview',
+		}));
 	});
 
 	context('Startup', function testPreviewStartup() {
@@ -56,7 +62,10 @@ describe(`LCHLauncherLocalizePreview-${ languageCode }`, function () {
 describe(`LCHLauncherLocalizePipe-${ languageCode }`, function () {
 
 	before(function() {
-		return browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModePipe`);
+		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			OLSKRoutingLanguage: languageCode,
+			runMode: 'kRunModePipe',
+		}));
 	});
 
 	context('Startup', function testPipeStartup() {

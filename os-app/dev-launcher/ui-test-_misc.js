@@ -7,7 +7,9 @@ describe('LCHLauncherFeature', function () {
 	context('LCHLauncherModeCommit', function () {
 
 		before(function() {
-			return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModeCommit`);
+			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+				runMode: 'kRunModeCommit',
+			}));
 		});
 		
 		it('shows no items if no filter', function() {
@@ -55,7 +57,9 @@ describe('LCHLauncherFeature', function () {
 		context('shortcuts', function () {
 
 			before(function() {
-				return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModeCommit`);
+				return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+					runMode: 'kRunModeCommit',
+				}));
 			});
 
 			it('selects next item on ArrowDown', async function() {
@@ -89,7 +93,9 @@ describe('LCHLauncherFeature', function () {
 	context('LCHLauncherModePreview', function () {
 
 		before(function() {
-			return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModePreview`);
+			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			runMode: 'kRunModePreview',
+		}));
 		});
 
 		it('selects no items', async function() {
@@ -127,7 +133,9 @@ describe('LCHLauncherFeature', function () {
 		context('shortcuts', function () {
 
 			before(function() {
-				return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModePreview`);
+				return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			runMode: 'kRunModePreview',
+		}));
 			});
 
 			it('runs item on ArrowDown', async function() {
@@ -160,7 +168,9 @@ describe('LCHLauncherFeature', function () {
 		context('on startup', function() {
 
 			before(function() {
-				return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModePipe`);
+				return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			runMode: 'kRunModePipe',
+		}));
 			});
 			
 			it('selects LCHLauncherSubjectPrompt', function() {
@@ -191,7 +201,9 @@ describe('LCHLauncherFeature', function () {
 		context('active prompt', function() {
 
 			before(async function() {
-				await browser.visit(`${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModePipe`);
+				await browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			runMode: 'kRunModePipe',
+		}));
 
 				browser.OLSKFireKeyboardEvent(browser.window, 'w');
 				await browser.wait({element: LCHLauncherResultList});
@@ -278,7 +290,9 @@ describe('LCHLauncherFeature', function () {
 		context('SubjectContainer', function testSubjectContainer () {
 
 			before(async function() {
-				return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModePipe`);
+				return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			runMode: 'kRunModePipe',
+		}));
 			});
 
 			it('shows subject', async function() {
@@ -324,7 +338,9 @@ describe('LCHLauncherFeature', function () {
 describe('LCHLauncherTestIsHidden', function testLCHLauncherTestIsHidden () {
 
 	before(async function() {
-		await browser.visit(`${ kDefaultRoute.OLSKRoutePath }?LCHLauncherTestIsHidden`);
+		await browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			LCHLauncherTestIsHidden: 'alfa',
+		}));
 
 		browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestIsHidden');
 		await browser.wait({element: LCHLauncherListItem});
