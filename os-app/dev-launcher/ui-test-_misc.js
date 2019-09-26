@@ -437,14 +437,10 @@ describe.only('LCHLauncherMiscPipe', function testLCHLauncherMiscPipe() {
 
 		it('assert callbacks count 0')
 
-		it('selects LCHLauncherSubjectPrompt', function() {
-			browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
-		});
-
 		context('input not valid', function () {
 			
 			before(function () {
-				return browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
+				browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
 			});
 
 			it('runs no callback', function() {
@@ -460,7 +456,7 @@ describe.only('LCHLauncherMiscPipe', function testLCHLauncherMiscPipe() {
 			});
 
 			before(function () {
-				return browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
+				browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
 			});
 
 			it('runs no callback', function() {
@@ -502,79 +498,119 @@ describe.only('LCHLauncherMiscPipe', function testLCHLauncherMiscPipe() {
 		});
 
 	});
+
+	context('prompts', function() {
+
+		before(function() {
+			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+				StubRecipes: uStubStringify(uStubTwoItems()),
+				runMode: 'kRunModePipe',
+			}));
+		});
+
+		it('sets class', function() {
+			browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
+		});
+
+		context('click', function () {
+
+			before(function() {
+				return browser.OLSKFireKeyboardEvent(browser.window, 'a');
+			});
+			
+			before(function() {
+				return browser.click(LCHLauncherActionPrompt);
+			});
+
+			it('sets class', function() {
+				browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
+			});
+		
+		});
+
+		context('Tab', function () {
+
+			before(function() {
+				return browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+			});
+
+			it('sets class', function() {
+				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
+			});
+		
+		});
+
+		context('Shift+Tab', function () {
+
+			before(function() {
+				return browser.OLSKFireKeyboardEvent(browser.window, 'Tab', {
+					shiftKey: true,
+				});
+			});
+
+			it('sets class', function() {
+				browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
+			});
+		
+		});
+
+		context('click if no subject', function () {
+
+			before(function() {
+				browser.click(LCHLauncherSubjectPrompt);
+			});
+
+			before(function() {
+				return browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
+			});
+
+			before(function() {
+				return browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
+			});
+
+			before(function() {
+				browser.click(LCHLauncherSubjectPrompt);
+			});
+
+			it('does nothing', function() {
+				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
+			});
+		
+		});
+
+		context('Tab if no subject', function () {
+
+			before(function() {
+				return browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+			});
+
+			it('does nothing', function() {
+				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
+			});
+		
+		});
+
+		context('Shift+Tab if no subject', function () {
+
+			before(function() {
+				return browser.OLSKFireKeyboardEvent(browser.window, 'Tab', {
+					shiftKey: true,
+				});
+			});
+
+			it('does nothing', function() {
+				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
+			});
+		
+		});
+
+	});
 	
 });
 
 describe.skip('LCHLauncherMisc', function () {
 
 	context('LCHLauncherModePipe', function () {
-		
-		context('active prompt', function() {
-
-			before(async function() {
-				await browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
-			runMode: 'kRunModePipe',
-		}));
-
-				browser.OLSKFireKeyboardEvent(browser.window, 'w');
-				await browser.wait({element: LCHLauncherResultList});
-			});
-			
-			it('updates on click', async function() {
-				browser.click(LCHLauncherActionPrompt);
-				await browser.wait({element: LCHLauncherActionPrompt});
-				
-				browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
-			});
-
-			it('updates on Tab', async function() {
-				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-				await browser.wait({element: LCHLauncherObjectPrompt});
-				
-				browser.assert.hasClass(LCHLauncherObjectPrompt, 'LCHLauncherPromptSelected');
-			});
-
-			it('updates on Shift Tab', async function() {
-				browser.click(LCHLauncherActionPrompt);
-				await browser.wait({element: LCHLauncherActionPrompt});
-
-				browser.OLSKFireKeyboardEvent(browser.window, 'Tab', {
-					shiftKey: true,
-				});
-				await browser.wait({element: LCHLauncherSubjectPrompt});
-				
-				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
-			});
-
-			it('does nothing on click if no subject', async function() {
-				browser.click(LCHLauncherSubjectPrompt);
-				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
-				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
-				await browser.wait({element: LCHLauncherPipeItem});
-
-				browser.click(LCHLauncherActionPrompt);
-				await browser.wait({element: LCHLauncherActionPrompt});
-				
-				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
-			});
-
-			it('does nothing on Tab if no subject', async function() {
-				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-				await browser.wait({element: LCHLauncherPipeItem});
-
-				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
-			});
-
-			it('does nothing on Shift Tab if no subject', async function() {
-				browser.OLSKFireKeyboardEvent(browser.window, 'Tab', {
-					shiftKey: true,
-				});
-				await browser.wait({element: LCHLauncherPipeItem});
-
-				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
-			});
-
-		});
 
 		context('MatchStop', function() {
 
