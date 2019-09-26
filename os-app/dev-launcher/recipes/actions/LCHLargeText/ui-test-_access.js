@@ -30,7 +30,7 @@ describe('LCHLargeTextAccess', function () {
 	});
 
 	before(function() {
-		return browser.click(LCHLauncherListItem);
+		browser.click(LCHLauncherListItem);
 	});
 
 	it('on run', function() {
