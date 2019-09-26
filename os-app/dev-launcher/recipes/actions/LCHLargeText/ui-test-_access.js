@@ -1,10 +1,8 @@
 import { deepEqual } from 'assert';
 
-const kDefaultRoutePath = '/launcher?loadRecipes=actions/LCHLargeText';
+const kDefaultRoute = require('../../../controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
-	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
-
 	LCHLargeTextContainer: '#LCHLargeTextContainer',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
@@ -13,20 +11,29 @@ Object.entries({
 describe('LCHLargeTextAccess', function () {
 
 	before(function() {
-		return browser.visit(kDefaultRoutePath);
+		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			StubRecipes: uStubStringify([{
+				LCHRecipeName: 'alfa',
+				LCHRecipeCallback: function () {
+					return this.api.LCHLargeText('bravo');
+				},
+			}]),
+		}));
 	});
-	
-	it('on startup', function() {
+
+	before(function() {
 		browser.assert.elements(LCHLargeTextContainer, 0);
 	});
 
-	it('on run', async function() {
-		browser.fill(LCHLauncherFilterInput, 'LCHLargeTextTest');
-		await browser.wait({element: LCHLauncherListItem});
+	before(function() {
+		return browser.fill(LCHLauncherFilterInput, 'alfa');
+	});
 
-		browser.click(LCHLauncherListItem);
-		await browser.wait({element: LCHLargeTextContainer});
+	before(function() {
+		return browser.click(LCHLauncherListItem);
+	});
 
+	it('on run', function() {
 		browser.assert.elements(LCHLargeTextContainer, 1);
 	});
 
