@@ -1,14 +1,15 @@
 <script>
-import LCHLauncherResultList from '../LCHLauncherResultList/main.svelte';
-import LCHLauncherPipeItem from '../LCHLauncherPipeItem/main.svelte';
-
 export let PromptItems = [];
 export let ResultsHidden = false;
 export let ItemSelected = null;
 export let ItemSelectedHidden = false;
 
+import LCHLauncherResultList from '../LCHLauncherResultList/main.svelte';
+import LCHLauncherPipeItem from '../LCHLauncherPipeItem/main.svelte';
+
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
+
 function ResultListDispatchArrow(event) {
 	dispatch('ResultListDispatchArrow', ItemSelected = event.detail);
 }

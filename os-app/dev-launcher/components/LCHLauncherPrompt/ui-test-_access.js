@@ -1,64 +1,102 @@
 import { deepEqual } from 'assert';
 
-const kDefaultRoutePath = '/stubs/LCHLauncherPrompt';
+const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-const LCHLauncherPrompt = '.LCHLauncherPrompt';
-const LCHLauncherPromptItemSelected = '.LCHLauncherZoneInput .LCHLauncherPipeItem';
-const LCHLauncherResultList = '.LCHLauncherResultList';
-const LCHLauncherResultListItem = '.LCHLauncherResultListItem';
+Object.entries({
+	LCHLauncherPrompt: '.LCHLauncherPrompt',
+	LCHLauncherPromptItemSelected: '.LCHLauncherZoneInput .LCHLauncherPipeItem',
+}).map(function (e) {
+	return global[e.shift()]  = e.pop();
+});
 
-describe('LCHLauncherPromptElement', function () {
+describe('LCHLauncherPromptAccess', function () {
 
 	before(function() {
-		return browser.visit(kDefaultRoutePath);
+		return browser.visit(kDefaultRoute.OLSKRoutePath);
 	});
 	
-	it('on startup', function() {
+	it('shows LCHLauncherPrompt', function () {
 		browser.assert.elements(LCHLauncherPrompt, 1);
+	});
 
+	it('hides LCHLauncherPromptItemSelected', function () {
 		browser.assert.elements(LCHLauncherPromptItemSelected, 0);
-
-		browser.assert.elements(LCHLauncherResultList, 0);
 	});
 
-	it('on set single', async function() {
-		browser.pressButton('#LCHLauncherPromptTestSetPromptItemsSingle');
-		await browser.wait({element: LCHLauncherResultListItem});
-
-		browser.assert.elements(LCHLauncherResultListItem, 1);
+	it('hides LCHLauncherResultList', function () {
+		browser.assert.elements('.LCHLauncherResultList', 0);
 	});
-	
-	it('on set multiple', async function() {
-		browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
-		await browser.wait({element: LCHLauncherResultListItem});
 
-		browser.assert.elements(LCHLauncherResultListItem, 3);
-	});
-	
-	it('on set zero', async function() {
-		browser.pressButton('#LCHLauncherPromptTestSetPromptItemsZero');
-		await browser.wait({element: LCHLauncherResultListItem});
+	context('set single', function() {
 
-		browser.assert.elements(LCHLauncherResultListItem, 0);
+		before(function () {
+			return browser.pressButton('#LCHLauncherPromptTestSetPromptItemsSingle');
+		});
+
+		it('shows LCHLauncherResultListItem', function () {
+			browser.assert.elements('.LCHLauncherResultListItem', 1);
+		});
 	});
 	
-	it('on ResultsHidden', async function() {
-		browser.check('#LCHLauncherPromptTestSetResultsHidden');
-		await browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
+	context('set multiple', function() {
 
-		browser.assert.elements(LCHLauncherResultList, 0);
+		before(function () {
+			return browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
+		});
+
+		it('shows LCHLauncherResultListItem', function () {
+			browser.assert.elements('.LCHLauncherResultListItem', 3);
+		});
 	});
 	
-	it('on set ItemSelected', async function() {
-		await browser.pressButton('#LCHLauncherPromptTestSetStubItemSelected');
+	context('set zero', function() {
+
+		before(function () {
+			return browser.pressButton('#LCHLauncherPromptTestSetPromptItemsZero');
+		});
+
+		it('hides LCHLauncherResultListItem', function () {
+			browser.assert.elements('.LCHLauncherResultListItem', 0);
+		});
+
+		after(function () {
+			return browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
+		})
+
+	});
+	
+	context('set ResultsHidden', function() {
+
+		before(function () {
+			return browser.check('#LCHLauncherPromptTestSetResultsHidden');
+		});
+
+		it('hides LCHLauncherResultList', function () {
+			browser.assert.elements('.LCHLauncherResultList', 0);
+		});
+
+	});
+	
+	context('set ItemSelected', function() {
+
+		before(function () {
+			return browser.pressButton('#LCHLauncherPromptTestSetStubItemSelected');
+		});
 		
-		browser.assert.elements(LCHLauncherPromptItemSelected, 1);
+		it('shows LCHLauncherPromptItemSelected', function () {
+			browser.assert.elements(LCHLauncherPromptItemSelected, 1);
+		});
 	});
 	
-	it('on ItemSelectedHidden', async function() {
-		await browser.check('#LCHLauncherPromptTestSetItemSelectedHidden');
+	context('set ItemSelectedHidden', function() {
 
-		browser.assert.elements(LCHLauncherPromptItemSelected, 0);
+		before(function () {
+			return browser.check('#LCHLauncherPromptTestSetItemSelectedHidden');
+		});
+
+		it('hides LCHLauncherPromptItemSelected', function () {
+			browser.assert.elements(LCHLauncherPromptItemSelected, 0);
+		});
 	});
 
 });
