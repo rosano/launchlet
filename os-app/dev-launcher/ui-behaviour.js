@@ -23,7 +23,7 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 		let app = new Main({
 			target: document.getElementById('LCHLauncherTarget'),
 			props: {
-				dataObjects: [
+				LCHLauncherRecipes: [
 					'Alfa',
 					'Bravo',
 					'Charlie',

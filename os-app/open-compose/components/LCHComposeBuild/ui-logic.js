@@ -36,7 +36,7 @@ export const _LCHComposeBuildBoomarkletTemplate = function () {
 			window.LCHBookmarklet.AppInstance = new (window.LCHBookmarklet.uiBehaviour())({
 				target: sandboxContainer,
 				props: {
-					dataObjects: _protectFromCompiler(`LCHComposeBuildToken_DocumentObjects`).concat({
+					LCHLauncherRecipes: _protectFromCompiler(`LCHComposeBuildToken_DocumentObjects`).concat({
 						LCHRecipeName: 'LCHComposeBuildToken_LCHComposeRecipeName',
 						LCHRecipeCallback () {
 							return 'LCHComposeBuildToken_LCHComposeRecipeCallbackOutput';

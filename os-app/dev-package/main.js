@@ -56,7 +56,7 @@ export const instanceCreate = function (param1 = [], param2 = {}) {
 	appInstance = new _AppClass({
 		target: appContainer,
 		props: {
-			dataObjects: Array.isArray(param1) ? param1 : [],
+			LCHLauncherRecipes: Array.isArray(param1) ? param1 : [],
 			optionsObject: param2,
 			completionHandler () {
 				instanceDestroy();
