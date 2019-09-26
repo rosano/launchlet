@@ -2,6 +2,10 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
+const uLocalized = function (inputData) {
+	return OLSKTestingLocalized(inputData, kDefaultRoute.OLSKRouteLanguages[0]);
+};
+
 describe('LCHLauncherMiscCommit', function testLCHLauncherMiscCommit() {
 
 	before(function() {
@@ -682,11 +686,36 @@ describe.only('LCHLauncherMiscPipe', function testLCHLauncherMiscPipe() {
 		});
 
 		before(function() {
-			return browser.OLSKFireKeyboardEvent(browser.window, 'a');
+			browser.OLSKFireKeyboardEvent(browser.window, 'a');
+			browser.OLSKFireKeyboardEvent(browser.window, 'a');
+		});
+
+		it('sets LCHLauncherSubjectPromptHeading', function() {
+			browser.assert.text(LCHLauncherSubjectPromptHeading, 'AA');
+		});
+		
+	});
+
+	describe('Backspace', function() {
+
+		before(function() {
+			browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
 		});
 
 		it('sets LCHLauncherSubjectPromptHeading', function() {
 			browser.assert.text(LCHLauncherSubjectPromptHeading, 'A');
+		});
+
+		context('last character', function () {
+			
+			before(function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
+			});
+
+			it('sets LCHLauncherSubjectPromptHeading', function() {
+				browser.assert.text(LCHLauncherSubjectPromptHeading, uLocalized('LCHLauncherSubjectPromptHeadingText'));
+			});
+		
 		});
 		
 	});
@@ -696,21 +725,6 @@ describe.only('LCHLauncherMiscPipe', function testLCHLauncherMiscPipe() {
 describe.skip('LCHLauncherMisc', function () {
 
 	context('LCHLauncherModePipe', function () {
-
-		context('KeydownBackspace', function testPipeKeydownBackspace() {
-
-			before(async function() {
-				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
-				await browser.wait({element: LCHLauncherSubjectPromptHeading});
-			});
-
-			it('resets LCHLauncherSubjectPromptHeading', function() {
-				browser.assert.text(LCHLauncherSubjectPromptHeading, uLocalized('LCHLauncherSubjectPromptHeadingText'));
-			});
-			
-		});
-
-
 
 		describe(`LCHLauncherLocalizeShared-${ 'en' }`, function () { // #move:feature
 
