@@ -19,6 +19,16 @@ function ResultListDispatchClick(inputData) {
 
 	TestResultListDispatchClick.innerHTML = parseInt(TestResultListDispatchClick.innerHTML) + 1;
 }
+
+const mod = {
+
+	// INTERFACE
+
+	InterfaceItemSelectedHiddenCheckboxDidInput (event) {
+		StubItemSelectedHidden = this.checked
+	},
+
+}
 </script>
 
 <Module PromptItems={ StubItems } ItemSelected={ StubItemSelected } ItemSelectedHidden={ StubItemSelectedHidden } on:ResultListDispatchArrow={ (event) => ResultListDispatchArrow(event.detail) } on:ResultListDispatchClick={ (event) => ResultListDispatchClick(event.detail) } ResultsHidden={ ResultsHidden } />
@@ -33,7 +43,7 @@ function ResultListDispatchClick(inputData) {
 
 <p>
 	<strong>ItemSelectedHidden</strong>
-	<input type="checkbox" on:input={ () => StubItemSelectedHidden = this.checked } id="LCHLauncherPromptTestSetItemSelectedHidden" />
+	<input type="checkbox" on:input={ mod.InterfaceItemSelectedHiddenCheckboxDidInput } id="LCHLauncherPromptTestSetItemSelectedHidden" />
 </p>
 <p>
 	<strong>TestResultListDispatchArrow</strong>

@@ -48,7 +48,7 @@ window.LCHLauncherRecipesAdd = function (inputData) {
 					LCHRecipeCallback: function () {
 						document.querySelector('input').value = 'xylophone';
 					},
-					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestURLFilter',
+					LCHRecipeURLFilter: 'LCHLauncherTestURLFilter',
 				}, {
 					LCHRecipeCallback: function () {
 						document.querySelector('input').value = 'zebra';
