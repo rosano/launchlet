@@ -1,23 +1,44 @@
 import { deepEqual } from 'assert';
 
-const kDefaultRoutePath = '/stubs/LCHLauncherPipeItem';
+const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-const LCHLauncherPipeItem = '.LCHLauncherPipeItem';
-const LCHLauncherPipeItemTitle = '.LCHLauncherPipeItemTitle';
-const LCHLauncherPipeItemSubtitle = '.LCHLauncherPipeItemSubtitle';
-const LCHLauncherPipeItemSource = '.LCHLauncherPipeItemSource';
+Object.entries({
+	LCHLauncherPipeItem: '.LCHLauncherPipeItem',
+	LCHLauncherPipeItemTitle: '.LCHLauncherPipeItemTitle',
+	LCHLauncherPipeItemSubtitle: '.LCHLauncherPipeItemSubtitle',
+	LCHLauncherPipeItemSource: '.LCHLauncherPipeItemSource',
+}).map(function (e) {
+	return global[e.shift()]  = e.pop();
+});
 
 describe('LCHLauncherPipeItemAccess', function () {
 
+	const uStubProps = function () {
+		return {
+			PipeItemTitle: 'alfa',
+			PipeItemSubtitle: 'bravo',
+			PipeItemSource: 'charlie',
+		};
+	};
+
 	before(function() {
-		return browser.visit(kDefaultRoutePath);
+		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, uStubProps()));
 	});
 	
-	it('on startup', function() {
-		browser.assert.elements(LCHLauncherPipeItem, 1);
-		browser.assert.elements(LCHLauncherPipeItemTitle, 1);
-		browser.assert.elements(LCHLauncherPipeItemSubtitle, 1);
-		browser.assert.elements(LCHLauncherPipeItemSource, 1);
+	it('shows LCHLauncherPipeItem', function () {
+		browser.assert.element(LCHLauncherPipeItem);
+	});
+	
+	it('shows LCHLauncherPipeItemTitle', function () {
+		browser.assert.element(LCHLauncherPipeItemTitle);
+	});
+	
+	it('shows LCHLauncherPipeItemSubtitle', function () {
+		browser.assert.element(LCHLauncherPipeItemSubtitle);
+	});
+	
+	it('shows LCHLauncherPipeItemSource', function () {
+		browser.assert.element(LCHLauncherPipeItemSource);
 	});
 
 });
