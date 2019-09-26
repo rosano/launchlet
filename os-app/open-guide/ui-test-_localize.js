@@ -2,11 +2,13 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
+['en'].forEach(function (languageCode) {
+
 const uLocalized = function (inputData) {
-	return OLSKTestingLocalized(inputData, 'en');
+	return OLSKTestingLocalized(inputData, languageCode);
 };
 
-describe('LCHGuideLocalize', function () {
+describe(`LCHGuide_Localize-${ languageCode}`, function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoute.OLSKRoutePath);
@@ -25,3 +27,5 @@ describe('LCHGuideLocalize', function () {
 	});
 
 });
+
+})

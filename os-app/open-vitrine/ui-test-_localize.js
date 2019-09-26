@@ -13,7 +13,7 @@ const uLocalized = function (inputData) {
 	return OLSKTestingLocalized(inputData, languageCode);
 };
 
-describe(`LCHVitrineLocalize-${ languageCode }`, function () {
+describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 
 	before(function() {
 		return browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }`);

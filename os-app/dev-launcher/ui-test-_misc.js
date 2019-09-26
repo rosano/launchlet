@@ -424,7 +424,7 @@ describe('LCHLauncherMiscPreview', function testLCHLauncherMiscPreview() {
 	
 });
 
-describe.only('LCHLauncherMiscPipe', function testLCHLauncherMiscPipe() {	
+describe('LCHLauncherMiscPipe', function testLCHLauncherMiscPipe() {	
 
 	describe('Enter', function() {
 
