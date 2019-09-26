@@ -77,3 +77,23 @@ describe('LCHGuideExampleTemplate', function testLCHGuideExampleTemplate() {
 	});
 
 });
+
+describe('LCHGuideStringify', function testLCHGuideStringify() {
+
+	it('throws error if not object', function() {
+		throws(function() {
+			mainModule.LCHGuideStringify(null);
+		}, /LCHErrorInputInvalid/);
+	});
+
+	it('returns string', function() {
+		deepEqual(mainModule.LCHGuideStringify({}), '{}');
+	});
+
+	it('strips key quotes', function() {
+		deepEqual(mainModule.LCHGuideStringify({
+			alfa: null,
+		}), '{\n alfa: null\n}');
+	})
+
+});

@@ -36,3 +36,11 @@ exports.LCHGuideExampleTemplate = function (inputData) {
 
 	return `<div class="LCHGuideExample">\n\n${ inputData.join('\n\n') }\n\n</div>`;
 };
+
+exports.LCHGuideStringify = function (inputData) {
+	if (typeof inputData !== 'object' || inputData === null) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	return JSON.stringify(inputData, null, ' ').replace(/"(\w+)":/g, "$1:")
+};
