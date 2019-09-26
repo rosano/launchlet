@@ -1,6 +1,6 @@
 import { deepEqual } from 'assert';
 
-const kDefaultRoutePath = require('./controller.js').OLSKControllerRoutes().LCHLauncherRoute.OLSKRoutePath;
+const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().LCHLauncherRoute;
 
 describe('LCHLauncherFeature', function () {
 
@@ -307,7 +307,7 @@ describe('LCHLauncherFeature', function () {
 	context('shared', function () {
 
 		before(function() {
-			return browser.visit(kDefaultRoutePath);
+			return browser.visit(kDefaultRoutePath.OLSKRoutePath);
 		});
 
 		it('closes on Escape', async function() {
