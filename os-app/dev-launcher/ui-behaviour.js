@@ -59,23 +59,6 @@ function StubRecipesParse(inputData) {
 		
 		moi.CommandLaunch()
 	},
-	SetupPageRecipes() {
-		window.LCHPageRecipes = _LCHLauncherRecipes.concat([
-			{
-				LCHRecipeName: 'Hello',
-				LCHRecipeCallback: function () {
-					document.querySelector('textarea').value = 'Hello';
-				},
-			},
-			{
-				LCHRecipeCallback: function () {
-					document.querySelector('input').value = 'AutomaticRunningOfPageRecipes';
-				},
-				LCHRecipeURLFilter: 'loc',
-				LCHRecipeIsAutomatic: true,
-			}
-		]);
-	},
 
 	// LIFECYCLE
 
