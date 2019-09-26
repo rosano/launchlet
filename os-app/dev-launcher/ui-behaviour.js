@@ -1,3 +1,4 @@
+const params = Object.fromEntries((new window.URLSearchParams(window.location.search)).entries());
 
 function StubRecipesParse(inputData) {
 	if (!inputData) {
@@ -32,7 +33,7 @@ function StubRecipesParse(inputData) {
 		let app = new Main({
 			target: document.getElementById('LCHLauncherTarget'),
 			props: {
-				LCHLauncherRecipes: StubRecipesParse(new URLSearchParams(window.location.search).get('StubRecipes')) || [],
+				LCHLauncherRecipes: StubRecipesParse(params.StubRecipes) || [],
 				completionHandler () {
 					let span = document.createElement('span');
 					span.id = 'LCHLauncherTestDidFinish';
@@ -42,8 +43,8 @@ function StubRecipesParse(inputData) {
 					app = null;
 				},
 				optionsObject: Object.assign({}, {
-					runMode: Launchlet[(new URLSearchParams(window.location.search)).get('runMode') || 'kRunModeCommit'],
-					LCHOptionIncludePageRecipes: !!(new URLSearchParams(window.location.search)).get('LCHOptionIncludePageRecipes') || false,
+					runMode: Launchlet[params.runMode || 'kRunModeCommit'],
+					LCHOptionIncludePageRecipes: !!params.LCHOptionIncludePageRecipes || false,
 				}),
 			},
 		});
