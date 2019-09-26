@@ -8,7 +8,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHCopyToClipboardAccess', function () {
+describe('LCHCopyToClipboardMisc', function () {
 
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
@@ -33,8 +33,8 @@ describe('LCHCopyToClipboardAccess', function () {
 		browser.click(LCHLauncherListItem);
 	});
 
-	it('shows LCHCopyToClipboardButton', function() {
-		browser.assert.elements(LCHCopyToClipboardButton, 1);
+	it('focuses LCHCopyToClipboardButton', function() {
+		deepEqual(browser.document.activeElement, browser.query(LCHCopyToClipboardButton));
 	});
 
 	context('click', function () {
@@ -43,8 +43,8 @@ describe('LCHCopyToClipboardAccess', function () {
 			return browser.pressButton(LCHCopyToClipboardButton);
 		});
 
-		it('hides LCHCopyToClipboardButton', function() {
-			browser.assert.elements(LCHCopyToClipboardButton, 0);
+		it('hides LCHLauncher', function() {
+			browser.assert.elements(LCHLauncher, 0);
 		});
 	
 	});

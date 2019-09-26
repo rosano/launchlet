@@ -1,32 +1,43 @@
 import { deepEqual } from 'assert';
 
-const kDefaultRoutePath = '/launcher?loadRecipes=actions/LCHCopyToClipboard';
+const kDefaultRoute = require('../../../controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHCopyToClipboardLanguage', function () {
+kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
-	['en'].forEach(function (languageCode) {
-
-		context(languageCode, function () {
-
-			const uLocalized = function (inputData) {
-				return OLSKTestingLocalized(inputData, languageCode);
-			};
-
-			before(function() {
-				return browser.visit(kDefaultRoutePath);
-			});
-
-			it('on run', async function() {
-				browser.fill(LCHLauncherFilterInput, 'LCHCopyToClipboardTest');
-				await browser.wait({element: LCHLauncherListItem});
-
-				browser.click(LCHLauncherListItem);
-				await browser.wait({element: LCHCopyToClipboardButton});
-
-				deepEqual(browser.query(LCHCopyToClipboardButton).textContent, uLocalized('LCHCopyToClipboardButtonText'));
-			});
-
-		});
-		
+const uLocalized = function (inputData) {
+	return OLSKTestingLocalized(inputData, languageCode);
+};
+	
+describe(`LCHCopyToClipboardLocalize-${ languageCode }`, function () {
+	
+	before(function() {
+		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			StubRecipes: uStubStringify([{
+				LCHRecipeName: 'alfa',
+				LCHRecipeCallback: function () {
+					return this.api.LCHCopyToClipboard('bravo');
+				},
+			}]),
+			OLSKRoutingLanguage: languageCode,
+		}));
 	});
+
+	before(function() {
+		browser.assert.elements(LCHCopyToClipboardButton, 0);
+	});
+
+	before(function() {
+		return browser.fill(LCHLauncherFilterInput, 'alfa');
+	});
+
+	before(function() {
+		browser.click(LCHLauncherListItem);
+	});
+
+	it('localizes LCHCopyToClipboardButton', async function() {
+		browser.assert.text(LCHCopyToClipboardButton, uLocalized('LCHCopyToClipboardButtonText'));
+	});
+	
+});
+
 });
