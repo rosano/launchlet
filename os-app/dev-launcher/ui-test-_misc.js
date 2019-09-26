@@ -161,6 +161,22 @@ describe('LCHLauncherFeature', function () {
 
 		});
 
+		context('Escape', function () {
+
+			it('clears filter on Escape', async function() {
+				browser.fill(LCHLauncherFilterInput, 'a');
+				await browser.wait({element: LCHLauncherListItem});
+
+				browser.assert.input(LCHLauncherFilterInput, 'a');
+				
+				browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+				await browser.wait({element: LCHLauncherFilterInput});
+
+				browser.assert.input(LCHLauncherFilterInput, '');
+			});
+		
+		});
+
 	});
 
 	context('LCHLauncherModePipe', function () {
@@ -314,6 +330,110 @@ describe('LCHLauncherFeature', function () {
 				browser.assert.text(LCHLauncherSubjectPromptItemSelected, 'alfa DOMElement');
 			});
 			
+		});
+
+
+
+		context('keydown', function () {
+
+			before(function() {
+				return browser.OLSKFireKeyboardEvent(browser.window, 'a');
+			});
+
+			it('sets LCHLauncherSubjectPromptHeading', function() {
+				browser.assert.text(LCHLauncherSubjectPromptHeading, 'A');
+			});
+			
+		});
+
+		context('KeydownBackspace', function testPipeKeydownBackspace() {
+
+			before(async function() {
+				browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
+				await browser.wait({element: LCHLauncherSubjectPromptHeading});
+			});
+
+			it('resets LCHLauncherSubjectPromptHeading', function() {
+				browser.assert.text(LCHLauncherSubjectPromptHeading, uLocalized('LCHLauncherSubjectPromptHeadingText'));
+			});
+			
+		});
+
+
+
+		describe(`LCHLauncherLocalizeShared-${ 'en' }`, function () { // #move:feature
+
+			before(function() {
+				return browser.visit(kDefaultRoute.OLSKRoutePath);
+			});
+
+			it('on filter', async function() {
+				browser.fill(LCHLauncherFilterInput, 'a');
+				await browser.wait({element: LCHLauncherListItem});
+
+				browser.assert.text(`${ LCHLauncherListItem }:first-child`, 'Alfa');
+			});
+
+			it('shows _LCHRecipeSource for LCHPageRecipes', async function() {
+				browser.fill(LCHLauncherFilterInput, 'h');
+				await browser.wait({element: LCHLauncherListItem});
+
+				browser.assert.text(`${ LCHLauncherListItem }:first-child`, 'Hello loc.tests');
+			});
+
+			it('skips LCHPageRecipes tasks', async function() {
+				await browser.wait({element: LCHLauncherFilterInput});
+
+				browser.assert.input('#LCHLauncherTestInputSingleLine', '');
+			});
+
+			context('LCHLauncherTestURLFilter', function () {
+
+				before(function() {
+					return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?LCHLauncherTestURLFilter`);
+				});
+
+				it('runs tasks', async function() {
+					await browser.wait({element: LCHLauncherFilterInput});
+
+					browser.assert.input('#LCHLauncherTestInputSingleLine', 'zebra');
+				});
+
+			});
+
+			context('LCHLauncherTestStyle', function () {
+
+				before(function() {
+					return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?LCHLauncherTestStyle`);
+				});
+
+				it('shows url specific item', async function() {
+					browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestStyle');
+					await browser.wait({element: LCHLauncherListItem});
+
+					browser.click(LCHLauncherListItem);
+
+					browser.assert.text('body style', 'body { background: red; }');
+				});
+
+			});
+
+			// #purge
+			// context('LCHLauncherTestConvertTypeServiceSearch', function () {
+
+			// 	before(function() {
+			// 		return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?LCHLauncherTestConvertTypeServiceSearch`);
+			// 	});
+
+			// 	it('converts recipe', async function() {
+			// 		browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestConvertTypeServiceSearch');
+			// 		await browser.wait({element: LCHLauncherListItem});
+
+			// 		browser.assert.text(LCHLauncherListItem, uFormatted(uLocalized('LCHLauncherTestConvertTypeServiceSearchTextFormat'), 'LCHLauncherTestConvertTypeServiceSearch'));
+			// 	});
+
+			// });
+
 		});
 
 	});

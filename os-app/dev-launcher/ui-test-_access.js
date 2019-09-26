@@ -141,4 +141,6 @@ describe('LCHLauncherAccessPipe', function testLCHLauncherAccessPipe () {
 		browser.assert.elements(LCHLauncherPipeItem, 0)
 	});
 
+	it('spec pipe elements')
+
 });
