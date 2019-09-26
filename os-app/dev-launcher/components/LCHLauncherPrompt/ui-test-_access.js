@@ -9,7 +9,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHLauncherPromptAccess', function () {
+describe('LCHLauncherPrompt_Access', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoute.OLSKRoutePath);

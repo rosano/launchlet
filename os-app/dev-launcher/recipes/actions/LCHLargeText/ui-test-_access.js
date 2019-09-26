@@ -8,7 +8,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHLargeTextAccess', function () {
+describe('LCHLargeText_Access', function () {
 
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {

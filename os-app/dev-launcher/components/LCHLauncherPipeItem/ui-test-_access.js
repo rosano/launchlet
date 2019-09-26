@@ -11,7 +11,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHLauncherPipeItemAccess', function () {
+describe('LCHLauncherPipeItem_Access', function () {
 
 	const uStubProps = function () {
 		return {

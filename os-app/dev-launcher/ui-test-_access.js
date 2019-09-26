@@ -57,7 +57,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHLauncherAccessCommit', function testLCHLauncherAccessCommit () {
+describe('LCHLauncher_AccessCommit', function testLCHLauncher_AccessCommit () {
 
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
@@ -100,7 +100,7 @@ describe('LCHLauncherAccessCommit', function testLCHLauncherAccessCommit () {
 
 });
 
-describe('LCHLauncherAccessPreview', function testLCHLauncherAccessPreview () {
+describe('LCHLauncherAccess_Preview', function testLCHLauncher_AccessPreview () {
 
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
@@ -131,7 +131,7 @@ describe('LCHLauncherAccessPreview', function testLCHLauncherAccessPreview () {
 
 });
 
-describe('LCHLauncherAccessPipe', function testLCHLauncherAccessPipe () {
+describe('LCHLauncher_AccessPipe', function testLCHLauncher_AccessPipe () {
 
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {

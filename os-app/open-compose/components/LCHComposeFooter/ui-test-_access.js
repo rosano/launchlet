@@ -15,7 +15,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHComposeFooterAccess', function () {
+describe('LCHComposeFooter_Access', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);

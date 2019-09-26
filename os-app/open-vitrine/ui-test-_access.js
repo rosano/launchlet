@@ -12,7 +12,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHVitrineAccess', function () {
+describe('LCHVitrine_Access', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);

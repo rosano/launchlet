@@ -15,7 +15,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHComposeBuildPairExtensionAccess', function () {
+describe('LCHComposeBuildPairExtension_Access', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoute.OLSKRoutePath);
