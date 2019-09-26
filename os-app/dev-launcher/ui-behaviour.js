@@ -1,7 +1,3 @@
-const _LCHLauncherRecipes = [];
-window.LCHLauncherRecipesAdd = function (inputData) {
-	_LCHLauncherRecipes.push(...inputData);
-};
 
 function StubRecipesParse(inputData) {
 	if (!inputData) {
