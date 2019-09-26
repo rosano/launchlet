@@ -2,7 +2,7 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHLauncherResultListMisc', function () {
+describe('LCHLauncherResultList_Misc', function () {
 
 before(function() {
 	return browser.visit(kDefaultRoute.OLSKRoutePath);

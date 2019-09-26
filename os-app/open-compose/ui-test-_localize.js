@@ -13,7 +13,9 @@ const uLocalized = function (inputData) {
 describe(`LCHCompose_Localize-${ languageCode}`, function () {
 
 	before(function() {
-		return browser.visit(`${ languageCode }${ kDefaultRoutePath }`);
+		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			OLSKRoutingLanguage: languageCode,
+		}));
 	});
 
 	it('localizes interface', function() {

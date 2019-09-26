@@ -2,7 +2,7 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoutePath = require('../../controller.js').OLSKControllerRoutes().LCHComposeRoute.OLSKRoutePath;
 
-describe('LCHComposeDetailMisc', function () {
+describe('LCHComposeDetail_Misc', function () {
 
 context('Clone', function testClone() {
 

@@ -2,7 +2,7 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoutePath = require('./controller.js').OLSKControllerRoutes().LCHComposeRoute.OLSKRoutePath;
 
-describe('LCHComposeMisc', function () {
+describe('LCHCompose_Misc', function () {
 
 	before(function() {
 		return browser.visit(kDefaultRoutePath);

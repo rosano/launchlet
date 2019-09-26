@@ -2,7 +2,7 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHLauncherPipeItemMisc', function () {
+describe('LCHLauncherPipeItem_Misc', function () {
 
 	const uStubProps = function () {
 		return {

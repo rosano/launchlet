@@ -2,7 +2,7 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().LCHVitrineRoute;
 
-describe('LCHVitrineMisc', function () {
+describe('LCHVitrine_Misc', function () {
 
 	before(function () {
 		return browser.visit(kDefaultRoute.OLSKRoutePath)

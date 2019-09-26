@@ -8,7 +8,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHCopyToClipboardMisc', function () {
+describe('LCHCopyToClipboard_Misc', function () {
 
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {

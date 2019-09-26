@@ -6,7 +6,7 @@ const uLocalized = function (inputData) {
 	return OLSKTestingLocalized(inputData, kDefaultRoute.OLSKRouteLanguages[0]);
 };
 
-describe('LCHLauncherMiscCommit', function testLCHLauncherMiscCommit() {
+describe('LCHLauncherMisc_Commit', function testLCHLauncherMisc_Commit() {
 
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
@@ -206,7 +206,7 @@ describe('LCHLauncherMiscCommit', function testLCHLauncherMiscCommit() {
 	
 });
 
-describe('LCHLauncherMiscPreview', function testLCHLauncherMiscPreview() {	
+describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {	
 
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
@@ -424,7 +424,7 @@ describe('LCHLauncherMiscPreview', function testLCHLauncherMiscPreview() {
 	
 });
 
-describe('LCHLauncherMiscPipe', function testLCHLauncherMiscPipe() {	
+describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {	
 
 	describe('Enter', function() {
 
@@ -763,7 +763,7 @@ describe('LCHLauncherMiscPipe', function testLCHLauncherMiscPipe() {
 
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
 
-describe.skip('LCHLauncherMiscPipe', function () {
+describe.skip('LCHLauncherMisc_Pipe', function () {
 
 	context('on keydown', function() {
 		
