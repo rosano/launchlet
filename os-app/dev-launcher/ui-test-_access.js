@@ -1,7 +1,7 @@
 import { deepEqual } from 'assert';
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
 
-const kDefaultRoutePath = require('./controller.js').OLSKControllerRoutes().LCHLauncherRoute.OLSKRoutePath;
+const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
 	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
@@ -29,7 +29,7 @@ Object.entries({
 describe('LCHLauncherAccessCommit', function () {
 
 	before(function() {
-		return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModeCommit`);
+		return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModeCommit`);
 	});
 
 	context('Startup', function testCommitStartup () {
@@ -70,7 +70,7 @@ describe('LCHLauncherAccessCommit', function () {
 describe('LCHLauncherAccessPreview', function () {
 
 	before(function() {
-		return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePreview`);
+		return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModePreview`);
 	});
 
 	context('Startup', function testPreviewStartup () {
@@ -111,7 +111,7 @@ describe('LCHLauncherAccessPreview', function () {
 describe('LCHLauncherAccessPipe', function () {
 
 	before(function() {
-		return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
+		return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModePipe`);
 	});
 
 	context('Startup', function testPipeStartup () {
@@ -386,7 +386,7 @@ describe('LCHLauncherAccessPipe', function () {
 	context('Tab', function () { // #move:feature
 
 		it('cancels throttle', async function() {
-			await browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
+			await browser.visit(`${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModePipe`);
 
 			browser.OLSKFireKeyboardEvent(browser.window, 'a');
 			browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
@@ -409,7 +409,7 @@ describe('LCHLauncherAccessPipe', function () {
 	context('DotModeInput', function () {
 
 		before(function() {
-			return browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
+			return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModePipe`);
 		});
 			
 		context('on Dot', function () {
@@ -580,7 +580,7 @@ describe('LCHLauncherAccessPipe', function () {
 			context('on Enter', function () {
 
 				before(async function () {
-					await browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
+					await browser.visit(`${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModePipe`);
 
 					browser.OLSKFireKeyboardEvent(browser.window, '.');
 					await browser.wait({element: LCHLauncherPromptDotModeInput});
@@ -616,7 +616,7 @@ describe('LCHLauncherAccessPipe', function () {
 		context('on Dot when action prompt selected', function () {
 
 			before(async function () {
-				await browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
+				await browser.visit(`${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModePipe`);
 
 				browser.OLSKFireKeyboardEvent(browser.window, 'a');
 				await browser.wait({element: LCHLauncherResultList});
@@ -639,7 +639,7 @@ describe('LCHLauncherAccessPipe', function () {
 		context('on Dot Escape', function () {
 
 			before(async function () {
-				await browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
+				await browser.visit(`${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModePipe`);
 
 				browser.OLSKFireKeyboardEvent(browser.window, '.');
 				await browser.wait({element: LCHLauncherPromptDotModeInput});
@@ -698,7 +698,7 @@ describe('LCHLauncherAccessPipe', function () {
 	context('ObjectPrompt', function () {
 
 		before(async function () {
-			await browser.visit(`${ kDefaultRoutePath }?runMode=kRunModePipe`);
+			await browser.visit(`${ kDefaultRoute.OLSKRoutePath }?runMode=kRunModePipe`);
 			
 			browser.OLSKFireKeyboardEvent(browser.window, '.');
 			await browser.wait({element: LCHLauncherPromptDotModeInput});
@@ -776,7 +776,7 @@ describe('LCHLauncherTestURLFilter', function testLCHLauncherTestURLFilter () {
 	context('no match', function () {
 		
 		before(async function() {
-			await browser.visit(kDefaultRoutePath);
+			await browser.visit(kDefaultRoute.OLSKRoutePath);
 
 			browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestURLFilter');
 			await browser.wait({element: LCHLauncherListItem});
@@ -791,7 +791,7 @@ describe('LCHLauncherTestURLFilter', function testLCHLauncherTestURLFilter () {
 	context('match', function () {
 		
 		before(async function() {
-			await browser.visit(`${ kDefaultRoutePath }?LCHLauncherTestURLFilter`);
+			await browser.visit(`${ kDefaultRoute.OLSKRoutePath }?LCHLauncherTestURLFilter`);
 			
 			browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestURLFilter');
 			await browser.wait({element: LCHLauncherListItem});
@@ -808,7 +808,7 @@ describe('LCHLauncherTestURLFilter', function testLCHLauncherTestURLFilter () {
 describe('LCHLauncherTestStyle', function testLCHLauncherTestStyle () {
 
 	before(async function() {
-		await browser.visit(`${ kDefaultRoutePath }?LCHLauncherTestStyle`);
+		await browser.visit(`${ kDefaultRoute.OLSKRoutePath }?LCHLauncherTestStyle`);
 
 		browser.assert.elements('body style', 0);
 
@@ -828,7 +828,7 @@ describe('LCHLauncherTestStyle', function testLCHLauncherTestStyle () {
 // describe('LCHLauncherTestConvertTypeServiceSearch', function () {
 
 // 	before(function() {
-// 		return browser.visit(`${ kDefaultRoutePath }?LCHLauncherTestConvertTypeServiceSearch`);
+// 		return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?LCHLauncherTestConvertTypeServiceSearch`);
 // 	});
 
 // 	it('shows one item', async function() {

@@ -1,13 +1,13 @@
 import { deepEqual } from 'assert';
 
-const kDefaultRoutePath = require('./controller.js').OLSKControllerRoutes().LCHLauncherRoute.OLSKRoutePath;
+const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('LCHLauncherSafety', function () {
 
 	context('AutomaticRunningOfPageRecipes', function testAutomaticRunningOfPageRecipes () {
 
 		before(function() {
-			return browser.visit(kDefaultRoutePath);
+			return browser.visit(kDefaultRoute.OLSKRoutePath);
 		});
 		
 		it('strips LCHRecipeIsAutomatic from LCHPageRecipes', async function() {
