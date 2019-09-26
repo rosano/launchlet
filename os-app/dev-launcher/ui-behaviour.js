@@ -36,50 +36,7 @@ function StubRecipesParse(inputData) {
 		let app = new Main({
 			target: document.getElementById('LCHLauncherTarget'),
 			props: {
-				LCHLauncherRecipes: StubRecipesParse(new URLSearchParams(window.location.search).get('StubRecipes')) || [
-					'Alfa',
-					'Bravo',
-					'Charlie',
-					'Delta',
-					'Echo',
-					'Foxtrot',
-					'Golf',
-					'Hotel',
-					'Indigo',
-					'Juliet',
-					'Kilo',
-					'Llama',
-				].map(function (e) {
-					return {
-						LCHRecipeName: e,
-						LCHRecipeCallback: function () {
-							return document.querySelector('textarea').value = e;
-						},
-					};
-				}).concat([{
-					LCHRecipeCallback: function () {
-						document.querySelector('input').value = 'zebra';
-					},
-					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestURLFilter',
-					LCHRecipeIsAutomatic: true,
-				}, {
-					LCHRecipeName: 'LCHLauncherTestLongStringAlfaBravoCharlieDeltaEchoFoxtrotGolfHotel',
-					LCHRecipeCallback: function () {},
-					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestLongString',
-				}, {
-					LCHRecipeName: 'LCHLauncherTestConvertTypeServiceSearch',
-					LCHRecipeCallback: function (alfa) {},
-					LCHRecipeURLFilter: 'loc.tests/launcher?LCHLauncherTestConvertTypeServiceSearch',
-					LCHRecipeOutputType: 'URL',
-				}, {
-					LCHRecipeName: 'string subject',
-					LCHRecipeCallback: function () {
-						return 'hello';
-					},
-					LCHRecipeOutputType: 'String',
-				}, {
-					LCHRecipeName: 'LCHLauncherTestInvalid',
-				}]),
+				LCHLauncherRecipes: StubRecipesParse(new URLSearchParams(window.location.search).get('StubRecipes')) || [],
 				completionHandler () {
 					let span = document.createElement('span');
 					span.id = 'LCHLauncherTestDidFinish';
