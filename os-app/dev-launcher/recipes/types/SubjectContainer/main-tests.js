@@ -58,7 +58,6 @@ describe('LCHTypeSubjectContainerRecipe', function testLCHTypeSubjectContainerRe
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHTypeSubjectContainerRecipe(), {
-			LCHRecipeName: 'Subject Container',
 			LCHRecipeCallback: mainModule.LCHTypeSubjectContainerCallback,
 			LCHRecipeOutputType: 'Bool',
 			LCHRecipeCanonicalExampleCallback: mainModule.LCHTypeSubjectContainerCanonicalExampleCallback,

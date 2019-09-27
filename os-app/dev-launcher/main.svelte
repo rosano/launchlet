@@ -71,6 +71,7 @@ import {
 	LCHAPIObjectFor,
 	LCHLauncherConvertTypeServiceSearch,
 	LCHAPITypeEquivalenceMapForRecipes,
+	LCHAPITypeNameMap,
 } from './api.js';
 import { LCHLauncherStandardRecipes } from './recipes/_aggregate.js';
 const allRecipes = LCHLauncherStandardRecipes().map(function (e) {
@@ -81,6 +82,7 @@ const allRecipes = LCHLauncherStandardRecipes().map(function (e) {
 
 const api = LCHAPIObjectFor(allRecipes);
 const apiTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes);
+const typeNameMap = LCHAPITypeNameMap(allRecipes);
 
 import {
 	LCHRecipesModelIsTask,
@@ -164,6 +166,10 @@ let _AllSubjects = _AllPromptRecipes.filter(function (e) {
 	return false;
 }).filter(function (e) {
 	return !e.LCHRecipeOutputType || (Object.keys(apiTypeEquivalenceMap).indexOf(e.LCHRecipeOutputType) !== -1);
+}).map(function (e) {
+	return Object.assign(e, {
+		_LCHRecipeOutputTypeName: typeNameMap[e.LCHRecipeOutputType],
+	})
 });
 let _AllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
 let _ActionableTypesForPrimarySubject = Object.keys(apiTypeEquivalenceMap).filter(function (type) {
@@ -816,7 +822,14 @@ const mod = {
 		<strong class="LCHLauncherPromptHeading" class:LCHLauncherPromptHeadingMatchStop={ e.LCHPromptMatchStop }>{ e.LCHPromptFilterText && e.LCHPromptFilterText.toUpperCase() || e.LCHPromptHeading }</strong>
 	{/if}
 
-	<LCHLauncherPrompt PromptItems={ e.LCHPromptItemsVisible } on:ResultListDispatchArrow={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) } ItemSelected={ e.LCHPromptItemSelected } on:ResultListDispatchClick={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) || mod.commandTerminate() } ItemSelectedHidden={ LCHOptionsObject().runMode !== LCHLauncherModePipe() || e.LCHPromptDotModeEnabled } ResultsHidden={ e.LCHPromptResultsThrottle !== false }>
+	<LCHLauncherPrompt
+		PromptItems={ e.LCHPromptItemsVisible }
+		ItemSelected={ e.LCHPromptItemSelected }
+		ItemSelectedHidden={ LCHOptionsObject().runMode !== LCHLauncherModePipe() || e.LCHPromptDotModeEnabled }
+		ResultsHidden={ e.LCHPromptResultsThrottle !== false }
+		on:ResultListDispatchArrow={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) }
+		on:ResultListDispatchClick={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) || mod.commandTerminate() }
+		>
 		{#if e.LCHPromptClass === 'LCHLauncherSubjectPrompt' && !e.LCHPromptDotModeEnabled }
 			<span class="LCHLauncherSubjectPromptPlaceholder">{ OLSKLocalized('LCHLauncherSubjectPromptPlaceholderText') }</span>
 		{/if}

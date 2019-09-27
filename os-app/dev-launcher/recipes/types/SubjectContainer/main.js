@@ -20,7 +20,6 @@ export const LCHTypeSubjectContainerCanonicalExampleCallback = function() {
 
 export const LCHTypeSubjectContainerRecipe = function() {
 	return {
-		LCHRecipeName: 'Subject Container',
 		LCHRecipeSignature: 'SubjectContainer',
 		LCHRecipeCallback: LCHTypeSubjectContainerCallback,
 		LCHRecipeOutputType: 'Bool',
