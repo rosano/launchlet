@@ -3,3 +3,4 @@ LCHStandardRecipeNames:
   LCHCopyToClipboard: Copy to clipboard
   LCHLargeText: Large text
   LCHDOMElementFocus: Focus
+  LCHRunCommand: Run Command
