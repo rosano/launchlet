@@ -8,7 +8,7 @@ const uLocalized = function (inputData) {
 	return OLSKTestingLocalized(inputData, languageCode);
 };
 	
-describe.only(`LCHSubjectContainerShowContents_Localize-${ languageCode }`, function () {
+describe(`LCHSubjectContainerShowContents_Localize-${ languageCode }`, function () {
 	
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
