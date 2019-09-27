@@ -56,7 +56,6 @@ describe('LCHTypeCommandRecipe', function testLCHTypeCommandRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHTypeCommandRecipe(), {
-			LCHRecipeName: 'Command',
 			LCHRecipeSignature: 'Command',
 			LCHRecipeCallback: mainModule.LCHTypeCommandCallback,
 			LCHRecipeOutputType: 'Bool',
