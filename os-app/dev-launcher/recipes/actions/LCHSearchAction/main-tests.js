@@ -62,7 +62,6 @@ describe('LCHSearchWithRecipe', function testLCHSearchWithRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHSearchWithRecipe(), {
-			LCHRecipeName: 'Search With',
 			LCHRecipeSignature: 'LCHSearchWith',
 			LCHRecipeInputTypes: 'String,ServiceSearchURLTemplate',
 			LCHRecipeCallback: mainModule.LCHSearchWithCallback,
@@ -91,7 +90,6 @@ describe('LCHSearchForRecipe', function testLCHSearchForRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHSearchForRecipe(), {
-			LCHRecipeName: 'Search For',
 			LCHRecipeSignature: 'LCHSearchFor',
 			LCHRecipeInputTypes: 'ServiceSearchURLTemplate,String',
 			LCHRecipeCallback: mainModule.LCHSearchForCallback,

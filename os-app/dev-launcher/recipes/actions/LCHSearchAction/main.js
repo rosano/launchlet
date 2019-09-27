@@ -22,7 +22,6 @@ export const LCHSearchWithCallback = function(param1, param2) {
 
 export const LCHSearchWithRecipe = function() {
 	return {
-		LCHRecipeName: 'Search With',
 		LCHRecipeSignature: 'LCHSearchWith',
 		LCHRecipeInputTypes: 'String,ServiceSearchURLTemplate',
 		LCHRecipeCallback: LCHSearchWithCallback,
@@ -36,7 +35,6 @@ export const LCHSearchForCallback = function() {
 
 export const LCHSearchForRecipe = function() {
 	return {
-		LCHRecipeName: 'Search For',
 		LCHRecipeSignature: 'LCHSearchFor',
 		LCHRecipeInputTypes: 'ServiceSearchURLTemplate,String',
 		LCHRecipeCallback: LCHSearchForCallback,
