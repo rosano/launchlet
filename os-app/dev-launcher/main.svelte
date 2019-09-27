@@ -10,6 +10,7 @@ import {
 	secondaryComponent,
 } from './_shared.js';
 import {
+	LCHLauncherModeCommit,
 	LCHLauncherModePreview,
 	LCHLauncherModePipe,
 	// LCHLauncherFilterForText,
@@ -779,7 +780,7 @@ const mod = {
 			};
 		}
 
-		if (LCHOptionsObject().runMode !== LCHLauncherModePreview()) {
+		if (LCHOptionsObject().runMode === LCHLauncherModeCommit()) {
 			await apiStart(_PromptObjects[0].LCHPromptItemSelected);
 		}
 
