@@ -76,10 +76,68 @@ describe.only('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 		});
 
 		before(function() {
-			return browser.OLSKFireKeyboardEvent(browser.window, 'a');
+			browser.OLSKFireKeyboardEvent(browser.window, 'a');
+		});
+
+		it('hides LCHLauncherSubjectPromptPlaceholder', function () {
+			browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 0);
+		});
+
+		it('shows first subject match', function() {
+			browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
+		});
+
+		it('shows first subject match', function() {
+			browser.assert.elements(LCHLauncherActionPromptItemSelected, 1);
+		});
+	
+		it('hides LCHLauncherResultList', function() {
+			browser.assert.elements(LCHLauncherResultList, 0);
+		});
+
+		context('throttle', function () {
+
+			before(function () {
+				return browser.wait({ element: LCHLauncherResultList });
+			});
+			
+			it('shows LCHLauncherResultList', function() {
+				browser.assert.elements(LCHLauncherResultList, 1);
+			});
+
+			it('selects first list item', function() {
+				browser.assert.hasClass(`${ LCHLauncherResultListItem }:first-child`, 'LCHLauncherResultListItemSelected');
+			});
+		
+		});
+
+		context('after throttle', function() {
+
+			before(function () {
+				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+
+				return browser.OLSKFireKeyboardEvent(browser.window, 'b');
+			});
+
+			before(function () {
+				browser.assert.text(LCHLauncherActionPromptHeading, 'B');
+
+				browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+
+				browser.OLSKFireKeyboardEvent(browser.window, 'c');
+			});
+			
+			it('sets LCHLauncherSubjectPromptHeading', function() {
+				browser.assert.text(LCHLauncherSubjectPromptHeading, 'C');
+			});
+			
+			it('sets LCHLauncherActionPromptHeading', function() {
+				browser.assert.text(LCHLauncherActionPromptHeading, uLocalized('LCHLauncherActionPromptHeadingText'));
+			});
+
 		});
 			
-		it('stops keydown from bubbling', function() {
+		it('prevents keydown from bubbling', function() {
 			browser.assert.input('#LCHLauncherTestInputSingleLine', '');
 		});
 
@@ -273,59 +331,4 @@ describe.only('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 
 	});
 	
-});
-
-describe.skip('LCHLauncherMisc_Pipe', function () {
-
-	context('on keydown', function() {
-		
-		it('shows first item if match', async function() {
-			browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
-			browser.OLSKFireKeyboardEvent(browser.window, 'a');
-			await browser.wait({element: LCHLauncherSubjectPromptHeading});
-
-			browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 0);
-
-			browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
-			browser.assert.elements(LCHLauncherActionPromptItemSelected, 1);
-		});
-		
-		it('hides list', async function() {
-			browser.assert.elements(LCHLauncherResultList, 0);
-			browser.assert.elements(LCHLauncherResultListItem, 0);
-		});
-
-		it('shows list after throttle', async function() {
-			await browser.wait({element: LCHLauncherResultList});
-
-			browser.assert.elements(LCHLauncherResultList, 1);
-			browser.assert.elements(LCHLauncherResultListItem, 7);
-		});
-
-		it('selects first list item', async function() {
-			await browser.wait({element: '.LCHLauncherResultListItemSelected'});
-			browser.assert.hasClass(`${ LCHLauncherResultListItem }:first-child`, 'LCHLauncherResultListItemSelected');
-		});
-
-		it('clears filter text on subsequent prompts', async function() {
-			browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-			await browser.wait({element: LCHLauncherActionPrompt});
-
-			browser.OLSKFireKeyboardEvent(browser.window, 'a');
-			await browser.wait({element: LCHLauncherActionPromptHeading});
-
-			browser.assert.text(LCHLauncherActionPromptHeading, 'A');
-
-			browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-			await browser.wait({element: LCHLauncherSubjectPrompt});
-
-			browser.OLSKFireKeyboardEvent(browser.window, 'a');
-			await browser.wait({element: LCHLauncherSubjectPromptHeading});
-
-			browser.assert.text(LCHLauncherSubjectPromptHeading, 'A');
-			browser.assert.text(LCHLauncherActionPromptHeading, 'Action');
-		});
-
-	});
-
 });

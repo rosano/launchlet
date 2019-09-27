@@ -51,20 +51,6 @@ describe.only('LCHLauncherThrottle', function () {
 			browser.OLSKFireKeyboardEvent(browser.window, 'a');
 		});
 	
-	});	
-
-	context('keydown after throttle', function() {
-
-		before(function () {
-			browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-			browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-			return browser.OLSKFireKeyboardEvent(browser.window, 'b');
-		});
-		
-		it('replaces filter', function() {
-			browser.assert.text(LCHLauncherSubjectPromptHeading, 'B');
-		});
-
 	});
 
 	context('ArrowDown', function () {
