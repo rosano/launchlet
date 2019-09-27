@@ -388,19 +388,9 @@ describe.only('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 	
 });
 
-import { LCHLauncherThrottleDuration } from './ui-logic.js';
-
 describe.skip('LCHLauncherMisc_Pipe', function () {
 
 	context('on keydown', function() {
-		
-		it('does nothing if no match', async function() {
-			browser.OLSKFireKeyboardEvent(browser.window, '[');
-			await browser.wait({element: LCHLauncherSubjectPromptHeading});
-			deepEqual(browser.query(LCHLauncherSubjectPromptHeading).textContent, '[');
-
-			browser.assert.elements(LCHLauncherPipeItem, 0);
-		});
 		
 		it('shows first item if match', async function() {
 			browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
@@ -428,65 +418,6 @@ describe.skip('LCHLauncherMisc_Pipe', function () {
 		it('selects first list item', async function() {
 			await browser.wait({element: '.LCHLauncherResultListItemSelected'});
 			browser.assert.hasClass(`${ LCHLauncherResultListItem }:first-child`, 'LCHLauncherResultListItemSelected');
-		});
-
-		it('skips throttle on ArrowDown', async function() {
-			browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
-			browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
-			browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
-			await browser.wait({element: LCHLauncherPipeItem});
-
-			browser.assert.elements(LCHLauncherPipeItem, 0);
-
-			browser.OLSKFireKeyboardEvent(browser.window, 'a');
-			browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
-			await browser.wait({element: LCHLauncherResultList});
-			browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
-			browser.assert.elements(LCHLauncherResultList, 1);
-			browser.assert.elements(LCHLauncherResultListItem, 7);
-		});
-
-		it('skips throttle on ArrowUp', async function() {
-			browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
-			browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
-			await browser.wait({element: LCHLauncherPipeItem});
-
-			browser.assert.elements(LCHLauncherPipeItem, 0);
-
-			browser.OLSKFireKeyboardEvent(browser.window, 'a');
-			browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
-			await browser.wait({element: LCHLauncherResultList});
-			browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
-			browser.assert.elements(LCHLauncherResultList, 1);
-			browser.assert.elements(LCHLauncherResultListItem, 7);
-		});
-
-		it('hides list on Escape', async function() {
-			browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
-			await browser.wait({element: LCHLauncherPipeItem});
-
-			browser.assert.elements(LCHLauncherResultList, 0);
-		});
-
-		it('shows list on ArrowDown', async function() {
-			browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
-			await browser.wait({element: LCHLauncherPipeItem});
-
-			browser.assert.elements(LCHLauncherResultList, 1);
-		});
-
-		it('hides list on Escape', async function() {
-			browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
-			await browser.wait({element: LCHLauncherPipeItem});
-
-			browser.assert.elements(LCHLauncherResultList, 0);
-		});
-
-		it('shows list on ArrowUp', async function() {
-			browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
-			await browser.wait({element: LCHLauncherPipeItem});
-
-			browser.assert.elements(LCHLauncherResultList, 1);
 		});
 
 		it('clears filter text on subsequent prompts', async function() {
