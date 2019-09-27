@@ -15,7 +15,7 @@ describe('LCHLauncherDotMode', function () {
 	});
 
 	before(function () {
-		return browser.OLSKFireKeyboardEvent(browser.window, '.');
+		browser.OLSKFireKeyboardEvent(browser.window, '.');
 	});
 
 	it('hides LCHLauncherSubjectPromptPlaceholder', function() {
@@ -125,8 +125,10 @@ describe('LCHLauncherDotMode', function () {
 	});
 
 	context('results visible', function () {
-		
+
 		before(function () {
+			browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+
 			return browser.OLSKFireKeyboardEvent(browser.window, 'a');
 		});
 		
@@ -150,10 +152,6 @@ describe('LCHLauncherDotMode', function () {
 
 		it('shows LCHLauncherPromptDotModeInput', function() {
 			browser.assert.elements(LCHLauncherPromptDotModeInput, 1);
-		});
-
-		after(function () {
-			return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 		});
 	
 	});
@@ -231,16 +229,13 @@ describe('LCHLauncherDotMode', function () {
 		});
 		
 		after(function () {
-			return browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+			browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
+			return browser.OLSKFireKeyboardEvent(browser.window, '.');
 		});
 	
 	});
 		
 	context('Enter', function () {
-
-		before(function () {
-			return browser.OLSKFireKeyboardEvent(browser.window, '.');
-		});
 
 		context('input not valid', function () {
 
