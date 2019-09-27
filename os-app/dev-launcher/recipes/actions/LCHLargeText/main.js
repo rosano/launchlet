@@ -45,7 +45,7 @@ export const LCHLargeTextCallback = function(inputData) {
 	document.body.appendChild(rootElement);
 
 	let handler = function (event) {
-		event.preventDefault();
+		event.stopPropagation();
 
 		if (!event.key && rootElement.contains(event.target)) {
 	  	return;

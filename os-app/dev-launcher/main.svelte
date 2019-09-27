@@ -570,13 +570,11 @@ const mod = {
 	_commandHandleEventKeydownModeDotMode (event) {
 		const handlerFunctions = {
 			Escape () {
-				event.preventDefault();
 				event.stopPropagation();
 
 				return mod.ValuePromptDotModeEnabled(false) || true;
 			},
 			Tab () {
-				event.preventDefault();
 				event.stopPropagation();
 				
 				if (!mod.ValuePromptDotModeText()) {
@@ -597,7 +595,6 @@ const mod = {
 		return handlerFunctions[event.key]();
 	},
 	_commandHandleEventKeydownEscape (event) {
-		event.preventDefault();
 		event.stopPropagation();
 
 		if (LCHOptionsObject().runMode === LCHLauncherModePipe() && mod.ValuePromptResultsIsVisible()) {
@@ -611,7 +608,7 @@ const mod = {
 		mod.commandExit();
 	},
 	_commandHandleEventKeydownTab (event) {
-		event.preventDefault();
+		event.stopPropagation();
 
 		if (LCHOptionsObject().runMode !== LCHLauncherModePipe()) {
 			return;
@@ -628,7 +625,6 @@ const mod = {
 		})()));
 	},
 	_commandHandleEventKeydownEnter (event) {
-		event.preventDefault();
 		event.stopPropagation();
 
 		if (LCHCompositionModelErrors(mod.DataComposition())) {
@@ -642,7 +638,7 @@ const mod = {
 			return;
 		}
 
-		event.preventDefault();
+		event.stopPropagation();
 
 		if (!mod.ValuePromptResultsIsVisible()) {
 			return mod.ValuePromptResultsIsVisible(true);
@@ -659,7 +655,7 @@ const mod = {
 			return;
 		}
 
-		event.preventDefault();
+		event.stopPropagation();
 
 		if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle === undefined) {
 			_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle = false;
@@ -677,7 +673,7 @@ const mod = {
 			return;
 		}
 
-		event.preventDefault();
+		event.stopPropagation();
 
 		if (_PromptActiveIndex !== 0) {
 			return;
@@ -705,7 +701,7 @@ const mod = {
 			return;
 		}
 
-		event.preventDefault();
+		event.stopPropagation();
 
 		if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {
 			return ActivePromptFilterTextShouldUpdate(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText.slice(0, -1));
@@ -749,7 +745,7 @@ const mod = {
 			return;
 		}
 
-		event.preventDefault();
+		event.stopPropagation();
 
 		if (!LCHLauncherKeyboardEventIsTextInput(event)) {
 			return;
