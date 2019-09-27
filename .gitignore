@@ -13,3 +13,6 @@ os-workspace-testing
 .env
 .env.staging
 .env.test
+
+# TEST
+test.sh

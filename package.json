@@ -6,7 +6,9 @@
     "start": "olsk-app",
 
     "svelte-build": "rollup -c rollup-config.js",
-    "svelte-build-watch": "rollup -w -c rollup-config.js"
+    "svelte-build-watch": "rollup -w -c rollup-config.js",
+
+    "test": "sh test.sh"
   },
   "dependencies": {
     "// OLDSKOOL": null,
@@ -78,12 +80,16 @@
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {
-    "// MOCHA PREPROCESS": null,
-    "OLSKTesting": "olsk/OLSKTesting",
+    "// TESTS": null,
+    "mocha": "latest",
+    "supervisor": "latest",
 
     "// UI TESTS": null,
     "zombie": "latest",
     "jsdom": "latest",
+
+    "// MOCHA PREPROCESS": null,
+    "OLSKTesting": "olsk/OLSKTesting",
 
     "// SVELTE": null,
     "svelte": "latest",
