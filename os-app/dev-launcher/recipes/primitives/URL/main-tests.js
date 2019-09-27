@@ -72,7 +72,6 @@ describe('LCHPrimitiveURLRecipe', function testLCHPrimitiveURLRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHPrimitiveURLRecipe(), {
-			LCHRecipeName: 'URL',
 			LCHRecipeSignature: 'URL',
 			LCHRecipeCallback: mainModule.LCHPrimitiveURLCallback,
 			LCHRecipeOutputType: 'Bool',

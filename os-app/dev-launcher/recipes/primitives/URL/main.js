@@ -20,7 +20,6 @@ export const LCHPrimitiveStringCanonicalExampleCallback = function() {
 
 export const LCHPrimitiveURLRecipe = function() {
 	return {
-		LCHRecipeName: 'URL',
 		LCHRecipeSignature: 'URL',
 		LCHRecipeCallback: LCHPrimitiveURLCallback,
 		LCHRecipeOutputType: 'Bool',
