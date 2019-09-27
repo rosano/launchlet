@@ -30,7 +30,6 @@ describe('LCHPrimitiveDateRecipe', function testLCHPrimitiveDateRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHPrimitiveDateRecipe(), {
-			LCHRecipeName: 'Date',
 			LCHRecipeSignature: 'Date',
 			LCHRecipeCallback: mainModule.LCHPrimitiveDateCallback,
 			LCHRecipeOutputType: 'Bool',

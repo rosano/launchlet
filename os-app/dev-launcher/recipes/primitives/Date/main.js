@@ -16,7 +16,6 @@ export const LCHPrimitiveDateCanonicalExampleCallback = function() {
 
 export const LCHPrimitiveDateRecipe = function() {
 	return {
-		LCHRecipeName: 'Date',
 		LCHRecipeSignature: 'Date',
 		LCHRecipeCallback: LCHPrimitiveDateCallback,
 		LCHRecipeOutputType: 'Bool',
