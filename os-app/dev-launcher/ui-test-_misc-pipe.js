@@ -228,11 +228,11 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 		});
 			
 		before(function() {
-			browser.assert.text(LCHLauncherSubjectPromptItemSelected, 'Active Document Focus Elements SubjectContainer');
+			browser.assert.text(`${ LCHLauncherSubjectPromptItemSelected } ${ LCHLauncherPipeItemTitle }`, 'Active Document Focus Elements'); // #localize
 		});
 
 		it('shows action', function() {
-			browser.assert.text(LCHLauncherActionPromptItemSelected, 'Show Contents');
+			browser.assert.text(LCHLauncherActionPromptItemSelected, 'Show Contents'); // #localize
 		});
 
 		context('execute', function () {
