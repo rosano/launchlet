@@ -38,7 +38,6 @@ describe('LCHCopyToClipboardRecipe', function testLCHCopyToClipboardRecipe() {
 
 	it('returns LCHRecipe', async function() {
 		deepEqual(mainModule.LCHCopyToClipboardRecipe(), {
-			LCHRecipeName: 'Copy to clipboard',
 			LCHRecipeSignature: 'LCHCopyToClipboard',
 			LCHRecipeInputTypes: 'String',
 			LCHRecipeCallback: mainModule.LCHCopyToClipboardCallback,

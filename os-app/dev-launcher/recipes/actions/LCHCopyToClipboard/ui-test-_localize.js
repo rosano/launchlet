@@ -12,30 +12,33 @@ describe(`LCHCopyToClipboard_Localize-${ languageCode }`, function () {
 	
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
-			StubRecipes: uStubStringify([{
-				LCHRecipeName: 'alfa',
-				LCHRecipeCallback: function () {
-					return this.api.LCHCopyToClipboard('bravo');
-				},
-			}]),
 			OLSKRoutingLanguage: languageCode,
+			runMode: 'kRunModePipe',
 		}));
 	});
 
 	before(function() {
-		browser.assert.elements(LCHCopyToClipboardButton, 0);
+		return browser.OLSKFireKeyboardEvent(browser.window, '.');
 	});
 
 	before(function() {
-		return browser.fill(LCHLauncherFilterInput, 'alfa');
+		browser.fill(LCHLauncherPromptDotModeInput, 'alfa');
 	});
 
-	before(function() {
-		browser.click(LCHLauncherListItem);
+	it('localizes LCHRecipeName', function() {
+		browser.assert.text(`${ LCHLauncherActionPromptItemSelected } ${ LCHLauncherPipeItemTitle }`, uLocalized('LCHStandardRecipeNames').LCHCopyToClipboard);
 	});
 
-	it('localizes LCHCopyToClipboardButton', async function() {
-		browser.assert.text(LCHCopyToClipboardButton, uLocalized('LCHCopyToClipboardButtonText'));
+	context('callback', function () {
+		
+		before(function() {
+			browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
+		});
+
+		it('localizes LCHCopyToClipboardButton', function() {
+			browser.assert.text(LCHCopyToClipboardButton, uLocalized('LCHCopyToClipboardButtonText'));
+		});
+	
 	});
 	
 });
