@@ -18,24 +18,20 @@ describe('LCHVitrine_Access', function () {
 		return browser.visit(kDefaultRoutePath);
 	});
 	
-	context('Startup', function testStartup() {
+	it('shows RCSLanguageSwitcher', function() {
+		browser.assert.elements(RCSLanguageSwitcher, 1)
+	});
 
-		it('shows RCSLanguageSwitcher', function() {
-			browser.assert.elements(RCSLanguageSwitcher, 1)
-		});
+	it('shows LCHVitrineDemoButtonCommit', function() {
+		browser.assert.elements(LCHVitrineDemoButtonCommit, 1)
+	});
 
-		it('shows LCHVitrineDemoButtonCommit', function() {
-			browser.assert.elements(LCHVitrineDemoButtonCommit, 1)
-		});
+	it('shows LCHVitrineDemoButtonPreview', function() {
+		browser.assert.elements(LCHVitrineDemoButtonPreview, 1)
+	});
 
-		it('shows LCHVitrineDemoButtonPreview', function() {
-			browser.assert.elements(LCHVitrineDemoButtonPreview, 1)
-		});
-
-		it('shows LCHVitrineDemoButtonPipe', function() {
-			browser.assert.elements(LCHVitrineDemoButtonPipe, 1)
-		});
-		
+	it('shows LCHVitrineDemoButtonPipe', function() {
+		browser.assert.elements(LCHVitrineDemoButtonPipe, 1)
 	});
 
 });

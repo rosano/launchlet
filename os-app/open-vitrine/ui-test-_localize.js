@@ -19,27 +19,23 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 		return browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }`);
 	});
 
-	context('Startup', function testStartup() {
-
-		it('localizes body', function() {
-			browser.assert.text('#launchlet', 'Launchlet')
-		});
-
-		it('localizes LCHVitrineDemoButtonCommit', function() {
-			browser.assert.text(LCHVitrineDemoButtonCommit, uLocalized('LCHVitrineDemoButtonText'))
-		});
-
-		it('localizes LCHVitrineDemoButtonPreview', function() {
-			browser.assert.text(LCHVitrineDemoButtonPreview, uLocalized('LCHVitrineDemoButtonText'))
-		});
-
-		it('localizes LCHVitrineDemoButtonPipe', function() {
-			browser.assert.text(LCHVitrineDemoButtonPipe, uLocalized('LCHVitrineDemoButtonText'))
-		});
-		
+	it('localizes body', function() {
+		browser.assert.text('#launchlet', 'Launchlet')
 	});
 
-	context('DemoCommit', function testDemoCommit() {
+	it('localizes LCHVitrineDemoButtonCommit', function() {
+		browser.assert.text(LCHVitrineDemoButtonCommit, uLocalized('LCHVitrineDemoButtonText'))
+	});
+
+	it('localizes LCHVitrineDemoButtonPreview', function() {
+		browser.assert.text(LCHVitrineDemoButtonPreview, uLocalized('LCHVitrineDemoButtonText'))
+	});
+
+	it('localizes LCHVitrineDemoButtonPipe', function() {
+		browser.assert.text(LCHVitrineDemoButtonPipe, uLocalized('LCHVitrineDemoButtonText'))
+	});
+
+	context('DemoCommit', function () {
 
 		beforeEach(async function () {
 			await browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }`);
@@ -81,7 +77,7 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 		
 	});
 
-	context('DemoPipe', function testDemoPipe() {
+	context('DemoPipe', function () {
 
 		beforeEach(async function () {
 			await browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }`);
