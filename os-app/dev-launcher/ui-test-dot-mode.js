@@ -158,19 +158,6 @@ describe('LCHLauncherDotMode', function () {
 	
 	});
 		
-	context('throttle', function () {
-
-		before(function () {
-			browser.OLSKFireKeyboardEvent(browser.window, 'a');
-			return browser.OLSKFireKeyboardEvent(browser.window, '.');
-		});
-		
-		it('skips throttle', function() {
-			browser.assert.elements(LCHLauncherResultList, 0);
-		});
-	
-	});
-		
 	context('input valid', function () {
 
 		before(function () {

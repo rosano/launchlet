@@ -477,29 +477,4 @@ describe.skip('LCHLauncherMisc_Pipe', function () {
 
 	});
 
-	context('Tab', function () { // #move:misc
-
-		it('cancels throttle', async function() {
-			await browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
-			runMode: 'kRunModePipe',
-		}));
-
-			browser.OLSKFireKeyboardEvent(browser.window, 'a');
-			browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-			browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-			browser.OLSKFireKeyboardEvent(browser.window, 'a');
-			await browser.wait({element: LCHLauncherSubjectPromptHeading});
-
-			browser.assert.text(LCHLauncherSubjectPromptHeading, 'A');
-
-			browser.OLSKFireKeyboardEvent(browser.window, 'a');
-			browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
-			await browser.wait({duration: LCHLauncherThrottleDuration});
-
-			browser.assert.elements(LCHLauncherResultList, 0);
-
-		});
-	
-	});
-
 });
