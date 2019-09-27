@@ -73,7 +73,11 @@ import {
 	LCHAPITypeEquivalenceMapForRecipes,
 } from './api.js';
 import { LCHLauncherStandardRecipes } from './recipes/_aggregate.js';
-const allRecipes = LCHLauncherStandardRecipes().concat(LCHLauncherRecipes);
+const allRecipes = LCHLauncherStandardRecipes().map(function (e) {
+	return Object.assign(e, {
+		LCHRecipeName: e.LCHRecipeName || OLSKLocalized('LCHStandardRecipeNames')[e.LCHRecipeSignature], // #purge
+	})
+}).concat(LCHLauncherRecipes);
 
 const api = LCHAPIObjectFor(allRecipes);
 const apiTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes);
@@ -310,11 +314,19 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 				return LCHOptionsObject().runMode === LCHLauncherModePreview() ? _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll : [];
 			}
 
-			let results = fuzzysort.go(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText, _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll.filter(function (e) {
+			const visibleRecipes = _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll.filter(function (e) {
 				return e.LCHRecipeIsHidden ? !e.LCHRecipeIsHidden() : true;
-			}), {
+			});
+
+			let results = fuzzysort.go(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText, visibleRecipes, {
 				key: 'LCHRecipeName',
 			});
+
+			if (!results.length && _LCHIsTestingBehaviour() && !_PromptObjects[_PromptActiveIndex].LCHPromptFilterText.slice(0, 3).match(/[^A-Z]/)) {
+				return visibleRecipes.filter(function (e) {
+					return e.LCHRecipeSignature === _PromptObjects[_PromptActiveIndex].LCHPromptFilterText;
+				});
+			};
 
 			if (LCHOptionsObject().runMode === LCHLauncherModePipe() && _PromptObjects[_PromptActiveIndex].LCHPromptItemsVisible.length && !results.length) {
 				if (_PromptObjects[_PromptActiveIndex].LCHPromptResultsThrottle) {

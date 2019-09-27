@@ -85,9 +85,8 @@ export const LCHActiveDocumentFocusElementsCallback = function() {
 
 export const LCHActiveDocumentFocusElementsRecipe = function() {
 	return {
-		LCHRecipeName: 'Active Document Focus Elements',
+		LCHRecipeSignature: 'LCHActiveDocumentFocusElements',
 		LCHRecipeOutputType: 'SubjectContainer',
 		LCHRecipeCallback: LCHActiveDocumentFocusElementsCallback,
-		LCHRecipeSignature: 'LCHActiveDocumentFocusElements',
 	};
 };
