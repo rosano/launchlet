@@ -18,7 +18,6 @@ export const LCHPrimitiveDOMElementCanonicalExampleCallback = function() {
 
 export const LCHPrimitiveDOMElementRecipe = function() {
 	return {
-		LCHRecipeName: 'DOM Element',
 		LCHRecipeCallback: LCHPrimitiveDOMElementCallback,
 		LCHRecipeOutputType: 'Bool',
 		LCHRecipeCanonicalExampleCallback: LCHPrimitiveDOMElementCanonicalExampleCallback,

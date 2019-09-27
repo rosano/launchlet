@@ -38,7 +38,6 @@ describe('LCHPrimitiveDOMElementRecipe', function testLCHPrimitiveDOMElementReci
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHPrimitiveDOMElementRecipe(), {
-			LCHRecipeName: 'DOM Element',
 			LCHRecipeSignature: 'DOMElement',
 			LCHRecipeCallback: mainModule.LCHPrimitiveDOMElementCallback,
 			LCHRecipeOutputType: 'Bool',

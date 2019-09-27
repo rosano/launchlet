@@ -12,3 +12,4 @@ LCHStandardRecipeNames:
   String: String
   URL: URL
   ServiceSearchURLTemplate: Search Service URL Template
+  DOMElement: DOM Element
