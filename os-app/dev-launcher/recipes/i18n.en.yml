@@ -2,3 +2,4 @@ LCHStandardRecipeNames:
   LCHActiveDocumentFocusElements: Active Document Focus Elements
   LCHCopyToClipboard: Copy to clipboard
   LCHLargeText: Large text
+  LCHDOMElementFocus: Focus

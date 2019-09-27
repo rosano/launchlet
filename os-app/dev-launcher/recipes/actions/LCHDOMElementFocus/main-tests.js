@@ -14,7 +14,6 @@ describe('LCHDOMElementFocusRecipe', function testLCHDOMElementFocusRecipe() {
 
 	it('returns LCHRecipe', async function() {
 		deepEqual(mainModule.LCHDOMElementFocusRecipe(), {
-			LCHRecipeName: 'Focus',
 			LCHRecipeSignature: 'LCHDOMElementFocus',
 			LCHRecipeInputTypes: 'DOMElement',
 			LCHRecipeCallback: mainModule.LCHDOMElementFocusCallback,

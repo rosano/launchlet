@@ -8,7 +8,6 @@ export const LCHDOMElementFocusCallback = function(inputData) {
 
 export const LCHDOMElementFocusRecipe = function() {
 	return {
-		LCHRecipeName: 'Focus',
 		LCHRecipeSignature: 'LCHDOMElementFocus',
 		LCHRecipeInputTypes: 'DOMElement',
 		LCHRecipeCallback: LCHDOMElementFocusCallback,
