@@ -175,7 +175,7 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 			it('assert callbacks count ?')
 			
 			it('runs callback', function () {
-				browser.assert.input('textarea', 'alfa');	
+				browser.assert.input('.TestRecipeOutput', 'alfa');	
 			});
 			
 			it('hides LCHLauncher', function () {

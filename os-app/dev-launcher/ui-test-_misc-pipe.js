@@ -72,14 +72,10 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 
 		before(function () {
 			browser.assert.elements(LCHLauncher)
-		});
 
-		before(function () {
-			return;
-			browser.assert.hasFocus('#LCHLauncherTestInputSingleLine')
-		});
-
-		before(function() {
+			browser.evaluate(`let item = document.createElement('input'); item.classList.add('TestKeydownBubble'); document.body.appendChild(item); item.focus();`)
+			// browser.assert.hasFocus('.TestKeydownBubble')
+			
 			browser.OLSKFireKeyboardEvent(browser.window, 'a');
 		});
 
@@ -142,7 +138,7 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 		});
 			
 		it('prevents keydown from bubbling', function() {
-			browser.assert.input('#LCHLauncherTestInputSingleLine', '');
+			browser.assert.input('.TestKeydownBubble', '');
 		});
 
 	});
@@ -246,7 +242,7 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 			});
 
 			it('reloads subjects', async function() {
-				browser.assert.text(LCHLauncherSubjectPromptItemSelected, 'alfa DOMElement');
+				browser.assert.text(`${ LCHLauncherSubjectPromptItemSelected } ${ LCHLauncherPipeItemTitle}`, 'TestLauncherInvoke');
 			});
 		
 		});

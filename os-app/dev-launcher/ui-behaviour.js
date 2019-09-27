@@ -13,17 +13,13 @@ function StubRecipesParse(inputData) {
 	});
 }
 
-(function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-		typeof define === 'function' && define.amd ? define(['exports'], factory) :
-			(factory((global.LCHLauncherBehaviour = global.LCHLauncherBehaviour || {})));
-}(this, (function (exports) { 'use strict'; Object.defineProperty(exports, '__esModule', { value: true }); let moi = {}; Object.assign(exports, moi = {
+const mod = {
 
 	// INTERFACE
 
 	InterfaceButtonDidClick() {
 		setTimeout(function () {
-			moi.CommandLaunch();
+			mod.CommandLaunch();
 		})
 	},
 
@@ -42,27 +38,29 @@ function StubRecipesParse(inputData) {
 					app.$destroy();
 					app = null;
 				},
-				optionsObject: Object.assign({}, {
+				optionsObject: {
 					runMode: Launchlet[params.runMode || 'kRunModeCommit'],
 					LCHOptionIncludePageRecipes: !!params.LCHOptionIncludePageRecipes || false,
-				}),
+				},
 			},
 		});
 	},
 
 	// SETUP
 
-	setupEverything() {
+	SetupEverything() {
 		if (params.LCHTestSkipAutomaticLaunch) {
 			return;
 		};
 		
-		moi.CommandLaunch()
+		mod.CommandLaunch()
 	},
 
 	// LIFECYCLE
 
-	lifecyclePageWillLoad () {
-		moi.setupEverything();
+	LifecyclePageWillLoad () {
+		mod.SetupEverything();
 	},
-}); })));
+};
+
+window.LCHLauncherBehaviour = mod

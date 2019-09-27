@@ -15,16 +15,21 @@ locals.OLSKPagePublicConstants = {
 <%- include('../_shared/common/layout-header.ejs') %>
 
 <h1>Output</h1>
-<p><textarea class="TestRecipeOutput"></textarea></p>
-<p><input id="LCHLauncherTestInputSingleLine" autofocus /></p>
-<p><span></span></p>
-<p><a href="#">alfa</a></p>
-<p><button class="TestLauncherInvoke" onclick="LCHLauncherBehaviour.InterfaceButtonDidClick()"></button></p>
+
+<p>
+	<textarea class="TestRecipeOutput"></textarea>
+</p>
+
+<hr>
+
+<p>
+	<button class="TestLauncherInvoke" onclick="LCHLauncherBehaviour.InterfaceButtonDidClick()">TestLauncherInvoke</button>
+</p>
 
 <div id="LCHLauncherTarget"></div>
 
 <script type="text/javascript">
-LCHLauncherBehaviour.lifecyclePageWillLoad();
+LCHLauncherBehaviour.LifecyclePageWillLoad();
 </script>
 
 <%- include('../_shared/common/layout-footer.ejs') %>
