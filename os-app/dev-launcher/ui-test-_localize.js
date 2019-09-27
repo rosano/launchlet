@@ -61,7 +61,21 @@ describe(`LCHLauncherLocalizePipe-${ languageCode }`, function testLCHLauncherLo
 		browser.assert.text(LCHLauncherActionPromptHeading, uLocalized('LCHLauncherActionPromptHeadingText'));
 	});
 
-	it('localizes LCHLauncherObjectPromptHeading');
+	context('ObjectPrompt', function () {
+		
+		before(function () {
+			return browser.OLSKFireKeyboardEvent(browser.window, 'w');
+		});
+
+		before(function () {
+			browser.assert.text(`${ LCHLauncherSubjectPromptItemSelected } .LCHLauncherPipeItemTitle`, 'Wikipedia'); // #localize
+		});
+
+		it('localizes LCHLauncherObjectPromptHeading', function() {
+			browser.assert.text(LCHLauncherObjectPromptHeading, uLocalized('LCHLauncherObjectPromptHeadingText'));
+		});
+	
+	});
 
 });
 
