@@ -45,12 +45,16 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
 			});
 
-			it('runs no callback', function() {
+			it('runs callback', function() {
 				browser.assert.input('.TestRecipeOutput', 'alfa');
 			});
 
 			it('hides LCHLauncher', function() {
 				browser.assert.elements(LCHLauncher, 0);
+			});
+
+			it('! runs callback once', function() {
+				browser.assert.elements('.TestLauncherDidFinish', 1);
 			});
 		
 		});

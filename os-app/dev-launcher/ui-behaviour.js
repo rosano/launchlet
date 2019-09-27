@@ -36,8 +36,8 @@ function StubRecipesParse(inputData) {
 				LCHLauncherRecipes: StubRecipesParse(params.StubRecipes) || [],
 				completionHandler () {
 					let span = document.createElement('span');
-					span.id = 'LCHLauncherTestDidFinish';
-					document.querySelector('span').appendChild(span);
+					span.classList.add('TestLauncherDidFinish');
+					document.body.appendChild(span);
 
 					app.$destroy();
 					app = null;

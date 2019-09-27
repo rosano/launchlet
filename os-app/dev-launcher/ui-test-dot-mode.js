@@ -270,7 +270,7 @@ describe('LCHLauncherDotMode', function () {
 			});
 			
 			it('executes composition', function() {
-				browser.assert.elements('#LCHLauncherTestDidFinish', 1);
+				browser.assert.elements('.TestLauncherDidFinish', 1);
 			});
 		
 		});
