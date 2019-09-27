@@ -26,7 +26,6 @@ describe('LCHPrimitiveStringRecipe', function testLCHPrimitiveStringRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHPrimitiveStringRecipe(), {
-			LCHRecipeName: 'String',
 			LCHRecipeSignature: 'String',
 			LCHRecipeCallback: mainModule.LCHPrimitiveStringCallback,
 			LCHRecipeOutputType: 'Bool',

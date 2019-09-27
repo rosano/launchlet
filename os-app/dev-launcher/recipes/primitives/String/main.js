@@ -8,7 +8,6 @@ export const LCHPrimitiveStringCanonicalExampleCallback = function() {
 
 export const LCHPrimitiveStringRecipe = function() {
 	return {
-		LCHRecipeName: 'String',
 		LCHRecipeSignature: 'String',
 		LCHRecipeCallback: LCHPrimitiveStringCallback,
 		LCHRecipeOutputType: 'Bool',
