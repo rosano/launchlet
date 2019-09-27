@@ -15,7 +15,6 @@ describe('LCHSubjectContainerShowContentsRecipe', function testLCHSubjectContain
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHSubjectContainerShowContentsRecipe(), {
-			LCHRecipeName: 'Show Contents',
 			LCHRecipeSignature: 'LCHSubjectContainerShowContents',
 			LCHRecipeInputTypes: 'SubjectContainer',
 			LCHRecipeCallback: mainModule.LCHSubjectContainerShowContentsCallback,
