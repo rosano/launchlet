@@ -6,7 +6,7 @@ const uLocalized = function (inputData) {
 	return OLSKTestingLocalized(inputData, kDefaultRoute.OLSKRouteLanguages[0]);
 };
 
-describe.only('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {	
+describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {	
 
 	describe('Enter', function() {
 

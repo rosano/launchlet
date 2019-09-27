@@ -6,7 +6,7 @@ const uLocalized = function (inputData) {
 	return OLSKTestingLocalized(inputData, kDefaultRoute.OLSKRouteLanguages[0]);
 };
 
-describe.only('LCHLauncherBackspace', function() {
+describe('LCHLauncherBackspace', function() {
 
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
