@@ -18,7 +18,6 @@ export const LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback = func
 
 export const LCHPrimitiveServiceSearchURLTemplateRecipe = function() {
 	return {
-		LCHRecipeName: 'Search Service URL Template',
 		LCHRecipeCallback: LCHPrimitiveServiceSearchURLTemplateCallback,
 		LCHRecipeOutputType: 'Bool',
 		LCHRecipeCanonicalExampleCallback: LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback,

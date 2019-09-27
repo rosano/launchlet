@@ -34,7 +34,6 @@ describe('LCHPrimitiveServiceSearchURLTemplateRecipe', function testLCHPrimitive
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHPrimitiveServiceSearchURLTemplateRecipe(), {
-			LCHRecipeName: 'Search Service URL Template',
 			LCHRecipeSignature: 'ServiceSearchURLTemplate',
 			LCHRecipeCallback: mainModule.LCHPrimitiveServiceSearchURLTemplateCallback,
 			LCHRecipeOutputType: 'Bool',

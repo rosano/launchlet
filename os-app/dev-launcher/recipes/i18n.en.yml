@@ -11,3 +11,4 @@ LCHStandardRecipeNames:
   SubjectContainer: Subject Container
   String: String
   URL: URL
+  ServiceSearchURLTemplate: Search Service URL Template
