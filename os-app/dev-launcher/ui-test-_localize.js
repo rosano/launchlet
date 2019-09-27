@@ -50,15 +50,15 @@ describe(`LCHLauncherLocalizePipe-${ languageCode }`, function testLCHLauncherLo
 	});
 
 	it('localizes LCHLauncherSubjectPromptHeading', function() {
-		browser.text(LCHLauncherSubjectPromptHeading), uLocalized('LCHLauncherSubjectPromptHeadingText');
+		browser.assert.text(LCHLauncherSubjectPromptHeading, uLocalized('LCHLauncherSubjectPromptHeadingText'));
 	});
 
 	it('localizes LCHLauncherSubjectPromptPlaceholder', function() {
-		browser.text(LCHLauncherSubjectPromptPlaceholder), uLocalized('LCHLauncherSubjectPromptPlaceholderText');
+		browser.assert.text(LCHLauncherSubjectPromptPlaceholder, uLocalized('LCHLauncherSubjectPromptPlaceholderText'));
 	});
 
 	it('localizes LCHLauncherActionPromptHeading', function() {
-		browser.text(LCHLauncherActionPromptHeading), uLocalized('LCHLauncherActionPromptHeadingText');
+		browser.assert.text(LCHLauncherActionPromptHeading, uLocalized('LCHLauncherActionPromptHeadingText'));
 	});
 
 	it('localizes LCHLauncherObjectPromptHeading');
