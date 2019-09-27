@@ -44,7 +44,7 @@ describe('LCHSearchActionURLFrom', function testLCHSearchActionURLFrom() {
 
 describe('LCHSearchWithCallback', function testLCHSearchWithCallback() {
 
-	it('calls api with result', async function() {
+	it('calls api with result', function() {
 		deepEqual(mainModule.LCHSearchWithCallback.bind({
 			api: {
 				fn () {
@@ -60,7 +60,7 @@ describe('LCHSearchWithCallback', function testLCHSearchWithCallback() {
 
 describe('LCHSearchWithRecipe', function testLCHSearchWithRecipe() {
 
-	it('returns LCHRecipe', async function() {
+	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHSearchWithRecipe(), {
 			LCHRecipeName: 'Search With',
 			LCHRecipeSignature: 'LCHSearchWith',
@@ -73,7 +73,7 @@ describe('LCHSearchWithRecipe', function testLCHSearchWithRecipe() {
 
 describe('LCHSearchForCallback', function testLCHSearchForCallback() {
 
-	it('calls LCHFlip with LCHSearchWithCallback', async function() {
+	it('calls LCHFlip with LCHSearchWithCallback', function() {
 		deepEqual(mainModule.LCHSearchForCallback.bind({
 			api: {
 				fn () {
@@ -89,7 +89,7 @@ describe('LCHSearchForCallback', function testLCHSearchForCallback() {
 
 describe('LCHSearchForRecipe', function testLCHSearchForRecipe() {
 
-	it('returns LCHRecipe', async function() {
+	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHSearchForRecipe(), {
 			LCHRecipeName: 'Search For',
 			LCHRecipeSignature: 'LCHSearchFor',

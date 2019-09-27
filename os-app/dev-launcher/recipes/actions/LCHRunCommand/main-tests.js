@@ -4,7 +4,7 @@ import * as mainModule from './main.js';
 
 describe('LCHRunCommandCallback', function testLCHRunCommandCallback() {
 
-	it('returns inputData', async function() {
+	it('returns inputData', function() {
 		const item = function () {};
 		deepEqual(mainModule.LCHRunCommandCallback(item), item);
 	});
@@ -13,7 +13,7 @@ describe('LCHRunCommandCallback', function testLCHRunCommandCallback() {
 
 describe('LCHRunCommandRecipe', function testLCHRunCommandRecipe() {
 
-	it('returns LCHRecipe', async function() {
+	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHRunCommandRecipe(), {
 			LCHRecipeName: 'Run Command',
 			LCHRecipeInputTypes: 'Command',

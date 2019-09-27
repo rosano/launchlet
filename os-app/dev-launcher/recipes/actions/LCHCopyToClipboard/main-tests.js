@@ -22,7 +22,7 @@ describe('LCHCopyToClipboardCallback', function testLCHCopyToClipboardCallback()
 		}, /LCHErrorInputInvalid/);
 	});
 
-	it('returns LCHComponentDescriptor', async function() {
+	it('returns LCHComponentDescriptor', function() {
 		deepEqual(mainModule.LCHCopyToClipboardCallback('alfa'), {
 			LCHComponentDescriptorName: 'LCHCopyToClipboard',
 			LCHComponentDescriptorCompletionHandler: 'completionHandler',
@@ -36,7 +36,7 @@ describe('LCHCopyToClipboardCallback', function testLCHCopyToClipboardCallback()
 
 describe('LCHCopyToClipboardRecipe', function testLCHCopyToClipboardRecipe() {
 
-	it('returns LCHRecipe', async function() {
+	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHCopyToClipboardRecipe(), {
 			LCHRecipeSignature: 'LCHCopyToClipboard',
 			LCHRecipeInputTypes: 'String',

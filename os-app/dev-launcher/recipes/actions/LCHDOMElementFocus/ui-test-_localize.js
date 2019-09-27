@@ -22,7 +22,7 @@ describe.only(`LCHDOMElementFocus_Localize-${ languageCode }`, function () {
 		return browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
 	});
 
-	it('localizes LCHRecipeName', function() {
+	it('localizes LCHLauncherPipeItemTitle', function() {
 		browser.assert.text(`${ LCHLauncherActionPromptItemSelected } ${ LCHLauncherPipeItemTitle }`, uLocalized('LCHStandardRecipeNames').LCHDOMElementFocus);
 	});
 

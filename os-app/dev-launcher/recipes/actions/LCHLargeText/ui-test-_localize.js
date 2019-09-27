@@ -29,7 +29,7 @@ describe(`LCHLargeText_Localize-${ languageCode }`, function () {
 		return browser.OLSKFireKeyboardEvent(browser.window, 'LCHLargeText');
 	});
 
-	it('localizes LCHRecipeName', function() {
+	it('localizes LCHLauncherPipeItemTitle', function() {
 		browser.assert.text(`${ LCHLauncherActionPromptItemSelected } ${ LCHLauncherPipeItemTitle }`, uLocalized('LCHStandardRecipeNames').LCHLargeText);
 	});
 

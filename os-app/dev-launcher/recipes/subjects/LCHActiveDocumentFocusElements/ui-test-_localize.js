@@ -21,7 +21,7 @@ describe(`LCHActiveDocumentFocusElements_Localize-${ languageCode }`, function (
 		browser.OLSKFireKeyboardEvent(browser.window, 'LCHActiveDocumentFocusElements');
 	});
 
-	it('localizes LCHRecipeName', function() {
+	it('localizes LCHLauncherPipeItemTitle', function() {
 		browser.assert.text(`${ LCHLauncherSubjectPromptItemSelected } ${ LCHLauncherPipeItemTitle }`, uLocalized('LCHStandardRecipeNames').LCHActiveDocumentFocusElements);
 	});
 	

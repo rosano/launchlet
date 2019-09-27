@@ -4,7 +4,7 @@ import * as mainModule from './main.js';
 
 describe('LCHDOMElementFocusCallback', function testLCHDOMElementFocusCallback() {
 
-	it('returns undefined', async function() {
+	it('returns undefined', function() {
 		deepEqual(typeof mainModule.LCHDOMElementFocusCallback(), 'undefined');
 	});
 
@@ -12,7 +12,7 @@ describe('LCHDOMElementFocusCallback', function testLCHDOMElementFocusCallback()
 
 describe('LCHDOMElementFocusRecipe', function testLCHDOMElementFocusRecipe() {
 
-	it('returns LCHRecipe', async function() {
+	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHDOMElementFocusRecipe(), {
 			LCHRecipeSignature: 'LCHDOMElementFocus',
 			LCHRecipeInputTypes: 'DOMElement',

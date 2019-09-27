@@ -4,7 +4,7 @@ import * as mainModule from './main.js';
 
 describe('LCHURLOpenCallback', function testLCHURLOpenCallback() {
 
-	it('returns undefined', async function() {
+	it('returns undefined', function() {
 		deepEqual(typeof mainModule.LCHURLOpenCallback(), 'undefined');
 	});
 
@@ -12,7 +12,7 @@ describe('LCHURLOpenCallback', function testLCHURLOpenCallback() {
 
 describe('LCHURLOpenRecipe', function testLCHURLOpenRecipe() {
 
-	it('returns LCHRecipe', async function() {
+	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHURLOpenRecipe(), {
 			LCHRecipeName: 'Open URL',
 			LCHRecipeSignature: 'LCHURLOpen',

@@ -197,7 +197,7 @@ describe('LCHActiveDocumentFocusElementsCallback', function testLCHActiveDocumen
 
 describe('LCHActiveDocumentFocusElementsRecipe', function testLCHActiveDocumentFocusElementsRecipe() {
 
-	it('returns LCHRecipe', async function() {
+	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHActiveDocumentFocusElementsRecipe(), {
 			LCHRecipeSignature: 'LCHActiveDocumentFocusElements',
 			LCHRecipeCallback: mainModule.LCHActiveDocumentFocusElementsCallback,

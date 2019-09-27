@@ -4,7 +4,7 @@ import * as mainModule from './main.js';
 
 describe('LCHSubjectContainerShowContentsCallback', function testLCHSubjectContainerShowContentsCallback(inputData) {
 
-	it('returns inputData', async function() {
+	it('returns inputData', function() {
 		const item = function () {};
 		deepEqual(mainModule.LCHSubjectContainerShowContentsCallback(item), item);
 	});
@@ -13,7 +13,7 @@ describe('LCHSubjectContainerShowContentsCallback', function testLCHSubjectConta
 
 describe('LCHSubjectContainerShowContentsRecipe', function testLCHSubjectContainerShowContentsRecipe() {
 
-	it('returns LCHRecipe', async function() {
+	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHSubjectContainerShowContentsRecipe(), {
 			LCHRecipeName: 'Show Contents',
 			LCHRecipeSignature: 'LCHSubjectContainerShowContents',

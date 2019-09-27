@@ -25,7 +25,7 @@ describe(`LCHCopyToClipboard_Localize-${ languageCode }`, function () {
 		browser.fill(LCHLauncherPromptDotModeInput, 'alfa');
 	});
 
-	it('localizes LCHRecipeName', function() {
+	it('localizes LCHLauncherPipeItemTitle', function() {
 		browser.assert.text(`${ LCHLauncherActionPromptItemSelected } ${ LCHLauncherPipeItemTitle }`, uLocalized('LCHStandardRecipeNames').LCHCopyToClipboard);
 	});
 
