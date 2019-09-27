@@ -68,7 +68,6 @@ describe('LCHTypeServiceSearchRecipe', function testLCHTypeServiceSearchRecipe()
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHTypeServiceSearchRecipe(), {
-			LCHRecipeName: 'Search Service',
 			LCHRecipeCallback: mainModule.LCHTypeServiceSearchCallback,
 			LCHRecipeOutputType: 'Bool',
 			LCHRecipeCanonicalExampleCallback: mainModule.LCHTypeServiceSearchCanonicalExampleCallback,

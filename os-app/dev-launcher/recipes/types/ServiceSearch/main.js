@@ -26,7 +26,6 @@ export const LCHTypeServiceSearchCanonicalExampleCallback = function() {
 
 export const LCHTypeServiceSearchRecipe = function() {
 	return {
-		LCHRecipeName: 'Search Service',
 		LCHRecipeSignature: 'ServiceSearch',
 		LCHRecipeCallback: LCHTypeServiceSearchCallback,
 		LCHRecipeOutputType: 'Bool',
