@@ -1,11 +1,11 @@
 import { deepEqual } from 'assert';
 
-const kDefaultRoutePath = require('./controller.js').OLSKControllerRoutes().LCHComposeRoute.OLSKRoutePath;
+const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('LCHCompose_Misc', function () {
 
 	before(function() {
-		return browser.visit(kDefaultRoutePath);
+		return browser.visit(kDefaultRoute.OLSKRoutePath);
 	});
 
 	context('on startup', function() {
@@ -30,7 +30,7 @@ describe('LCHCompose_Misc', function () {
 	context('on filter', function () {
 		
 		before(async function() {
-			await browser.visit(kDefaultRoutePath);
+			await browser.visit(kDefaultRoute.OLSKRoutePath);
 
 			await uCreateItem(browser);
 			browser.fill(LCHComposeFormNameField, 'alfa');
@@ -94,7 +94,7 @@ describe('LCHCompose_Misc', function () {
 	context('on Escape', function() {
 
 		before(async function () {
-			await browser.visit(kDefaultRoutePath);
+			await browser.visit(kDefaultRoute.OLSKRoutePath);
 
 			await uCreateItem(browser);
 

@@ -1,6 +1,6 @@
 import { deepEqual } from 'assert';
 
-const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().LCHComposeRoute;
+const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 const uStringWithFormat = OLSKTestingStringWithFormat;
 
@@ -10,7 +10,7 @@ const uLocalized = function (inputData) {
 	return OLSKTestingLocalized(inputData, languageCode);
 };
 
-describe(`LCHCompose_Localize-${ languageCode}`, function () {
+describe(`LCHCompose_Localize-${ languageCode }`, function () {
 
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {

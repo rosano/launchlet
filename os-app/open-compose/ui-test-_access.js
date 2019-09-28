@@ -1,6 +1,6 @@
 import { deepEqual } from 'assert';
 
-const kDefaultRoutePath = require('./controller.js').OLSKControllerRoutes().LCHComposeRoute.OLSKRoutePath;
+const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
 	LCHComposeFilterInput: '.LCHComposeFilterInput',
@@ -51,7 +51,7 @@ Object.entries({
 describe('LCHCompose_Access', function () {
 
 	before(function() {
-		return browser.visit(kDefaultRoutePath);
+		return browser.visit(kDefaultRoute.OLSKRoutePath);
 	});
 	
 	it('on startup', function() {

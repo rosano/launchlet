@@ -1,13 +1,13 @@
 import { deepEqual } from 'assert';
 
-const kDefaultRoutePath = require('../../controller.js').OLSKControllerRoutes().LCHComposeRoute.OLSKRoutePath;
+const kDefaultRoute = require('../../controller.js').OLSKControllerRoutes().shift();
 
 describe('LCHComposeDetail_Misc', function () {
 
 context('Clone', function testClone() {
 
 	before(async function () {
-		await browser.visit(kDefaultRoutePath);
+		await browser.visit(kDefaultRoute.OLSKRoutePath);
 
 		await uCreateItem(browser);
 		browser.fill(LCHComposeFormNameField, 'alfa');

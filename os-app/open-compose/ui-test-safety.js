@@ -1,11 +1,11 @@
 import { deepEqual } from 'assert';
 
-const kDefaultRoutePath = require('./controller.js').OLSKControllerRoutes().LCHComposeRoute.OLSKRoutePath;
+const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('LCHComposeSafety', function () {
 
 	before(function() {
-		return browser.visit(kDefaultRoutePath);
+		return browser.visit(kDefaultRoute.OLSKRoutePath);
 	});
 
 	context('Master', async function testMaster() {
