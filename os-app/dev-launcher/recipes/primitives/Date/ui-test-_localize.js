@@ -8,7 +8,7 @@ const uLocalized = function (inputData) {
 	return OLSKTestingLocalized(inputData, languageCode);
 };
 	
-describe(`Date_Localize-${ languageCode }`, function () {
+describe.skip(`Date_Localize-${ languageCode }`, function () {
 	
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
@@ -26,7 +26,7 @@ describe(`Date_Localize-${ languageCode }`, function () {
 		browser.OLSKFireKeyboardEvent(browser.window, 'alfa');
 	});
 
-	it.skip('localizes LCHLauncherPipeItemTitle', function() {
+	it('localizes LCHLauncherPipeItemTitle', function() {
 		browser.assert.text(`${ LCHLauncherSubjectPromptItemSelected } ${ LCHLauncherPipeItemSubtitle }`, uLocalized('LCHStandardRecipeNames').Date);
 	});
 	

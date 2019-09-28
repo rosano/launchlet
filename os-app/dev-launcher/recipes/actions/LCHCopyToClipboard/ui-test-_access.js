@@ -12,25 +12,18 @@ describe('LCHCopyToClipboard_Access', function () {
 
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
-			StubRecipes: uStubStringify([{
-				LCHRecipeName: 'alfa',
-				LCHRecipeCallback: function () {
-					return this.api.LCHCopyToClipboard('bravo');
-				},
-			}]),
+			runMode: 'kRunModePipe',
 		}));
 	});
 
 	before(function() {
-		browser.assert.elements(LCHCopyToClipboardButton, 0);
+		return browser.OLSKFireKeyboardEvent(browser.window, '.');
 	});
 
 	before(function() {
-		return browser.fill(LCHLauncherFilterInput, 'alfa');
-	});
-
-	before(function() {
-		browser.click(LCHLauncherListItem);
+		browser.fill(LCHLauncherPromptDotModeInput, 'alfa');
+		
+		browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
 	});
 
 	it('shows LCHCopyToClipboardButton', function() {
