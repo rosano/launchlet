@@ -22,6 +22,10 @@ describe(`LCHCompose_Localize-${ languageCode}`, function () {
 		browser.assert.text('title', uLocalized('LCHComposeTitle'))
 	});
 
+	it('localizes LCH_SHARED_DONATE_URL', function() {
+		browser.assert.element(`a[href="${ process.env.LCH_SHARED_DONATE_URL }"]`);
+	});
+
 	it('localizes interface', function() {
 		browser.assert.attribute(LCHComposeFilterInput, 'placeholder', uLocalized('LCHComposeFilterInputPlaceholderText'));
 		browser.assert.attribute(LCHComposeCreateButton, 'title', uLocalized('LCHComposeToolbarCreateButtonText'));
