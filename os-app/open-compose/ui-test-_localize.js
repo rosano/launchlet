@@ -62,7 +62,7 @@ describe(`LCHCompose_Localize-${ languageCode}`, function () {
 
 		browser.assert.text(`label[for='${ LCHComposeFormIsAutomaticField.replace('#', '') }']`, uLocalized('LCHComposeFormIsAutomaticFieldLabelText'));
 
-		browser.fill(LCHComposeFormURLFilterField, '/https?://(.*\.)?google\.com/i');
+		browser.fill(LCHComposeFormURLFilterField, '/https?://(.*\.)?example\.com/i');
 	});
 
 	it('on edit signature', async function() {
@@ -96,7 +96,7 @@ describe(`LCHCompose_Localize-${ languageCode}`, function () {
 		// editor value
 		browser.assert.input(LCHComposeDetailCallbackBodyInputDebug, 'delta');
 		browser.assert.input(LCHComposeFormArgsField, 'charlie');
-		browser.assert.input(LCHComposeFormURLFilterField, '/https?://(.*\.)?google\.com/i');
+		browser.assert.input(LCHComposeFormURLFilterField, '/https?://(.*\.)?example\.com/i');
 		browser.assert.input(LCHComposeDetailStyleInputDebug, 'echo');
 	});
 

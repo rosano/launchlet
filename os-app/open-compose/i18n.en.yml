@@ -12,7 +12,7 @@ LCHComposeFormScriptFieldPlaceholderText: Function Body (e.g. window.alert('Hell
 LCHComposeFormOutputTypeFieldPlaceholderText: Output Type (e.g. String)
 LCHComposeFormStyleFieldPlaceholderText: 'CSS (e.g. body { background: red; })'
 LCHComposeFormSignatureFieldPlaceholderText: Signature (e.g. XYZGreet)
-LCHComposeFormURLFilterFieldPlaceholderText: 'URL Filter (e.g. google.com or /https?://(.*\\.)?google\\.com/i)'
+LCHComposeFormURLFilterFieldPlaceholderText: 'URL Filter (e.g. example.com or /https?://(.*\\.)?example\\.com/i)'
 LCHComposeFormIsAutomaticFieldLabelText: Run automatically
 LCHUpdateReloadText: Reload
 LCHComposeFormFlagAlertText: This recipe will be ignored because it contains potentially unsafe code
