@@ -46,13 +46,17 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 		}, /LCHErrorInputInvalid/);
 	});
 
+	it('returns object', function() {
+		deepEqual(typeof mainModule.LCHLauncherOptions({}), 'object');
+	});
+
 	context('languageCode', function () {
 
-		it('returns default if not set', function() {
+		it('sets default if no input', function() {
 			deepEqual(mainModule.LCHLauncherOptions({}).languageCode, 'en');
 		});
 		
-		it('returns inputData', function() {
+		it('uses input', function() {
 			deepEqual(mainModule.LCHLauncherOptions({
 				languageCode: 'alfa'
 			}).languageCode, 'alfa');
@@ -60,22 +64,22 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 
 	});
 
-	context('runMode', function () {
+	context('LRTOptionMode', function () {
 
-		it('returns default if not set', function() {
-			deepEqual(mainModule.LCHLauncherOptions({}).runMode, mainModule.LCHLauncherModeCommit());
+		it('sets default if no input', function() {
+			deepEqual(mainModule.LCHLauncherOptions({}).LRTOptionMode, mainModule.LCHLauncherModeCommit());
 		});
 
-		it('ignores if not valid', function() {
+		it('sets default if not valid', function() {
 			deepEqual(mainModule.LCHLauncherOptions({
-				runMode: 'alfa',
-			}).runMode, mainModule.LCHLauncherModeCommit());
+				LRTOptionMode: 'alfa',
+			}).LRTOptionMode, mainModule.LCHLauncherModeCommit());
 		});
 
-		it('returns inputData', function() {
+		it('uses input', function() {
 			deepEqual(mainModule.LCHLauncherOptions({
-				runMode: mainModule.LCHLauncherModePreview(),
-			}).runMode, mainModule.LCHLauncherModePreview());
+				LRTOptionMode: mainModule.LCHLauncherModePreview(),
+			}).LRTOptionMode, mainModule.LCHLauncherModePreview());
 		});
 		
 	});

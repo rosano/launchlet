@@ -7,7 +7,7 @@ describe('LCHLauncherPrompt', function () {
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			StubRecipes: uStubStringify(uStubTwoItems()),
-			runMode: 'LPKModePipe',
+			LRTOptionMode: 'LPKModePipe',
 		}));
 	});
 

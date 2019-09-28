@@ -20,16 +20,16 @@ describe('LCHComposeBuildToggle', function () {
 	// 	browser.assert.input(LCHComposeBuildModePipeEnabledToggle, 'on');
 	// 	await browser.wait({ element: LCHComposeBuildAnchor });
 
-	// 	deepEqual(item.includes("runMode: 'kLCHLauncherModeCommit'"), true);
-	// 	deepEqual(item.includes("runMode: 'kLCHLauncherModePipe'"), false);
+	// 	deepEqual(item.includes("LRTOptionMode: 'kLCHLauncherModeCommit'"), true);
+	// 	deepEqual(item.includes("LRTOptionMode: 'kLCHLauncherModePipe'"), false);
 	// });
 
 	// it.skip('compiles with Pipe mode if checked', async function () {
 	// 	await browser.check(LCHComposeBuildModePipeEnabledToggle);
 	// 	await browser.wait({ element: LCHComposeBuildAnchor });
 
-	// 	deepEqual(item.includes("runMode: 'kLCHLauncherModeCommit'"), false);
-	// 	deepEqual(item.includes("runMode: 'kLCHLauncherModePipe'"), true);
+	// 	deepEqual(item.includes("LRTOptionMode: 'kLCHLauncherModeCommit'"), false);
+	// 	deepEqual(item.includes("LRTOptionMode: 'kLCHLauncherModePipe'"), true);
 	// });
 
 	it('defaults to not checked', async function () {

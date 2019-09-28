@@ -7,7 +7,7 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			StubRecipes: uStubStringify(uStubTwoItems()),
-			runMode: 'LPKModePreview',
+			LRTOptionMode: 'LPKModePreview',
 		}));
 	});
 

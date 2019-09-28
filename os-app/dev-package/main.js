@@ -5,7 +5,7 @@ export const AppClass = function (inputData) {
 	_AppClass = inputData;
 };
 
-export const kRunModeCommit = LCHLauncherModeCommit();
+export const LPKModeCommit = LCHLauncherModeCommit();
 export const LPKModePreview = LCHLauncherModePreview();
 export const LPKModePipe = LCHLauncherModePipe();
 
@@ -22,9 +22,9 @@ const LCHPackageValidateOptionsObject = function (inputData) {
 		}
 	}
 
-	if (inputData.runMode) {
-		if (LCHLauncherModes().indexOf(inputData.runMode) === -1) {
-			throw new Error('LCHErrorInputNotValidRunMode');
+	if (inputData.LRTOptionMode) {
+		if (LCHLauncherModes().indexOf(inputData.LRTOptionMode) === -1) {
+			throw new Error('LCHErrorInputModeNotValid');
 		}
 	}
 

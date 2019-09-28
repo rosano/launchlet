@@ -48,7 +48,7 @@ export const _LCHComposeBuildBoomarkletTemplate = function () {
 					},
 					optionsObject: {
 						languageCode: 'LCHComposeBuildToken_AppLanguageCode',
-						runMode: 'LCHComposeBuildToken_LCHLauncherMode',
+						LRTOptionMode: 'LCHComposeBuildToken_LCHLauncherMode',
 					},
 				}
 			});

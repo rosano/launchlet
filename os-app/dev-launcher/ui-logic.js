@@ -6,15 +6,15 @@ export const LCHLauncherOptions = function (inputData) {
 	}
 
 	const outputData = {
-		runMode: LCHLauncherModes().shift(),
+		LRTOptionMode: LCHLauncherModes().shift(),
 
 		languageCode: 'en',
 	};
 
-	if (inputData.runMode) {
+	if (inputData.LRTOptionMode) {
 		// #mysterious Why doesn't function equivalency work here?
 		//  always returns -1
-		outputData.runMode = LCHLauncherModes()[LCHLauncherModes().indexOf(inputData.runMode)] || outputData.runMode;
+		outputData.LRTOptionMode = LCHLauncherModes()[LCHLauncherModes().indexOf(inputData.LRTOptionMode)] || outputData.LRTOptionMode;
 	}
 
 	if (inputData.languageCode) {

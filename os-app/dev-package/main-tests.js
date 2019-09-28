@@ -11,10 +11,10 @@ const kTesting = {
 	},
 };
 
-describe('kRunModeCommit', function testkRunModeCommit() {
+describe('LPKModeCommit', function testLPKModeCommit() {
 
 	it('sets value', function() {
-		deepEqual(mainModule.kRunModeCommit, LCHLauncherModeCommit());
+		deepEqual(mainModule.LPKModeCommit, LCHLauncherModeCommit());
 	});
 
 });
@@ -67,21 +67,21 @@ describe('instanceCreate', function testinstanceCreate() {
 			}, /LCHErrorInputNotObject/);
 		});		
 
-		context('runMode', function () {
+		context('LRTOptionMode', function () {
 
 			it('throws error if not valid', function() {
 				throws(function() {
 					mainModule.instanceCreate([], {
-						runMode: function () {
+						LRTOptionMode: function () {
 							return 'alfa';
 						},
 					});
-				}, /LCHErrorInputNotValidRunMode/);
+				}, /LCHErrorInputModeNotValid/);
 			});
 
 			it('returns undefined', function() {
 				deepEqual(mainModule.instanceCreate([], {
-					runMode: mainModule.LPKModePreview,
+					LRTOptionMode: mainModule.LPKModePreview,
 				}), undefined);
 			});
 

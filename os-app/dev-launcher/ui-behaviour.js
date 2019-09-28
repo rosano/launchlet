@@ -39,7 +39,7 @@ const mod = {
 					app = null;
 				},
 				optionsObject: {
-					runMode: Launchlet[params.runMode || 'kRunModeCommit'],
+					LRTOptionMode: Launchlet[params.LRTOptionMode || 'LPKModeCommit'],
 					languageCode: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 					LCHOptionIncludePageRecipes: !!params.LCHOptionIncludePageRecipes || false,
 				},

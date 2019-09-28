@@ -62,7 +62,7 @@ describe('LCHLauncher_AccessCommit', function testLCHLauncher_AccessCommit () {
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			StubRecipes: uStubStringify(uStubTwoItems()),
-			runMode: 'kRunModeCommit',
+			LRTOptionMode: 'LPKModeCommit',
 		}));
 	});
 
@@ -105,7 +105,7 @@ describe('LCHLauncherAccess_Preview', function testLCHLauncher_AccessPreview () 
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			StubRecipes: uStubStringify(uStubTwoItems()),
-			runMode: 'LPKModePreview',
+			LRTOptionMode: 'LPKModePreview',
 		}));
 	});
 
@@ -136,7 +136,7 @@ describe('LCHLauncher_AccessPipe', function testLCHLauncher_AccessPipe () {
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			StubRecipes: uStubStringify(uStubTwoItems()),
-			runMode: 'LPKModePipe',
+			LRTOptionMode: 'LPKModePipe',
 		}));
 	});
 

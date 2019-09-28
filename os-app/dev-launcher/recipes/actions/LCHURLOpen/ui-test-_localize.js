@@ -13,7 +13,7 @@ describe(`LCHURLOpen_Localize-${ languageCode }`, function () {
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			OLSKRoutingLanguage: languageCode,
-			runMode: 'LPKModePipe',
+			LRTOptionMode: 'LPKModePipe',
 		}));
 	});
 

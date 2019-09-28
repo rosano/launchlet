@@ -15,7 +15,7 @@ describe(`LCHLauncherLocalizeCommit-${ languageCode }`, function testLCHLauncher
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			OLSKRoutingLanguage: languageCode,
-			runMode: 'kRunModeCommit',
+			LRTOptionMode: 'LPKModeCommit',
 		}));
 	});
 
@@ -30,7 +30,7 @@ describe(`LCHLauncherLocalizePreview-${ languageCode }`, function testLCHLaunche
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			OLSKRoutingLanguage: languageCode,
-			runMode: 'LPKModePreview',
+			LRTOptionMode: 'LPKModePreview',
 		}));
 	});
 
@@ -45,7 +45,7 @@ describe(`LCHLauncherLocalizePipe-${ languageCode }`, function testLCHLauncherLo
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			OLSKRoutingLanguage: languageCode,
-			runMode: 'LPKModePipe',
+			LRTOptionMode: 'LPKModePipe',
 		}));
 	});
 
