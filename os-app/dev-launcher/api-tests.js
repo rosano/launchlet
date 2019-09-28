@@ -11,7 +11,7 @@ const kTesting = {
 	StubComponentDescriptorObjectValid() {
 		return {
 			LCHComponentDescriptorName: 'alfa',
-			LCHComponentDescriptorCompletionHandler: 'bravo',
+			LCHComponentDescriptorCompletionHandlerSignature: 'bravo',
 		};
 	},
 	StubRecipeObjectCommand() {
@@ -1430,38 +1430,38 @@ describe('LCHComponentDescriptorsModelErrorsFor', function testLCHComponentDescr
 		});
 	});
 
-	it('returns object if LCHComponentDescriptorCompletionHandler not string', function() {
+	it('returns object if LCHComponentDescriptorCompletionHandlerSignature not string', function() {
 		deepEqual(mainModule.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
-			LCHComponentDescriptorCompletionHandler: null,
+			LCHComponentDescriptorCompletionHandlerSignature: null,
 		})), {
-			LCHComponentDescriptorCompletionHandler: [
+			LCHComponentDescriptorCompletionHandlerSignature: [
 				'LCHErrorNotString',
 			],
 		});
 	});
 
-	it('returns object if LCHComponentDescriptorCompletionHandler empty', function() {
+	it('returns object if LCHComponentDescriptorCompletionHandlerSignature empty', function() {
 		deepEqual(mainModule.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
-			LCHComponentDescriptorCompletionHandler: '',
+			LCHComponentDescriptorCompletionHandlerSignature: '',
 		})), {
-			LCHComponentDescriptorCompletionHandler: [
+			LCHComponentDescriptorCompletionHandlerSignature: [
 				'LCHErrorNotFilled',
 			],
 		});
 	});
 
-	it('returns object if LCHComponentDescriptorCompletionHandler contains untrimmed whitespace', function() {
+	it('returns object if LCHComponentDescriptorCompletionHandlerSignature contains untrimmed whitespace', function() {
 		deepEqual(mainModule.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
-			LCHComponentDescriptorCompletionHandler: ' alfa',
+			LCHComponentDescriptorCompletionHandlerSignature: ' alfa',
 		})), {
-			LCHComponentDescriptorCompletionHandler: [
+			LCHComponentDescriptorCompletionHandlerSignature: [
 				'LCHErrorNotTrimmed',
 			],
 		});
 		deepEqual(mainModule.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
-			LCHComponentDescriptorCompletionHandler: 'alfa ',
+			LCHComponentDescriptorCompletionHandlerSignature: 'alfa ',
 		})), {
-			LCHComponentDescriptorCompletionHandler: [
+			LCHComponentDescriptorCompletionHandlerSignature: [
 				'LCHErrorNotTrimmed',
 			],
 		});

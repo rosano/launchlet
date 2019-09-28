@@ -1,6 +1,6 @@
 <script>
 export let inputData;
-export let completionHandler;
+export let LCHCopyToClipboardCompletionHandler;
 export let OLSKLocalized;
 
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
@@ -17,7 +17,7 @@ function didComplete() {
 
 	clipboard.destroy();
 
-	completionHandler();
+	LCHCopyToClipboardCompletionHandler();
 
 	_didComplete = true;
 }

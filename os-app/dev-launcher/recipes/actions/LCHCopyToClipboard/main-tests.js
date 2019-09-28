@@ -25,7 +25,7 @@ describe('LCHCopyToClipboardCallback', function testLCHCopyToClipboardCallback()
 	it('returns LCHComponentDescriptor', function() {
 		deepEqual(mainModule.LCHCopyToClipboardCallback('alfa'), {
 			LCHComponentDescriptorName: 'LCHCopyToClipboard',
-			LCHComponentDescriptorCompletionHandler: 'completionHandler',
+			LCHComponentDescriptorCompletionHandlerSignature: 'LCHCopyToClipboardCompletionHandler',
 			LCHComponentDescriptorProps: {
 				inputData: 'alfa',
 			},

@@ -36,7 +36,7 @@ export const LCHCopyToClipboardCallback = function(inputData) {
 		LCHComponentDescriptorProps: {
 			inputData: inputData,
 		},
-		LCHComponentDescriptorCompletionHandler: 'completionHandler',
+		LCHComponentDescriptorCompletionHandlerSignature: 'LCHCopyToClipboardCompletionHandler',
 		LCHComponentDescriptorOLSKLocalized: true,
 	};
 };

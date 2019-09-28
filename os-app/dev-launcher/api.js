@@ -566,20 +566,20 @@ export const LCHComponentDescriptorsModelErrorsFor = function(inputData) {
 		];
 	}
 
-	if (typeof inputData.LCHComponentDescriptorCompletionHandler !== 'string') {
-		errors.LCHComponentDescriptorCompletionHandler = [
+	if (typeof inputData.LCHComponentDescriptorCompletionHandlerSignature !== 'string') {
+		errors.LCHComponentDescriptorCompletionHandlerSignature = [
 			'LCHErrorNotString',
 		];
 	}
 
-	if (typeof inputData.LCHComponentDescriptorCompletionHandler === 'string' && !inputData.LCHComponentDescriptorCompletionHandler) {
-		errors.LCHComponentDescriptorCompletionHandler = [
+	if (typeof inputData.LCHComponentDescriptorCompletionHandlerSignature === 'string' && !inputData.LCHComponentDescriptorCompletionHandlerSignature) {
+		errors.LCHComponentDescriptorCompletionHandlerSignature = [
 			'LCHErrorNotFilled',
 		];
 	}
 
-	if (typeof inputData.LCHComponentDescriptorCompletionHandler === 'string' && inputData.LCHComponentDescriptorCompletionHandler.trim() !== inputData.LCHComponentDescriptorCompletionHandler) {
-		errors.LCHComponentDescriptorCompletionHandler = [
+	if (typeof inputData.LCHComponentDescriptorCompletionHandlerSignature === 'string' && inputData.LCHComponentDescriptorCompletionHandlerSignature.trim() !== inputData.LCHComponentDescriptorCompletionHandlerSignature) {
+		errors.LCHComponentDescriptorCompletionHandlerSignature = [
 			'LCHErrorNotTrimmed',
 		];
 	}

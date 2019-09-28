@@ -130,15 +130,23 @@ async function apiStart(inputData) {
 		}
 
 		return new Promise(function (resolve, reject) {
+			let LCHInstanceProps = inputData.LCHComponentDescriptorProps;
+
+
+			if (inputData.LCHComponentDescriptorOLSKLocalized) {
+				Object.assign(LCHInstanceProps, {
+					OLSKLocalized,
+				});
+			};
+
+			LCHInstanceProps[inputData.LCHComponentDescriptorCompletionHandlerSignature] = function () {
+				secondaryComponent.set(null);
+				mod.commandExit();
+			};
+
 			return secondaryComponent.set({
 				LCHInstanceClass: apiComponents[inputData.LCHComponentDescriptorName],
-				LCHInstanceOptions: Object.assign(inputData.LCHComponentDescriptorProps, {
-					completionHandler: function () {
-						secondaryComponent.set(null);
-						mod.commandExit();
-					},
-					OLSKLocalized: inputData.LCHComponentDescriptorOLSKLocalized ? OLSKLocalized : undefined,
-				}),
+				LCHInstanceProps,
 			});
 		});
 	})(inputData.LCHCompositionAction ? await LCHAPIExecuteComposition(inputData, api) : await LCHLauncherExecuteRecipe(inputData, [], api));
@@ -859,7 +867,7 @@ import LCHLauncherPipeItem from './submodules/LCHLauncherPipeItem/main.svelte';
 </div>
 	
 {#if $secondaryComponent}
-	<svelte:component this={ $secondaryComponent.LCHInstanceClass } {...$secondaryComponent.LCHInstanceOptions} />
+	<svelte:component this={ $secondaryComponent.LCHInstanceClass } {...$secondaryComponent.LCHInstanceProps} />
 {/if}
 
 <style src="./ui-style.css"></style>
