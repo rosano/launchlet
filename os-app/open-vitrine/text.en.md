@@ -14,9 +14,9 @@ The project is freely accessible but if you are in a position to give, please [d
 ## Commit mode
 
 Presents a list of options and runs on `Enter`. Try any of the following options:
-- `LCHVitrineTokenRandomizePageColoursName`
-- `LCHVitrineTokenCopyPageInfoName`
-- `LCHVitrineTokenSendEmailName`
+- `LCHVitrinePageColoursRandomize`
+- `LCHVitrineCopyPageInfo`
+- `LCHVitrineSendEmail`
 
 LCHVitrineDemoButtonCommitToken
 
@@ -29,9 +29,9 @@ LCHVitrineDemoButtonPreviewToken
 ## Pipe mode
 
 Organizes items into subjects and actions. Try
-- `LCHVitrineTokenPageLinksHighlightAddName` and `Run Command`
-- `LCHVitrineTokenMinimalistDateStringName` and `Large text`
-- `Wikipedia` and `Search For`
+- `LCHVitrinePageLinksHighlightAdd` and `Run Command`
+- `LCHVitrineMinimalistDateString` and `LCHLargeText`
+- `Wikipedia` and `LCHSearchFor`
 
 LCHVitrineDemoButtonPipeToken
 
