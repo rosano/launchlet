@@ -21,8 +21,8 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 		}));
 	});
 
-	it('localizes body', function() {
-		browser.assert.text('#launchlet', uLocalized('LCHVitrineTitle'))
+	it('localizes title', function() {
+		browser.assert.text('title', uLocalized('LCHVitrineTitle'))
 	});
 
 	it('localizes description', function() {
