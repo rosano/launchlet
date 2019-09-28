@@ -32,7 +32,10 @@ export const mod = {
 	// COMMAND
 
 	CommandDemoCommit() {
-		Launchlet.instanceCreate(_LCHVitrineRecipes);
+		Launchlet.instanceCreate(_LCHVitrineRecipes, {
+			runMode: Launchlet.kRunModeCommit,
+			languageCode: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
+		});
 	},
 
 	CommandDemoPreview() {
@@ -45,12 +48,14 @@ export const mod = {
 			};
 		}), {
 			runMode: Launchlet.kRunModePreview,
+			languageCode: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 	},
 
 	CommandDemoPipe() {
 		Launchlet.instanceCreate(_LCHVitrineRecipes, {
 			runMode: Launchlet.kRunModePipe,
+			languageCode: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 	},
 
