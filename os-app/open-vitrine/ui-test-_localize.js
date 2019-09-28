@@ -32,6 +32,12 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 		browser.assert.element(`a[href="${ process.env.LCH_VITRINE_QUICKSILVER_URL }"]`);
 	});
 
+	it('localizes LCHComposeRoute', function() {
+		browser.assert.element(`a[href="${ OLSKTestingCanonicalFor(require('../open-compose/controller.js').OLSKControllerRoutes().shift().OLSKRoutePath, {
+			OLSKRoutingLanguage: languageCode,
+		}) }"]`);
+	});
+
 	it('localizes LCH_SHARED_DONATE_URL', function() {
 		browser.assert.element(`a[href="${ process.env.LCH_SHARED_DONATE_URL }"]`);
 	});
