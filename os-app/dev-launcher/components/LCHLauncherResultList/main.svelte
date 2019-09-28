@@ -26,12 +26,12 @@ const mod = {
 			ArrowUp () {
 				mod.ResultListDispatchArrow(ListItems[LCHLauncherConstrainIndex(ListItems, ListItems.indexOf(ItemSelected) - 1)]);
 
-				return event.stopPropagation();
+				return event.preventDefault();
 			},
 			ArrowDown () {
 				mod.ResultListDispatchArrow(ListItems[LCHLauncherConstrainIndex(ListItems, ListItems.indexOf(ItemSelected) + 1)]);
 				
-				return event.stopPropagation();
+				return event.preventDefault();
 			},
 		};
 
