@@ -1,0 +1,13 @@
+LCHVitrineTitle: Launchlet
+LCHVitrineDescription: Interface généralisé pour l'intéraction avec le clavier
+LCHVitrineDemoButtonCommitText: Démo mode de Commit
+LCHVitrineDemoButtonPreviewText: Démo mode de Preview
+LCHVitrineDemoButtonPipeText: Démo mode de Pipe
+LCHVitrineDemoRecipeNames:
+  LCHVitrinePageColoursRandomize: Randomiser des couleurs de page
+  LCHVitrinePageColoursRestore: Rétablir des couleurs de page
+  LCHVitrineCopyPageInfo: Copier info de page
+  LCHVitrineSendEmail: Envoyer courriel
+  LCHVitrinePageLinksHighlightAdd: Surligner des liens de page
+  LCHVitrinePageLinksHighlightRemove: Enlever des surlignes des liens de page
+  LCHVitrineMinimalistDateString: Chaîne de date minimaliste
