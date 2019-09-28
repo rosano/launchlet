@@ -27,7 +27,7 @@ describe('LCHComposeFooterDonateLink', function testLCHComposeFooterDonateLink (
 	});
 
 	it('sets href', function () {
-		browser.assert.attribute(LCHComposeFooterDonateLink, 'href', process.env.LCH_COMPOSE_DONATE_URL)
+		browser.assert.attribute(LCHComposeFooterDonateLink, 'href', process.env.LCH_SHARED_DONATE_URL)
 	});
 
 	it('sets target', function () {

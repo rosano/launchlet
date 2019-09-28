@@ -46,7 +46,7 @@ const mod = {
 
 			<a class="LCHComposeFooterGuideLink" href={ window.OLSKCanonicalFor('LCHGuideRoute') } target="_blank">{ OLSKLocalized('LCHComposeFooterGuideLinkText') }</a>
 
-			<a class="LCHComposeFooterDonateLink" href={ window.OLSKPublicConstants('LCH_COMPOSE_DONATE_URL') } target="_blank">{ OLSKLocalized('LCHComposeFooterDonateLinkText') }</a>
+			<a class="LCHComposeFooterDonateLink" href={ window.OLSKPublicConstants('LCH_SHARED_DONATE_URL') } target="_blank">{ OLSKLocalized('LCHComposeFooterDonateLinkText') }</a>
 
 			<!-- <button on:click={ mod.interfaceExportButtonDidClick }>Export</button> -->
 
