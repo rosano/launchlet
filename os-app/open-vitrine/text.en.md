@@ -29,7 +29,7 @@ LCHVitrineDemoButtonPreviewToken
 ## Pipe mode
 
 Organizes items into subjects and actions. Try
-- `LCHVitrinePageLinksHighlightAdd` and `Run Command`
+- `LCHVitrinePageLinksHighlightAdd` and `LCHRunCommand`
 - `LCHVitrineMinimalistDateString` and `LCHLargeText`
 - `Wikipedia` and `LCHSearchFor`
 
