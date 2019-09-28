@@ -10,10 +10,6 @@ export const OLSKFormatted = function () {
 };
 
 export const _LCHIsTestingBehaviour = function () {
-	if (typeof require !== 'undefined') {
-		return false;
-	}
-
 	if (typeof navigator === 'undefined') {
 		return false;
 	}
