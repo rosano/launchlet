@@ -7,7 +7,7 @@ describe('LCHLauncherThrottle', function () {
 	before(function () {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			StubRecipes: uStubStringify(uStubTwoItems()),
-			runMode: 'kRunModePipe',
+			runMode: 'LPKModePipe',
 		}));
 	});
 

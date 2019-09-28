@@ -105,7 +105,7 @@ describe('LCHLauncherAccess_Preview', function testLCHLauncher_AccessPreview () 
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			StubRecipes: uStubStringify(uStubTwoItems()),
-			runMode: 'kRunModePreview',
+			runMode: 'LPKModePreview',
 		}));
 	});
 
@@ -136,7 +136,7 @@ describe('LCHLauncher_AccessPipe', function testLCHLauncher_AccessPipe () {
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			StubRecipes: uStubStringify(uStubTwoItems()),
-			runMode: 'kRunModePipe',
+			runMode: 'LPKModePipe',
 		}));
 	});
 

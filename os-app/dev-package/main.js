@@ -6,8 +6,8 @@ export const AppClass = function (inputData) {
 };
 
 export const kRunModeCommit = LCHLauncherModeCommit();
-export const kRunModePreview = LCHLauncherModePreview();
-export const kRunModePipe = LCHLauncherModePipe();
+export const LPKModePreview = LCHLauncherModePreview();
+export const LPKModePipe = LCHLauncherModePipe();
 
 let appContainer, appInstance;
 

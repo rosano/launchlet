@@ -13,7 +13,7 @@ describe.skip(`Date_Localize-${ languageCode }`, function () {
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			OLSKRoutingLanguage: languageCode,
-			runMode: 'kRunModePipe',
+			runMode: 'LPKModePipe',
 			StubRecipes: uStubStringify([{
 				LCHRecipeName: 'alfa',
 				LCHRecipeCallback: function () {},

@@ -13,24 +13,24 @@ const kTesting = {
 
 describe('kRunModeCommit', function testkRunModeCommit() {
 
-	it('returns LCHLauncherModeCommit', function() {
+	it('sets value', function() {
 		deepEqual(mainModule.kRunModeCommit, LCHLauncherModeCommit());
 	});
 
 });
 
-describe('kRunModePreview', function testkRunModePreview() {
+describe('LPKModePreview', function testLPKModePreview() {
 
-	it('returns LCHLauncherModePreview', function() {
-		deepEqual(mainModule.kRunModePreview, LCHLauncherModePreview());
+	it('sets value', function() {
+		deepEqual(mainModule.LPKModePreview, LCHLauncherModePreview());
 	});
 
 });
 
-describe('kRunModePipe', function testkRunModePipe() {
+describe('LPKModePipe', function testLPKModePipe() {
 
-	it('returns LCHLauncherModePipe', function() {
-		deepEqual(mainModule.kRunModePipe, LCHLauncherModePipe());
+	it('sets value', function() {
+		deepEqual(mainModule.LPKModePipe, LCHLauncherModePipe());
 	});
 
 });
@@ -81,7 +81,7 @@ describe('instanceCreate', function testinstanceCreate() {
 
 			it('returns undefined', function() {
 				deepEqual(mainModule.instanceCreate([], {
-					runMode: mainModule.kRunModePreview,
+					runMode: mainModule.LPKModePreview,
 				}), undefined);
 			});
 

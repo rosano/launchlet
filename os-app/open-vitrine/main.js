@@ -47,14 +47,14 @@ export const mod = {
 				},
 			};
 		}), {
-			runMode: Launchlet.kRunModePreview,
+			runMode: Launchlet.LPKModePreview,
 			languageCode: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 	},
 
 	CommandDemoPipe() {
 		Launchlet.instanceCreate(_LCHVitrineRecipes, {
-			runMode: Launchlet.kRunModePipe,
+			runMode: Launchlet.LPKModePipe,
 			languageCode: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 	},

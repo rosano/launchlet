@@ -30,7 +30,7 @@ describe(`LCHLauncherLocalizePreview-${ languageCode }`, function testLCHLaunche
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			OLSKRoutingLanguage: languageCode,
-			runMode: 'kRunModePreview',
+			runMode: 'LPKModePreview',
 		}));
 	});
 
@@ -45,7 +45,7 @@ describe(`LCHLauncherLocalizePipe-${ languageCode }`, function testLCHLauncherLo
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			OLSKRoutingLanguage: languageCode,
-			runMode: 'kRunModePipe',
+			runMode: 'LPKModePipe',
 		}));
 	});
 

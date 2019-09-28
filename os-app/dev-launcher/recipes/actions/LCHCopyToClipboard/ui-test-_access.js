@@ -12,7 +12,7 @@ describe('LCHCopyToClipboard_Access', function () {
 
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
-			runMode: 'kRunModePipe',
+			runMode: 'LPKModePipe',
 		}));
 	});
 
