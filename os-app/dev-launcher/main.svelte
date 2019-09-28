@@ -554,7 +554,9 @@ const mod = {
 		}
 
 		return {
-			LCHCompositionAction: LCHRunCommandRecipe(),
+			LCHCompositionAction: Object.assign(LCHRunCommandRecipe(), {
+				LCHRecipeName: OLSKLocalized('LCHStandardRecipeNames')[LCHRunCommandRecipe().LCHRecipeSignature],
+			}),
 			LCHCompositionSubjectPrimary: _PromptObjects[0].LCHPromptItemSelected,
 		};
 	},
