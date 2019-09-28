@@ -6,7 +6,7 @@ exports.OLSKControllerRoutes = function() {
 				return res.render(require('path').join(__dirname, 'stub-view'));
 			},
 			OLSKRouteSignature: 'LCHComposeBuildStubRoute',
-			OLSKRouteLanguages: ['en', 'fr'],
+			OLSKRouteLanguages: ['en', 'fr', 'es'],
 			OLSKRouteIsHidden: process.env.NODE_ENV === 'production',
 		}];
 };
