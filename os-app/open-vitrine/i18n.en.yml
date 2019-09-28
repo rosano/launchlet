@@ -1,6 +1,8 @@
 LCHVitrineTitle: Launchlet
 LCHVitrineDescription: Generalized interface for keyboard-based interaction
-LCHVitrineDemoButtonText: Demo
+LCHVitrineDemoButtonCommitText: Demo Commit mode
+LCHVitrineDemoButtonPreviewText: Demo Preview mode
+LCHVitrineDemoButtonPipeText: Demo Pipe mode
 LCHVitrineDemoRecipeNames:
   LCHVitrinePageColoursRandomize: Randomize page colours
   LCHVitrinePageColoursRestore: Restore page colours

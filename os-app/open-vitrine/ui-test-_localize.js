@@ -16,29 +16,37 @@ const uLocalized = function (inputData) {
 describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 
 	before(function() {
-		return browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }`);
+		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			OLSKRoutingLanguage: languageCode,
+		}));
 	});
 
 	it('localizes body', function() {
-		browser.assert.text('#launchlet', 'Launchlet')
+		browser.assert.text('#launchlet', uLocalized('LCHVitrineTitle'))
+	});
+
+	it('localizes description', function() {
+		browser.assert.attribute('meta[name=description]', 'content', uLocalized('LCHVitrineDescription'))
 	});
 
 	it('localizes LCHVitrineDemoButtonCommit', function() {
-		browser.assert.text(LCHVitrineDemoButtonCommit, uLocalized('LCHVitrineDemoButtonText'))
+		browser.assert.text(LCHVitrineDemoButtonCommit, uLocalized('LCHVitrineDemoButtonCommitText'))
 	});
 
 	it('localizes LCHVitrineDemoButtonPreview', function() {
-		browser.assert.text(LCHVitrineDemoButtonPreview, uLocalized('LCHVitrineDemoButtonText'))
+		browser.assert.text(LCHVitrineDemoButtonPreview, uLocalized('LCHVitrineDemoButtonPreviewText'))
 	});
 
 	it('localizes LCHVitrineDemoButtonPipe', function() {
-		browser.assert.text(LCHVitrineDemoButtonPipe, uLocalized('LCHVitrineDemoButtonText'))
+		browser.assert.text(LCHVitrineDemoButtonPipe, uLocalized('LCHVitrineDemoButtonPipeText'))
 	});
 
 	context('DemoCommit', function () {
 
 		beforeEach(async function () {
-			await browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }`);
+			await browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+				OLSKRoutingLanguage: languageCode,
+			}));
 			
 			browser.click(LCHVitrineDemoButtonCommit);
 			await browser.wait({element: '#LCHLauncherFilterInput'});
@@ -80,7 +88,9 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 	context('DemoPipe', function () {
 
 		beforeEach(async function () {
-			await browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }`);
+			await browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+				OLSKRoutingLanguage: languageCode,
+			}));
 			
 			browser.click(LCHVitrineDemoButtonPipe);
 			await browser.wait({element: '.LCHLauncherSubjectPromptPlaceholder'});
