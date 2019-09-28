@@ -29,10 +29,14 @@ code {
 	color: hsl(0, 0%, 20%);
 }
 
+ul {
+	padding-left: 30px;
+}
+
 li {
 	margin: 10px 0;
 
-	list-style: none;
+	/*list-style: square;*/
 }
 
 button {
