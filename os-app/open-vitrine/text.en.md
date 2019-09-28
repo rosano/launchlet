@@ -22,7 +22,7 @@ LCHVitrineDemoButtonCommitToken
 
 ## Preview mode
 
-Presents a list of options and runs on select, Try jumping through the headings in this document:
+Presents a list of options and runs on select. Try jumping through the headings in this document:
 
 LCHVitrineDemoButtonPreviewToken
 
