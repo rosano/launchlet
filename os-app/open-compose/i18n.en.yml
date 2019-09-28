@@ -1,10 +1,7 @@
 LCHComposeTitle: Launchlet Composer
 LCHComposeFilterInputPlaceholderText: Filter
-LCHComposeToolbarIdentifierVisibilityButtonText: Show Identifiers
 LCHComposeToolbarCreateButtonText: Create
 LCHComposeDetailPlaceholderText: No Item Selected
-LCHComposeListItemToolbarCollapseButtonText: Collapse
-LCHComposeListItemToolbarRevealButtonText: Reveal
 LCHComposeListItemToolbarCloneButtonText: Clone
 LCHComposeListItemToolbarDeleteButtonText: Delete
 LCHComposeListItemDeletePromptText: Are you sure?
