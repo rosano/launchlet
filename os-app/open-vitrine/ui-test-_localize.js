@@ -2,11 +2,6 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().LCHVitrineRoute;
 
-const uFilter = async function (inputData) {
-	browser.fill('#LCHLauncherFilterInput', inputData)
-	await browser.wait({ element: '.LCHLauncherResultListItem' })
-};
-
 kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 const uLocalized = function (inputData) {
@@ -47,91 +42,119 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 
 	context('DemoCommit', function () {
 
-		beforeEach(async function () {
-			await browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
-				OLSKRoutingLanguage: languageCode,
-			}));
+		before(function () {
+			return browser.click(LCHVitrineDemoButtonCommit);
+		});
+
+		context('LCHVitrinePageColoursRandomize', function () {
 			
-			browser.click(LCHVitrineDemoButtonCommit);
-			await browser.wait({element: '#LCHLauncherFilterInput'});
+			before(function () {
+				return browser.fill('#LCHLauncherFilterInput', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRandomize)
+			});
+
+			it('localizes LCHLauncherResultListItem', function() {
+				browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRandomize);
+			});
+		
 		});
 
-		it('localizes LCHVitrinePageColoursRandomize', async function() {
-			await uFilter(uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRandomize);
-
-			browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRandomize);
-		});
-
-		it('localizes LCHVitrinePageColoursRestore', async function() {
-			await uFilter(uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRandomize);
+		context('LCHVitrinePageColoursRestore', function () {
 			
-			browser.click('.LCHLauncherResultListItem');
-			await browser.wait({element: 'style.LCHVitrinePageColoursRandomize'});
+			before(function () {
+				browser.fill('#LCHLauncherFilterInput', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRandomize)
+			});
 
-			browser.click(LCHVitrineDemoButtonCommit);
-			await browser.wait({element: '#LCHLauncherFilterInput'});
-			await uFilter(uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRestore);
+			before(function () {
+				browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
 
-			browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRestore);
+				return browser.click(LCHVitrineDemoButtonCommit);
+			});
+
+			before(function () {
+				return browser.fill('#LCHLauncherFilterInput', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRestore)
+			});
+
+			it('localizes LCHLauncherResultListItem', function() {
+				browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRestore);
+			});
+		
 		});
 
-		it('localizes LCHVitrineCopyPageInfo', async function() {
-			await uFilter(uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineCopyPageInfo);
+		context('LCHVitrineCopyPageInfo', function () {
+			
+			before(function () {
+				browser.fill('#LCHLauncherFilterInput', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineCopyPageInfo)
+			});
 
-			browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineCopyPageInfo);
+			it('localizes LCHLauncherResultListItem', function() {
+				browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineCopyPageInfo);
+			});
+		
 		});
 
-		it('localizes LCHVitrineSendEmail', async function() {
-			await uFilter(uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineSendEmail);
+		context('LCHVitrineSendEmail', function () {
+			
+			before(function () {
+				browser.fill('#LCHLauncherFilterInput', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineSendEmail)
+			});
 
-			browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineSendEmail);
+			it('localizes LCHLauncherResultListItem', function() {
+				browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineSendEmail);
+			});
+		
 		});
 		
 	});
 
 	context('DemoPipe', function () {
 
-		beforeEach(async function () {
-			await browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
-				OLSKRoutingLanguage: languageCode,
-			}));
-			
-			browser.click(LCHVitrineDemoButtonPipe);
-			await browser.wait({element: '.LCHLauncherSubjectPromptPlaceholder'});
+		before(function () {
+			return browser.click(LCHVitrineDemoButtonPipe);
 		});
 
-		it('localizes LCHVitrinePageLinksHighlightAdd', async function() {
-			browser.OLSKFireKeyboardEvent(browser.window, 'h');
-			browser.OLSKFireKeyboardEvent(browser.window, 'p');
-			await browser.wait({element: '.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem'});
+		context('LCHVitrinePageLinksHighlightAdd', function () {
 			
-			browser.assert.text('.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem .LCHLauncherPipeItemTitle', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageLinksHighlightAdd);
+			before(function () {
+				return browser.OLSKFireKeyboardEvent(browser.window, uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageLinksHighlightAdd);
+			});
+
+			it('localizes LCHLauncherPipeItemTitle', function() {
+				browser.assert.text('.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem .LCHLauncherPipeItemTitle', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageLinksHighlightAdd);
+			});
+		
 		});
 
-		it('localizes LCHVitrinePageLinksHighlightRemove', async function() {
-			browser.OLSKFireKeyboardEvent(browser.window, 'h');
-			browser.OLSKFireKeyboardEvent(browser.window, 'p');
-			await browser.wait({element: '.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem'});
+		context('LCHVitrinePageLinksHighlightRemove', function () {
 			
-			browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
-			await browser.wait({element: 'style.LCHVitrinePageLinksHighlightAdd'});
+			before(function () {
+				browser.OLSKFireKeyboardEvent(browser.window, uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageLinksHighlightAdd);
+				browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
+			});
 
-			browser.click(LCHVitrineDemoButtonPipe);
-			await browser.wait({element: '.LCHLauncherSubjectPromptPlaceholder'});
+			before(function () {
+				return browser.click(LCHVitrineDemoButtonPipe);
+			});
 
-			browser.OLSKFireKeyboardEvent(browser.window, 'r');
-			browser.OLSKFireKeyboardEvent(browser.window, 'h');
-			await browser.wait({element: '.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem'});
-			
-			browser.assert.text('.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem .LCHLauncherPipeItemTitle', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageLinksHighlightRemove);
+			before(function () {
+				return browser.OLSKFireKeyboardEvent(browser.window, uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageLinksHighlightRemove);
+			});
+
+			it('localizes LCHLauncherPipeItemTitle', function() {
+				browser.assert.text('.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem .LCHLauncherPipeItemTitle', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageLinksHighlightRemove);
+			});
+		
 		});
 
-		it('localizes LCHVitrineMinimalistDateString', async function() {
-			browser.OLSKFireKeyboardEvent(browser.window, 'm');
-			browser.OLSKFireKeyboardEvent(browser.window, 'd');
-			await browser.wait({element: '.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem'});
+		context('LCHVitrineMinimalistDateString', function () {
 			
-			browser.assert.text('.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem .LCHLauncherPipeItemTitle', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineMinimalistDateString);
+			before(function () {
+				return browser.OLSKFireKeyboardEvent(browser.window, uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineMinimalistDateString);
+			});
+
+			it('localizes LCHLauncherPipeItemTitle', function() {
+				browser.assert.text('.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem .LCHLauncherPipeItemTitle', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineMinimalistDateString);
+			});
+		
 		});
 		
 	});
