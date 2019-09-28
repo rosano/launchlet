@@ -20,7 +20,7 @@ describe(`LCHSearch_Localize-${ languageCode }`, function () {
 	context('LCHSearchWith', function () {
 
 		before(function () {
-			return browser.OLSKFireKeyboardEvent(browser.window, 'w');
+			return browser.OLSKFireKeyboardEvent(browser.window, 'Wikipedia');
 		});
 
 		it('localizes LCHLauncherPipeItemTitle', function() {
@@ -40,7 +40,7 @@ describe(`LCHSearch_Localize-${ languageCode }`, function () {
 
 			browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 
-			return browser.OLSKFireKeyboardEvent(browser.window, 'w');
+			return browser.OLSKFireKeyboardEvent(browser.window, 'LCHSearchWith');
 		});
 
 		it('localizes LCHLauncherPipeItemTitle', function() {

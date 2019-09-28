@@ -1,0 +1,16 @@
+LCHStandardRecipeNames: 
+  LCHActiveDocumentFocusElements: Éléments au points du document active
+  LCHCopyToClipboard: Copier au presse-papiers
+  LCHLargeText: Text élargi
+  LCHDOMElementFocus: Mettre au point
+  LCHRunCommand: Rouler commande
+  LCHSearchWith: Chercher avec
+  LCHSearchFor: Chercher pour
+  LCHSubjectContainerShowContents: Montrer contenu
+  LCHURLOpen: Ouvrir URL
+  SubjectContainer: Contenant des sujets
+  String: String
+  Date: Date
+  URL: URL
+  ServiceSearchURLTemplate: Modèle URL de service de recherche
+  DOMElement: Élément DOM 

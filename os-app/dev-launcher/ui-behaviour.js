@@ -40,6 +40,7 @@ const mod = {
 				},
 				optionsObject: {
 					runMode: Launchlet[params.runMode || 'kRunModeCommit'],
+					languageCode: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 					LCHOptionIncludePageRecipes: !!params.LCHOptionIncludePageRecipes || false,
 				},
 			},

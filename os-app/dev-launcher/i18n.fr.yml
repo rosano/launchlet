@@ -3,4 +3,5 @@ LCHLauncherInputPlaceholderPreview: Taper pour filtrer
 LCHLauncherSubjectPromptPlaceholderText: Taper pour chercher
 LCHLauncherSubjectPromptHeadingText: Sujet
 LCHLauncherActionPromptHeadingText: Action
-LCHLauncherTestConvertTypeServiceSearchTextFormat: 'Chercher: %@'
+LCHLauncherObjectPromptHeadingText: Objet
+# LCHLauncherTestConvertTypeServiceSearchTextFormat: 'Chercher: %@'
