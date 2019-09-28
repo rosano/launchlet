@@ -29,6 +29,10 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 		browser.assert.attribute('meta[name=description]', 'content', uLocalized('LCHVitrineDescription'))
 	});
 
+	it('localizes LCHVitrineContent', function() {
+		deepEqual(browser.query(LCHVitrineContent).textContent.trim().slice(0, 20), require('fs').readFileSync(require('path').join(__dirname, `text.${ languageCode }.md`), 'utf-8').replace(/[#_]/g, '').trim().slice(0, 20))
+	});
+
 	it('localizes LCHVitrineDemoButtonCommit', function() {
 		browser.assert.text(LCHVitrineDemoButtonCommit, uLocalized('LCHVitrineDemoButtonCommitText'))
 	});
