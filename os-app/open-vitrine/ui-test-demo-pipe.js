@@ -1,6 +1,6 @@
 import { deepEqual } from 'assert';
 
-const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().LCHVitrineRoute;
+const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 const uLocalized = function (inputData) {
 	return OLSKTestingLocalized(inputData, kDefaultRoute.OLSKRouteLanguages[0]);
