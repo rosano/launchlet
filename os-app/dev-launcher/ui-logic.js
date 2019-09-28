@@ -8,7 +8,7 @@ export const LCHLauncherOptions = function (inputData) {
 	const outputData = {
 		LRTOptionMode: LCHLauncherModes().shift(),
 
-		languageCode: 'en',
+		LRTOptionLanguage: 'en',
 	};
 
 	if (inputData.LRTOptionMode) {
@@ -17,8 +17,8 @@ export const LCHLauncherOptions = function (inputData) {
 		outputData.LRTOptionMode = LCHLauncherModes()[LCHLauncherModes().indexOf(inputData.LRTOptionMode)] || outputData.LRTOptionMode;
 	}
 
-	if (inputData.languageCode) {
-		outputData.languageCode = inputData.languageCode;
+	if (inputData.LRTOptionLanguage) {
+		outputData.LRTOptionLanguage = inputData.LRTOptionLanguage;
 	}
 
 	return outputData;

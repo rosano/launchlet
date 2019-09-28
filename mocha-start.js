@@ -38,8 +38,8 @@ let languageDictionary = {};
 		return (coll[languageID] = Object.assign(coll[languageID] || {}, require('js-yaml').safeLoad(require('fs').readFileSync(item, 'utf8')))) && coll;
 	}, {});
 
-	global.OLSKTestingLocalized = function(translationConstant, languageCode) {
-		let outputData = OLSKInternational.OLSKInternationalLocalizedString(translationConstant, languageDictionary[languageCode]);
+	global.OLSKTestingLocalized = function(param1, param2) {
+		let outputData = OLSKInternational.OLSKInternationalLocalizedString(param1, languageDictionary[param2]);
 
 		return typeof outputData === 'string' ? outputData.replace('TRANSLATION_MISSING', '') : outputData;
 	};

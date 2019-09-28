@@ -10,7 +10,7 @@ let LRTOptions = LCHLauncherOptions(optionsObject);
 
 import OLSKInternational from 'OLSKInternational';
 export const OLSKLocalized = function(translationConstant) {
-	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[LRTOptions.languageCode]);
+	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[LRTOptions.LRTOptionLanguage]);
 };
 
 import {

@@ -50,16 +50,16 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 		deepEqual(typeof mainModule.LCHLauncherOptions({}), 'object');
 	});
 
-	context('languageCode', function () {
+	context('LRTOptionLanguage', function () {
 
 		it('sets default if no input', function() {
-			deepEqual(mainModule.LCHLauncherOptions({}).languageCode, 'en');
+			deepEqual(mainModule.LCHLauncherOptions({}).LRTOptionLanguage, 'en');
 		});
 		
 		it('uses input', function() {
 			deepEqual(mainModule.LCHLauncherOptions({
-				languageCode: 'alfa'
-			}).languageCode, 'alfa');
+				LRTOptionLanguage: 'alfa'
+			}).LRTOptionLanguage, 'alfa');
 		});
 
 	});

@@ -34,7 +34,7 @@ export const mod = {
 	CommandDemoCommit() {
 		Launchlet.instanceCreate(_LCHVitrineRecipes, {
 			LRTOptionMode: Launchlet.LPKModeCommit,
-			languageCode: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
+			LRTOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 	},
 
@@ -48,14 +48,14 @@ export const mod = {
 			};
 		}), {
 			LRTOptionMode: Launchlet.LPKModePreview,
-			languageCode: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
+			LRTOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 	},
 
 	CommandDemoPipe() {
 		Launchlet.instanceCreate(_LCHVitrineRecipes, {
 			LRTOptionMode: Launchlet.LPKModePipe,
-			languageCode: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
+			LRTOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 	},
 

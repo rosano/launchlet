@@ -47,7 +47,7 @@ export const _LCHComposeBuildBoomarkletTemplate = function () {
 						return window.LCHBookmarklet.instanceDestroy();
 					},
 					optionsObject: {
-						languageCode: 'LCHComposeBuildToken_AppLanguageCode',
+						LRTOptionLanguage: 'LCHComposeBuildToken_AppLanguageCode',
 						LRTOptionMode: 'LCHComposeBuildToken_LCHLauncherMode',
 					},
 				}
