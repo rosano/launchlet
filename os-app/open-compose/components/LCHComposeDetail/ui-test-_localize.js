@@ -1,6 +1,6 @@
 import { deepEqual } from 'assert';
 
-const kDefaultRoute.OLSKControllerRoutes = require('../../controller.js').OLSKControllerRoutes().LCHComposeRoute;
+const kDefaultRoute = require('../../controller.js').OLSKControllerRoutes().LCHComposeRoute;
 
 kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
