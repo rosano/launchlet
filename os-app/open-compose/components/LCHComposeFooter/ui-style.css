@@ -24,13 +24,13 @@ h1 {
 	font-size: 20px;
 }
 
-.Container :global(.OLSKToolbarElementGroup *:not(:first-child)) {
+.Container :global(.OLSKToolbarElementGroup > *:not(:first-child)) {
 	margin-left: 10px;
 }
 
 :global(#RCSLanguageSwitcher span) {
 	/* browser quirks */
-	/*padding-left: 4px;*/
+	padding-left: 4px;
 }
 
 .LCHComposeFooterStorageButton {
