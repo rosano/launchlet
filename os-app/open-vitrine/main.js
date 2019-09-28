@@ -33,7 +33,7 @@ export const mod = {
 
 	CommandDemoCommit() {
 		Launchlet.instanceCreate(_LCHVitrineRecipes, {
-			LRTOptionMode: Launchlet.LPKModeCommit,
+			LRTOptionMode: Launchlet.LRTModeCommit,
 			LRTOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 	},
@@ -47,14 +47,14 @@ export const mod = {
 				},
 			};
 		}), {
-			LRTOptionMode: Launchlet.LPKModePreview,
+			LRTOptionMode: Launchlet.LRTModePreview,
 			LRTOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 	},
 
 	CommandDemoPipe() {
 		Launchlet.instanceCreate(_LCHVitrineRecipes, {
-			LRTOptionMode: Launchlet.LPKModePipe,
+			LRTOptionMode: Launchlet.LRTModePipe,
 			LRTOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 	},

@@ -5,9 +5,9 @@ export const AppClass = function (inputData) {
 	_AppClass = inputData;
 };
 
-export const LPKModeCommit = LCHLauncherModeCommit();
-export const LPKModePreview = LCHLauncherModePreview();
-export const LPKModePipe = LCHLauncherModePipe();
+export const LRTModeCommit = LCHLauncherModeCommit();
+export const LRTModePreview = LCHLauncherModePreview();
+export const LRTModePipe = LCHLauncherModePipe();
 
 let appContainer, appInstance;
 

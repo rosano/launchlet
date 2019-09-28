@@ -14,7 +14,7 @@ describe(`LCHRunCommand_Localize-${ languageCode }`, function () {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			OLSKRoutingLanguage: languageCode,
 			StubRecipes: uStubStringify(uStubTwoItems()),
-			LRTOptionMode: 'LPKModePipe',
+			LRTOptionMode: 'LRTModePipe',
 		}));
 	});
 

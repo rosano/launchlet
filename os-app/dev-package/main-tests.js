@@ -11,26 +11,26 @@ const kTesting = {
 	},
 };
 
-describe('LPKModeCommit', function testLPKModeCommit() {
+describe('LRTModeCommit', function testLRTModeCommit() {
 
 	it('sets value', function() {
-		deepEqual(mainModule.LPKModeCommit, LCHLauncherModeCommit());
+		deepEqual(mainModule.LRTModeCommit, LCHLauncherModeCommit());
 	});
 
 });
 
-describe('LPKModePreview', function testLPKModePreview() {
+describe('LRTModePreview', function testLRTModePreview() {
 
 	it('sets value', function() {
-		deepEqual(mainModule.LPKModePreview, LCHLauncherModePreview());
+		deepEqual(mainModule.LRTModePreview, LCHLauncherModePreview());
 	});
 
 });
 
-describe('LPKModePipe', function testLPKModePipe() {
+describe('LRTModePipe', function testLRTModePipe() {
 
 	it('sets value', function() {
-		deepEqual(mainModule.LPKModePipe, LCHLauncherModePipe());
+		deepEqual(mainModule.LRTModePipe, LCHLauncherModePipe());
 	});
 
 });
@@ -81,7 +81,7 @@ describe('instanceCreate', function testinstanceCreate() {
 
 			it('returns undefined', function() {
 				deepEqual(mainModule.instanceCreate([], {
-					LRTOptionMode: mainModule.LPKModePreview,
+					LRTOptionMode: mainModule.LRTModePreview,
 				}), undefined);
 			});
 

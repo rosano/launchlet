@@ -7,7 +7,7 @@ describe('LCHLauncherMisc_Commit', function () {
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			StubRecipes: uStubStringify(uStubTwoItems()),
-			LRTOptionMode: 'LPKModeCommit',
+			LRTOptionMode: 'LRTModeCommit',
 		}));
 	});
 

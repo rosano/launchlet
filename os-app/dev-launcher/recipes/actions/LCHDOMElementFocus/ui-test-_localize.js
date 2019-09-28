@@ -13,7 +13,7 @@ describe(`LCHDOMElementFocus_Localize-${ languageCode }`, function () {
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			OLSKRoutingLanguage: languageCode,
-			LRTOptionMode: 'LPKModePipe',
+			LRTOptionMode: 'LRTModePipe',
 		}));
 	});
 
