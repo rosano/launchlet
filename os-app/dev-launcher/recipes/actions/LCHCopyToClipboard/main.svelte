@@ -1,8 +1,9 @@
 <script>
-import { OLSKLocalized } from '../../../_shared.js';
-import { _LCHIsTestingBehaviour } from '../../../../_shared/common/global.js';
-export let inputData = '';
-export let completionHandler = null;
+export let inputData;
+export let completionHandler;
+export let OLSKLocalized;
+
+import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
 
 import { onMount } from 'svelte';
 import Clipboard from 'clipboard';
@@ -41,7 +42,7 @@ onMount(function () {
 
 	clipboardButton.focus();
 	
-	if (_LCHIsTestingBehaviour()) {
+	if (OLSK_TESTING_BEHAVIOUR()) {
 		return;
 	}
 

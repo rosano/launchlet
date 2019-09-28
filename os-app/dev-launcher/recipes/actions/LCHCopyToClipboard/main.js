@@ -37,6 +37,7 @@ export const LCHCopyToClipboardCallback = function(inputData) {
 			inputData: inputData,
 		},
 		LCHComponentDescriptorCompletionHandler: 'completionHandler',
+		LCHComponentDescriptorOLSKLocalized: true,
 	};
 };
 

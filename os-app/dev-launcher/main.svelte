@@ -143,6 +143,7 @@ async function apiStart(inputData) {
 						secondaryComponent.set(null);
 						mod.commandExit();
 					},
+					OLSKLocalized: inputData.LCHComponentDescriptorOLSKLocalized ? OLSKLocalized : undefined,
 				}),
 			});
 		});
