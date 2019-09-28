@@ -45,7 +45,13 @@ button {
 }
 
 .ROCORootLink {
-	width: 200px;
+	width: 70px;
 	display: block;
-	margin: auto;
+
+	margin: 30px auto;
+}
+
+.ROCORootLink img {
+	width: inherit;
+	background: #eaeaea;
 }
