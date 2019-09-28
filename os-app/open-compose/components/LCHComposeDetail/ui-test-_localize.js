@@ -1,8 +1,8 @@
 import { deepEqual } from 'assert';
 
-const kDefaultRoutePath = require('../../controller.js').OLSKControllerRoutes().LCHComposeRoute.OLSKRoutePath;
+const kDefaultRoute.OLSKControllerRoutes = require('../../controller.js').OLSKControllerRoutes().LCHComposeRoute;
 
-['en'].forEach(function (languageCode) {
+kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 const uLocalized = function (inputData) {
 	return OLSKTestingLocalized(inputData, languageCode);
@@ -11,7 +11,7 @@ const uLocalized = function (inputData) {
 describe(`LCHComposeDetail_Localize-${ languageCode }`, function () {
 
 	before(function() {
-		return browser.visit(`${ languageCode }${ kDefaultRoutePath }`);
+		return browser.visit(`${ languageCode }${ kDefaultRoute.OLSKControllerRoutes }`);
 	});
 
 	it('localizes LCHComposeFormCanonicalExampleBodyField', async function() {

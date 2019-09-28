@@ -2,7 +2,7 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-['en'].forEach(function (languageCode) {
+kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 const uLocalized = function (inputData) {
 	return OLSKTestingLocalized(inputData, languageCode);

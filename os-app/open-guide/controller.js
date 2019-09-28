@@ -59,5 +59,6 @@ exports.OLSKControllerRoutes = function() {
 		OLSKRouteSignature: 'LCHGuideRoute',
 		OLSKRouteMethod: 'get',
 		OLSKRouteFunction,
+		OLSKRouteLanguages: ['en'],
 	}];
 };
