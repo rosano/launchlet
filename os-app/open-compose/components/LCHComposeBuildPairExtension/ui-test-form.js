@@ -51,8 +51,10 @@ describe('LCHComposeBuildPairExtensionForm', function () {
 
 	context('PreloadPublicKey', function testPreloadPublicKey () {
 		
-		before(function () {
-			return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?BuildPairExtensionPublicKey=alfa`);
+		before(function() {
+			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+				BuildPairExtensionPublicKey: 'alfa',
+			}));
 		});
 		
 		it('hides LCHBuildPairExtensionPublicKeyField', function() {

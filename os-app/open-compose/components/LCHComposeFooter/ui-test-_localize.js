@@ -11,7 +11,9 @@ const uLocalized = function (inputData) {
 describe(`LCHComposeFooter_Localize-${ languageCode }`, function () {
 
 	before(function() {
-		return browser.visit(`${ languageCode }${ kDefaultRoute.OLSKRoutePath }`);
+		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			OLSKRoutingLanguage: languageCode,
+		}));
 	});
 	
 	it('localizes LCHComposeFooterStorageButton', function() {

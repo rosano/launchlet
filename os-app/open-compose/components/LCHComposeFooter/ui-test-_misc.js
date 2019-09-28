@@ -62,7 +62,9 @@ describe('LCHComposeFooterStorageButton', function testLCHComposeFooterStorageBu
 describe('LCHComposeFooterStorageStatus', function testLCHComposeFooterStorageStatus () {
 
 	before(function() {
-		return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?LCHComposeFooterStorageStatus=alfa`);
+		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			LCHComposeFooterStorageStatus: 'alfa',
+		}));
 	});
 
 	it('shows LCHComposeFooterStorageStatus', function () {

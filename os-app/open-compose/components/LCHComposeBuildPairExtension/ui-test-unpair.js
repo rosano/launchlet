@@ -5,7 +5,9 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 describe('LCHComposeBuildPairExtensionDeleteKey', function () {
 
 	before(function() {
-		return browser.visit(`${ kDefaultRoute.OLSKRoutePath }?BuildPairExtensionPublicKey=alfa`);
+		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			BuildPairExtensionPublicKey: 'alfa',
+		}));
 	});
 
 	context('DeleteKey', function testDeleteKey () {

@@ -11,7 +11,9 @@ const uLocalized = function (inputData) {
 describe(`LCHComposeDetail_Localize-${ languageCode }`, function () {
 
 	before(function() {
-		return browser.visit(`${ languageCode }${ kDefaultRoute.OLSKControllerRoutes }`);
+		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			OLSKRoutingLanguage: languageCode,
+		}));
 	});
 
 	it('localizes LCHComposeFormCanonicalExampleBodyField', async function() {
