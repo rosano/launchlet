@@ -9,7 +9,7 @@ You can run Launchlet as a [bookmarklet], [browser extension], or as a [module] 
 
 The code is open-source and available on [Github].
 
-The project is freely accessible but if you are in a position to give, please [donate] to support future development.
+The project is freely accessible but if you are in a position to give, please [donate](LCH_SHARED_DONATE_URL) to support future development.
 
 ## Commit mode
 

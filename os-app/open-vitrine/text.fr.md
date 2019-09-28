@@ -9,7 +9,7 @@ Vous pouvez rouler Launchlet comme [bookmarklet], [extension navigateur], ou com
 
 Le code est open source est disponible sur [Github].
 
-Le projet est librement et gratuitement accessible, mais si vous êtes en mesure de donner, s'il vous plaît [faites un don] pour soutenir son développement à l'avenir.
+Le projet est librement et gratuitement accessible, mais si vous êtes en mesure de donner, s'il vous plaît [faites un don](LCH_SHARED_DONATE_URL) pour soutenir son développement à l'avenir.
 
 ## Mode de ‹Commit›
 

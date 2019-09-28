@@ -9,7 +9,7 @@ Puedes ejecutar Launchlet como [bookmarklet], [extensión del navegador], o como
 
 El código fuente es código abierto y disponible en [Github].
 
-El proyecto es libremente accesible y gratis, pero si estás en posición a dar, por favor [dona] para sostener el desarrollo en futuro.
+El proyecto es libremente accesible y gratis, pero si estás en posición a dar, por favor [dona](LCH_SHARED_DONATE_URL) para sostener el desarrollo en futuro.
 
 ## Modo de 'Commit'
 
