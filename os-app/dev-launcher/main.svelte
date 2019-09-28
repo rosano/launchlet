@@ -1,6 +1,6 @@
 <script>
 export let LCHLauncherRecipes = [];
-export let completionHandler;
+export let LRTCompletionHandler;
 export let optionsObject = {};
 
 import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
@@ -814,11 +814,11 @@ const mod = {
 		mod.commandExit();
 	},
 	commandExit () {
-		if (typeof completionHandler !== 'function') {
+		if (typeof LRTCompletionHandler !== 'function') {
 			return;
 		}
 
-		return completionHandler();
+		return LRTCompletionHandler();
 	},
 };
 

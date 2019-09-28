@@ -87,19 +87,19 @@ describe('instanceCreate', function testinstanceCreate() {
 
 		});		
 
-		context('completionHandler', function () {
+		context('LRTCompletionHandler', function () {
 
 			it('throws error if not function', function() {
 				throws(function() {
 					mainModule.instanceCreate([], {
-						completionHandler: 'alfa',
+						LRTCompletionHandler: 'alfa',
 					});
 				}, /LCHErrorInputNotFunction/);
 			});
 
 			it('returns undefined', function() {
 				deepEqual(mainModule.instanceCreate([], {
-					completionHandler () {},
+					LRTCompletionHandler () {},
 				}), undefined);
 			});
 

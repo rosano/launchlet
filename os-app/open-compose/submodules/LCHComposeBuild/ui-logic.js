@@ -43,7 +43,7 @@ export const _LCHComposeBuildBoomarkletTemplate = function () {
 						},
 						LCHRecipeOutputType: 'URL',
 					}),
-					completionHandler () {
+					LRTCompletionHandler () {
 						return window.LCHBookmarklet.instanceDestroy();
 					},
 					optionsObject: {

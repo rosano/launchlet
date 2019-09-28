@@ -16,8 +16,8 @@ const LCHPackageValidateOptionsObject = function (inputData) {
 		throw new Error('LCHErrorInputNotObject');
 	}
 
-	if (inputData.completionHandler) {
-		if (typeof inputData.completionHandler !== 'function') {
+	if (inputData.LRTCompletionHandler) {
+		if (typeof inputData.LRTCompletionHandler !== 'function') {
 			throw new Error('LCHErrorInputNotFunction');
 		}
 	}
@@ -58,14 +58,14 @@ export const instanceCreate = function (param1 = [], param2 = {}) {
 		props: {
 			LCHLauncherRecipes: Array.isArray(param1) ? param1 : [],
 			optionsObject: param2,
-			completionHandler () {
+			LRTCompletionHandler () {
 				instanceDestroy();
 
-				if (!param2.completionHandler) {
+				if (!param2.LRTCompletionHandler) {
 					return;
 				}
 
-				param2.completionHandler();
+				param2.LRTCompletionHandler();
 			},
 		},
 	});
