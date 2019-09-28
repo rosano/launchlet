@@ -18,6 +18,10 @@ describe(`LCHCompose_Localize-${ languageCode}`, function () {
 		}));
 	});
 
+	it('localizes title', function() {
+		browser.assert.text('title', uLocalized('LCHComposeTitle'))
+	});
+
 	it('localizes interface', function() {
 		browser.assert.attribute(LCHComposeFilterInput, 'placeholder', uLocalized('LCHComposeFilterInputPlaceholderText'));
 		browser.assert.attribute(LCHComposeCreateButton, 'title', uLocalized('LCHComposeToolbarCreateButtonText'));
