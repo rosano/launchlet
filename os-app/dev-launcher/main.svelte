@@ -1,28 +1,30 @@
 <script>
-import { OLSKLocalized } from './_shared.js';
-
-import OLSKString from 'OLSKString';
-export const OLSKFormatted = OLSKString.OLSKStringWithFormat;
-
-import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
+export let LCHLauncherRecipes = [];
+export let completionHandler;
+export let optionsObject = {};
 
 import LCHLauncherPrompt from './components/LCHLauncherPrompt/main.svelte';
 import LCHLauncherPipeItem from './components/LCHLauncherPipeItem/main.svelte';
 
-import {
-	LCHOptionsObject,
-	secondaryComponent,
-} from './_shared.js';
+import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
+
+let _LCHOptionsObject = {};
+import { LCHLauncherOptions } from './ui-logic.js';
+const LCHOptionsObject = function(inputData) {
+	return !inputData ? _LCHOptionsObject : (_LCHOptionsObject = LCHLauncherOptions(inputData));
+};
+
+import OLSKInternational from 'OLSKInternational';
+export const OLSKLocalized = function(translationConstant) {
+	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[LCHOptionsObject().languageCode]);
+};
+
 import {
 	LCHLauncherModeCommit,
 	LCHLauncherModePreview,
 	LCHLauncherModePipe,
 	// LCHLauncherFilterForText,
 } from './ui-logic.js';
-
-export let LCHLauncherRecipes = [];
-export let completionHandler;
-export let optionsObject = {};
 
 (function StartSetup() {
 	LCHOptionsObject(optionsObject);
@@ -121,6 +123,8 @@ import {
 	LCHComponentDescriptorsModelErrorsFor,
 } from './api.js';
 import * as apiComponents from './recipes/_components.js';
+import { writable } from 'svelte/store';
+const secondaryComponent = writable(null);
 async function apiStart(inputData) {
 	return await (function (inputData) {
 		if (!inputData) {
