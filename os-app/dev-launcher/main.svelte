@@ -1,12 +1,12 @@
 <script>
 export let LCHLauncherRecipes = [];
 export let LRTCompletionHandler;
-export let optionsObject = {};
+export let LRTOptions = {};
 
 import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 
 import { LCHLauncherOptions } from './ui-logic.js';
-let LRTOptions = LCHLauncherOptions(optionsObject);
+LRTOptions = LCHLauncherOptions(LRTOptions);
 
 import OLSKInternational from 'OLSKInternational';
 export const OLSKLocalized = function(translationConstant) {
@@ -37,7 +37,7 @@ import { LCHLauncherPatternMatchesURL } from './ui-logic.js';
 
 import { LCHRecipesModelErrorsFor } from './api.js';
 (function StartPageRecipes() {
-	if (!optionsObject.LCHOptionIncludePageRecipes) {
+	if (!LRTOptions.LCHOptionIncludePageRecipes) {
 		return;
 	};
 	

@@ -38,7 +38,7 @@ const mod = {
 					app.$destroy();
 					app = null;
 				},
-				optionsObject: {
+				LRTOptions: {
 					LRTOptionMode: Launchlet[params.LRTOptionMode || 'LRTModeCommit'],
 					LRTOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 					LCHOptionIncludePageRecipes: !!params.LCHOptionIncludePageRecipes || false,

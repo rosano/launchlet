@@ -53,7 +53,7 @@ export const instanceCreate = function (param1 = [], param2 = {}) {
 		target: appContainer,
 		props: {
 			LCHLauncherRecipes: Array.isArray(param1) ? param1 : [],
-			optionsObject: param2,
+			LRTOptions: param2,
 			LRTCompletionHandler () {
 				instanceDestroy();
 
