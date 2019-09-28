@@ -1,5 +1,5 @@
 <script>
-export let LCHLauncherRecipes = [];
+export let LRTRecipes = [];
 export let LRTCompletionHandler;
 export let LRTOptions = {};
 
@@ -22,7 +22,7 @@ import {
 
 import { LCHLauncherPatternMatchesURL } from './ui-logic.js';
 (function StartDiscardDataObjects() {
-	LCHLauncherRecipes = LCHLauncherRecipes.filter(function (e) {
+	LRTRecipes = LRTRecipes.filter(function (e) {
 		if (LCHRecipesModelErrorsFor(e)) {
 			return false;
 		}
@@ -51,7 +51,7 @@ import { LCHRecipesModelErrorsFor } from './api.js';
 		return;
 	}
 
-	LCHLauncherRecipes.push(...pageRecipes.map(function (e) {
+	LRTRecipes.push(...pageRecipes.map(function (e) {
 		delete e.LCHRecipeURLFilter;
 		delete e.LCHRecipeIsAutomatic;
 
@@ -74,7 +74,7 @@ const allRecipes = LCHLauncherStandardRecipes().map(function (e) {
 	return Object.assign(e, {
 		LCHRecipeName: e.LCHRecipeName || OLSKLocalized('LCHStandardRecipeNames')[e.LCHRecipeSignature], // #purge
 	})
-}).concat(LCHLauncherRecipes);
+}).concat(LRTRecipes);
 
 const api = LCHAPIObjectFor(allRecipes);
 const apiTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes);

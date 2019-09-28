@@ -29,7 +29,7 @@ const mod = {
 		let app = new Main({
 			target: document.getElementById('LCHLauncherTarget'),
 			props: {
-				LCHLauncherRecipes: StubRecipesParse(params.StubRecipes) || [],
+				LRTRecipes: StubRecipesParse(params.StubRecipes) || [],
 				LRTCompletionHandler () {
 					let span = document.createElement('span');
 					span.classList.add('TestLauncherDidFinish');
