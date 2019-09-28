@@ -10,10 +10,20 @@ const uLocalized = function (inputData) {
 
 describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 
+	let links;
+
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			OLSKRoutingLanguage: languageCode,
 		}));
+	});
+
+	before(function () {
+		links = [...browser.queryAll('a')].reduce(function (coll, item) {
+			coll[item.textContent] = item.href.slice(0, item.href.slice(-1) === '/' ? -1 : undefined)
+
+			return coll;
+		}, {})
 	});
 
 	it('localizes title', function() {
@@ -26,6 +36,10 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 
 	it('localizes LCHVitrineContent', function() {
 		deepEqual(browser.query(LCHVitrineContent).textContent.trim().slice(0, 20), require('fs').readFileSync(require('path').join(__dirname, `text.${ languageCode }.md`), 'utf-8').replace(/[#_]/g, '').trim().slice(0, 20))
+	});
+
+	it('localizes LCH_VITRINE_QUICKSILVER_URL', function() {
+		deepEqual(links['Quicksilver'], process.env.LCH_VITRINE_QUICKSILVER_URL)
 	});
 
 	it('localizes LCHVitrineDemoButtonCommit', function() {
