@@ -56,7 +56,7 @@ const mod = {
 		<div>
 			<div class="LCHComposeFooterStorageStatus">{ LCHComposeFooterStorageStatus }</div>
 			<button class="LCHComposeFooterStorageButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" title={ OLSKLocalized('LCHComposeFooterStorageButtonText') } on:click={ mod.InterfaceStorageButtonDidClick } class:OSWIconVisible={ false }>
-				<img src="/open-compose/components/LCHComposeFooter/ui-images/LCHComposeFooterStorageButton.svg">
+				<img src="/open-compose/submodules/LCHComposeFooter/ui-images/LCHComposeFooterStorageButton.svg">
 			</button>
 		</div>
 	</OLSKToolbar>

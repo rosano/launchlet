@@ -3,9 +3,6 @@ export let LCHLauncherRecipes = [];
 export let completionHandler;
 export let optionsObject = {};
 
-import LCHLauncherPrompt from './components/LCHLauncherPrompt/main.svelte';
-import LCHLauncherPipeItem from './components/LCHLauncherPipeItem/main.svelte';
-
 import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 
 import { LCHLauncherOptions } from './ui-logic.js';
@@ -816,6 +813,9 @@ const mod = {
 		return completionHandler();
 	},
 };
+
+import LCHLauncherPrompt from './submodules/LCHLauncherPrompt/main.svelte';
+import LCHLauncherPipeItem from './submodules/LCHLauncherPipeItem/main.svelte';
 </script>
 <svelte:window on:keydown={ mod.interfaceDidKeydown } on:click={ mod.interfaceDidClickBody } on:touchstart={ mod.interfaceDidClickBody }/>
 

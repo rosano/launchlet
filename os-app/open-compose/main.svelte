@@ -1,9 +1,9 @@
 <script>
 import OLSKViewportContent from 'OLSKViewportContent';
-import LCHComposeFooter from './components/LCHComposeFooter/main.svelte';
-import LCHComposeMaster from './components/LCHComposeMaster/main.svelte';
-import LCHComposeDetail from './components/LCHComposeDetail/main.svelte';
-import LCHComposeBuild from './components/LCHComposeBuild/main.svelte';
+import LCHComposeFooter from './submodules/LCHComposeFooter/main.svelte';
+import LCHComposeMaster from './submodules/LCHComposeMaster/main.svelte';
+import LCHComposeDetail from './submodules/LCHComposeDetail/main.svelte';
+import LCHComposeBuild from './submodules/LCHComposeBuild/main.svelte';
 import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svelte';
 
 import { OLSKLocalized, _LCHIsTestingBehaviour } from '../_shared/common/global.js';
