@@ -1,0 +1,18 @@
+LCHComposeTitle: Launchlet Compositeur
+LCHComposeFilterInputPlaceholderText: Filtrer
+LCHComposeToolbarCreateButtonText: Créer
+LCHComposeDetailPlaceholderText: Aucune selection
+LCHComposeListItemToolbarCloneButtonText: Cloner
+LCHComposeListItemToolbarDeleteButtonText: Supprimer
+LCHComposeListItemDeletePromptText: Êtes-vous sûr?
+LCHComposeListItemNameFlaggedFormat: 'Signalé : %@'
+LCHComposeFormNameFieldPlaceholderText: Nom (e.g. Dire bonjour)
+LCHComposeFormInputTypesFieldPlaceholderText: Types de saisie (e.g. String, Bool)
+LCHComposeFormScriptFieldPlaceholderText: Corps de fonction (e.g. window.alert('Bonjour');)
+LCHComposeFormOutputTypeFieldPlaceholderText: Type de sortie (e.g. String)
+LCHComposeFormStyleFieldPlaceholderText: 'CSS (e.g. body { background: red; })'
+LCHComposeFormSignatureFieldPlaceholderText: Signature (e.g. XYZAccueillir)
+LCHComposeFormURLFilterFieldPlaceholderText: 'Filtre URL (e.g. example.com ou /https?://(.*\\.)?example\\.com/i)'
+LCHComposeFormIsAutomaticFieldLabelText: Rouler automatiquement
+LCHUpdateReloadText: Recharger
+LCHComposeFormFlagAlertText: Cette recette va être ignorée parce qu'elle contiene du code potentialement non-sécurisé.

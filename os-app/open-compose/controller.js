@@ -19,7 +19,7 @@ exports.OLSKControllerRoutes = function() {
 					LCHGoogleClientKey: Buffer.from(process.env.LCH_GOOGLE_CLIENT_KEY).toString('base64'),
 				});
 			},
-			OLSKRouteLanguages: ['en'],
+			OLSKRouteLanguages: ['en', 'fr'],
 			OLSKRouteMiddlewares: [
 				'LCHComposeRouteGuardMiddleware',
 			],
