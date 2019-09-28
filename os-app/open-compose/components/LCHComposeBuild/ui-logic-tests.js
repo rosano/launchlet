@@ -113,7 +113,7 @@ describe('_LCHClosureString', function test_LCHClosureString() {
 		}, /LCHErrorInputInvalid/);
 	});
 
-	it('throws error if LCHDocumentBody not string', function() {
+	it('throws error if LCHDocumentCallbackBody not string', function() {
 		throws(function() {
 			mainModule._LCHClosureString({});
 		}, /LCHErrorInputInvalid/);
@@ -121,16 +121,16 @@ describe('_LCHClosureString', function test_LCHClosureString() {
 
 	it('returns string', function() {
 		deepEqual(mainModule._LCHClosureString({
-			LCHDocumentBody: 'alfa',
+			LCHDocumentCallbackBody: 'alfa',
 		}), 'function () { alfa }');
 	});
 
-	context('LCHDocumentArgs', function() {
+	context('LCHDocumentCallbackArgs', function() {
 
 		it('populates LCHClosureString', function() {
 			deepEqual(mainModule._LCHClosureString({
-				LCHDocumentBody: 'alfa',
-				LCHDocumentArgs: 'bravo',
+				LCHDocumentCallbackBody: 'alfa',
+				LCHDocumentCallbackArgs: 'bravo',
 			}), 'function (bravo) { alfa }');
 		});
 
@@ -205,17 +205,17 @@ describe('_LCHComposeRecipeStub', function test_LCHComposeRecipeStub() {
 		}), {});
 	});
 
-	it('wraps LCHDocumentBody in closure', function() {
+	it('wraps LCHDocumentCallbackBody in closure', function() {
 		deepEqual(mainModule._LCHComposeRecipeStub({
-			LCHDocumentBody: 'alfa',
+			LCHDocumentCallbackBody: 'alfa',
 		}), {
 			LCHRecipeCallback: 'function () { alfa }',
 		});
 	});
 
-	it('wraps LCHDocumentCanonicalExampleBody in closure', function() {
+	it('wraps LCHDocumentCanonicalExampleCallbackBody in closure', function() {
 		deepEqual(mainModule._LCHComposeRecipeStub({
-			LCHDocumentCanonicalExampleBody: 'alfa',
+			LCHDocumentCanonicalExampleCallbackBody: 'alfa',
 		}), {
 			LCHRecipeCanonicalExampleCallback: 'function () { alfa }',
 		});

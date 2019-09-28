@@ -131,15 +131,15 @@ export const LCHFormulaToEvaluate = function(inputData) {
 		return LCHFormulaSafeStringFields.indexOf(e[0]) === -1;
 	}));
 
-	if (outputData.LCHFormulaArgs || outputData.LCHFormulaBody) {
-		outputData.LCHFormulaCallbackRaw = `(function (${ outputData.LCHFormulaArgs || '' }) { ${ outputData.LCHFormulaBody || '' } })`;
-		delete outputData.LCHFormulaArgs
-		delete outputData.LCHFormulaBody
+	if (outputData.LCHFormulaCallbackArgs || outputData.LCHFormulaCallbackBody) {
+		outputData.LCHFormulaCallbackRaw = `(function (${ outputData.LCHFormulaCallbackArgs || '' }) { ${ outputData.LCHFormulaCallbackBody || '' } })`;
+		delete outputData.LCHFormulaCallbackArgs
+		delete outputData.LCHFormulaCallbackBody
 	};
 
-	if (outputData.LCHFormulaCanonicalExampleBody) {
-		outputData.LCHFormulaCanonicalExampleBodyRaw = `(function () { ${ outputData.LCHFormulaCanonicalExampleBody || '' } })`;
-		delete outputData.LCHFormulaCanonicalExampleBody
+	if (outputData.LCHFormulaCanonicalExampleCallbackBody) {
+		outputData.LCHFormulaCanonicalExampleCallbackRaw = `(function () { ${ outputData.LCHFormulaCanonicalExampleCallbackBody || '' } })`;
+		delete outputData.LCHFormulaCanonicalExampleCallbackBody
 	};
 
 	return outputData;

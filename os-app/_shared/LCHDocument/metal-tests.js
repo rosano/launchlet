@@ -6,8 +6,8 @@ const kTesting = {
 	StubDocumentObjectValid: function() {
 		return {
 			LCHDocumentID: 'alfa',
-			LCHDocumentArgs: 'bravo',
-			LCHDocumentBody: 'charlie',
+			LCHDocumentCallbackArgs: 'bravo',
+			LCHDocumentCallbackBody: 'charlie',
 			LCHDocumentCreationDate: new Date('2019-02-23T13:56:36Z'),
 			LCHDocumentModificationDate: new Date('2019-02-23T13:56:36Z'),
 		};

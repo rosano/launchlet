@@ -6,7 +6,7 @@ exports.LCHGuideExampleFormatted = function (inputData) {
 	let outputData = Object.assign({}, inputData);
 
 	for (let key in outputData) {
-		if (key === 'LCHDocumentBody') {
+		if (key === 'LCHDocumentCallbackBody') {
 			outputData[key] = '```' + outputData[key] + '```'
 		};
 	}

@@ -85,10 +85,10 @@ const mod = {
 		let item = await LCHDocumentAction.LCHDocumentActionCreate(storageClient, {
 			LCHDocumentName: '',
 			LCHDocumentInputTypes: '',
-			LCHDocumentArgs: '',
-			LCHDocumentBody: '',
+			LCHDocumentCallbackArgs: '',
+			LCHDocumentCallbackBody: '',
 			LCHDocumentOutputType: '',
-			LCHDocumentCanonicalExampleBody: '',
+			LCHDocumentCanonicalExampleCallbackBody: '',
 			LCHDocumentSignature: '',
 			LCHDocumentURLFilter: '',
 			LCHDocumentStyle: '',

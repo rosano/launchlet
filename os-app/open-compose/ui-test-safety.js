@@ -46,7 +46,7 @@ describe('LCHComposeSafety', function () {
 			browser.assert.elements(LCHComposeFormFlagAlert, 0);
 		});
 
-		it('adds no alert if LCHDocumentArgs flagged', async function() {
+		it('adds no alert if LCHDocumentCallbackArgs flagged', async function() {
 			browser.fill(LCHComposeFormArgsField, 'eval');
 			await browser.wait({ element: LCHComposeFormFlagAlert });
 
@@ -60,28 +60,28 @@ describe('LCHComposeSafety', function () {
 			browser.assert.elements(LCHComposeFormFlagAlert, 0);
 		});
 
-		it('adds alert if LCHDocumentBody flagged', async function() {
+		it('adds alert if LCHDocumentCallbackBody flagged', async function() {
 			browser.fill(LCHComposeDetailCallbackBodyInputDebug, 'eval');
 			await browser.wait({ element: LCHComposeFormFlagAlert });
 
 			browser.assert.elements(LCHComposeFormFlagAlert, 1);
 		})
 
-		it('removes alert if LCHDocumentBody not flagged', async function() {
+		it('removes alert if LCHDocumentCallbackBody not flagged', async function() {
 			browser.fill(LCHComposeDetailCallbackBodyInputDebug, '');
 			await browser.wait({ element: LCHComposeFormFlagAlert });
 
 			browser.assert.elements(LCHComposeFormFlagAlert, 0);
 		});
 
-		it('adds alert if LCHDocumentBody contains syntax error', async function() {
+		it('adds alert if LCHDocumentCallbackBody contains syntax error', async function() {
 			browser.fill(LCHComposeDetailCallbackBodyInputDebug, '{');
 			await browser.wait({ element: LCHComposeFormFlagAlert });
 
 			browser.assert.elements(LCHComposeFormFlagAlert, 1);
 		})
 
-		it('removes alert if LCHDocumentBody contains no syntax error', async function() {
+		it('removes alert if LCHDocumentCallbackBody contains no syntax error', async function() {
 			browser.fill(LCHComposeDetailCallbackBodyInputDebug, '');
 			await browser.wait({ element: LCHComposeFormFlagAlert });
 
@@ -95,7 +95,7 @@ describe('LCHComposeSafety', function () {
 			browser.assert.elements(LCHComposeFormFlagAlert, 0);
 		});
 
-		it('adds alert if LCHDocumentCanonicalExampleBody flagged', async function() {
+		it('adds alert if LCHDocumentCanonicalExampleCallbackBody flagged', async function() {
 			browser.fill(LCHComposeFormOutputTypeField, 'Bool');
 			await browser.wait({ element: LCHComposeFormCanonicalExampleBodyDebugField });
 
@@ -105,7 +105,7 @@ describe('LCHComposeSafety', function () {
 			browser.assert.elements(LCHComposeFormFlagAlert, 1);
 		});
 
-		it('removes alert if LCHDocumentCanonicalExampleBody not flagged', async function() {
+		it('removes alert if LCHDocumentCanonicalExampleCallbackBody not flagged', async function() {
 			browser.fill(LCHComposeFormCanonicalExampleBodyDebugField, '');
 			await browser.wait({ element: LCHComposeFormFlagAlert });
 

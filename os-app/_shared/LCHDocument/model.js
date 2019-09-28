@@ -17,8 +17,8 @@ export const LCHDocumentModelErrorsFor = function(inputData, options = {}) {
 		];
 	}
 
-	if (typeof inputData.LCHDocumentBody !== 'string') {
-		errors.LCHDocumentBody = [
+	if (typeof inputData.LCHDocumentCallbackBody !== 'string') {
+		errors.LCHDocumentCallbackBody = [
 			'LCHErrorNotString',
 		];
 	}
@@ -35,9 +35,9 @@ export const LCHDocumentModelErrorsFor = function(inputData, options = {}) {
 		];
 	}
 
-	if (inputData.LCHDocumentArgs !== undefined || options.LCHOptionValidateIfNotPresent) {
-		if (typeof inputData.LCHDocumentArgs !== 'string') {
-			errors.LCHDocumentArgs = [
+	if (inputData.LCHDocumentCallbackArgs !== undefined || options.LCHOptionValidateIfNotPresent) {
+		if (typeof inputData.LCHDocumentCallbackArgs !== 'string') {
+			errors.LCHDocumentCallbackArgs = [
 				'LCHErrorNotString',
 			];
 		}
@@ -51,9 +51,9 @@ export const LCHDocumentModelErrorsFor = function(inputData, options = {}) {
 		}
 	}
 
-	if (inputData.LCHDocumentCanonicalExampleBody !== undefined || options.LCHOptionValidateIfNotPresent) {
-		if (typeof inputData.LCHDocumentCanonicalExampleBody !== 'string') {
-			errors.LCHDocumentCanonicalExampleBody = [
+	if (inputData.LCHDocumentCanonicalExampleCallbackBody !== undefined || options.LCHOptionValidateIfNotPresent) {
+		if (typeof inputData.LCHDocumentCanonicalExampleCallbackBody !== 'string') {
+			errors.LCHDocumentCanonicalExampleCallbackBody = [
 				'LCHErrorNotString',
 			];
 		}

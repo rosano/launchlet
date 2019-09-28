@@ -48,9 +48,9 @@ const mod = {
 
 			<a class="LCHComposeFooterDonateLink" href={ window.OLSKPublicConstants('LCH_SHARED_DONATE_URL') } target="_blank">{ OLSKLocalized('LCHComposeFooterDonateLinkText') }</a>
 
-			<!-- <button on:click={ mod.interfaceExportButtonDidClick }>Export</button> -->
+			<button on:click={ mod.interfaceExportButtonDidClick }>Export</button>
 
-			<!-- <input type="file" accept=".json" on:change={ mod.interfaceImportButtonDidClick } /> -->
+			<input type="file" accept=".json" on:change={ mod.interfaceImportButtonDidClick } />
 		</OLSKToolbarElementGroup>
 
 		<div>

@@ -114,11 +114,11 @@ export const _LCHComposeRecipeStub = function (inputData) {
 		coll[item] = LCHFormulaTo(LCHFormulaFrom(inputData), 'LCHRecipe')[item];
 
 		return coll;
-	}, {}), inputData.LCHDocumentBody ? {
+	}, {}), inputData.LCHDocumentCallbackBody ? {
 		LCHRecipeCallback: _LCHClosureString(inputData),
-	} : {}, inputData.LCHDocumentCanonicalExampleBody ? {
+	} : {}, inputData.LCHDocumentCanonicalExampleCallbackBody ? {
 		LCHRecipeCanonicalExampleCallback: _LCHClosureString({
-			LCHDocumentBody: inputData.LCHDocumentCanonicalExampleBody,
+			LCHDocumentCallbackBody: inputData.LCHDocumentCanonicalExampleCallbackBody,
 		}),
 	} : {});
 };
@@ -128,11 +128,11 @@ export const _LCHClosureString = function(inputData) {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	if (typeof inputData.LCHDocumentBody !== 'string') {
+	if (typeof inputData.LCHDocumentCallbackBody !== 'string') {
 		throw new Error('LCHErrorInputInvalid');
 	}
 
-	return `function (${ inputData.LCHDocumentArgs || '' }) { ${ inputData.LCHDocumentBody } }`;
+	return `function (${ inputData.LCHDocumentCallbackArgs || '' }) { ${ inputData.LCHDocumentCallbackBody } }`;
 };
 
 export const _LCHComposeBuildRecipeJSON = function (inputData) {

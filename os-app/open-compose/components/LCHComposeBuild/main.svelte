@@ -138,7 +138,7 @@ const mod = {
 			LCHComposeBuildToken_AppBehaviour: BuildAppBehaviour,
 			LCHComposeBuildToken_DocumentObjects: BuildDocuments.map(function (e) {
 				return Object.entries(mod._CommandFlagDocument(e)).map(function (e) {
-					if (e[0] === 'LCHDocumentBody' && !e[1]) { // #purge
+					if (e[0] === 'LCHDocumentCallbackBody' && !e[1]) { // #purge
 						e[1] = 'return'
 					};
 

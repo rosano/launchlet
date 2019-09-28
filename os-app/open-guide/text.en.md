@@ -12,7 +12,7 @@ A *Recipe* is a format for expressing how functions will run in Launchlet.
 
 ### Command
 
-A *Command* is the simplest kind of *Recipe*. It has a `LCHDocumentName` and `LCHDocumentBody`:
+A *Command* is the simplest kind of *Recipe*. It has a `LCHDocumentName` and `LCHDocumentCallbackBody`:
 
 LCHGuideTokenExampleCommandV1
 
@@ -20,7 +20,7 @@ This can be run by Launchlet directly as it has no input.
 
 ### Procedure
 
-A *Procedure* has a `LCHDocumentSignature` and `LCHDocumentBody`, and optionally `LCHDocumentArgs`:
+A *Procedure* has a `LCHDocumentSignature` and `LCHDocumentCallbackBody`, and optionally `LCHDocumentCallbackArgs`:
 
 LCHGuideTokenExampleProcedure
 
@@ -30,7 +30,7 @@ LCHGuideTokenExampleCommandV2
 
 ### Pipe mode: Subject
 
-A *Subject* has a `LCHDocumentName`, `LCHDocumentOutputType` and `LCHDocumentBody`:
+A *Subject* has a `LCHDocumentName`, `LCHDocumentOutputType` and `LCHDocumentCallbackBody`:
 
 LCHGuideTokenExampleSubject
 
@@ -38,7 +38,7 @@ In Pipe mode, this can be used as input for any *Action* that takes a `String`.
 
 ### Pipe mode: Action
 
-An *Action* has a `LCHDocumentName`, `LCHDocumentInputTypes` and `LCHDocumentBody`:
+An *Action* has a `LCHDocumentName`, `LCHDocumentInputTypes` and `LCHDocumentCallbackBody`:
 
 LCHGuideTokenExampleAction
 

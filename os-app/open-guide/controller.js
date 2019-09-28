@@ -18,27 +18,27 @@ function OLSKRouteFunction (req, res, next) {
 			Object.assign({
 				LCHGuideTokenExampleCommandV1: _LCHGuideExampleTemplate({
 					LCHDocumentName: 'Say Hello',
-					LCHDocumentBody: `alert('Hello')`,
+					LCHDocumentCallbackBody: `alert('Hello')`,
 				}),
 				LCHGuideTokenExampleProcedure: _LCHGuideExampleTemplate({
 					LCHDocumentSignature: 'Greet',
-					LCHDocumentArgs: 'message',
-					LCHDocumentBody: `alert(message)`,
+					LCHDocumentCallbackArgs: 'message',
+					LCHDocumentCallbackBody: `alert(message)`,
 				}),
 				LCHGuideTokenExampleCommandV2: _LCHGuideExampleTemplate({
 					LCHDocumentName: 'Say Hello',
-					LCHDocumentBody: `this.api.Greet('Hello')`,
+					LCHDocumentCallbackBody: `this.api.Greet('Hello')`,
 				}),
 				LCHGuideTokenExampleSubject: _LCHGuideExampleTemplate({
 					LCHDocumentName: 'Salutation',
 					LCHDocumentOutputType: 'String',
-					LCHDocumentBody: `return 'Yo'`,
+					LCHDocumentCallbackBody: `return 'Yo'`,
 				}),
 				LCHGuideTokenExampleAction: _LCHGuideExampleTemplate({
 					LCHDocumentName: 'Shout',
 					LCHDocumentInputTypes: 'String',
-					LCHDocumentArgs: 'message',
-					LCHDocumentBody: 'alert(message.toUppercase())',
+					LCHDocumentCallbackArgs: 'message',
+					LCHDocumentCallbackBody: 'alert(message.toUppercase())',
 				}),
 				LCHGuideTokenExamplePageRecipe: require('./ui-logic.js').LCHGuideStringify({
 					LCHRecipeName: 'Say Hello',

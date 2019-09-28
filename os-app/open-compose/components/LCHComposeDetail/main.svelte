@@ -53,7 +53,7 @@ afterUpdate(function SetupCallbackBodyEditor () {
 		}
 
 		Object.assign($DocumentSelectedStore, {
-			LCHDocumentBody: instance.getValue(),
+			LCHDocumentCallbackBody: instance.getValue(),
 		}); // @DependancySvelteIgnoresMutableChanges
 
 		mod.commandDocumentSave();
@@ -146,10 +146,10 @@ DocumentSelectedStore.subscribe(function (val) {
 
 	CallbackBodyEditorConfigure(function () {
 		if (_LCHIsTestingBehaviour()) {
-			return document.querySelector('#LCHComposeDetailCallbackBodyInputDebug').value = val.LCHDocumentBody;
+			return document.querySelector('#LCHComposeDetailCallbackBodyInputDebug').value = val.LCHDocumentCallbackBody;
 		}
 
-		CallbackBodyEditorInstance.setValue(val.LCHDocumentBody);
+		CallbackBodyEditorInstance.setValue(val.LCHDocumentCallbackBody);
 		CallbackBodyEditorInstance.getDoc().clearHistory();
 	});
 
@@ -181,9 +181,9 @@ const mod = {
 			return val;
 		});
 
-		if ($DocumentSelectedStore.LCHDocumentBody === 'LCH_TEST_FLAG_ON_BUILD') {
+		if ($DocumentSelectedStore.LCHDocumentCallbackBody === 'LCH_TEST_FLAG_ON_BUILD') {
 			Object.assign($DocumentSelectedStore, {
-				LCHDocumentBody: 'eval',
+				LCHDocumentCallbackBody: 'eval',
 			});
 		};
 
@@ -303,21 +303,21 @@ const mod = {
 	<p>
 		<span>function</span>
 
-		{#if $DocumentSelectedStore.LCHDocumentArgs }
+		{#if $DocumentSelectedStore.LCHDocumentCallbackArgs }
 			<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentInputTypes } placeholder={ OLSKLocalized('LCHComposeFormInputTypesFieldPlaceholderText') } on:input={ mod.commandDocumentSave } id="LCHComposeFormInputTypesField" />
 			<span>→</span>
 		{/if}
 		
 		<span>(</span>
 		
-		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentArgs } placeholder="undefined" on:input={ mod.commandDocumentSave } id="LCHComposeFormArgsField" />
+		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentCallbackArgs } placeholder="undefined" on:input={ mod.commandDocumentSave } id="LCHComposeFormArgsField" />
 		
 		<span>) &#123;</span>
 	</p>
 
 	<p class="LCHComposeDetailCallbackBody">
 		{#if _LCHIsTestingBehaviour()}
-			<textarea bind:value={ $DocumentSelectedStore.LCHDocumentBody } on:input={ mod.commandDocumentSave } id="LCHComposeDetailCallbackBodyInputDebug"></textarea>
+			<textarea bind:value={ $DocumentSelectedStore.LCHDocumentCallbackBody } on:input={ mod.commandDocumentSave } id="LCHComposeDetailCallbackBodyInputDebug"></textarea>
 		{/if}
 
 		<textarea bind:this={ CallbackBodyEditorElement }></textarea>
@@ -332,7 +332,7 @@ const mod = {
 	{#if $DocumentSelectedStore.LCHDocumentOutputType === 'Bool'}
 		<p class="LCHComposeFormCanonicalExampleBody">
 			{#if _LCHIsTestingBehaviour()}
-				<textarea bind:value={ $DocumentSelectedStore.LCHDocumentCanonicalExampleBody } on:input={ mod.commandDocumentSave } id="LCHComposeFormCanonicalExampleBodyDebugField"></textarea>
+				<textarea bind:value={ $DocumentSelectedStore.LCHDocumentCanonicalExampleCallbackBody } on:input={ mod.commandDocumentSave } id="LCHComposeFormCanonicalExampleBodyDebugField"></textarea>
 			{/if}
 
 			<LCHEditor EditorOptions={ {
@@ -349,8 +349,8 @@ const mod = {
 					Tab: false,
 				},
 			} } on:EditorDispatchValueChanged={ (event) => mod._EditorDispatchValueChanged({
-			LCHDocumentCanonicalExampleBody: event.detail,
-		}) } EditorInitialValue={ $DocumentSelectedStore.LCHDocumentCanonicalExampleBody } />
+			LCHDocumentCanonicalExampleCallbackBody: event.detail,
+		}) } EditorInitialValue={ $DocumentSelectedStore.LCHDocumentCanonicalExampleCallbackBody } />
 		</p>
 	{/if}
 

@@ -111,14 +111,14 @@ describe('LCHCompose_Access', function () {
 		browser.assert.elements(LCHComposeDetailToolbar, 1);
 	});
 
-	it('on fill LCHDocumentArgs', async function() {
+	it('on fill LCHDocumentCallbackArgs', async function() {
 		browser.fill(LCHComposeFormArgsField, 'alfa');
 		await browser.wait({ element: LCHComposeFormInputTypesField });
 
 		browser.assert.elements(LCHComposeFormInputTypesField, 1);
 	});
 
-	it('on empty LCHDocumentArgs', async function() {
+	it('on empty LCHDocumentCallbackArgs', async function() {
 		browser.fill(LCHComposeFormArgsField, '');
 		await browser.wait({ element: LCHComposeFormInputTypesField });
 

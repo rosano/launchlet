@@ -5,8 +5,8 @@ import * as mainModule from './action.js';
 const kTesting = {
 	StubDocumentObject: function() {
 		return {
-			LCHDocumentArgs: 'alfa',
-			LCHDocumentBody: 'bravo',
+			LCHDocumentCallbackArgs: 'alfa',
+			LCHDocumentCallbackBody: 'bravo',
 		};
 	},
 	uSerial: function (inputData) {
@@ -28,9 +28,9 @@ describe('LCHDocumentActionCreate', function testLCHDocumentActionCreate() {
 
 	it('returns object with LCHErrors if not valid', async function() {
 		deepEqual((await mainModule.LCHDocumentActionCreate(LCHTestingStorageClient, Object.assign(kTesting.StubDocumentObject(), {
-			LCHDocumentBody: null,
+			LCHDocumentCallbackBody: null,
 		}))).LCHErrors, {
-			LCHDocumentBody: [
+			LCHDocumentCallbackBody: [
 				'LCHErrorNotString',
 			],
 		});

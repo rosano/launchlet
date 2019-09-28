@@ -22,13 +22,13 @@ describe('LCHGuideExampleFormatted', function testLCHGuideExampleFormatted() {
 		});
 	})
 
-	context('LCHDocumentBody', function () {
+	context('LCHDocumentCallbackBody', function () {
 
 		it('formats value', function() {
 			deepEqual(mainModule.LCHGuideExampleFormatted({
-				LCHDocumentBody: 'bravo',
+				LCHDocumentCallbackBody: 'bravo',
 			}), {
-				LCHDocumentBody: '```bravo```',
+				LCHDocumentCallbackBody: '```bravo```',
 			});
 		});
 

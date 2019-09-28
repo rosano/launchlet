@@ -300,27 +300,27 @@ describe('LCHFormulaToEvaluate', function testLCHFormulaToEvaluate() {
 		}, {})), {});
 	});
 
-	it('adds closure from LCHFormulaArgs', function() {
+	it('adds closure from LCHFormulaCallbackArgs', function() {
 		deepEqual(LCHFormulaToEvaluate({
-			LCHFormulaArgs: 'alfa',
+			LCHFormulaCallbackArgs: 'alfa',
 		}), {
 			LCHFormulaCallbackRaw: '(function (alfa) {  })',
 		});
 	});
 
-	it('adds closure from LCHFormulaArgs', function() {
+	it('adds closure from LCHFormulaCallbackArgs', function() {
 		deepEqual(LCHFormulaToEvaluate({
-			LCHFormulaBody: 'alfa',
+			LCHFormulaCallbackBody: 'alfa',
 		}), {
 			LCHFormulaCallbackRaw: '(function () { alfa })',
 		});
 	});
 
-	it('adds closure from LCHFormulaCanonicalExampleBody', function() {
+	it('adds closure from LCHFormulaCanonicalExampleCallbackBody', function() {
 		deepEqual(LCHFormulaToEvaluate({
-			LCHFormulaCanonicalExampleBody: 'alfa',
+			LCHFormulaCanonicalExampleCallbackBody: 'alfa',
 		}), {
-			LCHFormulaCanonicalExampleBodyRaw: '(function () { alfa })',
+			LCHFormulaCanonicalExampleCallbackRaw: '(function () { alfa })',
 		});
 	});
 
