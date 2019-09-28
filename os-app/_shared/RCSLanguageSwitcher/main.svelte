@@ -1,7 +1,12 @@
 <script>
-import { OLSKLocalized } from '../common/global.js';
+import OLSKInternational from 'OLSKInternational';
+const OLSKLocalized = function(translationConstant) {
+	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, (JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`))[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
+};
+
+import OLSKString from 'OLSKString';
 let titleLabel = function (inputData) {
-	return window.OLSKFormatted(OLSKLocalized('RCSLanguageSwitcherLinkTextFormat'), OLSKLocalized(['RCSLanguageSwitcherLinkTextLanguageName-', inputData].join('')));
+	return OLSKString.OLSKStringWithFormat(OLSKLocalized('RCSLanguageSwitcherLinkTextFormat'), OLSKLocalized('RCSLanguageSwitcherLinkTextLanguageName')[inputData]);
 };
 </script>
 

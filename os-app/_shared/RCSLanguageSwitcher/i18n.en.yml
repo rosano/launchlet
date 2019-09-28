@@ -1,4 +1,5 @@
 RCSLanguageSwitcherLinkTextFormat: Version in %@
-RCSLanguageSwitcherLinkTextLanguageName-en: English
-RCSLanguageSwitcherLinkTextLanguageName-fr: French
-RCSLanguageSwitcherLinkTextLanguageName-es: Spanish
+RCSLanguageSwitcherLinkTextLanguageName:
+  en: English
+  fr: French
+  es: Spanish

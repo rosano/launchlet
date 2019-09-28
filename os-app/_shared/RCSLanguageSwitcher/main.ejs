@@ -5,7 +5,7 @@
 		<% } %>
 
 		<% if (e !== OLSKSharedPageCurrentLanguage) { %>
-			<% titleLabel = OLSKFormatted(OLSKLocalized('RCSLanguageSwitcherLinkTextFormat'), OLSKLocalized(['RCSLanguageSwitcherLinkTextLanguageName-', e].join(''))) %>
+			<% titleLabel = OLSKFormatted(OLSKLocalized('RCSLanguageSwitcherLinkTextFormat'), OLSKLocalized('RCSLanguageSwitcherLinkTextLanguageName')[e]) %>
 			<a aria-label="<%- titleLabel %>" title="<%- titleLabel %>" href="<%= OLSKCanonicalLocalizedFor(OLSKSharedActiveRouteConstant, {
 				OLSKRoutingLanguage: e,
 			}) %>"><%= e.toUpperCase() %></a>
