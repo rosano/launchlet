@@ -29,6 +29,7 @@ describe('LCHCopyToClipboardCallback', function testLCHCopyToClipboardCallback()
 			LCHComponentDescriptorProps: {
 				inputData: 'alfa',
 			},
+			LCHComponentDescriptorOLSKLocalized: true,
 		});
 	});
 
