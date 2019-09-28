@@ -4,10 +4,9 @@ export const LCHOptionsObject = function(inputData) {
 	return !inputData ? _LCHOptionsObject : (_LCHOptionsObject = LCHLauncherOptions(inputData));
 };
 
-let localizationDictionary = JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`);
 import OLSKInternational from 'OLSKInternational';
 export const OLSKLocalized = function(translationConstant) {
-	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, localizationDictionary[LCHOptionsObject().languageCode]);
+	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[LCHOptionsObject().languageCode]);
 };
 
 import OLSKString from 'OLSKString';
