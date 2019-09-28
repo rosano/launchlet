@@ -9,8 +9,5 @@ export const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[LCHOptionsObject().languageCode]);
 };
 
-import OLSKString from 'OLSKString';
-export const OLSKFormatted = OLSKString.OLSKStringWithFormat;
-
 import { writable } from 'svelte/store';
 export const secondaryComponent = writable(null);

@@ -1,5 +1,9 @@
 <script>
-import { OLSKLocalized, OLSKFormatted } from './_shared.js';
+import { OLSKLocalized } from './_shared.js';
+
+import OLSKString from 'OLSKString';
+export const OLSKFormatted = OLSKString.OLSKStringWithFormat;
+
 import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 
 import LCHLauncherPrompt from './components/LCHLauncherPrompt/main.svelte';
