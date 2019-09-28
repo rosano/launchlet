@@ -32,6 +32,10 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 		browser.assert.element(`a[href="${ process.env.LCH_VITRINE_QUICKSILVER_URL }"]`);
 	});
 
+	it('localizes LCHGuideRoute', function() {
+		browser.assert.element(`a[href="${ require('../open-guide/controller.js').OLSKControllerRoutes().shift().OLSKRoutePath }"]`);
+	});
+
 	it('localizes LCHComposeRoute', function() {
 		browser.assert.element(`a[href="${ OLSKTestingCanonicalFor(require('../open-compose/controller.js').OLSKControllerRoutes().shift().OLSKRoutePath, {
 			OLSKRoutingLanguage: languageCode,
