@@ -7,7 +7,7 @@ describe('LCHComposeFilterFunction', function testLCHComposeFilterFunction() {
 	it('throws error if not string', function() {
 		throws(function() {
 			mainModule.LCHComposeFilterFunction(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns function', function() {

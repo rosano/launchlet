@@ -7,19 +7,19 @@ describe('LCHCopyToClipboardCallback', function testLCHCopyToClipboardCallback()
 	it('throws error if not string', function() {
 		throws(function() {
 			mainModule.LCHCopyToClipboardCallback(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if empty', function() {
 		throws(function() {
 			mainModule.LCHCopyToClipboardCallback('');
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if only whitespace', function() {
 		throws(function() {
 			mainModule.LCHCopyToClipboardCallback(' ');
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns LCHComponentDescriptor', function() {

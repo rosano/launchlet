@@ -3,7 +3,7 @@ const URLParser = typeof _URLParser === 'function' ? _URLParser : _URLParser.def
 
 export const LCHPrimitiveURLCallback = function(inputData) {
 	if (typeof inputData !== 'string') {
-		// throw new Error('LCHErrorInputInvalid');
+		// throw new Error('LCHErrorInputNotValid');
 		return false;
 	}
 

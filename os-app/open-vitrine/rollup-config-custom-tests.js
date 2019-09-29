@@ -7,7 +7,7 @@ describe('LCHVitrineRollupConfigCustom', function testLCHVitrineRollupConfigCust
 	it('throws error if not object', function() {
 		throws(function() {
 			mainModule.LCHVitrineRollupConfigCustom(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	})
 
 	it('sets output.name', function() {

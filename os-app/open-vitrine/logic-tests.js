@@ -13,7 +13,7 @@ describe('LCHVitrineRouteGuard', function testLCHVitrineRouteGuard() {
 	it('throws if not object', function() {
 		throws(function() {
 			mainModule.LCHVitrineRouteGuard(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns error if no LCH_VITRINE_QUICKSILVER_URL', function () {

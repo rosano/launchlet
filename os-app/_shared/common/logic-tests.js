@@ -13,7 +13,7 @@ describe('LCHSharedDonateLinkGuard', function testLCHSharedDonateLinkGuard() {
 	it('throws if not object', function() {
 		throws(function() {
 			mainModule.LCHSharedDonateLinkGuard(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns error if no LCH_SHARED_DONATE_URL', function () {

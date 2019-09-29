@@ -7,7 +7,7 @@ describe('LCHFlip', function testLCHFlip() {
 	it('throws error if not function', function() {
 		throws(function() {
 			mainModule.LCHFlip(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns function', function() {

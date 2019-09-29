@@ -2,7 +2,7 @@ import { LCHFormulaModelErrorsFor, LCHFormulaFrom, LCHFormulaTo } from '../LCHFo
 
 export const LCHDocumentModelErrorsFor = function(inputData, options = {}) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	var errors = LCHFormulaTo(LCHFormulaModelErrorsFor(LCHFormulaFrom(inputData)) || {}, 'LCHDocument');

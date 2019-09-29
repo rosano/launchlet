@@ -7,7 +7,7 @@ describe('LCHTypeCommandCallback', function testLCHTypeCommandCallback() {
 	it.skip('throws error if not valid', function() {
 		throws(function() {
 			mainModule.LCHTypeCommandCallback({});
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns false if no LCHRecipeName', function() {

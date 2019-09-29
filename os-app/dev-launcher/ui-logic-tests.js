@@ -43,7 +43,7 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 	it('throws error if not object', function() {
 		throws(function() {
 			mainModule.LCHLauncherOptions(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns object', function() {
@@ -152,13 +152,13 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 	it('throws error if param1 not array', function() {
 		throws(function() {
 			mainModule.LCHLauncherUIRecipesForMode(null, mainModule.LCHLauncherModeCommit());
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if param2 not valid', function() {
 		throws(function() {
 			mainModule.LCHLauncherUIRecipesForMode([], 'alfa');
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('excludes if not object', function() {
@@ -261,7 +261,7 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 // 	it('throws error if not string', function() {
 // 		throws(function() {
 // 			mainModule.LCHLauncherFilterForText(null);
-// 		}, /LCHErrorInputInvalid/);
+// 		}, /LCHErrorInputNotValid/);
 // 	});
 
 // 	it('returns function', function() {
@@ -335,19 +335,19 @@ describe('LCHLauncherPatternMatchesURL', function testLCHLauncherPatternMatchesU
 	it('throws error if param1 not string', function() {
 		throws(function() {
 			mainModule.LCHLauncherPatternMatchesURL(null, '');
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if param2 not string', function() {
 		throws(function() {
 			mainModule.LCHLauncherPatternMatchesURL('', null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if param2 not filled', function() {
 		throws(function() {
 			mainModule.LCHLauncherPatternMatchesURL('', '');
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns true if param1 empty', function() {
@@ -391,7 +391,7 @@ describe('LCHLauncherKeyboardEventIsTextInput', function testLCHLauncherKeyboard
 	it('throws error if not object', function() {
 		throws(function() {
 			mainModule.LCHLauncherKeyboardEventIsTextInput(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns false if metaKey true', function() {
@@ -507,7 +507,7 @@ describe('LCHLauncherActionComparator', function testLCHLauncherActionComparator
 	it('throws error if not string', function() {
 		throws(function() {
 			mainModule.LCHLauncherActionComparator(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns function', function () {
@@ -558,13 +558,13 @@ describe('LCHLauncherConstrainIndex', function testLCHLauncherConstrainIndex() {
 	it('throws error if param1 not array', function() {
 		throws(function() {
 			mainModule.LCHLauncherConstrainIndex(null, 0);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if param2 not number', function() {
 		throws(function() {
 			mainModule.LCHLauncherConstrainIndex([], null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns last if param2 below 0', function() {
@@ -586,7 +586,7 @@ describe('LCHLauncherReloadableSubjects', function testLCHLauncherReloadableSubj
 	it('throws error if not array', function() {
 		throws(function() {
 			mainModule.LCHLauncherReloadableSubjects(null, 0);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns array', function() {

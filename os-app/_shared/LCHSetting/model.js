@@ -1,6 +1,6 @@
 export const LCHSettingModelErrorsFor = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	var errors = {};

@@ -4,7 +4,7 @@ const uniqueID = typeof require === 'undefined' && navigator.appName === 'Zombie
 
 export const LCHDocumentActionCreate = async function(storageClient, inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		return Promise.reject(new Error('LCHErrorInputInvalid'));
+		return Promise.reject(new Error('LCHErrorInputNotValid'));
 	}
 
 	let creationDate = new Date();
@@ -22,7 +22,7 @@ export const LCHDocumentActionRead = async function(storageClient, inputData) {
 
 export const LCHDocumentActionUpdate = async function(storageClient, inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		return Promise.reject(new Error('LCHErrorInputInvalid'));
+		return Promise.reject(new Error('LCHErrorInputNotValid'));
 	}
 
 	return await LCHDocumentMetal.LCHDocumentMetalWrite(storageClient, Object.assign(inputData, {

@@ -1,10 +1,10 @@
 export const LCHCopyToClipboardCallback = function(inputData) {
 	if (typeof inputData !== 'string') {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if (!inputData.trim().length) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	// if (typeof navigator !== 'undefined' && navigator.clipboard) {

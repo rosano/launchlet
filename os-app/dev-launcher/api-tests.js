@@ -73,7 +73,7 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 	it('throws error if not object', function() {
 		throws(function() {
 			mainModule.LCHRecipesModelErrorsFor(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns object if LCHRecipeCallback not function', function() {
@@ -276,7 +276,7 @@ describe('LCHRecipesModelIsCommand', function testLCHRecipesModelIsCommand() {
 	it('throws error if not valid', function() {
 		throws(function() {
 			mainModule.LCHRecipesModelIsCommand({});
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns false if no LCHRecipeName', function() {
@@ -308,7 +308,7 @@ describe('LCHRecipesModelIsSubject', function testLCHRecipesModelIsSubject() {
 	it('throws error if not valid', function() {
 		throws(function() {
 			mainModule.LCHRecipesModelIsSubject({});
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns false if no LCHRecipeName', function() {
@@ -340,7 +340,7 @@ describe('LCHRecipesModelIsAction', function testLCHRecipesModelIsAction() {
 	it('throws error if not valid', function() {
 		throws(function() {
 			mainModule.LCHRecipesModelIsAction({});
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns false if no LCHRecipeName', function() {
@@ -372,7 +372,7 @@ describe('LCHRecipesModelIsType', function testLCHRecipesModelIsType() {
 	it('throws error if not valid', function() {
 		throws(function() {
 			mainModule.LCHRecipesModelIsType({});
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns false if no arguments', function() {
@@ -416,7 +416,7 @@ describe('LCHRecipesModelIsTask', function testLCHRecipesModelIsTask() {
 	it('throws error if not valid', function() {
 		throws(function() {
 			mainModule.LCHRecipesModelIsTask({});
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns false if arguments', function() {
@@ -449,7 +449,7 @@ describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertT
 	it('throws error if not array', function() {
 		throws(function() {
 			mainModule.LCHLauncherConvertTypeServiceSearch(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns inputData', function() {
@@ -538,7 +538,7 @@ describe('LCHRecipesModelActionTakesObject', function testLCHRecipesModelActionT
 	it('throws error if not valid', function() {
 		throws(function() {
 			mainModule.LCHRecipesModelActionTakesObject({});
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if not Action', function() {
@@ -546,7 +546,7 @@ describe('LCHRecipesModelActionTakesObject', function testLCHRecipesModelActionT
 			mainModule.LCHRecipesModelActionTakesObject(Object.assign(kTesting.StubRecipeObjectAction(), {
 				LCHRecipeName: undefined,
 			}));
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns false if less than two LCHRecipeInputTypes', function() {
@@ -575,7 +575,7 @@ describe('LCHRecipesModelActionTakesParams', function testLCHRecipesModelActionT
 	it('throws error if not valid', function() {
 		throws(function() {
 			mainModule.LCHRecipesModelActionTakesParams({});
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if not Action', function() {
@@ -583,7 +583,7 @@ describe('LCHRecipesModelActionTakesParams', function testLCHRecipesModelActionT
 			mainModule.LCHRecipesModelActionTakesParams(Object.assign(kTesting.StubRecipeObjectAction(), {
 				LCHRecipeName: undefined,
 			}));
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns false if last LCHRecipeInputTypes not Object', function() {
@@ -626,7 +626,7 @@ describe('LCHRecipeInputTypesForString', function testLCHRecipeInputTypesForStri
 	it('throws error if not string', function() {
 		throws(function() {
 			mainModule.LCHRecipeInputTypesForString(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns array', function() {
@@ -656,7 +656,7 @@ describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenc
 	it('throws error if not array', function() {
 		throws(function() {
 			mainModule.LCHAPITypeEquivalenceMapForRecipes(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns object', function() {
@@ -810,7 +810,7 @@ describe('LCHAPITypeNameMap', function testLCHAPITypeNameMap() {
 	it('throws error if not array', function() {
 		throws(function() {
 			mainModule.LCHAPITypeNameMap(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns object', function() {
@@ -867,13 +867,13 @@ describe('LCHAPIActionsForType', function testLCHAPIActionsForType() {
 	it('throws error if param1 not string', function() {
 		throws(function() {
 			mainModule.LCHAPIActionsForType(null, []);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if param2 not array', function() {
 		throws(function() {
 			mainModule.LCHAPIActionsForType('', null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns array', function() {
@@ -910,13 +910,13 @@ describe('LCHAPISubjectsForType', function testLCHAPISubjectsForType() {
 	it('throws error if param1 not string', function() {
 		throws(function() {
 			mainModule.LCHAPISubjectsForType(null, []);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if param2 not array', function() {
 		throws(function() {
 			mainModule.LCHAPISubjectsForType('', null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns array', function() {
@@ -977,7 +977,7 @@ describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 	it('throws error if not array', function() {
 		throws(function() {
 			mainModule.LCHAPIObjectFor(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns object', function() {
@@ -1137,7 +1137,7 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 	it('throws error if not object', function() {
 		throws(function() {
 			mainModule.LCHCompositionModelErrors(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns object if LCHCompositionAction not present', function() {
@@ -1155,7 +1155,7 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 			LCHCompositionAction: kTesting.StubRecipeObjectValid(),
 		})), {
 			LCHCompositionAction: [
-				'LCHErrorInputInvalid',
+				'LCHErrorInputNotValid',
 			],
 		});
 	});
@@ -1175,7 +1175,7 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 			LCHCompositionSubjectPrimary: kTesting.StubRecipeObjectValid(),
 		})), {
 			LCHCompositionSubjectPrimary: [
-				'LCHErrorInputInvalid',
+				'LCHErrorInputNotValid',
 			],
 		});
 	});
@@ -1187,7 +1187,7 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 			}),
 		})), {
 			LCHCompositionSubjectPrimary: [
-				'LCHErrorInputInvalid',
+				'LCHErrorInputNotValid',
 			],
 		});
 	});
@@ -1215,7 +1215,7 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 				LCHCompositionSubjectSecondary: kTesting.StubRecipeObjectValid(),
 			})), {
 				LCHCompositionSubjectSecondary: [
-					'LCHErrorInputInvalid',
+					'LCHErrorInputNotValid',
 				],
 			});
 		});
@@ -1230,7 +1230,7 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 				}),
 			})), {
 				LCHCompositionSubjectSecondary: [
-					'LCHErrorInputInvalid',
+					'LCHErrorInputNotValid',
 				],
 			});
 		});
@@ -1242,7 +1242,7 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 				}),
 			})), {
 				LCHCompositionSubjectSecondary: [
-					'LCHErrorInputInvalid',
+					'LCHErrorInputNotValid',
 				],
 			});
 		});
@@ -1260,11 +1260,11 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 describe('LCHAPIExecuteComposition', function testLCHAPIExecuteComposition() {
 
 	it('throws error if param1 not LCHComposition', async function() {
-		await rejects(mainModule.LCHAPIExecuteComposition({}, kTesting.StubAPIObjectValid()), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHAPIExecuteComposition({}, kTesting.StubAPIObjectValid()), /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if param2 not API object', async function() {
-		await rejects(mainModule.LCHAPIExecuteComposition(kTesting.StubCompositionObjectValid(), {}), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHAPIExecuteComposition(kTesting.StubCompositionObjectValid(), {}), /LCHErrorInputNotValid/);
 	});
 
 	it('returns output', async function() {
@@ -1307,15 +1307,15 @@ describe('LCHAPIExecuteComposition', function testLCHAPIExecuteComposition() {
 describe('LCHAPIExecuteRecipe', function testLCHAPIExecuteRecipe() {
 
 	it('throws error if param1 not LCHRecipe', async function() {
-		await rejects(mainModule.LCHAPIExecuteRecipe({}, [], kTesting.StubAPIObjectValid()), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHAPIExecuteRecipe({}, [], kTesting.StubAPIObjectValid()), /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if param2 not array', async function() {
-		await rejects(mainModule.LCHAPIExecuteRecipe({}, null, kTesting.StubAPIObjectValid()), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHAPIExecuteRecipe({}, null, kTesting.StubAPIObjectValid()), /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if param3 not API object', async function() {
-		await rejects(mainModule.LCHAPIExecuteRecipe(kTesting.StubRecipeObjectValid(), [], {}), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHAPIExecuteRecipe(kTesting.StubRecipeObjectValid(), [], {}), /LCHErrorInputNotValid/);
 	});
 
 	it('returns output', async function() {
@@ -1390,7 +1390,7 @@ describe('LCHComponentDescriptorsModelErrorsFor', function testLCHComponentDescr
 	it('throws error if not object', function() {
 		throws(function() {
 			mainModule.LCHComponentDescriptorsModelErrorsFor(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns object if LCHComponentDescriptorName not string', function() {

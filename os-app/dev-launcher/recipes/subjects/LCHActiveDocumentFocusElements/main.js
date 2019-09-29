@@ -13,7 +13,7 @@ const LCHFocusElementsSelector= [
 
 export const LCHActiveDocumentsFocusElements = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null || typeof inputData.querySelectorAll !== 'function') {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	const aggregate = {

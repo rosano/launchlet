@@ -2,7 +2,7 @@ import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
 
 export const LCHLauncherOptions = function (inputData, notify = function () {}) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if (typeof inputData.LRTOptionRecipes === 'undefined') {
@@ -73,11 +73,11 @@ export const LCHLauncherModes = function () {
 import { LCHRecipesModelIsCommand, LCHRecipesModelIsAction } from './api.js';
 export const LCHLauncherUIRecipesForMode = function (param1, param2) {
 	if (!Array.isArray(param1)) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if (LCHLauncherModes().indexOf(param2) === -1) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	return param1.filter(function (e) {
@@ -124,7 +124,7 @@ export const LCHLauncherUIRecipesForMode = function (param1, param2) {
 // const fuzzysearch = typeof _fuzzysearch === 'function' ? _fuzzysearch : _fuzzysearch.default;
 // export const LCHLauncherFilterForText = function (inputData) {
 // 	if (typeof inputData !== 'string') {
-// 		throw new Error('LCHErrorInputInvalid');
+// 		throw new Error('LCHErrorInputNotValid');
 // 	}
 
 // 	return function (e) {
@@ -142,15 +142,15 @@ export const LCHLauncherThrottleDuration = OLSK_TESTING_BEHAVIOUR() ? 25 : 1000;
 
 export const LCHLauncherPatternMatchesURL = function (param1, param2) {
 	if (typeof param1 !== 'string') {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if (typeof param2 !== 'string') {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if (!param2) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if (param1 === '*') {
@@ -168,7 +168,7 @@ export const LCHLauncherPatternMatchesURL = function (param1, param2) {
 
 export const LCHLauncherKeyboardEventIsTextInput = function (inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if ([
@@ -204,7 +204,7 @@ export const LCHLauncherKeyboardEventIsTextInput = function (inputData) {
 
 export const LCHLauncherActionComparator = function (inputData) {
 	if (typeof inputData !== 'string') {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	return function (a, b) {
@@ -241,11 +241,11 @@ export const LCHLauncherActionComparator = function (inputData) {
 
 export const LCHLauncherConstrainIndex = function (param1, param2) {
 	if (!Array.isArray(param1)) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if (typeof param2 !== 'number') {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if (param2 < 0) {
@@ -262,7 +262,7 @@ export const LCHLauncherConstrainIndex = function (param1, param2) {
 import { LCHRecipesModelErrorsFor, LCHRecipesModelIsSubject } from './api.js';
 export const LCHLauncherReloadableSubjects = function (inputData) {
 	if (!Array.isArray(inputData)) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	return [].concat.apply([], inputData).filter(function (e) {

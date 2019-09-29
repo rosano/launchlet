@@ -7,7 +7,7 @@ describe('LCHPrimitiveURLCallback', function testLCHPrimitiveURLCallback() {
 	it.skip('throws error if not string', function() {
 		throws(function() {
 			mainModule.LCHPrimitiveURLCallback(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns false if not string', function() {

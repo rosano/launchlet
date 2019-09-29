@@ -7,7 +7,7 @@ describe('_LCHFlags', function test_LCHFlags() {
 	it('throws error if not string', function() {
 		throws(function() {
 			mainModule._LCHFlags(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns array', function() {
@@ -151,7 +151,7 @@ describe('LCHFlags', function testLCHFlags() {
 	it('throws error if not object', function() {
 		throws(function() {
 			mainModule.LCHFlags(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns null', function() {

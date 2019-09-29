@@ -8,13 +8,13 @@ describe('LCHActiveDocumentsFocusElements', function testLCHActiveDocumentsFocus
 	it('throws if not object', function() {
 		throws(function() {
 			mainModule.LCHActiveDocumentsFocusElements(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws if not DOMDocument', function() {
 		throws(function() {
 			mainModule.LCHActiveDocumentsFocusElements({});
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns array', function() {

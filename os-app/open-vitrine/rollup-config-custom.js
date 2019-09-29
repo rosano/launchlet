@@ -3,7 +3,7 @@ const pathPackage = require('path');
 module.exports = {
 	LCHVitrineRollupConfigCustom (inputData, options) {
 		if (typeof inputData !== 'object' || inputData === null) {
-			throw new Error('LCHErrorInputInvalid');
+			throw new Error('LCHErrorInputNotValid');
 		}
 
 		inputData.output.name = 'LCHVitrineBehaviour';

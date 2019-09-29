@@ -7,7 +7,7 @@ describe('LCHGuideExampleFormatted', function testLCHGuideExampleFormatted() {
 	it('throws error if not object', function() {
 		throws(function() {
 			mainModule.LCHGuideExampleFormatted(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns object', function() {
@@ -41,7 +41,7 @@ describe('LCHGuideExampleQuoted', function testLCHGuideExampleQuoted() {
 	it('throws error if not object', function() {
 		throws(function() {
 			mainModule.LCHGuideExampleQuoted(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns array', function() {
@@ -61,7 +61,7 @@ describe('LCHGuideExampleTemplate', function testLCHGuideExampleTemplate() {
 	it('throws error if not array', function() {
 		throws(function() {
 			mainModule.LCHGuideExampleTemplate(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns string', function() {
@@ -83,7 +83,7 @@ describe('LCHGuideStringify', function testLCHGuideStringify() {
 	it('throws error if not object', function() {
 		throws(function() {
 			mainModule.LCHGuideStringify(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns string', function() {

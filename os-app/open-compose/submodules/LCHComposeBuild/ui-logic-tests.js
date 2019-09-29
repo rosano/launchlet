@@ -37,7 +37,7 @@ describe('LCHComposeBuildBoomarkletStringFor', function testLCHComposeBuildBooma
 	it('throws error if not object', function() {
 		throws(function() {
 			mainModule.LCHComposeBuildBoomarkletStringFor(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if without all tokens', function() {
@@ -49,7 +49,7 @@ describe('LCHComposeBuildBoomarkletStringFor', function testLCHComposeBuildBooma
 
 				return coll;
 			}, {}));
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('replaces all tokens', function() {
@@ -66,7 +66,7 @@ describe('LCHComposeBuildBoomarkletStringFor', function testLCHComposeBuildBooma
 	it('throws no error if OLSK_TESTING', function() {
 		doesNotThrow(function() {
 			mainModule.LCHComposeBuildBoomarkletStringFor({}, 'OLSK_TESTING');
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('replaces wraps', function() {
@@ -110,13 +110,13 @@ describe('_LCHClosureString', function test_LCHClosureString() {
 	it('throws error if not object', function() {
 		throws(function() {
 			mainModule._LCHClosureString(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if LCHDocumentCallbackBody not string', function() {
 		throws(function() {
 			mainModule._LCHClosureString({});
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns string', function() {
@@ -143,7 +143,7 @@ describe('_LCHComposeBuildRecipeJSON', function test_LCHComposeBuildRecipeJSON()
 	it('throws error if not object', function() {
 		throws(function() {
 			mainModule._LCHComposeBuildRecipeJSON(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns string', function() {
@@ -184,7 +184,7 @@ describe('_LCHComposeRecipeStub', function test_LCHComposeRecipeStub() {
 	it('throws error if not object', function() {
 		throws(function() {
 			mainModule._LCHComposeRecipeStub(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns object', function() {
@@ -228,7 +228,7 @@ describe('LCHComposeBuildBookmarkletBinaryFor', function testLCHComposeBuildBook
 	it('throws error if not string', function() {
 		throws(function() {
 			mainModule.LCHComposeBuildBookmarkletBinaryFor(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns string', function() {

@@ -7,13 +7,13 @@ describe('LCHSearchActionURLFrom', function testLCHSearchActionURLFrom() {
 	it('throws error if param1 not string', function() {
 		throws(function() {
 			mainModule.LCHSearchActionURLFrom(null, '');
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if param2 not string', function() {
 		throws(function() {
 			mainModule.LCHSearchActionURLFrom('', null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns param1', function() {

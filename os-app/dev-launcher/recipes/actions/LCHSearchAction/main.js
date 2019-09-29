@@ -1,10 +1,10 @@
 export const LCHSearchActionURLFrom = function(param1, param2) {
 	if (typeof param1 !== 'string') {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if (typeof param2 !== 'string') {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if (!param1.match(/LCHSEARCHTOKEN/i)) {

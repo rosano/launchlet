@@ -2,7 +2,7 @@ import { LCHFormulaModelErrorsFor, LCHFormulaFrom, LCHFormulaTo } from '../_shar
 
 export const LCHRecipesModelErrorsFor = function(inputData, options = {}) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	const errors = LCHFormulaTo(LCHFormulaModelErrorsFor(LCHFormulaFrom(inputData)) || {}, 'LCHRecipe');
@@ -74,7 +74,7 @@ export const LCHRecipesModelErrorsFor = function(inputData, options = {}) {
 
 export const LCHRecipesModelIsCommand = function(inputData) {
 	if (LCHRecipesModelErrorsFor(inputData)) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if (!inputData.LCHRecipeName) {
@@ -94,7 +94,7 @@ export const LCHRecipesModelIsCommand = function(inputData) {
 
 export const LCHRecipesModelIsSubject = function(inputData) {
 	if (LCHRecipesModelErrorsFor(inputData)) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if (!inputData.LCHRecipeName) {
@@ -114,7 +114,7 @@ export const LCHRecipesModelIsSubject = function(inputData) {
 
 export const LCHRecipesModelIsAction = function(inputData) {
 	if (LCHRecipesModelErrorsFor(inputData)) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if (!inputData.LCHRecipeName) {
@@ -134,7 +134,7 @@ export const LCHRecipesModelIsAction = function(inputData) {
 
 export const LCHRecipesModelIsType = function(inputData) {
 	if (LCHRecipesModelErrorsFor(inputData)) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 	
 	if (inputData.LCHRecipeCallback.length !== 1) {
@@ -158,7 +158,7 @@ export const LCHRecipesModelIsType = function(inputData) {
 
 export const LCHRecipesModelIsTask = function(inputData) {
 	if (LCHRecipesModelErrorsFor(inputData)) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 	
 	if (inputData.LCHRecipeCallback.length) {
@@ -179,7 +179,7 @@ export const LCHRecipesModelIsTask = function(inputData) {
 import { LCHTypeServiceSearchRecipe } from './recipes/types/ServiceSearch/main.js';
 export const LCHLauncherConvertTypeServiceSearch = function(inputData, _stringCallback) {
 	if (!Array.isArray(inputData)) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	return inputData.filter(function (e) {
@@ -206,11 +206,11 @@ export const LCHLauncherConvertTypeServiceSearch = function(inputData, _stringCa
 
 export const LCHRecipesModelActionTakesObject = function(inputData) {
 	if (LCHRecipesModelErrorsFor(inputData)) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if (!LCHRecipesModelIsAction(inputData)) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 	
 	if (LCHRecipeInputTypesForString(inputData.LCHRecipeInputTypes).length < 2) {
@@ -226,11 +226,11 @@ export const LCHRecipesModelActionTakesObject = function(inputData) {
 
 export const LCHRecipesModelActionTakesParams = function(inputData) {
 	if (LCHRecipesModelErrorsFor(inputData)) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if (!LCHRecipesModelIsAction(inputData)) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 	
 	if (LCHRecipeInputTypesForString(inputData.LCHRecipeInputTypes).pop() !== 'Object') {
@@ -246,7 +246,7 @@ export const LCHRecipesModelActionTakesParams = function(inputData) {
 
 export const LCHRecipeInputTypesForString = function(inputData) {
 	if (typeof inputData !== 'string') {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	return inputData.split(',').map(function (e) {
@@ -258,7 +258,7 @@ export const LCHRecipeInputTypesForString = function(inputData) {
 
 export const LCHAPITypeEquivalenceMapForRecipes = function(inputData) {
 	if (!Array.isArray(inputData)) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	const uniqueSignatures = [];
@@ -309,7 +309,7 @@ export const LCHAPITypeEquivalenceMapForRecipes = function(inputData) {
 
 export const LCHAPITypeNameMap = function(inputData) {
 	if (!Array.isArray(inputData)) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	const validRecipes = inputData.filter(function (e) {
@@ -333,11 +333,11 @@ export const LCHAPITypeNameMap = function(inputData) {
 
 export const LCHAPIActionsForType = function(param1, param2) {
 	if (typeof param1 !== 'string') {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if (!Array.isArray(param2)) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	return param2.filter(function (e) {
@@ -359,11 +359,11 @@ export const LCHAPIActionsForType = function(param1, param2) {
 
 export const LCHAPISubjectsForType = function(param1, param2) {
 	if (typeof param1 !== 'string') {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if (!Array.isArray(param2)) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	return param2.filter(function (e) {
@@ -393,7 +393,7 @@ Array.prototype._LCHIntersect = function() {
 
 export const LCHAPIObjectFor = function(inputData) {
 	if (!Array.isArray(inputData)) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	const outputData = {
@@ -441,7 +441,7 @@ export const LCHAPIObjectFor = function(inputData) {
 
 export const LCHCompositionModelErrors = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if (!inputData.LCHCompositionAction) {
@@ -455,7 +455,7 @@ export const LCHCompositionModelErrors = function(inputData) {
 	if (!LCHRecipesModelIsAction(inputData.LCHCompositionAction)) {
 		return {
 			LCHCompositionAction: [
-				'LCHErrorInputInvalid',
+				'LCHErrorInputNotValid',
 			],
 		};
 	}
@@ -474,32 +474,32 @@ export const LCHCompositionModelErrors = function(inputData) {
 
 	// if (!LCHRecipesModelIsSubject(inputData.LCHCompositionSubjectPrimary)) {
 	// 	errors.LCHCompositionSubjectPrimary = [
-	// 		'LCHErrorInputInvalid',
+	// 		'LCHErrorInputNotValid',
 	// 	];
 	// }
 
 	else if (inputData.LCHCompositionAction.LCHRecipeInputTypes && LCHRecipeInputTypesForString(inputData.LCHCompositionAction.LCHRecipeInputTypes).indexOf(inputData.LCHCompositionSubjectPrimary.LCHRecipeOutputType) === -1) {
 		errors.LCHCompositionSubjectPrimary = [
-			'LCHErrorInputInvalid',
+			'LCHErrorInputNotValid',
 		];
 	}
 
 	if (inputData.LCHCompositionAction.LCHRecipeInputTypes && LCHRecipeInputTypesForString(inputData.LCHCompositionAction.LCHRecipeInputTypes).length === 2 && !inputData.LCHCompositionSubjectSecondary) {
 		errors.LCHCompositionSubjectSecondary = [
-			'LCHErrorInputInvalid',
+			'LCHErrorInputNotValid',
 		];
 	}
 
 	if (inputData.LCHCompositionSubjectSecondary !== undefined) {
 		if (!LCHRecipesModelIsSubject(inputData.LCHCompositionSubjectSecondary)) {
 			errors.LCHCompositionSubjectSecondary = [
-				'LCHErrorInputInvalid',
+				'LCHErrorInputNotValid',
 			];
 		}
 
 		if (inputData.LCHCompositionAction.LCHRecipeInputTypes && LCHRecipeInputTypesForString(inputData.LCHCompositionAction.LCHRecipeInputTypes).indexOf(inputData.LCHCompositionSubjectSecondary.LCHRecipeOutputType) === -1) {
 			errors.LCHCompositionSubjectSecondary = [
-				'LCHErrorInputInvalid',
+				'LCHErrorInputNotValid',
 			];
 		}
 	}
@@ -509,11 +509,11 @@ export const LCHCompositionModelErrors = function(inputData) {
 
 export const LCHAPIExecuteComposition = async function(inputData, api = {}) {
 	if (LCHCompositionModelErrors(inputData)) {
-		return Promise.reject(new Error('LCHErrorInputInvalid'));
+		return Promise.reject(new Error('LCHErrorInputNotValid'));
 	}
 
 	if (typeof api.fn !== 'function') {
-		return Promise.reject(new Error('LCHErrorInputInvalid'));
+		return Promise.reject(new Error('LCHErrorInputNotValid'));
 	}
 
 	return LCHAPIExecuteRecipe(inputData.LCHCompositionAction, [
@@ -525,15 +525,15 @@ export const LCHAPIExecuteComposition = async function(inputData, api = {}) {
 
 export const LCHAPIExecuteRecipe = async function(param1, param2 = [], param3 = {}) {
 	if (LCHRecipesModelErrorsFor(param1)) {
-		return Promise.reject(new Error('LCHErrorInputInvalid'));
+		return Promise.reject(new Error('LCHErrorInputNotValid'));
 	}
 
 	if (!Array.isArray(param2)) {
-		return Promise.reject(new Error('LCHErrorInputInvalid'));
+		return Promise.reject(new Error('LCHErrorInputNotValid'));
 	}
 
 	if (typeof param3.fn !== 'function') {
-		return Promise.reject(new Error('LCHErrorInputInvalid'));
+		return Promise.reject(new Error('LCHErrorInputNotValid'));
 	}
 
 	return Promise.resolve(param1.LCHRecipeCallback.apply({
@@ -543,7 +543,7 @@ export const LCHAPIExecuteRecipe = async function(param1, param2 = [], param3 = 
 
 export const LCHComponentDescriptorsModelErrorsFor = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	const errors = {};

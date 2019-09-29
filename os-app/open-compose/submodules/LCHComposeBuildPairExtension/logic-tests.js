@@ -7,7 +7,7 @@ describe('LBXResponseIsValid', function testLBXResponseIsVald() {
 	it('throws error if not object', function() {
 		throws(function() {
 			mainModule.LBXResponseIsValid(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns false if LBXResponseHash not string', function() {

@@ -14,7 +14,7 @@ export const LCHFormulaSafeStringFields = [
 
 export const LCHFormulaModelErrorsFor = function(inputData, options = {}) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	const errors = {};
@@ -96,7 +96,7 @@ export const LCHFormulaModelErrorsFor = function(inputData, options = {}) {
 
 export const LCHFormulaFrom = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	return Object.entries(inputData).reduce(function (coll, item) {
@@ -108,11 +108,11 @@ export const LCHFormulaFrom = function(inputData) {
 
 export const LCHFormulaTo = function(param1, param2) {
 	if (typeof param1 !== 'object' || param1 === null) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if (typeof param2 !== 'string') {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	return Object.entries(param1).reduce(function (coll, item) {
@@ -124,7 +124,7 @@ export const LCHFormulaTo = function(param1, param2) {
 
 export const LCHFormulaToEvaluate = function(inputData) {
 	if (LCHFormulaModelErrorsFor(inputData)) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	let outputData = Object.fromEntries(Object.entries(inputData).filter(function (e) {

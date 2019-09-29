@@ -2,11 +2,11 @@ import * as LCHSettingsMetal from './metal.js';
 
 export const _LCHSettingsActionSet = async function(storageClient, param1, param2) {
 	if (typeof param1 !== 'string') {
-		return Promise.reject(new Error('LCHErrorInputInvalid'));
+		return Promise.reject(new Error('LCHErrorInputNotValid'));
 	}
 
 	if (typeof param2 === 'undefined') {
-		return Promise.reject(new Error('LCHErrorInputInvalid'));
+		return Promise.reject(new Error('LCHErrorInputNotValid'));
 	}
 
 	let outputData = (await LCHSettingsMetal.LCHSettingsMetalWrite(storageClient, {
@@ -19,7 +19,7 @@ export const _LCHSettingsActionSet = async function(storageClient, param1, param
 
 export const _LCHSettingsActionGet = async function(storageClient, inputData) {
 	if (typeof inputData !== 'string') {
-		return Promise.reject(new Error('LCHErrorInputInvalid'));
+		return Promise.reject(new Error('LCHErrorInputNotValid'));
 	}
 
 	let outputData = await LCHSettingsMetal.LCHSettingsMetalRead(storageClient, inputData);
@@ -41,7 +41,7 @@ export const LCHSettingsActionDelete = async function(storageClient, inputData) 
 
 export const LCHSettingsActionQuery = async function(storageClient, inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		return Promise.reject(new Error('LCHErrorInputInvalid'));
+		return Promise.reject(new Error('LCHErrorInputNotValid'));
 	}
 
 	return Promise.resolve(Object.values(await LCHSettingsMetal.LCHSettingsMetalList(storageClient)).filter(function(e) {

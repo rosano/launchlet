@@ -23,7 +23,7 @@ const kTesting = {
 describe('LCHDocumentActionCreate', function testLCHDocumentActionCreate() {
 
 	it('rejects if not object', async function() {
-		await rejects(mainModule.LCHDocumentActionCreate(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHDocumentActionCreate(LCHTestingStorageClient, null), /LCHErrorInputNotValid/);
 	});
 
 	it('returns object with LCHErrors if not valid', async function() {
@@ -67,7 +67,7 @@ describe('LCHDocumentActionCreate', function testLCHDocumentActionCreate() {
 describe('LCHDocumentActionRead', function testLCHDocumentActionRead() {
 
 	it('rejects if not string', async function() {
-		await rejects(mainModule.LCHDocumentActionRead(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHDocumentActionRead(LCHTestingStorageClient, null), /LCHErrorInputNotValid/);
 	});
 
 	it('returns null if not found', async function() {
@@ -85,7 +85,7 @@ describe('LCHDocumentActionRead', function testLCHDocumentActionRead() {
 describe('LCHDocumentActionUpdate', function testLCHDocumentActionUpdate() {
 
 	it('rejects if not object', async function() {
-		await rejects(mainModule.LCHDocumentActionUpdate(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHDocumentActionUpdate(LCHTestingStorageClient, null), /LCHErrorInputNotValid/);
 	});
 
 	it('returns object with LCHErrors if not valid', async function() {
@@ -130,7 +130,7 @@ describe('LCHDocumentActionUpdate', function testLCHDocumentActionUpdate() {
 describe('LCHDocumentActionDelete', function testLCHDocumentActionDelete() {
 
 	it('rejects if not string', async function() {
-		await rejects(mainModule.LCHDocumentActionDelete(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHDocumentActionDelete(LCHTestingStorageClient, null), /LCHErrorInputNotValid/);
 	});
 
 	it('returns statusCode', async function() {

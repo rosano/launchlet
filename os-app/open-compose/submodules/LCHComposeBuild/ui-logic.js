@@ -71,13 +71,13 @@ export const LCHComposeBuildBoomarkletTemplate = function () {
 
 export const LCHComposeBuildBoomarkletStringFor = function (inputData, OLSK_TESTING) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if (!OLSK_TESTING && LCHComposeBuildValidBuildTokens().filter(function (e) {
 		return typeof inputData[e] === 'undefined';
 	}).length) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	return Object.keys(inputData).reduce(function (coll, item) {
@@ -103,7 +103,7 @@ import { LCHFormulaModelErrorsFor, LCHFormulaFrom, LCHFormulaTo } from '../../..
 
 export const _LCHComposeRecipeStub = function (inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	const validKeys = Object.keys(LCHFormulaTo(LCHFormulaModelErrorsFor(LCHFormulaFrom(Object.keys(inputData).reduce(function (coll, item) {
@@ -125,11 +125,11 @@ export const _LCHComposeRecipeStub = function (inputData) {
 
 export const _LCHClosureString = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	if (typeof inputData.LCHDocumentCallbackBody !== 'string') {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	return `function (${ inputData.LCHDocumentCallbackArgs || '' }) { ${ inputData.LCHDocumentCallbackBody } }`;
@@ -137,7 +137,7 @@ export const _LCHClosureString = function(inputData) {
 
 export const _LCHComposeBuildRecipeJSON = function (inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	const outputData = Object.assign({}, inputData);
@@ -155,7 +155,7 @@ export const _LCHComposeBuildRecipeJSON = function (inputData) {
 
 export const LCHComposeBuildBookmarkletBinaryFor = function (inputData) {
 	if (typeof inputData !== 'string') {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	return `javascript:${ encodeURIComponent(inputData) }`;

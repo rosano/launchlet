@@ -7,19 +7,19 @@ describe('LCHLauncherRollupGrabContainerSelector', function testLCHLauncherRollu
 	it('throws error if not string', function() {
 		throws(function() {
 			mainModule.LCHLauncherRollupGrabContainerSelector(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if no identifier', function() {
 		throws(function() {
 			mainModule.LCHLauncherRollupGrabContainerSelector('.Containerr {');
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if no bracket', function() {
 		throws(function() {
 			mainModule.LCHLauncherRollupGrabContainerSelector('.Container');
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns string', function() {
@@ -41,13 +41,13 @@ describe('LCHLauncherRollupPrefixSelector', function testLCHLauncherRollupPrefix
 	it('throws error if param1 not string', function() {
 		throws(function() {
 			mainModule.LCHLauncherRollupPrefixSelector(null, '');
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if param2 not string', function() {
 		throws(function() {
 			mainModule.LCHLauncherRollupPrefixSelector('', null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('prefixes with identifier single', function() {
@@ -105,7 +105,7 @@ describe('LCHLauncherRollupConfigCustom', function testLCHLauncherRollupConfigCu
 	it('throws error if not object', function() {
 		throws(function() {
 			mainModule.LCHLauncherRollupConfigCustom(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	})
 
 	it('sets output.format', function() {

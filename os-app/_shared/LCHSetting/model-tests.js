@@ -16,7 +16,7 @@ describe('LCHSettingModelErrorsFor', function testLCHSettingModelErrorsFor() {
 	it('throws error if not object', function() {
 		throws(function() {
 			mainModule.LCHSettingModelErrorsFor(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns object if LCHSettingKey not string', function() {

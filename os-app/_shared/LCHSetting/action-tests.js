@@ -31,7 +31,7 @@ describe('LCHSettingsActionProperty', function testLCHSettingsActionProperty() {
 describe('LCHSettingsActionDelete', function testLCHSettingsActionDelete() {
 
 	it('rejects if not string', async function() {
-		await rejects(mainModule.LCHSettingsActionDelete(LCHTestingStorageClient, 1), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHSettingsActionDelete(LCHTestingStorageClient, 1), /LCHErrorInputNotValid/);
 	});
 
 	it('returns statusCode', async function() {

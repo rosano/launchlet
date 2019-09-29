@@ -7,7 +7,7 @@ describe('LCHFormulaModelErrorsFor', function testLCHFormulaModelErrorsFor() {
 	it('throws error if not object', function() {
 		throws(function() {
 			LCHFormulaModelErrorsFor(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns null', function() {
@@ -215,7 +215,7 @@ describe('LCHFormulaFrom', function testLCHFormulaFrom() {
 	it('throws error if not object', function() {
 		throws(function() {
 			LCHFormulaFrom(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns inputData', function() {
@@ -239,13 +239,13 @@ describe('LCHFormulaTo', function testLCHFormulaTo() {
 	it('throws error if not object', function() {
 		throws(function() {
 			LCHFormulaTo(null, '');
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if param2 not string', function() {
 		throws(function() {
 			LCHFormulaTo({}, null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns inputData', function() {
@@ -286,7 +286,7 @@ describe('LCHFormulaToEvaluate', function testLCHFormulaToEvaluate() {
 			LCHFormulaToEvaluate({
 				LCHFormulaName: null,
 			});
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns object', function() {

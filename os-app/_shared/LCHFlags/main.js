@@ -3,7 +3,7 @@ import { simple } from 'acorn-walk';
 
 export const _LCHFlags = function(inputData) {
 	if (typeof inputData !== 'string') {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	let ast = parse(inputData);
@@ -50,7 +50,7 @@ export const _LCHFlags = function(inputData) {
 
 export const LCHFlags = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	return Object.entries(inputData).reduce(function (coll, item) {

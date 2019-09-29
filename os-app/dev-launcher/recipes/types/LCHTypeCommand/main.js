@@ -1,6 +1,6 @@
 export const LCHTypeCommandCallback = function(inputData) {
 	// if (LCHRecipesModelErrorsFor(inputData)) {
-	// 	throw new Error('LCHErrorInputInvalid');
+	// 	throw new Error('LCHErrorInputNotValid');
 	// }
 
 	if (!inputData.LCHRecipeName) {

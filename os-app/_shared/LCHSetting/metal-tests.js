@@ -14,7 +14,7 @@ const kTesting = {
 describe('LCHSettingsMetalWrite', function testLCHSettingsMetalWrite() {
 
 	it('rejects if not object', async function() {
-		await rejects(mainModule.LCHSettingsMetalWrite(LCHTestingStorageClient, null), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHSettingsMetalWrite(LCHTestingStorageClient, null), /LCHErrorInputNotValid/);
 	});
 
 	it('returns object with LCHErrors if not valid', async function() {
@@ -40,7 +40,7 @@ describe('LCHSettingsMetalWrite', function testLCHSettingsMetalWrite() {
 describe('LCHSettingsMetalRead', function testLCHSettingsMetalRead() {
 
 	it('rejects if not string', async function() {
-		await rejects(mainModule.LCHSettingsMetalRead(LCHTestingStorageClient, 1), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHSettingsMetalRead(LCHTestingStorageClient, 1), /LCHErrorInputNotValid/);
 	});
 
 	it('returns null if not found', async function() {
@@ -72,7 +72,7 @@ describe('LCHSettingsMetalList', function testLCHSettingsMetalList() {
 describe('LCHSettingsMetalDelete', function testLCHSettingsMetalDelete() {
 
 	it('rejects if not string', async function() {
-		await rejects(mainModule.LCHSettingsMetalDelete(LCHTestingStorageClient, 1), /LCHErrorInputInvalid/);
+		await rejects(mainModule.LCHSettingsMetalDelete(LCHTestingStorageClient, 1), /LCHErrorInputNotValid/);
 	});
 
 	it('returns statusCode', async function() {

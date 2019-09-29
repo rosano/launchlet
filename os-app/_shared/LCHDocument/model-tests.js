@@ -18,7 +18,7 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 	it('throws error if not object', function() {
 		throws(function() {
 			mainModule.LCHDocumentModelErrorsFor(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns object if LCHDocumentID not string', function() {

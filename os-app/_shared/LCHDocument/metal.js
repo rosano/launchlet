@@ -2,7 +2,7 @@ import { LCHDocumentModelErrorsFor, LCHDocumentModelPostJSONParse } from './mode
 
 export const LCHDocumentMetalWrite = async function(storageClient, inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		return Promise.reject(new Error('LCHErrorInputInvalid'));
+		return Promise.reject(new Error('LCHErrorInputNotValid'));
 	}
 
 	let errors = LCHDocumentModelErrorsFor(inputData);
@@ -17,7 +17,7 @@ export const LCHDocumentMetalWrite = async function(storageClient, inputData) {
 
 export const LCHDocumentMetalRead = async function(storageClient, inputData) {
 	if (typeof inputData !== 'string') {
-		return Promise.reject(new Error('LCHErrorInputInvalid'));
+		return Promise.reject(new Error('LCHErrorInputNotValid'));
 	}
 
 	return LCHDocumentModelPostJSONParse(await storageClient.launchlet.lch_documents.readObject(inputData));
@@ -35,7 +35,7 @@ export const LCHDocumentMetalList = async function(storageClient) {
 
 export const LCHDocumentMetalDelete = async function(storageClient, inputData) {
 	if (typeof inputData !== 'string') {
-		return Promise.reject(new Error('LCHErrorInputInvalid'));
+		return Promise.reject(new Error('LCHErrorInputNotValid'));
 	}
 
 	return await storageClient.launchlet.lch_documents.deleteObject(inputData);

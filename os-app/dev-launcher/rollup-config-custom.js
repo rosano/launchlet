@@ -8,31 +8,31 @@ const production = !process.env.ROLLUP_WATCH;
 module.exports = {
 	LCHLauncherRollupGrabContainerSelector (inputData) {
 		if (typeof inputData !== 'string') {
-			throw new Error('LCHErrorInputInvalid');
+			throw new Error('LCHErrorInputNotValid');
 		}
 
 		let match;
 
 		if (!(match = inputData.trim().match(/^(\.Container) ?{/))) {
-			throw new Error('LCHErrorInputInvalid');
+			throw new Error('LCHErrorInputNotValid');
 		}
 
 		return match[1];
 	},
 	LCHLauncherRollupPrefixSelector (param1, param2) {
 		if (typeof param1 !== 'string') {
-			throw new Error('LCHErrorInputInvalid');
+			throw new Error('LCHErrorInputNotValid');
 		}
 
 		if (typeof param2 !== 'string') {
-			throw new Error('LCHErrorInputInvalid');
+			throw new Error('LCHErrorInputNotValid');
 		}
 
 		return param2.replace(/\n(.*)\{/g, `\n${ param1 } :global($1) {`).replace(/body|html/g, '').replace(/ \:global\( \)/g, '');
 	},
 	LCHLauncherRollupConfigCustom (inputData, options = {}) {
 		if (typeof inputData !== 'object' || inputData === null) {
-			throw new Error('LCHErrorInputInvalid');
+			throw new Error('LCHErrorInputNotValid');
 		}
 
 		inputData.output.format = 'umd';

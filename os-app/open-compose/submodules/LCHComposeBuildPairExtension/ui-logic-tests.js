@@ -7,7 +7,7 @@ describe('LCHComposeBuildPairExtensionPublicKeyIsValid', function testLCHCompose
 	it('throws error if not string', function() {
 		throws(function() {
 			mainModule.LCHComposeBuildPairExtensionPublicKeyIsValid(null);
-		}, /LCHErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns false if empty', function() {

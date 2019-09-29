@@ -1,6 +1,6 @@
 exports.LCHGuideExampleFormatted = function (inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	let outputData = Object.assign({}, inputData);
@@ -18,7 +18,7 @@ exports.LCHGuideExampleQuoted = function (inputData, OLSKLocalized = function (i
 	return inputData
 }) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	return Object.entries(inputData).map(function (e) {
@@ -31,7 +31,7 @@ exports.LCHGuideExampleQuoted = function (inputData, OLSKLocalized = function (i
 
 exports.LCHGuideExampleTemplate = function (inputData) {
 	if (!Array.isArray(inputData)) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	return `<div class="LCHGuideExample">\n\n${ inputData.join('\n\n') }\n\n</div>`;
@@ -39,7 +39,7 @@ exports.LCHGuideExampleTemplate = function (inputData) {
 
 exports.LCHGuideStringify = function (inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputInvalid');
+		throw new Error('LCHErrorInputNotValid');
 	}
 
 	return JSON.stringify(inputData, null, ' ').replace(/"(\w+)":/g, "$1:")
