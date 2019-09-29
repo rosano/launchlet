@@ -29,8 +29,8 @@ const mod = {
 		let app = new Main({
 			target: document.getElementById('LCHLauncherTarget'),
 			props: {
-				LRTRecipes: StubRecipesParse(params.StubRecipes) || [],
 				LRTOptions: {
+					LRTOptionRecipes: StubRecipesParse(params.StubRecipes) || [],
 					LRTOptionMode: Launchlet[params.LRTOptionMode || 'LRTModeCommit'],
 					LRTOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 					LRTOptionIncludePageRecipes: !!params.LRTOptionIncludePageRecipes || false,

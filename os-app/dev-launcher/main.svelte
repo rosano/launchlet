@@ -1,5 +1,4 @@
 <script>
-export let LRTRecipes = [];
 export let LRTOptions = {};
 
 import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
@@ -21,11 +20,7 @@ import {
 
 import { LCHLauncherPatternMatchesURL } from './ui-logic.js';
 (function StartDiscardDataObjects() {
-	LRTRecipes = LRTRecipes.filter(function (e) {
-		if (LCHRecipesModelErrorsFor(e)) {
-			return false;
-		}
-
+	LRTOptions.LRTOptionRecipes = LRTOptions.LRTOptionRecipes.filter(function (e) {
 		if (e.LCHRecipeURLFilter && !LCHLauncherPatternMatchesURL(e.LCHRecipeURLFilter, window.location.href)) {
 			return false;
 		}
@@ -44,7 +39,7 @@ import { LCHRecipesModelErrorsFor } from './api.js';
 		return;
 	}
 
-	LRTRecipes.push(...window.LCHPageRecipes.map(function (e) {
+	LRTOptions.LRTOptionRecipes.push(...window.LCHPageRecipes.map(function (e) {
 		delete e.LCHRecipeURLFilter;
 		delete e.LCHRecipeIsAutomatic;
 
@@ -67,7 +62,7 @@ const allRecipes = LCHLauncherStandardRecipes().map(function (e) {
 	return Object.assign(e, {
 		LCHRecipeName: e.LCHRecipeName || OLSKLocalized('LCHStandardRecipeNames')[e.LCHRecipeSignature], // #purge
 	})
-}).concat(LRTRecipes);
+}).concat(LRTOptions.LRTOptionRecipes);
 
 const api = LCHAPIObjectFor(allRecipes);
 const apiTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes);

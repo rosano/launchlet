@@ -26,8 +26,8 @@ export const instanceCreate = function (param1 = [], param2 = {}) {
 	appInstance = new _AppClass({
 		target: appContainer,
 		props: {
-			LRTRecipes: param1,
 			LRTOptions: Object.assign(param2, {
+				LRTOptionRecipes: param1,
 				LRTOptionCompletionHandler () {
 					instanceDestroy();
 

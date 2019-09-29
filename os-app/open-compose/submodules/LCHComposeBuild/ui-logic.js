@@ -36,14 +36,14 @@ export const _LCHComposeBuildBoomarkletTemplate = function () {
 			window.LCHBookmarklet.AppInstance = new (window.LCHBookmarklet.uiBehaviour())({
 				target: sandboxContainer,
 				props: {
-					LRTRecipes: _protectFromCompiler(`LCHComposeBuildToken_DocumentObjects`).concat({
-						LCHRecipeName: 'LCHComposeBuildToken_LCHComposeRecipeName',
-						LCHRecipeCallback () {
-							return 'LCHComposeBuildToken_LCHComposeRecipeCallbackOutput';
-						},
-						LCHRecipeOutputType: 'URL',
-					}),
 					LRTOptions: {
+						LRTOptionRecipes: _protectFromCompiler(`LCHComposeBuildToken_DocumentObjects`).concat({
+							LCHRecipeName: 'LCHComposeBuildToken_LCHComposeRecipeName',
+							LCHRecipeCallback () {
+								return 'LCHComposeBuildToken_LCHComposeRecipeCallbackOutput';
+							},
+							LCHRecipeOutputType: 'URL',
+						}),
 						LRTOptionCompletionHandler () {
 							return window.LCHBookmarklet.instanceDestroy();
 						},
