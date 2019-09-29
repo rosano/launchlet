@@ -124,7 +124,7 @@ export const LCHFormulaTo = function(param1, param2) {
 
 export const LCHFormulaToEvaluate = function(inputData) {
 	if (LCHFormulaModelErrorsFor(inputData)) {
-		throw 'LCHErrorInputInvalid';
+		throw new Error('LCHErrorInputInvalid');
 	}
 
 	let outputData = Object.fromEntries(Object.entries(inputData).filter(function (e) {

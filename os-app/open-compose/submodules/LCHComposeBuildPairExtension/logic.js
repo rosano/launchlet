@@ -1,6 +1,6 @@
 export const LBXResponseIsValid = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
-		throw 'LCHErrorInputInvalid'
+		throw new Error('LCHErrorInputInvalid')
 	}
 
 	if (typeof inputData.LBXResponseHash !== 'string') {

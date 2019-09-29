@@ -2,7 +2,7 @@ const mod = {
 
 	LCHVitrineRouteGuard (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
-			throw 'LCHErrorInputInvalid';
+			throw new Error('LCHErrorInputInvalid');
 		}
 
 		if (!(inputData.LCH_VITRINE_QUICKSILVER_URL || '').trim()) {

@@ -1,6 +1,6 @@
 export const LCHComposeBuildPairExtensionPublicKeyIsValid = function(inputData) {
 	if (typeof inputData !== 'string') {
-		throw 'LCHErrorInputInvalid';
+		throw new Error('LCHErrorInputInvalid');
 	}
 
 	if (!inputData) {

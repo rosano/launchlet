@@ -2,7 +2,7 @@ const mod = {
 
 	LCHSharedDonateLinkGuard (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
-			throw 'LCHErrorInputInvalid';
+			throw new Error('LCHErrorInputInvalid');
 		}
 
 		if (!(inputData.LCH_SHARED_DONATE_URL || '').trim()) {
