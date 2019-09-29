@@ -37,7 +37,7 @@ import { LCHLauncherPatternMatchesURL } from './ui-logic.js';
 
 import { LCHRecipesModelErrorsFor } from './api.js';
 (function StartPageRecipes() {
-	if (!LRTOptions.LCHOptionIncludePageRecipes) {
+	if (!LRTOptions.LRTOptionIncludePageRecipes) {
 		return;
 	};
 	

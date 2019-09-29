@@ -8,7 +8,7 @@ describe('AutomaticRunningOfPageRecipes', function testAutomaticRunningOfPageRec
 
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
-			LCHOptionIncludePageRecipes: true,
+			LRTOptionIncludePageRecipes: true,
 			LCHTestSkipAutomaticLaunch: true,
 		}));
 	});

@@ -6,7 +6,7 @@ const uLocalized = function (inputData) {
 	return OLSKTestingLocalized(inputData, kDefaultRoute.OLSKRouteLanguages[0]);
 };
 
-describe('LCHPageRecipes', function testLCHPageRecipes () {
+describe.only('LCHPageRecipes', function testLCHPageRecipes () {
 
 	context('not enabled', function () {
 		
@@ -43,7 +43,7 @@ describe('LCHPageRecipes', function testLCHPageRecipes () {
 		before(function() {
 			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
-				LCHOptionIncludePageRecipes: true,
+				LRTOptionIncludePageRecipes: true,
 				LCHTestSkipAutomaticLaunch: true,
 			}));
 		});

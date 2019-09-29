@@ -41,7 +41,7 @@ const mod = {
 				LRTOptions: {
 					LRTOptionMode: Launchlet[params.LRTOptionMode || 'LRTModeCommit'],
 					LRTOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
-					LCHOptionIncludePageRecipes: !!params.LCHOptionIncludePageRecipes || false,
+					LRTOptionIncludePageRecipes: !!params.LRTOptionIncludePageRecipes || false,
 				},
 			},
 		});
