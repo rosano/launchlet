@@ -4,7 +4,7 @@ export let LRTOptions = {};
 import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 
 import { LCHLauncherOptions } from './ui-logic.js';
-LRTOptions = LCHLauncherOptions(LRTOptions);
+LRTOptions = LCHLauncherOptions(LRTOptions, _LCHIsTestingBehaviour() ? undefined : console.warn);
 
 import OLSKInternational from 'OLSKInternational';
 export const OLSKLocalized = function(translationConstant) {

@@ -1,6 +1,6 @@
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
 
-export const LCHLauncherOptions = function (inputData) {
+export const LCHLauncherOptions = function (inputData, notify = function () {}) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
 	}
@@ -14,7 +14,13 @@ export const LCHLauncherOptions = function (inputData) {
 	};
 
 	inputData.LRTOptionRecipes = inputData.LRTOptionRecipes.filter(function (e) {
-		return !LCHRecipesModelErrorsFor(e);
+		const errors = LCHRecipesModelErrorsFor(e);
+
+		if (errors) {
+			notify('LRTOptionRecipesItemNotValid', e, errors)
+		};
+
+		return !errors;
 	})
 
 	if (typeof inputData.LRTOptionMode === 'undefined') {
