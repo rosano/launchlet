@@ -1,59 +1,84 @@
 import { LCHLauncherModeCommit, LCHLauncherModePreview, LCHLauncherModePipe, LCHLauncherModes } from '../dev-launcher/ui-logic.js';
 
-let _AppClass;
-export const AppClass = function (inputData) {
-	_AppClass = inputData;
-};
-
 export const LRTModeCommit = LCHLauncherModeCommit();
 export const LRTModePreview = LCHLauncherModePreview();
 export const LRTModePipe = LCHLauncherModePipe();
 
-let appContainer, appInstance;
+export const mod = {
 
-export const instanceCreate = function (param1 = [], param2 = {}) {
-	if (instanceExists()) {
-		instanceDestroy();
-	}
+	// DATA
 
-	if (typeof document !== 'undefined') {
-		appContainer = document.createElement('div');
-		document.body.appendChild(appContainer);
-	}
+	DataSingletonExists () {
+		return !!mod._ValueSingleton;
+	},
 
-	const callback = param2.LRTOptionCompletionHandler;
+	// VALUE
+
+	_ValueClass: undefined,
 	
-	appInstance = new _AppClass({
-		target: appContainer,
-		props: {
-			LRTOptions: Object.assign(param2, {
-				LRTOptionRecipes: param1,
-				LRTOptionCompletionHandler () {
-					instanceDestroy();
+	_ValueTarget: undefined,
+	
+	_ValueSingleton: undefined,
+	
+	// LIFECYCLE
 
-					if (!callback) {
-						return;
-					}
+	LifecycleSingletonCreate (inputData = {}) {
+		if (mod._ValueSingleton) {
+			mod.LifecycleSingletonDestroy();
+		}
 
-					callback();
-				},
-			}),
-		},
-	});
+		if (typeof document !== 'undefined') {
+			document.body.appendChild(mod._ValueTarget = document.createElement('div'));
+		}
+
+		const callback = inputData.LRTOptionCompletionHandler;
+
+		mod._ValueSingleton = new mod._ValueClass({
+			target: mod._ValueTarget,
+			props: {
+				LRTOptions: Object.assign(inputData, {
+					LRTOptionCompletionHandler () {
+						instanceDestroy();
+
+						if (!callback) {
+							return;
+						}
+
+						callback();
+					},
+				}),
+			},
+		});
+	},
+
+	LifecycleSingletonDestroy () {
+		mod._ValueSingleton.$destroy();
+		
+		delete mod._ValueSingleton
+
+		if (typeof document === 'undefined') {
+			return;
+		}
+
+		mod._ValueTarget.remove();
+
+		delete mod._ValueTarget;
+	},
+
 };
 
-export const instanceExists = function () {
-	return !!appInstance;
-};
+export const LCHPackage = function () {
+	const outputData = {
+		LRTModeCommit: LRTModeCommit,
+		LRTModePreview: LRTModePreview,
+		LRTModePipe: LRTModePipe,
 
-export const instanceDestroy = function () {
-	appInstance.$destroy();
-	appInstance = undefined;
+		LRTSingletonCreate: mod.LifecycleSingletonCreate,
+		LRTSingletonExists: mod.DataSingletonExists,
+		LRTSingletonDestroy: mod.LifecycleSingletonDestroy,
+	};
 
-	if (typeof document === 'undefined') {
-		return;
-	}
+	Object.freeze(outputData);
 
-	appContainer.remove();
-	appContainer = undefined;
+	return outputData;
 };

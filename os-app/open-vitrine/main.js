@@ -32,14 +32,14 @@ export const mod = {
 	// COMMAND
 
 	CommandDemoCommit() {
-		Launchlet.instanceCreate(_LCHVitrineRecipes, {
+		Launchlet.LRTSingletonCreate(_LCHVitrineRecipes, {
 			LRTOptionMode: Launchlet.LRTModeCommit,
 			LRTOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 	},
 
 	CommandDemoPreview() {
-		Launchlet.instanceCreate([].concat.apply([], document.querySelectorAll('h1,h2')).map(function (e) {
+		Launchlet.LRTSingletonCreate([].concat.apply([], document.querySelectorAll('h1,h2')).map(function (e) {
 			return {
 				LCHRecipeName: e.textContent,
 				LCHRecipeCallback () {
@@ -53,7 +53,7 @@ export const mod = {
 	},
 
 	CommandDemoPipe() {
-		Launchlet.instanceCreate(_LCHVitrineRecipes, {
+		Launchlet.LRTSingletonCreate(_LCHVitrineRecipes, {
 			LRTOptionMode: Launchlet.LRTModePipe,
 			LRTOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});

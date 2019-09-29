@@ -1,6 +1,6 @@
-import * as mod from './main.js';
+import * as mainModule from './main.js';
 
 import Main from '../dev-launcher/__compiled/ui-behaviour.js';
-mod.AppClass(Main);
+mainModule.mod._ValueClass = Main;
 
-export default mod;
+export default mainModule.LCHPackage();

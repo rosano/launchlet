@@ -1,15 +1,107 @@
 import { throws, deepEqual } from 'assert';
 
 import * as mainModule from './main.js';
-import { LCHLauncherModeCommit, LCHLauncherModePreview, LCHLauncherModePipe } from '../dev-launcher/ui-logic.js';
 
 const kTesting = {
-	StubAppClass: function() {
-		return function Alfa (type) {
+	StubValueClass: function(inputData) {
+		return function () {
+			this.check1 = function () {
+				return inputData;
+			};
+
 			this.$destroy = function () {};
 		};
 	},
 };
+
+mainModule.mod._ValueClass = kTesting.StubValueClass('alfa')
+
+describe('DataSingletonExists', function testDataSingletonExists() {
+
+	beforeEach(function () {
+		deepEqual(mainModule.mod._ValueSingleton, undefined);
+	});
+
+	afterEach(function () {
+		deepEqual(mainModule.mod._ValueSingleton, undefined);
+	});
+
+	it('returns false', function() {
+		deepEqual(mainModule.mod.DataSingletonExists(), false);
+	});
+
+	it('returns true after LifecycleSingletonCreate', function() {
+		mainModule.mod.LifecycleSingletonCreate();
+		
+		deepEqual(mainModule.mod.DataSingletonExists(), true);
+
+		mainModule.mod.LifecycleSingletonDestroy();
+	});
+
+	it('returns true after LifecycleSingletonDestroy', function() {
+		mainModule.mod.LifecycleSingletonCreate();
+		mainModule.mod.LifecycleSingletonDestroy();
+		
+		deepEqual(mainModule.mod.DataSingletonExists(), false);
+	});
+
+});
+
+describe('LifecycleSingletonCreate', function testLifecycleSingletonCreate() {
+
+	beforeEach(function () {
+		deepEqual(mainModule.mod._ValueSingleton, undefined);
+	});
+
+	afterEach(function () {
+		mainModule.mod.LifecycleSingletonDestroy();
+	});
+	
+	afterEach(function () {
+		deepEqual(mainModule.mod._ValueSingleton, undefined);
+	});
+
+	it('sets ValueSingleton', function() {
+		mainModule.mod.LifecycleSingletonCreate();
+
+		deepEqual(mainModule.mod._ValueSingleton.check1(), 'alfa');
+	});
+
+	it('calls LifecycleSingletonDestroy if exists', function() {
+		mainModule.mod.LifecycleSingletonCreate();
+		
+		mainModule.mod._ValueClass = kTesting.StubValueClass('bravo')
+
+		mainModule.mod.LifecycleSingletonCreate();
+
+		deepEqual(mainModule.mod._ValueSingleton.check1(), 'bravo');
+	});
+
+});
+
+describe('LifecycleSingletonDestroy', function testLifecycleSingletonDestroy() {
+
+	beforeEach(function () {
+		deepEqual(mainModule.mod._ValueSingleton, undefined);
+	});
+
+	beforeEach(function () {
+		mainModule.mod.LifecycleSingletonCreate();
+	});
+	
+	afterEach(function () {
+		deepEqual(mainModule.mod._ValueSingleton, undefined);
+	});
+
+	it('deletes ValueSingleton', function() {
+		mainModule.mod.LifecycleSingletonDestroy();
+
+		deepEqual(mainModule.mod._ValueSingleton, undefined);
+	});
+
+});
+
+import { LCHLauncherModeCommit, LCHLauncherModePreview, LCHLauncherModePipe } from '../dev-launcher/ui-logic.js';
 
 describe('LRTModeCommit', function testLRTModeCommit() {
 
@@ -35,25 +127,26 @@ describe('LRTModePipe', function testLRTModePipe() {
 
 });
 
-describe('instanceExists', function testinstanceExists() {
+describe('LCHPackage', function testLCHPackage() {
 
-	before(function () {
-		mainModule.AppClass(kTesting.StubAppClass());
+	it('returns object', function() {
+		deepEqual(mainModule.LCHPackage(), {
+			LRTModeCommit: mainModule.LRTModeCommit,
+			LRTModePreview: mainModule.LRTModePreview,
+			LRTModePipe: mainModule.LRTModePipe,
+
+			LRTSingletonCreate: mainModule.mod.LifecycleSingletonCreate,
+			LRTSingletonExists: mainModule.mod.DataSingletonExists,
+			LRTSingletonDestroy: mainModule.mod.LifecycleSingletonDestroy,
+		});
 	});
 
-	it('returns false', function() {
-		deepEqual(mainModule.instanceExists(), false);
-	});
+	it('freezes object', function() {
+		let item = mainModule.LCHPackage();
 
-	it('returns true after instanceCreate', function() {
-		mainModule.instanceCreate();
-		deepEqual(mainModule.instanceExists(), true);
-	});
-
-	it('returns false after instanceDestroy', function() {
-		mainModule.instanceCreate();
-		mainModule.instanceDestroy();
-		deepEqual(mainModule.instanceExists(), false);
+		item.alfa = 'bravo',
+		
+		deepEqual(item.alfa, undefined);
 	});
 
 });
