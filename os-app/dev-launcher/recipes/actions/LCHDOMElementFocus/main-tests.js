@@ -5,7 +5,7 @@ import * as mainModule from './main.js';
 describe('LCHDOMElementFocusCallback', function testLCHDOMElementFocusCallback() {
 
 	it('returns undefined', function() {
-		deepEqual(typeof mainModule.LCHDOMElementFocusCallback(), 'undefined');
+		deepEqual(mainModule.LCHDOMElementFocusCallback(), undefined);
 	});
 
 });

@@ -48,10 +48,10 @@ describe('LCHComposeBuildPair', function () {
 	context('RemoveKeys', function testRemoveKeys () {
 		
 		it('posts no message', async function() {
-			deepEqual(typeof (await browser.OLSKMessageAsync(function () {
+			deepEqual(await browser.OLSKMessageAsync(function () {
 				browser.click(LCHBuildPairExtensionDeleteKeyButton)
 				return browser.wait({ element: LCHComposeBuildPairButton })
-			})), 'undefined')
+			}), undefined)
 		});
 	
 	});

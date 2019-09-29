@@ -5,7 +5,7 @@ import * as mainModule from './main.js';
 describe('LCHURLOpenCallback', function testLCHURLOpenCallback() {
 
 	it('returns undefined', function() {
-		deepEqual(typeof mainModule.LCHURLOpenCallback(), 'undefined');
+		deepEqual(mainModule.LCHURLOpenCallback(), undefined);
 	});
 
 });

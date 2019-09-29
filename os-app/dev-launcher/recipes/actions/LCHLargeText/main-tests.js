@@ -5,7 +5,7 @@ import * as mainModule from './main.js';
 describe('LCHLargeTextCallback', function testLCHLargeTextCallback() {
 
 	it('returns undefined', function() {
-		deepEqual(typeof mainModule.LCHLargeTextCallback('alfa'), 'undefined');
+		deepEqual(mainModule.LCHLargeTextCallback('alfa'), undefined);
 	});
 
 });
