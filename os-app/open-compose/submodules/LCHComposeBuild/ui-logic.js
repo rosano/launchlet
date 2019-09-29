@@ -107,7 +107,7 @@ export const _LCHComposeRecipeStub = function (inputData) {
 	}
 
 	const validKeys = Object.keys(LCHFormulaTo(LCHFormulaModelErrorsFor(LCHFormulaFrom(Object.keys(inputData).reduce(function (coll, item) {
-		return (coll[item] = Symbol('ForceInvalid')) && coll;
+		return (coll[item] = Symbol('ForceNotValid')) && coll;
 	}, {}))) || {}, 'LCHRecipe'));
 
 	return Object.assign(validKeys.reduce(function (coll, item) {

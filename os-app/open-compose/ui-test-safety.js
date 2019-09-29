@@ -155,7 +155,7 @@ describe('LCHComposeSafety', function () {
 			browser.assert.elements('.LCHLauncherResultListItem', 1)
 		});
 
-		it('flags if invalid', async function() {
+		it('flags if not valid', async function() {
 			await uCreateItem(browser);
 
 			browser.fill(LCHComposeFormNameField, 'eval3');

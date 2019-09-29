@@ -1,6 +1,6 @@
 LCHBuildPairExtensionPublicKeyFieldLabel: Key
 LCHBuildPairExtensionSubmitButtonLabel: Submit
 LCHBuildPairExtensionDeleteKeyButtonText: Delete key
-LCHBuildPairExtensionAlertText: Input invalid
+LCHBuildPairExtensionAlertText: Input not valid
 LCHBuildPairExtensionStatusWaitingText: Waiting
 LCHBuildPairExtensionStatusFailedText: Failed

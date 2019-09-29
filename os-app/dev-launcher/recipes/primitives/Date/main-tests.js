@@ -8,7 +8,7 @@ describe('LCHPrimitiveDateCallback', function testLCHPrimitiveDateCallback() {
 		deepEqual(mainModule.LCHPrimitiveDateCallback(null), false);
 	});
 
-	it('returns false if invalid', function() {
+	it('returns false if not valid', function() {
 		deepEqual(mainModule.LCHPrimitiveDateCallback(new Date('alfa')), false);
 	});
 

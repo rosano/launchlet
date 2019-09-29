@@ -12,7 +12,7 @@ describe('LCHComposeBuildPairExtensionForm', function () {
 		browser.assert.hasFocus(LCHBuildPairExtensionPublicKeyField)
 	});
 
-	context('SubmitInvalid', function testSubmitInvalid () {
+	context('SubmitNotValid', function testSubmitNotValid () {
 	
 		it('alerts', function() {
 			deepEqual(typeof browser.OLSKAlert(function () {
