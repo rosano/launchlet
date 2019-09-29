@@ -1,6 +1,5 @@
 <script>
 export let LRTRecipes = [];
-export let LRTCompletionHandler;
 export let LRTOptions = {};
 
 import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
@@ -808,11 +807,11 @@ const mod = {
 		mod.commandExit();
 	},
 	commandExit () {
-		if (typeof LRTCompletionHandler !== 'function') {
+		if (typeof LRTOptions.LRTOptionCompletionHandler !== 'function') {
 			return;
 		}
 
-		return LRTCompletionHandler();
+		return LRTOptions.LRTOptionCompletionHandler();
 	},
 };
 

@@ -30,18 +30,18 @@ const mod = {
 			target: document.getElementById('LCHLauncherTarget'),
 			props: {
 				LRTRecipes: StubRecipesParse(params.StubRecipes) || [],
-				LRTCompletionHandler () {
-					let span = document.createElement('span');
-					span.classList.add('TestLauncherDidFinish');
-					document.body.appendChild(span);
-
-					app.$destroy();
-					app = null;
-				},
 				LRTOptions: {
 					LRTOptionMode: Launchlet[params.LRTOptionMode || 'LRTModeCommit'],
 					LRTOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 					LRTOptionIncludePageRecipes: !!params.LRTOptionIncludePageRecipes || false,
+					LRTOptionCompletionHandler () {
+						let span = document.createElement('span');
+						span.classList.add('TestLauncherDidFinish');
+						document.body.appendChild(span);
+
+						app.$destroy();
+						app = null;
+					},
 				},
 			},
 		});

@@ -20,21 +20,24 @@ export const instanceCreate = function (param1 = [], param2 = {}) {
 		appContainer = document.createElement('div');
 		document.body.appendChild(appContainer);
 	}
+
+	const callback = param2.LRTOptionCompletionHandler;
 	
 	appInstance = new _AppClass({
 		target: appContainer,
 		props: {
 			LRTRecipes: param1,
-			LRTOptions: param2,
-			LRTCompletionHandler () {
-				instanceDestroy();
+			LRTOptions: Object.assign(param2, {
+				LRTOptionCompletionHandler () {
+					instanceDestroy();
 
-				if (!param2.LRTCompletionHandler) {
-					return;
-				}
+					if (!callback) {
+						return;
+					}
 
-				param2.LRTCompletionHandler();
-			},
+					callback();
+				},
+			}),
 		},
 	});
 };

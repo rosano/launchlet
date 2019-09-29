@@ -43,10 +43,10 @@ export const _LCHComposeBuildBoomarkletTemplate = function () {
 						},
 						LCHRecipeOutputType: 'URL',
 					}),
-					LRTCompletionHandler () {
-						return window.LCHBookmarklet.instanceDestroy();
-					},
 					LRTOptions: {
+						LRTOptionCompletionHandler () {
+							return window.LCHBookmarklet.instanceDestroy();
+						},
 						LRTOptionLanguage: 'LCHComposeBuildToken_AppLanguageCode',
 						LRTOptionMode: 'LCHComposeBuildToken_LCHLauncherMode',
 					},
