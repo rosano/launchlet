@@ -4,24 +4,15 @@ export const LCHLauncherOptions = function (inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
 	}
-
-	const outputData = {
-		LRTOptionMode: LCHLauncherModes().shift(),
-
-		LRTOptionLanguage: 'en',
-	};
-
-	if (inputData.LRTOptionMode) {
-		// #mysterious Why doesn't function equivalency work here?
-		//  always returns -1
-		outputData.LRTOptionMode = LCHLauncherModes()[LCHLauncherModes().indexOf(inputData.LRTOptionMode)] || outputData.LRTOptionMode;
+	if (!inputData.LRTOptionMode || LCHLauncherModes().indexOf(inputData.LRTOptionMode) === -1) {
+		inputData.LRTOptionMode = LCHLauncherModes().shift()
 	}
 
-	if (inputData.LRTOptionLanguage) {
-		outputData.LRTOptionLanguage = inputData.LRTOptionLanguage;
+	if (!inputData.LRTOptionLanguage) {
+		inputData.LRTOptionLanguage = 'en';
 	}
 
-	return outputData;
+	return inputData;
 };
 
 export const LCHLauncherModeCommit = function () {

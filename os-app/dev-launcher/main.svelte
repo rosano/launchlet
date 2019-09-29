@@ -45,13 +45,7 @@ import { LCHRecipesModelErrorsFor } from './api.js';
 		return;
 	}
 
-	let pageRecipes = window.LCHPageRecipes;
-
-	if (!Array.isArray(pageRecipes)) {
-		return;
-	}
-
-	LRTRecipes.push(...pageRecipes.map(function (e) {
+	LRTRecipes.push(...window.LCHPageRecipes.map(function (e) {
 		delete e.LCHRecipeURLFilter;
 		delete e.LCHRecipeIsAutomatic;
 

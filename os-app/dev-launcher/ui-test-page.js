@@ -6,7 +6,7 @@ const uLocalized = function (inputData) {
 	return OLSKTestingLocalized(inputData, kDefaultRoute.OLSKRouteLanguages[0]);
 };
 
-describe.only('LCHPageRecipes', function testLCHPageRecipes () {
+describe('LCHPageRecipes', function testLCHPageRecipes () {
 
 	context('not enabled', function () {
 		
@@ -65,10 +65,6 @@ describe.only('LCHPageRecipes', function testLCHPageRecipes () {
 
 		it('shows item', function() {
 			browser.assert.elements(LCHLauncherListItem, 2)
-		});
-
-		it('shows LCHLauncherPipeItemSource', function() {
-			browser.assert.elements(LCHLauncherPipeItemSource, 1)
 		});
 
 		it('sets LCHLauncherPipeItemSource', function() {
