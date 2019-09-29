@@ -34,5 +34,3 @@ Organizes items into subjects and actions. Try
 - `Wikipedia` and `LCHSearchFor`
 
 LCHVitrineDemoButtonPipeToken
-
-LCHVitrineRosanoLink

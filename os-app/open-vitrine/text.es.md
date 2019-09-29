@@ -34,5 +34,3 @@ Organizar los artículos en sujetos y actos. Intenta
 - `Wikipedia` y `LCHSearchFor`
 
 LCHVitrineDemoButtonPipeToken
-
-LCHVitrineRosanoLink

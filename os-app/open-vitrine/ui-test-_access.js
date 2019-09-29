@@ -38,4 +38,8 @@ describe('LCHVitrine_Access', function () {
 		browser.assert.elements(LCHVitrineDemoButtonPipe, 1)
 	});
 
+	it('shows ROCORootLink', function() {
+		browser.assert.elements('.ROCORootLink', 1)
+	});
+
 });

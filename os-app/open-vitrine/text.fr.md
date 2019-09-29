@@ -34,5 +34,3 @@ Organiser les articles en sujets et actions. Essayez
 - `Wikipedia` et `LCHSearchFor`
 
 LCHVitrineDemoButtonPipeToken
-
-LCHVitrineRosanoLink
