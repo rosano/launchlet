@@ -3,8 +3,6 @@ import { deepEqual } from 'assert';
 const kDefaultRoutePath = require('./controller.js').OLSKControllerRoutes().shift().OLSKRoutePath;
 
 Object.entries({
-	RCSLanguageSwitcher: '#RCSLanguageSwitcher',
-
 	LCHVitrineContent: '.LCHVitrineContent',
 
 	LCHVitrineDemoButtonCommit: '.LCHVitrineDemoButtonCommit',
@@ -21,7 +19,7 @@ describe('LCHVitrine_Access', function () {
 	});
 	
 	it('shows RCSLanguageSwitcher', function() {
-		browser.assert.elements(RCSLanguageSwitcher, 1)
+		browser.assert.elements('#RCSLanguageSwitcher', 1)
 	});
 	
 	it('shows LCHVitrineContent', function() {
