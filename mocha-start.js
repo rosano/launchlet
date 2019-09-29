@@ -106,7 +106,8 @@ const LCHSettingStorage = require('./os-app/_shared/LCHSetting/storage.js');
 	};
 
 	before(function(done) {
-		global.LCHTestingStorageClient = require('./os-app/_shared/LCHStorageClient/main.js').LCHStorageClientForModules([
+		global.LCHTestingStorageClient = require('./os-app/_shared/LCHStorageClient/main.js').LCHStorageClient({
+			modules: [
 				LCHStorageModule.LCHStorageModule([
 					LCHDocumentStorage.LCHDocumentStorage,
 					LCHSettingStorage.LCHSettingStorage,
@@ -116,7 +117,8 @@ const LCHSettingStorage = require('./os-app/_shared/LCHSetting/storage.js');
 						LCHCollectionChangeDelegate: null,
 					};
 				}))
-			]);
+			],
+		});
 
 		done();
 	});

@@ -1,16 +1,14 @@
 import * as RemoteStoragePackage from 'remotestoragejs';
 const RemoteStorage = RemoteStoragePackage.default || RemoteStoragePackage;
 
-export const LCHStorageClientForModules = function (modules) {
-	let remoteStorage = new RemoteStorage({
-		modules: modules,
-	});
+export const LCHStorageClient = function (inputData) {
+	let remoteStorage = new RemoteStorage(inputData);
 
 	let outputData = {};
 
 	outputData.remoteStorage = remoteStorage;
 
-	modules.forEach(function (e) {
+	inputData.modules.forEach(function (e) {
 		remoteStorage.access.claim(e.name, 'rw');
 
 		remoteStorage.caching.enable(`/${ e.name }/`);

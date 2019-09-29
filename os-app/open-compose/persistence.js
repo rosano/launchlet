@@ -19,61 +19,63 @@ let _DocumentSelected;
 DocumentSelectedStore.subscribe(function (val) {
 	_DocumentSelected = val;
 });
-export const storageClient = LCHStorageClient.LCHStorageClientForModules([
-	LCHStorageModule([
-		LCHDocumentStorage,
-		LCHSettingStorage,
-		].map(function (e) {
-			return {
-				LCHCollectionStorageGenerator: e,
-				LCHCollectionChangeDelegate: e === LCHDocumentStorage ? {
-					OLSKChangeDelegateCreate: function (inputData) {
-						// console.log('OLSKChangeDelegateCreate', inputData);
+export const storageClient = LCHStorageClient.LCHStorageClient({
+	modules: [
+		LCHStorageModule([
+			LCHDocumentStorage,
+			LCHSettingStorage,
+			].map(function (e) {
+				return {
+					LCHCollectionStorageGenerator: e,
+					LCHCollectionChangeDelegate: e === LCHDocumentStorage ? {
+						OLSKChangeDelegateCreate: function (inputData) {
+							// console.log('OLSKChangeDelegateCreate', inputData);
 
-						DocumentsAllStore.update(function (val) {
-							return val.filter(function (e) { // @Hotfix Dropbox sending DelegateAdd
-								return e.LCHDocumentID !== inputData.LCHDocumentID;
-							}).concat(inputData).sort(LCHComposeSort);
-						});
-
-						modelDidChange.set(Date.now());
-					},
-					OLSKChangeDelegateUpdate: function (inputData) {
-						// console.log('OLSKChangeDelegateUpdate', inputData);
-
-						if (_DocumentSelected && (_DocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
-							DocumentSelectedStore.update(function (val) {
-								return Object.assign(val, inputData);
+							DocumentsAllStore.update(function (val) {
+								return val.filter(function (e) { // @Hotfix Dropbox sending DelegateAdd
+									return e.LCHDocumentID !== inputData.LCHDocumentID;
+								}).concat(inputData).sort(LCHComposeSort);
 							});
-						}
 
-						DocumentsAllStore.update(function (val) {
-							return val.map(function (e) {
-								return Object.assign(e, e.LCHDocumentID === inputData.LCHDocumentID ? inputData : {});
+							modelDidChange.set(Date.now());
+						},
+						OLSKChangeDelegateUpdate: function (inputData) {
+							// console.log('OLSKChangeDelegateUpdate', inputData);
+
+							if (_DocumentSelected && (_DocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
+								DocumentSelectedStore.update(function (val) {
+									return Object.assign(val, inputData);
+								});
+							}
+
+							DocumentsAllStore.update(function (val) {
+								return val.map(function (e) {
+									return Object.assign(e, e.LCHDocumentID === inputData.LCHDocumentID ? inputData : {});
+								});
 							});
-						});
 
-						modelDidChange.set(Date.now());
-					},
-					OLSKChangeDelegateDelete: function (inputData) {
-						// console.log('OLSKChangeDelegateDelete', inputData);
+							modelDidChange.set(Date.now());
+						},
+						OLSKChangeDelegateDelete: function (inputData) {
+							// console.log('OLSKChangeDelegateDelete', inputData);
 
-						if (_DocumentSelected && (_DocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
-							DocumentSelectedStore.set(null);
-						}
+							if (_DocumentSelected && (_DocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
+								DocumentSelectedStore.set(null);
+							}
 
-						DocumentsAllStore.update(function (val) {
-							return val.filter(function (e) {
-								return e.LCHDocumentID !== inputData.LCHDocumentID;
+							DocumentsAllStore.update(function (val) {
+								return val.filter(function (e) {
+									return e.LCHDocumentID !== inputData.LCHDocumentID;
+								});
 							});
-						});
 
-						modelDidChange.set(Date.now());
-					},
-				} : null,
-			}
-		})),
-]);
+							modelDidChange.set(Date.now());
+						},
+					} : null,
+				}
+			})),
+	],
+});
 
 let remoteStorage = storageClient.remoteStorage;
 remoteStorage.setApiKeys(window.OLSKPublicConstants('LCHDropboxAppKey') ? {
