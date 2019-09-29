@@ -38,7 +38,7 @@ describe('LCHVitrineDemoPipe', function () {
 		});
 		
 		it('sets content', function() {
-			deepEqual(browser.query(elementQuery).innerHTML, 'a { background: yellow; }')
+			deepEqual(browser.query(elementQuery).innerHTML, 'a { background: yellow !important; }')
 		});
 
 		context('after invoke', function () {
