@@ -4,13 +4,42 @@ export const LCHLauncherOptions = function (inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputInvalid');
 	}
-	if (!inputData.LRTOptionMode || LCHLauncherModes().indexOf(inputData.LRTOptionMode) === -1) {
-		inputData.LRTOptionMode = LCHLauncherModes().shift()
-	}
 
-	if (!inputData.LRTOptionLanguage) {
+	if (typeof inputData.LRTOptionRecipes === 'undefined') {
+		inputData.LRTOptionRecipes = []
+	};
+
+	if (!Array.isArray(inputData.LRTOptionRecipes)) {
+		throw new Error('LRTOptionRecipesNotArray');
+	};
+
+	inputData.LRTOptionRecipes = inputData.LRTOptionRecipes.filter(function (e) {
+		return !LCHRecipesModelErrorsFor(e);
+	})
+
+	if (typeof inputData.LRTOptionMode === 'undefined') {
+		inputData.LRTOptionMode = LCHLauncherModes().shift()
+	};
+
+	if (typeof inputData.LRTOptionMode !== 'undefined') {
+		if (LCHLauncherModes().indexOf(inputData.LRTOptionMode) === -1) {
+			throw new Error('LRTOptionModeNotValid');
+		};
+	};
+
+	if (typeof inputData.LRTOptionCompletionHandler !== 'undefined') {
+		if (typeof inputData.LRTOptionCompletionHandler !== 'function') {
+			throw new Error('LRTOptionCompletionHandlerNotFunction');
+		};
+	};
+
+	if (typeof inputData.LRTOptionLanguage === 'undefined') {
 		inputData.LRTOptionLanguage = 'en';
-	}
+	};
+
+	if (typeof inputData.LRTOptionLanguage !== 'string') {
+		throw new Error('LRTOptionLanguageNotString')
+	};
 
 	return inputData;
 };

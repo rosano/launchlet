@@ -50,38 +50,99 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 		deepEqual(typeof mainModule.LCHLauncherOptions({}), 'object');
 	});
 
-	context('LRTOptionLanguage', function () {
+	context('LRTOptionRecipes', function () {
 
-		it('sets default if no input', function() {
-			deepEqual(mainModule.LCHLauncherOptions({}).LRTOptionLanguage, 'en');
+		it('sets default if undefined', function() {
+			deepEqual(mainModule.LCHLauncherOptions({}).LRTOptionRecipes, []);
 		});
 		
-		it('uses input', function() {
+		it('throws error if not valid', function() {
+			throws(function() {
+				mainModule.LCHLauncherOptions({
+					LRTOptionRecipes: null,
+				});
+			}, /LRTOptionRecipesNotArray/);
+		});
+
+		it('excludes if item not valid', function() {
 			deepEqual(mainModule.LCHLauncherOptions({
-				LRTOptionLanguage: 'alfa'
-			}).LRTOptionLanguage, 'alfa');
+				LRTOptionRecipes: [{}],
+			}).LRTOptionRecipes, []);
+		});
+		
+		it('passes input', function() {
+			const item = {
+				LCHRecipeCallback () {},
+			};
+			
+			deepEqual(mainModule.LCHLauncherOptions({
+				LRTOptionRecipes: [item],
+			}).LRTOptionRecipes, [item]);
 		});
 
 	});
 
 	context('LRTOptionMode', function () {
 
-		it('sets default if no input', function() {
-			deepEqual(mainModule.LCHLauncherOptions({}).LRTOptionMode, mainModule.LCHLauncherModeCommit());
+		it('sets default if undefined', function() {
+			deepEqual(mainModule.LCHLauncherOptions({}).LRTOptionMode, mainModule.LCHLauncherModes().shift());
+		});
+		
+		it('throws error if not valid', function() {
+			throws(function() {
+				mainModule.LCHLauncherOptions({
+					LRTOptionMode: 'alfa',
+				});
+			}, /LRTOptionModeNotValid/);
 		});
 
-		it('sets default if not valid', function() {
-			deepEqual(mainModule.LCHLauncherOptions({
-				LRTOptionMode: 'alfa',
-			}).LRTOptionMode, mainModule.LCHLauncherModeCommit());
-		});
-
-		it('uses input', function() {
+		it('passes input', function() {
 			deepEqual(mainModule.LCHLauncherOptions({
 				LRTOptionMode: mainModule.LCHLauncherModePreview(),
 			}).LRTOptionMode, mainModule.LCHLauncherModePreview());
 		});
+
+	});
+
+	context('LRTOptionCompletionHandler', function () {
+
+		it('throws error if not function', function() {
+			throws(function() {
+				mainModule.LCHLauncherOptions({
+					LRTOptionCompletionHandler: null,
+				});
+			}, /LRTOptionCompletionHandlerNotFunction/);
+		});
+
+		it('passes input', function() {
+			const item = function () {};
+			deepEqual(mainModule.LCHLauncherOptions({
+				LRTOptionCompletionHandler: item,
+			}).LRTOptionCompletionHandler, item);
+		});
+
+	});
+
+	context('LRTOptionLanguage', function () {
+
+		it('sets default if undefined', function() {
+			deepEqual(mainModule.LCHLauncherOptions({}).LRTOptionLanguage, 'en');
+		});
+
+		it('throws error if not string', function() {
+			throws(function() {
+				mainModule.LCHLauncherOptions({
+					LRTOptionLanguage: null,
+				});
+			}, /LRTOptionLanguageNotString/);
+		});
 		
+		it('passes input', function() {
+			deepEqual(mainModule.LCHLauncherOptions({
+				LRTOptionLanguage: 'alfa'
+			}).LRTOptionLanguage, 'alfa');
+		});
+
 	});
 
 });

@@ -11,37 +11,9 @@ export const LRTModePipe = LCHLauncherModePipe();
 
 let appContainer, appInstance;
 
-const LCHPackageValidateOptionsObject = function (inputData) {
-	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputNotObject');
-	}
-
-	if (inputData.LRTCompletionHandler) {
-		if (typeof inputData.LRTCompletionHandler !== 'function') {
-			throw new Error('LCHErrorInputNotFunction');
-		}
-	}
-
-	if (inputData.LRTOptionMode) {
-		if (LCHLauncherModes().indexOf(inputData.LRTOptionMode) === -1) {
-			throw new Error('LCHErrorInputModeNotValid');
-		}
-	}
-
-	return true;
-};
-
 export const instanceCreate = function (param1 = [], param2 = {}) {
 	if (instanceExists()) {
 		instanceDestroy();
-	}
-
-	if (param1 && !Array.isArray(param1)) {
-		throw new Error('LCHErrorInputNotArray');
-	}
-
-	if (param2) {
-		LCHPackageValidateOptionsObject(param2)
 	}
 
 	if (typeof document !== 'undefined') {
@@ -52,7 +24,7 @@ export const instanceCreate = function (param1 = [], param2 = {}) {
 	appInstance = new _AppClass({
 		target: appContainer,
 		props: {
-			LRTRecipes: Array.isArray(param1) ? param1 : [],
+			LRTRecipes: param1,
 			LRTOptions: param2,
 			LRTCompletionHandler () {
 				instanceDestroy();
