@@ -3,7 +3,7 @@ _Interface généralisé pour l'interaction avec le clavier_
 
 Launchlet est une façon simple d'ajouter un nom aux fragments du code et les rouler. Inspiré par [Quicksilver](https://qsapp.com), ça fonctionne primairement par l'interaction sans-souris et ça vous permette d'accéder vos [Recettes](LCHVitrineTokenGuideURL) avec très peu de coup de clavier. Vous pouvez également l'utiliser pour personnaliser des sites web dans la même manière de ‹userscripts› ou ‹userstyles›. Optimisé pour la rapidité pour que vous puissiez ‹penser puis faire›.
 
-Voici les démonstrations en bas pour quelques idées ou [composer](LCHVitrineTokenComposeURL) votre propre.
+Regardez les démonstrations en bas pour quelques idées ou essayez de [composer](LCHVitrineTokenComposeURL) votre propre.
 
 Vous pouvez rouler Launchlet comme [bookmarklet], [extension navigateur], ou comme une [bidule] dans votre propre project pour ajouter une ‹sauter à› fonctionnalité.
 
