@@ -5,7 +5,6 @@ export let BuildAppStyle;
 export let BuildAppBehaviour;
 export let BuildAppLanguageCode;
 
-import LCHComposeBuildPairExtension from '../LCHComposeBuildPairExtension/main.svelte';
 import { OLSKLocalized, _LCHIsTestingBehaviour, _LCH_DISABLE_ENCRYPTION } from '../../../_shared/common/global.js';
 import { LCHComposeBuildBoomarkletStringFor, LCHComposeBuildBookmarkletBinaryFor } from './ui-logic.js';
 import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../../../dev-launcher/ui-logic.js';
@@ -192,31 +191,32 @@ const mod = {
 mod.LifecycleComponentWillMount();
 
 modelDidChange.subscribe(mod.ModelDidChange);
+
+import LCHComposeBuildPairExtension from '../LCHComposeBuildPairExtension/main.svelte';
+import OLSKToolbar from 'OLSKToolbar';
+import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 </script>
 	
 <div class="Container">
 
-<p>
-	<label for="LCHComposeBuildModePipeEnabledToggle">{ OLSKLocalized('LCHComposeBuildModePipeEnabledToggleLabelText') }</label>
-	<input type="checkbox" bind:checked={ BuildInitializeModePipeEnabled } on:change={ mod.InterfaceModePipeEnabledToggleDidInput } id="LCHComposeBuildModePipeEnabledToggle" />
+	<OLSKToolbar OLSKToolbarJustify={ true }>
+		<OLSKToolbarElementGroup>
+			<!-- <textarea onclick="this.select()">{ JavascriptComposition }</textarea> -->
 
-</p>
+			<a id="LCHComposeBuildAnchor" href="{ JavascriptCompositionBinary }" accesskey="r" on:click={ mod.InterfaceRunButtonDidClick }>Try it</a>
 
-<p>
-	<textarea onclick="this.select()">{ JavascriptComposition }</textarea>
-</p>
+			<label for="LCHComposeBuildModePipeEnabledToggle">{ OLSKLocalized('LCHComposeBuildModePipeEnabledToggleLabelText') }</label>
+			<input type="checkbox" bind:checked={ BuildInitializeModePipeEnabled } on:change={ mod.InterfaceModePipeEnabledToggleDidInput } id="LCHComposeBuildModePipeEnabledToggle" />
+		</OLSKToolbarElementGroup>
 
-<p>
-	<a id="LCHComposeBuildAnchor" href="{ JavascriptCompositionBinary }" accesskey="r" on:click={ mod.InterfaceRunButtonDidClick }>Try it</a>
-</p>
+		{#if !mod.ValuePairExtensionIsVisible()}
+			<button class="LCHComposeBuildPairButton" on:click={ mod.InterfaceModePairButtonDidClick }>{ OLSKLocalized('LCHComposeBuildPairButtonText') }</button>
+		{/if}
 
-{#if !mod.ValuePairExtensionIsVisible()}
-	<button class="LCHComposeBuildPairButton" on:click={ mod.InterfaceModePairButtonDidClick }>{ OLSKLocalized('LCHComposeBuildPairButtonText') }</button>
-{/if}
-
-{#if mod.ValuePairExtensionIsVisible()}
-	<LCHComposeBuildPairExtension BuildPairExtensionPublicKey={ mod._ValuePublicKey } on:BuildPairExtensionDispatchPublicKeyUpdate={ mod.BuildPairExtensionDispatchPublicKeyUpdate } bind:this={ mod._LCHComposeBuildPairExtension } />
-{/if}
+		{#if mod.ValuePairExtensionIsVisible()}
+			<LCHComposeBuildPairExtension BuildPairExtensionPublicKey={ mod._ValuePublicKey } on:BuildPairExtensionDispatchPublicKeyUpdate={ mod.BuildPairExtensionDispatchPublicKeyUpdate } bind:this={ mod._LCHComposeBuildPairExtension } />
+		{/if}
+	</OLSKToolbar>
 
 </div>
 
