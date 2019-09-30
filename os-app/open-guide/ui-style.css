@@ -57,3 +57,14 @@ code {
 .LCHGuideExample code {
 	padding: 0;
 }
+
+.LCHRootLink {
+	display: block;
+	width: 32px;
+
+	margin: 20px auto;
+}
+
+.LCHRootLink img {
+	width: inherit;
+}
