@@ -229,6 +229,10 @@ let _ActionableTypesForPrimarySubject = Object.keys(apiTypeEquivalenceMap).filte
 	}
 
 	_PromptObjects[0].LCHPromptItemsVisible = _PromptObjects[0].LCHPromptItemsAll;
+
+	_PromptObjects[0].LCHPromptItemSelected = _PromptObjects[0].LCHPromptItemsAll.filter(function (e) {
+		return e._LCHRecipeIsSelected;
+	}).shift();
 })();
 
 import { LCHLauncherThrottleDuration } from './ui-logic.js';

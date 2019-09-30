@@ -217,5 +217,34 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 		});
 
 	});
+
+	describe('_LCHRecipeIsSelected', function() {
+		
+		before(function() {
+			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+				StubRecipes: uStubStringify(uStubTwoItems().map(function (e) {
+					return Object.assign(e, {
+						_LCHRecipeIsSelected: true,
+					});
+				})),
+				LRTOptionMode: 'LRTModePreview',
+			}));
+		});
+
+		it('assert callbacks count 0')
+
+		before('shows items', function() {
+			browser.assert.elements(LCHLauncherListItem, 2);
+		});
+
+		it('selects single item', function() {
+			browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
+		});
+
+		it('selects first item', function() {
+			browser.assert.text('.LCHLauncherResultListItemSelected .LCHLauncherPipeItemTitle', 'alfa');
+		});
+		
+	});
 	
 });
