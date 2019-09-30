@@ -19,5 +19,9 @@ describe('LCHVitrineDemoPreview', function () {
 			return e.textContent.trim()
 		}))
 	});
+	
+	it('selects one', function () {
+		browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
+	});
 
 });

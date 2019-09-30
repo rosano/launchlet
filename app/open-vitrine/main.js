@@ -47,6 +47,7 @@ export const mod = {
 					LCHRecipeCallback () {
 						e.scrollIntoView();
 					},
+					_LCHRecipeIsSelected: e.getBoundingClientRect().top >= 0,
 				};
 			}),
 			LRTOptionMode: Launchlet.LRTModePreview,
