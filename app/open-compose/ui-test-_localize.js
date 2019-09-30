@@ -32,7 +32,7 @@ describe(`LCHCompose_Localize-${ languageCode }`, function () {
 
 		browser.assert.text(LCHComposeDetailPlaceholderContainer, uLocalized('LCHComposeDetailPlaceholderText'));
 
-		browser.assert.text(LCHComposeBuildAnchor, 'Try it');
+		browser.assert.text(LCHComposeBuildAnchor, uLocalized('LCHComposeBuildAnchorText'));
 		// deepEqual(browser.query(LCHComposeBuildAnchor).href.slice(0, 11), 'javascript:');
 		// deepEqual(item.href.includes('Launchlet'), true);
 	});

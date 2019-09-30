@@ -75,7 +75,7 @@ export const storageClient = LCHStorageClient.LCHStorageClient({
 				}
 			})),
 	],
-	OLSKPatchRemoteStorageAuthRedirectURI: window.location.origin + window.OLSKCanonicalFor('LCHComposeRoute'),
+	OLSKPatchRemoteStorageAuthRedirectURI: _LCHIsTestingBehaviour() ? undefined : window.location.origin + window.OLSKCanonicalFor('LCHComposeRoute'),
 });
 
 let remoteStorage = storageClient.remoteStorage;

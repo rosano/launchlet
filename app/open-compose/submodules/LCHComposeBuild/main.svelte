@@ -203,7 +203,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 		<OLSKToolbarElementGroup>
 			<!-- <textarea onclick="this.select()">{ JavascriptComposition }</textarea> -->
 
-			<a id="LCHComposeBuildAnchor" href="{ JavascriptCompositionBinary }" accesskey="r" on:click={ mod.InterfaceRunButtonDidClick }>Try it</a>
+			<a id="LCHComposeBuildAnchor" href="{ JavascriptCompositionBinary }" accesskey="r" on:click={ mod.InterfaceRunButtonDidClick }>{ OLSKLocalized('LCHComposeBuildAnchorText') }</a>
 
 			<label for="LCHComposeBuildModePipeEnabledToggle">{ OLSKLocalized('LCHComposeBuildModePipeEnabledToggleLabelText') }</label>
 			<input type="checkbox" bind:checked={ BuildInitializeModePipeEnabled } on:change={ mod.InterfaceModePipeEnabledToggleDidInput } id="LCHComposeBuildModePipeEnabledToggle" />
