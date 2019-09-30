@@ -99,6 +99,10 @@ const LCHDocumentStorage = require('./app/_shared/LCHDocument/storage.js');
 const LCHSettingStorage = require('./app/_shared/LCHSetting/storage.js');
 
 (function LCHMochaStorage() {
+	if (process.env.OLSK_TESTING_BEHAVIOUR === 'true') {
+		return;
+	}
+
 	const uSerial = function (inputData) {
 		return inputData.reduce(async function (coll, e) {
 			return e.then(Array.prototype.concat.bind(await coll));
