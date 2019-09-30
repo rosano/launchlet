@@ -1,5 +1,6 @@
 (function OLSKPostinstallPatchRemoteStorageAuthRedirectURI() {
 	let filePath = './node_modules/remotestoragejs/release/remotestorage.js';
+
 	require('fs').writeFileSync(filePath, require('OLSKString').OLSKStringPatch(
 		require('fs').readFileSync(filePath, 'utf8'),
 		// 'options.redirectUri = globalContext.cordova ? config.cordovaRedirectUri : String(Authorize.getLocation());',
@@ -9,38 +10,38 @@
 		));
 })();
 
-(function ROCOHotfixSimplecryptoForUITests() {
+(function OLSKPostinstallPatchSimplecryptoForUITests() {
 	if (process.env.NODE_ENV === 'production') {
 		return;
 	}
 
 	let filePath = './node_modules/simplecrypto/src/simplecrypto.js';
-	require('fs').writeFileSync(filePath, require('fs')
-		.readFileSync(filePath, 'utf8')
-		.replace(
-			'var _crypto = window.crypto || window.msCrypto;',
-			`var _crypto = window.crypto || window.msCrypto
+
+	require('fs').writeFileSync(filePath, require('OLSKString').OLSKStringPatch(
+		require('fs').readFileSync(filePath, 'utf8'),
+		'var _crypto = window.crypto || window.msCrypto;',
+		`var _crypto = window.crypto || window.msCrypto
     if (!_crypto) {
         return
-    };`)
-	);
+    };`
+    ));
 })();
 
-(function ROCOHotfixZombieForUITests() {
+(function OLSKPostinstallPatchZombieForUITests() {
 	if (process.env.NODE_ENV === 'production') {
 		return;
 	}
 
 	let filePath = './node_modules/zombie/lib/document.js';
-	require('fs').writeFileSync(filePath, require('fs')
-		.readFileSync(filePath, 'utf8')
-		.replace(
-			'this.dispatchEvent(event);',
-			`this.dispatchEvent(event)
+
+	require('fs').writeFileSync(filePath, require('OLSKString').OLSKStringPatch(
+		require('fs').readFileSync(filePath, 'utf8'),
+		'this.dispatchEvent(event);',
+		`this.dispatchEvent(event)
 			const handled = browser.emit('OLSKMessage', data);
 		  if (!handled)
-		      browser.log('Unhandled message("%s")');`)
-	);
+		      browser.log('Unhandled message("%s")');`
+    ));
 })();
 
 (function ROCOHotfixULIDForBrowserTesting() {
