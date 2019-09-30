@@ -8,7 +8,10 @@ exports.OLSKControllerRoutes = function() {
 			OLSKRoutePath: '/sw.js',
 			OLSKRouteMethod: 'get',
 			OLSKRouteFunction: function(req, res, next) {
-				return res.type('js').send(OLSKServiceWorker.OLSKServiceWorkerView(kLCHServiceWorkerVersionID.toString()));
+				return res.type('js').send(OLSKServiceWorker.OLSKServiceWorkerView({
+					VERSION_ID_TOKEN: kLCHServiceWorkerVersionID.toString(),
+					REFERRER_MATCH_TOKEN: res.locals.OLSKCanonicalFor('LCHComposeRoute').replace(/\//g, '\\/'),
+				}));
 			},
 		},
 	};
