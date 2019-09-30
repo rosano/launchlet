@@ -38,7 +38,7 @@ export const mod = {
 			props: {
 				LRTOptions: Object.assign(inputData, {
 					LRTOptionCompletionHandler () {
-						instanceDestroy();
+						mod.LifecycleSingletonDestroy();
 
 						if (!callback) {
 							return;

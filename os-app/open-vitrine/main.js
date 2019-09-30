@@ -32,28 +32,31 @@ export const mod = {
 	// COMMAND
 
 	CommandDemoCommit() {
-		Launchlet.LRTSingletonCreate(_LCHVitrineRecipes, {
+		Launchlet.LRTSingletonCreate({
+			LRTOptionRecipes: _LCHVitrineRecipes,
 			LRTOptionMode: Launchlet.LRTModeCommit,
 			LRTOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 	},
 
 	CommandDemoPreview() {
-		Launchlet.LRTSingletonCreate([].concat.apply([], document.querySelectorAll('h1,h2')).map(function (e) {
-			return {
-				LCHRecipeName: e.textContent,
-				LCHRecipeCallback () {
-					e.scrollIntoView();
-				},
-			};
-		}), {
+		Launchlet.LRTSingletonCreate({
+			LRTOptionRecipes: [].concat.apply([], document.querySelectorAll('h1,h2')).map(function (e) {
+				return {
+					LCHRecipeName: e.textContent,
+					LCHRecipeCallback () {
+						e.scrollIntoView();
+					},
+				};
+			}),
 			LRTOptionMode: Launchlet.LRTModePreview,
 			LRTOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 	},
 
 	CommandDemoPipe() {
-		Launchlet.LRTSingletonCreate(_LCHVitrineRecipes, {
+		Launchlet.LRTSingletonCreate({
+			LRTOptionRecipes: _LCHVitrineRecipes,
 			LRTOptionMode: Launchlet.LRTModePipe,
 			LRTOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
