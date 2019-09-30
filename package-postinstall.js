@@ -85,7 +85,7 @@
 		// pass tests
 		'OLSKInputWrapper',
 		'OLSKReloadButton',
-	], pathPackage.join(__dirname, 'node_modules'), pathPackage.join(__dirname, 'os-app/_shared/__external'));
+	], pathPackage.join(__dirname, 'node_modules'), pathPackage.join(__dirname, 'app/_shared/__external'));
 })();
 
 (function OLSKPostinstallRollup() {
