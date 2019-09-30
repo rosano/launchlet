@@ -11,14 +11,13 @@ export const LCHVitrinePageColoursRandomizeCallback = function() {
 	if (match) {
 		const previous = parseFloat(match.pop()) / 100;
 
-		while (Math.abs(random - previous) < 0.5) {
+		while (Math.abs(random - previous) < 0.1 || (random >= 0.4 && random <= 0.6)) {
 			random = Math.random();
 		}
 	};
 
 	element.innerHTML = `
 	body {
-
 	--LCHCommonBackground: hsl(0, 0%, ${ random * 100 }%);
 	--LCHCommonForeground: hsl(0, 0%, ${ 100.0 - random * 100 }%);
 	}
