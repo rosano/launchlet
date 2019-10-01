@@ -18,15 +18,9 @@ import {
 	// LCHLauncherFilterForText,
 } from './ui-logic.js';
 
-import { LCHLauncherPatternMatchesURL } from './api.js';
+import { LCHRuntimeFilteredRecipes } from './api.js';
 (function StartDiscardDataObjects() {
-	LRTOptions.LRTOptionRecipes = LRTOptions.LRTOptionRecipes.filter(function (e) {
-		if (e.LCHRecipeURLFilter && !LCHLauncherPatternMatchesURL(e.LCHRecipeURLFilter, window.location.href)) {
-			return false;
-		}
-		
-		return true;
-	});
+	LRTOptions.LRTOptionRecipes = LCHRuntimeFilteredRecipes(LRTOptions.LRTOptionRecipes, window.location.href);
 })();
 
 import { LCHRecipesModelErrorsFor } from './api.js';
@@ -51,8 +45,8 @@ import { LCHRecipesModelErrorsFor } from './api.js';
 	}));
 })();
 
+import * as LCHRuntime from '../_shared/LCHRuntime/main.js'
 import {
-	LCHRuntimeAPI,
 	LCHLauncherConvertTypeServiceSearch,
 	LCHAPITypeEquivalenceMapForRecipes,
 	LCHAPITypeNameMap,
@@ -64,7 +58,7 @@ const allRecipes = LCHLauncherStandardRecipes().map(function (e) {
 	})
 }).concat(LRTOptions.LRTOptionRecipes);
 
-const api = LCHRuntimeAPI(allRecipes);
+const api = LCHRuntime.LCHRuntimeAPI(allRecipes);
 const apiTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes);
 const typeNameMap = LCHAPITypeNameMap(allRecipes);
 
@@ -151,7 +145,7 @@ let _AllSubjects = _AllPromptRecipes.filter(function (e) {
 let _AllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
 let _ActionableTypesForPrimarySubject = Object.keys(apiTypeEquivalenceMap).filter(function (type) {
 	return _AllActions.filter(function (e) {
-		return LCHRuntimeInputTypes(e.LCHRecipeInputTypes).shift() === type;
+		return LCHRuntime.LCHRuntimeInputTypes(e.LCHRecipeInputTypes).shift() === type;
 	}).length;
 });
 
@@ -345,7 +339,7 @@ function ActivePromptItemsShouldUpdate (inputData) {
 	})();
 }
 
-import { LCHRecipesModelActionTakesObject, LCHRuntimeInputTypes } from './api.js';
+import { LCHRecipesModelActionTakesObject } from './api.js';
 import { LCHLauncherActionComparator } from './ui-logic.js';
 function ActivePromptItemSelectedShouldUpdate (inputData) {
 	(function SetItemSelected() {
@@ -376,7 +370,7 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 
 		_PromptObjects[1].LCHPromptItemsAll = _AllActions.filter(function (e) {
 			return apiTypeEquivalenceMap[inputData.LCHRecipeOutputType || 'Command'].filter(function (type) {
-				return LCHRuntimeInputTypes(e.LCHRecipeInputTypes).shift() === type;
+				return LCHRuntime.LCHRuntimeInputTypes(e.LCHRecipeInputTypes).shift() === type;
 			}).length;
 		}).sort(LCHLauncherActionComparator(inputData.LCHRecipeOutputType || 'Command'));
 
@@ -396,8 +390,8 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 
 		_PromptObjects[2].LCHPromptIsVisible = LCHRecipesModelActionTakesObject(_PromptObjects[1].LCHPromptItemSelected);
 
-		_PromptObjects[2].LCHPromptItemsAll = !_PromptObjects[2].LCHPromptIsVisible || LCHRuntimeInputTypes(_PromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop() === 'String' ? [] : _AllSubjects.filter(function (e) {
-			return apiTypeEquivalenceMap[LCHRuntimeInputTypes(_PromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop()].indexOf(e.LCHRecipeOutputType) !== -1;
+		_PromptObjects[2].LCHPromptItemsAll = !_PromptObjects[2].LCHPromptIsVisible || LCHRuntime.LCHRuntimeInputTypes(_PromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop() === 'String' ? [] : _AllSubjects.filter(function (e) {
+			return apiTypeEquivalenceMap[LCHRuntime.LCHRuntimeInputTypes(_PromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop()].indexOf(e.LCHRecipeOutputType) !== -1;
 		});
 
 		_PromptObjects[2].LCHPromptItemsVisible = _PromptObjects[2].LCHPromptItemsAll;
@@ -485,7 +479,7 @@ const mod = {
 				return;
 			}
 
-			if (LCHRuntimeInputTypes(_PromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop() !== 'String') {
+			if (LCHRuntime.LCHRuntimeInputTypes(_PromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop() !== 'String') {
 				return;
 			}
 

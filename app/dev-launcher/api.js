@@ -567,7 +567,7 @@ export const LCHLauncherPatternMatchesURL = function (param1, param2) {
 	return !!param2.match(new RegExp(match[0], match[1]));
 };
 
-export const LCHRuntimeMatchingTasks = function (param1, param2) {
+export const LCHRuntimeFilteredRecipes = function (param1, param2) {
 	if (!Array.isArray(param1)) {
 		throw new Error('LCHErrorInputInvalid');
 	}
@@ -581,22 +581,36 @@ export const LCHRuntimeMatchingTasks = function (param1, param2) {
 			return false;
 		};
 
-		if (!LCHRecipesModelIsTask(e)) {
-			return false;
-		};
-
-		if (e.LCHRecipeIsExcluded && e.LCHRecipeIsExcluded()) {
-			return false;
+		if (typeof e.LCHRecipeURLFilter === 'undefined') {
+			return true;
 		};
 
 		return LCHLauncherPatternMatchesURL(e.LCHRecipeURLFilter, param2)
 	})
 };
 
+export const LCHRuntimeFilteredTasks = function (inputData) {
+	if (!Array.isArray(inputData)) {
+		throw new Error('LCHErrorInputInvalid');
+	}
+
+	return inputData.filter(function (e) {
+		if (!LCHRecipesModelIsTask(e)) {
+			return false;
+		};
+
+		if (e.LCHRecipeIsExcluded) {
+			return !e.LCHRecipeIsExcluded();
+		};
+
+		return true;
+	})
+};
+
 import { LCHLauncherStandardRecipes } from './recipes/_aggregate.js';
 
 export const LCHAPIRunTasks = function () {
-	const inputData = LCHRuntimeMatchingTasks.apply(null, Array.from(arguments));
+	const inputData = LCHRuntimeFilteredTasks(LCHRuntimeFilteredRecipes.apply(null, Array.from(arguments)));
 	const api = LCHRuntime.LCHRuntimeAPI(LCHLauncherStandardRecipes().concat(inputData));
 
 	return Promise.all(inputData.map(function (e) {

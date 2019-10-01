@@ -1333,20 +1333,6 @@ describe('LCHLauncherPatternMatchesURL', function testLCHLauncherPatternMatchesU
 		deepEqual(mainModule.LCHLauncherPatternMatchesURL('*', 'alfa'), true);
 	});
 
-
-	it('returns false if no match', function() {
-		deepEqual(mainModule.LCHLauncherPatternMatchesURL('bravo', 'alfa'), false);
-	});
-
-	it('returns true if match', function() {
-		deepEqual(mainModule.LCHLauncherPatternMatchesURL('alfa', 'alfa'), true);
-	});
-
-	it('matches as string', function() {
-		deepEqual(mainModule.LCHLauncherPatternMatchesURL('al', 'alfa'), true);
-		deepEqual(mainModule.LCHLauncherPatternMatchesURL('br', 'alfa'), false);
-	});
-
 	it('treats regex characters as string if no slashes', function() {
 		deepEqual(mainModule.LCHLauncherPatternMatchesURL('alfa?bravo', 'alfabravo'), false);
 	});
@@ -1359,9 +1345,104 @@ describe('LCHLauncherPatternMatchesURL', function testLCHLauncherPatternMatchesU
 		deepEqual(mainModule.LCHLauncherPatternMatchesURL('/alfa?bravo/', 'alfbravo'), true);
 	});
 
+	context('string', function () {
+		
+		it('interprets as string', function() {
+			deepEqual(mainModule.LCHLauncherPatternMatchesURL('alfa?bravo', 'alfbravo'), false);
+		});
+
+		it('returns false if no match', function() {
+			deepEqual(mainModule.LCHLauncherPatternMatchesURL('bravo', 'alfa'), false);
+		});
+
+		it('returns true if match', function() {
+			deepEqual(mainModule.LCHLauncherPatternMatchesURL('alfa', 'alfa'), true);
+		});
+	
+	});
+
+	context('regex', function () {
+
+		it('interprets as regex', function() {
+			deepEqual(mainModule.LCHLauncherPatternMatchesURL('/alfa?bravo/', 'alfbravo'), true);
+		});
+
+		it('returns false if no match', function() {
+			deepEqual(mainModule.LCHLauncherPatternMatchesURL('/ALFA/', 'alfa'), false);
+		});
+
+		it('returns true if match', function() {
+			deepEqual(mainModule.LCHLauncherPatternMatchesURL('/ALFA/i', 'alfa'), true);
+		});
+	
+	});
+
 });
 
-describe('LCHRuntimeMatchingTasks', function testLCHRuntimeMatchingTasks() {
+describe('LCHRuntimeFilteredRecipes', function testLCHRuntimeFilteredRecipes() {
+
+	const uStubItem = function () {
+		return {
+			LCHRecipeCallback () {},
+		};
+	};	
+
+	it('throws if param1 not array', function () {
+		throws(function () {
+			mainModule.LCHRuntimeFilteredRecipes(null, '')
+		}, /ErrorInputInvalid/);
+	});
+
+	it('throws if param2 not string', function () {
+		throws(function () {
+			mainModule.LCHRuntimeFilteredRecipes([], null)
+		}, /ErrorInputInvalid/);
+	});
+
+	it('returns array', function () {
+		deepEqual(mainModule.LCHRuntimeFilteredRecipes([], ''), [])
+	});
+
+	it('excludes if not valid', function() {
+		deepEqual(mainModule.LCHRuntimeFilteredRecipes([{}], ''), []);
+	});
+
+	it('includes if no LCHRecipeURLFilter', function() {
+		const item = uStubItem();
+		deepEqual(mainModule.LCHRuntimeFilteredRecipes([item], 'alfa'), [item]);
+	});
+
+	context('LCHRecipeURLFilter', function () {
+
+		it('includes if wildcard', function() {
+			const item = Object.assign(uStubItem(), {
+				LCHRecipeURLFilter: '*',
+			});
+
+			deepEqual(mainModule.LCHRuntimeFilteredRecipes([item], 'alfa'), [item]);
+		});
+
+		it('excludes if param2 not match', function() {
+			const item = Object.assign(uStubItem(), {
+				LCHRecipeURLFilter: 'alfa',
+			});
+			
+			deepEqual(mainModule.LCHRuntimeFilteredRecipes([item], 'bravo'), []);
+		});
+		
+		it('includes if param2 match', function() {
+			const item = Object.assign(uStubItem(), {
+				LCHRecipeURLFilter: 'alfa',
+			});
+			
+			deepEqual(mainModule.LCHRuntimeFilteredRecipes([item], 'alfa'), [item]);
+		});
+	
+	});
+
+});
+
+describe('LCHRuntimeFilteredTasks', function testLCHRuntimeFilteredTasks() {
 
 	const uStubItem = function () {
 		return {
@@ -1371,64 +1452,28 @@ describe('LCHRuntimeMatchingTasks', function testLCHRuntimeMatchingTasks() {
 		};
 	}
 
-	it('throws if param1 not array', function () {
+	it('throws if not array', function () {
 		throws(function () {
-			mainModule.LCHRuntimeMatchingTasks(null, '')
-		}, /ErrorInputInvalid/);
-	});
-
-	it('throws if param2 not string', function () {
-		throws(function () {
-			mainModule.LCHRuntimeMatchingTasks([], null)
+			mainModule.LCHRuntimeFilteredTasks(null)
 		}, /ErrorInputInvalid/);
 	});
 
 	it('returns array', function () {
-		deepEqual(mainModule.LCHRuntimeMatchingTasks([], ''), [])
-	});
-
-	it('excludes if not valid', function() {
-		deepEqual(mainModule.LCHRuntimeMatchingTasks([{}], ''), []);
+		deepEqual(mainModule.LCHRuntimeFilteredTasks([]), [])
 	});
 
 	it('excludes if not task', function() {
-		deepEqual(mainModule.LCHRuntimeMatchingTasks([{
-			LCHRecipeCallback: uStubItem().LCHRecipeCallback,
+		deepEqual(mainModule.LCHRuntimeFilteredTasks([{
+			LCHRecipeCallback () {},
 		}], ''), []);
 	});
 
-	it('excludes if param2 not match', function() {
-		deepEqual(mainModule.LCHRuntimeMatchingTasks([Object.assign(uStubItem(), {
-			LCHRecipeURLFilter: 'alfa',
-		})], 'bravo'), []);
-	});
-
 	it('excludes if LCHRecipeIsExcluded', function() {
-		deepEqual(mainModule.LCHRuntimeMatchingTasks([Object.assign(uStubItem(), {
+		deepEqual(mainModule.LCHRuntimeFilteredTasks([Object.assign(uStubItem(), {
 			LCHRecipeIsExcluded () {
 				return true;
 			},
 		})], ''), []);
-	});
-
-	it('includes if LCHRecipeURLFilter wildcard', function() {
-		const item = uStubItem();
-		deepEqual(mainModule.LCHRuntimeMatchingTasks([item], 'alfa'), [item]);
-	});
-
-	it('includes if LCHRecipeURLFilter match param2 text', function() {
-		const item = Object.assign(uStubItem(), {
-			LCHRecipeURLFilter: 'alfa',
-		});
-
-		deepEqual(mainModule.LCHRuntimeMatchingTasks([item], 'alfa'), [item]);
-	});
-
-	it('includes if LCHRecipeURLFilter match param2 regex', function() {
-		const item = Object.assign(uStubItem(), {
-			LCHRecipeURLFilter: '/alfa?bravo/g',
-		})
-		deepEqual(mainModule.LCHRuntimeMatchingTasks([item], 'alfbravo'), [item]);
 	});
 
 });
