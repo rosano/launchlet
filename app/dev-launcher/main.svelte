@@ -302,7 +302,7 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 			}
 
 			const visibleRecipes = _PromptObjects[_PromptActiveIndex].LCHPromptItemsAll.filter(function (e) {
-				return e.LCHRecipeIsHidden ? !e.LCHRecipeIsHidden() : true;
+				return e.LCHRecipeIsExcluded ? !e.LCHRecipeIsExcluded() : true;
 			});
 
 			let results = fuzzysort.go(_PromptObjects[_PromptActiveIndex].LCHPromptFilterText, visibleRecipes, {

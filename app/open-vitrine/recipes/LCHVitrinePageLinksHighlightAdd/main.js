@@ -13,6 +13,6 @@ export const LCHVitrinePageLinksHighlightAddRecipe = function() {
 	return {
 		LCHRecipeCallback: LCHVitrinePageLinksHighlightAddCallback,
 		LCHRecipeSignature: 'LCHVitrinePageLinksHighlightAdd',
-		LCHRecipeIsHidden: LCHVitrinePageLinksHighlightAddIsHidden,
+		LCHRecipeIsExcluded: LCHVitrinePageLinksHighlightAddIsHidden,
 	};
 };

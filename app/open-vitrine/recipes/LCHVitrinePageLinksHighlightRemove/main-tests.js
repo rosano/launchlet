@@ -8,7 +8,7 @@ describe('LCHVitrinePageLinksHighlightRemoveRecipe', function testLCHVitrinePage
 		deepEqual(mainModule.LCHVitrinePageLinksHighlightRemoveRecipe(), {
 			LCHRecipeCallback: mainModule.LCHVitrinePageLinksHighlightRemoveCallback,
 			LCHRecipeSignature: 'LCHVitrinePageLinksHighlightRemove',
-			LCHRecipeIsHidden: mainModule.LCHVitrinePageLinksHighlightRemoveIsHidden,
+			LCHRecipeIsExcluded: mainModule.LCHVitrinePageLinksHighlightRemoveIsHidden,
 		});
 	});
 

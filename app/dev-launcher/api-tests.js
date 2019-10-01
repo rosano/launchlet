@@ -1627,9 +1627,9 @@ describe('LCHRuntimeMatchingTasks', function testLCHRuntimeMatchingTasks() {
 		})], 'bravo'), []);
 	});
 
-	it('excludes if LCHRecipeIsHidden', function() {
+	it('excludes if LCHRecipeIsExcluded', function() {
 		deepEqual(mainModule.LCHRuntimeMatchingTasks([Object.assign(uStubItem(), {
-			LCHRecipeIsHidden () {
+			LCHRecipeIsExcluded () {
 				return true;
 			},
 		})], ''), []);

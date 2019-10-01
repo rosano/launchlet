@@ -8,7 +8,7 @@ describe('LCHVitrinePageLinksHighlightAddRecipe', function testLCHVitrinePageLin
 		deepEqual(mainModule.LCHVitrinePageLinksHighlightAddRecipe(), {
 			LCHRecipeCallback: mainModule.LCHVitrinePageLinksHighlightAddCallback,
 			LCHRecipeSignature: 'LCHVitrinePageLinksHighlightAdd',
-			LCHRecipeIsHidden: mainModule.LCHVitrinePageLinksHighlightAddIsHidden,
+			LCHRecipeIsExcluded: mainModule.LCHVitrinePageLinksHighlightAddIsHidden,
 		});
 	});
 

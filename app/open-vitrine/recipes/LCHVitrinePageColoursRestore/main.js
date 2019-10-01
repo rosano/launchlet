@@ -10,6 +10,6 @@ export const LCHVitrinePageColoursRestoreRecipe = function() {
 	return {
 		LCHRecipeCallback: LCHVitrinePageColoursRestoreCallback,
 		LCHRecipeSignature: 'LCHVitrinePageColoursRestore',
-		LCHRecipeIsHidden: LCHVitrinePageColoursRestoreIsHidden,
+		LCHRecipeIsExcluded: LCHVitrinePageColoursRestoreIsHidden,
 	};
 };

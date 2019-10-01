@@ -2,14 +2,14 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHRecipeIsHidden', function testLCHRecipeIsHidden () {
+describe('LCHRecipeIsExcluded', function testLCHRecipeIsExcluded () {
 
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			StubRecipes: uStubStringify([{
 				LCHRecipeName: 'alfa',
 				LCHRecipeCallback: function () {}, // #purge-callback
-				LCHRecipeIsHidden: function () {
+				LCHRecipeIsExcluded: function () {
 					return document.querySelector('.TestRecipeOutput').value !== 'bravo';
 				},
 			}]),

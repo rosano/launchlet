@@ -8,7 +8,7 @@ function StubRecipesParse(inputData) {
 	return JSON.parse(inputData).map(function (e) {
 		return Object.assign(e, {
 			LCHRecipeCallback: eval(e.LCHRecipeCallback),
-			LCHRecipeIsHidden: eval(e.LCHRecipeIsHidden),
+			LCHRecipeIsExcluded: eval(e.LCHRecipeIsExcluded),
 		});
 	});
 }

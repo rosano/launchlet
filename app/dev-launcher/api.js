@@ -653,7 +653,7 @@ export const LCHRuntimeMatchingTasks = function (param1, param2) {
 			return false;
 		};
 
-		if (e.LCHRecipeIsHidden && e.LCHRecipeIsHidden()) {
+		if (e.LCHRecipeIsExcluded && e.LCHRecipeIsExcluded()) {
 			return false;
 		};
 
