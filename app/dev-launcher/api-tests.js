@@ -1492,3 +1492,131 @@ describe('LCHComponentDescriptorsModelErrorsFor', function testLCHComponentDescr
 	});
 
 });
+
+describe('LCHLauncherPatternMatchesURL', function testLCHLauncherPatternMatchesURL() {
+
+	it('throws error if param1 not string', function() {
+		throws(function() {
+			mainModule.LCHLauncherPatternMatchesURL(null, '');
+		}, /LCHErrorInputNotValid/);
+	});
+
+	it('throws error if param2 not string', function() {
+		throws(function() {
+			mainModule.LCHLauncherPatternMatchesURL('', null);
+		}, /LCHErrorInputNotValid/);
+	});
+
+	it('throws error if param2 not filled', function() {
+		throws(function() {
+			mainModule.LCHLauncherPatternMatchesURL('', '');
+		}, /LCHErrorInputNotValid/);
+	});
+
+	it('returns true if param1 empty', function() {
+		deepEqual(mainModule.LCHLauncherPatternMatchesURL('', 'alfa'), true);
+	});
+
+	it('returns true if param1 wildcard', function() {
+		deepEqual(mainModule.LCHLauncherPatternMatchesURL('*', 'alfa'), true);
+	});
+
+
+	it('returns false if no match', function() {
+		deepEqual(mainModule.LCHLauncherPatternMatchesURL('bravo', 'alfa'), false);
+	});
+
+	it('returns true if match', function() {
+		deepEqual(mainModule.LCHLauncherPatternMatchesURL('alfa', 'alfa'), true);
+	});
+
+	it('matches as string', function() {
+		deepEqual(mainModule.LCHLauncherPatternMatchesURL('al', 'alfa'), true);
+		deepEqual(mainModule.LCHLauncherPatternMatchesURL('br', 'alfa'), false);
+	});
+
+	it('treats regex characters as string if no slashes', function() {
+		deepEqual(mainModule.LCHLauncherPatternMatchesURL('alfa?bravo', 'alfabravo'), false);
+	});
+
+	it('matches as regex', function() {
+		deepEqual(mainModule.LCHLauncherPatternMatchesURL('/\\w/', 'alfa'), true);
+		deepEqual(mainModule.LCHLauncherPatternMatchesURL('/\\d/', 'alfa'), false);
+		deepEqual(mainModule.LCHLauncherPatternMatchesURL('/A/', 'alfa'), false);
+		deepEqual(mainModule.LCHLauncherPatternMatchesURL('/A/i', 'alfa'), true);
+		deepEqual(mainModule.LCHLauncherPatternMatchesURL('/alfa?bravo/', 'alfbravo'), true);
+	});
+
+});
+
+describe('LCHRuntimeMatchingTasks', function testLCHRuntimeMatchingTasks() {
+
+	const uStubItem = function () {
+		return {
+			LCHRecipeCallback () {},
+			LCHRecipeURLFilter: '*',
+			LCHRecipeIsAutomatic: true,
+		};
+	}
+
+	it('throws if param1 not array', function () {
+		throws(function () {
+			mainModule.LCHRuntimeMatchingTasks(null, '')
+		}, /ErrorInputInvalid/);
+	});
+
+	it('throws if param2 not string', function () {
+		throws(function () {
+			mainModule.LCHRuntimeMatchingTasks([], null)
+		}, /ErrorInputInvalid/);
+	});
+
+	it('returns array', function () {
+		deepEqual(mainModule.LCHRuntimeMatchingTasks([], ''), [])
+	});
+
+	it('excludes if not valid', function() {
+		deepEqual(mainModule.LCHRuntimeMatchingTasks([{}], ''), []);
+	});
+
+	it('excludes if not task', function() {
+		deepEqual(mainModule.LCHRuntimeMatchingTasks([{
+			LCHRecipeCallback: uStubItem().LCHRecipeCallback,
+		}], ''), []);
+	});
+
+	it('excludes if param2 not match', function() {
+		deepEqual(mainModule.LCHRuntimeMatchingTasks([Object.assign(uStubItem(), {
+			LCHRecipeURLFilter: 'alfa',
+		})], 'bravo'), []);
+	});
+
+	it('excludes if LCHRecipeIsHidden', function() {
+		deepEqual(mainModule.LCHRuntimeMatchingTasks([Object.assign(uStubItem(), {
+			LCHRecipeIsHidden () {
+				return true;
+			},
+		})], ''), []);
+	});
+
+	it('includes if LCHRecipeURLFilter wildcard', function() {
+		const item = uStubItem();
+		deepEqual(mainModule.LCHRuntimeMatchingTasks([item], 'alfa'), [item]);
+	});
+
+	it('includes if LCHRecipeURLFilter match param2 text', function() {
+		const item = Object.assign(uStubItem(), {
+			LCHRecipeURLFilter: 'alfa',
+		});
+
+		deepEqual(mainModule.LCHRuntimeMatchingTasks([item], 'alfa'), [item]);
+	});
+
+	it('includes if LCHRecipeURLFilter match param2 regex', function() {
+		const item = Object.assign(uStubItem(), {
+			LCHRecipeURLFilter: '/alfa?bravo/g',
+		})
+		deepEqual(mainModule.LCHRuntimeMatchingTasks([item], 'alfbravo'), [item]);
+	});
+
+});

@@ -339,62 +339,6 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 
 // });
 
-describe('LCHLauncherPatternMatchesURL', function testLCHLauncherPatternMatchesURL() {
-
-	it('throws error if param1 not string', function() {
-		throws(function() {
-			mainModule.LCHLauncherPatternMatchesURL(null, '');
-		}, /LCHErrorInputNotValid/);
-	});
-
-	it('throws error if param2 not string', function() {
-		throws(function() {
-			mainModule.LCHLauncherPatternMatchesURL('', null);
-		}, /LCHErrorInputNotValid/);
-	});
-
-	it('throws error if param2 not filled', function() {
-		throws(function() {
-			mainModule.LCHLauncherPatternMatchesURL('', '');
-		}, /LCHErrorInputNotValid/);
-	});
-
-	it('returns true if param1 empty', function() {
-		deepEqual(mainModule.LCHLauncherPatternMatchesURL('', 'alfa'), true);
-	});
-
-	it('returns true if param1 wildcard', function() {
-		deepEqual(mainModule.LCHLauncherPatternMatchesURL('*', 'alfa'), true);
-	});
-
-
-	it('returns false if no match', function() {
-		deepEqual(mainModule.LCHLauncherPatternMatchesURL('bravo', 'alfa'), false);
-	});
-
-	it('returns true if match', function() {
-		deepEqual(mainModule.LCHLauncherPatternMatchesURL('alfa', 'alfa'), true);
-	});
-
-	it('matches as string', function() {
-		deepEqual(mainModule.LCHLauncherPatternMatchesURL('al', 'alfa'), true);
-		deepEqual(mainModule.LCHLauncherPatternMatchesURL('br', 'alfa'), false);
-	});
-
-	it('treats regex characters as string if no slashes', function() {
-		deepEqual(mainModule.LCHLauncherPatternMatchesURL('alfa?bravo', 'alfabravo'), false);
-	});
-
-	it('matches as regex', function() {
-		deepEqual(mainModule.LCHLauncherPatternMatchesURL('/\\w/', 'alfa'), true);
-		deepEqual(mainModule.LCHLauncherPatternMatchesURL('/\\d/', 'alfa'), false);
-		deepEqual(mainModule.LCHLauncherPatternMatchesURL('/A/', 'alfa'), false);
-		deepEqual(mainModule.LCHLauncherPatternMatchesURL('/A/i', 'alfa'), true);
-		deepEqual(mainModule.LCHLauncherPatternMatchesURL('/alfa?bravo/', 'alfbravo'), true);
-	});
-
-});
-
 describe('LCHLauncherKeyboardEventIsTextInput', function testLCHLauncherKeyboardEventIsTextInput() {
 
 	it('throws error if not object', function() {

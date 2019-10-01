@@ -145,32 +145,6 @@ export const LCHLauncherUIRecipesForMode = function (param1, param2) {
 
 export const LCHLauncherThrottleDuration = OLSK_TESTING_BEHAVIOUR() ? 25 : 1000;
 
-export const LCHLauncherPatternMatchesURL = function (param1, param2) {
-	if (typeof param1 !== 'string') {
-		throw new Error('LCHErrorInputNotValid');
-	}
-
-	if (typeof param2 !== 'string') {
-		throw new Error('LCHErrorInputNotValid');
-	}
-
-	if (!param2) {
-		throw new Error('LCHErrorInputNotValid');
-	}
-
-	if (param1 === '*') {
-		return true;
-	};
-
-	let match = param1.match(/^\/(.*)\/(\w*)/i);
-
-	if (!match || !match.shift()) {
-		return param2.includes(param1);
-	}
-
-	return !!param2.match(new RegExp(match[0], match[1]));
-};
-
 export const LCHLauncherKeyboardEventIsTextInput = function (inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputNotValid');

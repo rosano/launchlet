@@ -18,7 +18,7 @@ import {
 	// LCHLauncherFilterForText,
 } from './ui-logic.js';
 
-import { LCHLauncherPatternMatchesURL } from './ui-logic.js';
+import { LCHLauncherPatternMatchesURL } from './api.js';
 (function StartDiscardDataObjects() {
 	LRTOptions.LRTOptionRecipes = LRTOptions.LRTOptionRecipes.filter(function (e) {
 		if (e.LCHRecipeURLFilter && !LCHLauncherPatternMatchesURL(e.LCHRecipeURLFilter, window.location.href)) {
