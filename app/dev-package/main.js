@@ -37,6 +37,10 @@ export const mod = {
 
 	// COMMAND
 
+	CommandRunTasks (inputData) {
+		mod._CommandRunTasks(inputData, window.location.href)
+	},
+
 	_CommandRunTasks () {
 		const inputData = LCHRuntimeMatchingTasks.apply(null, Array.from(arguments));
 		const api = LCHAPIObjectFor(LCHLauncherStandardRecipes().concat(inputData));
@@ -103,6 +107,8 @@ export const LCHPackage = function () {
 		LRTSingletonCreate: mod.LifecycleSingletonCreate,
 		LRTSingletonExists: mod.DataSingletonExists,
 		LRTSingletonDestroy: mod.LifecycleSingletonDestroy,
+
+		LRTTasksRun: mod.CommandRunTasks,
 	};
 
 	Object.freeze(outputData);

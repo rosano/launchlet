@@ -179,6 +179,8 @@ describe('LCHPackage', function testLCHPackage() {
 			LRTSingletonCreate: mainModule.mod.LifecycleSingletonCreate,
 			LRTSingletonExists: mainModule.mod.DataSingletonExists,
 			LRTSingletonDestroy: mainModule.mod.LifecycleSingletonDestroy,
+			
+			LRTTasksRun: mainModule.mod.CommandRunTasks,
 		});
 	});
 
