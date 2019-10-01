@@ -89,10 +89,6 @@ import {
 })();
 
 async function LCHLauncherExecuteRecipe(param1, param2, param3) {
-	if (param1.LCHRecipeStyle) {
-		document.body.appendChild(document.createElement('style')).innerHTML = param1.LCHRecipeStyle;
-	}
-
 	return await LCHAPIExecuteRecipe(param1, param2, param3);
 }
 

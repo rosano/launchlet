@@ -546,6 +546,10 @@ export const LCHAPIExecuteRecipe = async function(param1, param2 = [], param3 = 
 		return Promise.reject(new Error('LCHErrorInputNotValid'));
 	}
 
+	if (param1.LCHRecipeStyle && typeof document !== 'undefined') {
+		document.body.appendChild(document.createElement('style')).innerHTML = param1.LCHRecipeStyle;
+	}
+
 	return Promise.resolve(param1.LCHRecipeCallback.apply({
 		api: param3,
 	}, param2));
