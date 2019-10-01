@@ -101,7 +101,7 @@ describe('LifecycleSingletonDestroy', function testLifecycleSingletonDestroy() {
 
 });
 
-import { LCHLauncherModeCommit, LCHLauncherModePreview, LCHLauncherModePipe } from '../dev-launcher/ui-logic.js';
+import { LCHLauncherModeCommit, LCHLauncherModePreview, LCHLauncherModePipe, LCHLauncherModeTask } from '../dev-launcher/ui-logic.js';
 
 describe('LRTModeCommit', function testLRTModeCommit() {
 
@@ -127,6 +127,14 @@ describe('LRTModePipe', function testLRTModePipe() {
 
 });
 
+describe('LRTModeTask', function testLRTModeTask() {
+
+	it('sets value', function() {
+		deepEqual(mainModule.LRTModeTask, LCHLauncherModeTask());
+	});
+
+});
+
 describe('LCHPackage', function testLCHPackage() {
 
 	it('returns object', function() {
@@ -134,6 +142,7 @@ describe('LCHPackage', function testLCHPackage() {
 			LRTModeCommit: mainModule.LRTModeCommit,
 			LRTModePreview: mainModule.LRTModePreview,
 			LRTModePipe: mainModule.LRTModePipe,
+			LRTModeTask: mainModule.LRTModeTask,
 
 			LRTSingletonCreate: mainModule.mod.LifecycleSingletonCreate,
 			LRTSingletonExists: mainModule.mod.DataSingletonExists,

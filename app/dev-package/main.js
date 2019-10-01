@@ -1,8 +1,15 @@
-import { LCHLauncherModeCommit, LCHLauncherModePreview, LCHLauncherModePipe, LCHLauncherModes } from '../dev-launcher/ui-logic.js';
+import {
+	LCHLauncherModeCommit,
+	LCHLauncherModePreview,
+	LCHLauncherModePipe,
+	LCHLauncherModeTask,
+	LCHLauncherModes
+} from '../dev-launcher/ui-logic.js';
 
 export const LRTModeCommit = LCHLauncherModeCommit();
 export const LRTModePreview = LCHLauncherModePreview();
 export const LRTModePipe = LCHLauncherModePipe();
+export const LRTModeTask = LCHLauncherModeTask();
 
 export const mod = {
 
@@ -69,9 +76,10 @@ export const mod = {
 
 export const LCHPackage = function () {
 	const outputData = {
-		LRTModeCommit: LRTModeCommit,
-		LRTModePreview: LRTModePreview,
-		LRTModePipe: LRTModePipe,
+		LRTModeCommit,
+		LRTModePreview,
+		LRTModePipe,
+		LRTModeTask,
 
 		LRTSingletonCreate: mod.LifecycleSingletonCreate,
 		LRTSingletonExists: mod.DataSingletonExists,

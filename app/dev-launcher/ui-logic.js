@@ -62,11 +62,16 @@ export const LCHLauncherModePipe = function () {
 	return 'kLCHLauncherModePipe';
 };
 
+export const LCHLauncherModeTask = function () {
+	return 'kLCHLauncherModeTask';
+};
+
 export const LCHLauncherModes = function () {
 	return [
 		LCHLauncherModeCommit(),
 		LCHLauncherModePreview(),
 		LCHLauncherModePipe(),
+		LCHLauncherModeTask(),
 	];
 };
 

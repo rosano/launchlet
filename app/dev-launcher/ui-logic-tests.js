@@ -26,6 +26,14 @@ describe('LCHLauncherModePipe', function testLCHLauncherModePipe() {
 
 });
 
+describe('LCHLauncherModeTask', function testLCHLauncherModeTask() {
+
+	it('returns string', function() {
+		deepEqual(mainModule.LCHLauncherModeTask(), 'kLCHLauncherModeTask');
+	});
+
+});
+
 describe('LCHLauncherModes', function testLCHLauncherModes() {
 
 	it('returns array', function() {
@@ -33,6 +41,7 @@ describe('LCHLauncherModes', function testLCHLauncherModes() {
 			mainModule.LCHLauncherModeCommit(),
 			mainModule.LCHLauncherModePreview(),
 			mainModule.LCHLauncherModePipe(),
+			mainModule.LCHLauncherModeTask(),
 		]);
 	});
 
