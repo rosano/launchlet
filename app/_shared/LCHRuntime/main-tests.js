@@ -2,6 +2,80 @@ import { throws, rejects, deepEqual } from 'assert';
 
 import * as mainModule from './main.js';
 
+describe('LCHRuntimeURLFilter', function testLCHRuntimeURLFilter() {
+
+	it('throws if param1 not string', function() {
+		throws(function() {
+			mainModule.LCHRuntimeURLFilter(null, '');
+		}, /LCHErrorInputNotValid/);
+	});
+
+	it('throws if param2 not string', function() {
+		throws(function() {
+			mainModule.LCHRuntimeURLFilter('', null);
+		}, /LCHErrorInputNotValid/);
+	});
+
+	it('throws if param2 not filled', function() {
+		throws(function() {
+			mainModule.LCHRuntimeURLFilter('', '');
+		}, /LCHErrorInputNotValid/);
+	});
+
+	it('returns true if param1 empty', function() {
+		deepEqual(mainModule.LCHRuntimeURLFilter('', 'alfa'), true);
+	});
+
+	it('returns true if param1 wildcard', function() {
+		deepEqual(mainModule.LCHRuntimeURLFilter('*', 'alfa'), true);
+	});
+
+	it('treats regex characters as string if no slashes', function() {
+		deepEqual(mainModule.LCHRuntimeURLFilter('alfa?bravo', 'alfabravo'), false);
+	});
+
+	it('matches as regex', function() {
+		deepEqual(mainModule.LCHRuntimeURLFilter('/\\w/', 'alfa'), true);
+		deepEqual(mainModule.LCHRuntimeURLFilter('/\\d/', 'alfa'), false);
+		deepEqual(mainModule.LCHRuntimeURLFilter('/A/', 'alfa'), false);
+		deepEqual(mainModule.LCHRuntimeURLFilter('/A/i', 'alfa'), true);
+		deepEqual(mainModule.LCHRuntimeURLFilter('/alfa?bravo/', 'alfbravo'), true);
+	});
+
+	context('string', function () {
+		
+		it('interprets as string', function() {
+			deepEqual(mainModule.LCHRuntimeURLFilter('alfa?bravo', 'alfbravo'), false);
+		});
+
+		it('returns false if no match', function() {
+			deepEqual(mainModule.LCHRuntimeURLFilter('bravo', 'alfa'), false);
+		});
+
+		it('returns true if match', function() {
+			deepEqual(mainModule.LCHRuntimeURLFilter('alfa', 'alfa'), true);
+		});
+	
+	});
+
+	context('regex', function () {
+
+		it('interprets as regex', function() {
+			deepEqual(mainModule.LCHRuntimeURLFilter('/alfa?bravo/', 'alfbravo'), true);
+		});
+
+		it('returns false if no match', function() {
+			deepEqual(mainModule.LCHRuntimeURLFilter('/ALFA/', 'alfa'), false);
+		});
+
+		it('returns true if match', function() {
+			deepEqual(mainModule.LCHRuntimeURLFilter('/ALFA/i', 'alfa'), true);
+		});
+	
+	});
+
+});
+
 describe('LCHRuntimeInputTypes', function testLCHRuntimeInputTypes() {
 
 	it('throws if not string', function() {

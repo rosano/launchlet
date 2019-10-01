@@ -1,3 +1,29 @@
+export const LCHRuntimeURLFilter = function (param1, param2) {
+	if (typeof param1 !== 'string') {
+		throw new Error('LCHErrorInputNotValid');
+	}
+
+	if (typeof param2 !== 'string') {
+		throw new Error('LCHErrorInputNotValid');
+	}
+
+	if (!param2) {
+		throw new Error('LCHErrorInputNotValid');
+	}
+
+	if (param1 === '*') {
+		return true;
+	};
+
+	let match = param1.match(/^\/(.*)\/(\w*)/i);
+
+	if (!match || !match.shift()) {
+		return param2.includes(param1);
+	}
+
+	return !!param2.match(new RegExp(match[0], match[1]));
+};
+
 export const LCHRuntimeInputTypes = function(inputData) {
 	if (typeof inputData !== 'string') {
 		throw new Error('LCHErrorInputNotValid');

@@ -541,32 +541,6 @@ export const LCHComponentDescriptorsModelErrorsFor = function(inputData) {
 	return Object.entries(errors).length ? errors : null;
 };
 
-export const LCHLauncherPatternMatchesURL = function (param1, param2) {
-	if (typeof param1 !== 'string') {
-		throw new Error('LCHErrorInputNotValid');
-	}
-
-	if (typeof param2 !== 'string') {
-		throw new Error('LCHErrorInputNotValid');
-	}
-
-	if (!param2) {
-		throw new Error('LCHErrorInputNotValid');
-	}
-
-	if (param1 === '*') {
-		return true;
-	};
-
-	let match = param1.match(/^\/(.*)\/(\w*)/i);
-
-	if (!match || !match.shift()) {
-		return param2.includes(param1);
-	}
-
-	return !!param2.match(new RegExp(match[0], match[1]));
-};
-
 export const LCHRuntimeFilteredRecipes = function (param1, param2) {
 	if (!Array.isArray(param1)) {
 		throw new Error('LCHErrorInputInvalid');
@@ -585,7 +559,7 @@ export const LCHRuntimeFilteredRecipes = function (param1, param2) {
 			return true;
 		};
 
-		return LCHLauncherPatternMatchesURL(e.LCHRecipeURLFilter, param2)
+		return LCHRuntime.LCHRuntimeURLFilter(e.LCHRecipeURLFilter, param2)
 	})
 };
 
