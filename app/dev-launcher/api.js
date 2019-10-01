@@ -137,9 +137,9 @@ export const LCHRecipesModelIsType = function(inputData) {
 		throw new Error('LCHErrorInputNotValid');
 	}
 	
-	if (inputData.LCHRecipeCallback.length !== 1) {
-		return false;
-	}
+	// if (inputData.LCHRecipeCallback.length !== 1) {
+	// 	return false;
+	// }
 
 	if (inputData.LCHRecipeOutputType !== 'Bool') {
 		return false;
@@ -161,9 +161,9 @@ export const LCHRecipesModelIsTask = function(inputData) {
 		throw new Error('LCHErrorInputNotValid');
 	}
 	
-	if (inputData.LCHRecipeCallback.length) {
-		return false;
-	}
+	// if (inputData.LCHRecipeCallback.length) {
+	// 	return false;
+	// }
 
 	if (!inputData.LCHRecipeURLFilter) {
 		return false;

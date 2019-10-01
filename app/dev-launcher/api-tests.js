@@ -375,17 +375,17 @@ describe('LCHRecipesModelIsType', function testLCHRecipesModelIsType() {
 		}, /LCHErrorInputNotValid/);
 	});
 
-	it('returns false if no arguments', function() {
-		deepEqual(mainModule.LCHRecipesModelIsType(Object.assign(kTesting.StubRecipeObjectType(), {
-			LCHRecipeCallback () {},
-		})), false);
-	});
+	// it('returns false if no arguments', function() {
+	// 	deepEqual(mainModule.LCHRecipesModelIsType(Object.assign(kTesting.StubRecipeObjectType(), {
+	// 		LCHRecipeCallback () {},
+	// 	})), false);
+	// });
 
-	it('returns false if more than one argument', function() {
-		deepEqual(mainModule.LCHRecipesModelIsType(Object.assign(kTesting.StubRecipeObjectType(), {
-			LCHRecipeCallback (alfa, bravo) {},
-		})), false);
-	});
+	// it('returns false if more than one argument', function() {
+	// 	deepEqual(mainModule.LCHRecipesModelIsType(Object.assign(kTesting.StubRecipeObjectType(), {
+	// 		LCHRecipeCallback (alfa, bravo) {},
+	// 	})), false);
+	// });
 
 	it('returns false if LCHRecipeOutputType not Bool', function() {
 		deepEqual(mainModule.LCHRecipesModelIsType(Object.assign(kTesting.StubRecipeObjectType(), {
@@ -419,11 +419,11 @@ describe('LCHRecipesModelIsTask', function testLCHRecipesModelIsTask() {
 		}, /LCHErrorInputNotValid/);
 	});
 
-	it('returns false if arguments', function() {
-		deepEqual(mainModule.LCHRecipesModelIsTask(Object.assign(kTesting.StubRecipeObjectTask(), {
-			LCHRecipeCallback (alfa) {},
-		})), false);
-	});
+	// it('returns false if arguments', function() {
+	// 	deepEqual(mainModule.LCHRecipesModelIsTask(Object.assign(kTesting.StubRecipeObjectTask(), {
+	// 		LCHRecipeCallback (alfa) {},
+	// 	})), false);
+	// });
 
 	it('returns false if no LCHRecipeURLFilter', function() {
 		deepEqual(mainModule.LCHRecipesModelIsTask(Object.assign(kTesting.StubRecipeObjectTask(), {
