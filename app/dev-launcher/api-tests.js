@@ -984,6 +984,51 @@ describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 		deepEqual(typeof mainModule.LCHAPIObjectFor([]), 'object');
 	});
 
+	context('function', function () {
+		
+		it('returns LCHRecipeCallback output', function() {
+			deepEqual(mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
+				LCHRecipeCallback() {
+					return 'bravo';
+				},
+				LCHRecipeSignature: 'alfa',
+			})]).alfa(), 'bravo');
+		});
+
+		it('throws if type mismatch single', function () {
+			throws(function () {
+				mainModule.LCHAPIObjectFor([{
+					LCHRecipeSignature: 'alfa',
+					LCHRecipeOutputType: 'Bool',
+					LCHRecipeCallback(inputData) {
+						return inputData === 'bravo'
+					},
+				}, {
+					LCHRecipeSignature: 'charlie',
+					LCHRecipeInputTypes: 'alfa',
+					LCHRecipeCallback() {},
+				}]).charlie('delta')
+			}, /ErrorTypeMismatch/);
+		});
+
+		it('throws if type mismatch multiple', function () {
+			throws(function () {
+				mainModule.LCHAPIObjectFor([{
+					LCHRecipeSignature: 'alfa',
+					LCHRecipeOutputType: 'Bool',
+					LCHRecipeCallback(inputData) {
+						return inputData === 'bravo'
+					},
+				}, {
+					LCHRecipeSignature: 'charlie',
+					LCHRecipeInputTypes: 'alfa, alfa',
+					LCHRecipeCallback() {},
+				}]).charlie('bravo', 'delta');
+			}, /ErrorTypeMismatch/);
+		});
+	
+	});
+
 	context('this.api.fn', function() {
 
 		it('throws if not string', function() {
@@ -1072,15 +1117,6 @@ describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 	});
 
 	context('this.api', function() {
-
-		it('returns LCHRecipeCallback', function() {
-			deepEqual(mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeCallback() {
-					return 'bravo';
-				},
-				LCHRecipeSignature: 'alfa',
-			})]).alfa(), 'bravo');
-		});
 
 		it('populates this.api', function() {
 			deepEqual(mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
@@ -1318,7 +1354,7 @@ describe('LCHAPIExecuteRecipe', function testLCHAPIExecuteRecipe() {
 		await rejects(mainModule.LCHAPIExecuteRecipe(kTesting.StubRecipeObjectValid(), [], {}), /LCHErrorInputNotValid/);
 	});
 
-	it('returns output', async function() {
+	it('resolves LCHRecipeCallback output', async function() {
 		deepEqual(await mainModule.LCHAPIExecuteRecipe(Object.assign(kTesting.StubRecipeObjectValid(), {
 			LCHRecipeCallback () {
 				return 'alfa';

@@ -426,9 +426,19 @@ export const LCHAPIObjectFor = function(inputData) {
 
 	Object.assign(outputData, inputData.reduce(function (coll, item) {
 		if (!coll[item.LCHRecipeSignature]) {
-			coll[item.LCHRecipeSignature] = item.LCHRecipeCallback.bind({
-				api: outputData,
-			});
+			coll[item.LCHRecipeSignature] = function () {
+				const args = arguments;
+
+				(item.LCHRecipeInputTypes ? LCHRecipeInputTypesForString(item.LCHRecipeInputTypes) : []).forEach(function (e, i) {
+					if (!coll[e](args[i])) {
+						throw new Error('LCHErrorTypeMismatch')
+					};
+				})
+
+				return item.LCHRecipeCallback.apply({
+					api: outputData,
+				}, args);
+			};
 		}
 
 		return coll;
