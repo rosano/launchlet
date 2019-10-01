@@ -52,7 +52,7 @@ import { LCHRecipesModelErrorsFor } from './api.js';
 })();
 
 import {
-	LCHAPIObjectFor,
+	LCHRuntimeAPI,
 	LCHLauncherConvertTypeServiceSearch,
 	LCHAPITypeEquivalenceMapForRecipes,
 	LCHAPITypeNameMap,
@@ -64,7 +64,7 @@ const allRecipes = LCHLauncherStandardRecipes().map(function (e) {
 	})
 }).concat(LRTOptions.LRTOptionRecipes);
 
-const api = LCHAPIObjectFor(allRecipes);
+const api = LCHRuntimeAPI(allRecipes);
 const apiTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes);
 const typeNameMap = LCHAPITypeNameMap(allRecipes);
 
@@ -151,7 +151,7 @@ let _AllSubjects = _AllPromptRecipes.filter(function (e) {
 let _AllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
 let _ActionableTypesForPrimarySubject = Object.keys(apiTypeEquivalenceMap).filter(function (type) {
 	return _AllActions.filter(function (e) {
-		return LCHRecipeInputTypesForString(e.LCHRecipeInputTypes).shift() === type;
+		return LCHRuntimeInputTypes(e.LCHRecipeInputTypes).shift() === type;
 	}).length;
 });
 
@@ -345,7 +345,7 @@ function ActivePromptItemsShouldUpdate (inputData) {
 	})();
 }
 
-import { LCHRecipesModelActionTakesObject, LCHRecipeInputTypesForString } from './api.js';
+import { LCHRecipesModelActionTakesObject, LCHRuntimeInputTypes } from './api.js';
 import { LCHLauncherActionComparator } from './ui-logic.js';
 function ActivePromptItemSelectedShouldUpdate (inputData) {
 	(function SetItemSelected() {
@@ -376,7 +376,7 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 
 		_PromptObjects[1].LCHPromptItemsAll = _AllActions.filter(function (e) {
 			return apiTypeEquivalenceMap[inputData.LCHRecipeOutputType || 'Command'].filter(function (type) {
-				return LCHRecipeInputTypesForString(e.LCHRecipeInputTypes).shift() === type;
+				return LCHRuntimeInputTypes(e.LCHRecipeInputTypes).shift() === type;
 			}).length;
 		}).sort(LCHLauncherActionComparator(inputData.LCHRecipeOutputType || 'Command'));
 
@@ -396,8 +396,8 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 
 		_PromptObjects[2].LCHPromptIsVisible = LCHRecipesModelActionTakesObject(_PromptObjects[1].LCHPromptItemSelected);
 
-		_PromptObjects[2].LCHPromptItemsAll = !_PromptObjects[2].LCHPromptIsVisible || LCHRecipeInputTypesForString(_PromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop() === 'String' ? [] : _AllSubjects.filter(function (e) {
-			return apiTypeEquivalenceMap[LCHRecipeInputTypesForString(_PromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop()].indexOf(e.LCHRecipeOutputType) !== -1;
+		_PromptObjects[2].LCHPromptItemsAll = !_PromptObjects[2].LCHPromptIsVisible || LCHRuntimeInputTypes(_PromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop() === 'String' ? [] : _AllSubjects.filter(function (e) {
+			return apiTypeEquivalenceMap[LCHRuntimeInputTypes(_PromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop()].indexOf(e.LCHRecipeOutputType) !== -1;
 		});
 
 		_PromptObjects[2].LCHPromptItemsVisible = _PromptObjects[2].LCHPromptItemsAll;
@@ -485,7 +485,7 @@ const mod = {
 				return;
 			}
 
-			if (LCHRecipeInputTypesForString(_PromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop() !== 'String') {
+			if (LCHRuntimeInputTypes(_PromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop() !== 'String') {
 				return;
 			}
 

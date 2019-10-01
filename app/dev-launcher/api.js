@@ -1,5 +1,7 @@
 import { LCHFormulaModelErrorsFor, LCHFormulaFrom, LCHFormulaTo } from '../_shared/LCHFormula/main.js';
 
+import * as LCHRuntime from '../_shared/LCHRuntime/main.js';
+
 export const LCHRecipesModelErrorsFor = function(inputData, options = {}) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputNotValid');
@@ -213,7 +215,7 @@ export const LCHRecipesModelActionTakesObject = function(inputData) {
 		throw new Error('LCHErrorInputNotValid');
 	}
 	
-	if (LCHRecipeInputTypesForString(inputData.LCHRecipeInputTypes).length < 2) {
+	if (LCHRuntime.LCHRuntimeInputTypes(inputData.LCHRecipeInputTypes).length < 2) {
 		return false;
 	}
 	
@@ -233,27 +235,15 @@ export const LCHRecipesModelActionTakesParams = function(inputData) {
 		throw new Error('LCHErrorInputNotValid');
 	}
 	
-	if (LCHRecipeInputTypesForString(inputData.LCHRecipeInputTypes).pop() !== 'Object') {
+	if (LCHRuntime.LCHRuntimeInputTypes(inputData.LCHRecipeInputTypes).pop() !== 'Object') {
 		return false;
 	}
 	
-	// if (inputData.LCHRecipeCallback.length !== LCHRecipeInputTypesForString(inputData.LCHRecipeInputTypes).length) {
+	// if (inputData.LCHRecipeCallback.length !== LCHRuntime.LCHRuntimeInputTypes(inputData.LCHRecipeInputTypes).length) {
 	// 	return false;
 	// }
 
 	return true;
-};
-
-export const LCHRecipeInputTypesForString = function(inputData) {
-	if (typeof inputData !== 'string') {
-		throw new Error('LCHErrorInputNotValid');
-	}
-
-	return inputData.split(',').map(function (e) {
-		return e.trim();
-	}).filter(function (e) {
-		return !!e;
-	});
 };
 
 export const LCHAPITypeEquivalenceMapForRecipes = function(inputData) {
@@ -349,7 +339,7 @@ export const LCHAPIActionsForType = function(param1, param2) {
 			return false;
 		}
 
-		if (LCHRecipeInputTypesForString(e.LCHRecipeInputTypes).shift() !== param1) {
+		if (LCHRuntime.LCHRuntimeInputTypes(e.LCHRecipeInputTypes).shift() !== param1) {
 			return false;
 		}
 
@@ -391,64 +381,6 @@ Array.prototype._LCHIntersect = function() {
 	}, [...new Set([].concat.apply([], this))]);
 };
 
-export const LCHAPIObjectFor = function(inputData) {
-	if (!Array.isArray(inputData)) {
-		throw new Error('LCHErrorInputNotValid');
-	}
-
-	const outputData = {
-		fn (signature) {
-			if (typeof signature !== 'string') {
-				throw new Error('LCHErrorIdentifierNotString');
-			}
-
-			if (signature === '') {
-				throw new Error('LCHErrorIdentifierBlank');
-			}
-
-			if (signature.trim() !== signature) {
-				throw new Error('LCHErrorIdentifierContainsUntrimmedWhitespace');
-			}
-
-			let functionObject = inputData.filter(function (e) {
-				return e.LCHRecipeSignature === signature;
-			}).shift();
-
-			if (!functionObject) {
-				throw new Error('LCHErrorIdentifierNotDefined');
-			}
-
-			return functionObject.LCHRecipeCallback.bind({
-				api: outputData,
-			});
-		},
-	};
-
-	Object.assign(outputData, inputData.reduce(function (coll, item) {
-		if (!coll[item.LCHRecipeSignature]) {
-			coll[item.LCHRecipeSignature] = function () {
-				const args = arguments;
-
-				(item.LCHRecipeInputTypes ? LCHRecipeInputTypesForString(item.LCHRecipeInputTypes) : []).forEach(function (e, i) {
-					if (!coll[e](args[i])) {
-						throw new Error('LCHErrorTypeMismatch')
-					};
-				})
-
-				return item.LCHRecipeCallback.apply({
-					api: outputData,
-				}, args);
-			};
-		}
-
-		return coll;
-	}, {}));
-
-	Object.freeze(outputData);
-
-	return outputData;
-};
-
 export const LCHCompositionModelErrors = function(inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputNotValid');
@@ -488,13 +420,13 @@ export const LCHCompositionModelErrors = function(inputData) {
 	// 	];
 	// }
 
-	else if (inputData.LCHCompositionAction.LCHRecipeInputTypes && LCHRecipeInputTypesForString(inputData.LCHCompositionAction.LCHRecipeInputTypes).indexOf(inputData.LCHCompositionSubjectPrimary.LCHRecipeOutputType) === -1) {
+	else if (inputData.LCHCompositionAction.LCHRecipeInputTypes && LCHRuntime.LCHRuntimeInputTypes(inputData.LCHCompositionAction.LCHRecipeInputTypes).indexOf(inputData.LCHCompositionSubjectPrimary.LCHRecipeOutputType) === -1) {
 		errors.LCHCompositionSubjectPrimary = [
 			'LCHErrorInputNotValid',
 		];
 	}
 
-	if (inputData.LCHCompositionAction.LCHRecipeInputTypes && LCHRecipeInputTypesForString(inputData.LCHCompositionAction.LCHRecipeInputTypes).length === 2 && !inputData.LCHCompositionSubjectSecondary) {
+	if (inputData.LCHCompositionAction.LCHRecipeInputTypes && LCHRuntime.LCHRuntimeInputTypes(inputData.LCHCompositionAction.LCHRecipeInputTypes).length === 2 && !inputData.LCHCompositionSubjectSecondary) {
 		errors.LCHCompositionSubjectSecondary = [
 			'LCHErrorInputNotValid',
 		];
@@ -507,7 +439,7 @@ export const LCHCompositionModelErrors = function(inputData) {
 			];
 		}
 
-		if (inputData.LCHCompositionAction.LCHRecipeInputTypes && LCHRecipeInputTypesForString(inputData.LCHCompositionAction.LCHRecipeInputTypes).indexOf(inputData.LCHCompositionSubjectSecondary.LCHRecipeOutputType) === -1) {
+		if (inputData.LCHCompositionAction.LCHRecipeInputTypes && LCHRuntime.LCHRuntimeInputTypes(inputData.LCHCompositionAction.LCHRecipeInputTypes).indexOf(inputData.LCHCompositionSubjectSecondary.LCHRecipeOutputType) === -1) {
 			errors.LCHCompositionSubjectSecondary = [
 				'LCHErrorInputNotValid',
 			];
@@ -665,7 +597,7 @@ import { LCHLauncherStandardRecipes } from './recipes/_aggregate.js';
 
 export const LCHAPIRunTasks = function () {
 	const inputData = LCHRuntimeMatchingTasks.apply(null, Array.from(arguments));
-	const api = LCHAPIObjectFor(LCHLauncherStandardRecipes().concat(inputData));
+	const api = LCHRuntime.LCHRuntimeAPI(LCHLauncherStandardRecipes().concat(inputData));
 
 	return Promise.all(inputData.map(function (e) {
 		return LCHAPIExecuteRecipe(e, [], api);

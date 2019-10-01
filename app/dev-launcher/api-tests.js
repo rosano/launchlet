@@ -621,36 +621,6 @@ describe('LCHRecipesModelActionTakesParams', function testLCHRecipesModelActionT
 
 });
 
-describe('LCHRecipeInputTypesForString', function testLCHRecipeInputTypesForString() {
-
-	it('throws if not string', function() {
-		throws(function() {
-			mainModule.LCHRecipeInputTypesForString(null);
-		}, /LCHErrorInputNotValid/);
-	});
-
-	it('returns array', function() {
-		deepEqual(mainModule.LCHRecipeInputTypesForString(''), []);
-	});
-
-	it('excludes if blank', function() {
-		deepEqual(mainModule.LCHRecipeInputTypesForString(','), []);
-	});
-
-	it('includes if single', function() {
-		deepEqual(mainModule.LCHRecipeInputTypesForString('alfa'), ['alfa']);
-	});
-
-	it('includes if multiple', function() {
-		deepEqual(mainModule.LCHRecipeInputTypesForString('alfa,bravo'), ['alfa', 'bravo']);
-	});
-
-	it('trims whitespace', function() {
-		deepEqual(mainModule.LCHRecipeInputTypesForString('alfa , bravo'), ['alfa', 'bravo']);
-	});
-
-});
-
 describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenceMapForRecipes() {
 
 	it('throws if not array', function() {
@@ -972,202 +942,6 @@ describe('_LCHIntersect', function test_LCHIntersect() {
 
 });
 
-describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
-
-	it('throws if not array', function() {
-		throws(function() {
-			mainModule.LCHAPIObjectFor(null);
-		}, /LCHErrorInputNotValid/);
-	});
-
-	it('returns object', function() {
-		deepEqual(typeof mainModule.LCHAPIObjectFor([]), 'object');
-	});
-
-	context('function', function () {
-		
-		it('returns LCHRecipeCallback output', function() {
-			deepEqual(mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeCallback() {
-					return 'bravo';
-				},
-				LCHRecipeSignature: 'alfa',
-			})]).alfa(), 'bravo');
-		});
-
-		it('throws if type mismatch single', function () {
-			throws(function () {
-				mainModule.LCHAPIObjectFor([{
-					LCHRecipeSignature: 'alfa',
-					LCHRecipeOutputType: 'Bool',
-					LCHRecipeCallback(inputData) {
-						return inputData === 'bravo'
-					},
-				}, {
-					LCHRecipeSignature: 'charlie',
-					LCHRecipeInputTypes: 'alfa',
-					LCHRecipeCallback() {},
-				}]).charlie('delta')
-			}, /ErrorTypeMismatch/);
-		});
-
-		it('throws if type mismatch multiple', function () {
-			throws(function () {
-				mainModule.LCHAPIObjectFor([{
-					LCHRecipeSignature: 'alfa',
-					LCHRecipeOutputType: 'Bool',
-					LCHRecipeCallback(inputData) {
-						return inputData === 'bravo'
-					},
-				}, {
-					LCHRecipeSignature: 'charlie',
-					LCHRecipeInputTypes: 'alfa, alfa',
-					LCHRecipeCallback() {},
-				}]).charlie('bravo', 'delta');
-			}, /ErrorTypeMismatch/);
-		});
-	
-	});
-
-	context('this.api.fn', function() {
-
-		it('throws if not string', function() {
-			throws(function() {
-				mainModule.LCHAPIObjectFor([]).fn(null);
-			}, /LCHErrorIdentifierNotString/);
-		});
-
-		it('throws if blank', function() {
-			throws(function() {
-				mainModule.LCHAPIObjectFor([]).fn('');
-			}, /LCHErrorIdentifierBlank/);
-		});
-
-		it('throws if contains untrimmed whitespace', function() {
-			throws(function() {
-				mainModule.LCHAPIObjectFor([]).fn(' alfa');
-			}, /LCHErrorIdentifierContainsUntrimmedWhitespace/);
-			throws(function() {
-				mainModule.LCHAPIObjectFor([]).fn('alfa ');
-			}, /LCHErrorIdentifierContainsUntrimmedWhitespace/);
-		});
-
-		it('throws if not defined', function() {
-			throws(function() {
-				mainModule.LCHAPIObjectFor([]).fn('alfa');
-			}, /LCHErrorIdentifierNotDefined/);
-		});
-
-		it('returns LCHRecipeCallback output', function() {
-			deepEqual(mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeCallback() {
-					return 'bravo';
-				},
-				LCHRecipeSignature: 'alfa',
-			})]).fn('alfa')(), 'bravo');
-		});
-
-		it('populates this.api.fn', function() {
-			deepEqual(mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeCallback(inputData) {
-					return `hello ${ inputData }`;
-				},
-				LCHRecipeSignature: 'alfa',
-			}), Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeCallback() {
-					return this.api.fn('alfa')('bravo');
-				},
-				LCHRecipeSignature: 'charlie',
-			})]).fn('charlie')(), 'hello bravo');
-		});
-
-		it('ignores duplicates', function() {
-			deepEqual(mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeCallback(inputData) {
-					return `hello ${ inputData }`;
-				},
-				LCHRecipeSignature: 'alfa',
-			}), Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeCallback(inputData) {
-					return `bye ${ inputData }`;
-				},
-				LCHRecipeSignature: 'alfa',
-			})]).fn('alfa')('bravo'), 'hello bravo');
-		});
-
-		it('returns frozen object', function() {
-			deepEqual(mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeCallback(inputData) {
-					return `hello ${ inputData }`;
-				},
-				LCHRecipeSignature: 'alfa',
-			}), Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeCallback() {
-					this.api.fn = function () {
-						return function () {
-							return 'charlie';
-						};
-					};
-					return this.api.fn('alfa')('bravo');
-				},
-				LCHRecipeSignature: 'charlie',
-			})]).fn('charlie')(), 'hello bravo');
-		});
-
-	});
-
-	context('this.api', function() {
-
-		it('populates this.api', function() {
-			deepEqual(mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeCallback(inputData) {
-					return `hello ${ inputData }`;
-				},
-				LCHRecipeSignature: 'alfa',
-			}), Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeCallback() {
-					return this.api.alfa('bravo');
-				},
-				LCHRecipeSignature: 'charlie',
-			})]).charlie(), 'hello bravo');
-		});
-
-		it('ignores duplicates', function() {
-			deepEqual(mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeCallback(inputData) {
-					return `hello ${ inputData }`;
-				},
-				LCHRecipeSignature: 'alfa',
-			}), Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeCallback(inputData) {
-					return `bye ${ inputData }`;
-				},
-				LCHRecipeSignature: 'alfa',
-			})]).alfa('bravo'), 'hello bravo');
-		});
-
-		it('returns frozen object', function() {
-			deepEqual(mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeCallback(inputData) {
-					return `hello ${ inputData }`;
-				},
-				LCHRecipeSignature: 'alfa',
-			}), Object.assign(kTesting.StubRecipeObjectValid(), {
-				LCHRecipeCallback(inputData) {
-					this.api.alfa = function () {
-						return `bye ${ inputData }`;
-					};
-					
-					return this.api.alfa(inputData);
-				},
-				LCHRecipeSignature: 'bravo',
-			})]).bravo('charlie'), 'hello charlie');
-		});
-
-	});
-
-});
-
 describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 
 	it('throws if not object', function() {
@@ -1340,6 +1114,8 @@ describe('LCHAPIExecuteComposition', function testLCHAPIExecuteComposition() {
 
 });
 
+import { LCHRuntimeAPI } from '../_shared/LCHRuntime/main.js';
+
 describe('LCHAPIExecuteRecipe', function testLCHAPIExecuteRecipe() {
 
 	it('rejects if param1 not valid', async function() {
@@ -1367,7 +1143,7 @@ describe('LCHAPIExecuteRecipe', function testLCHAPIExecuteRecipe() {
 			LCHRecipeCallback() {
 				return this.api.fn('alfa')();
 			},
-		}, [], mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
+		}, [], LCHRuntimeAPI([Object.assign(kTesting.StubRecipeObjectValid(), {
 			LCHRecipeCallback() {
 				return 'bravo';
 			},
@@ -1390,7 +1166,7 @@ describe('LCHAPIExecuteRecipe', function testLCHAPIExecuteRecipe() {
 			async LCHRecipeCallback() {
 				return Promise.resolve(this.api.fn('alfa')());
 			},
-		}, [], mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
+		}, [], LCHRuntimeAPI([Object.assign(kTesting.StubRecipeObjectValid(), {
 			LCHRecipeCallback() {
 				return 'bravo';
 			},
@@ -1403,7 +1179,7 @@ describe('LCHAPIExecuteRecipe', function testLCHAPIExecuteRecipe() {
 			LCHRecipeCallback() {
 				return this.api.fn('alfa')();
 			},
-		}, [], mainModule.LCHAPIObjectFor([Object.assign(kTesting.StubRecipeObjectValid(), {
+		}, [], LCHRuntimeAPI([Object.assign(kTesting.StubRecipeObjectValid(), {
 			LCHRecipeCallback() {
 				return Promise.resolve('bravo');
 			},
