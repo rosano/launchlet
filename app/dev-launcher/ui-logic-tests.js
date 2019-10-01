@@ -382,7 +382,7 @@ describe('LCHLauncherPatternMatchesURL', function testLCHLauncherPatternMatchesU
 	});
 
 	it('treats regex characters as string if no slashes', function() {
-		deepEqual(mainModule.LCHLauncherPatternMatchesURL('alfa?bravo', 'alfa?bravo'), true);
+		deepEqual(mainModule.LCHLauncherPatternMatchesURL('alfa?bravo', 'alfabravo'), false);
 	});
 
 	it('matches as regex', function() {
