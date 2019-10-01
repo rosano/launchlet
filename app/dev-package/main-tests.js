@@ -1,4 +1,4 @@
-import { throws, deepEqual } from 'assert';
+import { rejects, deepEqual } from 'assert';
 
 import * as mainModule from './main.js';
 
@@ -43,6 +43,38 @@ describe('DataSingletonExists', function testDataSingletonExists() {
 		mainModule.mod.LifecycleSingletonDestroy();
 		
 		deepEqual(mainModule.mod.DataSingletonExists(), false);
+	});
+
+});
+
+describe('_CommandRunTasks', function test_CommandRunTasks() {
+
+	const uStubItem = function () {
+		return {
+			LCHRecipeCallback () {
+				return 'alfa';
+			},
+			LCHRecipeURLFilter: '*',
+			LCHRecipeIsAutomatic: true,
+		};
+	}
+
+	it('excludes if not matching', async function() {
+		deepEqual(await mainModule.mod._CommandRunTasks([Object.assign(uStubItem(), {
+			LCHRecipeURLFilter: 'bravo',
+		})], 'charlie'), []);
+	});
+
+	it('runs callback', async function() {
+		deepEqual(await mainModule.mod._CommandRunTasks([uStubItem()], 'bravo'), ['alfa']);
+	});
+
+	it('binds api', async function() {
+		deepEqual((await mainModule.mod._CommandRunTasks([Object.assign(uStubItem(), {
+			LCHRecipeCallback () {
+				return this.api.LCHDateLocalOffsetSubtracted(new Date());
+			},
+		})], 'alfa')).pop() instanceof Date, true);
 	});
 
 });
