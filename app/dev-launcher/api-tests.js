@@ -70,7 +70,7 @@ const kTesting = {
 
 describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 
-	it('throws error if not object', function() {
+	it('throws if not object', function() {
 		throws(function() {
 			mainModule.LCHRecipesModelErrorsFor(null);
 		}, /LCHErrorInputNotValid/);
@@ -273,7 +273,7 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 
 describe('LCHRecipesModelIsCommand', function testLCHRecipesModelIsCommand() {
 
-	it('throws error if not valid', function() {
+	it('throws if not valid', function() {
 		throws(function() {
 			mainModule.LCHRecipesModelIsCommand({});
 		}, /LCHErrorInputNotValid/);
@@ -305,7 +305,7 @@ describe('LCHRecipesModelIsCommand', function testLCHRecipesModelIsCommand() {
 
 describe('LCHRecipesModelIsSubject', function testLCHRecipesModelIsSubject() {
 
-	it('throws error if not valid', function() {
+	it('throws if not valid', function() {
 		throws(function() {
 			mainModule.LCHRecipesModelIsSubject({});
 		}, /LCHErrorInputNotValid/);
@@ -337,7 +337,7 @@ describe('LCHRecipesModelIsSubject', function testLCHRecipesModelIsSubject() {
 
 describe('LCHRecipesModelIsAction', function testLCHRecipesModelIsAction() {
 
-	it('throws error if not valid', function() {
+	it('throws if not valid', function() {
 		throws(function() {
 			mainModule.LCHRecipesModelIsAction({});
 		}, /LCHErrorInputNotValid/);
@@ -369,7 +369,7 @@ describe('LCHRecipesModelIsAction', function testLCHRecipesModelIsAction() {
 
 describe('LCHRecipesModelIsType', function testLCHRecipesModelIsType() {
 
-	it('throws error if not valid', function() {
+	it('throws if not valid', function() {
 		throws(function() {
 			mainModule.LCHRecipesModelIsType({});
 		}, /LCHErrorInputNotValid/);
@@ -413,7 +413,7 @@ describe('LCHRecipesModelIsType', function testLCHRecipesModelIsType() {
 
 describe('LCHRecipesModelIsTask', function testLCHRecipesModelIsTask() {
 
-	it('throws error if not valid', function() {
+	it('throws if not valid', function() {
 		throws(function() {
 			mainModule.LCHRecipesModelIsTask({});
 		}, /LCHErrorInputNotValid/);
@@ -446,7 +446,7 @@ describe('LCHRecipesModelIsTask', function testLCHRecipesModelIsTask() {
 import { LCHTypeServiceSearchRecipe } from './recipes/types/ServiceSearch/main.js';
 describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertTypeServiceSearch() {
 
-	it('throws error if not array', function() {
+	it('throws if not array', function() {
 		throws(function() {
 			mainModule.LCHLauncherConvertTypeServiceSearch(null);
 		}, /LCHErrorInputNotValid/);
@@ -535,13 +535,13 @@ describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertT
 
 describe('LCHRecipesModelActionTakesObject', function testLCHRecipesModelActionTakesObject() {
 
-	it('throws error if not valid', function() {
+	it('throws if not valid', function() {
 		throws(function() {
 			mainModule.LCHRecipesModelActionTakesObject({});
 		}, /LCHErrorInputNotValid/);
 	});
 
-	it('throws error if not Action', function() {
+	it('throws if not Action', function() {
 		throws(function() {
 			mainModule.LCHRecipesModelActionTakesObject(Object.assign(kTesting.StubRecipeObjectAction(), {
 				LCHRecipeName: undefined,
@@ -572,13 +572,13 @@ describe('LCHRecipesModelActionTakesObject', function testLCHRecipesModelActionT
 
 describe('LCHRecipesModelActionTakesParams', function testLCHRecipesModelActionTakesParams() {
 
-	it('throws error if not valid', function() {
+	it('throws if not valid', function() {
 		throws(function() {
 			mainModule.LCHRecipesModelActionTakesParams({});
 		}, /LCHErrorInputNotValid/);
 	});
 
-	it('throws error if not Action', function() {
+	it('throws if not Action', function() {
 		throws(function() {
 			mainModule.LCHRecipesModelActionTakesParams(Object.assign(kTesting.StubRecipeObjectAction(), {
 				LCHRecipeName: undefined,
@@ -623,7 +623,7 @@ describe('LCHRecipesModelActionTakesParams', function testLCHRecipesModelActionT
 
 describe('LCHRecipeInputTypesForString', function testLCHRecipeInputTypesForString() {
 
-	it('throws error if not string', function() {
+	it('throws if not string', function() {
 		throws(function() {
 			mainModule.LCHRecipeInputTypesForString(null);
 		}, /LCHErrorInputNotValid/);
@@ -653,7 +653,7 @@ describe('LCHRecipeInputTypesForString', function testLCHRecipeInputTypesForStri
 
 describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenceMapForRecipes() {
 
-	it('throws error if not array', function() {
+	it('throws if not array', function() {
 		throws(function() {
 			mainModule.LCHAPITypeEquivalenceMapForRecipes(null);
 		}, /LCHErrorInputNotValid/);
@@ -807,7 +807,7 @@ describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenc
 
 describe('LCHAPITypeNameMap', function testLCHAPITypeNameMap() {
 
-	it('throws error if not array', function() {
+	it('throws if not array', function() {
 		throws(function() {
 			mainModule.LCHAPITypeNameMap(null);
 		}, /LCHErrorInputNotValid/);
@@ -864,13 +864,13 @@ describe('LCHAPITypeNameMap', function testLCHAPITypeNameMap() {
 
 describe('LCHAPIActionsForType', function testLCHAPIActionsForType() {
 
-	it('throws error if param1 not string', function() {
+	it('throws if param1 not string', function() {
 		throws(function() {
 			mainModule.LCHAPIActionsForType(null, []);
 		}, /LCHErrorInputNotValid/);
 	});
 
-	it('throws error if param2 not array', function() {
+	it('throws if param2 not array', function() {
 		throws(function() {
 			mainModule.LCHAPIActionsForType('', null);
 		}, /LCHErrorInputNotValid/);
@@ -907,13 +907,13 @@ describe('LCHAPIActionsForType', function testLCHAPIActionsForType() {
 
 describe('LCHAPISubjectsForType', function testLCHAPISubjectsForType() {
 
-	it('throws error if param1 not string', function() {
+	it('throws if param1 not string', function() {
 		throws(function() {
 			mainModule.LCHAPISubjectsForType(null, []);
 		}, /LCHErrorInputNotValid/);
 	});
 
-	it('throws error if param2 not array', function() {
+	it('throws if param2 not array', function() {
 		throws(function() {
 			mainModule.LCHAPISubjectsForType('', null);
 		}, /LCHErrorInputNotValid/);
@@ -974,7 +974,7 @@ describe('_LCHIntersect', function test_LCHIntersect() {
 
 describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 
-	it('throws error if not array', function() {
+	it('throws if not array', function() {
 		throws(function() {
 			mainModule.LCHAPIObjectFor(null);
 		}, /LCHErrorInputNotValid/);
@@ -986,19 +986,19 @@ describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 
 	context('this.api.fn', function() {
 
-		it('throws error if not string', function() {
+		it('throws if not string', function() {
 			throws(function() {
 				mainModule.LCHAPIObjectFor([]).fn(null);
 			}, /LCHErrorIdentifierNotString/);
 		});
 
-		it('throws error if blank', function() {
+		it('throws if blank', function() {
 			throws(function() {
 				mainModule.LCHAPIObjectFor([]).fn('');
 			}, /LCHErrorIdentifierBlank/);
 		});
 
-		it('throws error if contains untrimmed whitespace', function() {
+		it('throws if contains untrimmed whitespace', function() {
 			throws(function() {
 				mainModule.LCHAPIObjectFor([]).fn(' alfa');
 			}, /LCHErrorIdentifierContainsUntrimmedWhitespace/);
@@ -1007,7 +1007,7 @@ describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 			}, /LCHErrorIdentifierContainsUntrimmedWhitespace/);
 		});
 
-		it('throws error if not defined', function() {
+		it('throws if not defined', function() {
 			throws(function() {
 				mainModule.LCHAPIObjectFor([]).fn('alfa');
 			}, /LCHErrorIdentifierNotDefined/);
@@ -1134,7 +1134,7 @@ describe('LCHAPIObjectFor', function testLCHAPIObjectFor() {
 
 describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 
-	it('throws error if not object', function() {
+	it('throws if not object', function() {
 		throws(function() {
 			mainModule.LCHCompositionModelErrors(null);
 		}, /LCHErrorInputNotValid/);
@@ -1259,11 +1259,11 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 
 describe('LCHAPIExecuteComposition', function testLCHAPIExecuteComposition() {
 
-	it('throws error if param1 not LCHComposition', async function() {
+	it('rejects if param1 not LCHComposition', async function() {
 		await rejects(mainModule.LCHAPIExecuteComposition({}, kTesting.StubAPIObjectValid()), /LCHErrorInputNotValid/);
 	});
 
-	it('throws error if param2 not API object', async function() {
+	it('rejects if param2 not API object', async function() {
 		await rejects(mainModule.LCHAPIExecuteComposition(kTesting.StubCompositionObjectValid(), {}), /LCHErrorInputNotValid/);
 	});
 
@@ -1306,15 +1306,15 @@ describe('LCHAPIExecuteComposition', function testLCHAPIExecuteComposition() {
 
 describe('LCHAPIExecuteRecipe', function testLCHAPIExecuteRecipe() {
 
-	it('throws error if param1 not valid', async function() {
+	it('rejects if param1 not valid', async function() {
 		await rejects(mainModule.LCHAPIExecuteRecipe({}, [], kTesting.StubAPIObjectValid()), /LCHErrorInputNotValid/);
 	});
 
-	it('throws error if param2 not array', async function() {
+	it('rejects if param2 not array', async function() {
 		await rejects(mainModule.LCHAPIExecuteRecipe({}, null, kTesting.StubAPIObjectValid()), /LCHErrorInputNotValid/);
 	});
 
-	it('throws error if param3 not API object', async function() {
+	it('rejects if param3 not valid', async function() {
 		await rejects(mainModule.LCHAPIExecuteRecipe(kTesting.StubRecipeObjectValid(), [], {}), /LCHErrorInputNotValid/);
 	});
 
@@ -1387,7 +1387,7 @@ describe('LCHAPIExecuteRecipe', function testLCHAPIExecuteRecipe() {
 
 describe('LCHComponentDescriptorsModelErrorsFor', function testLCHComponentDescriptorsModelErrorsFor() {
 
-	it('throws error if not object', function() {
+	it('throws if not object', function() {
 		throws(function() {
 			mainModule.LCHComponentDescriptorsModelErrorsFor(null);
 		}, /LCHErrorInputNotValid/);
@@ -1495,19 +1495,19 @@ describe('LCHComponentDescriptorsModelErrorsFor', function testLCHComponentDescr
 
 describe('LCHLauncherPatternMatchesURL', function testLCHLauncherPatternMatchesURL() {
 
-	it('throws error if param1 not string', function() {
+	it('throws if param1 not string', function() {
 		throws(function() {
 			mainModule.LCHLauncherPatternMatchesURL(null, '');
 		}, /LCHErrorInputNotValid/);
 	});
 
-	it('throws error if param2 not string', function() {
+	it('throws if param2 not string', function() {
 		throws(function() {
 			mainModule.LCHLauncherPatternMatchesURL('', null);
 		}, /LCHErrorInputNotValid/);
 	});
 
-	it('throws error if param2 not filled', function() {
+	it('throws if param2 not filled', function() {
 		throws(function() {
 			mainModule.LCHLauncherPatternMatchesURL('', '');
 		}, /LCHErrorInputNotValid/);
