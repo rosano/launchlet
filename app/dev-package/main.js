@@ -2,22 +2,16 @@ import {
 	LCHLauncherModeCommit,
 	LCHLauncherModePreview,
 	LCHLauncherModePipe,
-	LCHLauncherModeTask,
 	LCHLauncherModes
 } from '../dev-launcher/ui-logic.js';
 
 import {
-	LCHRuntimeMatchingTasks,
-	LCHAPIObjectFor,
-	LCHAPIExecuteRecipe,
+	LCHAPIRunTasks,
 } from '../dev-launcher/api.js';
-
-import { LCHLauncherStandardRecipes } from '../dev-launcher/recipes/_aggregate.js';
 
 export const LRTModeCommit = LCHLauncherModeCommit();
 export const LRTModePreview = LCHLauncherModePreview();
 export const LRTModePipe = LCHLauncherModePipe();
-export const LRTModeTask = LCHLauncherModeTask();
 
 export const mod = {
 
@@ -38,16 +32,7 @@ export const mod = {
 	// COMMAND
 
 	CommandRunTasks (inputData) {
-		mod._CommandRunTasks(inputData, window.location.href)
-	},
-
-	_CommandRunTasks () {
-		const inputData = LCHRuntimeMatchingTasks.apply(null, Array.from(arguments));
-		const api = LCHAPIObjectFor(LCHLauncherStandardRecipes().concat(inputData));
-
-		return Promise.all(inputData.map(function (e) {
-			return LCHAPIExecuteRecipe(e, [], api);
-		}))
+		LCHAPIRunTasks(inputData, window.location.href)
 	},
 	
 	// LIFECYCLE
@@ -102,7 +87,6 @@ export const LCHPackage = function () {
 		LRTModeCommit,
 		LRTModePreview,
 		LRTModePipe,
-		LRTModeTask,
 
 		LRTSingletonCreate: mod.LifecycleSingletonCreate,
 		LRTSingletonExists: mod.DataSingletonExists,

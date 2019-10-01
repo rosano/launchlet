@@ -2,10 +2,6 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-const uLocalized = function (inputData) {
-	return OLSKTestingLocalized(inputData, kDefaultRoute.OLSKRouteLanguages[0]);
-};
-
 describe('LCHPageRecipes', function testLCHPageRecipes () {
 
 	context('not enabled', function () {

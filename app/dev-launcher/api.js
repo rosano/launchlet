@@ -660,3 +660,14 @@ export const LCHRuntimeMatchingTasks = function (param1, param2) {
 		return LCHLauncherPatternMatchesURL(e.LCHRecipeURLFilter, param2)
 	})
 };
+
+import { LCHLauncherStandardRecipes } from './recipes/_aggregate.js';
+
+export const LCHAPIRunTasks = function () {
+	const inputData = LCHRuntimeMatchingTasks.apply(null, Array.from(arguments));
+	const api = LCHAPIObjectFor(LCHLauncherStandardRecipes().concat(inputData));
+
+	return Promise.all(inputData.map(function (e) {
+		return LCHAPIExecuteRecipe(e, [], api);
+	}))
+};

@@ -68,31 +68,17 @@ const api = LCHAPIObjectFor(allRecipes);
 const apiTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes);
 const typeNameMap = LCHAPITypeNameMap(allRecipes);
 
-import {
-	LCHRecipesModelIsTask,
-	LCHAPIExecuteRecipe,
-} from './api.js';
+import { LCHAPIRunTasks } from './api.js';
 (function StartRecipeTasks() {
-	allRecipes.filter(function (e) {
-		if (!LCHRecipesModelIsTask(e)) {
-			return false;
-		}
+	if (!LRTOptions.LRTOptionRunTasks) {
+		return;
+	};
 
-		if (!LCHLauncherPatternMatchesURL(e.LCHRecipeURLFilter, window.location.href)) {
-			return false;
-		}
-
-		return true;
-	}).forEach(function (e) {
-		LCHLauncherExecuteRecipe(e, [], api);
-	});
+	LCHAPIRunTasks(allRecipes, window.location.href);
 })();
 
-async function LCHLauncherExecuteRecipe(param1, param2, param3) {
-	return await LCHAPIExecuteRecipe(param1, param2, param3);
-}
-
 import {
+	LCHAPIExecuteRecipe,
 	LCHAPIExecuteComposition,
 	LCHComponentDescriptorsModelErrorsFor,
 } from './api.js';
@@ -133,7 +119,7 @@ async function apiStart(inputData) {
 				LCHInstanceProps,
 			});
 		});
-	})(inputData.LCHCompositionAction ? await LCHAPIExecuteComposition(inputData, api) : await LCHLauncherExecuteRecipe(inputData, [], api));
+	})(inputData.LCHCompositionAction ? await LCHAPIExecuteComposition(inputData, api) : await LCHAPIExecuteRecipe(inputData, [], api));
 }
 
 import {

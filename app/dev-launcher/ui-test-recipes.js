@@ -95,51 +95,6 @@ describe('LCHRecipeURLFilter', function testLCHRecipeURLFilter () {
 
 });
 
-describe('LCHRecipeIsAutomatic', function testLCHRecipeIsAutomatic () {
-
-	const StubRecipes = uStubStringify([{
-		LCHRecipeCallback: function () {
-			document.querySelector('.TestRecipeOutput').value = 'bravo';
-		},
-		LCHRecipeURLFilter: '/\\d{5}/',
-		LCHRecipeIsAutomatic: true,
-	}]);
-
-	context('no match', function () {
-
-		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
-				StubRecipes,
-			}));
-		});
-
-		it('runs no callback', function() {
-			browser.assert.input('.TestRecipeOutput', '');
-		});
-	
-	});
-
-	context('match', function () {
-		
-		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
-				StubRecipes,
-				charlie: '12345',
-			}));
-		});
-		
-		before(function() {
-			browser.fill(LCHLauncherFilterInput, 'LCHRecipeURLFilter');
-		});
-
-		it('runs callback', function() {
-			browser.assert.input('.TestRecipeOutput', 'bravo');
-		});
-	
-	});
-
-});
-
 describe('LCHRecipeStyle', function testLCHRecipeStyle () {
 
 	before(function() {

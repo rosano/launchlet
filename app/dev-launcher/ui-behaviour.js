@@ -34,6 +34,7 @@ const mod = {
 					LRTOptionMode: Launchlet[params.LRTOptionMode || 'LRTModeCommit'],
 					LRTOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 					LRTOptionIncludePageRecipes: !!params.LRTOptionIncludePageRecipes || false,
+					LRTOptionRunTasks: !!params.LRTOptionRunTasks || false,
 					LRTOptionCompletionHandler () {
 						let span = document.createElement('span');
 						span.classList.add('TestLauncherDidFinish');

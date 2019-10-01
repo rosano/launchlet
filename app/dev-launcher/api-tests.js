@@ -1656,3 +1656,35 @@ describe('LCHRuntimeMatchingTasks', function testLCHRuntimeMatchingTasks() {
 	});
 
 });
+
+describe('LCHAPIRunTasks', function testLCHAPIRunTasks() {
+
+	const uStubItem = function () {
+		return {
+			LCHRecipeCallback () {
+				return 'alfa';
+			},
+			LCHRecipeURLFilter: '*',
+			LCHRecipeIsAutomatic: true,
+		};
+	}
+
+	it('excludes if not matching', async function() {
+		deepEqual(await mainModule.LCHAPIRunTasks([Object.assign(uStubItem(), {
+			LCHRecipeURLFilter: 'bravo',
+		})], 'charlie'), []);
+	});
+
+	it('runs callback', async function() {
+		deepEqual(await mainModule.LCHAPIRunTasks([uStubItem()], 'bravo'), ['alfa']);
+	});
+
+	it('binds api', async function() {
+		deepEqual((await mainModule.LCHAPIRunTasks([Object.assign(uStubItem(), {
+			LCHRecipeCallback () {
+				return this.api.LCHDateLocalOffsetSubtracted(new Date());
+			},
+		})], 'alfa')).pop() instanceof Date, true);
+	});
+
+});
