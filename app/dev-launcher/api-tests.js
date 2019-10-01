@@ -1306,7 +1306,7 @@ describe('LCHAPIExecuteComposition', function testLCHAPIExecuteComposition() {
 
 describe('LCHAPIExecuteRecipe', function testLCHAPIExecuteRecipe() {
 
-	it('throws error if param1 not LCHRecipe', async function() {
+	it('throws error if param1 not valid', async function() {
 		await rejects(mainModule.LCHAPIExecuteRecipe({}, [], kTesting.StubAPIObjectValid()), /LCHErrorInputNotValid/);
 	});
 
