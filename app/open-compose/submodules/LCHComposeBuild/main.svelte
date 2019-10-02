@@ -101,7 +101,7 @@ const mod = {
 	async CommandSendPayload() {
 		const payload = {
 			LBXPayloadBookmarklet: JavascriptComposition,
-			LBXPayloadPackage: [LCHComposeBuildPackageScript].map(LCHBuildStripLivereload).map(LCHBuildStripSourceMap).pop(),
+			LBXPayloadPackageScript: [LCHComposeBuildPackageScript].map(LCHBuildStripLivereload).map(LCHBuildStripSourceMap).pop(),
 			LBXPayloadPackageStyle: LCHComposeBuildPackageStyle,
 			LBXPayloadPackageOptions: {
 				LRTOptionLanguage: BuildAppLanguageCode,
