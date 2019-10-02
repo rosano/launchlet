@@ -105,39 +105,6 @@ describe('LCHComposeBuildBoomarkletStringFor', function testLCHComposeBuildBooma
 
 });
 
-describe('_LCHClosureString', function test_LCHClosureString() {
-
-	it('throws error if not object', function() {
-		throws(function() {
-			mainModule._LCHClosureString(null);
-		}, /LCHErrorInputNotValid/);
-	});
-
-	it('throws error if LCHDocumentCallbackBody not string', function() {
-		throws(function() {
-			mainModule._LCHClosureString({});
-		}, /LCHErrorInputNotValid/);
-	});
-
-	it('returns string', function() {
-		deepEqual(mainModule._LCHClosureString({
-			LCHDocumentCallbackBody: 'alfa',
-		}), 'function () { alfa }');
-	});
-
-	context('LCHDocumentCallbackArgs', function() {
-
-		it('populates LCHClosureString', function() {
-			deepEqual(mainModule._LCHClosureString({
-				LCHDocumentCallbackBody: 'alfa',
-				LCHDocumentCallbackArgs: 'bravo',
-			}), 'function (bravo) { alfa }');
-		});
-
-	});
-
-});
-
 describe('_LCHComposeBuildRecipeJSON', function test_LCHComposeBuildRecipeJSON() {
 
 	it('throws error if not object', function() {

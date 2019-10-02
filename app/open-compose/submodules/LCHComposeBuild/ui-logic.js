@@ -1,3 +1,5 @@
+import * as LCHBuild from '../LCHBuild/main.js'
+
 export const LCHComposeBuildValidBuildTokens = function () {
 	return [
 		'LCHComposeBuildToken_AppBehaviour',
@@ -116,24 +118,10 @@ export const _LCHComposeRecipeStub = function (inputData) {
 
 		return coll;
 	}, {}), inputData.LCHDocumentCallbackBody ? {
-		LCHRecipeCallback: _LCHClosureString(inputData),
+		LCHRecipeCallback: LCHBuild.LCHBuildFunctionString(inputData.LCHDocumentCallbackBody, inputData.LCHDocumentCallbackArgs),
 	} : {}, inputData.LCHDocumentCanonicalExampleCallbackBody ? {
-		LCHRecipeCanonicalExampleCallback: _LCHClosureString({
-			LCHDocumentCallbackBody: inputData.LCHDocumentCanonicalExampleCallbackBody,
-		}),
+		LCHRecipeCanonicalExampleCallback: LCHBuild.LCHBuildFunctionString(inputData.LCHDocumentCanonicalExampleCallbackBody),
 	} : {});
-};
-
-export const _LCHClosureString = function(inputData) {
-	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputNotValid');
-	}
-
-	if (typeof inputData.LCHDocumentCallbackBody !== 'string') {
-		throw new Error('LCHErrorInputNotValid');
-	}
-
-	return `function (${ inputData.LCHDocumentCallbackArgs || '' }) { ${ inputData.LCHDocumentCallbackBody } }`;
 };
 
 export const _LCHComposeBuildRecipeJSON = function (inputData) {
