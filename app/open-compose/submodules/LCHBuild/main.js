@@ -10,6 +10,24 @@ export const LCHBuildFunctionString = function(param1, param2 = '') {
 	return `function (${ param2 }) { ${ param1 } }`;
 };
 
+export const LCHBuildConvertDocumentFunctions = function (inputData) {
+	if (typeof inputData !== 'object' || inputData === null) {
+		throw new Error('LCHErrorInputNotValid');
+	}
+
+	return Object.keys(inputData).reduce(function (coll, item) {
+		if (item.match('LCHDocumentCallback')) {
+			coll.LCHDocumentCallback = LCHBuildFunctionString(inputData.LCHDocumentCallbackBody, inputData.LCHDocumentCallbackArgs);
+		} else if (item === 'LCHDocumentCanonicalExampleCallbackBody') {
+			coll.LCHDocumentCanonicalExampleCallback = LCHBuildFunctionString(inputData.LCHDocumentCanonicalExampleCallbackBody);
+		} else  {
+			coll[item] = inputData[item];
+		}
+
+		return coll;
+	}, {});
+};
+
 export const LCHBuildObjectString = function (inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		throw new Error('LCHErrorInputNotValid');

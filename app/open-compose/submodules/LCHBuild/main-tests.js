@@ -30,6 +30,58 @@ describe('LCHBuildFunctionString', function testLCHBuildFunctionString() {
 
 });
 
+describe('LCHBuildConvertDocumentFunctions', function testLCHBuildConvertDocumentFunctions() {
+
+	it('throws error if not object', function() {
+		throws(function() {
+			mainModule.LCHBuildConvertDocumentFunctions(null);
+		}, /LCHErrorInputNotValid/);
+	});
+
+	it('returns object', function() {
+		deepEqual(mainModule.LCHBuildConvertDocumentFunctions({}), {});
+	});
+
+	it('returns new object', function() {
+		let item = {};
+		deepEqual(mainModule.LCHBuildConvertDocumentFunctions(item) !== item, true);
+	});
+
+	context('LCHDocumentCallbackBody', function () {
+
+		it('converts body', function() {
+			deepEqual(mainModule.LCHBuildConvertDocumentFunctions({
+				LCHDocumentCallbackBody: 'alfa',
+			}), {
+				LCHDocumentCallback: 'function () { alfa }',
+			});
+		});
+
+		it('converts arguments', function() {
+			deepEqual(mainModule.LCHBuildConvertDocumentFunctions({
+				LCHDocumentCallbackArgs: 'alfa',
+				LCHDocumentCallbackBody: 'bravo',
+			}), {
+				LCHDocumentCallback: 'function (alfa) { bravo }',
+			});
+		});
+	
+	});
+
+	context('LCHDocumentCanonicalExampleCallback', function () {
+
+		it('converts body', function() {
+			deepEqual(mainModule.LCHBuildConvertDocumentFunctions({
+				LCHDocumentCanonicalExampleCallbackBody: 'alfa',
+			}), {
+				LCHDocumentCanonicalExampleCallback: 'function () { alfa }',
+			});
+		});
+	
+	});
+
+});
+
 describe('LCHBuildObjectString', function testLCHBuildObjectString() {
 
 	it('throws error if not object', function() {
