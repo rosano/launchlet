@@ -1,6 +1,7 @@
 import {
 	LCHBuildRecipeArrayString,
 	LCHBuildStripLivereload,
+	LCHBuildStripSourceMap,
 } from '../LCHBuild/main.js'
 
 export const LCHComposeBuildValidBuildTokens = function () {
@@ -86,7 +87,7 @@ export const LCHComposeBuildBoomarkletStringFor = function (inputData, OLSK_TEST
 		throw new Error('LCHErrorInputNotValid');
 	}
 
-	return LCHBuildStripLivereload(Object.keys(inputData).reduce(function (coll, item) {
+	return [Object.keys(inputData).reduce(function (coll, item) {
 		let itemReplacement = inputData[item];
 
 		if (item === 'LCHComposeBuildToken_DocumentObjects') {
@@ -98,8 +99,7 @@ export const LCHComposeBuildBoomarkletStringFor = function (inputData, OLSK_TEST
 		}
 
 		return coll.replace(item,  itemReplacement);
-	}, LCHComposeBuildBoomarkletTemplate().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2'))
-			.replace(`//# sourceMappingURL=ui-behaviour.js.map`, ''));
+	}, LCHComposeBuildBoomarkletTemplate().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2'))].map(LCHBuildStripLivereload).map(LCHBuildStripSourceMap).pop();
 };
 
 export const LCHComposeBuildBookmarkletBinaryFor = function (inputData) {

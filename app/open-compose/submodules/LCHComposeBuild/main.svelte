@@ -15,6 +15,7 @@ import { modelDidChange } from '../../model.js'
 import {
 	LCHBuildRecipeArrayString,
 	LCHBuildStripLivereload,
+	LCHBuildStripSourceMap,
 } from '../LCHBuild/main.js';
 
 import { storageClient } from '../../persistence.js';
@@ -99,7 +100,7 @@ const mod = {
 	async CommandSendPayload() {
 		const payload = {
 			LBXPayloadBookmarklet: JavascriptComposition,
-			LBXPayloadPackage: [LCHComposeBuildPackage].map(LCHBuildStripLivereload),
+			LBXPayloadPackage: [LCHComposeBuildPackage].map(LCHBuildStripLivereload).map(LCHBuildStripSourceMap).pop(),
 			LBXPayloadRecipes: RecipesArrayString,
 			LBXPayloadConfirmation: Math.random().toString(),
 		};

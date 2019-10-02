@@ -91,12 +91,6 @@ describe('LCHComposeBuildBoomarkletStringFor', function testLCHComposeBuildBooma
 		}, 'OLSK_TESTING'), mainModule.LCHComposeBuildBoomarkletTemplate().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHComposeBuildToken_AppLanguageCode', 'alfa'));
 	});
 
-	it('strips sourceMap js', function () {
-		deepEqual(mainModule.LCHComposeBuildBoomarkletStringFor({
-			LCHComposeBuildToken_AppBehaviour: `alfa//# sourceMappingURL=ui-behaviour.js.mapbravo`,
-		}, 'OLSK_TESTING'), mainModule.LCHComposeBuildBoomarkletTemplate().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHComposeBuildToken_AppBehaviour', 'alfabravo'));
-	});
-
 });
 
 describe('LCHComposeBuildBookmarkletBinaryFor', function testLCHComposeBuildBookmarkletBinaryFor() {

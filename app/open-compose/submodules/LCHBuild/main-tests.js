@@ -191,12 +191,34 @@ describe('LCHBuildStripLivereload', function testLCHBuildStripLivereload() {
 		deepEqual(mainModule.LCHBuildStripLivereload(''), '');
 	});
 
-	it('strips livereload single', function() {
+	it('strips single', function() {
 		deepEqual(mainModule.LCHBuildStripLivereload(`alfa(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':1234567890/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e);})(document, 'script');bravo`), 'alfabravo');
 	});
 
-	it('strips livereload multiple', function() {
+	it('strips multiple', function() {
 		deepEqual(mainModule.LCHBuildStripLivereload(`alfa(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':1234567890/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e);})(document, 'script');bravo(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':5000/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e);})(document, 'script');charlie`), 'alfabravocharlie');
+	});
+
+});
+
+describe('LCHBuildStripSourceMap', function testLCHBuildStripSourceMap() {
+
+	it('throws error if not string', function() {
+		throws(function() {
+			mainModule.LCHBuildStripSourceMap(null);
+		}, /LCHErrorInputNotValid/);
+	});
+
+	it('returns string', function() {
+		deepEqual(mainModule.LCHBuildStripSourceMap(''), '');
+	});
+
+	it('strips single', function() {
+		deepEqual(mainModule.LCHBuildStripSourceMap(`alfa//# sourceMappingURL=ui-behaviour.js.mapbravo`), 'alfabravo');
+	});
+
+	it('strips multiple', function() {
+		deepEqual(mainModule.LCHBuildStripSourceMap(`alfa//# sourceMappingURL=ui-behaviour.js.mapbravo//# sourceMappingURL=ui-behaviour.js.mapcharlie`), 'alfabravocharlie');
 	});
 
 });
