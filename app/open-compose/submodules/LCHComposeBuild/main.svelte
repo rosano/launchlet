@@ -17,7 +17,9 @@ import {
 	LCHBuildRecipeArrayString,
 	LCHBuildStripLivereload,
 	LCHBuildStripSourceMap,
+	LCHBuildBoomarkletTemplate,
 } from '../LCHBuild/main.js';
+import OLSKString from 'OLSKString';
 
 import { storageClient } from '../../persistence.js';
 import * as LCHSettingsAction from '../../../_shared/LCHSetting/action.js';
@@ -38,6 +40,20 @@ const mod = {
 
 	BuildPairExtensionDispatchPublicKeyUpdate (inputData) {
 		mod.CommandUpdatePublicKey(inputData.detail)
+	},
+
+	// DATA
+
+	DataPackageScript () {
+		return [LCHComposeBuildPackageScript].map(LCHBuildStripLivereload).map(LCHBuildStripSourceMap).pop();
+	},
+
+	DataLauncherOptions () {
+		return {
+			LRTOptionLanguage: BuildAppLanguageCode,
+			LRTOptionMode: BuildInitializeModePipeEnabled ? LCHLauncherModePipe() : LCHLauncherModeCommit(),
+			LRTOptionIncludePageRecipes: true,
+		};
 	},
 
 	// VALUE
@@ -100,14 +116,8 @@ const mod = {
 	_LCHComposeBuildPairExtension: undefined,
 	async CommandSendPayload() {
 		const payload = {
-			LBXPayloadBookmarklet: JavascriptComposition,
-			LBXPayloadPackageScript: [LCHComposeBuildPackageScript].map(LCHBuildStripLivereload).map(LCHBuildStripSourceMap).pop(),
-			LBXPayloadPackageStyle: LCHComposeBuildPackageStyle,
-			LBXPayloadPackageOptions: {
-				LRTOptionLanguage: BuildAppLanguageCode,
-				LRTOptionMode: BuildInitializeModePipeEnabled ? LCHLauncherModePipe() : LCHLauncherModeCommit(),
-				LRTOptionIncludePageRecipes: true,
-			},
+			LBXPayloadPackageScript: mod.DataPackageScript(),
+			LBXPayloadPackageOptions: mod.DataLauncherOptions(),
 			LBXPayloadRecipes: RecipesArrayString,
 			LBXPayloadConfirmation: Math.random().toString(),
 		};
@@ -196,19 +206,27 @@ const mod = {
 			return !e.LCHDocumentIsFlagged;
 		});
 
-		JavascriptComposition = LCHComposeBuildBoomarkletStringFor({
-			LCHComposeBuildToken_AppStyle: BuildAppStyle,
-			LCHComposeBuildToken_AppBehaviour: BuildAppBehaviour,
-			LCHComposeBuildToken_DocumentObjects: validDocuments,
-			LCHComposeBuildToken_AppLanguageCode: BuildAppLanguageCode,
-			LCHComposeBuildToken_LCHLauncherMode: BuildInitializeModePipeEnabled ? LCHLauncherModePipe() : LCHLauncherModeCommit(),
-			LCHComposeBuildToken_LCHComposeRecipeName: OLSKLocalized('LCHComposeTitle'),
-			LCHComposeBuildToken_LCHComposeRecipeCallbackOutput: window.location.href,
-		});
+		RecipesArrayString = LCHBuildRecipeArrayString(validDocuments);
+
+		JavascriptComposition = OLSKString.OLSKStringReplaceTokens(LCHBuildBoomarkletTemplate(), {
+			LCHBuildBoomarkletTemplate_Script: mod.DataPackageScript(),
+			LCHBuildBoomarkletTemplate_Style: LCHComposeBuildPackageStyle,
+			LCHBuildBoomarkletTemplate_Options: JSON.stringify(mod.DataLauncherOptions()),
+			LCHBuildBoomarkletTemplate_Recipes: RecipesArrayString,
+		})
+
+		// JavascriptComposition = LCHComposeBuildBoomarkletStringFor({
+		// 	LCHComposeBuildToken_AppStyle: BuildAppStyle,
+		// 	LCHComposeBuildToken_AppBehaviour: BuildAppBehaviour,
+		// 	LCHComposeBuildToken_DocumentObjects: validDocuments,
+		// 	LCHComposeBuildToken_AppLanguageCode: BuildAppLanguageCode,
+		// 	LCHComposeBuildToken_LCHLauncherMode: BuildInitializeModePipeEnabled ? LCHLauncherModePipe() : LCHLauncherModeCommit(),
+		// 	LCHComposeBuildToken_LCHComposeRecipeName: OLSKLocalized('LCHComposeTitle'),
+		// 	LCHComposeBuildToken_LCHComposeRecipeCallbackOutput: window.location.href,
+		// });
 
 		JavascriptCompositionBinary = LCHComposeBuildBookmarkletBinaryFor(JavascriptComposition);
 
-		RecipesArrayString = LCHBuildRecipeArrayString(validDocuments);
 
 		if (!mod.ValuePublicKey()) {
 			return;

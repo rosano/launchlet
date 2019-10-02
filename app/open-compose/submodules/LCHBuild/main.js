@@ -94,3 +94,13 @@ export const LCHBuildStripSourceMap = function (inputData) {
 		return coll.split(item).join('');
 	}, inputData);
 };
+
+export const LCHBuildBoomarkletTemplate = function () {
+	return `(function () {
+    LCHBuildBoomarkletTemplate_Script;
+
+    Launchlet.LRTSingletonCreate(Object.assign(LCHBuildBoomarkletTemplate_Options, {
+      LRTOptionRecipes: LCHBuildBoomarkletTemplate_Recipes,
+    }));
+  })()`;
+};
