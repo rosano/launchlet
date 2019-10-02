@@ -49,6 +49,7 @@ export const _LCHComposeBuildBoomarkletTemplate = function () {
 						},
 						LRTOptionLanguage: 'LCHComposeBuildToken_AppLanguageCode',
 						LRTOptionMode: 'LCHComposeBuildToken_LCHLauncherMode',
+						LRTOptionIncludePageRecipes: true,
 					},
 				}
 			});
