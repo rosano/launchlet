@@ -7,7 +7,7 @@
 	//# SETUP
 
 	setupEverything() {
-		Launchlet.instanceCreate([
+		Launchlet.LRTSingletonCreate([
 			{
 				LCHRecipeName: 'Alfa',
 				LCHRecipeCallback () {
