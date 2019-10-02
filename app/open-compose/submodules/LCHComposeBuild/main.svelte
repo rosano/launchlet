@@ -12,11 +12,12 @@ import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../../../dev-launche
 import { LCHFlags } from '../../../_shared/LCHFlags/main.js'
 import { LCHFormulaFrom, LCHFormulaToEvaluate } from '../../../_shared/LCHFormula/main.js'
 import { modelDidChange } from '../../model.js'
+import { LCHBuildRecipeArrayString } from '../LCHBuild/main.js';
 
 import { storageClient } from '../../persistence.js';
 import * as LCHSettingsAction from '../../../_shared/LCHSetting/action.js';
 
-let JavascriptComposition, JavascriptCompositionBinary = '';
+let JavascriptComposition, JavascriptCompositionBinary = '', RecipesArrayString;
 
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
@@ -96,6 +97,7 @@ const mod = {
 		const payload = {
 			LBXPayloadBookmarklet: JavascriptComposition,
 			LBXPayloadPackage: LCHComposeBuildPackage,
+			LBXPayloadRecipes: RecipesArrayString,
 			LBXPayloadConfirmation: Math.random().toString(),
 		};
 
@@ -161,30 +163,32 @@ const mod = {
 	// REACT
 
 	ReactJavascriptComposition() {
+		const validDocuments = BuildDocuments.map(function (e) {
+			return Object.entries(mod._CommandFlagDocument(e)).map(function (e) {
+				if (e[0] === 'LCHDocumentCallbackBody' && !e[1]) { // #purge
+					e[1] = 'return'
+				};
+
+				return e;
+			}).filter(function (e) {
+				if (typeof e[1] === 'string' && !e[1]) {
+					return false;
+				}
+
+				return true;
+			}).reduce(function (coll, item) {
+				coll[item[0]] = item[1];
+
+				return coll;
+			}, {});
+		}).filter(function (e) {
+			return !e.LCHDocumentIsFlagged;
+		});
+
 		JavascriptComposition = LCHComposeBuildBoomarkletStringFor({
 			LCHComposeBuildToken_AppStyle: BuildAppStyle,
 			LCHComposeBuildToken_AppBehaviour: BuildAppBehaviour,
-			LCHComposeBuildToken_DocumentObjects: BuildDocuments.map(function (e) {
-				return Object.entries(mod._CommandFlagDocument(e)).map(function (e) {
-					if (e[0] === 'LCHDocumentCallbackBody' && !e[1]) { // #purge
-						e[1] = 'return'
-					};
-
-					return e;
-				}).filter(function (e) {
-					if (typeof e[1] === 'string' && !e[1]) {
-						return false;
-					}
-
-					return true;
-				}).reduce(function (coll, item) {
-					coll[item[0]] = item[1];
-
-					return coll;
-				}, {});
-			}).filter(function (e) {
-				return !e.LCHDocumentIsFlagged;
-			}),
+			LCHComposeBuildToken_DocumentObjects: validDocuments,
 			LCHComposeBuildToken_AppLanguageCode: BuildAppLanguageCode,
 			LCHComposeBuildToken_LCHLauncherMode: BuildInitializeModePipeEnabled ? LCHLauncherModePipe() : LCHLauncherModeCommit(),
 			LCHComposeBuildToken_LCHComposeRecipeName: OLSKLocalized('LCHComposeTitle'),
@@ -192,6 +196,8 @@ const mod = {
 		});
 
 		JavascriptCompositionBinary = LCHComposeBuildBookmarkletBinaryFor(JavascriptComposition);
+
+		RecipesArrayString = LCHBuildRecipeArrayString(validDocuments);
 
 		if (!mod.ValuePublicKey()) {
 			return;
