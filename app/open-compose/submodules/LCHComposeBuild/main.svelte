@@ -94,9 +94,9 @@ const mod = {
 	async CommandSendPayload() {
 		const payload = {
 			LBXPayloadBookmarklet: JavascriptComposition,
-			LBXPayloadHash: Math.random().toString(),
+			LBXPayloadConfirmation: Math.random().toString(),
 		};
-		mod._LCHComposeBuildPairExtension.DispatchSendPayload(_LCHIsTestingBehaviour() ? JSON.stringify(payload) : await mod._CommandEncrypt(JSON.stringify(payload), mod.ValuePublicKey()), payload.LBXPayloadHash)
+		mod._LCHComposeBuildPairExtension.DispatchSendPayload(_LCHIsTestingBehaviour() ? JSON.stringify(payload) : await mod._CommandEncrypt(JSON.stringify(payload), mod.ValuePublicKey()), payload.LBXPayloadConfirmation)
 	},
 	async _CommandEncrypt (param1, param2) {
 		if (_LCH_DISABLE_ENCRYPTION()) {
