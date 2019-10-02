@@ -5,7 +5,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 Object.entries({
 	LCHLauncher: '.LCHLauncher',
 
-	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
+	LCHLauncherFilterInput: '.LCHLauncherFilterInput',
 
 	LCHLauncherListItem: '.LCHLauncherResultListItem',
 

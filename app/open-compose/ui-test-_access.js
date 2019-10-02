@@ -38,7 +38,7 @@ Object.entries({
 
 	LCHComposeBuildAnchor: '#LCHComposeBuildAnchor',
 
-	LCHLauncherFilterInput: '#LCHLauncherFilterInput',
+	LCHLauncherFilterInput: '.LCHLauncherFilterInput',
 
 	async uCreateItem (browser) {
 		browser.pressButton(LCHComposeCreateButton);
@@ -161,9 +161,9 @@ describe('LCHCompose_Access', function () {
 
 	it.skip('on run', async function() {
 		browser.click(LCHComposeBuildAnchor);
-		await browser.wait({ element: '#LCHLauncherFilterInput' });
+		await browser.wait({ element: '.LCHLauncherFilterInput' });
 
-		browser.assert.elements('#LCHLauncherFilterInput', 1);
+		browser.assert.elements('.LCHLauncherFilterInput', 1);
 	});
 
 	context('delete', function () {

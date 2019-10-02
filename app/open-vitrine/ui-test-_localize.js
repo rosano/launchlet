@@ -67,7 +67,7 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 		context('LCHVitrinePageColoursRandomize', function () {
 			
 			before(function () {
-				return browser.fill('#LCHLauncherFilterInput', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRandomize)
+				return browser.fill('.LCHLauncherFilterInput', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRandomize)
 			});
 
 			it('localizes LCHLauncherResultListItem', function() {
@@ -79,7 +79,7 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 		context('LCHVitrinePageColoursRestore', function () {
 			
 			before(function () {
-				browser.fill('#LCHLauncherFilterInput', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRandomize)
+				browser.fill('.LCHLauncherFilterInput', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRandomize)
 			});
 
 			before(function () {
@@ -89,7 +89,7 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 			});
 
 			before(function () {
-				return browser.fill('#LCHLauncherFilterInput', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRestore)
+				return browser.fill('.LCHLauncherFilterInput', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRestore)
 			});
 
 			it('localizes LCHLauncherResultListItem', function() {
@@ -101,7 +101,7 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 		context('LCHVitrineCopyPageInfo', function () {
 			
 			before(function () {
-				browser.fill('#LCHLauncherFilterInput', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineCopyPageInfo)
+				browser.fill('.LCHLauncherFilterInput', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineCopyPageInfo)
 			});
 
 			it('localizes LCHLauncherResultListItem', function() {
@@ -113,7 +113,7 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 		context('LCHVitrineSendEmail', function () {
 			
 			before(function () {
-				browser.fill('#LCHLauncherFilterInput', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineSendEmail)
+				browser.fill('.LCHLauncherFilterInput', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineSendEmail)
 			});
 
 			it('localizes LCHLauncherResultListItem', function() {

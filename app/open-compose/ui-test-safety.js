@@ -147,9 +147,9 @@ describe('LCHComposeSafety', function () {
 			browser.assert.elements(LCHComposeFormFlagAlert, 1);
 
 			browser.click(LCHComposeBuildAnchor);
-			await browser.wait({ element: '#LCHLauncherFilterInput' });
+			await browser.wait({ element: '.LCHLauncherFilterInput' });
 
-			browser.fill('#LCHLauncherFilterInput', 'e');
+			browser.fill('.LCHLauncherFilterInput', 'e');
 			await browser.wait({ element: '.LCHLauncherResultListItem' });
 
 			browser.assert.elements('.LCHLauncherResultListItem', 1)
@@ -162,9 +162,9 @@ describe('LCHComposeSafety', function () {
 			browser.fill(LCHComposeDetailCallbackBodyInputDebug, 'LCH_TEST_FLAG_ON_BUILD');
 
 			browser.click(LCHComposeBuildAnchor);
-			await browser.wait({ element: '#LCHLauncherFilterInput' });
+			await browser.wait({ element: '.LCHLauncherFilterInput' });
 
-			browser.fill('#LCHLauncherFilterInput', 'e');
+			browser.fill('.LCHLauncherFilterInput', 'e');
 			await browser.wait({ element: '.LCHLauncherResultListItem' });
 
 			browser.assert.elements('.LCHLauncherResultListItem', 1)
