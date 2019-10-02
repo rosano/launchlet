@@ -17,5 +17,5 @@ export const _LCHIsTestingBehaviour = function () {
 };
 
 export const _LCH_DISABLE_ENCRYPTION = function () {
-	return true;
+	return false;
 };

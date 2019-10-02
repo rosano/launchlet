@@ -103,9 +103,22 @@ const mod = {
 			return Promise.resolve(param1);
 		};
 
-		return new Promise(function (resolve, reject) {
+		return new Promise(function (resolve, reject) {;
 			return simpleCrypto.asym.importEncryptPublicKey(param2, reject, function (inputData) {
-				return simpleCrypto.asym.encrypt(inputData, (new TextEncoder()).encode(param1), reject, resolve);
+				return simpleCrypto.asym.encrypt(inputData, (new TextEncoder()).encode(param1), reject, function (inputData) {
+					return resolve((function SerializeCipher(inputData) {
+						// javascript - Converting between strings and ArrayBuffers - Stack Overflow https://stackoverflow.com/a/11058858
+						function ab2str(buf) {
+						  return String.fromCharCode.apply(null, new Uint16Array(buf));
+						}
+
+						return JSON.stringify(Object.keys(inputData).reduce(function (coll, item) {
+							coll[item] = ab2str(inputData[item]);
+
+							return coll;
+						}, {}));
+					})(inputData));
+				});
 			})
 		})
 	},
