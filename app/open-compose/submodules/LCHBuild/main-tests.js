@@ -222,7 +222,7 @@ describe('LCHBuildStripSourceMap', function testLCHBuildStripSourceMap() {
 	});
 
 	it('strips multiple', function() {
-		deepEqual(mainModule.LCHBuildStripSourceMap(`alfa//# sourceMappingURL=ui-behaviour.js.mapbravo//# sourceMappingURL=ui-behaviour.js.mapcharlie`), 'alfabravocharlie');
+		deepEqual(mainModule.LCHBuildStripSourceMap(`alfa//# sourceMappingURL=launchlet.js.mapbravo//# sourceMappingURL=ui-behaviour.js.mapcharlie`), 'alfabravocharlie');
 	});
 
 });

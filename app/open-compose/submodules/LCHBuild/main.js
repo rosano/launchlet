@@ -90,5 +90,7 @@ export const LCHBuildStripSourceMap = function (inputData) {
 		throw new Error('LCHErrorInputNotValid');
 	}
 
-	return inputData.split('//# sourceMappingURL=ui-behaviour.js.map').join('');
+	return Array.from(inputData.match(/\/\/\# sourceMappingURL=[\w-\.]+\.map/g) || []).reduce(function (coll, item) {
+		return coll.split(item).join('');
+	}, inputData);
 };
