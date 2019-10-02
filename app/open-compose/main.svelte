@@ -83,6 +83,7 @@ mod.LifecycleComponentWillMount();
 	BuildDocuments={ $DocumentsAllStore }
 	BuildAppStyle={ window.LCHComposeLauncherStyle.textContent }
 	BuildAppBehaviour={ window.LCHComposeLauncherBehaviour.textContent }
+	LCHComposeBuildPackage={ window.LCHComposeBuildPackage.textContent }
 	BuildAppLanguageCode={ window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage') }
 
 	on:BuildDispatchModePipeEnabledToggleDidInput={ mod.BuildDispatchModePipeEnabledToggleDidInput }
