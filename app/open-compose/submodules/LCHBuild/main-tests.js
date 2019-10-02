@@ -120,3 +120,31 @@ bravo
 	});
 
 });
+
+describe('LCHBuildRecipeArrayString', function testLCHBuildRecipeArrayString() {
+
+	it('throws error if not array', function() {
+		throws(function() {
+			mainModule.LCHBuildRecipeArrayString(null);
+		}, /LCHErrorInputNotValid/);
+	});
+
+	it('returns string', function() {
+		deepEqual(mainModule.LCHBuildRecipeArrayString([]), '[]');
+	});
+
+	it('serializes objects', function() {
+		deepEqual(mainModule.LCHBuildRecipeArrayString([{
+			alfa: 'bravo',
+			charlie: true,
+		}]), '[{"alfa":"bravo","charlie":true}]');
+	});
+
+	it('converts fields', function() {
+		deepEqual(mainModule.LCHBuildRecipeArrayString([{
+			LCHDocumentName: 'alfa',
+			LCHDocumentCallbackBody: 'bravo'
+		}]), '[{"LCHRecipeName":"alfa","LCHRecipeCallback":function () { bravo }}]');
+	});
+
+});

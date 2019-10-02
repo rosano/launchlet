@@ -105,50 +105,6 @@ describe('LCHComposeBuildBoomarkletStringFor', function testLCHComposeBuildBooma
 
 });
 
-describe('_LCHComposeRecipeStub', function test_LCHComposeRecipeStub() {
-
-	it('throws error if not object', function() {
-		throws(function() {
-			mainModule._LCHComposeRecipeStub(null);
-		}, /LCHErrorInputNotValid/);
-	});
-
-	it('returns object', function() {
-		deepEqual(mainModule._LCHComposeRecipeStub({}), {});
-	});
-
-	it('converts LCHFormula fields', function() {
-		deepEqual(mainModule._LCHComposeRecipeStub({
-			LCHDocumentName: '',
-		}), {
-			LCHRecipeName: '',
-		});
-	});
-
-	it('ignores others', function() {
-		deepEqual(mainModule._LCHComposeRecipeStub({
-			alfa: '',
-		}), {});
-	});
-
-	it('wraps LCHDocumentCallbackBody in closure', function() {
-		deepEqual(mainModule._LCHComposeRecipeStub({
-			LCHDocumentCallbackBody: 'alfa',
-		}), {
-			LCHRecipeCallback: 'function () { alfa }',
-		});
-	});
-
-	it('wraps LCHDocumentCanonicalExampleCallbackBody in closure', function() {
-		deepEqual(mainModule._LCHComposeRecipeStub({
-			LCHDocumentCanonicalExampleCallbackBody: 'alfa',
-		}), {
-			LCHRecipeCanonicalExampleCallback: 'function () { alfa }',
-		});
-	});
-
-});
-
 describe('LCHComposeBuildBookmarkletBinaryFor', function testLCHComposeBuildBookmarkletBinaryFor() {
 
 	it('throws error if not string', function() {

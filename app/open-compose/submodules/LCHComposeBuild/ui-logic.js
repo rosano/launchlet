@@ -1,4 +1,4 @@
-import * as LCHBuild from '../LCHBuild/main.js'
+import { LCHBuildRecipeArrayString } from '../LCHBuild/main.js'
 
 export const LCHComposeBuildValidBuildTokens = function () {
 	return [
@@ -87,7 +87,7 @@ export const LCHComposeBuildBoomarkletStringFor = function (inputData, OLSK_TEST
 		let itemReplacement = inputData[item];
 
 		if (item === 'LCHComposeBuildToken_DocumentObjects') {
-			itemReplacement = `[${ inputData[item].map(_LCHComposeRecipeStub).map(LCHBuild.LCHBuildObjectString) }]`;
+			itemReplacement = LCHBuildRecipeArrayString(inputData[item]);
 		}
 
 		if (item === 'LCHComposeBuildToken_AppStyle') {
@@ -100,28 +100,6 @@ export const LCHComposeBuildBoomarkletStringFor = function (inputData, OLSK_TEST
 			.replace(`/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');`, '__LIVERELOADEND__')
 			.replace(/__LIVERELOADSTART__.*__LIVERELOADEND__/, '')
 			.replace(`//# sourceMappingURL=ui-behaviour.js.map`, '');
-};
-
-import { LCHFormulaModelErrorsFor, LCHFormulaFrom, LCHFormulaTo } from '../../../_shared/LCHFormula/main.js';
-
-export const _LCHComposeRecipeStub = function (inputData) {
-	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputNotValid');
-	}
-
-	const validKeys = Object.keys(LCHFormulaTo(LCHFormulaModelErrorsFor(LCHFormulaFrom(Object.keys(inputData).reduce(function (coll, item) {
-		return (coll[item] = Symbol('ForceNotValid')) && coll;
-	}, {}))) || {}, 'LCHRecipe'));
-
-	return Object.assign(validKeys.reduce(function (coll, item) {
-		coll[item] = LCHFormulaTo(LCHFormulaFrom(inputData), 'LCHRecipe')[item];
-
-		return coll;
-	}, {}), inputData.LCHDocumentCallbackBody ? {
-		LCHRecipeCallback: LCHBuild.LCHBuildFunctionString(inputData.LCHDocumentCallbackBody, inputData.LCHDocumentCallbackArgs),
-	} : {}, inputData.LCHDocumentCanonicalExampleCallbackBody ? {
-		LCHRecipeCanonicalExampleCallback: LCHBuild.LCHBuildFunctionString(inputData.LCHDocumentCanonicalExampleCallbackBody),
-	} : {});
 };
 
 export const LCHComposeBuildBookmarkletBinaryFor = function (inputData) {

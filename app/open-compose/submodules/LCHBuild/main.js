@@ -53,3 +53,15 @@ export const LCHBuildObjectString = function (inputData) {
 		return coll.replace(`"__${ item }__"`, substitutions[item]);
 	}, JSON.stringify(outputData));
 };
+
+import { LCHFormulaFrom, LCHFormulaTo } from '../../../_shared/LCHFormula/main.js';
+
+export const LCHBuildRecipeArrayString = function (inputData) {
+	if (!Array.isArray(inputData)) {
+		throw new Error('LCHErrorInputNotValid');
+	}
+
+	return `[${ inputData.map(LCHBuildConvertDocumentFunctions).map(function (e) {
+		return LCHFormulaTo(LCHFormulaFrom(e), 'LCHRecipe');
+	}).map(LCHBuildObjectString).join(',') }]`;
+};
