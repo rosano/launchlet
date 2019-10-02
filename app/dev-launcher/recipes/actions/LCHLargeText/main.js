@@ -4,7 +4,7 @@ export const LCHLargeTextCallback = function(inputData) {
 	}
 
 	const rootElement = document.createElement('div');
-	rootElement.id = 'LCHLargeTextContainer';
+	rootElement.className = 'LCHLargeTextContainer';
 
 	for (let [key, value] of Object.entries({
 		width: '100%',
