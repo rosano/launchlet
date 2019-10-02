@@ -103,6 +103,11 @@ const mod = {
 			LBXPayloadBookmarklet: JavascriptComposition,
 			LBXPayloadPackage: [LCHComposeBuildPackageScript].map(LCHBuildStripLivereload).map(LCHBuildStripSourceMap).pop(),
 			LBXPayloadPackageStyle: LCHComposeBuildPackageStyle,
+			LBXPayloadPackageOptions: {
+				LRTOptionLanguage: BuildAppLanguageCode,
+				LRTOptionMode: BuildInitializeModePipeEnabled ? LCHLauncherModePipe() : LCHLauncherModeCommit(),
+				LRTOptionIncludePageRecipes: true,
+			},
 			LBXPayloadRecipes: RecipesArrayString,
 			LBXPayloadConfirmation: Math.random().toString(),
 		};
