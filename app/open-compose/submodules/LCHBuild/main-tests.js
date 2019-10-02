@@ -147,4 +147,34 @@ describe('LCHBuildRecipeArrayString', function testLCHBuildRecipeArrayString() {
 		}]), '[{"LCHRecipeName":"alfa","LCHRecipeCallback":function () { bravo }}]');
 	});
 
+	it('excludes @context', function() {
+		deepEqual(mainModule.LCHBuildRecipeArrayString([{
+			'@context': 'alfa',
+		}]), '[{}]');
+	});
+
+	it('excludes LCHDocumentID', function() {
+		deepEqual(mainModule.LCHBuildRecipeArrayString([{
+			LCHDocumentID: 'alfa',
+		}]), '[{}]');
+	});
+
+	it('excludes LCHDocumentCreationDate', function() {
+		deepEqual(mainModule.LCHBuildRecipeArrayString([{
+			LCHDocumentCreationDate: 'alfa',
+		}]), '[{}]');
+	});
+
+	it('excludes LCHDocumentModificationDate', function() {
+		deepEqual(mainModule.LCHBuildRecipeArrayString([{
+			LCHDocumentModificationDate: 'alfa',
+		}]), '[{}]');
+	});
+
+	it('excludes LCHDocumentIsFlagged', function() {
+		deepEqual(mainModule.LCHBuildRecipeArrayString([{
+			LCHDocumentIsFlagged: 'alfa',
+		}]), '[{}]');
+	});
+
 });

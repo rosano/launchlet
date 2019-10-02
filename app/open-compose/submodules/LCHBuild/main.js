@@ -62,6 +62,17 @@ export const LCHBuildRecipeArrayString = function (inputData) {
 	}
 
 	return `[${ inputData.map(LCHBuildConvertDocumentFunctions).map(function (e) {
+		Object.keys(e).forEach(function (key) {
+			if ([
+				'@context',
+				'LCHDocumentID',
+				'LCHDocumentCreationDate',
+				'LCHDocumentModificationDate',
+				'LCHDocumentIsFlagged',
+				].indexOf(key) !== -1) {
+				delete e[key]
+			};
+		})
 		return LCHFormulaTo(LCHFormulaFrom(e), 'LCHRecipe');
 	}).map(LCHBuildObjectString).join(',') }]`;
 };
