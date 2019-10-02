@@ -87,7 +87,7 @@ export const LCHComposeBuildBoomarkletStringFor = function (inputData, OLSK_TEST
 		let itemReplacement = inputData[item];
 
 		if (item === 'LCHComposeBuildToken_DocumentObjects') {
-			itemReplacement = `[${ inputData[item].map(_LCHComposeRecipeStub).map(_LCHComposeBuildRecipeJSON) }]`;
+			itemReplacement = `[${ inputData[item].map(_LCHComposeRecipeStub).map(LCHBuild.LCHBuildObjectString) }]`;
 		}
 
 		if (item === 'LCHComposeBuildToken_AppStyle') {
@@ -122,24 +122,6 @@ export const _LCHComposeRecipeStub = function (inputData) {
 	} : {}, inputData.LCHDocumentCanonicalExampleCallbackBody ? {
 		LCHRecipeCanonicalExampleCallback: LCHBuild.LCHBuildFunctionString(inputData.LCHDocumentCanonicalExampleCallbackBody),
 	} : {});
-};
-
-export const _LCHComposeBuildRecipeJSON = function (inputData) {
-	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputNotValid');
-	}
-
-	const outputData = Object.assign({}, inputData);
-
-	if (inputData.LCHRecipeCallback) {
-		outputData.LCHRecipeCallback = '__LCHRecipeCallback__';
-	}
-
-	if (inputData.LCHRecipeCanonicalExampleCallback) {
-		outputData.LCHRecipeCanonicalExampleCallback = '__LCHRecipeCanonicalExampleCallback__';
-	}
-
-	return JSON.stringify(outputData).replace('"__LCHRecipeCallback__"', inputData.LCHRecipeCallback).replace('"__LCHRecipeCanonicalExampleCallback__"', inputData.LCHRecipeCanonicalExampleCallback);
 };
 
 export const LCHComposeBuildBookmarkletBinaryFor = function (inputData) {

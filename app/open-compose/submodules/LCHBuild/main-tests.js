@@ -29,3 +29,42 @@ describe('LCHBuildFunctionString', function testLCHBuildFunctionString() {
 	});
 
 });
+
+describe('LCHBuildObjectString', function testLCHBuildObjectString() {
+
+	it('throws error if not object', function() {
+		throws(function() {
+			mainModule.LCHBuildObjectString(null);
+		}, /LCHErrorInputNotValid/);
+	});
+
+	it('returns string', function() {
+		deepEqual(mainModule.LCHBuildObjectString({}), '{}');
+	});
+
+	it('stringifies inputData', function() {
+		deepEqual(mainModule.LCHBuildObjectString({
+			alfa: 'bravo',
+			charlie: true,
+		}), '{"alfa":"bravo","charlie":true}');
+	});
+
+	context('function', function () {
+
+		it('prints directly', function() {
+			deepEqual(mainModule.LCHBuildObjectString({
+				alfa: 'function () { bravo }',
+			}), '{"alfa":function () { bravo }}');
+		});
+
+		it('prints line breaks', function() {
+			deepEqual(mainModule.LCHBuildObjectString({
+				LCHRecipeCallback: `function() {
+bravo
+}`,
+			}), `{"LCHRecipeCallback":function() {\nbravo\n}}`);
+		});
+	
+	});
+
+});
