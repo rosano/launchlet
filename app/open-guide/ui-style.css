@@ -42,15 +42,11 @@ code {
 	color: hsl(0, 0%, 20%);
 }
 
-.LCHGuideExample p {
-	margin: 0;
+.LCHGuideExample dt {
+	font-weight: bold;
 }
 
-.LCHGuideExample blockquote {
-	margin: 0;
-}
-
-.LCHGuideExample blockquote blockquote {
+.LCHGuideExample dd {
 	margin: 10px 20px;
 }
 

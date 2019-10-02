@@ -28,7 +28,7 @@ describe('LCHGuideExampleFormatted', function testLCHGuideExampleFormatted() {
 			deepEqual(mainModule.LCHGuideExampleFormatted({
 				LCHDocumentCallbackBody: 'bravo',
 			}), {
-				LCHDocumentCallbackBody: '```bravo```',
+				LCHDocumentCallbackBody: '<code>bravo</code>',
 			});
 		});
 
@@ -51,7 +51,7 @@ describe('LCHGuideExampleQuoted', function testLCHGuideExampleQuoted() {
 	it('splits into entries', function() {
 		deepEqual(mainModule.LCHGuideExampleQuoted({
 			alfa: 'bravo',
-		}), ['> **alfa**\n>> bravo']);
+		}), ['<dt>alfa</dt><dd>bravo</dd>']);
 	});
 
 });
@@ -65,15 +65,15 @@ describe('LCHGuideExampleTemplate', function testLCHGuideExampleTemplate() {
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHGuideExampleTemplate([]), `<div class="LCHGuideExample">\n\n\n\n</div>`);
+		deepEqual(mainModule.LCHGuideExampleTemplate([]), `<dl class="LCHGuideExample">\n\n\n\n</dl>`);
 	});
 
 	it('inserts input', function() {
-		deepEqual(mainModule.LCHGuideExampleTemplate(['alfa']), `<div class="LCHGuideExample">\n\nalfa\n\n</div>`);
+		deepEqual(mainModule.LCHGuideExampleTemplate(['alfa']), `<dl class="LCHGuideExample">\n\nalfa\n\n</dl>`);
 	});
 
 	it('joins multiple with newlines', function() {
-		deepEqual(mainModule.LCHGuideExampleTemplate(['alfa', 'bravo']), `<div class="LCHGuideExample">\n\nalfa\n\nbravo\n\n</div>`);
+		deepEqual(mainModule.LCHGuideExampleTemplate(['alfa', 'bravo']), `<dl class="LCHGuideExample">\n\nalfa\n\nbravo\n\n</dl>`);
 	});
 
 });

@@ -7,7 +7,7 @@ exports.LCHGuideExampleFormatted = function (inputData) {
 
 	for (let key in outputData) {
 		if (key === 'LCHDocumentCallbackBody') {
-			outputData[key] = '```' + outputData[key] + '```'
+			outputData[key] = '<code>' + outputData[key] + '</code>'
 		};
 	}
 
@@ -22,11 +22,8 @@ exports.LCHGuideExampleQuoted = function (inputData, OLSKLocalized = function (i
 	}
 
 	return Object.entries(inputData).map(function (e) {
-		e[0] = `> **${ OLSKLocalized(e[0]) }**`;
-		e[1] = `>> ${ e[1] }`;
-
-		return e.join('\n');
-	})
+		return `<dt>${ OLSKLocalized(e[0]) }</dt><dd>${ e[1] }</dd>`;
+	});
 };
 
 exports.LCHGuideExampleTemplate = function (inputData) {
@@ -34,7 +31,7 @@ exports.LCHGuideExampleTemplate = function (inputData) {
 		throw new Error('LCHErrorInputNotValid');
 	}
 
-	return `<div class="LCHGuideExample">\n\n${ inputData.join('\n\n') }\n\n</div>`;
+	return `<dl class="LCHGuideExample">\n\n${ inputData.join('\n\n') }\n\n</dl>`;
 };
 
 exports.LCHGuideStringify = function (inputData) {
