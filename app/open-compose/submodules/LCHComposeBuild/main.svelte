@@ -5,6 +5,7 @@ export let BuildAppStyle;
 export let BuildAppBehaviour;
 export let BuildAppLanguageCode;
 export let LCHComposeBuildPackageScript;
+export let LCHComposeBuildPackageStyle;
 
 import { OLSKLocalized, _LCHIsTestingBehaviour, _LCH_DISABLE_ENCRYPTION } from '../../../_shared/common/global.js';
 import { LCHComposeBuildBoomarkletStringFor, LCHComposeBuildBookmarkletBinaryFor } from './ui-logic.js';
@@ -101,6 +102,7 @@ const mod = {
 		const payload = {
 			LBXPayloadBookmarklet: JavascriptComposition,
 			LBXPayloadPackage: [LCHComposeBuildPackageScript].map(LCHBuildStripLivereload).map(LCHBuildStripSourceMap).pop(),
+			LBXPayloadPackageStyle: LCHComposeBuildPackageStyle,
 			LBXPayloadRecipes: RecipesArrayString,
 			LBXPayloadConfirmation: Math.random().toString(),
 		};
