@@ -8,7 +8,6 @@ export let LCHComposeBuildPackageScript;
 export let LCHComposeBuildPackageStyle;
 
 import { OLSKLocalized, _LCHIsTestingBehaviour, _LCH_DISABLE_ENCRYPTION } from '../../../_shared/common/global.js';
-import { LCHComposeBuildBoomarkletStringFor, LCHComposeBuildBookmarkletBinaryFor } from './ui-logic.js';
 import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../../../dev-launcher/ui-logic.js';
 import { LCHFlags } from '../../../_shared/LCHFlags/main.js'
 import { LCHFormulaFrom, LCHFormulaToEvaluate } from '../../../_shared/LCHFormula/main.js'
@@ -216,18 +215,7 @@ const mod = {
 			LCHBuildBoomarkletTemplate_Recipes: RecipesArrayString,
 		})
 
-		// JavascriptComposition = LCHComposeBuildBoomarkletStringFor({
-		// 	LCHComposeBuildToken_AppStyle: BuildAppStyle,
-		// 	LCHComposeBuildToken_AppBehaviour: BuildAppBehaviour,
-		// 	LCHComposeBuildToken_DocumentObjects: validDocuments,
-		// 	LCHComposeBuildToken_AppLanguageCode: BuildAppLanguageCode,
-		// 	LCHComposeBuildToken_LCHLauncherMode: BuildInitializeModePipeEnabled ? LCHLauncherModePipe() : LCHLauncherModeCommit(),
-		// 	LCHComposeBuildToken_LCHComposeRecipeName: OLSKLocalized('LCHComposeTitle'),
-		// 	LCHComposeBuildToken_LCHComposeRecipeCallbackOutput: window.location.href,
-		// });
-
 		JavascriptCompositionBinary = LCHBuildEscape(JavascriptComposition);
-
 
 		if (!mod.ValuePublicKey()) {
 			return;
