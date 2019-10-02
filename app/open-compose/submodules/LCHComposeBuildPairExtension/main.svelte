@@ -97,7 +97,7 @@ const mod = {
 	},
 	CommandPostPayload (inputData) {
 		window.postMessage({
-			LBXPayloadEncryptedData: inputData,
+			LBXMessageEncryptedData: inputData,
 		}, window.location.href);
 	},
 
