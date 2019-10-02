@@ -12,7 +12,10 @@ import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../../../dev-launche
 import { LCHFlags } from '../../../_shared/LCHFlags/main.js'
 import { LCHFormulaFrom, LCHFormulaToEvaluate } from '../../../_shared/LCHFormula/main.js'
 import { modelDidChange } from '../../model.js'
-import { LCHBuildRecipeArrayString } from '../LCHBuild/main.js';
+import {
+	LCHBuildRecipeArrayString,
+	LCHBuildStripLivereload,
+} from '../LCHBuild/main.js';
 
 import { storageClient } from '../../persistence.js';
 import * as LCHSettingsAction from '../../../_shared/LCHSetting/action.js';
@@ -96,7 +99,7 @@ const mod = {
 	async CommandSendPayload() {
 		const payload = {
 			LBXPayloadBookmarklet: JavascriptComposition,
-			LBXPayloadPackage: LCHComposeBuildPackage,
+			LBXPayloadPackage: [LCHComposeBuildPackage].map(LCHBuildStripLivereload),
 			LBXPayloadRecipes: RecipesArrayString,
 			LBXPayloadConfirmation: Math.random().toString(),
 		};

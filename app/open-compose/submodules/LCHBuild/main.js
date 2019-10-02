@@ -76,3 +76,11 @@ export const LCHBuildRecipeArrayString = function (inputData) {
 		return LCHFormulaTo(LCHFormulaFrom(e), 'LCHRecipe');
 	}).map(LCHBuildObjectString).join(',') }]`;
 };
+
+export const LCHBuildStripLivereload = function (inputData) {
+	if (typeof inputData !== 'string') {
+		throw new Error('LCHErrorInputNotValid');
+	}
+
+	return inputData.split(`(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':`).join('__LIVERELOADSTART__').split(`/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e);})(document, 'script');`).join('__LIVERELOADEND__').replace(/__LIVERELOADSTART__\d+__LIVERELOADEND__/g, '');
+};

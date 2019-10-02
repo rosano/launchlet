@@ -1,4 +1,7 @@
-import { LCHBuildRecipeArrayString } from '../LCHBuild/main.js'
+import {
+	LCHBuildRecipeArrayString,
+	LCHBuildStripLivereload,
+} from '../LCHBuild/main.js'
 
 export const LCHComposeBuildValidBuildTokens = function () {
 	return [
@@ -83,7 +86,7 @@ export const LCHComposeBuildBoomarkletStringFor = function (inputData, OLSK_TEST
 		throw new Error('LCHErrorInputNotValid');
 	}
 
-	return Object.keys(inputData).reduce(function (coll, item) {
+	return LCHBuildStripLivereload(Object.keys(inputData).reduce(function (coll, item) {
 		let itemReplacement = inputData[item];
 
 		if (item === 'LCHComposeBuildToken_DocumentObjects') {
@@ -96,10 +99,7 @@ export const LCHComposeBuildBoomarkletStringFor = function (inputData, OLSK_TEST
 
 		return coll.replace(item,  itemReplacement);
 	}, LCHComposeBuildBoomarkletTemplate().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2'))
-			.replace(`(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':`, '__LIVERELOADSTART__')
-			.replace(`/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');`, '__LIVERELOADEND__')
-			.replace(/__LIVERELOADSTART__.*__LIVERELOADEND__/, '')
-			.replace(`//# sourceMappingURL=ui-behaviour.js.map`, '');
+			.replace(`//# sourceMappingURL=ui-behaviour.js.map`, ''));
 };
 
 export const LCHComposeBuildBookmarkletBinaryFor = function (inputData) {

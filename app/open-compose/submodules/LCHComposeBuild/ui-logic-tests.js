@@ -97,12 +97,6 @@ describe('LCHComposeBuildBoomarkletStringFor', function testLCHComposeBuildBooma
 		}, 'OLSK_TESTING'), mainModule.LCHComposeBuildBoomarkletTemplate().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHComposeBuildToken_AppBehaviour', 'alfabravo'));
 	});
 
-	it('strips livereload', function () {
-		deepEqual(mainModule.LCHComposeBuildBoomarkletStringFor({
-			LCHComposeBuildToken_AppBehaviour: `alfa(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':1234567890/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');bravo`,
-		}, 'OLSK_TESTING'), mainModule.LCHComposeBuildBoomarkletTemplate().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2').replace('LCHComposeBuildToken_AppBehaviour', 'alfabravo'));
-	});
-
 });
 
 describe('LCHComposeBuildBookmarkletBinaryFor', function testLCHComposeBuildBookmarkletBinaryFor() {
