@@ -107,10 +107,23 @@ const mod = {
 			return simpleCrypto.asym.importEncryptPublicKey(param2, reject, function (inputData) {
 				return simpleCrypto.asym.encrypt(inputData, (new TextEncoder()).encode(param1), reject, function (inputData) {
 					return resolve((function SerializeCipher(inputData) {
-						// javascript - Converting between strings and ArrayBuffers - Stack Overflow https://stackoverflow.com/a/11058858
-						function ab2str(buf) {
-						  return String.fromCharCode.apply(null, new Uint16Array(buf));
-						}
+						// javascript - Converting array buffer to string - Maximum call stack size exceeded - Stack Overflow https://stackoverflow.com/a/20604561
+						function ab2str(buffer) {
+							var bufView = new Uint16Array(buffer);
+							var length = bufView.length;
+							var result = '';
+							var addition = Math.pow(2,16)-1;
+
+							for(var i = 0;i<length;i+=addition){
+
+							    if(i + addition > length){
+							        addition = length - i;
+							    }
+							    result += String.fromCharCode.apply(null, bufView.subarray(i,i+addition));
+							}
+
+							return result;
+						};
 
 						return JSON.stringify(Object.keys(inputData).reduce(function (coll, item) {
 							coll[item] = ab2str(inputData[item]);
