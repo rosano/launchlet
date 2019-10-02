@@ -3,7 +3,7 @@ import { deepEqual } from 'assert';
 const kDefaultRoute = require('../../../controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
-	LCHCopyToClipboardButton: '#LCHCopyToClipboardButton',
+	LCHCopyToClipboardButton: '.LCHCopyToClipboardButton',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });

@@ -50,4 +50,4 @@ onMount(function () {
 });
 </script>
 
-<button data-clipboard-text={ inputData } bind:this={ clipboardButton } id="LCHCopyToClipboardButton">{ OLSKLocalized('LCHCopyToClipboardButtonText') }</button>
+<button class="LCHCopyToClipboardButton" data-clipboard-text={ inputData } bind:this={ clipboardButton }>{ OLSKLocalized('LCHCopyToClipboardButtonText') }</button>

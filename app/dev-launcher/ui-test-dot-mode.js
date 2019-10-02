@@ -266,7 +266,7 @@ describe('LCHLauncherDotMode', function () {
 			});
 
 			before(function () {
-				return browser.click('#LCHCopyToClipboardButton');
+				return browser.click('.LCHCopyToClipboardButton');
 			});
 			
 			it('executes composition', function() {
