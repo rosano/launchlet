@@ -1,11 +1,9 @@
 <script>
 export let BuildDocuments = [];
 export let BuildInitializeModePipeEnabled;
-export let BuildAppStyle;
-export let BuildAppBehaviour;
 export let BuildAppLanguageCode;
-export let LCHComposeBuildPackageScript;
 export let LCHComposeBuildPackageStyle;
+export let LCHComposeBuildPackageScript;
 
 import { OLSKLocalized, _LCHIsTestingBehaviour, _LCH_DISABLE_ENCRYPTION } from '../../../_shared/common/global.js';
 import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../../../dev-launcher/ui-logic.js';
@@ -209,8 +207,8 @@ const mod = {
 		RecipesArrayString = LCHBuildRecipeArrayString(validDocuments);
 
 		JavascriptComposition = OLSKString.OLSKStringReplaceTokens(LCHBuildBoomarkletTemplate(), {
-			LCHBuildBoomarkletTemplate_Script: mod.DataPackageScript(),
 			LCHBuildBoomarkletTemplate_Style: LCHComposeBuildPackageStyle,
+			LCHBuildBoomarkletTemplate_Script: mod.DataPackageScript(),
 			LCHBuildBoomarkletTemplate_Options: JSON.stringify(mod.DataLauncherOptions()),
 			LCHBuildBoomarkletTemplate_Recipes: RecipesArrayString,
 		})

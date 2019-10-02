@@ -4,8 +4,6 @@ import Module from './main.svelte';
 
 <Module
 	BuildInitializeModePipeEnabled={ false }
-	BuildAppStyle={ '' }
-	BuildAppBehaviour={ '' }
 	BuildAppLanguageCode={ window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage') }
 	{...Object.fromEntries((new window.URLSearchParams(window.location.search)).entries())}
 />
