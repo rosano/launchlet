@@ -18,6 +18,7 @@ import {
 	LCHBuildStripLivereload,
 	LCHBuildStripSourceMap,
 	LCHBuildBoomarkletTemplate,
+	LCHBuildEscape,
 } from '../LCHBuild/main.js';
 import OLSKString from 'OLSKString';
 
@@ -225,7 +226,7 @@ const mod = {
 		// 	LCHComposeBuildToken_LCHComposeRecipeCallbackOutput: window.location.href,
 		// });
 
-		JavascriptCompositionBinary = LCHComposeBuildBookmarkletBinaryFor(JavascriptComposition);
+		JavascriptCompositionBinary = LCHBuildEscape(JavascriptComposition);
 
 
 		if (!mod.ValuePublicKey()) {

@@ -92,17 +92,3 @@ describe('LCHComposeBuildBoomarkletStringFor', function testLCHComposeBuildBooma
 	});
 
 });
-
-describe('LCHComposeBuildBookmarkletBinaryFor', function testLCHComposeBuildBookmarkletBinaryFor() {
-
-	it('throws error if not string', function() {
-		throws(function() {
-			mainModule.LCHComposeBuildBookmarkletBinaryFor(null);
-		}, /LCHErrorInputNotValid/);
-	});
-
-	it('returns string', function() {
-		deepEqual(mainModule.LCHComposeBuildBookmarkletBinaryFor('(function() { return; })()'), 'javascript:(function()%20%7B%20return%3B%20%7D)()');
-	});
-
-});

@@ -101,11 +101,3 @@ export const LCHComposeBuildBoomarkletStringFor = function (inputData, OLSK_TEST
 		return coll.replace(item,  itemReplacement);
 	}, LCHComposeBuildBoomarkletTemplate().replace(/_protectFromCompiler\(\u0060(.*)\u0060\)(,)?;?/g, '$1$2'))].map(LCHBuildStripLivereload).map(LCHBuildStripSourceMap).pop();
 };
-
-export const LCHComposeBuildBookmarkletBinaryFor = function (inputData) {
-	if (typeof inputData !== 'string') {
-		throw new Error('LCHErrorInputNotValid');
-	}
-
-	return `javascript:${ encodeURIComponent(inputData) }`;
-};

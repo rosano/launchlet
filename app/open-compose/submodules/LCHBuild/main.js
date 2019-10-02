@@ -104,3 +104,11 @@ export const LCHBuildBoomarkletTemplate = function () {
     }));
   })()`;
 };
+
+export const LCHBuildEscape = function (inputData) {
+	if (typeof inputData !== 'string') {
+		throw new Error('LCHErrorInputNotValid');
+	}
+
+	return `javascript:${ encodeURIComponent(inputData) }`;
+};
