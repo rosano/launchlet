@@ -10,8 +10,8 @@ describe('LCHCompose_Misc', function () {
 
 	context('on startup', function() {
 
-		it.skip('focuses LCHComposeFilterInput', function() {
-			// deepEqual(browser.document.hasFocus(LCHComposeFilterInput), true); #mysterious
+		it('focuses LCHComposeFilterInput', function() {
+			// deepEqual(browser.document.hasFocus(LCHComposeFilterInput), true); // #mysterious
 			deepEqual(browser.document.activeElement, browser.query(LCHComposeFilterInput));
 		});
 
