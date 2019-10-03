@@ -314,7 +314,23 @@ import LCHEditor from '../LCHEditor/main.svelte';
 		{#if OLSK_TESTING_BEHAVIOUR()}
 			<textarea bind:value={ $DocumentSelectedStore.LCHDocumentStyle } on:input={ mod.commandDocumentSave } id="LCHComposeDetailStyleInputDebug"></textarea>
 		{/if}
-		<textarea bind:this={ StyleEditorElement }></textarea>
+
+		<LCHEditor EditorOptions={ {
+			mode: 'css',
+
+			lineNumbers: true,
+			lineWrapping: true,
+
+			placeholder: OLSKLocalized('LCHComposeFormStyleFieldPlaceholderText'),
+			
+		  keyMap: 'sublime',
+
+			extraKeys: {
+				Tab: false,
+			},
+		} } on:EditorDispatchValueChanged={ (event) => mod._EditorDispatchValueChanged({
+		LCHDocumentStyle: event.detail,
+	}) } EditorInitialValue={ $DocumentSelectedStore.LCHDocumentStyle } />
 	</div>
 
 	<hr>
