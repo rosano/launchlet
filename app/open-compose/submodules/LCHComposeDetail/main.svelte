@@ -325,7 +325,22 @@ import LCHEditor from '../LCHEditor/main.svelte';
 			<textarea bind:value={ $DocumentSelectedStore.LCHDocumentCallbackBody } on:input={ mod.commandDocumentSave } id="LCHComposeDetailCallbackBodyInputDebug"></textarea>
 		{/if}
 
-		<textarea bind:this={ CallbackBodyEditorElement }></textarea>
+		<LCHEditor EditorOptions={ {
+			mode: 'javascript',
+
+			lineNumbers: true,
+			lineWrapping: true,
+
+			placeholder: OLSKLocalized('LCHComposeFormScriptFieldPlaceholderText'),
+			
+		  keyMap: 'sublime',
+
+			extraKeys: {
+				Tab: false,
+			},
+		} } on:EditorDispatchValueChanged={ (event) => mod._EditorDispatchValueChanged({
+		LCHDocumentCallbackBody: event.detail,
+	}) } EditorInitialValue={ $DocumentSelectedStore.LCHDocumentCallbackBody } />
 
 		<span>&#125;</span>
 
