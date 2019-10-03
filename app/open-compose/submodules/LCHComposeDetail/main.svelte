@@ -14,60 +14,6 @@ import { LCHComposeSort } from '../../ui-logic.js';
 import { LCHFlags } from '../../../_shared/LCHFlags/main.js'
 import { LCHFormulaFrom, LCHFormulaToEvaluate } from '../../../_shared/LCHFormula/main.js'
 
-import { afterUpdate } from 'svelte';
-
-let StyleEditorElement;
-let StyleEditorInstance = null;
-let StyleEditorPostInitializeQueue = [];
-let StyleEditorConfigure = function (inputData) {
-	// console.log(StyleEditorInstance ? 'run' : 'queue', inputData);
-	return StyleEditorInstance ? inputData() : StyleEditorPostInitializeQueue.push(inputData);
-};
-afterUpdate(function SetupStyleEditor () {
-	if (!StyleEditorElement) {
-		return;
-	}
-
-	if (StyleEditorInstance) {
-		return;
-	}
-
-	StyleEditorInstance = CodeMirror.fromTextArea(StyleEditorElement, {
-		mode: 'css',
-
-		lineNumbers: true,
-		lineWrapping: true,
-
-		placeholder: OLSKLocalized('LCHComposeFormStyleFieldPlaceholderText'),
-		
-	  keyMap: 'sublime',
-
-		extraKeys: {
-			Tab: false,
-		},
-	});
-
-	StyleEditorInstance.on('change', function (instance, changeObject) {
-		if (changeObject.origin === 'setValue') {
-			return;
-		}
-
-		Object.assign($DocumentSelectedStore, {
-			LCHDocumentStyle: instance.getValue(),
-		}); // @DependancySvelteIgnoresMutableChanges
-
-		mod.commandDocumentSave();
-	});
-
-	// console.log(StyleEditorPostInitializeQueue);
-	
-	StyleEditorPostInitializeQueue.splice(0, StyleEditorPostInitializeQueue.length).forEach(function(e) {
-		// console.log('run', e);
-
-		return e(StyleEditorInstance);
-	});
-});
-
 let _DocumentSelected;
 DocumentSelectedStore.subscribe(function (val) {
 	if (val && (val !== _DocumentSelected)) {
@@ -77,24 +23,6 @@ DocumentSelectedStore.subscribe(function (val) {
 
 		_DocumentSelected = val;
 	}
-
-	if (!val && StyleEditorInstance) {
-		StyleEditorInstance.toTextArea();
-		StyleEditorInstance = null;
-	}
-
-	if (!val) {
-		return;
-	}
-
-	StyleEditorConfigure(function () {
-		if (OLSK_TESTING_BEHAVIOUR()) {
-			return document.querySelector('#LCHComposeDetailStyleInputDebug').value = val.LCHDocumentStyle;
-		}
-
-		StyleEditorInstance.setValue(val.LCHDocumentStyle);
-		StyleEditorInstance.getDoc().clearHistory();
-	});
 });
 
 import OLSKThrottle from 'OLSKThrottle';
