@@ -6,8 +6,13 @@ import LCHEditor from '../LCHEditor/main.svelte';
 
 import * as LCHDocumentAction from '../../../_shared/LCHDocument/action.js';
 
-import { OLSKLocalized, _LCHIsTestingBehaviour } from '../../../_shared/common/global.js';
+import OLSKInternational from 'OLSKInternational';
+export const OLSKLocalized = function(translationConstant) {
+	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
+};
+
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
+
 import { storageClient, DocumentsAllStore, DocumentSelectedStore } from '../../persistence.js';
 import { modelDidChange } from '../../model.js'
 import { LCHComposeSort } from '../../ui-logic.js';
@@ -145,7 +150,7 @@ DocumentSelectedStore.subscribe(function (val) {
 	}
 
 	CallbackBodyEditorConfigure(function () {
-		if (_LCHIsTestingBehaviour()) {
+		if (OLSK_TESTING_BEHAVIOUR()) {
 			return document.querySelector('#LCHComposeDetailCallbackBodyInputDebug').value = val.LCHDocumentCallbackBody;
 		}
 
@@ -154,7 +159,7 @@ DocumentSelectedStore.subscribe(function (val) {
 	});
 
 	StyleEditorConfigure(function () {
-		if (_LCHIsTestingBehaviour()) {
+		if (OLSK_TESTING_BEHAVIOUR()) {
 			return document.querySelector('#LCHComposeDetailStyleInputDebug').value = val.LCHDocumentStyle;
 		}
 
@@ -316,7 +321,7 @@ const mod = {
 	</p>
 
 	<p class="LCHComposeDetailCallbackBody">
-		{#if _LCHIsTestingBehaviour()}
+		{#if OLSK_TESTING_BEHAVIOUR()}
 			<textarea bind:value={ $DocumentSelectedStore.LCHDocumentCallbackBody } on:input={ mod.commandDocumentSave } id="LCHComposeDetailCallbackBodyInputDebug"></textarea>
 		{/if}
 
@@ -331,7 +336,7 @@ const mod = {
 
 	{#if $DocumentSelectedStore.LCHDocumentOutputType === 'Bool'}
 		<p class="LCHComposeFormCanonicalExampleBody">
-			{#if _LCHIsTestingBehaviour()}
+			{#if OLSK_TESTING_BEHAVIOUR()}
 				<textarea bind:value={ $DocumentSelectedStore.LCHDocumentCanonicalExampleCallbackBody } on:input={ mod.commandDocumentSave } id="LCHComposeFormCanonicalExampleBodyDebugField"></textarea>
 			{/if}
 
@@ -357,7 +362,7 @@ const mod = {
 	<hr>
 
 	<div class="LCHComposeDetailStyle">
-		{#if _LCHIsTestingBehaviour()}
+		{#if OLSK_TESTING_BEHAVIOUR()}
 			<textarea bind:value={ $DocumentSelectedStore.LCHDocumentStyle } on:input={ mod.commandDocumentSave } id="LCHComposeDetailStyleInputDebug"></textarea>
 		{/if}
 		<textarea bind:this={ StyleEditorElement }></textarea>

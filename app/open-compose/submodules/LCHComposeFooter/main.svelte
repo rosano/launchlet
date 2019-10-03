@@ -6,7 +6,11 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import OLSKReloadButton from '../../../_shared/__external/OLSKReloadButton/main.svelte';
 import RCSLanguageSwitcher from '../../../_shared/RCSLanguageSwitcher/main.svelte';
 
-import { OLSKLocalized } from '../../../_shared/common/global.js';
+import OLSKInternational from 'OLSKInternational';
+export const OLSKLocalized = function(translationConstant) {
+	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
+};
+
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 

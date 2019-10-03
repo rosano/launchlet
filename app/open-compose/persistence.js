@@ -1,4 +1,4 @@
-import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
+import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
 
 import * as LCHStorageClient from '../_shared/LCHStorageClient/main.js';
 import { LCHStorageModule } from '../_shared/LCHStorageModule/main.js';
@@ -75,7 +75,7 @@ export const storageClient = LCHStorageClient.LCHStorageClient({
 				}
 			})),
 	],
-	OLSKPatchRemoteStorageAuthRedirectURI: _LCHIsTestingBehaviour() ? undefined : window.location.origin + window.OLSKCanonicalFor('LCHComposeRoute'),
+	OLSKPatchRemoteStorageAuthRedirectURI: OLSK_TESTING_BEHAVIOUR() ? undefined : window.location.origin + window.OLSKCanonicalFor('LCHComposeRoute'),
 });
 
 let remoteStorage = storageClient.remoteStorage;
@@ -85,7 +85,7 @@ remoteStorage.setApiKeys(window.OLSKPublicConstants('LCHDropboxAppKey') ? {
 } : {});
 
 remoteStorage.on('ready', async () => {
-	if (!_LCHIsTestingBehaviour()) {
+	if (!OLSK_TESTING_BEHAVIOUR()) {
 		console.debug('ready', arguments);
 	}
 
@@ -99,25 +99,25 @@ remoteStorage.on('ready', async () => {
 
 (function SetupStorageClientLogging() {
 	remoteStorage.on('not-connected', () => {
-		if (!_LCHIsTestingBehaviour()) {
+		if (!OLSK_TESTING_BEHAVIOUR()) {
 			console.debug('not-connected', arguments);
 		}
 	});
 
 	remoteStorage.on('disconnected', () => {
-		if (!_LCHIsTestingBehaviour()) {
+		if (!OLSK_TESTING_BEHAVIOUR()) {
 			console.debug('disconnected', arguments);
 		}
 	});
 
 	remoteStorage.on('connected', () => {
-		if (!_LCHIsTestingBehaviour()) {
+		if (!OLSK_TESTING_BEHAVIOUR()) {
 			console.debug('connected', arguments);
 		}
 	});
 
 	remoteStorage.on('error', (error) => {
-		if (!_LCHIsTestingBehaviour()) {
+		if (!OLSK_TESTING_BEHAVIOUR()) {
 			console.debug('error', error);
 		}
 
@@ -125,19 +125,19 @@ remoteStorage.on('ready', async () => {
 	});
 
 	remoteStorage.on('network-offline', () => {
-		if (!_LCHIsTestingBehaviour()) {
+		if (!OLSK_TESTING_BEHAVIOUR()) {
 			console.debug('network-offline', arguments);
 		}
 	});
 
 	remoteStorage.on('network-online', () => {
-		if (!_LCHIsTestingBehaviour()) {
+		if (!OLSK_TESTING_BEHAVIOUR()) {
 			console.debug('network-online', arguments);
 		}
 	});
 
 	remoteStorage.on('sync-done', () => {
-		if (!_LCHIsTestingBehaviour()) {
+		if (!OLSK_TESTING_BEHAVIOUR()) {
 			console.debug('sync-done', arguments);
 		}
 	});

@@ -5,7 +5,13 @@ export let BuildAppLanguageCode;
 export let LCHComposeBuildPackageStyle;
 export let LCHComposeBuildPackageScript;
 
-import { OLSKLocalized, _LCHIsTestingBehaviour, _LCH_DISABLE_ENCRYPTION } from '../../../_shared/common/global.js';
+import OLSKInternational from 'OLSKInternational';
+export const OLSKLocalized = function(translationConstant) {
+	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
+};
+
+import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
+
 import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../../../dev-launcher/ui-logic.js';
 import { LCHFlags } from '../../../_shared/LCHFlags/main.js'
 import { LCHFormulaFrom, LCHFormulaToEvaluate } from '../../../_shared/LCHFormula/main.js'
@@ -23,6 +29,10 @@ import { storageClient } from '../../persistence.js';
 import * as LCHSettingsAction from '../../../_shared/LCHSetting/action.js';
 
 let JavascriptComposition, JavascriptCompositionBinary = '', RecipesArrayString;
+
+export const _LCH_DISABLE_ENCRYPTION = function () {
+	return false;
+};
 
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
@@ -87,7 +97,7 @@ const mod = {
 	},
 
 	InterfaceRunButtonDidClick(event) {
-		if (!_LCHIsTestingBehaviour()) {
+		if (!OLSK_TESTING_BEHAVIOUR()) {
 			return;
 		};
 
@@ -120,7 +130,7 @@ const mod = {
 			LBXPayloadConfirmation: Math.random().toString(),
 		};
 
-		mod._LCHComposeBuildPairExtension.DispatchSendPayload(_LCHIsTestingBehaviour() ? JSON.stringify(payload) : await mod._CommandEncrypt(JSON.stringify(payload), mod.ValuePublicKey()), payload.LBXPayloadConfirmation)
+		mod._LCHComposeBuildPairExtension.DispatchSendPayload(OLSK_TESTING_BEHAVIOUR() ? JSON.stringify(payload) : await mod._CommandEncrypt(JSON.stringify(payload), mod.ValuePublicKey()), payload.LBXPayloadConfirmation)
 	},
 	async _CommandEncrypt (param1, param2) {
 		if (_LCH_DISABLE_ENCRYPTION()) {

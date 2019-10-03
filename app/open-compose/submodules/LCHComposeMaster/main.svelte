@@ -8,7 +8,17 @@ import * as LCHDocumentAction from '../../../_shared/LCHDocument/action.js';
 import * as LCHDocumentMetal from '../../../_shared/LCHDocument/metal.js';
 import { LCHDocumentModelPostJSONParse } from '../../../_shared/LCHDocument/model.js';
 import { LCHComposeFilterFunction, LCHComposeSort } from '../../ui-logic.js';
-import { OLSKLocalized, OLSKFormatted } from '../../../_shared/common/global.js';
+
+import OLSKInternational from 'OLSKInternational';
+export const OLSKLocalized = function(translationConstant) {
+	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
+};
+
+import OLSKString from 'OLSKString';
+export const OLSKFormatted = function () {
+	return OLSKString.OLSKStringWithFormat.apply(null, arguments)
+};
+
 import { storageClient, DocumentsAllStore, DocumentSelectedStore } from '../../persistence.js';
 
 import { writable } from 'svelte/store';

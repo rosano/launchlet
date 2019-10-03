@@ -6,7 +6,13 @@ export const DispatchSendPayload = function(param1, param2) {
 	mod.ValuePayloadHash(param2)
 };
 
-import { OLSKLocalized, _LCHIsTestingBehaviour } from '../../../_shared/common/global.js';
+import OLSKInternational from 'OLSKInternational';
+export const OLSKLocalized = function(translationConstant) {
+	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
+};
+
+import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
+
 import { LBXResponseIsValid } from './logic.js';
 import { LCHComposeBuildPairExtensionPublicKeyIsValid } from './ui-logic.js';
 
@@ -17,7 +23,7 @@ const mod = {
 
 	MessageReceived(event) {
 		// We only accept messages from ourselves
-	  if (event.source !== window && !_LCHIsTestingBehaviour()) {
+	  if (event.source !== window && !OLSK_TESTING_BEHAVIOUR()) {
 	    return;
 	  }
 
@@ -89,7 +95,7 @@ const mod = {
 			return;
 		};
 
-		mod.ValueStatus(inputData.LBXResponseHash === (_LCHIsTestingBehaviour() ? 'LBX_TESTING_RESPONSE_HASH' : mod.ValuePayloadHash()) ? 'kStatusSuccess' : 'kStatusFailed')
+		mod.ValueStatus(inputData.LBXResponseHash === (OLSK_TESTING_BEHAVIOUR() ? 'LBX_TESTING_RESPONSE_HASH' : mod.ValuePayloadHash()) ? 'kStatusSuccess' : 'kStatusFailed')
 
 		if (mod.ValueStatus() === 'kStatusFailed') {
 			mod.ValueStatusFailedError(inputData.LBXResponseError)
