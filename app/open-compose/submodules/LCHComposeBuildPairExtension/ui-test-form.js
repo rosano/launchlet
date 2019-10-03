@@ -49,6 +49,24 @@ describe('LCHComposeBuildPairExtensionForm', function () {
 	
 	});
 
+	context('form submit', function() {
+
+		before(function() {
+			return browser.visit(kDefaultRoute.OLSKRoutePath);
+		});
+
+		before(function () {
+			browser.fill(LCHBuildPairExtensionPublicKeyField, 'bravo')
+			browser.fire(LCHBuildPairExtensionPublicKeyField, 'submit')
+		});
+		
+		it('sends BuildPairExtensionDispatchPublicKeyUpdate', function() {
+			browser.assert.text('#LCHComposeBuildPairExtensionDispatchPublicKeyUpdate', '1');
+			browser.assert.text('#LCHComposeBuildPairExtensionDispatchPublicKeyUpdateText', 'bravo');
+		});
+
+	});
+
 	context('PreloadPublicKey', function testPreloadPublicKey () {
 		
 		before(function() {

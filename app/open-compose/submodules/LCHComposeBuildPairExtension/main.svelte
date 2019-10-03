@@ -72,9 +72,12 @@ const mod = {
 
 	// INTERFACE
 
-	InterfaceSubmitButtonDidClick () {
+	InterfaceFormDidSubmit (event) {
+		event.preventDefault()
+		
 		mod.CommandValidatePublicKey(BuildPairExtensionPublicKey.trim())
 	},
+
 	InterfaceDeleteKeyButtonDidClick () {
 		dispatch('BuildPairExtensionDispatchPublicKeyUpdate', '');
 	},
@@ -114,8 +117,11 @@ window.addEventListener('message', mod.MessageReceived, false);
 
 <div class="LCHComposeBuildPairExtension">
 {#if mod.ValueFormIsVisible()}
-	<input class="LCHBuildPairExtensionPublicKeyField" placeholder="{ OLSKLocalized('LCHBuildPairExtensionPublicKeyFieldLabel') }" bind:value={ BuildPairExtensionPublicKey } autofocus />
-	<button class="LCHBuildPairExtensionSubmitButton" on:click={ mod.InterfaceSubmitButtonDidClick }>{ OLSKLocalized('LCHBuildPairExtensionSubmitButtonLabel') }</button>
+	<form on:submit={ mod.InterfaceFormDidSubmit }>
+		<input class="LCHBuildPairExtensionPublicKeyField" placeholder="{ OLSKLocalized('LCHBuildPairExtensionPublicKeyFieldLabel') }" bind:value={ BuildPairExtensionPublicKey } autofocus />
+		
+		<button class="LCHBuildPairExtensionSubmitButton">{ OLSKLocalized('LCHBuildPairExtensionSubmitButtonLabel') }</button>
+	</form>
 {/if}
 
 {#if !mod.ValueFormIsVisible()}
