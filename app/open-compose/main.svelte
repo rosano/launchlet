@@ -1,12 +1,11 @@
 <script>
-import OLSKViewportContent from 'OLSKViewportContent';
-import LCHComposeFooter from './submodules/LCHComposeFooter/main.svelte';
-import LCHComposeMaster from './submodules/LCHComposeMaster/main.svelte';
-import LCHComposeDetail from './submodules/LCHComposeDetail/main.svelte';
-import LCHComposeBuild from './submodules/LCHComposeBuild/main.svelte';
-import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svelte';
+import OLSKInternational from 'OLSKInternational';
+export const OLSKLocalized = function(translationConstant) {
+	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
+};
 
-import { OLSKLocalized, _LCHIsTestingBehaviour } from '../_shared/common/global.js';
+import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
+
 import { storageClient, isLoading, DocumentsAllStore } from './persistence.js';
 import * as LCHSettingsAction from '../_shared/LCHSetting/action.js';
 
@@ -69,6 +68,12 @@ const mod = {
 
 mod.LifecycleComponentWillMount();
 
+import OLSKViewportContent from 'OLSKViewportContent';
+import LCHComposeFooter from './submodules/LCHComposeFooter/main.svelte';
+import LCHComposeMaster from './submodules/LCHComposeMaster/main.svelte';
+import LCHComposeDetail from './submodules/LCHComposeDetail/main.svelte';
+import LCHComposeBuild from './submodules/LCHComposeBuild/main.svelte';
+import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svelte';
 </script>
 
 <div class="Container OLSKViewport" class:OLSKIsLoading={ $isLoading }>
@@ -98,7 +103,7 @@ mod.LifecycleComponentWillMount();
 	<button class="OLSKLayoutButtonNoStyle" onclick="location.reload();">{ OLSKLocalized('LCHUpdateReloadText') }</button>
 </div>
 
-{#if !_LCHIsTestingBehaviour()}
+{#if !OLSK_TESTING_BEHAVIOUR()}
 	<OLSKServiceWorker OLSKLocalized={ OLSKLocalized } registrationRoute={ window.OLSKCanonicalFor('LCHServiceWorkerRoute') } />
 {/if}
 
