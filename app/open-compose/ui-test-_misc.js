@@ -41,14 +41,14 @@ describe('LCHCompose_Misc', function () {
 
 		it('presents no items if no match', async function() {
 			browser.fill(LCHComposeFilterInput, 'test');
-			await browser.wait({ element: OLSKInputWrapperClearButton });
+			await browser.wait({ element: '.OLSKInputWrapperClearButton' });
 
 			browser.assert.elements(LCHComposeListItem, 0);
 		});
 
 		it('presents items if match', async function() {
 			browser.fill(LCHComposeFilterInput, 'alfa');
-			await browser.wait({ element: OLSKInputWrapperClearButton });
+			await browser.wait({ element: '.OLSKInputWrapperClearButton' });
 
 			browser.assert.elements(LCHComposeListItem, 1);
 		});
@@ -56,7 +56,7 @@ describe('LCHCompose_Misc', function () {
 		context('on click OLSKInputWrapperClearButton', function() {
 
 			before(async function() {
-				browser.pressButton(OLSKInputWrapperClearButton);
+				browser.pressButton('.OLSKInputWrapperClearButton');
 				await browser.wait({ element: `${LCHComposeListItem}:nth-child(2)` });
 			});
 
@@ -74,7 +74,7 @@ describe('LCHCompose_Misc', function () {
 
 			before(async function() {
 				browser.fill(LCHComposeFilterInput, 'test');
-				await browser.wait({ element: OLSKInputWrapperClearButton });
+				await browser.wait({ element: '.OLSKInputWrapperClearButton' });
 
 				browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 			});

@@ -4,7 +4,6 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
 	LCHComposeFilterInput: '.LCHComposeFilterInput',
-	OLSKInputWrapperClearButton: '.OLSKInputWrapperClearButton',
 
 	LCHComposeCreateButton: '#LCHComposeCreateButton',
 
