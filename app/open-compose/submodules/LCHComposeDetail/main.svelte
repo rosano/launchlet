@@ -186,7 +186,7 @@ const mod = {
 			return val;
 		});
 
-		if ($DocumentSelectedStore.LCHDocumentCallbackBody === 'LCH_TEST_FLAG_ON_BUILD') {
+		if (OLSK_TESTING_BEHAVIOUR() && $DocumentSelectedStore.LCHDocumentCallbackBody === 'LCH_TEST_FLAG_ON_BUILD') {
 			Object.assign($DocumentSelectedStore, {
 				LCHDocumentCallbackBody: 'eval',
 			});
