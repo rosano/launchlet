@@ -125,6 +125,7 @@ const mod = {
 	async CommandSendPayload() {
 		const payload = {
 			LBXPayloadPackageScript: mod.DataPackageScript(),
+			LBXPayloadPackageStyle: LCHComposeBuildPackageStyle,
 			LBXPayloadPackageOptions: mod.DataPackageOptions(),
 			LBXPayloadRecipes: RecipesArrayString,
 			LBXPayloadConfirmation: Math.random().toString(),
