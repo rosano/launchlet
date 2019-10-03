@@ -1423,15 +1423,15 @@ describe('LCHAPIRunTasks', function testLCHAPIRunTasks() {
 	});
 
 	it('runs callback', async function() {
-		deepEqual(await mainModule.LCHAPIRunTasks([uStubItem()], 'bravo'), ['alfa']);
+		deepEqual(await mainModule.LCHAPIRunTasks([uStubItem()], '*'), ['alfa']);
 	});
 
-	it('binds api', async function() {
+	it('binds standard api', async function() {
 		deepEqual((await mainModule.LCHAPIRunTasks([Object.assign(uStubItem(), {
 			LCHRecipeCallback () {
 				return this.api.LCHDateLocalOffsetSubtracted(new Date());
 			},
-		})], 'alfa')).pop() instanceof Date, true);
+		})], '*')).pop() instanceof Date, true);
 	});
 
 });
