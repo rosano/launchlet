@@ -209,7 +209,8 @@ const mod = {
 						});
 
 						if (inputData === $DocumentSelectedStore) {
-							$DocumentSelectedStore.LCHDocumentIsFlagged = inputData.LCHDocumentIsFlagged;
+							// causes reload of codemirror
+							// $DocumentSelectedStore.LCHDocumentIsFlagged = inputData.LCHDocumentIsFlagged;
 						};
 					}
 
