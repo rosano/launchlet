@@ -42,6 +42,10 @@ module.exports = {
 		};
 
 		inputData.plugins.splice(inputData.plugins.indexOf(inputData.plugins.filter(function (e) {
+			if (typeof e !== 'object') {
+				return false;
+			};
+
 			return e.name === 'svelte';
 		}).pop()), 1, require('rollup-plugin-svelte')(Object.assign(require('OLSKRollup').OLSKRollupSvelteConfig(options), {
 			preprocess: [

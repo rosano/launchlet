@@ -11,6 +11,10 @@ module.exports = {
 		inputData.output.file = pathPackage.join(__dirname, '__compiled/launchlet.js');
 
 		inputData.plugins.splice(inputData.plugins.indexOf(inputData.plugins.filter(function (e) {
+			if (typeof e !== 'object') {
+				return false;
+			};
+
 			return e.name === 'livereload';
 		}).pop()), 1);
 
@@ -19,6 +23,10 @@ module.exports = {
 		};
 
 		inputData.plugins.splice(inputData.plugins.indexOf(inputData.plugins.filter(function (e) {
+			if (typeof e !== 'object') {
+				return false;
+			};
+
 			return e.name === 'svelte';
 		}).pop()), 1, require('rollup-plugin-svelte')(Object.assign(require('OLSKRollup').OLSKRollupSvelteConfig(options), {
 			css (css) {
