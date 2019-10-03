@@ -16,13 +16,19 @@ import { LCHFormulaFrom, LCHFormulaToEvaluate } from '../../../_shared/LCHFormul
 
 let _DocumentSelected;
 DocumentSelectedStore.subscribe(function (val) {
-	if (val && (val !== _DocumentSelected)) {
-		setTimeout(function () {
-			document.querySelector('#LCHComposeFormNameField').focus();
-		});
-
-		_DocumentSelected = val;
+	if (!val) {
+		return;
 	}
+
+	if (val === _DocumentSelected) {
+		return;
+	};
+
+	setTimeout(function () {
+		document.querySelector('#LCHComposeFormNameField').focus();
+	});
+
+	_DocumentSelected = val;
 });
 
 import OLSKThrottle from 'OLSKThrottle';
