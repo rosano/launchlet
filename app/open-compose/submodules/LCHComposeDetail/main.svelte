@@ -16,58 +16,6 @@ import { LCHFormulaFrom, LCHFormulaToEvaluate } from '../../../_shared/LCHFormul
 
 import { afterUpdate } from 'svelte';
 
-let CallbackBodyEditorElement;
-let CallbackBodyEditorInstance = null;
-let CallbackBodyEditorPostInitializeQueue = [];
-let CallbackBodyEditorConfigure = function (inputData) {
-	// console.log(CallbackBodyEditorInstance ? 'run' : 'queue', inputData);
-	return CallbackBodyEditorInstance ? inputData() : CallbackBodyEditorPostInitializeQueue.push(inputData);
-};
-afterUpdate(function SetupCallbackBodyEditor () {
-	if (!CallbackBodyEditorElement) {
-		return;
-	}
-
-	if (CallbackBodyEditorInstance) {
-		return;
-	}
-
-	CallbackBodyEditorInstance = CodeMirror.fromTextArea(CallbackBodyEditorElement, {
-		mode: 'javascript',
-
-		lineNumbers: true,
-		lineWrapping: true,
-
-		placeholder: OLSKLocalized('LCHComposeFormScriptFieldPlaceholderText'),
-		
-	  keyMap: 'sublime',
-
-		extraKeys: {
-			Tab: false,
-		},
-	});
-
-	CallbackBodyEditorInstance.on('change', function (instance, changeObject) {
-		if (changeObject.origin === 'setValue') {
-			return;
-		}
-
-		Object.assign($DocumentSelectedStore, {
-			LCHDocumentCallbackBody: instance.getValue(),
-		}); // @DependancySvelteIgnoresMutableChanges
-
-		mod.commandDocumentSave();
-	});
-
-	// console.log(CallbackBodyEditorPostInitializeQueue);
-	
-	CallbackBodyEditorPostInitializeQueue.splice(0, CallbackBodyEditorPostInitializeQueue.length).forEach(function(e) {
-		// console.log('run', e);
-
-		return e(CallbackBodyEditorInstance);
-	});
-});
-
 let StyleEditorElement;
 let StyleEditorInstance = null;
 let StyleEditorPostInitializeQueue = [];
@@ -130,11 +78,6 @@ DocumentSelectedStore.subscribe(function (val) {
 		_DocumentSelected = val;
 	}
 
-	if (!val && CallbackBodyEditorInstance) {
-		CallbackBodyEditorInstance.toTextArea();
-		CallbackBodyEditorInstance = null;
-	}
-
 	if (!val && StyleEditorInstance) {
 		StyleEditorInstance.toTextArea();
 		StyleEditorInstance = null;
@@ -143,15 +86,6 @@ DocumentSelectedStore.subscribe(function (val) {
 	if (!val) {
 		return;
 	}
-
-	CallbackBodyEditorConfigure(function () {
-		if (OLSK_TESTING_BEHAVIOUR()) {
-			return document.querySelector('#LCHComposeDetailCallbackBodyInputDebug').value = val.LCHDocumentCallbackBody;
-		}
-
-		CallbackBodyEditorInstance.setValue(val.LCHDocumentCallbackBody);
-		CallbackBodyEditorInstance.getDoc().clearHistory();
-	});
 
 	StyleEditorConfigure(function () {
 		if (OLSK_TESTING_BEHAVIOUR()) {
