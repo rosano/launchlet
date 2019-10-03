@@ -89,11 +89,16 @@ remoteStorage.on('ready', async () => {
 		console.debug('ready', arguments);
 	}
 
-	isLoading.set(false);
 
 	await remoteStorage.launchlet.lch_documents.init();
 	DocumentsAllStore.set((await LCHDocumentActionList(storageClient)).sort(LCHComposeSort));
 
+
+	isLoading.set(false);
+
+	setTimeout(function () {
+		modelDidChange.set(Date.now())
+	}, 10)
 	// setupFinalize(); remove loading class
 });
 

@@ -8,6 +8,14 @@ describe('LCHCompose_Misc', function () {
 		return browser.visit(kDefaultRoute.OLSKRoutePath);
 	});
 
+	context('LCHComposeBuildAnchor', function () {
+		
+		it('sets href', function () {
+			deepEqual(browser.query(LCHComposeBuildAnchor).href.slice(0, 11), 'javascript:')
+		});
+	
+	});
+
 	context('on startup', function() {
 
 		it('focuses LCHComposeFilterInput', function() {
