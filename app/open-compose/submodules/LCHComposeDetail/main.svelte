@@ -1,9 +1,4 @@
 <script>
-import OLSKToolbar from 'OLSKToolbar';
-import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
-
-import LCHEditor from '../LCHEditor/main.svelte';
-
 import * as LCHDocumentAction from '../../../_shared/LCHDocument/action.js';
 
 import OLSKInternational from 'OLSKInternational';
@@ -277,6 +272,10 @@ const mod = {
 	},
 
 };
+import OLSKToolbar from 'OLSKToolbar';
+import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
+
+import LCHEditor from '../LCHEditor/main.svelte';
 </script>
 
 <div class="Container OLSKViewportDetail">
@@ -392,94 +391,4 @@ const mod = {
 
 </div>
 
-<style>
-.Container {
-	/* ContainerFlexboxParent */
-	display: flex;
-	flex-direction: column;
-}
-
-header {
-	border-bottom: var(--LCHBorderStyle);
-}
-
-.FormContainer {
-	padding: 5px;
-
-	overflow-y: scroll;
-}
-
-.LCHComposeFormFlagAlert {
-	display: inline-block;
-	padding: 5px;
-	border: 1px solid #808003;
-
-	background: #ffff66;
-}
-
-p:nth-child(1) {
-	margin-top: 0;
-}
-
-.FormContainer hr {
-	width: 100%;
-	height: 1px;
-	border: none;
-
-	background: #e6e6e6;
-}
-
-input[type=text] {
-	width: 50%;
-	border: var(--LCHBorderStyle);
-	border-radius: 5px;
-	padding: 5px;
-}
-
-#LCHComposeFormArgsField {
-	max-width: 60px;
-}
-
-#LCHComposeFormInputTypesField {
-	max-width: 120px;
-}
-
-#LCHComposeFormOutputTypeField {
-	max-width: 140px;
-}
-
-.FormContainer :global(.CodeMirror) {
-	margin: 10px 0;
-
-	/* CodeMirrorAdjustHeightToContent */
-	height: auto;
-}
-
-.FormContainer :global(.CodeMirror-scroll) {
-	/* CodeMirrorAdjustHeightToContent */
-	max-height: 350px;
-}
-
-.FormContainer .LCHComposeDetailCallbackBody :global(.CodeMirror-scroll) {
-	/* CodeMirrorAdjustHeightToContent */
-	min-height: 100px;
-}
-
-.FormContainer :global(.CodeMirror-empty) {
-	/* CodeMirrorPlaceholderText */
-	color: #999999;
-}
-
-.PlaceholderContainer {
-	opacity: 0.5;
-	text-align: center;
-
-	/* ContainerFlexboxChild */
-	flex-grow: 1;
-
-	/* PlaceholderContainerFlexboxParent */
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-</style>
+<style src="./ui-style.css"></style>
