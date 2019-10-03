@@ -8,6 +8,7 @@ LCHComposeListItemDeletePromptText: ¿Estas segur@?
 LCHComposeListItemNameFlaggedFormat: 'Señalado: %@'
 LCHComposeFormNameFieldPlaceholderText: Nombre (e.g. Decir hola)
 LCHComposeFormInputTypesFieldPlaceholderText: Tipos de entrada (e.g. String, Bool)
+LCHComposeFormArgsFieldPlaceholderText: argumentos
 LCHComposeFormScriptFieldPlaceholderText: Cuerpo de función (e.g. window.alert('Hola');)
 LCHComposeFormOutputTypeFieldPlaceholderText: Tipo de salida (e.g. String)
 LCHComposeFormStyleFieldPlaceholderText: 'CSS (e.g. body { background: red; })'

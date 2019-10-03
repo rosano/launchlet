@@ -183,7 +183,7 @@ import LCHEditor from '../LCHEditor/main.svelte';
 		
 		<span>(</span>
 		
-		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentCallbackArgs } placeholder="undefined" on:input={ mod.commandDocumentSave } id="LCHComposeFormArgsField" />
+		<input id="LCHComposeFormArgsField" bind:value={ $DocumentSelectedStore.LCHDocumentCallbackArgs } placeholder={ OLSKLocalized('LCHComposeFormArgsFieldPlaceholderText') } on:input={ mod.commandDocumentSave }/>
 		
 		<span>) &#123;</span>
 	</p>

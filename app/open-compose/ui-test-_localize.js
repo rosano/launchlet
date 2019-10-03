@@ -47,7 +47,7 @@ describe(`LCHCompose_Localize-${ languageCode }`, function () {
 
 		browser.assert.attribute(LCHComposeFormNameField, 'placeholder', uLocalized('LCHComposeFormNameFieldPlaceholderText'));
 		browser.assert.input(LCHComposeFormNameField, '');
-		browser.assert.attribute(LCHComposeFormArgsField, 'placeholder', 'undefined');
+		browser.assert.attribute(LCHComposeFormArgsField, 'placeholder', uLocalized('LCHComposeFormArgsFieldPlaceholderText'));
 		browser.assert.input(LCHComposeFormArgsField, '');
 		browser.assert.text(`${ LCHComposeDetailCallbackBodyInput } .CodeMirror-placeholder`, uLocalized('LCHComposeFormScriptFieldPlaceholderText'));
 		// editor value
