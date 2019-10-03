@@ -1434,4 +1434,17 @@ describe('LCHAPIRunTasks', function testLCHAPIRunTasks() {
 		})], '*')).pop() instanceof Date, true);
 	});
 
+	it('binds recipes api', async function() {
+		deepEqual(await mainModule.LCHAPIRunTasks([Object.assign(uStubItem(), {
+			LCHRecipeCallback () {
+				return this.api.bravo();
+			},
+		}), {
+			LCHRecipeSignature: 'bravo',
+			LCHRecipeCallback () {
+				return 'charlie';
+			},
+		}], '*'), ['charlie']);
+	});
+
 });

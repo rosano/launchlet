@@ -584,10 +584,10 @@ export const LCHRuntimeFilteredTasks = function (inputData) {
 import { LCHLauncherStandardRecipes } from './recipes/_aggregate.js';
 
 export const LCHAPIRunTasks = function () {
-	const inputData = LCHRuntimeFilteredTasks(LCHRuntimeFilteredRecipes.apply(null, Array.from(arguments)));
+	const inputData = LCHRuntimeFilteredRecipes.apply(null, Array.from(arguments));
 	const api = LCHRuntime.LCHRuntimeAPI(LCHLauncherStandardRecipes().concat(inputData));
 
-	return Promise.all(inputData.map(function (e) {
+	return Promise.all(LCHRuntimeFilteredTasks(inputData).map(function (e) {
 		return LCHAPIExecuteRecipe(e, [], api);
 	}))
 };
