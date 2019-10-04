@@ -56,6 +56,10 @@ const mod = {
 		return [LCHComposeBuildPackageScript].map(LCHBuildStripLivereload).map(LCHBuildStripSourceMap).pop();
 	},
 
+	DataPackageStyle () {
+		return [LCHComposeBuildPackageStyle].map(LCHBuildStripSourceMap).pop();
+	},
+
 	DataPackageOptions () {
 		return {
 			LCHOptionLanguage: BuildAppLanguageCode,
@@ -125,7 +129,7 @@ const mod = {
 	async CommandSendPayload() {
 		const payload = {
 			LBXPayloadPackageScript: mod.DataPackageScript(),
-			LBXPayloadPackageStyle: LCHComposeBuildPackageStyle,
+			LBXPayloadPackageStyle: mod.DataPackageStyle(),
 			LBXPayloadPackageOptions: mod.DataPackageOptions(),
 			LBXPayloadRecipes: RecipesArrayString,
 			LBXPayloadConfirmation: Math.random().toString(),
@@ -218,7 +222,7 @@ const mod = {
 		RecipesArrayString = LCHBuildRecipeArrayString(validDocuments);
 
 		JavascriptComposition = OLSKString.OLSKStringReplaceTokens(LCHBuildBoomarkletTemplate(), {
-			LCHBuildBoomarkletTemplate_Style: LCHComposeBuildPackageStyle,
+			LCHBuildBoomarkletTemplate_Style: mod.DataPackageStyle(),
 			LCHBuildBoomarkletTemplate_Script: mod.DataPackageScript(),
 			LCHBuildBoomarkletTemplate_Options: JSON.stringify(mod.DataPackageOptions()),
 			LCHBuildBoomarkletTemplate_Recipes: RecipesArrayString,

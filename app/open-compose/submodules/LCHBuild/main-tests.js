@@ -225,6 +225,10 @@ describe('LCHBuildStripSourceMap', function testLCHBuildStripSourceMap() {
 		deepEqual(mainModule.LCHBuildStripSourceMap(`alfa//# sourceMappingURL=launchlet.js.mapbravo//# sourceMappingURL=ui-behaviour.js.mapcharlie`), 'alfabravocharlie');
 	});
 
+	it('strips css', function() {
+		deepEqual(mainModule.LCHBuildStripSourceMap(`alfa//# sourceMappingURL=ui-behaviour.css.mapbravo`), 'alfabravo');
+	});
+
 });
 
 describe('LCHBuildEscape', function testLCHBuildEscape() {
