@@ -108,7 +108,7 @@ const mod = {
 		event.preventDefault();
 		
 		setTimeout(function () {
-			eval(JavascriptComposition)
+			(new Function(JavascriptComposition))();
 		})
 	},
 
