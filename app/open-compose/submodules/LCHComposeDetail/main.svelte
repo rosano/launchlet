@@ -29,6 +29,18 @@ DocumentSelectedStore.subscribe(function (val) {
 	});
 
 	_DocumentSelected = val;
+
+	if (mod._ValueEditorCallbackBody) {
+		mod._ValueEditorCallbackBody.LCHEditorSetDocument(val.LCHDocumentCallbackBody);
+	};
+
+	if (mod._ValueEditorCanonicalExampleCallbackBody) {
+		mod._ValueEditorCanonicalExampleCallbackBody.LCHEditorSetDocument(val.LCHDocumentCanonicalExampleCallbackBody);
+	};
+
+	if (mod._ValueEditorStyle) {
+		mod._ValueEditorStyle.LCHEditorSetDocument(val.LCHDocumentStyle);
+	};
 });
 
 import OLSKThrottle from 'OLSKThrottle';
@@ -39,6 +51,14 @@ const mod = {
 
 		mod.commandDocumentSave();
 	},
+
+	// VALUE
+
+	_ValueEditorCallbackBody: undefined,
+
+	_ValueEditorStyle: undefined,
+	
+	_ValueEditorCanonicalExampleCallbackBody: undefined,
 
 // COMMAND
 
@@ -208,7 +228,7 @@ import LCHEditor from '../LCHEditor/main.svelte';
 			},
 		} } on:EditorDispatchValueChanged={ (event) => mod._EditorDispatchValueChanged({
 		LCHDocumentCallbackBody: event.detail,
-	}) } EditorInitialValue={ $DocumentSelectedStore.LCHDocumentCallbackBody } />
+	}) } EditorInitialValue={ $DocumentSelectedStore.LCHDocumentCallbackBody } bind:this={ mod._ValueEditorCallbackBody }/>
 
 		<span>&#125;</span>
 
@@ -238,7 +258,7 @@ import LCHEditor from '../LCHEditor/main.svelte';
 				},
 			} } on:EditorDispatchValueChanged={ (event) => mod._EditorDispatchValueChanged({
 			LCHDocumentCanonicalExampleCallbackBody: event.detail,
-		}) } EditorInitialValue={ $DocumentSelectedStore.LCHDocumentCanonicalExampleCallbackBody } />
+		}) } EditorInitialValue={ $DocumentSelectedStore.LCHDocumentCanonicalExampleCallbackBody } bind:this={ mod._ValueEditorCanonicalExampleCallbackBody } />
 		</p>
 	{/if}
 
@@ -264,7 +284,7 @@ import LCHEditor from '../LCHEditor/main.svelte';
 			},
 		} } on:EditorDispatchValueChanged={ (event) => mod._EditorDispatchValueChanged({
 		LCHDocumentStyle: event.detail,
-	}) } EditorInitialValue={ $DocumentSelectedStore.LCHDocumentStyle } />
+	}) } EditorInitialValue={ $DocumentSelectedStore.LCHDocumentStyle } bind:this={ mod._ValueEditorStyle }/>
 	</div>
 
 	<hr>

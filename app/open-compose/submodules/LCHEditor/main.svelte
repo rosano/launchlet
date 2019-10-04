@@ -1,6 +1,10 @@
 <script>
 export let EditorInitialValue = '';
 export let EditorOptions = {};
+export const LCHEditorSetDocument = function (inputData) {
+	EditorInstance.setValue(inputData);
+	EditorInstance.getDoc().clearHistory();
+}
 
 let EditorPostInitializeQueue = [];
 export let EditorConfigure = function (e) {
