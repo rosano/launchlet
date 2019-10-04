@@ -13,7 +13,7 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 		before(function() {
 			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
-				LRTOptionMode: 'LRTModePipe',
+				LCHOptionMode: 'LCHModePipe',
 			}));
 		});
 
@@ -66,7 +66,7 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 		before(function() {
 			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
-				LRTOptionMode: 'LRTModePipe',
+				LCHOptionMode: 'LCHModePipe',
 			}));
 		});
 
@@ -148,7 +148,7 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 		before(function() {
 			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
-				LRTOptionMode: 'LRTModePipe',
+				LCHOptionMode: 'LCHModePipe',
 			}));
 		});
 
@@ -215,7 +215,7 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 		before(function() {
 			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
-				LRTOptionMode: 'LRTModePipe',
+				LCHOptionMode: 'LCHModePipe',
 			}));
 		});
 
@@ -254,7 +254,7 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 		before(function() {
 			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
-				LRTOptionMode: 'LRTModePipe',
+				LCHOptionMode: 'LCHModePipe',
 			}));
 		});
 
@@ -273,7 +273,7 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 		before(function() {
 			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
-				LRTOptionMode: 'LRTModePipe',
+				LCHOptionMode: 'LCHModePipe',
 			}));
 		});
 
@@ -312,7 +312,7 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 		before(function() {
 			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
-				LRTOptionMode: 'LRTModePipe',
+				LCHOptionMode: 'LCHModePipe',
 			}));
 		});
 

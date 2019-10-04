@@ -39,7 +39,7 @@ describe('LCHPageRecipes', function testLCHPageRecipes () {
 		before(function() {
 			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
-				LRTOptionIncludePageRecipes: true,
+				LCHOptionIncludePageRecipes: true,
 				LCHTestSkipAutomaticLaunch: true,
 			}));
 		});

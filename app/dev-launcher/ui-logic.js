@@ -5,46 +5,46 @@ export const LCHLauncherOptions = function (inputData, notify = function () {}) 
 		throw new Error('LCHErrorInputNotValid');
 	}
 
-	if (typeof inputData.LRTOptionRecipes === 'undefined') {
-		inputData.LRTOptionRecipes = []
+	if (typeof inputData.LCHOptionRecipes === 'undefined') {
+		inputData.LCHOptionRecipes = []
 	};
 
-	if (!Array.isArray(inputData.LRTOptionRecipes)) {
-		throw new Error('LRTOptionRecipesNotArray');
+	if (!Array.isArray(inputData.LCHOptionRecipes)) {
+		throw new Error('LCHOptionRecipesNotArray');
 	};
 
-	inputData.LRTOptionRecipes = inputData.LRTOptionRecipes.filter(function (e) {
+	inputData.LCHOptionRecipes = inputData.LCHOptionRecipes.filter(function (e) {
 		const errors = LCHRecipesModelErrorsFor(e);
 
 		if (errors) {
-			notify('LRTOptionRecipesItemNotValid', e, errors)
+			notify('LCHOptionRecipesItemNotValid', e, errors)
 		};
 
 		return !errors;
 	})
 
-	if (typeof inputData.LRTOptionMode === 'undefined') {
-		inputData.LRTOptionMode = LCHLauncherModes().shift()
+	if (typeof inputData.LCHOptionMode === 'undefined') {
+		inputData.LCHOptionMode = LCHLauncherModes().shift()
 	};
 
-	if (typeof inputData.LRTOptionMode !== 'undefined') {
-		if (LCHLauncherModes().indexOf(inputData.LRTOptionMode) === -1) {
-			throw new Error('LRTOptionModeNotValid');
+	if (typeof inputData.LCHOptionMode !== 'undefined') {
+		if (LCHLauncherModes().indexOf(inputData.LCHOptionMode) === -1) {
+			throw new Error('LCHOptionModeNotValid');
 		};
 	};
 
-	if (typeof inputData.LRTOptionCompletionHandler !== 'undefined') {
-		if (typeof inputData.LRTOptionCompletionHandler !== 'function') {
-			throw new Error('LRTOptionCompletionHandlerNotFunction');
+	if (typeof inputData.LCHOptionCompletionHandler !== 'undefined') {
+		if (typeof inputData.LCHOptionCompletionHandler !== 'function') {
+			throw new Error('LCHOptionCompletionHandlerNotFunction');
 		};
 	};
 
-	if (typeof inputData.LRTOptionLanguage === 'undefined') {
-		inputData.LRTOptionLanguage = 'en';
+	if (typeof inputData.LCHOptionLanguage === 'undefined') {
+		inputData.LCHOptionLanguage = 'en';
 	};
 
-	if (typeof inputData.LRTOptionLanguage !== 'string') {
-		throw new Error('LRTOptionLanguageNotString')
+	if (typeof inputData.LCHOptionLanguage !== 'string') {
+		throw new Error('LCHOptionLanguageNotString')
 	};
 
 	return inputData;

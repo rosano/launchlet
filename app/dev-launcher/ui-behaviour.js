@@ -30,12 +30,12 @@ const mod = {
 			target: document.getElementById('LCHLauncherTarget'),
 			props: {
 				LRTOptions: {
-					LRTOptionRecipes: StubRecipesParse(params.StubRecipes) || [],
-					LRTOptionMode: Launchlet[params.LRTOptionMode || 'LRTModeCommit'],
-					LRTOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
-					LRTOptionIncludePageRecipes: !!params.LRTOptionIncludePageRecipes || false,
-					LRTOptionRunTasks: !!params.LRTOptionRunTasks || false,
-					LRTOptionCompletionHandler () {
+					LCHOptionRecipes: StubRecipesParse(params.StubRecipes) || [],
+					LCHOptionMode: Launchlet[params.LCHOptionMode || 'LCHModeCommit'],
+					LCHOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
+					LCHOptionIncludePageRecipes: !!params.LCHOptionIncludePageRecipes || false,
+					LCHOptionRunTasks: !!params.LCHOptionRunTasks || false,
+					LCHOptionCompletionHandler () {
 						let span = document.createElement('span');
 						span.classList.add('TestLauncherDidFinish');
 						document.body.appendChild(span);

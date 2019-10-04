@@ -7,7 +7,7 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			StubRecipes: uStubStringify(uStubTwoItems()),
-			LRTOptionMode: 'LRTModePreview',
+			LCHOptionMode: 'LCHModePreview',
 		}));
 	});
 
@@ -227,7 +227,7 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 						_LCHRecipeIsSelected: true,
 					});
 				})),
-				LRTOptionMode: 'LRTModePreview',
+				LCHOptionMode: 'LCHModePreview',
 			}));
 		});
 

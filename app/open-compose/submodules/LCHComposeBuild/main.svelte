@@ -58,9 +58,9 @@ const mod = {
 
 	DataPackageOptions () {
 		return {
-			LRTOptionLanguage: BuildAppLanguageCode,
-			LRTOptionMode: BuildInitializeModePipeEnabled ? LCHLauncherModePipe() : LCHLauncherModeCommit(),
-			LRTOptionIncludePageRecipes: true,
+			LCHOptionLanguage: BuildAppLanguageCode,
+			LCHOptionMode: BuildInitializeModePipeEnabled ? LCHLauncherModePipe() : LCHLauncherModeCommit(),
+			LCHOptionIncludePageRecipes: true,
 		};
 	},
 

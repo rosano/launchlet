@@ -11,7 +11,7 @@ describe('LCHLauncherBackspace', function() {
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			StubRecipes: uStubStringify(uStubTwoItems()),
-			LRTOptionMode: 'LRTModePipe',
+			LCHOptionMode: 'LCHModePipe',
 		}));
 	});
 

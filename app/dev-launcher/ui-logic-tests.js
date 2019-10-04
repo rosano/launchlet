@@ -59,24 +59,24 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 		deepEqual(typeof mainModule.LCHLauncherOptions({}), 'object');
 	});
 
-	context('LRTOptionRecipes', function () {
+	context('LCHOptionRecipes', function () {
 
 		it('sets default if undefined', function() {
-			deepEqual(mainModule.LCHLauncherOptions({}).LRTOptionRecipes, []);
+			deepEqual(mainModule.LCHLauncherOptions({}).LCHOptionRecipes, []);
 		});
 		
 		it('throws error if not valid', function() {
 			throws(function() {
 				mainModule.LCHLauncherOptions({
-					LRTOptionRecipes: null,
+					LCHOptionRecipes: null,
 				});
-			}, /LRTOptionRecipesNotArray/);
+			}, /LCHOptionRecipesNotArray/);
 		});
 
 		it('excludes if item not valid', function() {
 			deepEqual(mainModule.LCHLauncherOptions({
-				LRTOptionRecipes: [{}],
-			}).LRTOptionRecipes, []);
+				LCHOptionRecipes: [{}],
+			}).LCHOptionRecipes, []);
 		});
 		
 		it('passes input', function() {
@@ -85,71 +85,71 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 			};
 			
 			deepEqual(mainModule.LCHLauncherOptions({
-				LRTOptionRecipes: [item],
-			}).LRTOptionRecipes, [item]);
+				LCHOptionRecipes: [item],
+			}).LCHOptionRecipes, [item]);
 		});
 
 	});
 
-	context('LRTOptionMode', function () {
+	context('LCHOptionMode', function () {
 
 		it('sets default if undefined', function() {
-			deepEqual(mainModule.LCHLauncherOptions({}).LRTOptionMode, mainModule.LCHLauncherModes().shift());
+			deepEqual(mainModule.LCHLauncherOptions({}).LCHOptionMode, mainModule.LCHLauncherModes().shift());
 		});
 		
 		it('throws error if not valid', function() {
 			throws(function() {
 				mainModule.LCHLauncherOptions({
-					LRTOptionMode: 'alfa',
+					LCHOptionMode: 'alfa',
 				});
-			}, /LRTOptionModeNotValid/);
+			}, /LCHOptionModeNotValid/);
 		});
 
 		it('passes input', function() {
 			deepEqual(mainModule.LCHLauncherOptions({
-				LRTOptionMode: mainModule.LCHLauncherModePreview(),
-			}).LRTOptionMode, mainModule.LCHLauncherModePreview());
+				LCHOptionMode: mainModule.LCHLauncherModePreview(),
+			}).LCHOptionMode, mainModule.LCHLauncherModePreview());
 		});
 
 	});
 
-	context('LRTOptionCompletionHandler', function () {
+	context('LCHOptionCompletionHandler', function () {
 
 		it('throws error if not function', function() {
 			throws(function() {
 				mainModule.LCHLauncherOptions({
-					LRTOptionCompletionHandler: null,
+					LCHOptionCompletionHandler: null,
 				});
-			}, /LRTOptionCompletionHandlerNotFunction/);
+			}, /LCHOptionCompletionHandlerNotFunction/);
 		});
 
 		it('passes input', function() {
 			const item = function () {};
 			deepEqual(mainModule.LCHLauncherOptions({
-				LRTOptionCompletionHandler: item,
-			}).LRTOptionCompletionHandler, item);
+				LCHOptionCompletionHandler: item,
+			}).LCHOptionCompletionHandler, item);
 		});
 
 	});
 
-	context('LRTOptionLanguage', function () {
+	context('LCHOptionLanguage', function () {
 
 		it('sets default if undefined', function() {
-			deepEqual(mainModule.LCHLauncherOptions({}).LRTOptionLanguage, 'en');
+			deepEqual(mainModule.LCHLauncherOptions({}).LCHOptionLanguage, 'en');
 		});
 
 		it('throws error if not string', function() {
 			throws(function() {
 				mainModule.LCHLauncherOptions({
-					LRTOptionLanguage: null,
+					LCHOptionLanguage: null,
 				});
-			}, /LRTOptionLanguageNotString/);
+			}, /LCHOptionLanguageNotString/);
 		});
 		
 		it('passes input', function() {
 			deepEqual(mainModule.LCHLauncherOptions({
-				LRTOptionLanguage: 'alfa'
-			}).LRTOptionLanguage, 'alfa');
+				LCHOptionLanguage: 'alfa'
+			}).LCHOptionLanguage, 'alfa');
 		});
 
 	});

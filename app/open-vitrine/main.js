@@ -32,16 +32,16 @@ export const mod = {
 	// COMMAND
 
 	CommandDemoCommit() {
-		Launchlet.LRTSingletonCreate({
-			LRTOptionRecipes: _LCHVitrineRecipes,
-			LRTOptionMode: Launchlet.LRTModeCommit,
-			LRTOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
+		Launchlet.LCHSingletonCreate({
+			LCHOptionRecipes: _LCHVitrineRecipes,
+			LCHOptionMode: Launchlet.LCHModeCommit,
+			LCHOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 	},
 
 	CommandDemoPreview() {
-		Launchlet.LRTSingletonCreate({
-			LRTOptionRecipes: [].concat.apply([], document.querySelectorAll('h1,h2')).map(function (e) {
+		Launchlet.LCHSingletonCreate({
+			LCHOptionRecipes: [].concat.apply([], document.querySelectorAll('h1,h2')).map(function (e) {
 				return {
 					LCHRecipeName: e.textContent,
 					LCHRecipeCallback () {
@@ -50,16 +50,16 @@ export const mod = {
 					_LCHRecipeIsSelected: e.getBoundingClientRect().top >= 0,
 				};
 			}),
-			LRTOptionMode: Launchlet.LRTModePreview,
-			LRTOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
+			LCHOptionMode: Launchlet.LCHModePreview,
+			LCHOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 	},
 
 	CommandDemoPipe() {
-		Launchlet.LRTSingletonCreate({
-			LRTOptionRecipes: _LCHVitrineRecipes,
-			LRTOptionMode: Launchlet.LRTModePipe,
-			LRTOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
+		Launchlet.LCHSingletonCreate({
+			LCHOptionRecipes: _LCHVitrineRecipes,
+			LCHOptionMode: Launchlet.LCHModePipe,
+			LCHOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 		});
 	},
 

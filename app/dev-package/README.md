@@ -22,22 +22,22 @@ npm install launchlet
 ### Commit Mode
 
 ```javascript
-Launchlet.LRTSingletonCreate({
-  LRTOptionRecipes: [{
+Launchlet.LCHSingletonCreate({
+  LCHOptionRecipes: [{
     LCHRecipeName: 'Alfa',
     LCHRecipeCallback () {
       alert('Alfa');
     },
   }],
-  LRTOptionMode: Launchlet.LRTModeCommit,
+  LCHOptionMode: Launchlet.LCHModeCommit,
 });
 ```
 
 ### Preview Mode
 
 ```javascript
-Launchlet.LRTSingletonCreate({
-  LRTOptionRecipes: [{
+Launchlet.LCHSingletonCreate({
+  LCHOptionRecipes: [{
     LCHRecipeName: 'Bravo',
     LCHRecipeCallback () {
       console.log('Bravo');
@@ -48,21 +48,21 @@ Launchlet.LRTSingletonCreate({
       console.log('Charlie');
     },
   }],
-  LRTOptionMode: Launchlet.LRTModePreview,
+  LCHOptionMode: Launchlet.LCHModePreview,
 });
 ```
 
 ### Pipe Mode
 
 ```javascript
-Launchlet.LRTSingletonCreate({
-  LRTOptionRecipes: [{
+Launchlet.LCHSingletonCreate({
+  LCHOptionRecipes: [{
     LCHRecipeName: 'Delta',
     LCHRecipeCallback () {
       alert('Delta');
     },
   }],
-  LRTOptionMode: Launchlet.LRTModePipe,
+  LCHOptionMode: Launchlet.LCHModePipe,
 });
 ```
 
@@ -72,7 +72,7 @@ Ignore `keydown` events if Launchlet is active:
 
 ```javascript
 window.addEventListener('keydown', function (event) {
-  if (Launchlet.LRTSingletonExists()) {
+  if (Launchlet.LCHSingletonExists()) {
     return;
   }
 
@@ -82,39 +82,39 @@ window.addEventListener('keydown', function (event) {
 
 ## API
 
-### Launchlet.LRTSingletonCreate
+### Launchlet.LCHSingletonCreate
 
 Creates a singleton instance of the launcher. Destroys existing instance if there is one. Takes an optional configuration object.
 
 #### Options
 
-- LRTOptionRecipes (array) – `[]`
+- LCHOptionRecipes (array) – `[]`
     - *Recipe* objects
 
-- LRTOptionMode (identifier) – `Launchlet.LRTModeCommit`
-    - `Launchlet.LRTModeCommit`
-    - `Launchlet.LRTModePreview`
-    - `Launchlet.LRTModePipe`
+- LCHOptionMode (identifier) – `Launchlet.LCHModeCommit`
+    - `Launchlet.LCHModeCommit`
+    - `Launchlet.LCHModePreview`
+    - `Launchlet.LCHModePipe`
 
 - LCHOptionIncludePageRecipes (boolean) – `false`
 
-- LRTOptionRunTasks (boolean) – `false`
+- LCHOptionRunTasks (boolean) – `false`
 
-- LRTOptionCompletionHandler (function) – `undefined`
+- LCHOptionCompletionHandler (function) – `undefined`
 
-- LRTOptionLanguage (string) – `'en'`
+- LCHOptionLanguage (string) – `'en'`
     - `'en'`
     - `'fr'`
     - `'es'`
 
-### Launchlet.LRTSingletonExists
+### Launchlet.LCHSingletonExists
 
 Returns true if there is a singleton instance of the launcher.
 
-### Launchlet.LRTSingletonDestroy
+### Launchlet.LCHSingletonDestroy
 
 Destroys a singleton instance of the launcher.
 
-### Launchlet.LRTTasksRun
+### Launchlet.LCHTasksRun
 
 Runs each `Task` that matches the current URL unless `LCHRecipeIsExcluded` returns true.

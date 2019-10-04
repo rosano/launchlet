@@ -103,26 +103,26 @@ describe('LifecycleSingletonDestroy', function testLifecycleSingletonDestroy() {
 
 import { LCHLauncherModeCommit, LCHLauncherModePreview, LCHLauncherModePipe } from '../dev-launcher/ui-logic.js';
 
-describe('LRTModeCommit', function testLRTModeCommit() {
+describe('LCHModeCommit', function testLCHModeCommit() {
 
 	it('sets value', function() {
-		deepEqual(mainModule.LRTModeCommit, LCHLauncherModeCommit());
+		deepEqual(mainModule.LCHModeCommit, LCHLauncherModeCommit());
 	});
 
 });
 
-describe('LRTModePreview', function testLRTModePreview() {
+describe('LCHModePreview', function testLCHModePreview() {
 
 	it('sets value', function() {
-		deepEqual(mainModule.LRTModePreview, LCHLauncherModePreview());
+		deepEqual(mainModule.LCHModePreview, LCHLauncherModePreview());
 	});
 
 });
 
-describe('LRTModePipe', function testLRTModePipe() {
+describe('LCHModePipe', function testLCHModePipe() {
 
 	it('sets value', function() {
-		deepEqual(mainModule.LRTModePipe, LCHLauncherModePipe());
+		deepEqual(mainModule.LCHModePipe, LCHLauncherModePipe());
 	});
 
 });
@@ -131,15 +131,15 @@ describe('LCHPackage', function testLCHPackage() {
 
 	it('returns object', function() {
 		deepEqual(mainModule.LCHPackage(), {
-			LRTModeCommit: mainModule.LRTModeCommit,
-			LRTModePreview: mainModule.LRTModePreview,
-			LRTModePipe: mainModule.LRTModePipe,
+			LCHModeCommit: mainModule.LCHModeCommit,
+			LCHModePreview: mainModule.LCHModePreview,
+			LCHModePipe: mainModule.LCHModePipe,
 
-			LRTSingletonCreate: mainModule.mod.LifecycleSingletonCreate,
-			LRTSingletonExists: mainModule.mod.DataSingletonExists,
-			LRTSingletonDestroy: mainModule.mod.LifecycleSingletonDestroy,
+			LCHSingletonCreate: mainModule.mod.LifecycleSingletonCreate,
+			LCHSingletonExists: mainModule.mod.DataSingletonExists,
+			LCHSingletonDestroy: mainModule.mod.LifecycleSingletonDestroy,
 			
-			LRTTasksRun: mainModule.mod.CommandRunTasks,
+			LCHTasksRun: mainModule.mod.CommandRunTasks,
 		});
 	});
 

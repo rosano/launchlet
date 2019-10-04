@@ -10,7 +10,7 @@ describe('LCHLauncherObjectPrompt', function () {
 
 	before(function () {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
-			LRTOptionMode: 'LRTModePipe',
+			LCHOptionMode: 'LCHModePipe',
 		}));
 	});
 

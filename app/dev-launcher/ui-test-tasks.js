@@ -2,7 +2,7 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('LRTOptionRunTasks', function testLRTOptionRunTasks () {
+describe('LCHOptionRunTasks', function testLCHOptionRunTasks () {
 
 	const uStubItem = function () {
 		return {
@@ -33,7 +33,7 @@ describe('LRTOptionRunTasks', function testLRTOptionRunTasks () {
 		before(function() {
 			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 				StubRecipes: uStubStringify([uStubItem()]),
-				LRTOptionRunTasks: true,
+				LCHOptionRunTasks: true,
 			}));
 		});
 

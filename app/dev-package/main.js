@@ -9,9 +9,9 @@ import {
 	LCHAPIRunTasks,
 } from '../dev-launcher/api.js';
 
-export const LRTModeCommit = LCHLauncherModeCommit();
-export const LRTModePreview = LCHLauncherModePreview();
-export const LRTModePipe = LCHLauncherModePipe();
+export const LCHModeCommit = LCHLauncherModeCommit();
+export const LCHModePreview = LCHLauncherModePreview();
+export const LCHModePipe = LCHLauncherModePipe();
 
 export const mod = {
 
@@ -46,13 +46,13 @@ export const mod = {
 			document.body.appendChild(mod._ValueTarget = document.createElement('div'));
 		}
 
-		const callback = inputData.LRTOptionCompletionHandler;
+		const callback = inputData.LCHOptionCompletionHandler;
 
 		mod._ValueSingleton = new mod._ValueClass({
 			target: mod._ValueTarget,
 			props: {
 				LRTOptions: Object.assign(inputData, {
-					LRTOptionCompletionHandler () {
+					LCHOptionCompletionHandler () {
 						mod.LifecycleSingletonDestroy();
 
 						if (!callback) {
@@ -84,15 +84,15 @@ export const mod = {
 
 export const LCHPackage = function () {
 	const outputData = {
-		LRTModeCommit,
-		LRTModePreview,
-		LRTModePipe,
+		LCHModeCommit,
+		LCHModePreview,
+		LCHModePipe,
 
-		LRTSingletonCreate: mod.LifecycleSingletonCreate,
-		LRTSingletonExists: mod.DataSingletonExists,
-		LRTSingletonDestroy: mod.LifecycleSingletonDestroy,
+		LCHSingletonCreate: mod.LifecycleSingletonCreate,
+		LCHSingletonExists: mod.DataSingletonExists,
+		LCHSingletonDestroy: mod.LifecycleSingletonDestroy,
 
-		LRTTasksRun: mod.CommandRunTasks,
+		LCHTasksRun: mod.CommandRunTasks,
 	};
 
 	Object.freeze(outputData);
