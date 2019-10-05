@@ -49,11 +49,13 @@ import { LCHRecipesModelErrorsFor } from './api.js';
 	window.addEventListener('message', receiveMessage, false);
 	window.postMessage('LCHPageRecipes', window.location.origin);
 
-	if (!Array.isArray(window.LCHPageRecipes)) {
+	const inputData = window.LCHPageRecipes || (window.wrappedJSObject || {}).LCHPageRecipes;
+
+	if (!Array.isArray(inputData)) {
 		return;
 	}
 
-	LRTOptions.LCHOptionRecipes.push(...window.LCHPageRecipes.map(function (e) {
+	LRTOptions.LCHOptionRecipes.push(...Array.from(inputData).map(function (e) {
 		delete e.LCHRecipeURLFilter;
 		delete e.LCHRecipeIsAutomatic;
 
