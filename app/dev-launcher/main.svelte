@@ -29,27 +29,33 @@ import { LCHRecipesModelErrorsFor } from './api.js';
 		return;
 	};
 
-	function receiveMessage(event) {
-		if (event.source !== window) {
-		  return console.log('not window');;
+	let inputData = window.LCHPageRecipes;
+
+	if (!inputData) {
+		inputData = (window.wrappedJSObject || {}).LCHPageRecipes;
+	};
+
+	if (!inputData) {
+		function receiveMessage(event) {
+			if (event.source !== window) {
+			  return console.log('not window');;
+			}
+
+			if (event.data === 'LCHPageRecipes') {
+			  return;
+			}
+
+			if (!Array.isArray(event.data)) {
+				return;
+			}
+
+			console.log(event.data.pop());
+
+			window.removeEventListener('message', receiveMessage)
 		}
-
-		if (event.data === 'LCHPageRecipes') {
-		  return;
-		}
-
-		if (!Array.isArray(event.data)) {
-			return;
-		}
-
-		console.log(event.data.pop());
-
-		window.removeEventListener('message', receiveMessage)
-	}
-	window.addEventListener('message', receiveMessage, false);
-	window.postMessage('LCHPageRecipes', window.location.origin);
-
-	const inputData = window.LCHPageRecipes || (window.wrappedJSObject || {}).LCHPageRecipes;
+		window.addEventListener('message', receiveMessage, false);
+		window.postMessage('LCHPageRecipes', window.location.origin);
+	};
 
 	if (!Array.isArray(inputData)) {
 		return;
