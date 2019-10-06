@@ -245,6 +245,10 @@ const mod = {
 	async SetupPublicKey() {
 		mod.ValuePublicKey(JSON.parse(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposePublicKey') || 'null'));
 
+		if (!mod.ValuePublicKey()) {
+			return;
+		};
+
 		setTimeout(mod.CommandSendPayload, 100); // #purge dependency on submodule loading - move this into a non-svelte module at some point
 	},
 
