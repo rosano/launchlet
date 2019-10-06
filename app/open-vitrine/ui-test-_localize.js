@@ -77,10 +77,6 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 		});
 
 		context('LCHVitrinePageColoursRestore', function () {
-			
-			before(function () {
-				browser.fill('.LCHLauncherFilterInput', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRandomize)
-			});
 
 			before(function () {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
