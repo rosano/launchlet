@@ -49,7 +49,7 @@ describe('LCHLargeText_Misc', function () {
 			browser.click('.TestRecipeOutput');
 		});
 		
-		it('hides LCHLargeTextContainer', function() {
+		it.skip('hides LCHLargeTextContainer', function() {
 			browser.assert.elements(LCHLargeTextContainer, 0);
 		});
 	
