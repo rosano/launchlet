@@ -90,7 +90,6 @@ const allRecipes = LCHLauncherStandardRecipes().map(function (e) {
 
 const api = LCHRuntime.LCHRuntimeAPI(allRecipes);
 const apiTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes);
-const typeNameMap = LCHAPITypeNameMap(allRecipes);
 
 const refactorStuff = function () {};
 
@@ -758,6 +757,8 @@ const mod = {
 		mod._ValueAllPromptRecipes = LCHLauncherUIRecipesForMode(allRecipes, LRTOptions.LCHOptionMode);
 
 		if (LRTOptions.LCHOptionMode === LCHLauncherModePipe()) {
+			const typeNameMap = LCHAPITypeNameMap(allRecipes);
+
 			mod._ValueAllSubjects = mod._ValueAllPromptRecipes.filter(function (e) {
 				if (LCHRecipesModelIsSubject(e)) {
 					return true;
@@ -778,7 +779,7 @@ const mod = {
 
 			mod._ValueAllActions = mod._ValueAllPromptRecipes.filter(LCHRecipesModelIsAction);
 
-			let _ActionableTypesForPrimarySubject = Object.keys(apiTypeEquivalenceMap).filter(function (type) {
+			const _ActionableTypesForPrimarySubject = Object.keys(apiTypeEquivalenceMap).filter(function (type) {
 				return mod._ValueAllActions.filter(function (e) {
 					return LCHRuntime.LCHRuntimeInputTypes(e.LCHRecipeInputTypes).shift() === type;
 				}).length;
