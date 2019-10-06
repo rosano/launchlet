@@ -34,7 +34,7 @@ describe('LCHLargeText_Misc', function () {
 	context('click inside', function () {
 
 		before(function () {
-			return browser.click(`${ LCHLargeTextContainer } span`);
+			browser.click(`${ LCHLargeTextContainer } span`);
 		});
 		
 		it('does nothing', function() {
@@ -46,7 +46,7 @@ describe('LCHLargeText_Misc', function () {
 	context('click outside', function () {
 
 		before(function () {
-			return browser.click('.TestRecipeOutput');
+			browser.click('.TestRecipeOutput');
 		});
 		
 		it('hides LCHLargeTextContainer', function() {

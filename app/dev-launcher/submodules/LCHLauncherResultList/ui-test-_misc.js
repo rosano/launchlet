@@ -18,7 +18,7 @@ before(function () {
 context('set initial', function () {
 
 	before(function() {
-		return browser.pressButton('#LCHLauncherResultListTestSetTestItemsMultiple');
+		browser.pressButton('#LCHLauncherResultListTestSetTestItemsMultiple');
 	});
 
 	it('selects none', function() {
@@ -30,7 +30,7 @@ context('set initial', function () {
 context('select', function () {
 	
 	before(function () {
-		return browser.pressButton('#LCHLauncherResultListTestSetTestItemSelected');
+		browser.pressButton('#LCHLauncherResultListTestSetTestItemSelected');
 	});
 
 	it('sets class', function() {
@@ -85,7 +85,7 @@ context('ArrowUp', function () {
 context('change items exclude selected', function () {
 	
 	before(function () {
-		return browser.pressButton('#LCHLauncherResultListTestSetTestItemsSingle');
+		browser.pressButton('#LCHLauncherResultListTestSetTestItemsSingle');
 	});
 
 	it('selects none', function () {
@@ -118,7 +118,7 @@ context('click item', function () {
 context('set items include selected', function () {
 
 	before(function () {
-		return browser.pressButton('#LCHLauncherResultListTestSetTestItemsSingle');
+		browser.pressButton('#LCHLauncherResultListTestSetTestItemsSingle');
 	});
 	
 	it('keeps previous selection', function () {

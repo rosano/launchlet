@@ -18,7 +18,11 @@ describe(`LCHCopyToClipboard_Localize-${ languageCode }`, function () {
 	});
 
 	before(function() {
-		return browser.OLSKFireKeyboardEvent(browser.window, '.');
+		browser.OLSKFireKeyboardEvent(browser.window, '.');
+	});
+
+	before(function() {
+		return browser.wait({ element: LCHLauncherPromptDotModeInput });
 	});
 
 	before(function() {
