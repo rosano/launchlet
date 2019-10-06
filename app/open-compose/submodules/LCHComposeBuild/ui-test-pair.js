@@ -25,22 +25,22 @@ describe('LCHComposeBuildPair', function () {
 			browser.fill(LCHBuildPairExtensionPublicKeyField, kStubPublicKeyValid())
 		});
 		
-		it('posts message with LBXMessageEncryptedData', async function() {
+		it('posts message with LBXRequestEncryptedData', async function() {
 			deepEqual(typeof (await browser.OLSKMessageAsync(function () {
 				browser.click(LCHBuildPairExtensionSubmitButton)
 				return browser.wait({ element: LCHBuildPairExtensionDeleteKeyButton })
-			})).LBXMessageEncryptedData, 'string')
+			})).LBXRequestEncryptedData, 'string')
 		});
 	
 	});
 
 	context('ModelChange', function testModelChange () {
 		
-		it('posts message with LBXMessageEncryptedData', async function() {
+		it('posts message with LBXRequestEncryptedData', async function() {
 			deepEqual(typeof (await browser.OLSKMessageAsync(async function () {
 				await browser.check(LCHComposeBuildModePipeEnabledToggle);
 				await browser.wait({ element: LCHComposeBuildModePipeEnabledToggle })
-			})).LBXMessageEncryptedData, 'string')
+			})).LBXRequestEncryptedData, 'string')
 		});
 	
 	});
