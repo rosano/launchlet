@@ -88,8 +88,6 @@ const allRecipes = LCHLauncherStandardRecipes().map(function (e) {
 	})
 }).concat(LRTOptions.LCHOptionRecipes);
 
-const api = LCHRuntime.LCHRuntimeAPI(allRecipes);
-
 const refactorStuff = function () {};
 
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
@@ -659,7 +657,7 @@ const mod = {
 	},
 
 	async CommandRun(inputData) {
-		return mod._CommandRun(inputData.LCHCompositionAction ? await LCHAPIExecuteComposition(inputData, api) : await LCHAPIExecuteRecipe(inputData, [], api));
+		return mod._CommandRun(inputData.LCHCompositionAction ? await LCHAPIExecuteComposition(inputData, mod._ValueSharedAPI) : await LCHAPIExecuteRecipe(inputData, [], mod._ValueSharedAPI));
 	},
 
 	async _CommandRun(inputData) {
@@ -739,9 +737,15 @@ const mod = {
 	// SETUP
 
 	SetupEverything() {
+		mod.SetupSharedAPI();
+
 		mod.SetupTasks();
 
 		mod.SetupPromptObjects();
+	},
+
+	SetupSharedAPI() {
+		mod._ValueSharedAPI = LCHRuntime.LCHRuntimeAPI(allRecipes);
 	},
 
 	SetupTasks() {
