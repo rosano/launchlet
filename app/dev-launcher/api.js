@@ -591,3 +591,25 @@ export const LCHAPIRunTasks = function () {
 		return LCHAPIExecuteRecipe(e, [], api);
 	}))
 };
+
+export const LCHRecipeProxyModelErrorsFor = function(inputData, options = {}) {
+	if (typeof inputData !== 'object' || inputData === null) {
+		return {};
+	}
+
+	const errors = {};
+
+	if (typeof inputData.LCHRecipeProxyName !== 'string') {
+		errors.LCHRecipeProxyName = [
+			'LCHErrorNotString',
+		];
+	}
+
+	if (typeof inputData.LCHRecipeProxySignature !== 'string') {
+		errors.LCHRecipeProxySignature = [
+			'LCHErrorNotString',
+		];
+	}
+
+	return Object.entries(errors).length ? errors : null;
+};

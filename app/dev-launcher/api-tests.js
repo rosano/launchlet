@@ -66,6 +66,12 @@ const kTesting = {
 			},
 		};
 	},
+	StubRecipeProxyObjectValid() {
+		return {
+			LCHRecipeProxyName: 'alfa',
+			LCHRecipeProxySignature: 'bravo',
+		};
+	},
 };
 
 describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
@@ -1445,6 +1451,38 @@ describe('LCHAPIRunTasks', function testLCHAPIRunTasks() {
 				return 'charlie';
 			},
 		}], '*'), ['charlie']);
+	});
+
+});
+
+describe('LCHRecipeProxyModelErrorsFor', function testLCHRecipeProxyModelErrorsFor() {
+
+	it('returns object if not object', function() {
+		deepEqual(mainModule.LCHRecipeProxyModelErrorsFor(null), {});
+	});
+
+	it('returns object if LCHRecipeProxyName not function', function() {
+		deepEqual(mainModule.LCHRecipeProxyModelErrorsFor(Object.assign(kTesting.StubRecipeProxyObjectValid(), {
+			LCHRecipeProxyName: null,
+		})), {
+			LCHRecipeProxyName: [
+				'LCHErrorNotString',
+			],
+		});
+	});
+
+	it('returns object if LCHRecipeProxySignature not function', function() {
+		deepEqual(mainModule.LCHRecipeProxyModelErrorsFor(Object.assign(kTesting.StubRecipeProxyObjectValid(), {
+			LCHRecipeProxySignature: null,
+		})), {
+			LCHRecipeProxySignature: [
+				'LCHErrorNotString',
+			],
+		});
+	});
+
+	it('returns null', function() {
+		deepEqual(mainModule.LCHRecipeProxyModelErrorsFor(kTesting.StubRecipeProxyObjectValid()), null);
 	});
 
 });
