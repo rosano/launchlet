@@ -92,15 +92,6 @@ const api = LCHRuntime.LCHRuntimeAPI(allRecipes);
 const apiTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes);
 const typeNameMap = LCHAPITypeNameMap(allRecipes);
 
-import { LCHAPIRunTasks } from './api.js';
-(function StartRecipeTasks() {
-	if (!LRTOptions.LCHOptionRunTasks) {
-		return;
-	};
-
-	LCHAPIRunTasks(allRecipes, window.location.href);
-})();
-
 const refactorStuff = function () {};
 
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
@@ -314,6 +305,8 @@ import {
 	LCHComponentDescriptorsModelErrorsFor,
 } from './api.js';
 import * as apiComponents from './recipes/_components.js';
+
+import { LCHAPIRunTasks } from './api.js';
 
 const mod = {
 
@@ -748,8 +741,17 @@ const mod = {
 	// SETUP
 
 	SetupEverything() {
+		mod.SetupTasks();
 
 		mod.SetupPromptObjects();
+	},
+
+	SetupTasks() {
+		if (!LRTOptions.LCHOptionRunTasks) {
+			return;
+		};
+
+		LCHAPIRunTasks(allRecipes, window.location.href);
 	},
 
 	SetupPromptObjects () {
