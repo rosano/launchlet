@@ -13,18 +13,6 @@ const refactorTop = function () {};
 import { LCHLauncherOptions } from './ui-logic.js';
 LRTOptions = LCHLauncherOptions(LRTOptions, _LCHIsTestingBehaviour() ? undefined : console.warn);
 
-import {
-	LCHLauncherModeCommit,
-	LCHLauncherModePreview,
-	LCHLauncherModePipe,
-	// LCHLauncherFilterForText,
-} from './ui-logic.js';
-
-import { LCHRuntimeFilteredRecipes } from './api.js';
-(function StartDiscardDataObjects() {
-	LRTOptions.LCHOptionRecipes = LCHRuntimeFilteredRecipes(LRTOptions.LCHOptionRecipes, window.location.href);
-})();
-
 const refactorStuff = function () {};
 
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
@@ -219,6 +207,17 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 const refactorDependancies = function () {};
 
 import OLSKThrottle from 'OLSKThrottle';
+
+
+
+import {
+	LCHLauncherModeCommit,
+	LCHLauncherModePreview,
+	LCHLauncherModePipe,
+	// LCHLauncherFilterForText,
+} from './ui-logic.js';
+
+import { LCHRuntimeFilteredRecipes } from './api.js';
 
 import { LCHRecipesModelErrorsFor } from './api.js';
 
@@ -699,7 +698,7 @@ const mod = {
 			return Object.assign(e, {
 				LCHRecipeName: e.LCHRecipeName || OLSKLocalized('LCHStandardRecipeNames')[e.LCHRecipeSignature], // #purge
 			})
-		}).concat(LRTOptions.LCHOptionRecipes);
+		}).concat(LCHRuntimeFilteredRecipes(LRTOptions.LCHOptionRecipes, window.location.href));
 	},
 
 	SetupPageRecipes() {
