@@ -36,7 +36,7 @@ const mod = {
 					LCHOptionIncludePageRecipes: !!params.LCHOptionIncludePageRecipes || false,
 					LCHOptionRunAutomaticRecipes: !!params.LCHOptionRunAutomaticRecipes || false,
 				},
-				LRTLauncherDidFinish () {
+				LRTDidFinish () {
 					let span = document.createElement('span');
 					span.classList.add('TestLauncherDidFinish');
 					document.body.appendChild(span);

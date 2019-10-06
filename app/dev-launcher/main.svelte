@@ -1,6 +1,6 @@
 <script>
 export let LRTOptions = {};
-export let LRTLauncherDidFinish = null;
+export let LRTDidFinish = null;
 
 import { LCHLauncherOptions } from './ui-logic.js';
 LRTOptions = LCHLauncherOptions(LRTOptions, _LCHIsTestingBehaviour() ? undefined : console.warn);
@@ -356,7 +356,7 @@ const mod = {
 	// INTERFACE
 
 	InterfaceBodyDidClick (event) {
-		if (!mod._ValueDidMount) {
+		if (!mod._ValueComponentDidMount) {
 			return;
 		};
 		
@@ -649,11 +649,11 @@ const mod = {
 			mod._ValueFilterInputInstance.blur();
 		};
 
-		if (typeof LRTLauncherDidFinish !== 'function') {
+		if (typeof LRTDidFinish !== 'function') {
 			return;
 		}
 
-		return LRTLauncherDidFinish();
+		return LRTDidFinish();
 	},
 
 	// REACT
@@ -889,7 +889,7 @@ const mod = {
 
 	LifecycleModuleDidMount() {
 		setTimeout(function () {
-			mod._ValueDidMount = true;
+			mod._ValueComponentDidMount = true;
 		}, 100)
 		// mod.ReactFocusFilterInput();
 	},

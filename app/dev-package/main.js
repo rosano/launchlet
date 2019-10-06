@@ -50,7 +50,7 @@ export const mod = {
 			target: mod._ValueTarget,
 			props: {
 				LRTOptions: inputData,
-				LRTLauncherDidFinish () {
+				LRTDidFinish () {
 					mod.LifecycleSingletonDestroy();
 
 					if (typeof inputData.LCHOptionCompletionHandler !== 'function') {
