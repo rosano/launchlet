@@ -151,7 +151,6 @@ import {
 } from './api.js';
 import { LCHLauncherUIRecipesForMode } from './ui-logic.js';
 let _PromptActiveIndex = 0;
-let _AllPromptRecipes = LCHLauncherUIRecipesForMode(allRecipes, LRTOptions.LCHOptionMode);
 
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
 import fuzzysort from 'fuzzysort';
@@ -386,6 +385,8 @@ const mod = {
 	// VALUE
 
 	_ValuePromptObjects: [],
+
+	_ValueAllPromptRecipes: [],
 
 	_ValueAllSubjects: [],
 	_ValueAllActions: [],
@@ -744,8 +745,10 @@ const mod = {
 	},
 
 	SetupPromptObjects () {
+		mod._ValueAllPromptRecipes = LCHLauncherUIRecipesForMode(allRecipes, LRTOptions.LCHOptionMode);
+
 		if (LRTOptions.LCHOptionMode === LCHLauncherModePipe()) {
-			mod._ValueAllSubjects = _AllPromptRecipes.filter(function (e) {
+			mod._ValueAllSubjects = mod._ValueAllPromptRecipes.filter(function (e) {
 				if (LCHRecipesModelIsSubject(e)) {
 					return true;
 				};
@@ -763,7 +766,7 @@ const mod = {
 				})
 			});
 
-			mod._ValueAllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
+			mod._ValueAllActions = mod._ValueAllPromptRecipes.filter(LCHRecipesModelIsAction);
 
 			let _ActionableTypesForPrimarySubject = Object.keys(apiTypeEquivalenceMap).filter(function (type) {
 				return mod._ValueAllActions.filter(function (e) {
@@ -814,7 +817,7 @@ const mod = {
 		mod._ValuePromptObjects.push({
 			LCHPromptClass: 'LCHLauncherFilterPrompt',
 			LCHPromptItemsVisible: [],
-			LCHPromptItemsAll: _AllPromptRecipes,
+			LCHPromptItemsAll: mod._ValueAllPromptRecipes,
 			LCHPromptFilterText: '',
 			LCHPromptResultsThrottle: false,
 			LCHPromptIsVisible: true,
