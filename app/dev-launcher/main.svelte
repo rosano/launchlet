@@ -709,7 +709,7 @@ const mod = {
 			inputData = (window.wrappedJSObject || {}).LCHPageRecipes;
 		};
 
-		if (!inputData) {
+		if (!inputData && window.location.origin && window.location.origin !== 'null') { // about:blank has no origin
 			await (new Promise(function (resolve, reject) {
 				function receiveMessage(event) {
 					if (event.source !== window && !_LCHIsTestingBehaviour()) {
