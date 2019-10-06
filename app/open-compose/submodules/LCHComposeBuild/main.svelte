@@ -1,6 +1,7 @@
 <script>
 export let BuildDocuments = [];
 export let BuildInitializeModePipeEnabled;
+export let LCHComposeBuildIncludePageRecipes;
 export let BuildAppLanguageCode;
 export let LCHComposeBuildPackageStyle;
 export let LCHComposeBuildPackageScript;
@@ -64,7 +65,7 @@ const mod = {
 		return {
 			LCHOptionLanguage: BuildAppLanguageCode,
 			LCHOptionMode: BuildInitializeModePipeEnabled ? LCHLauncherModePipe() : LCHLauncherModeCommit(),
-			LCHOptionIncludePageRecipes: true,
+			LCHOptionIncludePageRecipes: LCHComposeBuildIncludePageRecipes,
 		};
 	},
 
@@ -96,6 +97,13 @@ const mod = {
 
 		modelDidChange.set(Date.now());
 	},
+
+	InterfaceIncludePageRecipesFieldDidInput(event) {
+		dispatch('LCHComposeBuildDispatchIncludePageRecipes', event.target.checked);
+
+		modelDidChange.set(Date.now());
+	},
+
 	InterfaceModePairButtonDidClick() {
 		mod.ValuePairExtensionIsVisible(!mod.ValuePairExtensionIsVisible())
 	},
@@ -279,6 +287,11 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 			<label for="LCHComposeBuildModePipeEnabledToggle">{ OLSKLocalized('LCHComposeBuildModePipeEnabledToggleLabelText') }</label>
 			<input type="checkbox" bind:checked={ BuildInitializeModePipeEnabled } on:change={ mod.InterfaceModePipeEnabledToggleDidInput } id="LCHComposeBuildModePipeEnabledToggle" />
+
+			<label>
+				<span class="LCHComposeBuildIncludePageRecipesFieldLabel">{ OLSKLocalized('LCHComposeBuildIncludePageRecipesFieldLabelText') }</span>
+				<input class="LCHComposeBuildIncludePageRecipesField" type="checkbox" on:input={ mod.InterfaceIncludePageRecipesFieldDidInput } bind:checked={ LCHComposeBuildIncludePageRecipes } />
+			</label>
 		</OLSKToolbarElementGroup>
 
 		{#if !mod.ValuePairExtensionIsVisible()}

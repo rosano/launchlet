@@ -4,6 +4,10 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
 	LCHComposeBuildModePipeEnabledToggle: '#LCHComposeBuildModePipeEnabledToggle',
+	
+	LCHComposeBuildIncludePageRecipesFieldLabel: '.LCHComposeBuildIncludePageRecipesFieldLabel',
+	LCHComposeBuildIncludePageRecipesField: '.LCHComposeBuildIncludePageRecipesField',
+
 	LCHComposeBuildPairButton: '.LCHComposeBuildPairButton',
 	LCHComposeBuildPairExtension: '.LCHComposeBuildPairExtension',
 }).map(function (e) {
@@ -18,6 +22,14 @@ describe('LCHComposeBuild_Access', function () {
 	
 	it('shows LCHComposeBuildModePipeEnabledToggle', function() {
 		browser.assert.elements(LCHComposeBuildModePipeEnabledToggle, 1);
+	});
+	
+	it('shows LCHComposeBuildIncludePageRecipesFieldLabel', function() {
+		browser.assert.elements(LCHComposeBuildIncludePageRecipesFieldLabel, 1);
+	});
+	
+	it('shows LCHComposeBuildIncludePageRecipesField', function() {
+		browser.assert.elements(LCHComposeBuildIncludePageRecipesField, 1);
 	});
 	
 	it('shows LCHComposeBuildPairButton', function() {

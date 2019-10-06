@@ -16,6 +16,10 @@ describe(`LCHCompose_Localize-${ languageCode }`, function () {
 		}));
 	});
 
+	it('localizes LCHComposeBuildIncludePageRecipesFieldLabel', function() {
+		browser.assert.text(LCHComposeBuildIncludePageRecipesFieldLabel, uLocalized('LCHComposeBuildIncludePageRecipesFieldLabelText'));
+	});
+
 	it('localizes LCHComposeBuildModePipeEnabledToggle', function() {
 		browser.assert.text(`label[for=${ LCHComposeBuildModePipeEnabledToggle.replace('#', '') }]`, uLocalized('LCHComposeBuildModePipeEnabledToggleLabelText'));
 	});

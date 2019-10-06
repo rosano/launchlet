@@ -29,8 +29,13 @@ const mod = {
 	FooterDispatchImport (event) {
 		masterInstance.DocumentsImport(event.detail);
 	},
+
 	BuildDispatchModePipeEnabledToggleDidInput (event) {
 		LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposeModePipeEnabled', event.detail.toString())
+	},
+	
+	LCHComposeBuildDispatchIncludePageRecipes (event) {
+		LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposeIncludePageRecipes', event.detail.toString())
 	},
 
 	StorageHidden: true,
@@ -49,13 +54,29 @@ const mod = {
 		mod._ValueInitializeModePipeEnabled = inputData === 'true'
 	},
 
+	_ValueIncludePageRecipes: undefined,
+	ValueIncludePageRecipes(inputData) {
+		if (typeof inputData === 'undefined') {
+			return mod._ValueIncludePageRecipes;
+		}
+
+		mod._ValueIncludePageRecipes = inputData === 'true'
+	},
+
 	// SETUP
 
 	SetupEverything() {
 		mod.SetupValueInitializeModePipeEnabled()
+		
+		mod.SetupValueIncludePageRecipes()
 	},
+
 	async SetupValueInitializeModePipeEnabled() {
 		mod.ValueInitializeModePipeEnabled(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposeModePipeEnabled'))
+	},
+	
+	async SetupValueIncludePageRecipes() {
+		mod.ValueIncludePageRecipes(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposeIncludePageRecipes'))
 	},
 
 	// LIFECYCLE
@@ -85,12 +106,14 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 
 <LCHComposeBuild
 	BuildInitializeModePipeEnabled={ mod._ValueInitializeModePipeEnabled }
+	LCHComposeBuildIncludePageRecipes={ mod._ValueIncludePageRecipes }
 	BuildDocuments={ $DocumentsAllStore }
 	LCHComposeBuildPackageStyle={ window.LCHComposeBuildPackageStyle.textContent }
 	LCHComposeBuildPackageScript={ window.LCHComposeBuildPackageScript.textContent }
 	BuildAppLanguageCode={ window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage') }
 
 	on:BuildDispatchModePipeEnabledToggleDidInput={ mod.BuildDispatchModePipeEnabledToggleDidInput }
+	on:LCHComposeBuildDispatchIncludePageRecipes={ mod.LCHComposeBuildDispatchIncludePageRecipes }
 	/>
 
 <div id="LCHComposeStorageWidget" class:StorageHidden={ mod.StorageHidden }></div>
