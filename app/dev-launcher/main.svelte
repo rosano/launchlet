@@ -25,64 +25,6 @@ import { LCHRuntimeFilteredRecipes } from './api.js';
 	LRTOptions.LCHOptionRecipes = LCHRuntimeFilteredRecipes(LRTOptions.LCHOptionRecipes, window.location.href);
 })();
 
-import { LCHRecipesModelErrorsFor } from './api.js';
-(function StartPageRecipes() {
-	if (!LRTOptions.LCHOptionIncludePageRecipes) {
-		return;
-	};
-
-	let inputData = window.LCHPageRecipes;
-
-	if (!inputData) {
-		inputData = (window.wrappedJSObject || {}).LCHPageRecipes;
-	};
-
-	if (!inputData) {
-		function receiveMessage(event) {
-			if (event.source !== window) {
-			  return console.log('not window');;
-			}
-
-			if (event.data === 'LCHPageRecipes') {
-			  return;
-			}
-
-			if (!Array.isArray(event.data)) {
-				return;
-			}
-
-			console.log(event.data.pop());
-
-			window.removeEventListener('message', receiveMessage)
-		}
-		window.addEventListener('message', receiveMessage, false);
-		window.postMessage('LCHPageRecipes', window.location.origin);
-	};
-
-	if (!Array.isArray(inputData)) {
-		return;
-	}
-
-	LRTOptions.LCHOptionRecipes.push(...Array.from(inputData).map(function (e) {
-		delete e.LCHRecipeURLFilter;
-		delete e.LCHRecipeIsAutomatic;
-
-		e._LCHRecipeSource = window.location.host;
-		
-		return e;
-	}).filter(function(e) {
-		return !LCHRecipesModelErrorsFor(e);
-	}));
-})();
-
-import * as LCHRuntime from '../_shared/LCHRuntime/main.js'
-import {
-	LCHLauncherConvertTypeServiceSearch,
-	LCHAPITypeEquivalenceMapForRecipes,
-	LCHAPITypeNameMap,
-} from './api.js';
-import { LCHLauncherStandardRecipes } from './recipes/_aggregate.js';
-
 const refactorStuff = function () {};
 
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
@@ -277,6 +219,15 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 const refactorDependancies = function () {};
 
 import OLSKThrottle from 'OLSKThrottle';
+
+import { LCHRecipesModelErrorsFor } from './api.js';
+
+import * as LCHRuntime from '../_shared/LCHRuntime/main.js'
+import {
+	LCHAPITypeEquivalenceMapForRecipes,
+	LCHAPITypeNameMap,
+} from './api.js';
+import { LCHLauncherStandardRecipes } from './recipes/_aggregate.js';
 
 import { LCHLauncherKeyboardEventIsTextInput, LCHLauncherConstrainIndex, LCHLauncherReloadableSubjects } from './ui-logic.js';
 import { LCHCompositionModelErrors } from './api.js';
@@ -734,6 +685,8 @@ const mod = {
 	SetupEverything() {
 		mod.SetupSharedRecipes();
 
+		mod.SetupPageRecipes();
+
 		mod.SetupSharedAPI();
 
 		mod.SetupTasks();
@@ -747,6 +700,55 @@ const mod = {
 				LCHRecipeName: e.LCHRecipeName || OLSKLocalized('LCHStandardRecipeNames')[e.LCHRecipeSignature], // #purge
 			})
 		}).concat(LRTOptions.LCHOptionRecipes);
+	},
+
+	SetupPageRecipes() {
+		if (!LRTOptions.LCHOptionIncludePageRecipes) {
+			return;
+		};
+
+		let inputData = window.LCHPageRecipes;
+
+		if (!inputData) {
+			inputData = (window.wrappedJSObject || {}).LCHPageRecipes;
+		};
+
+		if (!inputData) {
+			function receiveMessage(event) {
+				if (event.source !== window) {
+				  return console.log('not window');;
+				}
+
+				if (event.data === 'LCHPageRecipes') {
+				  return;
+				}
+
+				if (!Array.isArray(event.data)) {
+					return;
+				}
+
+				console.log(event.data.pop());
+
+				window.removeEventListener('message', receiveMessage)
+			}
+			window.addEventListener('message', receiveMessage, false);
+			window.postMessage('LCHPageRecipes', window.location.origin);
+		};
+
+		if (!Array.isArray(inputData)) {
+			return;
+		}
+
+		mod._ValueSharedRecipes.push(...Array.from(inputData).map(function (e) {
+			delete e.LCHRecipeURLFilter;
+			delete e.LCHRecipeIsAutomatic;
+
+			e._LCHRecipeSource = window.location.host;
+			
+			return e;
+		}).filter(function(e) {
+			return !LCHRecipesModelErrorsFor(e);
+		}));
 	},
 
 	SetupSharedAPI() {
