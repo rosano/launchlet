@@ -62,7 +62,7 @@ It is best to run code that is concise and easy to read.
 
 Optionally, Launchlet can include Recipes from any page that sets `LCHPageRecipes` on the `window` object to an `Array`. This allows pages to expose their functionality in a way that is accessible to 3rd parties:
 
-<pre class="LCHGuideExample"><code>window.LCHPageRecipes = [LCHGuideTokenExamplePageRecipe]</code></pre>
+<pre class="LCHGuideExample"><code>window.LCHPageRecipes = [LCHGuideTokenExamplePageRecipe];</code></pre>
 
 For example, when running Launchlet on <a href="https://rosano.ca" target="_blank">rosano.ca</a>, it is possible to choose a 'Send a message' *Command* that originates from the page.
 
