@@ -1,3 +1,5 @@
+<img class="LCHVitrineLogo" src="/_shared/LCHRootLink/ui-assets/logo.svg" align="left">
+
 # Launchlet
 _Interfaz generalizada para la interacción con el teclado_
 

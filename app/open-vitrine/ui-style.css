@@ -47,6 +47,11 @@ button {
 
 	background: hsl(0, 0%, 90%);
 }
+.LCHVitrineLogo {
+	width: 34px;
+	height: 34px;
+	padding-right: 4px;
+}
 
 .ROCORootLink {
 	width: 70px;

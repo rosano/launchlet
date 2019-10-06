@@ -4,6 +4,8 @@ const kDefaultRoutePath = require('./controller.js').OLSKControllerRoutes().shif
 
 Object.entries({
 	LCHVitrineContent: '.LCHVitrineContent',
+	
+	LCHVitrineLogo: '.LCHVitrineLogo',
 
 	LCHVitrineDemoButtonCommit: '.LCHVitrineDemoButtonCommit',
 	LCHVitrineDemoButtonPreview: '.LCHVitrineDemoButtonPreview',
@@ -24,6 +26,10 @@ describe('LCHVitrine_Access', function () {
 	
 	it('shows LCHVitrineContent', function() {
 		browser.assert.elements(LCHVitrineContent, 1)
+	});
+	
+	it('shows LCHVitrineLogo', function() {
+		browser.assert.elements(LCHVitrineLogo, 1)
 	});
 
 	it('shows LCHVitrineDemoButtonCommit', function() {

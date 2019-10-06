@@ -24,8 +24,13 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 		browser.assert.attribute('meta[name=description]', 'content', uLocalized('LCHVitrineDescription'))
 	});
 
+	it('shows LCHVitrineLogo', function () {
+		browser.assert.elements(LCHVitrineLogo, 1);
+	});
+
 	it('localizes LCHVitrineContent', function() {
-		deepEqual(browser.query(LCHVitrineContent).textContent.trim().slice(0, 20), require('fs').readFileSync(require('path').join(__dirname, `text.${ languageCode }.md`), 'utf-8').replace(/[#_]/g, '').trim().slice(0, 20))
+		const item = require('fs').readFileSync(require('path').join(__dirname, `text.${ languageCode }.md`), 'utf-8').replace(/_/g, '');
+		deepEqual(browser.query(LCHVitrineContent).textContent.trim().slice(0, 20), item.slice(item.indexOf('Launchlet')).slice(0, 20))
 	});
 
 	it('localizes LCH_VITRINE_QUICKSILVER_URL', function() {
