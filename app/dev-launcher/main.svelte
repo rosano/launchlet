@@ -171,73 +171,6 @@ let _AllSubjects = _AllPromptRecipes.filter(function (e) {
 	})
 });
 let _AllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
-let _ActionableTypesForPrimarySubject = Object.keys(apiTypeEquivalenceMap).filter(function (type) {
-	return _AllActions.filter(function (e) {
-		return LCHRuntime.LCHRuntimeInputTypes(e.LCHRecipeInputTypes).shift() === type;
-	}).length;
-});
-
-(function StartPromptObjects() {
-	if (LRTOptions.LCHOptionMode === LCHLauncherModePipe()) {
-		 return _PromptObjects.push(...[{
-			LCHPromptClass: 'LCHLauncherSubjectPrompt',
-			LCHPromptHeading: OLSKLocalized('LCHLauncherSubjectPromptHeadingText'),
-			LCHPromptItemsVisible: [],
-			LCHPromptItemsAll: _AllSubjects.filter(function (e) {
-				return !e.LCHRecipeOutputType || _ActionableTypesForPrimarySubject.indexOf(e.LCHRecipeOutputType) !== -1;
-			}),
-			// LCHPromptItemSelected: null,
-			LCHPromptInputThrottle: undefined,
-			LCHPromptFilterText: '',
-			LCHPromptMatchStop: false,
-			LCHPromptResultsThrottle: undefined,
-			LCHPromptDotModeText: '',
-			LCHPromptIsVisible: true,
-		}, {
-			LCHPromptClass: 'LCHLauncherActionPrompt',
-			LCHPromptHeading: OLSKLocalized('LCHLauncherActionPromptHeadingText'),
-			LCHPromptItemsVisible: [],
-			LCHPromptItemsAll: [],
-			// LCHPromptItemSelected: null,
-			LCHPromptInputThrottle: undefined,
-			LCHPromptFilterText: '',
-			LCHPromptMatchStop: false,
-			LCHPromptResultsThrottle: undefined,
-			LCHPromptIsVisible: true,
-		}, {
-			LCHPromptClass: 'LCHLauncherObjectPrompt',
-			LCHPromptHeading: OLSKLocalized('LCHLauncherObjectPromptHeadingText'),
-			LCHPromptItemsVisible: [],
-			LCHPromptItemsAll: [],
-			// LCHPromptItemSelected: null,
-			LCHPromptInputThrottle: undefined,
-			LCHPromptFilterText: '',
-			LCHPromptMatchStop: false,
-			LCHPromptResultsThrottle: undefined,
-			LCHPromptDotModeText: '',
-			LCHPromptIsVisible: false,
-		}]);
-	}
-
-	_PromptObjects.push({
-		LCHPromptClass: 'LCHLauncherFilterPrompt',
-		LCHPromptItemsVisible: [],
-		LCHPromptItemsAll: _AllPromptRecipes,
-		LCHPromptFilterText: '',
-		LCHPromptResultsThrottle: false,
-		LCHPromptIsVisible: true,
-	 });
-
-	if (LRTOptions.LCHOptionMode !== LCHLauncherModePreview()) {
-		return;
-	}
-
-	_PromptObjects[0].LCHPromptItemsVisible = _PromptObjects[0].LCHPromptItemsAll;
-
-	_PromptObjects[0].LCHPromptItemSelected = _PromptObjects[0].LCHPromptItemsAll.filter(function (e) {
-		return e._LCHRecipeIsSelected;
-	}).shift();
-})();
 
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
 import fuzzysort from 'fuzzysort';
@@ -816,7 +749,90 @@ const mod = {
 
 		return LRTOptions.LCHOptionCompletionHandler();
 	},
+
+	// SETUP
+
+	SetupEverything() {
+		mod.SetupPromptObjects();
+	},
+
+	SetupPromptObjects () {
+		if (LRTOptions.LCHOptionMode === LCHLauncherModePipe()) {
+			let _ActionableTypesForPrimarySubject = Object.keys(apiTypeEquivalenceMap).filter(function (type) {
+				return _AllActions.filter(function (e) {
+					return LCHRuntime.LCHRuntimeInputTypes(e.LCHRecipeInputTypes).shift() === type;
+				}).length;
+			});
+			
+			 return _PromptObjects.push(...[{
+				LCHPromptClass: 'LCHLauncherSubjectPrompt',
+				LCHPromptHeading: OLSKLocalized('LCHLauncherSubjectPromptHeadingText'),
+				LCHPromptItemsVisible: [],
+				LCHPromptItemsAll: _AllSubjects.filter(function (e) {
+					return !e.LCHRecipeOutputType || _ActionableTypesForPrimarySubject.indexOf(e.LCHRecipeOutputType) !== -1;
+				}),
+				// LCHPromptItemSelected: null,
+				LCHPromptInputThrottle: undefined,
+				LCHPromptFilterText: '',
+				LCHPromptMatchStop: false,
+				LCHPromptResultsThrottle: undefined,
+				LCHPromptDotModeText: '',
+				LCHPromptIsVisible: true,
+			}, {
+				LCHPromptClass: 'LCHLauncherActionPrompt',
+				LCHPromptHeading: OLSKLocalized('LCHLauncherActionPromptHeadingText'),
+				LCHPromptItemsVisible: [],
+				LCHPromptItemsAll: [],
+				// LCHPromptItemSelected: null,
+				LCHPromptInputThrottle: undefined,
+				LCHPromptFilterText: '',
+				LCHPromptMatchStop: false,
+				LCHPromptResultsThrottle: undefined,
+				LCHPromptIsVisible: true,
+			}, {
+				LCHPromptClass: 'LCHLauncherObjectPrompt',
+				LCHPromptHeading: OLSKLocalized('LCHLauncherObjectPromptHeadingText'),
+				LCHPromptItemsVisible: [],
+				LCHPromptItemsAll: [],
+				// LCHPromptItemSelected: null,
+				LCHPromptInputThrottle: undefined,
+				LCHPromptFilterText: '',
+				LCHPromptMatchStop: false,
+				LCHPromptResultsThrottle: undefined,
+				LCHPromptDotModeText: '',
+				LCHPromptIsVisible: false,
+			}]);
+		}
+
+		_PromptObjects.push({
+			LCHPromptClass: 'LCHLauncherFilterPrompt',
+			LCHPromptItemsVisible: [],
+			LCHPromptItemsAll: _AllPromptRecipes,
+			LCHPromptFilterText: '',
+			LCHPromptResultsThrottle: false,
+			LCHPromptIsVisible: true,
+		 });
+
+		if (LRTOptions.LCHOptionMode !== LCHLauncherModePreview()) {
+			return;
+		}
+
+		_PromptObjects[0].LCHPromptItemsVisible = _PromptObjects[0].LCHPromptItemsAll;
+
+		_PromptObjects[0].LCHPromptItemSelected = _PromptObjects[0].LCHPromptItemsAll.filter(function (e) {
+			return e._LCHRecipeIsSelected;
+		}).shift();
+	},
+
+	// LIFECYCLE
+
+	LifecycleModuleWillMount() {
+		mod.SetupEverything();
+	},
+
 };
+
+mod.LifecycleModuleWillMount();
 
 import LCHLauncherPrompt from './submodules/LCHLauncherPrompt/main.svelte';
 import LCHLauncherPipeItem from './submodules/LCHLauncherPipeItem/main.svelte';
