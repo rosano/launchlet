@@ -99,6 +99,13 @@ export const LCHBuildBoomarkletTemplate = function () {
 	return `(function () {
     LCHBuildBoomarkletTemplate_Script;
 
+    Launchlet.LCHTasksRun([{
+      LCHRecipeCallback () {},
+      LCHRecipeStyle: \`LCHBuildBoomarkletTemplate_Style\`,
+      LCHRecipeURLFilter: '*',
+      LCHRecipeIsAutomatic: true,
+    }]);
+
     Launchlet.LCHSingletonCreate(Object.assign(LCHBuildBoomarkletTemplate_Options, {
       LCHOptionRecipes: LCHBuildBoomarkletTemplate_Recipes,
     }));
