@@ -342,12 +342,11 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 
 import OLSKThrottle from 'OLSKThrottle';
 
-let rootElement;
-
 import { LCHLauncherKeyboardEventIsTextInput, LCHLauncherConstrainIndex, LCHLauncherReloadableSubjects } from './ui-logic.js';
 import { LCHCompositionModelErrors } from './api.js';
 import { LCHRunCommandRecipe } from './recipes/actions/LCHRunCommand/main.js';
 import { LCHPrimitiveURLCallback } from './recipes/primitives/URL/main.js';
+
 const mod = {
 
 	// VALUE
@@ -457,7 +456,7 @@ const mod = {
 	// INTERFACE
 
 	interfaceDidClickBody (event) {
-		if (rootElement.contains(event.target)) {
+		if (mod._ValueRootElementInstance.contains(event.target)) {
 	  	return;
 		}
 
@@ -863,7 +862,7 @@ import LCHLauncherPipeItem from './submodules/LCHLauncherPipeItem/main.svelte';
 </script>
 <svelte:window on:keydown={ mod.interfaceDidKeydown } on:click={ mod.interfaceDidClickBody } on:touchstart={ mod.interfaceDidClickBody }/>
 
-<div class="Container LCHLauncher" bind:this={ rootElement }>
+<div class="Container LCHLauncher" bind:this={ mod._ValueRootElementInstance }>
 
 {#each mod._ValuePromptObjects as e}
 
