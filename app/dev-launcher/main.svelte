@@ -240,6 +240,7 @@ import {
 	LCHAPIExecuteRecipe,
 	LCHAPIExecuteComposition,
 	LCHComponentDescriptorsModelErrorsFor,
+	LCHRecipeProxyModelErrorsFor,
 } from './api.js';
 import * as apiComponents from './recipes/_components.js';
 
@@ -654,7 +655,7 @@ const mod = {
 		
 		setTimeout(function () {
 			mod._ValueFilterInputInstance.focus();
-		});
+		}, 20);
 	},
 
 	ReactScrollSelectedItemIntoView() {
@@ -677,10 +678,10 @@ const mod = {
 
 	// SETUP
 
-	SetupEverything() {
+	async SetupEverything() {
 		mod.SetupSharedRecipes();
 
-		mod.SetupPageRecipes();
+		await mod.SetupPageRecipes();
 
 		mod.SetupSharedAPI();
 
@@ -697,7 +698,7 @@ const mod = {
 		}).concat(LCHRuntimeFilteredRecipes(LRTOptions.LCHOptionRecipes, window.location.href));
 	},
 
-	SetupPageRecipes() {
+	async SetupPageRecipes() {
 		if (!LRTOptions.LCHOptionIncludePageRecipes) {
 			return;
 		};
@@ -709,25 +710,43 @@ const mod = {
 		};
 
 		if (!inputData) {
-			function receiveMessage(event) {
-				if (event.source !== window) {
-				  return console.log('not window');;
-				}
+			await (new Promise(function (resolve, reject) {
+				function receiveMessage(event) {
+					if (event.source !== window && !_LCHIsTestingBehaviour()) {
+					  return console.log('not window');
+					}
 
-				if (event.data === 'LCHPageRecipes') {
-				  return;
-				}
+					if (event.data === 'LCHPageRecipes') {
+					  return;
+					}
 
-				if (!Array.isArray(event.data)) {
-					return;
-				}
+					if (!Array.isArray(event.data)) {
+						return;
+					}
 
-				console.log(event.data.pop());
+					window.removeEventListener('message', receiveMessage);
 
-				window.removeEventListener('message', receiveMessage)
-			}
-			window.addEventListener('message', receiveMessage, false);
-			window.postMessage('LCHPageRecipes', window.location.origin);
+					inputData = event.data.filter(function (e) {
+						return !LCHRecipeProxyModelErrorsFor(e);
+					}).map(function (e) {
+						return {
+							LCHRecipeName: e.LCHRecipeProxyName,
+							LCHRecipeSignature: e.LCHRecipeProxySignature,
+							LCHRecipeCallback () {
+								window.postMessage(e.LCHRecipeProxySignature, window.location.origin);
+							},
+						};
+					});
+
+					resolve();
+				};
+
+				window.addEventListener('message', receiveMessage, false);
+
+				window.postMessage('LCHPageRecipes', window.location.origin);
+
+				setTimeout(resolve, 20);
+			}))
 		};
 
 		if (!Array.isArray(inputData)) {
