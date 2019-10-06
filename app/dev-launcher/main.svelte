@@ -354,13 +354,18 @@ const mod = {
 
 	// INTERFACE
 
-	interfaceDidClickBody (event) {
+	InterfaceBodyDidClick (event) {
+		if (!mod._ValueDidMount) {
+			return;
+		};
+		
 		if (mod._ValueRootElementInstance.contains(event.target)) {
 	  	return;
 		}
 
 		mod.commandExit();
 	},
+
 	interfaceDidClickPrompt (inputData) {
 		if (LRTOptions.LCHOptionMode !== LCHLauncherModePipe()) {
 			return;
@@ -878,7 +883,10 @@ const mod = {
 	},
 
 	LifecycleModuleDidMount() {
-		mod.ReactFocusFilterInput();
+		setTimeout(function () {
+			mod._ValueDidMount = true;
+		}, 100)
+		// mod.ReactFocusFilterInput();
 	},
 
 	LifecycleModuleDidUpdate() {
@@ -898,7 +906,7 @@ afterUpdate(mod.LifecycleModuleDidUpdate);
 import LCHLauncherPrompt from './submodules/LCHLauncherPrompt/main.svelte';
 import LCHLauncherPipeItem from './submodules/LCHLauncherPipeItem/main.svelte';
 </script>
-<svelte:window on:keydown={ mod.interfaceDidKeydown } on:click={ mod.interfaceDidClickBody } on:touchstart={ mod.interfaceDidClickBody }/>
+<svelte:window on:keydown={ mod.interfaceDidKeydown } on:click={ mod.InterfaceBodyDidClick } on:touchstart={ mod.InterfaceBodyDidClick }/>
 
 <div class="Container LCHLauncher" bind:this={ mod._ValueRootElementInstance }>
 
