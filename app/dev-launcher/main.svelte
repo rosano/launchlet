@@ -344,18 +344,6 @@ import OLSKThrottle from 'OLSKThrottle';
 
 let rootElement;
 
-let inputElement;
-import { onMount } from 'svelte';
-onMount(function () {
-	if (LRTOptions.LCHOptionMode === LCHLauncherModePipe()) {
-		return;
-	}
-	
-	setTimeout(function () {
-		inputElement.focus();
-	});
-});
-
 import { LCHLauncherKeyboardEventIsTextInput, LCHLauncherConstrainIndex, LCHLauncherReloadableSubjects } from './ui-logic.js';
 import { LCHCompositionModelErrors } from './api.js';
 import { LCHRunCommandRecipe } from './recipes/actions/LCHRunCommand/main.js';
@@ -721,6 +709,16 @@ const mod = {
 
 	// REACT
 
+	ReactFocusFilterInput () {
+		if (LRTOptions.LCHOptionMode === LCHLauncherModePipe()) {
+			return;
+		}
+		
+		setTimeout(function () {
+			mod._ValueFilterInputInstance.focus();
+		});
+	},
+
 	ReactScrollSelectedItemIntoView() {
 		if (_LCHIsTestingBehaviour()) {
 			return;
@@ -842,6 +840,10 @@ const mod = {
 		mod.SetupEverything();
 	},
 
+	LifecycleModuleDidMount() {
+		mod.ReactFocusFilterInput();
+	},
+
 	LifecycleModuleDidUpdate() {
 		mod.ReactScrollSelectedItemIntoView();
 	},
@@ -849,6 +851,9 @@ const mod = {
 };
 
 mod.LifecycleModuleWillMount();
+
+import { onMount } from 'svelte';
+onMount(mod.LifecycleModuleDidMount);
 
 import { afterUpdate } from 'svelte';
 afterUpdate(mod.LifecycleModuleDidUpdate);
@@ -882,7 +887,7 @@ import LCHLauncherPipeItem from './submodules/LCHLauncherPipeItem/main.svelte';
 		{/if}
 
 		{#if e.LCHPromptClass === 'LCHLauncherFilterPrompt' }
-			<input class="LCHLauncherFilterInput" placeholder="{ LRTOptions.LCHOptionMode === LCHLauncherModePreview() ? OLSKLocalized('LCHLauncherInputPlaceholderPreview') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ mod._ValuePromptObjects[0].LCHPromptFilterText } bind:this={ inputElement } on:input={ () => ActivePromptFilterTextShouldUpdate(inputElement.value) } />
+			<input class="LCHLauncherFilterInput" placeholder="{ LRTOptions.LCHOptionMode === LCHLauncherModePreview() ? OLSKLocalized('LCHLauncherInputPlaceholderPreview') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ mod._ValuePromptObjects[0].LCHPromptFilterText } bind:this={ mod._ValueFilterInputInstance } on:input={ () => ActivePromptFilterTextShouldUpdate(mod._ValueFilterInputInstance.value) } />
 		{/if}
 
 		{#if ['LCHLauncherFilterPrompt', 'LCHLauncherActionPrompt'].indexOf(e.LCHPromptClass) === -1 && e.LCHPromptDotModeEnabled }
