@@ -82,11 +82,6 @@ import {
 	LCHAPITypeNameMap,
 } from './api.js';
 import { LCHLauncherStandardRecipes } from './recipes/_aggregate.js';
-const allRecipes = LCHLauncherStandardRecipes().map(function (e) {
-	return Object.assign(e, {
-		LCHRecipeName: e.LCHRecipeName || OLSKLocalized('LCHStandardRecipeNames')[e.LCHRecipeSignature], // #purge
-	})
-}).concat(LRTOptions.LCHOptionRecipes);
 
 const refactorStuff = function () {};
 
@@ -737,6 +732,8 @@ const mod = {
 	// SETUP
 
 	SetupEverything() {
+		mod.SetupSharedRecipes();
+
 		mod.SetupSharedAPI();
 
 		mod.SetupTasks();
@@ -744,8 +741,16 @@ const mod = {
 		mod.SetupPromptObjects();
 	},
 
+	SetupSharedRecipes() {
+		mod._ValueSharedRecipes = LCHLauncherStandardRecipes().map(function (e) {
+			return Object.assign(e, {
+				LCHRecipeName: e.LCHRecipeName || OLSKLocalized('LCHStandardRecipeNames')[e.LCHRecipeSignature], // #purge
+			})
+		}).concat(LRTOptions.LCHOptionRecipes);
+	},
+
 	SetupSharedAPI() {
-		mod._ValueSharedAPI = LCHRuntime.LCHRuntimeAPI(allRecipes);
+		mod._ValueSharedAPI = LCHRuntime.LCHRuntimeAPI(mod._ValueSharedRecipes);
 	},
 
 	SetupTasks() {
@@ -753,16 +758,16 @@ const mod = {
 			return;
 		};
 
-		LCHAPIRunTasks(allRecipes, window.location.href);
+		LCHAPIRunTasks(mod._ValueSharedRecipes, window.location.href);
 	},
 
 	SetupPromptObjects () {
-		mod._ValueAllPromptRecipes = LCHLauncherUIRecipesForMode(allRecipes, LRTOptions.LCHOptionMode);
+		mod._ValueAllPromptRecipes = LCHLauncherUIRecipesForMode(mod._ValueSharedRecipes, LRTOptions.LCHOptionMode);
 
 		if (LRTOptions.LCHOptionMode === LCHLauncherModePipe()) {
-			mod._ValueTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes);
+			mod._ValueTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(mod._ValueSharedRecipes);
 			
-			const typeNameMap = LCHAPITypeNameMap(allRecipes);
+			const typeNameMap = LCHAPITypeNameMap(mod._ValueSharedRecipes);
 
 			mod._ValueAllSubjects = mod._ValueAllPromptRecipes.filter(function (e) {
 				if (LCHRecipesModelIsSubject(e)) {
