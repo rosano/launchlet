@@ -1,15 +1,17 @@
 <script>
 export let LRTOptions = {};
 
-import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
-
-import { LCHLauncherOptions } from './ui-logic.js';
-LRTOptions = LCHLauncherOptions(LRTOptions, _LCHIsTestingBehaviour() ? undefined : console.warn);
-
 import OLSKInternational from 'OLSKInternational';
 export const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[LRTOptions.LCHOptionLanguage]);
 };
+
+import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
+
+const refactorTop = function () {};
+
+import { LCHLauncherOptions } from './ui-logic.js';
+LRTOptions = LCHLauncherOptions(LRTOptions, _LCHIsTestingBehaviour() ? undefined : console.warn);
 
 import {
 	LCHLauncherModeCommit,
@@ -144,12 +146,7 @@ async function apiStart(inputData) {
 	})(inputData.LCHCompositionAction ? await LCHAPIExecuteComposition(inputData, api) : await LCHAPIExecuteRecipe(inputData, [], api));
 }
 
-import {
-	LCHRecipesModelIsCommand,
-	LCHRecipesModelIsSubject,
-	LCHRecipesModelIsAction,
-} from './api.js';
-import { LCHLauncherUIRecipesForMode } from './ui-logic.js';
+const refactorStuff = function () {};
 
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
 import fuzzysort from 'fuzzysort';
@@ -340,12 +337,21 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 	})();
 }
 
+const refactorDependancies = function () {};
+
 import OLSKThrottle from 'OLSKThrottle';
 
 import { LCHLauncherKeyboardEventIsTextInput, LCHLauncherConstrainIndex, LCHLauncherReloadableSubjects } from './ui-logic.js';
 import { LCHCompositionModelErrors } from './api.js';
 import { LCHRunCommandRecipe } from './recipes/actions/LCHRunCommand/main.js';
 import { LCHPrimitiveURLCallback } from './recipes/primitives/URL/main.js';
+
+import {
+	LCHRecipesModelIsCommand,
+	LCHRecipesModelIsSubject,
+	LCHRecipesModelIsAction,
+} from './api.js';
+import { LCHLauncherUIRecipesForMode } from './ui-logic.js';
 
 const mod = {
 
