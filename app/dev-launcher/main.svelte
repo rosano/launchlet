@@ -101,15 +101,6 @@ import { LCHAPIRunTasks } from './api.js';
 	LCHAPIRunTasks(allRecipes, window.location.href);
 })();
 
-import {
-	LCHAPIExecuteRecipe,
-	LCHAPIExecuteComposition,
-	LCHComponentDescriptorsModelErrorsFor,
-} from './api.js';
-import * as apiComponents from './recipes/_components.js';
-import { writable } from 'svelte/store';
-const secondaryComponent = writable(null);
-
 const refactorStuff = function () {};
 
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
@@ -316,6 +307,13 @@ import {
 	LCHRecipesModelIsAction,
 } from './api.js';
 import { LCHLauncherUIRecipesForMode } from './ui-logic.js';
+
+import {
+	LCHAPIExecuteRecipe,
+	LCHAPIExecuteComposition,
+	LCHComponentDescriptorsModelErrorsFor,
+} from './api.js';
+import * as apiComponents from './recipes/_components.js';
 
 const mod = {
 
@@ -697,14 +695,15 @@ const mod = {
 			};
 
 			LCHInstanceProps[inputData.LCHComponentDescriptorCompletionHandlerSignature] = function () {
-				secondaryComponent.set(null);
+				delete mod._ValueSecondaryComponentDescriptor;
+
 				mod.commandExit();
 			};
 
-			return secondaryComponent.set({
+			mod._ValueSecondaryComponentDescriptor = {
 				LCHInstanceClass: apiComponents[inputData.LCHComponentDescriptorName],
 				LCHInstanceProps,
-			});
+			};
 		});
 	},
 
@@ -911,8 +910,8 @@ import LCHLauncherPipeItem from './submodules/LCHLauncherPipeItem/main.svelte';
 
 </div>
 	
-{#if $secondaryComponent}
-	<svelte:component this={ $secondaryComponent.LCHInstanceClass } {...$secondaryComponent.LCHInstanceProps} />
+{#if mod._ValueSecondaryComponentDescriptor}
+	<svelte:component this={ mod._ValueSecondaryComponentDescriptor.LCHInstanceClass } {...mod._ValueSecondaryComponentDescriptor.LCHInstanceProps} />
 {/if}
 
 <style src="./ui-style.css"></style>
