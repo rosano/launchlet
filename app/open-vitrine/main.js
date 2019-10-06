@@ -12,21 +12,15 @@ export const mod = {
 	// INTERFACE
 
 	InterfaceDemoButtonCommitDidClick() {
-		setTimeout(function () {
-			mod.CommandDemoCommit();
-		})
+		mod.CommandDemoCommit();
 	},
 
 	InterfaceDemoButtonPreviewDidClick() {
-		setTimeout(function () {
-			mod.CommandDemoPreview();
-		})
+		mod.CommandDemoPreview();
 	},
 
 	InterfaceDemoButtonPipeDidClick() {
-		setTimeout(function () {
-			mod.CommandDemoPipe();
-		})
+		mod.CommandDemoPipe();
 	},
 
 	// COMMAND
