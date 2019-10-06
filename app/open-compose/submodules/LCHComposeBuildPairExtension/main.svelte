@@ -106,6 +106,7 @@ const mod = {
 	},
 	CommandPostPayload (inputData) {
 		window.postMessage({
+			LBXRequestName: 'DispatchRequestStorePayload',
 			LBXRequestEncryptedData: inputData,
 		}, window.location.href);
 	},

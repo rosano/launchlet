@@ -135,7 +135,7 @@ const mod = {
 			LBXPayloadConfirmation: Math.random().toString(),
 		};
 
-		mod._LCHComposeBuildPairExtension.DispatchSendPayload(OLSK_TESTING_BEHAVIOUR() ? JSON.stringify(payload) : await mod._CommandEncrypt(JSON.stringify(payload), mod.ValuePublicKey()), payload.LBXPayloadConfirmation)
+		mod._LCHComposeBuildPairExtension.DispatchSendPayload(OLSK_TESTING_BEHAVIOUR() ? 'LBX_TESTING_REQUEST_DATA' : await mod._CommandEncrypt(JSON.stringify(payload), mod.ValuePublicKey()), payload.LBXPayloadConfirmation)
 	},
 	async _CommandEncrypt (param1, param2) {
 		if (_LCH_DISABLE_ENCRYPTION()) {

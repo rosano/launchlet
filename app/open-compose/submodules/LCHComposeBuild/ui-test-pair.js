@@ -25,11 +25,14 @@ describe('LCHComposeBuildPair', function () {
 			browser.fill(LCHBuildPairExtensionPublicKeyField, kStubPublicKeyValid())
 		});
 		
-		it('posts message with LBXRequestEncryptedData', async function() {
-			deepEqual(typeof (await browser.OLSKMessageAsync(function () {
+		it('posts message', async function() {
+			deepEqual(await browser.OLSKMessageAsync(function () {
 				browser.click(LCHBuildPairExtensionSubmitButton)
 				return browser.wait({ element: LCHBuildPairExtensionDeleteKeyButton })
-			})).LBXRequestEncryptedData, 'string')
+			}), {
+				LBXRequestName: 'DispatchRequestStorePayload',
+				LBXRequestEncryptedData: 'LBX_TESTING_REQUEST_DATA',
+			});
 		});
 	
 	});
@@ -37,10 +40,13 @@ describe('LCHComposeBuildPair', function () {
 	context('ModelChange', function testModelChange () {
 		
 		it('posts message with LBXRequestEncryptedData', async function() {
-			deepEqual(typeof (await browser.OLSKMessageAsync(async function () {
+			deepEqual(await browser.OLSKMessageAsync(async function () {
 				await browser.check(LCHComposeBuildModePipeEnabledToggle);
 				await browser.wait({ element: LCHComposeBuildModePipeEnabledToggle })
-			})).LBXRequestEncryptedData, 'string')
+			}), {
+				LBXRequestName: 'DispatchRequestStorePayload',
+				LBXRequestEncryptedData: 'LBX_TESTING_REQUEST_DATA',
+			});
 		});
 	
 	});
