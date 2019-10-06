@@ -109,42 +109,6 @@ import {
 import * as apiComponents from './recipes/_components.js';
 import { writable } from 'svelte/store';
 const secondaryComponent = writable(null);
-async function apiStart(inputData) {
-	return await (function (inputData) {
-		if (!inputData) {
-			return Promise.resolve(inputData);
-		}
-
-		if (typeof inputData !== 'object') {
-			return Promise.resolve(inputData);
-		}
-
-		if (LCHComponentDescriptorsModelErrorsFor(inputData)) {
-			return Promise.resolve(inputData);
-		}
-
-		return new Promise(function (resolve, reject) {
-			let LCHInstanceProps = inputData.LCHComponentDescriptorProps;
-
-
-			if (inputData.LCHComponentDescriptorOLSKLocalized) {
-				Object.assign(LCHInstanceProps, {
-					OLSKLocalized,
-				});
-			};
-
-			LCHInstanceProps[inputData.LCHComponentDescriptorCompletionHandlerSignature] = function () {
-				secondaryComponent.set(null);
-				mod.commandExit();
-			};
-
-			return secondaryComponent.set({
-				LCHInstanceClass: apiComponents[inputData.LCHComponentDescriptorName],
-				LCHInstanceProps,
-			});
-		});
-	})(inputData.LCHCompositionAction ? await LCHAPIExecuteComposition(inputData, api) : await LCHAPIExecuteRecipe(inputData, [], api));
-}
 
 const refactorStuff = function () {};
 
@@ -286,7 +250,7 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 			return;
 		}
 
-		apiStart(mod._ValuePromptObjects[0].LCHPromptItemSelected);
+		mod.CommandRun(mod._ValuePromptObjects[0].LCHPromptItemSelected);
 	})();
 
 	if (LRTOptions.LCHOptionMode !== LCHLauncherModePipe()) {
@@ -693,17 +657,57 @@ const mod = {
 	},
 	async commandTerminate () {
 		if (LRTOptions.LCHOptionMode === LCHLauncherModePipe()) {
-			if (mod.commandReloadSubjects(await apiStart(mod.DataComposition()))) {
+			if (mod.commandReloadSubjects(await mod.CommandRun(mod.DataComposition()))) {
 				return;
 			};
 		}
 
 		if (LRTOptions.LCHOptionMode === LCHLauncherModeCommit()) {
-			await apiStart(mod._ValuePromptObjects[0].LCHPromptItemSelected);
+			await mod.CommandRun(mod._ValuePromptObjects[0].LCHPromptItemSelected);
 		}
 
 		mod.commandExit();
 	},
+
+	async CommandRun(inputData) {
+		return mod._CommandRun(inputData.LCHCompositionAction ? await LCHAPIExecuteComposition(inputData, api) : await LCHAPIExecuteRecipe(inputData, [], api));
+	},
+
+	async _CommandRun(inputData) {
+		if (!inputData) {
+			return Promise.resolve(inputData);
+		}
+
+		if (typeof inputData !== 'object') {
+			return Promise.resolve(inputData);
+		}
+
+		if (LCHComponentDescriptorsModelErrorsFor(inputData)) {
+			return Promise.resolve(inputData);
+		}
+
+		return new Promise(function (resolve, reject) {
+			let LCHInstanceProps = inputData.LCHComponentDescriptorProps;
+
+
+			if (inputData.LCHComponentDescriptorOLSKLocalized) {
+				Object.assign(LCHInstanceProps, {
+					OLSKLocalized,
+				});
+			};
+
+			LCHInstanceProps[inputData.LCHComponentDescriptorCompletionHandlerSignature] = function () {
+				secondaryComponent.set(null);
+				mod.commandExit();
+			};
+
+			return secondaryComponent.set({
+				LCHInstanceClass: apiComponents[inputData.LCHComponentDescriptorName],
+				LCHInstanceProps,
+			});
+		});
+	},
+
 	commandExit () {
 		if (typeof LRTOptions.LCHOptionCompletionHandler !== 'function') {
 			return;
