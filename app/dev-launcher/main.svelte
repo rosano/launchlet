@@ -1,5 +1,6 @@
 <script>
 export let LRTOptions = {};
+export let LRTLauncherDidFinish = null;
 
 import { LCHLauncherOptions } from './ui-logic.js';
 LRTOptions = LCHLauncherOptions(LRTOptions, _LCHIsTestingBehaviour() ? undefined : console.warn);
@@ -644,11 +645,11 @@ const mod = {
 	},
 
 	commandExit () {
-		if (typeof LRTOptions.LCHOptionCompletionHandler !== 'function') {
+		if (typeof LRTLauncherDidFinish !== 'function') {
 			return;
 		}
 
-		return LRTOptions.LCHOptionCompletionHandler();
+		return LRTLauncherDidFinish();
 	},
 
 	// REACT

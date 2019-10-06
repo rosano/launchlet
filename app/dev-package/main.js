@@ -46,22 +46,19 @@ export const mod = {
 			document.body.appendChild(mod._ValueTarget = document.createElement('div'));
 		}
 
-		const callback = inputData.LCHOptionCompletionHandler;
-
 		mod._ValueSingleton = new mod._ValueClass({
 			target: mod._ValueTarget,
 			props: {
-				LRTOptions: Object.assign(inputData, {
-					LCHOptionCompletionHandler () {
-						mod.LifecycleSingletonDestroy();
+				LRTOptions: inputData,
+				LRTLauncherDidFinish () {
+					mod.LifecycleSingletonDestroy();
 
-						if (!callback) {
-							return;
-						}
+					if (typeof inputData.LCHOptionCompletionHandler !== 'function') {
+						return;
+					}
 
-						callback();
-					},
-				}),
+					inputData.LCHOptionCompletionHandler();
+				},
 			},
 		});
 	},

@@ -35,14 +35,14 @@ const mod = {
 					LCHOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 					LCHOptionIncludePageRecipes: !!params.LCHOptionIncludePageRecipes || false,
 					LCHOptionRunAutomaticRecipes: !!params.LCHOptionRunAutomaticRecipes || false,
-					LCHOptionCompletionHandler () {
-						let span = document.createElement('span');
-						span.classList.add('TestLauncherDidFinish');
-						document.body.appendChild(span);
+				},
+				LRTLauncherDidFinish () {
+					let span = document.createElement('span');
+					span.classList.add('TestLauncherDidFinish');
+					document.body.appendChild(span);
 
-						app.$destroy();
-						app = null;
-					},
+					app.$destroy();
+					app = null;
 				},
 			},
 		});
