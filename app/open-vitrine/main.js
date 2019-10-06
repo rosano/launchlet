@@ -68,14 +68,14 @@ export const mod = {
 window.LCHPageRecipes = _LCHVitrineRecipes.slice();
 
 (function() {
-	const LCHPageRecipesProxies = window.LCHPageRecipes.map(function (e) {
+	const proxyObjects = window.LCHPageRecipes.map(function (e) {
 		return {
 			LCHRecipeProxyName: e.LCHRecipeName,
 			LCHRecipeProxySignature: e.LCHRecipeSignature,
 		};
 	});
 
-	const LCHPageRecipesSignatureMap = window.LCHPageRecipes.reduce(function (coll, item) {
+	const signaturesMap = window.LCHPageRecipes.reduce(function (coll, item) {
 		coll[item.LCHRecipeSignature] = item;
 
 		return coll;
@@ -87,12 +87,11 @@ window.LCHPageRecipes = _LCHVitrineRecipes.slice();
 	  }
 
 	  if (event.data === 'LCHPageRecipes') {
-	  	return event.source.postMessage(LCHPageRecipesProxies, event.origin);
+	  	return event.source.postMessage(proxyObjects, event.origin);
 	  };
 
-	  if (LCHPageRecipesSignatureMap[event.data]) {
-	  	return LCHPageRecipesSignatureMap[event.data].LCHRecipeCallback();
+	  if (signaturesMap[event.data]) {
+	  	return signaturesMap[event.data].LCHRecipeCallback();
 	  };
-
 	}, false);
 })();
