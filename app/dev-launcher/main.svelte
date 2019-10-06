@@ -924,7 +924,7 @@ import LCHLauncherPipeItem from './submodules/LCHLauncherPipeItem/main.svelte';
 		{/if}
 
 		{#if e.LCHPromptClass === 'LCHLauncherFilterPrompt' }
-			<input class="LCHLauncherFilterInput" placeholder="{ LRTOptions.LCHOptionMode === LCHLauncherModePreview() ? OLSKLocalized('LCHLauncherInputPlaceholderPreview') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ mod._ValuePromptObjects[0].LCHPromptFilterText } bind:this={ mod._ValueFilterInputInstance } on:input={ () => ActivePromptFilterTextShouldUpdate(mod._ValueFilterInputInstance.value) } />
+			<input class="LCHLauncherFilterInput" placeholder="{ LRTOptions.LCHOptionMode === LCHLauncherModePreview() ? OLSKLocalized('LCHLauncherInputPlaceholderPreview') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ mod._ValuePromptObjects[0].LCHPromptFilterText } bind:this={ mod._ValueFilterInputInstance } on:input={ () => ActivePromptFilterTextShouldUpdate(mod._ValueFilterInputInstance.value) } autofocus />
 		{/if}
 
 		{#if ['LCHLauncherFilterPrompt', 'LCHLauncherActionPrompt'].indexOf(e.LCHPromptClass) === -1 && e.LCHPromptDotModeEnabled }
