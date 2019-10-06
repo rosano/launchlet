@@ -645,6 +645,10 @@ const mod = {
 	},
 
 	commandExit () {
+		if (mod._ValueFilterInputInstance === document.activeElement) {
+			mod._ValueFilterInputInstance.blur();
+		};
+
 		if (typeof LRTLauncherDidFinish !== 'function') {
 			return;
 		}
