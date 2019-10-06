@@ -356,25 +356,6 @@ onMount(function () {
 	});
 });
 
-import { afterUpdate } from 'svelte';
-afterUpdate(function () {
-	if (_LCHIsTestingBehaviour()) {
-		return;
-	}
-
-	/* @LCHLauncherResultListCapAndScroll */
-	let element = document.querySelector('.LCHLauncherResultListItemSelected');
-
-	if (!element) {
-		return;
-	}
-
-	element.scrollIntoView({
-		block: 'nearest',
-		inline: 'nearest',
-	});
-});
-
 import { LCHLauncherKeyboardEventIsTextInput, LCHLauncherConstrainIndex, LCHLauncherReloadableSubjects } from './ui-logic.js';
 import { LCHCompositionModelErrors } from './api.js';
 import { LCHRunCommandRecipe } from './recipes/actions/LCHRunCommand/main.js';
@@ -738,6 +719,26 @@ const mod = {
 		return LRTOptions.LCHOptionCompletionHandler();
 	},
 
+	// REACT
+
+	ReactScrollSelectedItemIntoView() {
+		if (_LCHIsTestingBehaviour()) {
+			return;
+		}
+
+		/* @LCHLauncherResultListCapAndScroll */
+		let element = document.querySelector('.LCHLauncherResultListItemSelected');
+
+		if (!element) {
+			return;
+		}
+
+		element.scrollIntoView({
+			block: 'nearest',
+			inline: 'nearest',
+		});
+	},
+
 	// SETUP
 
 	SetupEverything() {
@@ -841,9 +842,16 @@ const mod = {
 		mod.SetupEverything();
 	},
 
+	LifecycleModuleDidUpdate() {
+		mod.ReactScrollSelectedItemIntoView();
+	},
+
 };
 
 mod.LifecycleModuleWillMount();
+
+import { afterUpdate } from 'svelte';
+afterUpdate(mod.LifecycleModuleDidUpdate);
 
 import LCHLauncherPrompt from './submodules/LCHLauncherPrompt/main.svelte';
 import LCHLauncherPipeItem from './submodules/LCHLauncherPipeItem/main.svelte';
