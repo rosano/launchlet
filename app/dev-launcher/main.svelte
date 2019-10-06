@@ -770,7 +770,7 @@ const mod = {
 	},
 
 	SetupTasks() {
-		if (!LRTOptions.LCHOptionRunTasks) {
+		if (!LRTOptions.LCHOptionRunAutomaticRecipes) {
 			return;
 		};
 

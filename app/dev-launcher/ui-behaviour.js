@@ -34,7 +34,7 @@ const mod = {
 					LCHOptionMode: Launchlet[params.LCHOptionMode || 'LCHModeCommit'],
 					LCHOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 					LCHOptionIncludePageRecipes: !!params.LCHOptionIncludePageRecipes || false,
-					LCHOptionRunTasks: !!params.LCHOptionRunTasks || false,
+					LCHOptionRunAutomaticRecipes: !!params.LCHOptionRunAutomaticRecipes || false,
 					LCHOptionCompletionHandler () {
 						let span = document.createElement('span');
 						span.classList.add('TestLauncherDidFinish');

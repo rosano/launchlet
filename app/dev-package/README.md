@@ -98,7 +98,7 @@ Creates a singleton instance of the launcher. Destroys existing instance if ther
 
 - LCHOptionIncludePageRecipes (boolean) – `false`
 
-- LCHOptionRunTasks (boolean) – `false`
+- LCHOptionRunAutomaticRecipes (boolean) – `false`
 
 - LCHOptionCompletionHandler (function) – `undefined`
 
