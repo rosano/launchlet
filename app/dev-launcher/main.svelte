@@ -152,23 +152,6 @@ import {
 import { LCHLauncherUIRecipesForMode } from './ui-logic.js';
 let _PromptActiveIndex = 0;
 let _AllPromptRecipes = LCHLauncherUIRecipesForMode(allRecipes, LRTOptions.LCHOptionMode);
-let _AllSubjects = _AllPromptRecipes.filter(function (e) {
-	if (LCHRecipesModelIsSubject(e)) {
-		return true;
-	};
-
-	if (LCHRecipesModelIsCommand(e)) {
-		return true;
-	};
-
-	return false;
-}).filter(function (e) {
-	return !e.LCHRecipeOutputType || (Object.keys(apiTypeEquivalenceMap).indexOf(e.LCHRecipeOutputType) !== -1);
-}).map(function (e) {
-	return Object.assign(e, {
-		_LCHRecipeOutputTypeName: typeNameMap[e.LCHRecipeOutputType],
-	})
-});
 
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
 import fuzzysort from 'fuzzysort';
@@ -349,7 +332,7 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 
 		mod._ValuePromptObjects[2].LCHPromptIsVisible = LCHRecipesModelActionTakesObject(mod._ValuePromptObjects[1].LCHPromptItemSelected);
 
-		mod._ValuePromptObjects[2].LCHPromptItemsAll = !mod._ValuePromptObjects[2].LCHPromptIsVisible || LCHRuntime.LCHRuntimeInputTypes(mod._ValuePromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop() === 'String' ? [] : _AllSubjects.filter(function (e) {
+		mod._ValuePromptObjects[2].LCHPromptItemsAll = !mod._ValuePromptObjects[2].LCHPromptIsVisible || LCHRuntime.LCHRuntimeInputTypes(mod._ValuePromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop() === 'String' ? [] : mod._ValueAllSubjects.filter(function (e) {
 			return apiTypeEquivalenceMap[LCHRuntime.LCHRuntimeInputTypes(mod._ValuePromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop()].indexOf(e.LCHRecipeOutputType) !== -1;
 		});
 
@@ -404,6 +387,7 @@ const mod = {
 
 	_ValuePromptObjects: [],
 
+	_ValueAllSubjects: [],
 	_ValueAllActions: [],
 
 	ValuePromptActiveIndex (inputData) {
@@ -761,6 +745,24 @@ const mod = {
 
 	SetupPromptObjects () {
 		if (LRTOptions.LCHOptionMode === LCHLauncherModePipe()) {
+			mod._ValueAllSubjects = _AllPromptRecipes.filter(function (e) {
+				if (LCHRecipesModelIsSubject(e)) {
+					return true;
+				};
+
+				if (LCHRecipesModelIsCommand(e)) {
+					return true;
+				};
+
+				return false;
+			}).filter(function (e) {
+				return !e.LCHRecipeOutputType || (Object.keys(apiTypeEquivalenceMap).indexOf(e.LCHRecipeOutputType) !== -1);
+			}).map(function (e) {
+				return Object.assign(e, {
+					_LCHRecipeOutputTypeName: typeNameMap[e.LCHRecipeOutputType],
+				})
+			});
+
 			mod._ValueAllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
 
 			let _ActionableTypesForPrimarySubject = Object.keys(apiTypeEquivalenceMap).filter(function (type) {
@@ -773,7 +775,7 @@ const mod = {
 				LCHPromptClass: 'LCHLauncherSubjectPrompt',
 				LCHPromptHeading: OLSKLocalized('LCHLauncherSubjectPromptHeadingText'),
 				LCHPromptItemsVisible: [],
-				LCHPromptItemsAll: _AllSubjects.filter(function (e) {
+				LCHPromptItemsAll: mod._ValueAllSubjects.filter(function (e) {
 					return !e.LCHRecipeOutputType || _ActionableTypesForPrimarySubject.indexOf(e.LCHRecipeOutputType) !== -1;
 				}),
 				// LCHPromptItemSelected: null,
