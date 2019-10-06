@@ -170,7 +170,6 @@ let _AllSubjects = _AllPromptRecipes.filter(function (e) {
 		_LCHRecipeOutputTypeName: typeNameMap[e.LCHRecipeOutputType],
 	})
 });
-let _AllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
 
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
 import fuzzysort from 'fuzzysort';
@@ -329,7 +328,7 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 			return;
 		}
 
-		_PromptObjects[1].LCHPromptItemsAll = _AllActions.filter(function (e) {
+		_PromptObjects[1].LCHPromptItemsAll = mod._ValueAllActions.filter(function (e) {
 			return apiTypeEquivalenceMap[inputData.LCHRecipeOutputType || 'Command'].filter(function (type) {
 				return LCHRuntime.LCHRuntimeInputTypes(e.LCHRecipeInputTypes).shift() === type;
 			}).length;
@@ -403,6 +402,8 @@ import { LCHPrimitiveURLCallback } from './recipes/primitives/URL/main.js';
 const mod = {
 
 	// VALUE
+
+	_ValueAllActions: [],
 
 	ValuePromptActiveIndex (inputData) {
 		if (typeof inputData === 'undefined') {
@@ -753,18 +754,21 @@ const mod = {
 	// SETUP
 
 	SetupEverything() {
+
 		mod.SetupPromptObjects();
 	},
 
 	SetupPromptObjects () {
 		if (LRTOptions.LCHOptionMode === LCHLauncherModePipe()) {
+			mod._ValueAllActions = _AllPromptRecipes.filter(LCHRecipesModelIsAction);
+
 			let _ActionableTypesForPrimarySubject = Object.keys(apiTypeEquivalenceMap).filter(function (type) {
-				return _AllActions.filter(function (e) {
+				return mod._ValueAllActions.filter(function (e) {
 					return LCHRuntime.LCHRuntimeInputTypes(e.LCHRecipeInputTypes).shift() === type;
 				}).length;
 			});
-			
-			 return _PromptObjects.push(...[{
+
+			return _PromptObjects.push(...[{
 				LCHPromptClass: 'LCHLauncherSubjectPrompt',
 				LCHPromptHeading: OLSKLocalized('LCHLauncherSubjectPromptHeadingText'),
 				LCHPromptItemsVisible: [],
