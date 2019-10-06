@@ -1,19 +1,15 @@
 <script>
 export let LRTOptions = {};
 
+import { LCHLauncherOptions } from './ui-logic.js';
+LRTOptions = LCHLauncherOptions(LRTOptions, _LCHIsTestingBehaviour() ? undefined : console.warn);
+
 import OLSKInternational from 'OLSKInternational';
 export const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[LRTOptions.LCHOptionLanguage]);
 };
 
 import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
-
-const refactorTop = function () {};
-
-import { LCHLauncherOptions } from './ui-logic.js';
-LRTOptions = LCHLauncherOptions(LRTOptions, _LCHIsTestingBehaviour() ? undefined : console.warn);
-
-const refactorStuff = function () {};
 
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
 import fuzzysort from 'fuzzysort';
