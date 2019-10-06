@@ -89,7 +89,6 @@ const allRecipes = LCHLauncherStandardRecipes().map(function (e) {
 }).concat(LRTOptions.LCHOptionRecipes);
 
 const api = LCHRuntime.LCHRuntimeAPI(allRecipes);
-const apiTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes);
 
 const refactorStuff = function () {};
 
@@ -251,7 +250,7 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 		}
 
 		mod._ValuePromptObjects[1].LCHPromptItemsAll = mod._ValueAllActions.filter(function (e) {
-			return apiTypeEquivalenceMap[inputData.LCHRecipeOutputType || 'Command'].filter(function (type) {
+			return mod._ValueTypeEquivalenceMap[inputData.LCHRecipeOutputType || 'Command'].filter(function (type) {
 				return LCHRuntime.LCHRuntimeInputTypes(e.LCHRecipeInputTypes).shift() === type;
 			}).length;
 		}).sort(LCHLauncherActionComparator(inputData.LCHRecipeOutputType || 'Command'));
@@ -273,7 +272,7 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 		mod._ValuePromptObjects[2].LCHPromptIsVisible = LCHRecipesModelActionTakesObject(mod._ValuePromptObjects[1].LCHPromptItemSelected);
 
 		mod._ValuePromptObjects[2].LCHPromptItemsAll = !mod._ValuePromptObjects[2].LCHPromptIsVisible || LCHRuntime.LCHRuntimeInputTypes(mod._ValuePromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop() === 'String' ? [] : mod._ValueAllSubjects.filter(function (e) {
-			return apiTypeEquivalenceMap[LCHRuntime.LCHRuntimeInputTypes(mod._ValuePromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop()].indexOf(e.LCHRecipeOutputType) !== -1;
+			return mod._ValueTypeEquivalenceMap[LCHRuntime.LCHRuntimeInputTypes(mod._ValuePromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop()].indexOf(e.LCHRecipeOutputType) !== -1;
 		});
 
 		mod._ValuePromptObjects[2].LCHPromptItemsVisible = mod._ValuePromptObjects[2].LCHPromptItemsAll;
@@ -757,6 +756,8 @@ const mod = {
 		mod._ValueAllPromptRecipes = LCHLauncherUIRecipesForMode(allRecipes, LRTOptions.LCHOptionMode);
 
 		if (LRTOptions.LCHOptionMode === LCHLauncherModePipe()) {
+			mod._ValueTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(allRecipes);
+			
 			const typeNameMap = LCHAPITypeNameMap(allRecipes);
 
 			mod._ValueAllSubjects = mod._ValueAllPromptRecipes.filter(function (e) {
@@ -770,7 +771,7 @@ const mod = {
 
 				return false;
 			}).filter(function (e) {
-				return !e.LCHRecipeOutputType || (Object.keys(apiTypeEquivalenceMap).indexOf(e.LCHRecipeOutputType) !== -1);
+				return !e.LCHRecipeOutputType || (Object.keys(mod._ValueTypeEquivalenceMap).indexOf(e.LCHRecipeOutputType) !== -1);
 			}).map(function (e) {
 				return Object.assign(e, {
 					_LCHRecipeOutputTypeName: typeNameMap[e.LCHRecipeOutputType],
@@ -779,7 +780,7 @@ const mod = {
 
 			mod._ValueAllActions = mod._ValueAllPromptRecipes.filter(LCHRecipesModelIsAction);
 
-			const _ActionableTypesForPrimarySubject = Object.keys(apiTypeEquivalenceMap).filter(function (type) {
+			const _ActionableTypesForPrimarySubject = Object.keys(mod._ValueTypeEquivalenceMap).filter(function (type) {
 				return mod._ValueAllActions.filter(function (e) {
 					return LCHRuntime.LCHRuntimeInputTypes(e.LCHRecipeInputTypes).shift() === type;
 				}).length;
