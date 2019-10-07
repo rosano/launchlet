@@ -1,3 +1,14 @@
+const pathPackage = require('path');
+
+exports.OLSKControllerRoutes = function() {
+	return {
+		LCHCommonLogoRedirect: {
+			OLSKRoutePath: '/logo.svg',
+			OLSKRouteMethod: 'get',
+			OLSKRouteRedirect: '/_shared/LCHRootLink/ui-assets/logo.svg',
+		},
+	};
+};
 exports.OLSKControllerSharedMiddlewares = function() {
 	return {
 		LCHSharedDonateLinkGuardMiddleware (req, res, next) {
