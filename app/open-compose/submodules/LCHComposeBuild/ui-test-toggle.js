@@ -36,7 +36,7 @@ describe('LCHComposeBuildToggle', function () {
 		deepEqual(browser.query(LCHComposeBuildModePipeEnabledToggle).checked, false);
 	});
 
-	it.skip('binds LCHSettingComposeModePipeEnabled', async function () {
+	it.skip('binds kLCHComposePreferenceModePipeEnabled', async function () {
 		await browser.check(LCHComposeBuildModePipeEnabledToggle);
 		deepEqual(browser.query(LCHComposeBuildModePipeEnabledToggle).checked, true);
 

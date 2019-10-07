@@ -123,7 +123,7 @@ const mod = {
 	// COMMAND
 
 	async CommandUpdatePublicKey(inputData) {
-		await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposePublicKey', inputData)
+		await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'kLCHComposePreferencePublicKey', inputData)
 		
 		mod.ValuePublicKey(JSON.parse(inputData || 'null'))
 
@@ -251,7 +251,7 @@ const mod = {
 		mod.SetupPublicKey()
 	},
 	async SetupPublicKey() {
-		mod.ValuePublicKey(JSON.parse(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposePublicKey') || 'null'));
+		mod.ValuePublicKey(JSON.parse(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'kLCHComposePreferencePublicKey') || 'null'));
 
 		if (!mod.ValuePublicKey()) {
 			return;

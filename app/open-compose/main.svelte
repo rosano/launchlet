@@ -31,11 +31,11 @@ const mod = {
 	},
 
 	BuildDispatchModePipeEnabledToggleDidInput (event) {
-		LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposeModePipeEnabled', event.detail.toString())
+		LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'kLCHComposePreferenceModePipeEnabled', event.detail.toString())
 	},
 	
 	LCHComposeBuildDispatchIncludePageRecipes (event) {
-		LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposeIncludePageRecipes', event.detail.toString())
+		LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'kLCHComposePreferenceIncludePageRecipes', event.detail.toString())
 	},
 
 	StorageHidden: true,
@@ -72,11 +72,11 @@ const mod = {
 	},
 
 	async SetupValueInitializeModePipeEnabled() {
-		mod.ValueInitializeModePipeEnabled(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposeModePipeEnabled'))
+		mod.ValueInitializeModePipeEnabled(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'kLCHComposePreferenceModePipeEnabled'))
 	},
 	
 	async SetupValueIncludePageRecipes() {
-		mod.ValueIncludePageRecipes(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'LCHSettingComposeIncludePageRecipes'))
+		mod.ValueIncludePageRecipes(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'kLCHComposePreferenceIncludePageRecipes'))
 	},
 
 	// LIFECYCLE
