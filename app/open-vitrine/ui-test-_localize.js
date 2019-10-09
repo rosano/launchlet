@@ -38,7 +38,7 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 
 	it('localizes LCHVitrineContent', function() {
 		const item = require('fs').readFileSync(require('path').join(__dirname, `text.${ languageCode }.md`), 'utf-8').replace(/_/g, '');
-		deepEqual(browser.query(LCHVitrineContent).textContent.trim().slice(0, 20), item.slice(item.indexOf('Launchlet')).slice(0, 20))
+		deepEqual(browser.query(LCHVitrineContent).textContent.trim().slice(0, 20), item.slice(0, 20))
 	});
 
 	it('localizes LCH_VITRINE_QUICKSILVER_URL', function() {
@@ -75,7 +75,7 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 		browser.assert.attribute(LCHVitrineBrueghel, 'alt', uLocalized('LCHVitrineBrueghelText'))
 	});
 
-	context('DemoCommit', function () {
+	context.skip('DemoCommit', function () {
 
 		before(function () {
 			return browser.click(LCHVitrineDemoButtonCommit);
@@ -137,7 +137,7 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 		
 	});
 
-	context('DemoPipe', function () {
+	context.skip('DemoPipe', function () {
 
 		before(function () {
 			return browser.click(LCHVitrineDemoButtonPipe);
