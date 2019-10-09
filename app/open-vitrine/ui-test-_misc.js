@@ -10,10 +10,6 @@ describe('LCHVitrine_Misc', function () {
 
 	context('LCHVitrineIdentityLogo', function () {
 		
-		it('sets src', function () {
-			browser.assert.attribute(LCHVitrineIdentityLogo, 'src', require('./controller.js').OLSKControllerRoutes().pop().OLSKRoutePath)
-		});
-		
 		it('sets role', function () {
 			browser.assert.attribute(LCHVitrineIdentityLogo, 'role', 'image')
 		});
@@ -22,6 +18,14 @@ describe('LCHVitrine_Misc', function () {
 
 	it('sets LCHPageRecipes', function() {
 		deepEqual(browser.evaluate('Array.isArray(window.LCHPageRecipes)'), true)
+	});
+
+	context('LCHVitrineBrueghel', function () {
+		
+		it('sets src', function () {
+			browser.assert.attribute(LCHVitrineBrueghel, 'src', require('./controller.js').OLSKControllerRoutes().pop().OLSKRoutePath)
+		});
+	
 	});
 
 });
