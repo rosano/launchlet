@@ -2,5 +2,9 @@
   "name": "launchlet",
   "files": [
   	"__compiled/launchlet*"
-  ]
+  ],
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/launchlet/launchlet.git"
+  }
 }
