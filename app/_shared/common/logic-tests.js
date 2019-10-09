@@ -30,6 +30,34 @@ describe('LCHSharedGithubLinkGuard', function testLCHSharedGithubLinkGuard() {
 
 });
 
+describe('LCHSharedPackageDocsLinkGuard', function testLCHSharedPackageDocsLinkGuard() {
+
+	const StubEnvValid = function () {
+		return {
+			LCH_SHARED_PACKAGE_DOCS_URL: 'alfa',
+		};
+	};
+
+	it('throws if not object', function() {
+		throws(function() {
+			mainModule.LCHSharedPackageDocsLinkGuard(null);
+		}, /LCHErrorInputNotValid/);
+	});
+
+	it('returns error if no LCH_SHARED_PACKAGE_DOCS_URL', function () {
+		deepEqual(mainModule.LCHSharedPackageDocsLinkGuard(Object.assign(StubEnvValid(), {
+			LCH_SHARED_PACKAGE_DOCS_URL: null,
+		})), new Error('LCH_SHARED_PACKAGE_DOCS_URL not defined'));
+	});
+
+	it('returns error if LCH_SHARED_PACKAGE_DOCS_URL blank', function () {
+		deepEqual(mainModule.LCHSharedPackageDocsLinkGuard(Object.assign(StubEnvValid(), {
+			LCH_SHARED_PACKAGE_DOCS_URL: ' ',
+		})), new Error('LCH_SHARED_PACKAGE_DOCS_URL not defined'));
+	});
+
+});
+
 describe('LCHSharedDonateLinkGuard', function testLCHSharedDonateLinkGuard() {
 
 	const StubEnvValid = function () {
