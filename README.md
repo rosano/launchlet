@@ -1,4 +1,4 @@
-<a href="https://launchlet.dev"><img src="https://launchlet.dev/logo.svg" style="padding-right: 0 !important;" width="48" align="left"></a>
+<a href="https://launchlet.dev"><img src="https://launchlet.dev/logo.svg" width="64"></a>
 
 # Launchlet
 
