@@ -68,6 +68,10 @@ ROCO_UI_TESTS_MATCH=launcher npm test ui
 
 If you know how to fix UI tests that fail randomly because of timing/WebSocket/timeout issues please let me know.
 
+## License
+
+The code is released under a [Hippocratic License](https://firstdonoharm.dev), modified to exclude its use for surveillance capitalism and also to require large for-profit entities to purchase a paid license.
+
 ## Questions
 
 Feel free to ask questions tagged with _launchlet_ on [Stack Overflow](https://stackoverflow.com/) or [Super User](https://superuser.com/).
