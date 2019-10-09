@@ -1,6 +1,6 @@
 # Launchlet package
 
-The Launchlet package can be added to your own project as a module to quickly present a 'Preview to' functionality.
+The Launchlet package can be added to your own project as a module to quickly present a 'Jump to' functionality.
 
 ## Installing
 
