@@ -123,7 +123,8 @@ const mod = {
 	// COMMAND
 
 	async CommandUpdatePublicKey(inputData) {
-		await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'kLCHComposePreferencePublicKey', inputData)
+		// await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'kLCHComposePreferencePublicKey', inputData)
+		window.localStorage.setItem('kLCHComposePreferencePublicKey', inputData);
 		
 		mod.ValuePublicKey(JSON.parse(inputData || 'null'))
 
@@ -250,8 +251,9 @@ const mod = {
 	SetupEverything() {
 		mod.SetupPublicKey()
 	},
-	async SetupPublicKey() {
-		mod.ValuePublicKey(JSON.parse(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'kLCHComposePreferencePublicKey') || 'null'));
+	SetupPublicKey() {
+		// mod.ValuePublicKey(JSON.parse(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'kLCHComposePreferencePublicKey') || 'null'));
+		mod.ValuePublicKey(JSON.parse(localStorage.getItem('kLCHComposePreferencePublicKey') || 'null'));
 
 		if (!mod.ValuePublicKey()) {
 			return;
