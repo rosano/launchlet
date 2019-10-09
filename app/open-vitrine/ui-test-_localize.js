@@ -63,6 +63,10 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 		browser.assert.text(LCHVitrineDemoButtonPipe, uLocalized('LCHVitrineDemoButtonPipeText'))
 	});
 
+	it('localizes LCHVitrineBrueghel', function() {
+		browser.assert.attribute(LCHVitrineBrueghel, 'alt', uLocalized('LCHVitrineBrueghelText'))
+	});
+
 	context('DemoCommit', function () {
 
 		before(function () {

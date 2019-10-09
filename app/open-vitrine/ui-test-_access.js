@@ -10,6 +10,8 @@ Object.entries({
 	LCHVitrineDemoButtonCommit: '.LCHVitrineDemoButtonCommit',
 	LCHVitrineDemoButtonPreview: '.LCHVitrineDemoButtonPreview',
 	LCHVitrineDemoButtonPipe: '.LCHVitrineDemoButtonPipe',
+
+	LCHVitrineBrueghel: '.LCHVitrineBrueghel',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -42,6 +44,10 @@ describe('LCHVitrine_Access', function () {
 
 	it('shows LCHVitrineDemoButtonPipe', function() {
 		browser.assert.elements(LCHVitrineDemoButtonPipe, 1)
+	});
+
+	it('shows LCHVitrineBrueghel', function() {
+		browser.assert.elements(LCHVitrineBrueghel, 1)
 	});
 
 	it('shows ROCORootLink', function() {

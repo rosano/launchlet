@@ -3,6 +3,8 @@ LCHVitrineDescription: Interface généralisé pour l'intéraction avec le clavi
 LCHVitrineDemoButtonCommitText: Démo mode de Commit
 LCHVitrineDemoButtonPreviewText: Démo mode de Preview
 LCHVitrineDemoButtonPipeText: Démo mode de Pipe
+LCHVitrineBrueghelText: >-
+  Une photo d'une carte postale qui contient une peinture de Pieter Bruegel : La Chute des anges rebelles
 LCHVitrineDemoRecipeNames:
   LCHVitrinePageColoursRandomize: Randomiser des couleurs de page
   LCHVitrinePageColoursRestore: Rétablir des couleurs de page
