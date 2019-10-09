@@ -24,8 +24,16 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 		browser.assert.attribute('meta[name=description]', 'content', uLocalized('LCHVitrineDescription'))
 	});
 
-	it('shows LCHVitrineLogo', function () {
-		browser.assert.elements(LCHVitrineLogo, 1);
+	it('shows LCHVitrineIdentityLogo', function () {
+		browser.assert.elements(LCHVitrineIdentityLogo, 1);
+	});
+
+	it('shows LCHVitrineIdentityName', function () {
+		browser.assert.elements(LCHVitrineIdentityName, 1);
+	});
+
+	it('localize LCHVitrineIdentityName', function () {
+		browser.assert.text(LCHVitrineIdentityName, uLocalized('LCHVitrineTitle'));
 	});
 
 	it('localizes LCHVitrineContent', function() {

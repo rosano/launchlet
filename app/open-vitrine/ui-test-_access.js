@@ -3,9 +3,11 @@ import { deepEqual } from 'assert';
 const kDefaultRoutePath = require('./controller.js').OLSKControllerRoutes().shift().OLSKRoutePath;
 
 Object.entries({
+	LCHVitrineIdentity: '.LCHVitrineIdentity',
+	LCHVitrineIdentityLogo: '.LCHVitrineIdentityLogo',
+	LCHVitrineIdentityName: '.LCHVitrineIdentityName',
+
 	LCHVitrineContent: '.LCHVitrineContent',
-	
-	LCHVitrineLogo: '.LCHVitrineLogo',
 
 	LCHVitrineDemoButtonCommit: '.LCHVitrineDemoButtonCommit',
 	LCHVitrineDemoButtonPreview: '.LCHVitrineDemoButtonPreview',
@@ -26,12 +28,20 @@ describe('LCHVitrine_Access', function () {
 		browser.assert.elements('#RCSLanguageSwitcher', 1)
 	});
 	
-	it('shows LCHVitrineContent', function() {
-		browser.assert.elements(LCHVitrineContent, 1)
+	it('shows LCHVitrineIdentity', function() {
+		browser.assert.elements(LCHVitrineIdentity, 1)
 	});
 	
-	it('shows LCHVitrineLogo', function() {
-		browser.assert.elements(LCHVitrineLogo, 1)
+	it('shows LCHVitrineIdentityLogo', function() {
+		browser.assert.elements(LCHVitrineIdentityLogo, 1)
+	});
+	
+	it('shows LCHVitrineIdentityName', function() {
+		browser.assert.elements(LCHVitrineIdentityName, 1)
+	});
+	
+	it('shows LCHVitrineContent', function() {
+		browser.assert.elements(LCHVitrineContent, 1)
 	});
 
 	it('shows LCHVitrineDemoButtonCommit', function() {

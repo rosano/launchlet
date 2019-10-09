@@ -7,11 +7,6 @@ exports.OLSKControllerRoutes = function() {
 			OLSKRouteMethod: 'get',
 			OLSKRouteRedirect: '/_shared/LCHRootLink/ui-assets/logo.svg',
 		},
-		LCHBrueghelRedirect: {
-			OLSKRoutePath: '/brueghel.jpg',
-			OLSKRouteMethod: 'get',
-			OLSKRouteRedirect: process.env.LCH_SHARED_BRUEGHEL_URL,
-		},
 	};
 };
 exports.OLSKControllerSharedMiddlewares = function() {

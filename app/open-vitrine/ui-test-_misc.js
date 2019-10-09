@@ -8,6 +8,18 @@ describe('LCHVitrine_Misc', function () {
 		return browser.visit(kDefaultRoute.OLSKRoutePath)
 	});
 
+	context('LCHVitrineIdentityLogo', function () {
+		
+		it('sets src', function () {
+			browser.assert.attribute(LCHVitrineIdentityLogo, 'src', require('./controller.js').OLSKControllerRoutes().pop().OLSKRoutePath)
+		});
+		
+		it('sets role', function () {
+			browser.assert.attribute(LCHVitrineIdentityLogo, 'role', 'image')
+		});
+	
+	});
+
 	it('sets LCHPageRecipes', function() {
 		deepEqual(browser.evaluate('Array.isArray(window.LCHPageRecipes)'), true)
 	});

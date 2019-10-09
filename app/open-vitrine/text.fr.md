@@ -1,6 +1,3 @@
-<img class="LCHVitrineLogo" src="/_shared/LCHRootLink/ui-assets/logo.svg" align="left">
-
-# Launchlet
 _Interface généralisé pour l'interaction avec le clavier_
 
 Launchlet est une façon simple d'ajouter un nom aux fragments du code et les rouler. Inspiré par [Quicksilver](https://qsapp.com), ça fonctionne primairement par l'interaction sans-souris et ça vous permette d'accéder vos [Recettes](LCHVitrineTokenGuideURL) avec très peu de coup de clavier. Vous pouvez également l'utiliser pour personnaliser des sites web dans la même manière de ‹userscripts› ou ‹userstyles›. Optimisé pour la rapidité pour que vous puissiez ‹penser puis faire›.

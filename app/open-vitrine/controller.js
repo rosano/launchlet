@@ -34,5 +34,10 @@ exports.OLSKControllerRoutes = function() {
 			'LCHVitrineRouteGuardMiddleware',
 			'LCHSharedDonateLinkGuardMiddleware',
 		],
+	}, {
+		OLSKRoutePath: '/brueghel.jpg',
+		OLSKRouteMethod: 'get',
+		OLSKRouteSignature: 'LCHBrueghelRedirect',
+		OLSKRouteRedirect: process.env.LCH_SHARED_BRUEGHEL_URL,
 	}];
 };
