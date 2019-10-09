@@ -4,7 +4,7 @@ Launchlet is a simple way to add a name to snippets of code and then run it. Ins
 
 Check out the demos below for some ideas or [compose](LCHVitrineTokenComposeURL) your own.
 
-You can run Launchlet as a [bookmarklet], [browser extension], or as a [module] in your own project to add a 'jump to' functionality.
+You can run Launchlet as a [bookmarklet], [browser extension], or as a [module](LCH_SHARED_PACKAGE_DOCS_URL) in your own project to add a 'jump to' functionality.
 
 The code is open-source and available on [Github](LCH_SHARED_GITHUB_URL).
 
