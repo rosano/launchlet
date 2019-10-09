@@ -55,6 +55,10 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 		}) }"]`);
 	});
 
+	it('localizes LCH_SHARED_EXTENSION_DOCS_URL', function() {
+		browser.assert.element(`a[href="${ process.env.LCH_SHARED_EXTENSION_DOCS_URL }"]`);
+	});
+
 	it('localizes LCH_SHARED_PACKAGE_DOCS_URL', function() {
 		browser.assert.element(`a[href="${ process.env.LCH_SHARED_PACKAGE_DOCS_URL }"]`);
 	});

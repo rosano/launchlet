@@ -4,7 +4,7 @@ Launchlet est une façon simple d'ajouter un nom aux fragments du code et les ro
 
 Regardez les démonstrations en bas pour quelques idées ou essayez de [composer](LCHVitrineTokenComposeURL) votre propre.
 
-Vous pouvez rouler Launchlet comme [bookmarklet], [extension navigateur], ou comme une [bidule](LCH_SHARED_PACKAGE_DOCS_URL) dans votre propre project pour ajouter une ‹sauter à› fonctionnalité.
+Vous pouvez rouler Launchlet comme [bookmarklet], [extension navigateur](LCH_SHARED_EXTENSION_DOCS_URL), ou comme une [bidule](LCH_SHARED_PACKAGE_DOCS_URL) dans votre propre project pour ajouter une ‹sauter à› fonctionnalité.
 
 Le code est open source est disponible sur [Github](LCH_SHARED_GITHUB_URL).
 
