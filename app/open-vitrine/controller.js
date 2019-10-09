@@ -24,6 +24,7 @@ exports.OLSKControllerRoutes = function() {
 					LCHVitrineTokenComposeURL: res.locals.OLSKCanonicalLocalizedFor('LCHComposeRoute'),
 					LCHVitrineTokenGuideURL: res.locals.OLSKCanonicalFor('LCHGuideRoute'),
 					LCH_VITRINE_QUICKSILVER_URL: process.env.LCH_VITRINE_QUICKSILVER_URL,
+					LCH_SHARED_GITHUB_URL: process.env.LCH_SHARED_GITHUB_URL,
 					LCH_SHARED_DONATE_URL: process.env.LCH_SHARED_DONATE_URL,
 				}, res.locals.OLSKLocalized('LCHVitrineDemoRecipeNames'), res.locals.OLSKLocalized('LCHStandardRecipeNames'))),
 				OLSKStringReplaceTokens: require('OLSKString').OLSKStringReplaceTokens,

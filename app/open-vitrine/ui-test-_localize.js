@@ -55,6 +55,10 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 		}) }"]`);
 	});
 
+	it('localizes LCH_SHARED_GITHUB_URL', function() {
+		browser.assert.element(`a[href="${ process.env.LCH_SHARED_GITHUB_URL }"]`);
+	});
+
 	it('localizes LCH_SHARED_DONATE_URL', function() {
 		browser.assert.element(`a[href="${ process.env.LCH_SHARED_DONATE_URL }"]`);
 	});

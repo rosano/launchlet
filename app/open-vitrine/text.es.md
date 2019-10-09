@@ -6,7 +6,7 @@ Checa los demos en bajo para ideas o intenta de [componer](LCHVitrineTokenCompos
 
 Puedes ejecutar Launchlet como [bookmarklet], [extensión del navegador], o como un [módulo] en tu proprio proyecto para añadir una 'saltar a' funcionalidad.
 
-El código fuente es código abierto y disponible en [Github].
+El código fuente es código abierto y disponible en [Github](LCH_SHARED_GITHUB_URL).
 
 El proyecto es libremente accesible y gratis, pero si estás en posición a dar, por favor [dona](LCH_SHARED_DONATE_URL) para sostener su desarrollo en futuro.
 

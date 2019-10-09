@@ -6,7 +6,7 @@ Regardez les démonstrations en bas pour quelques idées ou essayez de [composer
 
 Vous pouvez rouler Launchlet comme [bookmarklet], [extension navigateur], ou comme une [bidule] dans votre propre project pour ajouter une ‹sauter à› fonctionnalité.
 
-Le code est open source est disponible sur [Github].
+Le code est open source est disponible sur [Github](LCH_SHARED_GITHUB_URL).
 
 Le projet est librement et gratuitement accessible, mais si vous êtes en mesure de donner, s'il vous plaît [faites un don](LCH_SHARED_DONATE_URL) pour soutenir son développement à l'avenir.
 
