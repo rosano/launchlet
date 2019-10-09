@@ -11,6 +11,9 @@ exports.OLSKControllerRoutes = function() {
 };
 exports.OLSKControllerSharedMiddlewares = function() {
 	return {
+		LCHSharedGithubLinkGuardMiddleware (req, res, next) {
+			return next(require('./logic.js').LCHSharedGithubLinkGuard(process.env))
+		},
 		LCHSharedDonateLinkGuardMiddleware (req, res, next) {
 			return next(require('./logic.js').LCHSharedDonateLinkGuard(process.env))
 		},

@@ -32,6 +32,7 @@ exports.OLSKControllerRoutes = function() {
 		OLSKRouteLanguages: ['en', 'fr', 'es'],
 		OLSKRouteMiddlewares: [
 			'LCHVitrineRouteGuardMiddleware',
+			'LCHSharedGithubLinkGuardMiddleware',
 			'LCHSharedDonateLinkGuardMiddleware',
 		],
 	}, {
