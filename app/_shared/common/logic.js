@@ -10,7 +10,7 @@ const mod = {
 		}
 	},
 
-	LCHSharedGithubLinkGuard (inputData) {
+	LCHSharedGitHubLinkGuard (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('LCHErrorInputNotValid');
 		}
