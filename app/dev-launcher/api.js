@@ -484,7 +484,7 @@ export const LCHAPIExecuteRecipe = async function(param1, param2 = [], param3 = 
 
 	return Promise.resolve(param1.LCHRecipeCallback.apply({
 		api: param3,
-	}, param2));
+	}, param2.length ? param2 : undefined)); // #mysterious Firefox throws `Permission denied to access property "length"` if array is empty
 };
 
 export const LCHComponentDescriptorsModelErrorsFor = function(inputData) {
