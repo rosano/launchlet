@@ -6,7 +6,7 @@ Check out the demos below for some ideas or [compose](LCHVitrineTokenComposeURL)
 
 You can run Launchlet as a bookmarklet, [browser extension](LCH_SHARED_EXTENSION_DOCS_URL), or as a [module](LCH_SHARED_PACKAGE_DOCS_URL) in your own project to add a 'jump to' functionality.
 
-The code is open-source and available on [Github](LCH_SHARED_GITHUB_URL).
+The code is open-source and available on [GitHub](LCH_SHARED_GITHUB_URL).
 
 The project is freely accessible but if you are in a position to give, please [donate](LCH_SHARED_DONATE_URL) to support future development.
 

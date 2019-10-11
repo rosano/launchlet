@@ -37,7 +37,7 @@ exports.OLSKControllerRoutes = function() {
 			'LCHVitrineRouteGuardMiddleware',
 			'LCHSharedExtensionDocsLinkGuardMiddleware',
 			'LCHSharedPackageDocsLinkGuardMiddleware',
-			'LCHSharedGithubLinkGuardMiddleware',
+			'LCHSharedGitHubLinkGuardMiddleware',
 			'LCHSharedDonateLinkGuardMiddleware',
 		],
 	}, {

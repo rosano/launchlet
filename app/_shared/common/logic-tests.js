@@ -2,7 +2,7 @@ import { throws, deepEqual } from 'assert';
 
 import * as mainModule from './logic.js';
 
-describe('LCHSharedGithubLinkGuard', function testLCHSharedGithubLinkGuard() {
+describe('LCHSharedGitHubLinkGuard', function testLCHSharedGitHubLinkGuard() {
 
 	const StubEnvValid = function () {
 		return {
@@ -12,18 +12,18 @@ describe('LCHSharedGithubLinkGuard', function testLCHSharedGithubLinkGuard() {
 
 	it('throws if not object', function() {
 		throws(function() {
-			mainModule.LCHSharedGithubLinkGuard(null);
+			mainModule.LCHSharedGitHubLinkGuard(null);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns error if no LCH_SHARED_GITHUB_URL', function () {
-		deepEqual(mainModule.LCHSharedGithubLinkGuard(Object.assign(StubEnvValid(), {
+		deepEqual(mainModule.LCHSharedGitHubLinkGuard(Object.assign(StubEnvValid(), {
 			LCH_SHARED_GITHUB_URL: null,
 		})), new Error('LCH_SHARED_GITHUB_URL not defined'));
 	});
 
 	it('returns error if LCH_SHARED_GITHUB_URL blank', function () {
-		deepEqual(mainModule.LCHSharedGithubLinkGuard(Object.assign(StubEnvValid(), {
+		deepEqual(mainModule.LCHSharedGitHubLinkGuard(Object.assign(StubEnvValid(), {
 			LCH_SHARED_GITHUB_URL: ' ',
 		})), new Error('LCH_SHARED_GITHUB_URL not defined'));
 	});
