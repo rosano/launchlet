@@ -292,7 +292,7 @@ import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 
 			<label>
 				<span class="LCHComposeBuildIncludePageRecipesFieldLabel">{ OLSKLocalized('LCHComposeBuildIncludePageRecipesFieldLabelText') }</span>
-				<input class="LCHComposeBuildIncludePageRecipesField" type="checkbox" on:input={ mod.InterfaceIncludePageRecipesFieldDidInput } bind:checked={ LCHComposeBuildIncludePageRecipes } />
+				<input class="LCHComposeBuildIncludePageRecipesField" type="checkbox" on:change={ mod.InterfaceIncludePageRecipesFieldDidInput } bind:checked={ LCHComposeBuildIncludePageRecipes } />
 			</label>
 		</OLSKToolbarElementGroup>
 
