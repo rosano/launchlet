@@ -1,37 +1,17 @@
-body {
-	padding: 10px;
-	max-width: 400px;
-
-	margin: auto;
-
-	font-family: 'Lucida Grande', sans-serif;
-	font-size: 12pt;
-	background: var(--LCHCommonBackground);
-	color: var(--LCHCommonForeground);
+:root {
+	--OLSKCommonBackground: var(--LCHCommonBackground);
+	--OLSKCommonForeground: var(--LCHCommonForeground);
+	--OLSKCommonFontSize: 12pt;
 }
 
-h1, h2,  h3 {
-	font-family: 'Helvetica Neue';
+body {
+	background: var(--LCHCommonBackground);
+	color: var(--LCHCommonForeground);
 }
 
 .LCHGuideNotice {
 	padding: 10px;
 	border: 1px solid var(--LCHCommonForeground)
-}
-
-hr {
-	height: 1px;
-	border: none;
-
-	background: black;
-}
-
-code {
-	display: inline-block;
-	padding: 3px;
-
-	background: hsl(0, 0%, 94%);
-	color: hsl(0, 0%, 20%);
 }
 
 .LCHGuideExample {

@@ -3,6 +3,7 @@ locals.OLSKPageTitle = OLSKLocalized('LCHGuideTitle');
 locals.OLSKPageDescription = OLSKLocalized('LCHGuideDescription');
 locals.OLSKPageAssets = [
 	'/_shared/__external/normalize.css/normalize.css',
+	'/_shared/__external/OLSKLayout/ui-style.css',
 	'/_shared/common/ui-style.css',
 	'ui-style.css',
 ];
@@ -11,6 +12,8 @@ locals.OLSKPageUseLivereload = process.env.NODE_ENV === 'development';
 
 <%- include('../_shared/common/layout-header.ejs') %>
 
+<div class="LCHGuide OLSKCommon">
+
 <%- OLSKStringReplaceTokens(LCHGuideContent, {
 }) %>
 
@@ -18,4 +21,5 @@ locals.OLSKPageUseLivereload = process.env.NODE_ENV === 'development';
 
 <%- include('../_shared/LCHRootLink/main.ejs') %>
 
+</div>
 <%- include('../_shared/common/layout-footer.ejs') %>
