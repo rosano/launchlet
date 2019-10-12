@@ -1,32 +1,11 @@
+:root {
+	--OLSKCommonBackground: var(--LCHCommonBackground);
+	--OLSKCommonForeground: var(--LCHCommonForeground);
+}
+
 body {
-	padding: 10px;
-	max-width: 400px;
-
-	margin: auto;
-
-	font-family: 'Lucida Grande', sans-serif;
-	font-size: 11pt;
 	background: var(--LCHCommonBackground);
 	color: var(--LCHCommonForeground);
-}
-
-h1, h2,  h3 {
-	font-family: 'Helvetica Neue';
-}
-
-hr {
-	height: 1px;
-	border: none;
-
-	background: black;
-}
-
-code {
-	padding: 3px;
-	display: inline-block;
-
-	background: hsl(0, 0%, 94%);
-	color: hsl(0, 0%, 20%);
 }
 
 ul {
@@ -35,17 +14,6 @@ ul {
 
 li {
 	margin: 10px 0;
-
-	/*list-style: square;*/
-}
-
-button {
-	padding: 8px;
-	border: 1px solid hsl(0, 0%, 70%);
-	border-radius: 5px;
-	display: inline-block;
-
-	background: hsl(0, 0%, 90%);
 }
 
 .LCHVitrineIdentity {

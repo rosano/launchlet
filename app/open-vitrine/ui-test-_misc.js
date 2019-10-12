@@ -8,6 +8,14 @@ describe('LCHVitrine_Misc', function () {
 		return browser.visit(kDefaultRoute.OLSKRoutePath)
 	});
 
+	context('LCHVitrine', function () {
+		
+		it('sets class', function () {
+			browser.assert.hasClass(LCHVitrine, 'OLSKCommon')
+		});
+	
+	});
+
 	context('LCHVitrineIdentityLogo', function () {
 		
 		it('sets role', function () {
