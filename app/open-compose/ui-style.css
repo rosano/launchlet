@@ -3,6 +3,9 @@
 	
 	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
 	font-size: 9pt;
+
+	background: var(--LCHCommonBackground);
+	color: var(--LCHCommonForeground);
 }
 
 #LCHComposeStorageWidget {
