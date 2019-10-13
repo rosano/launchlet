@@ -8,14 +8,6 @@ body {
 	color: var(--LCHCommonForeground);
 }
 
-ul {
-	padding-left: 30px;
-}
-
-li {
-	margin: 10px 0;
-}
-
 .LCHVitrineIdentity {
 	display: flex;
 
