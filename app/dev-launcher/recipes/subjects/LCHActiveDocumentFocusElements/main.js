@@ -26,11 +26,11 @@ export const LCHActiveDocumentsFocusElements = function(inputData) {
 				if (!e.href) {
 					return false;
 				};
-				
+
 				if (!e.textContent.trim() && !e.title.trim()) {
 					return false;
 				};
-				
+
 				return true;
 			},
 			'INPUT': function FocusElementInputFilter (e) {

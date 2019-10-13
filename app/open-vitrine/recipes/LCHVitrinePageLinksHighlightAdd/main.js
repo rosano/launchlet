@@ -4,7 +4,7 @@ export const LCHVitrinePageLinksHighlightAddIsHidden = function() {
 
 export const LCHVitrinePageLinksHighlightAddCallback = function() {
 	let element = document.body.appendChild(document.createElement('style'))
-	
+
 	element.classList.add('LCHVitrinePageLinksHighlightAdd')
 	element.innerHTML = `a { background: yellow !important; }`
 };

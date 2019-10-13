@@ -52,7 +52,7 @@ describe('LCHActiveDocumentsFocusElements', function testLCHActiveDocumentsFocus
 		});
 
 		context('LCHRecipeName', function () {
-			
+
 			it('sets to textContent', function() {
 				deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#" >alfa</a>')).pop().LCHRecipeName, 'alfa');
 			});
@@ -64,21 +64,21 @@ describe('LCHActiveDocumentsFocusElements', function testLCHActiveDocumentsFocus
 			it('prefers textContent', function() {
 				deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#" title="alfa">bravo</a>')).pop().LCHRecipeName, 'bravo');
 			});
-		
+
 		});
 
 		context('LCHRecipeOutputType', function () {
-			
+
 			it('sets to DOMElement', function() {
 				deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="#" title="#">alfa</a>')).pop().LCHRecipeOutputType, 'DOMElement');
 			});
-		
+
 		});
-	
+
 	});
 
 	context('FocusElementInput', function testFocusElementInput () {
-		
+
 		it('excludes if name only whitespace', function() {
 			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<input name=" " />')), []);
 		});
@@ -140,7 +140,7 @@ describe('LCHActiveDocumentsFocusElements', function testLCHActiveDocumentsFocus
 			it('prefers name if no placeholder', function() {
 				deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<input name="alfa" />')).pop().LCHRecipeName, 'alfa');
 			});
-		
+
 		});
 
 		context('LCHRecipeOutputType', function () {
@@ -148,21 +148,21 @@ describe('LCHActiveDocumentsFocusElements', function testLCHActiveDocumentsFocus
 			it('assigns DOMElement', function() {
 				deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<input name="alfa" />')).pop().LCHRecipeOutputType, 'DOMElement');
 			});
-		
+
 		});
-	
+
 	});
 
 	context('FocusElementButton', function testFocusElementButton () {
-		
+
 		it('excludes if textContent only whitespace', function() {
 			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<button> </button>')), []);
 		});
-		
+
 		it('excludes if disabled', function() {
 			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<button disabled>alfa</button>')), []);
 		});
-		
+
 		it('excludes if tabindex -1', function() {
 			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<button tabindex="-1">alfa</button>')), []);
 		});
@@ -176,7 +176,7 @@ describe('LCHActiveDocumentsFocusElements', function testLCHActiveDocumentsFocus
 			it('sets to textContent', function() {
 				deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<button>alfa</button>')).pop().LCHRecipeName, 'alfa');
 			});
-		
+
 		});
 
 		context('LCHRecipeOutputType', function () {
@@ -184,9 +184,9 @@ describe('LCHActiveDocumentsFocusElements', function testLCHActiveDocumentsFocus
 			it('assigns DOMElement', function() {
 				deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<button>alfa</button>')).pop().LCHRecipeOutputType, 'DOMElement');
 			});
-		
+
 		});
-	
+
 	});
 
 });

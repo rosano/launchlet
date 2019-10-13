@@ -15,15 +15,15 @@ describe('LCHLauncherPipeItem_Misc', function () {
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, uStubProps()));
 	});
-	
+
 	it('binds PipeItemTitle', function() {
 		browser.assert.text(LCHLauncherPipeItemTitle, uStubProps().PipeItemTitle);
 	});
-	
+
 	it('binds PipeItemSubtitle', function() {
 		browser.assert.text(LCHLauncherPipeItemSubtitle, uStubProps().PipeItemSubtitle);
 	});
-	
+
 	it('binds PipeItemSource', function() {
 		browser.assert.text(LCHLauncherPipeItemSource, uStubProps().PipeItemSource);
 	});

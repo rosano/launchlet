@@ -2,7 +2,7 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {	
+describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
@@ -12,7 +12,7 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 	});
 
 	before(function() {
-		browser.assert.input('.TestRecipeOutput', '');	
+		browser.assert.input('.TestRecipeOutput', '');
 	});
 
 	it('assert callbacks count 0')
@@ -28,11 +28,11 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 	describe('filter', function () {
 
 		context('match', function () {
-			
+
 			before(function() {
 				browser.fill(LCHLauncherFilterInput, 'a');
 			});
-			
+
 			it('shows matching items', function() {
 				browser.assert.elements(LCHLauncherListItem, 2);
 			});
@@ -44,17 +44,17 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 			it('assert callbacks count 1')
 
 			it('runs callback', function() {
-				browser.assert.input('.TestRecipeOutput', 'alfa');	
+				browser.assert.input('.TestRecipeOutput', 'alfa');
 			});
-		
+
 		});
 
 		context('match update', function () {
-			
+
 			before(function() {
 				browser.fill(LCHLauncherFilterInput, 'al');
 			});
-			
+
 			it('shows matching items', function() {
 				browser.assert.elements(LCHLauncherListItem, 1);
 			});
@@ -62,17 +62,17 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 			it('assert callbacks count 2/3')
 
 			it('runs callback', function() {
-				browser.assert.input('.TestRecipeOutput', 'alfa');	
+				browser.assert.input('.TestRecipeOutput', 'alfa');
 			});
-		
+
 		});
-		
+
 		context('no match', function () {
-			
+
 			before(function() {
 				browser.fill(LCHLauncherFilterInput, 'alb');
 			});
-			
+
 			it('shows no items', function() {
 				browser.assert.elements(LCHLauncherListItem, 0);
 			});
@@ -80,9 +80,9 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 			it('assert callbacks count ?')
 
 			it('runs last match callback', function() {
-				browser.assert.input('.TestRecipeOutput', 'alfa');	
+				browser.assert.input('.TestRecipeOutput', 'alfa');
 			});
-		
+
 		});
 
 	});
@@ -94,7 +94,7 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 		});
 
 		context('ArrowDown', function () {
-			
+
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
 			});
@@ -102,15 +102,15 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 			it('selects next item', function() {
 				browser.assert.text('.LCHLauncherResultListItemSelected', 'bravo');
 			});
-			
+
 			it('runs callback', function () {
-				browser.assert.input('.TestRecipeOutput', 'bravo');	
+				browser.assert.input('.TestRecipeOutput', 'bravo');
 			});
-		
+
 		});
 
 		context('ArrowUp', function () {
-			
+
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
 			});
@@ -118,11 +118,11 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 			it('selects previous item', function() {
 				browser.assert.text('.LCHLauncherResultListItemSelected', 'alfa');
 			});
-			
+
 			it('runs callback', function () {
 				browser.assert.input('.TestRecipeOutput', 'alfa');
 			});
-		
+
 		});
 
 		it('mouseover')
@@ -131,15 +131,15 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 			before(function () {
 				return browser.fire(`${ LCHLauncherListItem }:nth-child(2)`, 'mouseover');
 			});
-			
+
 			it('sets class', function () {
-				browser.assert.text('.LCHLauncherResultListItemSelected', 'bravo');	
+				browser.assert.text('.LCHLauncherResultListItemSelected', 'bravo');
 			});
-			
+
 			it('runs no callback', function () {
-				browser.assert.input('.TestRecipeOutput', 'alfa');	
+				browser.assert.input('.TestRecipeOutput', 'alfa');
 			});
-		
+
 		});
 
 		context('click', function () {
@@ -149,13 +149,13 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 			});
 
 			it('assert callbacks count ?')
-			
+
 			it('assert sends did complete')
-			
+
 			it('hides LCHLauncher', function () {
 				browser.assert.elements(LCHLauncher, 0);
 			});
-		
+
 		});
 
 		context('Enter', function () {
@@ -163,25 +163,25 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 			before(function () {
 				return browser.pressButton('.TestLauncherInvoke');
 			});
-			
+
 			before(function() {
 				browser.fill(LCHLauncherFilterInput, 'a');
 			});
-			
+
 			before(function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
 			});
 
 			it('assert callbacks count ?')
-			
+
 			it('runs callback', function () {
-				browser.assert.input('.TestRecipeOutput', 'alfa');	
+				browser.assert.input('.TestRecipeOutput', 'alfa');
 			});
-			
+
 			it('hides LCHLauncher', function () {
 				browser.assert.elements(LCHLauncher, 0);
 			});
-		
+
 		});
 
 		context('Escape filter', function () {
@@ -189,11 +189,11 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 			before(function () {
 				return browser.pressButton('.TestLauncherInvoke');
 			});
-			
+
 			before(function() {
 				browser.fill(LCHLauncherFilterInput, 'a');
 			});
-			
+
 			before(function() {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 			});
@@ -201,7 +201,7 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 			it('clears filter', function() {
 				browser.assert.input(LCHLauncherFilterInput, '');
 			});
-		
+
 		});
 
 		context('Escape no filter', function () {
@@ -213,13 +213,13 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 			it('hides LCHLauncher', function() {
 				browser.assert.elements(LCHLauncher, 0);
 			});
-		
+
 		});
 
 	});
 
 	describe('_LCHRecipeIsSelected', function() {
-		
+
 		before(function() {
 			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 				StubRecipes: uStubStringify(uStubTwoItems().map(function (e) {
@@ -244,7 +244,7 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 		it('selects first item', function() {
 			browser.assert.text('.LCHLauncherResultListItemSelected .LCHLauncherPipeItemTitle', 'alfa');
 		});
-		
+
 	});
-	
+
 });

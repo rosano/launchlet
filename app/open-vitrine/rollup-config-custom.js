@@ -7,7 +7,7 @@ module.exports = {
 		}
 
 		inputData.output.name = 'LCHVitrineBehaviour';
-		
+
 		inputData.plugins.splice(inputData.plugins.indexOf(inputData.plugins.filter(function (e) {
 			if (typeof e !== 'object') {
 				return false;

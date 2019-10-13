@@ -2,7 +2,7 @@ export const LCHTypeSubjectContainerCallback = function(inputData) {
 	if (!inputData.LCHRecipeName) {
 		return false;
 	}
-	
+
 	if (inputData.LCHRecipeOutputType !== 'SubjectContainer') {
 		return false;
 	}

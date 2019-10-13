@@ -120,7 +120,7 @@ export const LCHLauncherUIRecipesForMode = function (param1, param2) {
 		if (param2 === LCHLauncherModePreview()) {
 			return LCHRecipesModelIsCommand(e);
 		}
-		
+
 		return true;
 	});
 };
@@ -162,7 +162,7 @@ export const LCHLauncherKeyboardEventIsTextInput = function (inputData) {
 	if (!inputData.key) {
 		return false;
 	}
-	
+
 	if ([
 		'Unidentified',
 		'Tab',
@@ -177,7 +177,7 @@ export const LCHLauncherKeyboardEventIsTextInput = function (inputData) {
 	].indexOf(inputData.key) !== -1) {
 		return false;
 	}
-	
+
 	return true;
 };
 

@@ -13,7 +13,7 @@ describe('LCHRootLink_Access', function () {
 	before(function() {
 		return browser.visit(kDefaultRoute.OLSKRoutePath);
 	});
-	
+
 	it('shows LCHRootLink', function() {
 		browser.assert.elements(LCHRootLink, 1);
 	});

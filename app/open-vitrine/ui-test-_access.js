@@ -23,23 +23,23 @@ describe('LCHVitrine_Access', function () {
 	before(function() {
 		return browser.visit(kDefaultRoutePath);
 	});
-	
+
 	it('shows RCSLanguageSwitcher', function() {
 		browser.assert.elements('#RCSLanguageSwitcher', 1)
 	});
-	
+
 	it('shows LCHVitrineIdentity', function() {
 		browser.assert.elements(LCHVitrineIdentity, 1)
 	});
-	
+
 	it('shows LCHVitrineIdentityLogo', function() {
 		browser.assert.elements(LCHVitrineIdentityLogo, 1)
 	});
-	
+
 	it('shows LCHVitrineIdentityName', function() {
 		browser.assert.elements(LCHVitrineIdentityName, 1)
 	});
-	
+
 	it('shows LCHVitrineContent', function() {
 		browser.assert.elements(LCHVitrineContent, 1)
 	});

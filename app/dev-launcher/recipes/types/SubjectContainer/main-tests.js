@@ -29,7 +29,7 @@ describe('LCHTypeSubjectContainerCanonicalExampleCallback', function testLCHType
 	});
 
 	context('LCHRecipeName', function() {
-		
+
 		it('assigns string', function() {
 			deepEqual(mainModule.LCHTypeSubjectContainerCanonicalExampleCallback().LCHRecipeName, 'alfa');
 		});
@@ -37,7 +37,7 @@ describe('LCHTypeSubjectContainerCanonicalExampleCallback', function testLCHType
 	});
 
 	context('LCHRecipeCallback', function() {
-		
+
 		it('assigns function', function() {
 			deepEqual(typeof mainModule.LCHTypeSubjectContainerCanonicalExampleCallback().LCHRecipeCallback, 'function');
 		});
@@ -45,7 +45,7 @@ describe('LCHTypeSubjectContainerCanonicalExampleCallback', function testLCHType
 	});
 
 	context('LCHRecipeOutputType', function() {
-		
+
 		it('assigns string', function() {
 			deepEqual(mainModule.LCHTypeSubjectContainerCanonicalExampleCallback().LCHRecipeOutputType, 'SubjectContainer');
 		});

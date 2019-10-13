@@ -7,9 +7,9 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 const uLocalized = function (inputData) {
 	return OLSKTestingLocalized(inputData, languageCode);
 };
-	
+
 describe(`LCHCopyToClipboard_Localize-${ languageCode }`, function () {
-	
+
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			OLSKRoutingLanguage: languageCode,
@@ -34,7 +34,7 @@ describe(`LCHCopyToClipboard_Localize-${ languageCode }`, function () {
 	});
 
 	context('callback', function () {
-		
+
 		before(function() {
 			browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
 		});
@@ -42,9 +42,9 @@ describe(`LCHCopyToClipboard_Localize-${ languageCode }`, function () {
 		it('localizes LCHCopyToClipboardButton', function() {
 			browser.assert.text(LCHCopyToClipboardButton, uLocalized('LCHCopyToClipboardButtonText'));
 		});
-	
+
 	});
-	
+
 });
 
 });

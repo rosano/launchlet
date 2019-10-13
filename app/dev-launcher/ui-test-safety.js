@@ -36,13 +36,13 @@ describe('AutomaticRunningOfPageRecipes', function testAutomaticRunningOfPageRec
 	before(function () {
 		return browser.assert.input('.TestRecipeOutput', '')
 	});
-	
+
 	it('strips LCHRecipeIsAutomatic from LCHPageRecipes', function() {
 		browser.assert.input('.TestRecipeOutput', '')
 	});
 
 	context('filter', function () {
-		
+
 		before(	function () {
 			return browser.fill(LCHLauncherFilterInput, 'alfa');
 		});
@@ -50,11 +50,11 @@ describe('AutomaticRunningOfPageRecipes', function testAutomaticRunningOfPageRec
 		before(	function() {
 			return browser.click(LCHLauncherListItem);
 		});
-		
+
 		it('runs item', function() {
 			browser.assert.input('.TestRecipeOutput', 'bravo')
 		});
-	
+
 	});
 
 });

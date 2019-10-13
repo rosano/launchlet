@@ -9,11 +9,11 @@ describe('LCHVitrine_Misc', function () {
 	});
 
 	context('LCHVitrineIdentityLogo', function () {
-		
+
 		it('sets role', function () {
 			browser.assert.attribute(LCHVitrineIdentityLogo, 'role', 'image')
 		});
-	
+
 	});
 
 	it('sets LCHPageRecipes', function() {
@@ -21,11 +21,11 @@ describe('LCHVitrine_Misc', function () {
 	});
 
 	context('LCHVitrineBrueghel', function () {
-		
+
 		it('sets src', function () {
 			browser.assert.attribute(LCHVitrineBrueghel, 'src', require('./controller.js').OLSKControllerRoutes().pop().OLSKRoutePath)
 		});
-	
+
 	});
 
 });

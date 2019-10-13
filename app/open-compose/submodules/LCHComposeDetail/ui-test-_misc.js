@@ -11,7 +11,7 @@ context('Clone', function testClone() {
 
 		await uCreateItem(browser);
 		browser.fill(LCHComposeFormNameField, 'alfa');
-		
+
 		browser.pressButton(LCHComposeDetailToolbarCloneButton);
 		await browser.wait({ element: `${ LCHComposeListItem }:nth-child(2)` });
 	});

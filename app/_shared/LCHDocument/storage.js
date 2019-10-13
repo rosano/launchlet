@@ -13,7 +13,7 @@ export const LCHDocumentStorage = function (privateClient, publicClient, changeD
 		if (!changeDelegate) {
 			return;
 		};
-		
+
 		if (event.relativePath.indexOf(kCollection) !== 0) {
 			return;
 		};

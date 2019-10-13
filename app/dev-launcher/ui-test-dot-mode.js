@@ -21,11 +21,11 @@ describe('LCHLauncherDotMode', function () {
 	it('hides LCHLauncherSubjectPromptPlaceholder', function() {
 		browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 0);
 	});
-			
+
 	it('shows LCHLauncherPromptDotModeInput', function() {
 		browser.assert.elements(LCHLauncherPromptDotModeInput, 1);
 	});
-			
+
 	it('sets autofocus', function() {
 		browser.assert.attribute(LCHLauncherPromptDotModeInput, 'autofocus', '');
 	});
@@ -39,46 +39,46 @@ describe('LCHLauncherDotMode', function () {
 	});
 
 	context('Escape', function () {
-		
+
 		context('input not valid', function () {
-			
+
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 			});
-			
+
 			it('hides LCHLauncherPromptDotModeInput', function() {
 				browser.assert.elements(LCHLauncherPromptDotModeInput, 0);
 			});
-				
+
 			it('shows LCHLauncherSubjectPromptPlaceholder', function() {
 				browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 1);
 			});
-		
+
 		});
-			
+
 		context('input valid', function () {
 
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, '.');
 			});
-			
+
 			before(function () {
 				browser.fill(LCHLauncherPromptDotModeInput, 'alfa');
 				return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 			});
-			
+
 			it('hides LCHLauncherPromptDotModeInput', function() {
 				browser.assert.elements(LCHLauncherPromptDotModeInput, 0);
 			});
-			
+
 			it('shows LCHLauncherSubjectPromptItemSelected', function() {
 				browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
 			});
-			
+
 			it('sets text', function() {
 				browser.assert.elements(`${ LCHLauncherSubjectPromptItemSelected } ${ LCHLauncherPipeItemTitle }`, 'alfa');
 			});
-		
+
 		});
 
 		context('re-entry', function () {
@@ -86,7 +86,7 @@ describe('LCHLauncherDotMode', function () {
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, '.');
 			});
-			
+
 			it('sets value', function() {
 				browser.assert.input(LCHLauncherPromptDotModeInput, 'alfa');
 			});
@@ -111,7 +111,7 @@ describe('LCHLauncherDotMode', function () {
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, '.');
 			});
-			
+
 			it('sets value', function() {
 				browser.assert.input(LCHLauncherPromptDotModeInput, '');
 			});
@@ -119,9 +119,9 @@ describe('LCHLauncherDotMode', function () {
 			it('hides LCHLauncherActionPromptItemSelected', function() {
 				browser.assert.elements(LCHLauncherActionPromptItemSelected, 0);
 			});
-		
+
 		});
-	
+
 	});
 
 	context('results visible', function () {
@@ -131,16 +131,16 @@ describe('LCHLauncherDotMode', function () {
 
 			return browser.OLSKFireKeyboardEvent(browser.window, 'a');
 		});
-		
+
 		before(function () {
 			browser.assert.text(LCHLauncherSubjectPromptHeading, 'A');
 			browser.assert.elements(LCHLauncherResultList, 1)
 		});
-		
+
 		before(function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, '.');
 		});
-		
+
 		it('hides LCHLauncherResultList', function() {
 			browser.assert.elements(LCHLauncherResultList, 0);
 		});
@@ -153,9 +153,9 @@ describe('LCHLauncherDotMode', function () {
 		it('shows LCHLauncherPromptDotModeInput', function() {
 			browser.assert.elements(LCHLauncherPromptDotModeInput, 1);
 		});
-	
+
 	});
-		
+
 	context('input valid', function () {
 
 		before(function () {
@@ -165,9 +165,9 @@ describe('LCHLauncherDotMode', function () {
 		it('shows LCHLauncherActionPromptItemSelected', function() {
 			browser.assert.elements(LCHLauncherActionPromptItemSelected, 1);
 		});
-	
+
 	});
-		
+
 	context('input url', function () {
 
 		before(function () {
@@ -177,21 +177,21 @@ describe('LCHLauncherDotMode', function () {
 		it('shows corresponding action', function() {
 			browser.assert.text(LCHLauncherPipeItem, 'Open URL'); // #localize
 		});
-	
+
 	});
-		
+
 	context('input not valid', function () {
 
 		before(function () {
 			return browser.fill(LCHLauncherPromptDotModeInput, '');
 		});
-		
+
 		it('hides LCHLauncherActionPromptItemSelected', function() {
 			browser.assert.elements(LCHLauncherActionPromptItemSelected, 0);
 		});
-	
+
 	});
-		
+
 	context('Tab', function () {
 
 		context('input not valid', function () {
@@ -199,12 +199,12 @@ describe('LCHLauncherDotMode', function () {
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 			});
-			
+
 			it('does nothing', function() {
 				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
 				browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 0);
 			});
-		
+
 		});
 
 		context('input valid', function () {
@@ -213,11 +213,11 @@ describe('LCHLauncherDotMode', function () {
 				browser.fill(LCHLauncherPromptDotModeInput, 'alfa');
 				return browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 			});
-			
+
 			it('shows LCHLauncherSubjectPromptItemSelected', function() {
 				browser.assert.elements(LCHLauncherSubjectPromptItemSelected, 1);
 			});
-			
+
 			it('sets text', function() {
 				browser.assert.elements(`${ LCHLauncherSubjectPromptItemSelected } ${ LCHLauncherPipeItemTitle }`, 'alfa');
 			});
@@ -225,16 +225,16 @@ describe('LCHLauncherDotMode', function () {
 			it('selects LCHLauncherActionPrompt', function() {
 				browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
 			});
-		
+
 		});
-		
+
 		after(function () {
 			browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 			return browser.OLSKFireKeyboardEvent(browser.window, '.');
 		});
-	
+
 	});
-		
+
 	context('Enter', function () {
 
 		context('input not valid', function () {
@@ -243,15 +243,15 @@ describe('LCHLauncherDotMode', function () {
 				browser.fill(LCHLauncherPromptDotModeInput, '');
 				return browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
 			});
-			
+
 			it('hides LCHLauncherPromptDotModeInput', function() {
 				browser.assert.elements(LCHLauncherPromptDotModeInput, 0);
 			});
-				
+
 			it('shows LCHLauncherSubjectPromptPlaceholder', function() {
 				browser.assert.elements(LCHLauncherSubjectPromptPlaceholder, 1);
 			});
-		
+
 		});
 
 		context('input valid', function () {
@@ -259,7 +259,7 @@ describe('LCHLauncherDotMode', function () {
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, '.');
 			});
-			
+
 			before(function () {
 				browser.fill(LCHLauncherPromptDotModeInput, 'alfa');
 				return browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
@@ -268,17 +268,17 @@ describe('LCHLauncherDotMode', function () {
 			before(function () {
 				return browser.click('.LCHCopyToClipboardButton');
 			});
-			
+
 			it('executes composition', function() {
 				browser.assert.elements('.TestLauncherDidFinish', 1);
 			});
-		
+
 		});
 
 		after(function () {
 			return browser.pressButton('.TestLauncherInvoke');
 		});
-	
+
 	});
 
 	context('action prompt selected', function () {
@@ -298,7 +298,7 @@ describe('LCHLauncherDotMode', function () {
 		it('does nothing', function() {
 			browser.assert.elements(LCHLauncherPipeItem, 2);
 		});
-	
+
 	});
 
 });

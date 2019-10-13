@@ -5,7 +5,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 describe('LCHOptionIncludePageRecipes', function testLCHOptionIncludePageRecipes () {
 
 	context('not enabled', function () {
-		
+
 		before(function() {
 			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
@@ -23,7 +23,7 @@ describe('LCHOptionIncludePageRecipes', function testLCHOptionIncludePageRecipes
 
 			return browser.pressButton('.TestLauncherInvoke');
 		});
-			
+
 		before(function () {
 			browser.fill(LCHLauncherFilterInput, 'alfa');
 		});
@@ -31,11 +31,11 @@ describe('LCHOptionIncludePageRecipes', function testLCHOptionIncludePageRecipes
 		it('hides item', function() {
 			browser.assert.elements(LCHLauncherListItem, 1)
 		});
-	
+
 	});
 
 	context('enabled', function () {
-		
+
 		before(function() {
 			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
@@ -54,7 +54,7 @@ describe('LCHOptionIncludePageRecipes', function testLCHOptionIncludePageRecipes
 
 			return browser.pressButton('.TestLauncherInvoke');
 		});
-			
+
 		before(function () {
 			browser.fill(LCHLauncherFilterInput, 'alfa');
 		});
@@ -66,7 +66,7 @@ describe('LCHOptionIncludePageRecipes', function testLCHOptionIncludePageRecipes
 		it('sets LCHLauncherPipeItemSource', function() {
 			browser.assert.text(LCHLauncherPipeItemSource, 'loc.tests')
 		});
-	
+
 	});
 
 });
@@ -74,7 +74,7 @@ describe('LCHOptionIncludePageRecipes', function testLCHOptionIncludePageRecipes
 describe('LCHPageRecipes', function testLCHPageRecipes () {
 
 	context('defined', function () {
-		
+
 		before(function() {
 			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
@@ -102,11 +102,11 @@ describe('LCHPageRecipes', function testLCHPageRecipes () {
 		it('sets LCHLauncherPipeItemSource', function() {
 			browser.assert.text(LCHLauncherPipeItemSource, 'loc.tests')
 		});
-	
+
 	});
 
 	context('not defined', function () {
-		
+
 		before(function() {
 			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
@@ -125,11 +125,11 @@ describe('LCHPageRecipes', function testLCHPageRecipes () {
 		it('hides item', function() {
 			browser.assert.elements(LCHLauncherListItem, 2)
 		});
-	
+
 	});
 
 	context('not defined sent immediately', function () {
-		
+
 		before(function() {
 			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
@@ -167,13 +167,13 @@ describe('LCHPageRecipes', function testLCHPageRecipes () {
 					return browser.click('.LCHLauncherResultListItem:last-child');
 				}), 'delta');
 			});
-		
+
 		});
-	
+
 	});
 
 	context('not defined sent not immediately', function () {
-			
+
 		before(function() {
 			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
@@ -207,7 +207,7 @@ describe('LCHPageRecipes', function testLCHPageRecipes () {
 		it('hides item', function() {
 			browser.assert.elements(LCHLauncherListItem, 2)
 		});
-	
+
 	});
 
 });

@@ -6,7 +6,7 @@ export const LBXResponseIsValid = function(inputData) {
 	if (typeof inputData.LBXResponseHash !== 'string') {
 		return false;
 	};
-	
+
 	if (typeof inputData.LBXResponseError !== 'undefined') {
 		if (typeof inputData.LBXResponseError !== 'string') {
 			return false;
@@ -16,6 +16,6 @@ export const LBXResponseIsValid = function(inputData) {
 			return false;
 		};
 	};
-	
+
 	return true;
 };

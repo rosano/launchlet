@@ -9,7 +9,7 @@ describe('LCHLauncherResultList', function () {
 			StubRecipes: uStubStringify(uStubTwoItems()),
 			LCHOptionMode: 'LCHModePipe',
 		}));
-	});	
+	});
 
 	before(function () {
 		return browser.OLSKFireKeyboardEvent(browser.window, 'a');
@@ -29,7 +29,7 @@ describe('LCHLauncherResultList', function () {
 			browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 			return browser.OLSKFireKeyboardEvent(browser.window, 'a');
 		});
-	
+
 	});
 
 	context('Escape', function () {
@@ -45,7 +45,7 @@ describe('LCHLauncherResultList', function () {
 		after(function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'a');
 		});
-	
+
 	});
 
 	context('DotMode', function () {
@@ -57,12 +57,12 @@ describe('LCHLauncherResultList', function () {
 		it('hides LCHLauncherResultList', function() {
 			browser.assert.elements(LCHLauncherResultList, 0);
 		});
-		
+
 		after(function() {
 			browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 			return browser.OLSKFireKeyboardEvent(browser.window, 'a');
 		});
-	
+
 	});
 
 	context('keydown', function() {
@@ -92,7 +92,7 @@ describe('LCHLauncherResultList', function () {
 		});
 
 		context('visible', function () {
-			
+
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
 			});
@@ -104,11 +104,11 @@ describe('LCHLauncherResultList', function () {
 			it('selects next item', function() {
 				browser.assert.text('.LCHLauncherResultListItemSelected', 'bravo');
 			});
-		
+
 		});
 
 		context('re-entry', function () {
-			
+
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 			});
@@ -120,7 +120,7 @@ describe('LCHLauncherResultList', function () {
 			it('keeps selection', function() {
 				browser.assert.text('.LCHLauncherResultListItemSelected', 'bravo');
 			});
-		
+
 		});
 
 		after(function () {
@@ -144,7 +144,7 @@ describe('LCHLauncherResultList', function () {
 		});
 
 		context('visible', function () {
-			
+
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
 			});
@@ -156,11 +156,11 @@ describe('LCHLauncherResultList', function () {
 			it('selects previous item', function() {
 				browser.assert.text('.LCHLauncherResultListItemSelected', 'bravo');
 			});
-		
+
 		});
 
 		context('re-entry', function () {
-			
+
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 			});
@@ -172,13 +172,13 @@ describe('LCHLauncherResultList', function () {
 			it('keeps selection', function() {
 				browser.assert.text('.LCHLauncherResultListItemSelected', 'bravo');
 			});
-		
+
 		});
 
 		after(function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 		});
-	
+
 	});
 
 });

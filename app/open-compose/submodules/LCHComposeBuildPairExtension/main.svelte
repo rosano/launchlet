@@ -74,7 +74,7 @@ const mod = {
 
 	InterfaceFormDidSubmit (event) {
 		event.preventDefault()
-		
+
 		mod.CommandValidatePublicKey(BuildPairExtensionPublicKey.trim())
 	},
 
@@ -120,7 +120,7 @@ window.addEventListener('message', mod.MessageReceived, false);
 {#if mod.ValueFormIsVisible()}
 	<form on:submit={ mod.InterfaceFormDidSubmit }>
 		<input class="LCHBuildPairExtensionPublicKeyField" placeholder="{ OLSKLocalized('LCHBuildPairExtensionPublicKeyFieldLabel') }" bind:value={ BuildPairExtensionPublicKey } autofocus />
-		
+
 		<button class="LCHBuildPairExtensionSubmitButton">{ OLSKLocalized('LCHBuildPairExtensionSubmitButtonLabel') }</button>
 	</form>
 {/if}

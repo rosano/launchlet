@@ -65,7 +65,7 @@ describe('LCHBuildConvertDocumentFunctions', function testLCHBuildConvertDocumen
 				LCHDocumentCallback: 'function (alfa) { bravo }',
 			});
 		});
-	
+
 	});
 
 	context('LCHDocumentCanonicalExampleCallback', function () {
@@ -77,7 +77,7 @@ describe('LCHBuildConvertDocumentFunctions', function testLCHBuildConvertDocumen
 				LCHDocumentCanonicalExampleCallback: 'function () { alfa }',
 			});
 		});
-	
+
 	});
 
 });
@@ -116,7 +116,7 @@ bravo
 }`,
 			}), `{"LCHRecipeCallback":function() {\nbravo\n}}`);
 		});
-	
+
 	});
 
 });

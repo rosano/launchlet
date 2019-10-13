@@ -28,7 +28,7 @@ context('set initial', function () {
 });
 
 context('select', function () {
-	
+
 	before(function () {
 		browser.pressButton('#LCHLauncherResultListTestSetTestItemSelected');
 	});
@@ -41,7 +41,7 @@ context('select', function () {
 });
 
 context('ArrowDown', function () {
-	
+
 	before(function () {
 		return browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
 	});
@@ -62,7 +62,7 @@ context('ArrowDown', function () {
 });
 
 context('ArrowUp', function () {
-	
+
 	before(function () {
 		return browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
 	});
@@ -83,7 +83,7 @@ context('ArrowUp', function () {
 });
 
 context('change items exclude selected', function () {
-	
+
 	before(function () {
 		browser.pressButton('#LCHLauncherResultListTestSetTestItemsSingle');
 	});
@@ -95,7 +95,7 @@ context('change items exclude selected', function () {
 });
 
 context('click item', function () {
-	
+
 	before(function () {
 		return browser.click(LCHLauncherResultListItem);
 	});
@@ -120,7 +120,7 @@ context('set items include selected', function () {
 	before(function () {
 		browser.pressButton('#LCHLauncherResultListTestSetTestItemsSingle');
 	});
-	
+
 	it('keeps previous selection', function () {
 		browser.assert.text('.LCHLauncherResultListItemSelected', 'alfa');
 	});
@@ -132,7 +132,7 @@ context('ArrowUp on first item', function () {
 	before(function () {
 		return browser.pressButton('#LCHLauncherResultListTestSetTestItemsMultiple');
 	});
-	
+
 	before(function () {
 		return browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
 	});
@@ -145,7 +145,7 @@ context('ArrowUp on first item', function () {
 });
 
 context('ArrowDown on last item', function () {
-	
+
 	before(function () {
 		return browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
 	});

@@ -34,10 +34,10 @@ export const DocumentsExport = function() {
 	].join(' ');
 
 	zip.file(`${ fileName }.json`, JSON.stringify($DocumentsAllStore));
-	
+
 	zip.generateAsync({type: 'blob'}).then(function (content) {
 		saveAs(content, `${ fileName }.zip`);
-	});	
+	});
 };
 
 export const DocumentsImport = async function(inputData) {
@@ -63,7 +63,7 @@ let _DocumentsVisible = [];
 const mod = {
 	FilterInputDispatchClear() {
 		mod.valueFilterInputText('');
-		
+
 		LCHComposeDefaultFocusNode().focus();
 	},
 

@@ -25,11 +25,11 @@ describe('LCHRecipeIsExcluded', function testLCHRecipeIsExcluded () {
 		it('hides item', function() {
 			browser.assert.elements(LCHLauncherListItem, 0);
 		});
-	
+
 	});
 
 	context('match', function () {
-		
+
 		before(function() {
 			browser.fill('.TestRecipeOutput', 'bravo');
 		});
@@ -41,7 +41,7 @@ describe('LCHRecipeIsExcluded', function testLCHRecipeIsExcluded () {
 		it('shows item', function() {
 			browser.assert.elements(LCHLauncherListItem, 1);
 		});
-	
+
 	});
 
 });
@@ -63,7 +63,7 @@ describe('LCHRecipeURLFilter', function testLCHRecipeURLFilter () {
 				StubRecipes,
 			}));
 		});
-		
+
 		before(function() {
 			browser.fill(LCHLauncherFilterInput, 'alfa');
 		});
@@ -71,18 +71,18 @@ describe('LCHRecipeURLFilter', function testLCHRecipeURLFilter () {
 		it('hides item', function() {
 			browser.assert.elements(LCHLauncherListItem, 0);
 		});
-	
+
 	});
 
 	context('match', function () {
-		
+
 		before(function() {
 			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 				StubRecipes,
 				charlie: '12345',
 			}));
 		});
-		
+
 		before(function() {
 			browser.fill(LCHLauncherFilterInput, 'alfa');
 		});
@@ -90,7 +90,7 @@ describe('LCHRecipeURLFilter', function testLCHRecipeURLFilter () {
 		it('shows item', function() {
 			browser.assert.elements(LCHLauncherListItem, 1);
 		});
-	
+
 	});
 
 });

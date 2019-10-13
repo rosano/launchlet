@@ -41,7 +41,7 @@ export const LCHLargeTextCallback = function(inputData) {
 	})) {
 		span.style[key] = value;
 	}
-	
+
 	document.body.appendChild(rootElement);
 
 	let handler = function (event) {
@@ -50,10 +50,10 @@ export const LCHLargeTextCallback = function(inputData) {
 		if (!event.key && rootElement.contains(event.target)) {
 	  	return;
 		}
-		
+
 		window.removeEventListener('click', handler);
 		window.removeEventListener('keydown', handler);
-		
+
 		rootElement.remove();
 	};
 

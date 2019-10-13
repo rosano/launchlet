@@ -6,6 +6,6 @@ export const LCHComposeBuildPairExtensionPublicKeyIsValid = function(inputData) 
 	if (!inputData) {
 		return false;
 	};
-	
+
 	return inputData.trim() === inputData;
 };

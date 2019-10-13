@@ -53,7 +53,7 @@ describe('LCHComposeFilterFunction', function testLCHComposeFilterFunction() {
 				LCHDocumentSignature: 'alfa',
 			}), true);
 		});
-		
+
 	});
 
 });

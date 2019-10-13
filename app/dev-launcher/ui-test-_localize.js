@@ -62,7 +62,7 @@ describe(`LCHLauncherLocalizePipe-${ languageCode }`, function testLCHLauncherLo
 	});
 
 	context('ObjectPrompt', function () {
-		
+
 		before(function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'w');
 		});
@@ -74,7 +74,7 @@ describe(`LCHLauncherLocalizePipe-${ languageCode }`, function testLCHLauncherLo
 		it('localizes LCHLauncherObjectPromptHeading', function() {
 			browser.assert.text(LCHLauncherObjectPromptHeading, uLocalized('LCHLauncherObjectPromptHeadingText'));
 		});
-	
+
 	});
 
 });

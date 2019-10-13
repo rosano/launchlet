@@ -11,16 +11,16 @@ describe('LCHComposeBuildPairExtensionDeleteKey', function () {
 	});
 
 	context('DeleteKey', function testDeleteKey () {
-		
+
 		before(function () {
 			browser.click(LCHBuildPairExtensionDeleteKeyButton)
 		});
-		
+
 		it('sends BuildPairExtensionDispatchPublicKeyUpdate', function() {
 			browser.assert.text('#LCHComposeBuildPairExtensionDispatchPublicKeyUpdate', '1');
 			browser.assert.text('#LCHComposeBuildPairExtensionDispatchPublicKeyUpdateText', '');
 		});
-	
+
 	});
 
 });

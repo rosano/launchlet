@@ -16,17 +16,17 @@ export const LCHCopyToClipboardCallback = function(inputData) {
 	// if (typeof document !== 'undefined') {
 	// 	(function () {
 	// 		const el = document.createElement('textarea');
-			
+
 	// 		el.value = inputData;
-			
+
 	// 		el.setAttribute('readonly', '');
 	// 		el.style.position = 'fixed';
 	// 		el.style.top = 0;
-			
+
 	// 		document.body.appendChild(el);
 	// 		el.select();
 	// 		document.execCommand('copy');
-			
+
 	// 		el.remove();
 	// 	})();
 	// }

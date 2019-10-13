@@ -22,7 +22,7 @@ describe('LCHCopyToClipboard_Access', function () {
 
 	before(function() {
 		browser.fill(LCHLauncherPromptDotModeInput, 'alfa');
-		
+
 		browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
 	});
 
@@ -31,7 +31,7 @@ describe('LCHCopyToClipboard_Access', function () {
 	});
 
 	context('click', function () {
-		
+
 		before(function () {
 			return browser.pressButton(LCHCopyToClipboardButton);
 		});
@@ -39,7 +39,7 @@ describe('LCHCopyToClipboard_Access', function () {
 		it('hides LCHCopyToClipboardButton', function() {
 			browser.assert.elements(LCHCopyToClipboardButton, 0);
 		});
-	
+
 	});
 
 });

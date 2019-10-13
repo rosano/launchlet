@@ -13,7 +13,7 @@ describe('LCHLauncherPrompt_Misc', function () {
 	});
 
 	context('set PromptItems', function() {
-		
+
 		before(function () {
 			return browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
 		});
@@ -25,7 +25,7 @@ describe('LCHLauncherPrompt_Misc', function () {
 	});
 
 	context('set ItemSelected', function() {
-		
+
 		before(function () {
 			return browser.pressButton('#LCHLauncherPromptTestSetStubItemSelected');
 		});
@@ -37,7 +37,7 @@ describe('LCHLauncherPrompt_Misc', function () {
 	});
 
 	context('ArrowDown', function() {
-		
+
 		before(function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
 		});
@@ -49,7 +49,7 @@ describe('LCHLauncherPrompt_Misc', function () {
 	});
 
 	context('ArrowUp', function() {
-		
+
 		before(function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
 		});
@@ -61,7 +61,7 @@ describe('LCHLauncherPrompt_Misc', function () {
 	});
 
 	context('click', function() {
-		
+
 		before(function () {
 			return browser.click('.LCHLauncherResultListItem');
 		});

@@ -14,7 +14,7 @@ describe('LCHLauncherPrompt_Access', function () {
 	before(function() {
 		return browser.visit(kDefaultRoute.OLSKRoutePath);
 	});
-	
+
 	it('shows LCHLauncherPrompt', function () {
 		browser.assert.elements(LCHLauncherPrompt, 1);
 	});
@@ -37,7 +37,7 @@ describe('LCHLauncherPrompt_Access', function () {
 			browser.assert.elements('.LCHLauncherResultListItem', 1);
 		});
 	});
-	
+
 	context('set multiple', function() {
 
 		before(function () {
@@ -48,7 +48,7 @@ describe('LCHLauncherPrompt_Access', function () {
 			browser.assert.elements('.LCHLauncherResultListItem', 3);
 		});
 	});
-	
+
 	context('set zero', function() {
 
 		before(function () {
@@ -64,7 +64,7 @@ describe('LCHLauncherPrompt_Access', function () {
 		})
 
 	});
-	
+
 	context('set ResultsHidden', function() {
 
 		before(function () {
@@ -76,18 +76,18 @@ describe('LCHLauncherPrompt_Access', function () {
 		});
 
 	});
-	
+
 	context('set ItemSelected', function() {
 
 		before(function () {
 			return browser.pressButton('#LCHLauncherPromptTestSetStubItemSelected');
 		});
-		
+
 		it('shows LCHLauncherPromptItemSelected', function () {
 			browser.assert.elements(LCHLauncherPromptItemSelected, 1);
 		});
 	});
-	
+
 	context('set ItemSelectedHidden', function() {
 
 		before(function () {

@@ -38,7 +38,7 @@ describe('LCHCopyToClipboard_Misc', function () {
 	});
 
 	context('click', function () {
-		
+
 		before(function () {
 			return browser.pressButton(LCHCopyToClipboardButton);
 		});
@@ -46,7 +46,7 @@ describe('LCHCopyToClipboard_Misc', function () {
 		it('hides LCHLauncher', function() {
 			browser.assert.elements(LCHLauncher, 0);
 		});
-	
+
 	});
 
 });

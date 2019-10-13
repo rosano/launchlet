@@ -22,7 +22,7 @@ onMount(function () {
 
 let masterInstance;
 const mod = {
-	
+
 	FooterDispatchExport () {
 		masterInstance.DocumentsExport();
 	},
@@ -33,7 +33,7 @@ const mod = {
 	BuildDispatchModePipeEnabledToggleDidInput (event) {
 		LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'kLCHComposePreferenceModePipeEnabled', event.detail.toString())
 	},
-	
+
 	LCHComposeBuildDispatchIncludePageRecipes (event) {
 		LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'kLCHComposePreferenceIncludePageRecipes', event.detail.toString())
 	},
@@ -67,14 +67,14 @@ const mod = {
 
 	SetupEverything() {
 		mod.SetupValueInitializeModePipeEnabled()
-		
+
 		mod.SetupValueIncludePageRecipes()
 	},
 
 	async SetupValueInitializeModePipeEnabled() {
 		mod.ValueInitializeModePipeEnabled(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'kLCHComposePreferenceModePipeEnabled'))
 	},
-	
+
 	async SetupValueIncludePageRecipes() {
 		mod.ValueIncludePageRecipes(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'kLCHComposePreferenceIncludePageRecipes'))
 	},

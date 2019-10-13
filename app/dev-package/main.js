@@ -24,9 +24,9 @@ export const mod = {
 	// VALUE
 
 	_ValueClass: undefined,
-	
+
 	_ValueTarget: undefined,
-	
+
 	_ValueSingleton: undefined,
 
 	// COMMAND
@@ -34,7 +34,7 @@ export const mod = {
 	CommandRunTasks (inputData) {
 		LCHAPIRunTasks(inputData, window.location.href)
 	},
-	
+
 	// LIFECYCLE
 
 	LifecycleSingletonCreate (inputData = {}) {
@@ -65,7 +65,7 @@ export const mod = {
 
 	LifecycleSingletonDestroy () {
 		mod._ValueSingleton.$destroy();
-		
+
 		delete mod._ValueSingleton
 
 		if (typeof document === 'undefined') {

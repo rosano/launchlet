@@ -54,7 +54,7 @@ const mod = {
 		if (params.LCHTestSkipAutomaticLaunch) {
 			return;
 		};
-		
+
 		mod.CommandLaunch()
 	},
 

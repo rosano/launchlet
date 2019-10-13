@@ -30,7 +30,7 @@ onMount(function SetupEditor () {
 	});
 
 	// console.log(EditorPostInitializeQueue);
-	
+
 	EditorPostInitializeQueue.splice(0, EditorPostInitializeQueue.length).forEach(function(e) {
 		// console.log('run', e);
 

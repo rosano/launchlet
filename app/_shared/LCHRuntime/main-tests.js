@@ -43,7 +43,7 @@ describe('LCHRuntimeURLFilter', function testLCHRuntimeURLFilter() {
 	});
 
 	context('string', function () {
-		
+
 		it('interprets as string', function() {
 			deepEqual(mainModule.LCHRuntimeURLFilter('alfa?bravo', 'alfbravo'), false);
 		});
@@ -55,7 +55,7 @@ describe('LCHRuntimeURLFilter', function testLCHRuntimeURLFilter() {
 		it('returns true if match', function() {
 			deepEqual(mainModule.LCHRuntimeURLFilter('alfa', 'alfa'), true);
 		});
-	
+
 	});
 
 	context('regex', function () {
@@ -71,7 +71,7 @@ describe('LCHRuntimeURLFilter', function testLCHRuntimeURLFilter() {
 		it('returns true if match', function() {
 			deepEqual(mainModule.LCHRuntimeURLFilter('/ALFA/i', 'alfa'), true);
 		});
-	
+
 	});
 
 });
@@ -119,7 +119,7 @@ describe('LCHRuntimeAPI', function testLCHRuntimeAPI() {
 	});
 
 	context('function', function () {
-		
+
 		it('returns LCHRecipeCallback output', function() {
 			deepEqual(mainModule.LCHRuntimeAPI([{
 				LCHRecipeSignature: 'alfa',
@@ -160,7 +160,7 @@ describe('LCHRuntimeAPI', function testLCHRuntimeAPI() {
 				}]).charlie('bravo', 'delta');
 			}, /ErrorTypeMismatch/);
 		});
-	
+
 	});
 
 	context('this.api.fn', function() {
@@ -291,7 +291,7 @@ describe('LCHRuntimeAPI', function testLCHRuntimeAPI() {
 					this.api.alfa = function () {
 						return `bye ${ inputData }`;
 					};
-					
+
 					return this.api.alfa(inputData);
 				},
 				LCHRecipeSignature: 'bravo',

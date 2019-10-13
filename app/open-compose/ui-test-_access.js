@@ -52,7 +52,7 @@ describe('LCHCompose_Access', function () {
 	before(function() {
 		return browser.visit(kDefaultRoute.OLSKRoutePath);
 	});
-	
+
 	it('on startup', function() {
 		browser.assert.elements(LCHComposeFilterInput, 1);
 
@@ -60,7 +60,7 @@ describe('LCHCompose_Access', function () {
 		browser.assert.attribute(LCHComposeCreateButton, 'accesskey', 'n');
 
 		browser.assert.elements(LCHComposeListItem, 0);
-		
+
 		browser.assert.elements(LCHComposeDetailPlaceholderContainer, 1);
 
 		browser.assert.elements(LCHComposeDetailToolbar, 0);
@@ -125,7 +125,7 @@ describe('LCHCompose_Access', function () {
 	});
 
 	context.skip('LCHComposeFormOutputTypeField', function () {
-		
+
 		it('shows LCHComposeFormCanonicalExampleBodyField if Bool', async function() {
 			browser.fill(LCHComposeFormOutputTypeField, 'Bool');
 			await browser.wait({ element: LCHComposeFormCanonicalExampleBodyField });
@@ -141,7 +141,7 @@ describe('LCHCompose_Access', function () {
 			browser.assert.elements(LCHComposeFormCanonicalExampleBodyField, 0);
 			browser.assert.elements(LCHComposeFormCanonicalExampleBodyDebugField, 0);
 		});
-	
+
 	});
 
 	it('on fill LCHRecipeURLFilter', async function() {
@@ -194,15 +194,15 @@ describe('LCHCompose_Access', function () {
 
 			browser.assert.elements(LCHComposeDetailToolbar, 0);
 		});
-		
+
 	});
 
 	context.skip('LCHComposeFooterStorageButton', function testLCHComposeFooterStorageButton () {
-		
+
 		it('shows widget', function () {
 			browser.assert.className(LCHComposeStorageWidget, '');
 		});
-	
+
 	});
 
 });

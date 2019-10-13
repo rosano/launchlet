@@ -114,7 +114,7 @@ const mod = {
 		};
 
 		event.preventDefault();
-		
+
 		setTimeout(function () {
 			(new Function(JavascriptComposition))();
 		})
@@ -125,7 +125,7 @@ const mod = {
 	async CommandUpdatePublicKey(inputData) {
 		// await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'kLCHComposePreferencePublicKey', inputData)
 		window.localStorage.setItem('kLCHComposePreferencePublicKey', inputData);
-		
+
 		mod.ValuePublicKey(JSON.parse(inputData || 'null'))
 
 		if (!inputData) {
@@ -278,7 +278,7 @@ import LCHComposeBuildPairExtension from '../LCHComposeBuildPairExtension/main.s
 import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 </script>
-	
+
 <div class="Container">
 
 	<OLSKToolbar OLSKToolbarJustify={ true }>

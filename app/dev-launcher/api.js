@@ -82,7 +82,7 @@ export const LCHRecipesModelIsCommand = function(inputData) {
 	if (!inputData.LCHRecipeName) {
 		return false;
 	}
-	
+
 	if (inputData.LCHRecipeInputTypes) {
 		return false;
 	}
@@ -102,7 +102,7 @@ export const LCHRecipesModelIsSubject = function(inputData) {
 	if (!inputData.LCHRecipeName) {
 		return false;
 	}
-	
+
 	// if (inputData.LCHRecipeInputTypes) {
 	// 	return false;
 	// }
@@ -126,7 +126,7 @@ export const LCHRecipesModelIsAction = function(inputData) {
 	if (!inputData.LCHRecipeInputTypes) {
 		return false;
 	}
-	
+
 	// if (!inputData.LCHRecipeCallback.length) {
 	// 	return false;
 	// }
@@ -138,7 +138,7 @@ export const LCHRecipesModelIsType = function(inputData) {
 	if (LCHRecipesModelErrorsFor(inputData)) {
 		throw new Error('LCHErrorInputNotValid');
 	}
-	
+
 	// if (inputData.LCHRecipeCallback.length !== 1) {
 	// 	return false;
 	// }
@@ -162,7 +162,7 @@ export const LCHRecipesModelIsTask = function(inputData) {
 	if (LCHRecipesModelErrorsFor(inputData)) {
 		throw new Error('LCHErrorInputNotValid');
 	}
-	
+
 	// if (inputData.LCHRecipeCallback.length) {
 	// 	return false;
 	// }
@@ -188,7 +188,7 @@ export const LCHLauncherConvertTypeServiceSearch = function(inputData, _stringCa
 		if (typeof e !== 'object' || e === null) {
 			return false;
 		}
-		
+
 		return true;
 	}).map(function (e) {
 		if (!LCHTypeServiceSearchRecipe().LCHRecipeCallback(e)) {
@@ -214,11 +214,11 @@ export const LCHRecipesModelActionTakesObject = function(inputData) {
 	if (!LCHRecipesModelIsAction(inputData)) {
 		throw new Error('LCHErrorInputNotValid');
 	}
-	
+
 	if (LCHRuntime.LCHRuntimeInputTypes(inputData.LCHRecipeInputTypes).length < 2) {
 		return false;
 	}
-	
+
 	// if (inputData.LCHRecipeCallback.length < 2) {
 	// 	return false;
 	// }
@@ -234,11 +234,11 @@ export const LCHRecipesModelActionTakesParams = function(inputData) {
 	if (!LCHRecipesModelIsAction(inputData)) {
 		throw new Error('LCHErrorInputNotValid');
 	}
-	
+
 	if (LCHRuntime.LCHRuntimeInputTypes(inputData.LCHRecipeInputTypes).pop() !== 'Object') {
 		return false;
 	}
-	
+
 	// if (inputData.LCHRecipeCallback.length !== LCHRuntime.LCHRuntimeInputTypes(inputData.LCHRecipeInputTypes).length) {
 	// 	return false;
 	// }

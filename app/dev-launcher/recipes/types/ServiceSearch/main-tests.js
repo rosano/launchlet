@@ -35,7 +35,7 @@ describe('LCHTypeServiceSearchCanonicalExampleCallback', function testLCHTypeSer
 	});
 
 	context('LCHRecipeName', function() {
-		
+
 		it('assigns string', function() {
 			deepEqual(mainModule.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeName, 'alfa');
 		});
@@ -43,11 +43,11 @@ describe('LCHTypeServiceSearchCanonicalExampleCallback', function testLCHTypeSer
 	});
 
 	context('LCHRecipeCallback', function() {
-		
+
 		it('assigns function', function() {
 			deepEqual(typeof mainModule.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeCallback, 'function');
 		});
-		
+
 		it('returns string', function() {
 			deepEqual(mainModule.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeCallback(), 'http://example.com?q=LCHSEARCHTOKEN');
 		});
@@ -55,7 +55,7 @@ describe('LCHTypeServiceSearchCanonicalExampleCallback', function testLCHTypeSer
 	});
 
 	context('LCHRecipeOutputType', function() {
-		
+
 		it('assigns string', function() {
 			deepEqual(mainModule.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeOutputType, 'ServiceSearchURLTemplate');
 		});

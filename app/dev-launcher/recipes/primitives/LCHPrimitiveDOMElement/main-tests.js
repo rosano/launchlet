@@ -25,11 +25,11 @@ describe('LCHPrimitiveDOMElementCanonicalExampleCallback', function testLCHPrimi
 	});
 
 	context('focus', function () {
-		
+
 		it('assigns function', function() {
 			deepEqual(typeof mainModule.LCHPrimitiveDOMElementCanonicalExampleCallback().focus, 'function')
 		});
-	
+
 	});
 
 });

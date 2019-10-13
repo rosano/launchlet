@@ -64,7 +64,7 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 		it('sets default if undefined', function() {
 			deepEqual(mainModule.LCHLauncherOptions({}).LCHOptionRecipes, []);
 		});
-		
+
 		it('throws error if not valid', function() {
 			throws(function() {
 				mainModule.LCHLauncherOptions({
@@ -78,12 +78,12 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 				LCHOptionRecipes: [{}],
 			}).LCHOptionRecipes, []);
 		});
-		
+
 		it('passes input', function() {
 			const item = {
 				LCHRecipeCallback () {},
 			};
-			
+
 			deepEqual(mainModule.LCHLauncherOptions({
 				LCHOptionRecipes: [item],
 			}).LCHOptionRecipes, [item]);
@@ -96,7 +96,7 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 		it('sets default if undefined', function() {
 			deepEqual(mainModule.LCHLauncherOptions({}).LCHOptionMode, mainModule.LCHLauncherModes().shift());
 		});
-		
+
 		it('throws error if not valid', function() {
 			throws(function() {
 				mainModule.LCHLauncherOptions({
@@ -145,7 +145,7 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 				});
 			}, /LCHOptionLanguageNotString/);
 		});
-		
+
 		it('passes input', function() {
 			deepEqual(mainModule.LCHLauncherOptions({
 				LCHOptionLanguage: 'alfa'
@@ -203,7 +203,7 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 		});
 
 		context.skip('if Action', function() {
-			
+
 			it('excludes if multiple LCHRecipeInputTypes', function() {
 				deepEqual(mainModule.LCHLauncherUIRecipesForMode([{
 					LCHRecipeName: 'alfa',
@@ -212,7 +212,7 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 					LCHRecipeCallback (bravo, charlie) {},
 				}], mainModule.LCHLauncherModeCommit()), []);
 			});
-			
+
 			it('excludes if LCHRecipeInputTypes not String', function() {
 				deepEqual(mainModule.LCHLauncherUIRecipesForMode([{
 					LCHRecipeName: 'alfa',
@@ -221,7 +221,7 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 					LCHRecipeCallback (charlie) {},
 				}], mainModule.LCHLauncherModeCommit()), []);
 			});
-			
+
 			it('excludes if _LCHLauncherGenerated not true', function() {
 				deepEqual(mainModule.LCHLauncherUIRecipesForMode([{
 					LCHRecipeName: 'alfa',
@@ -292,7 +292,7 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 // 				},
 // 			}), false);
 // 		});
-		
+
 // 		it('returns true if match LCHRecipeName', function() {
 // 			deepEqual(mainModule.LCHLauncherFilterForText('alfa')({
 // 				LCHRecipeName: 'alfa',
@@ -334,7 +334,7 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 // 				LCHRecipeName: 'alfa',
 // 			}), true);
 // 		});
-		
+
 // 	});
 
 // });
@@ -501,7 +501,7 @@ describe('LCHLauncherActionComparator', function testLCHLauncherActionComparator
 			];
 			deepEqual(items.slice().sort(mainModule.LCHLauncherActionComparator('alfa')), [items[0], items[2], items[1]]);
 		});
-	
+
 	});
 
 });

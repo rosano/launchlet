@@ -11,7 +11,7 @@ describe('LCHVitrineDemoPreview', function () {
 	before(function () {
 		return browser.click(LCHVitrineDemoButtonPreview);
 	});
-	
+
 	it('shows headings', function () {
 		deepEqual(browser.queryAll('h1,h2').map(function (e) {
 			return e.textContent
@@ -19,7 +19,7 @@ describe('LCHVitrineDemoPreview', function () {
 			return e.textContent.trim()
 		}))
 	});
-	
+
 	it('selects one', function () {
 		browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
 	});

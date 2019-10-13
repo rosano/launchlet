@@ -17,14 +17,14 @@ describe('LCHComposeBuildPair', function () {
 	});
 
 	context('SubmitValid', function testSubmitValid () {
-		
+
 		before(async function () {
 			browser.click(LCHComposeBuildPairButton)
 			await browser.wait({ element: LCHBuildPairExtensionPublicKeyField })
-			
+
 			browser.fill(LCHBuildPairExtensionPublicKeyField, kStubPublicKeyValid())
 		});
-		
+
 		it('posts message', async function() {
 			deepEqual(await browser.OLSKMessageAsync(function () {
 				browser.click(LCHBuildPairExtensionSubmitButton)
@@ -34,11 +34,11 @@ describe('LCHComposeBuildPair', function () {
 				LBXRequestEncryptedData: 'LBX_TESTING_REQUEST_DATA',
 			});
 		});
-	
+
 	});
 
 	context('ModelChange', function testModelChange () {
-		
+
 		it('posts message with LBXRequestEncryptedData', async function() {
 			deepEqual(await browser.OLSKMessageAsync(async function () {
 				await browser.check(LCHComposeBuildModePipeEnabledToggle);
@@ -48,18 +48,18 @@ describe('LCHComposeBuildPair', function () {
 				LBXRequestEncryptedData: 'LBX_TESTING_REQUEST_DATA',
 			});
 		});
-	
+
 	});
 
 	context('RemoveKeys', function testRemoveKeys () {
-		
+
 		it('posts no message', async function() {
 			deepEqual(await browser.OLSKMessageAsync(function () {
 				browser.click(LCHBuildPairExtensionDeleteKeyButton)
 				return browser.wait({ element: LCHComposeBuildPairButton })
 			}), undefined)
 		});
-	
+
 	});
 
 });

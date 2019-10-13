@@ -7,9 +7,9 @@ describe('LCHComposeBuild_Misc', function () {
 	before(function() {
 		return browser.visit(kDefaultRoute.OLSKRoutePath);
 	});
-	
+
 	describe('LCHComposeBuildIncludePageRecipesField', function() {
-		
+
 		it('sets type', function () {
 			browser.assert.attribute(LCHComposeBuildIncludePageRecipesField, 'type', 'checkbox')
 		});
@@ -19,7 +19,7 @@ describe('LCHComposeBuild_Misc', function () {
 		});
 
 		context('click', function () {
-			
+
 			before(function () {
 				browser.assert.text('#TestLCHComposeBuildDispatchIncludePageRecipes', '0');
 				browser.assert.text('#TestLCHComposeBuildDispatchIncludePageRecipesValue', 'undefined');
@@ -27,13 +27,13 @@ describe('LCHComposeBuild_Misc', function () {
 
 			before(function () {
 				browser.check(LCHComposeBuildIncludePageRecipesField)
-			}); 
+			});
 
 			it('sends LCHComposeBuildDispatchIncludePageRecipes', function() {
 				browser.assert.text('#TestLCHComposeBuildDispatchIncludePageRecipes', '1');
 				browser.assert.text('#TestLCHComposeBuildDispatchIncludePageRecipesValue', 'true');
 			});
-		
+
 		});
 
 	});

@@ -36,11 +36,11 @@ describe('LCHLargeText_Misc', function () {
 		before(function () {
 			browser.click(`${ LCHLargeTextContainer } span`);
 		});
-		
+
 		it('does nothing', function() {
 			browser.assert.elements(LCHLargeTextContainer, 1);
 		});
-	
+
 	});
 
 	context('click outside', function () {
@@ -48,13 +48,13 @@ describe('LCHLargeText_Misc', function () {
 		before(function () {
 			browser.click('.TestRecipeOutput');
 		});
-		
+
 		it.skip('hides LCHLargeTextContainer', function() {
 			browser.assert.elements(LCHLargeTextContainer, 0);
 		});
-	
+
 	});
-		
+
 	context('Keydown', function () {
 
 		before(function () {
@@ -76,7 +76,7 @@ describe('LCHLargeText_Misc', function () {
 		it.skip('hides LCHLargeTextContainer', function() {
 			browser.assert.elements(LCHLargeTextContainer, 0);
 		});
-	
+
 	});
 
 });

@@ -35,30 +35,30 @@ describe(`LCHBuildPairExtension_Localize-${ languageCode }`, function () {
 	});
 
 	context('SubmitValid', function testSubmitValid () {
-		
+
 		before(function () {
 			browser.fill(LCHBuildPairExtensionPublicKeyField, 'alfa')
 			browser.click(LCHBuildPairExtensionSubmitButton)
 		});
-		
+
 		it('localizes LCHBuildPairExtensionDeleteKeyButton', function() {
 			browser.assert.text(LCHBuildPairExtensionDeleteKeyButton, uLocalized('LCHBuildPairExtensionDeleteKeyButtonText'));
 		});
-	
+
 	});
 
 	context('Failed', function testFailed () {
-		
+
 		before(function () {
 			browser.evaluate(`window.postMessage({
 				LBXResponseHash: 'alfa',
 			}, window.location.href)`)
 		});
-		
+
 		it('localizes LCHBuildPairExtensionStatusFailed', function() {
 			browser.assert.text(LCHBuildPairExtensionStatusFailed, uLocalized('LCHBuildPairExtensionStatusFailedText'))
 		});
-	
+
 	});
 
 });

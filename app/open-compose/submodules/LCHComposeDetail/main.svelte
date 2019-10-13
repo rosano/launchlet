@@ -57,7 +57,7 @@ const mod = {
 	_ValueEditorCallbackBody: undefined,
 
 	_ValueEditorStyle: undefined,
-	
+
 	_ValueEditorCanonicalExampleCallbackBody: undefined,
 
 // COMMAND
@@ -107,7 +107,7 @@ const mod = {
 		}, $DocumentSelectedStore);
 
 		if (OLSK_TESTING_BEHAVIOUR()) {
-			OLSKThrottle.OLSKThrottleSkip(mod._ReactThrottleMap['Default'])	
+			OLSKThrottle.OLSKThrottleSkip(mod._ReactThrottleMap['Default'])
 		};
 
 		OLSKThrottle.OLSKThrottleMappedTimeoutFor(mod._SaveThrottleMap, $DocumentSelectedStore.LCHDocumentID, function (inputData) {
@@ -122,7 +122,7 @@ const mod = {
 		}, $DocumentSelectedStore);
 
 		if (OLSK_TESTING_BEHAVIOUR()) {
-			OLSKThrottle.OLSKThrottleSkip(mod._SaveThrottleMap[$DocumentSelectedStore.LCHDocumentID])	
+			OLSKThrottle.OLSKThrottleSkip(mod._SaveThrottleMap[$DocumentSelectedStore.LCHDocumentID])
 		};
 	},
 	async commandDocumentClone() {
@@ -182,12 +182,12 @@ import LCHEditor from '../LCHEditor/main.svelte';
 	{#if $DocumentSelectedStore.LCHDocumentIsFlagged}
 		<div class="LCHComposeFormFlagAlert">{ $DocumentSelectedStore.LCHDocumentSyntaxErrorMessage ? $DocumentSelectedStore.LCHDocumentSyntaxErrorMessage : OLSKLocalized('LCHComposeFormFlagAlertText') }</div>
 	{/if}
-	
+
 	<p>
 		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentName } on:input={ mod.commandDocumentSave } placeholder="{ OLSKLocalized('LCHComposeFormNameFieldPlaceholderText') }" autofocus id="LCHComposeFormNameField" />
 	</p>
 
-	<hr>	
+	<hr>
 
 	<p>
 		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentSignature } on:input={ mod.commandDocumentSave } placeholder="{ OLSKLocalized('LCHComposeFormSignatureFieldPlaceholderText') }" id="LCHComposeFormSignatureField" />
@@ -200,11 +200,11 @@ import LCHEditor from '../LCHEditor/main.svelte';
 			<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentInputTypes } placeholder={ OLSKLocalized('LCHComposeFormInputTypesFieldPlaceholderText') } on:input={ mod.commandDocumentSave } id="LCHComposeFormInputTypesField" />
 			<span>→</span>
 		{/if}
-		
+
 		<span>(</span>
-		
+
 		<input id="LCHComposeFormArgsField" bind:value={ $DocumentSelectedStore.LCHDocumentCallbackArgs } placeholder={ OLSKLocalized('LCHComposeFormArgsFieldPlaceholderText') } on:input={ mod.commandDocumentSave }/>
-		
+
 		<span>) &#123;</span>
 	</p>
 
@@ -220,7 +220,7 @@ import LCHEditor from '../LCHEditor/main.svelte';
 			lineWrapping: true,
 
 			placeholder: OLSKLocalized('LCHComposeFormScriptFieldPlaceholderText'),
-			
+
 		  keyMap: 'sublime',
 
 			extraKeys: {
@@ -234,7 +234,7 @@ import LCHEditor from '../LCHEditor/main.svelte';
 
 		<span>→</span>
 
-		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentOutputType } placeholder={ OLSKLocalized('LCHComposeFormOutputTypeFieldPlaceholderText') } on:input={ mod.commandDocumentSave } id="LCHComposeFormOutputTypeField" />	
+		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentOutputType } placeholder={ OLSKLocalized('LCHComposeFormOutputTypeFieldPlaceholderText') } on:input={ mod.commandDocumentSave } id="LCHComposeFormOutputTypeField" />
 	</p>
 
 	{#if $DocumentSelectedStore.LCHDocumentOutputType === 'Bool'}
@@ -250,7 +250,7 @@ import LCHEditor from '../LCHEditor/main.svelte';
 				lineWrapping: true,
 
 				placeholder: OLSKLocalized('LCHComposeFormCanonicalExampleBodyFieldPlaceholderText'),
-				
+
 			  keyMap: 'sublime',
 
 				extraKeys: {
@@ -276,7 +276,7 @@ import LCHEditor from '../LCHEditor/main.svelte';
 			lineWrapping: true,
 
 			placeholder: OLSKLocalized('LCHComposeFormStyleFieldPlaceholderText'),
-			
+
 		  keyMap: 'sublime',
 
 			extraKeys: {

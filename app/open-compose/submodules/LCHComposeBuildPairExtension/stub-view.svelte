@@ -4,7 +4,7 @@ import Module from './main.svelte';
 const mod = {
 
 	StubBuildPairExtensionDispatchPublicKeyUpdate (inputData) {
-		window.LCHComposeBuildPairExtensionDispatchPublicKeyUpdate.innerHTML = parseInt(window.LCHComposeBuildPairExtensionDispatchPublicKeyUpdate.innerHTML) + 1;	
+		window.LCHComposeBuildPairExtensionDispatchPublicKeyUpdate.innerHTML = parseInt(window.LCHComposeBuildPairExtensionDispatchPublicKeyUpdate.innerHTML) + 1;
 		window.LCHComposeBuildPairExtensionDispatchPublicKeyUpdateText.innerHTML = inputData.detail;
 	},
 

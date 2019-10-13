@@ -71,7 +71,7 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 		if (LRTOptions.LCHOptionMode !== LCHLauncherModePipe()) {
 			return;
 		}
-		
+
 		if (!mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptFilterText) {
 			return;
 		}
@@ -91,7 +91,7 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 			if (LRTOptions.LCHOptionMode === LCHLauncherModePipe() && !mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptFilterText && mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptResultsThrottle === false) {
 				return mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptItemsVisible;
 			}
-			
+
 			if (!mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptFilterText) {
 				return LRTOptions.LCHOptionMode === LCHLauncherModePreview() ? mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptItemsAll : [];
 			}
@@ -273,13 +273,13 @@ const mod = {
 			if (OLSKThrottle.OLSKThrottleInputDataIsThrottleObject(mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptInputThrottle)) {
 				clearTimeout(mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptInputThrottle._OLSKThrottleTimeoutID);
 			}
-			
+
 			mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptInputThrottle = undefined;
 
 			if (OLSKThrottle.OLSKThrottleInputDataIsThrottleObject(mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptResultsThrottle)) {
 				clearTimeout(mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptResultsThrottle._OLSKThrottleTimeoutID);
 			}
-			
+
 			mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptResultsThrottle = undefined;
 		})();
 
@@ -359,7 +359,7 @@ const mod = {
 		if (!mod._ValueComponentDidMount) {
 			return;
 		};
-		
+
 		if (mod._ValueRootElementInstance.contains(event.target)) {
 	  	return;
 		}
@@ -383,7 +383,7 @@ const mod = {
 	},
 
 	// COMMAND
-	
+
 	_commandHandleEventKeydownModeDotMode (event) {
 		const handlerFunctions = {
 			Escape () {
@@ -395,11 +395,11 @@ const mod = {
 			Tab () {
 				event.preventDefault();
 				event.stopPropagation();
-				
+
 				if (!mod.ValuePromptDotModeText()) {
 					return true;
 				}
-				
+
 				return mod.ValuePromptDotModeEnabled(false);
 			},
 			Enter () {
@@ -499,7 +499,7 @@ const mod = {
 		if (mod._ValuePromptActiveIndex !== 0) {
 			return;
 		}
-		
+
 		if (OLSKThrottle.OLSKThrottleInputDataIsThrottleObject(mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptResultsThrottle)) {
 			clearTimeout(mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptResultsThrottle._OLSKThrottleTimeoutID);
 		}
@@ -576,7 +576,7 @@ const mod = {
 	},
 	commandReloadSubjects (inputData) {
 		let reloadSubjects = LCHLauncherReloadableSubjects([inputData]);
-		
+
 		if (!reloadSubjects.length) {
 			return false;
 		};
@@ -587,7 +587,7 @@ const mod = {
 		mod.ValuePromptActiveIndex(0);
 
 		ActivePromptItemSelectedShouldUpdate(reloadSubjects[0]);
-		
+
 		return true;
 	},
 	async commandTerminate () {
@@ -662,7 +662,7 @@ const mod = {
 		if (LRTOptions.LCHOptionMode === LCHLauncherModePipe()) {
 			return;
 		}
-		
+
 		setTimeout(function () {
 			mod._ValueFilterInputInstance.focus();
 		}, 20);
@@ -768,7 +768,7 @@ const mod = {
 			delete e.LCHRecipeIsAutomatic;
 
 			e._LCHRecipeSource = window.location.host;
-			
+
 			return e;
 		}).filter(function(e) {
 			return !LCHRecipesModelErrorsFor(e);
@@ -792,7 +792,7 @@ const mod = {
 
 		if (LRTOptions.LCHOptionMode === LCHLauncherModePipe()) {
 			mod._ValueTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(mod._ValueSharedRecipes);
-			
+
 			const typeNameMap = LCHAPITypeNameMap(mod._ValueSharedRecipes);
 
 			mod._ValueAllSubjects = mod._ValueAllPromptRecipes.filter(function (e) {
@@ -951,7 +951,7 @@ import LCHLauncherPipeItem from './submodules/LCHLauncherPipeItem/main.svelte';
 {/each}
 
 </div>
-	
+
 {#if mod._ValueSecondaryComponentDescriptor}
 	<svelte:component this={ mod._ValueSecondaryComponentDescriptor.LCHInstanceClass } {...mod._ValueSecondaryComponentDescriptor.LCHInstanceProps} />
 {/if}

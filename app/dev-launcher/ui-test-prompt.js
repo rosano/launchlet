@@ -20,7 +20,7 @@ describe('LCHLauncherPrompt', function () {
 		before(function() {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'a');
 		});
-		
+
 		before(function() {
 			return browser.click(LCHLauncherActionPrompt);
 		});
@@ -28,7 +28,7 @@ describe('LCHLauncherPrompt', function () {
 		it('selects prompt', function() {
 			browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
 		});
-	
+
 	});
 
 	context('Tab', function () {
@@ -40,7 +40,7 @@ describe('LCHLauncherPrompt', function () {
 		it('selects next prompt', function() {
 			browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
 		});
-	
+
 	});
 
 	context('Shift+Tab', function () {
@@ -54,7 +54,7 @@ describe('LCHLauncherPrompt', function () {
 		it('selects previous prompt', function() {
 			browser.assert.hasClass(LCHLauncherActionPrompt, 'LCHLauncherPromptSelected');
 		});
-	
+
 	});
 
 	context('no subject', function () {
@@ -72,7 +72,7 @@ describe('LCHLauncherPrompt', function () {
 		});
 
 		context('click', function () {
-			
+
 			before(function() {
 				browser.click(LCHLauncherSubjectPrompt);
 			});
@@ -80,7 +80,7 @@ describe('LCHLauncherPrompt', function () {
 			it('does nothing', function() {
 				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
 			});
-		
+
 		});
 
 		context('Tab', function () {
@@ -92,7 +92,7 @@ describe('LCHLauncherPrompt', function () {
 			it('does nothing', function() {
 				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
 			});
-		
+
 		});
 
 		context('Shift+Tab', function () {
@@ -106,9 +106,9 @@ describe('LCHLauncherPrompt', function () {
 			it('does nothing', function() {
 				browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
 			});
-		
+
 		});
-	
+
 	});
 
 });

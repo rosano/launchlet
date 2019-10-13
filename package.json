@@ -2,7 +2,7 @@
   "scripts": {
     "preinstall": "node ./package-preinstall.js",
     "postinstall": "node ./package-postinstall.js",
-    
+
     "start": "olsk-app app",
 
     "build": "rollup -c rollup-config.js",
@@ -100,6 +100,6 @@
     "// PRODUCTION BUILD": null,
     "OLSKDisk": "olsk/OLSKDisk",
 
-    "// I sacrifice myself for the commas of others": null    
+    "// I sacrifice myself for the commas of others": null
   }
 }

@@ -30,11 +30,11 @@ export const LCHLauncherStandardRecipes = function() {
 		ServiceSearchURLTemplate,
 		String,
 		URL,
-		
+
 		Command,
 		ServiceSearch,
 		SubjectContainer,
-		
+
 		LCHActiveDocumentFocusElements,
 
 		LCHDateLocalOffsetSubtracted,

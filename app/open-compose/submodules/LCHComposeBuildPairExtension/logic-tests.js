@@ -44,7 +44,7 @@ describe('LBXResponseIsValid', function testLBXResponseIsVald() {
 				LBXResponseError: 'alfa',
 			}), true);
 		});
-	
+
 	});
 
 });

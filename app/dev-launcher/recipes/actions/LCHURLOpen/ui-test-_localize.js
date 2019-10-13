@@ -7,9 +7,9 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 const uLocalized = function (inputData) {
 	return OLSKTestingLocalized(inputData, languageCode);
 };
-	
+
 describe(`LCHURLOpen_Localize-${ languageCode }`, function () {
-	
+
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
 			OLSKRoutingLanguage: languageCode,
@@ -28,7 +28,7 @@ describe(`LCHURLOpen_Localize-${ languageCode }`, function () {
 	it('localizes LCHLauncherPipeItemTitle', function() {
 		browser.assert.text(`${ LCHLauncherActionPromptItemSelected } ${ LCHLauncherPipeItemTitle }`, uLocalized('LCHStandardRecipeNames').LCHURLOpen);
 	});
-	
+
 });
 
 });

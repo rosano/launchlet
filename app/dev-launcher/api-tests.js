@@ -494,7 +494,7 @@ describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertT
 			it('returns string', function() {
 				deepEqual(item.LCHRecipeName, 'Search: alfa');
 			});
-			
+
 		});
 
 		context('LCHRecipeInputTypes', function() {
@@ -502,7 +502,7 @@ describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertT
 			it('returns string', function() {
 				deepEqual(item.LCHRecipeInputTypes, 'String');
 			});
-			
+
 		});
 
 		context('LCHRecipeCallback', function() {
@@ -524,7 +524,7 @@ describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertT
 					})
 				})('alfa'), ['alfa', 'http://example.com?q=LCHSEARCHTOKEN']);
 			});
-			
+
 		});
 
 		context('_LCHLauncherGenerated', function() {
@@ -532,7 +532,7 @@ describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertT
 			it('returns boolean', function() {
 				deepEqual(item._LCHLauncherGenerated, true);
 			});
-			
+
 		});
 
 	});
@@ -985,7 +985,7 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 			],
 		});
 	});
-	
+
 	it('returns object if LCHCompositionSubjectPrimary not Subject', function() {
 		deepEqual(mainModule.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
 			LCHCompositionSubjectPrimary: kTesting.StubRecipeObjectValid(),
@@ -1317,7 +1317,7 @@ describe('LCHRuntimeFilteredRecipes', function testLCHRuntimeFilteredRecipes() {
 		return {
 			LCHRecipeCallback () {},
 		};
-	};	
+	};
 
 	it('throws if param1 not array', function () {
 		throws(function () {
@@ -1358,18 +1358,18 @@ describe('LCHRuntimeFilteredRecipes', function testLCHRuntimeFilteredRecipes() {
 			const item = Object.assign(uStubItem(), {
 				LCHRecipeURLFilter: 'alfa',
 			});
-			
+
 			deepEqual(mainModule.LCHRuntimeFilteredRecipes([item], 'bravo'), []);
 		});
-		
+
 		it('includes if param2 match', function() {
 			const item = Object.assign(uStubItem(), {
 				LCHRecipeURLFilter: 'alfa',
 			});
-			
+
 			deepEqual(mainModule.LCHRuntimeFilteredRecipes([item], 'alfa'), [item]);
 		});
-	
+
 	});
 
 });

@@ -6,7 +6,7 @@
 	const Browser = require('zombie');
 
 	Browser.localhost('loc.tests', 3000);
-	
+
 	require('OLSKTesting')._OLSKTestingZombieExtend(Browser);
 
 	global.OLSKBrowser = Browser;

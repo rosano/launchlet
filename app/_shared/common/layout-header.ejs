@@ -4,7 +4,7 @@
 <head>
 	<%- (function() {
 	let outputData = [];
-	
+
 	if (locals.OLSKPageTitle) {
 		outputData.push(`<title>${ locals.OLSKPageTitle }</title>`);
 	}
@@ -64,7 +64,7 @@
 		outputData.push(...[
 			'/_shared/__external/OLSKRouting/main.js',
 			].map(pathToTag));
-		
+
 		outputData.push(`<script type="text/javascript">
 		window.OLSKCanonicalFor = function(routeConstant, optionalParams) {
 			return OLSKRouting.OLSKRoutingCanonicalPathWithRoutePathAndOptionalParams((${ JSON.stringify(OLSKPagePublicRouteKeys.reduce(function (map, e) {

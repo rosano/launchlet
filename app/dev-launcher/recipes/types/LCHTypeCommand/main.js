@@ -6,7 +6,7 @@ export const LCHTypeCommandCallback = function(inputData) {
 	if (!inputData.LCHRecipeName) {
 		return false;
 	}
-	
+
 	if (inputData.LCHRecipeCallback.length) {
 		return false;
 	}

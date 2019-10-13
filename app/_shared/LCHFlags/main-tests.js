@@ -25,35 +25,35 @@ describe('_LCHFlags', function test_LCHFlags() {
 		it('flags if eval direct', function() {
 			deepEqual(mainModule._LCHFlags('eval()'), ['LCHFlagEval']);
 		});
-		
+
 		it('flags if eval indirect variable', function() {
 			deepEqual(mainModule._LCHFlags('(function () { alfa = eval; alfa() })'), ['LCHFlagEval']);
 		});
-		
+
 		it('flags if eval indirect call', function() {
 			deepEqual(mainModule._LCHFlags('eval.call(null)'), ['LCHFlagEval']);
 		});
-		
+
 		it('flags if eval indirect window', function() {
 			deepEqual(mainModule._LCHFlags('window.eval(null)'), ['LCHFlagEval']);
 		});
-		
+
 		it('flags if eval indirect reference', function() {
 			deepEqual(mainModule._LCHFlags('(1, eval)(null)'), ['LCHFlagEval']);
 		});
-		
+
 		it.skip('ignores if eval other', function() {
 			deepEqual(mainModule._LCHFlags('(function () { eval = console.log; eval() })'), []);
 		});
-		
+
 		it('flags if Function Identifier', function() {
 			deepEqual(mainModule._LCHFlags('new Function()'), ['LCHFlagEval']);
 		});
-		
+
 		it('flags if Function MemberExpression', function() {
 			deepEqual(mainModule._LCHFlags('window.Function(null)'), ['LCHFlagEval']);
 		});
-	
+
 	});
 
 	context('LCHFlagMultipleExpressions', function () {
@@ -69,11 +69,11 @@ describe('_LCHFlags', function test_LCHFlags() {
 		it('flags if multiple expressions via arguments', function() {
 			deepEqual(mainModule._LCHFlags('(function () {},{})'), ['LCHFlagMultipleExpressions']);
 		});
-		
+
 		it('ignores if single expression', function() {
 			deepEqual(mainModule._LCHFlags('(function () {})'), []);
 		});
-	
+
 	});
 
 	context('LCHFlagStateful', function () {
@@ -113,7 +113,7 @@ describe('_LCHFlags', function test_LCHFlags() {
 		it('flags if Cache MemberExpression', function() {
 			deepEqual(mainModule._LCHFlags('window.Cache'), ['LCHFlagStateful']);
 		});
-	
+
 	});
 
 	context('LCHFlagStateful', function () {
@@ -141,7 +141,7 @@ describe('_LCHFlags', function test_LCHFlags() {
 		it('flags if fetch MemberExpression', function() {
 			deepEqual(mainModule._LCHFlags('window.fetch'), ['LCHFlagStateful']);
 		});
-	
+
 	});
 
 });

@@ -29,7 +29,7 @@ export const LCHDocumentMetalList = async function(storageClient) {
 	for (let key in outputData) {
 		LCHDocumentModelPostJSONParse(outputData[key]);
 	}
-	
+
 	return outputData;
 };
 

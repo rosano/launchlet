@@ -35,7 +35,7 @@ describe('LCHTypeStringCanonicalExampleCallback', function testLCHTypeStringCano
 	});
 
 	context('LCHRecipeName', function() {
-		
+
 		it('returns string', function() {
 			deepEqual(mainModule.LCHTypeStringCanonicalExampleCallback().LCHRecipeName, 'alfa');
 		});
@@ -43,7 +43,7 @@ describe('LCHTypeStringCanonicalExampleCallback', function testLCHTypeStringCano
 	});
 
 	context('LCHRecipeCallback', function() {
-		
+
 		it('returns function', function() {
 			deepEqual(typeof mainModule.LCHTypeStringCanonicalExampleCallback().LCHRecipeCallback, 'function');
 		});

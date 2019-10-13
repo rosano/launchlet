@@ -9,11 +9,11 @@ describe('LCHCompose_Misc', function () {
 	});
 
 	context('LCHComposeBuildAnchor', function () {
-		
+
 		it('sets href', function () {
 			deepEqual(browser.query(LCHComposeBuildAnchor).href.slice(0, 11), 'javascript:')
 		});
-	
+
 	});
 
 	context('on startup', function() {
@@ -36,7 +36,7 @@ describe('LCHCompose_Misc', function () {
 	});
 
 	context('on filter', function () {
-		
+
 		before(async function() {
 			await browser.visit(kDefaultRoute.OLSKRoutePath);
 

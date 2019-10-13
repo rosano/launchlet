@@ -1,4 +1,4 @@
-LCHStandardRecipeNames: 
+LCHStandardRecipeNames:
   LCHActiveDocumentFocusElements: Elementos enfocados del documento activo
   LCHCopyToClipboard: Copiar al portapapeles
   LCHLargeText: Texto aumentado
@@ -13,4 +13,4 @@ LCHStandardRecipeNames:
   Date: Date
   URL: URL
   ServiceSearchURLTemplate: Plantilla URL de servicio de búsqueda
-  DOMElement: Elemento DOM 
+  DOMElement: Elemento DOM

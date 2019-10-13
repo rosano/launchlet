@@ -32,7 +32,7 @@ describe('DataSingletonExists', function testDataSingletonExists() {
 
 	it('returns true after LifecycleSingletonCreate', function() {
 		mainModule.mod.LifecycleSingletonCreate();
-		
+
 		deepEqual(mainModule.mod.DataSingletonExists(), true);
 
 		mainModule.mod.LifecycleSingletonDestroy();
@@ -41,7 +41,7 @@ describe('DataSingletonExists', function testDataSingletonExists() {
 	it('returns true after LifecycleSingletonDestroy', function() {
 		mainModule.mod.LifecycleSingletonCreate();
 		mainModule.mod.LifecycleSingletonDestroy();
-		
+
 		deepEqual(mainModule.mod.DataSingletonExists(), false);
 	});
 
@@ -56,7 +56,7 @@ describe('LifecycleSingletonCreate', function testLifecycleSingletonCreate() {
 	afterEach(function () {
 		mainModule.mod.LifecycleSingletonDestroy();
 	});
-	
+
 	afterEach(function () {
 		deepEqual(mainModule.mod._ValueSingleton, undefined);
 	});
@@ -69,7 +69,7 @@ describe('LifecycleSingletonCreate', function testLifecycleSingletonCreate() {
 
 	it('calls LifecycleSingletonDestroy if exists', function() {
 		mainModule.mod.LifecycleSingletonCreate();
-		
+
 		mainModule.mod._ValueClass = kTesting.StubValueClass('bravo')
 
 		mainModule.mod.LifecycleSingletonCreate();
@@ -88,7 +88,7 @@ describe('LifecycleSingletonDestroy', function testLifecycleSingletonDestroy() {
 	beforeEach(function () {
 		mainModule.mod.LifecycleSingletonCreate();
 	});
-	
+
 	afterEach(function () {
 		deepEqual(mainModule.mod._ValueSingleton, undefined);
 	});
@@ -138,7 +138,7 @@ describe('LCHPackage', function testLCHPackage() {
 			LCHSingletonCreate: mainModule.mod.LifecycleSingletonCreate,
 			LCHSingletonExists: mainModule.mod.DataSingletonExists,
 			LCHSingletonDestroy: mainModule.mod.LifecycleSingletonDestroy,
-			
+
 			LCHTasksRun: mainModule.mod.CommandRunTasks,
 		});
 	});
@@ -147,7 +147,7 @@ describe('LCHPackage', function testLCHPackage() {
 		let item = mainModule.LCHPackage();
 
 		item.alfa = 'bravo',
-		
+
 		deepEqual(item.alfa, undefined);
 	});
 

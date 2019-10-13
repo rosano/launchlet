@@ -28,10 +28,10 @@ const mod = {
 	interfaceImportButtonDidClick (event) {
 		let inputElement = event.target;
 		let reader = new FileReader();
-		
+
 		reader.onload = function (event) {
 			dispatch('FooterDispatchImport', event.target.result);
-			
+
 			inputElement.value = null;
 		};
 
@@ -45,7 +45,7 @@ const mod = {
 	<OLSKToolbar OLSKToolbarJustify={ true }>
 		<OLSKToolbarElementGroup>
 			<OLSKReloadButton OLSKLocalized={ OLSKLocalized } />
-			
+
 			<RCSLanguageSwitcher />
 
 			<a class="LCHComposeFooterGuideLink" href={ window.OLSKCanonicalFor('LCHGuideRoute') } target="_blank">{ OLSKLocalized('LCHComposeFooterGuideLinkText') }</a>
@@ -64,7 +64,7 @@ const mod = {
 			</button>
 		</div>
 	</OLSKToolbar>
-	
+
 </footer>
 
 <style src="./ui-style.css"></style>

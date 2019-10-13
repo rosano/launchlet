@@ -29,7 +29,7 @@ describe('LCHLauncherObjectPrompt', function () {
 	});
 
 	context('multi-parametered action', function () {
-		
+
 		before(function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'w');
 		});
@@ -49,11 +49,11 @@ describe('LCHLauncherObjectPrompt', function () {
 		it('selects first object', function() {
 			browser.assert.text(`${ LCHLauncherObjectPromptItemSelected } .LCHLauncherPipeItemTitle`, 'Wikipedia'); // #localize
 		});
-	
+
 	});
 
 	context('Tab', function () {
-		
+
 		before(function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 		});
@@ -61,11 +61,11 @@ describe('LCHLauncherObjectPrompt', function () {
 		it('sets class', function() {
 			browser.assert.hasClass(LCHLauncherObjectPrompt, 'LCHLauncherPromptSelected');
 		});
-	
+
 	});
 
 	context('Dot', function () {
-		
+
 		before(function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, '.');
 		});
@@ -73,11 +73,11 @@ describe('LCHLauncherObjectPrompt', function () {
 		it('does nothing', function() {
 			browser.assert.elements(LCHLauncherPromptDotModeInput, 0);
 		});
-	
+
 	});
 
 	context('Tab', function () {
-		
+
 		before(function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 		});
@@ -85,11 +85,11 @@ describe('LCHLauncherObjectPrompt', function () {
 		it('sets class', function() {
 			browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
 		});
-	
+
 	});
 
 	context('inverse', function () {
-		
+
 		before(function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'w');
 		});
@@ -107,7 +107,7 @@ describe('LCHLauncherObjectPrompt', function () {
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 			});
-			
+
 			it('focuses LCHLauncherObjectPrompt', async function() {
 				browser.assert.hasClass(LCHLauncherObjectPrompt, 'LCHLauncherPromptSelected');
 			});
@@ -116,9 +116,9 @@ describe('LCHLauncherObjectPrompt', function () {
 				browser.assert.elements(LCHLauncherPromptDotModeInput, 1);
 				browser.assert.attribute(LCHLauncherPromptDotModeInput, 'autofocus', '');
 			});
-		
+
 		});
-	
+
 	});
 
 });

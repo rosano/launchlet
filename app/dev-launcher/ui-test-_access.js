@@ -23,7 +23,7 @@ Object.entries({
 	LCHLauncherActionPrompt: '.LCHLauncherActionPrompt',
 	LCHLauncherActionPromptHeading: '.LCHLauncherActionPrompt .LCHLauncherPromptHeading',
 	LCHLauncherActionPromptItemSelected: '.LCHLauncherActionPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem',
-	
+
 	LCHLauncherObjectPrompt: '.LCHLauncherObjectPrompt',
 	LCHLauncherObjectPromptHeading: '.LCHLauncherObjectPrompt .LCHLauncherPromptHeading',
 	LCHLauncherObjectPromptItemSelected: '.LCHLauncherObjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem',
@@ -95,7 +95,7 @@ describe('LCHLauncher_AccessCommit', function testLCHLauncher_AccessCommit () {
 		it('shows LCHLauncherListItem', function() {
 			browser.assert.elements(LCHLauncherListItem, 2)
 		});
-	
+
 	});
 
 });

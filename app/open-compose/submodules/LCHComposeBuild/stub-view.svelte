@@ -4,7 +4,7 @@ import Module from './main.svelte';
 const mod = {
 
 	TestLCHComposeBuildDispatchIncludePageRecipes (inputData) {
-		window.TestLCHComposeBuildDispatchIncludePageRecipes.innerHTML = parseInt(window.TestLCHComposeBuildDispatchIncludePageRecipes.innerHTML) + 1;	
+		window.TestLCHComposeBuildDispatchIncludePageRecipes.innerHTML = parseInt(window.TestLCHComposeBuildDispatchIncludePageRecipes.innerHTML) + 1;
 		window.TestLCHComposeBuildDispatchIncludePageRecipesValue.innerHTML = inputData.detail;
 	},
 

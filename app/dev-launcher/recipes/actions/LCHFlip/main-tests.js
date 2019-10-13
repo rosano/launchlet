@@ -23,13 +23,13 @@ describe('LCHFlip', function testLCHFlip() {
 	});
 
 	context('function', function () {
-		
+
 		it('reverses parameters', function () {
 			deepEqual(mainModule.LCHFlip(function() {
 				return Array.from(arguments);
 			})('alfa', 'bravo'), ['bravo', 'alfa']);
 		});
-	
+
 	});
 
 });

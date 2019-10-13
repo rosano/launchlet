@@ -24,19 +24,19 @@ describe('LCHLauncherPipeItem_Access', function () {
 	before(function() {
 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, uStubProps()));
 	});
-	
+
 	it('shows LCHLauncherPipeItem', function () {
 		browser.assert.element(LCHLauncherPipeItem);
 	});
-	
+
 	it('shows LCHLauncherPipeItemTitle', function () {
 		browser.assert.element(LCHLauncherPipeItemTitle);
 	});
-	
+
 	it('shows LCHLauncherPipeItemSubtitle', function () {
 		browser.assert.element(LCHLauncherPipeItemSubtitle);
 	});
-	
+
 	it('shows LCHLauncherPipeItemSource', function () {
 		browser.assert.element(LCHLauncherPipeItemSource);
 	});

@@ -23,7 +23,7 @@ describe('LCHSettingsActionProperty', function testLCHSettingsActionProperty() {
 		it('returns true and sets value', async function() {
 			deepEqual(await mainModule.LCHSettingsActionProperty(LCHTestingStorageClient, 'alfa', 'bravo'), true);
 		});
-		
+
 	});
 
 });

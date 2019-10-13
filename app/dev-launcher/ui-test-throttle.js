@@ -30,7 +30,7 @@ describe('LCHLauncherThrottle', function () {
 
 			browser.OLSKFireKeyboardEvent(browser.window, 'a');
 		});
-	
+
 	});
 
 	context('DotMode', function () {
@@ -38,11 +38,11 @@ describe('LCHLauncherThrottle', function () {
 		before(function () {
 			browser.OLSKFireKeyboardEvent(browser.window, '.');
 		});
-		
+
 		it('cancels throttle', function() {
 			browser.assert.elements(LCHLauncherResultList, 0);
 		});
-		
+
 		after(function() {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 		});
@@ -50,7 +50,7 @@ describe('LCHLauncherThrottle', function () {
 		after(function () {
 			browser.OLSKFireKeyboardEvent(browser.window, 'a');
 		});
-	
+
 	});
 
 	context('ArrowDown', function () {
@@ -78,7 +78,7 @@ describe('LCHLauncherThrottle', function () {
 		it('skips throttle', function() {
 			browser.assert.elements(LCHLauncherResultList, 1);
 		});
-	
+
 	});
 
 });

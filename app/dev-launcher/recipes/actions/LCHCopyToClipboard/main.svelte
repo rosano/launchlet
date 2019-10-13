@@ -41,7 +41,7 @@ onMount(function () {
 	});
 
 	clipboardButton.focus();
-	
+
 	if (OLSK_TESTING_BEHAVIOUR()) {
 		return;
 	}

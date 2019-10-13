@@ -55,11 +55,11 @@ export const LCHFlags = function(inputData) {
 
 	return Object.entries(inputData).reduce(function (coll, item) {
 		const flags = typeof item[1] === 'string' ? _LCHFlags(item[1]) : [];
-		
+
 		if (flags.length) {
 			(coll = coll || {})[item[0]] = flags
 		};
-		
+
 		return coll;
 	}, null);
 };

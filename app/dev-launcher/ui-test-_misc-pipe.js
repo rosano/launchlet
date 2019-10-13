@@ -6,7 +6,7 @@ const uLocalized = function (inputData) {
 	return OLSKTestingLocalized(inputData, kDefaultRoute.OLSKRouteLanguages[0]);
 };
 
-describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {	
+describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 
 	describe('Enter', function() {
 
@@ -18,13 +18,13 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 		});
 
 		before(function() {
-			browser.assert.input('.TestRecipeOutput', '');	
+			browser.assert.input('.TestRecipeOutput', '');
 		});
 
 		it('assert callbacks count 0')
 
 		context('input not valid', function () {
-			
+
 			before(function () {
 				browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
 			});
@@ -32,11 +32,11 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 			it('runs no callback', function() {
 				browser.assert.input('.TestRecipeOutput', '');
 			});
-		
+
 		});
 
 		context('input valid', function () {
-			
+
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, 'a');
 			});
@@ -56,7 +56,7 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 			it('! runs callback once', function() {
 				browser.assert.elements('.TestLauncherDidFinish', 1);
 			});
-		
+
 		});
 
 	});
@@ -75,7 +75,7 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 
 			browser.evaluate(`let item = document.createElement('input'); item.classList.add('TestKeydownBubble'); document.body.appendChild(item); item.focus();`)
 			// browser.assert.hasFocus('.TestKeydownBubble')
-			
+
 			browser.OLSKFireKeyboardEvent(browser.window, 'a');
 		});
 
@@ -90,7 +90,7 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 		it('shows first subject match', function() {
 			browser.assert.elements(LCHLauncherActionPromptItemSelected, 1);
 		});
-	
+
 		it('hides LCHLauncherResultList', function() {
 			browser.assert.elements(LCHLauncherResultList, 0);
 		});
@@ -100,7 +100,7 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 			before(function () {
 				return browser.wait({ element: LCHLauncherResultList });
 			});
-			
+
 			it('shows LCHLauncherResultList', function() {
 				browser.assert.elements(LCHLauncherResultList, 1);
 			});
@@ -108,7 +108,7 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 			it('selects first list item', function() {
 				browser.assert.hasClass(`${ LCHLauncherResultListItem }:first-child`, 'LCHLauncherResultListItemSelected');
 			});
-		
+
 		});
 
 		context('after throttle', function() {
@@ -126,17 +126,17 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 
 				browser.OLSKFireKeyboardEvent(browser.window, 'c');
 			});
-			
+
 			it('sets LCHLauncherSubjectPromptHeading', function() {
 				browser.assert.text(LCHLauncherSubjectPromptHeading, 'C');
 			});
-			
+
 			it('sets LCHLauncherActionPromptHeading', function() {
 				browser.assert.text(LCHLauncherActionPromptHeading, uLocalized('LCHLauncherActionPromptHeadingText'));
 			});
 
 		});
-			
+
 		it('prevents keydown from bubbling', function() {
 			browser.assert.input('.TestKeydownBubble', '');
 		});
@@ -155,7 +155,7 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 		before(function() {
 			browser.OLSKFireKeyboardEvent(browser.window, 'a');
 		});
-			
+
 		before(function() {
 			browser.assert.hasNoClass(LCHLauncherSubjectPromptHeading, 'LCHLauncherPromptHeadingMatchStop');
 		});
@@ -173,7 +173,7 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 		});
 
 		context('throttle', function () {
-			
+
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, 'x');
 			});
@@ -185,11 +185,11 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 			it('shows LCHLauncherResultList', function() {
 				browser.assert.elements(LCHLauncherResultList, 1);
 			});
-		
+
 		});
 
 		context('after throttle', function () {
-			
+
 			before(function () {
 				browser.OLSKFireKeyboardEvent(browser.window, 'a');
 			});
@@ -205,9 +205,9 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 			it('hides LCHLauncherResultList', function() {
 				browser.assert.elements(LCHLauncherResultList, 0);
 			});
-		
+
 		});
-		
+
 	});
 
 	describe('SubjectContainer', function() {
@@ -226,7 +226,7 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 		before(function() {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'd');
 		});
-			
+
 		before(function() {
 			browser.assert.text(`${ LCHLauncherSubjectPromptItemSelected } ${ LCHLauncherPipeItemTitle }`, 'Active Document Focus Elements'); // #localize
 		});
@@ -236,7 +236,7 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 		});
 
 		context('execute', function () {
-			
+
 			before(function() {
 				return browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
 			});
@@ -244,9 +244,9 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 			it('reloads subjects', async function() {
 				browser.assert.text(`${ LCHLauncherSubjectPromptItemSelected } ${ LCHLauncherPipeItemTitle}`, 'TestLauncherInvoke');
 			});
-		
+
 		});
-		
+
 	});
 
 	describe('keydown', function() {
@@ -265,7 +265,7 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 		it('sets LCHLauncherSubjectPromptHeading', function() {
 			browser.assert.text(LCHLauncherSubjectPromptHeading, 'A');
 		});
-		
+
 	});
 
 	describe('Escape', function() {
@@ -324,11 +324,11 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 			browser.assert.elements(LCHLauncherResultList, 1);
 			return browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 		});
-		
+
 		it('hides open result list', function() {
 			browser.assert.elements(LCHLauncherResultList, 0);
 		});
 
 	});
-	
+
 });

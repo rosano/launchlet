@@ -30,7 +30,7 @@ const mod = {
 			},
 			ArrowDown () {
 				mod.ResultListDispatchArrow(ListItems[LCHLauncherConstrainIndex(ListItems, ListItems.indexOf(ItemSelected) + 1)]);
-				
+
 				return event.preventDefault();
 			},
 		};

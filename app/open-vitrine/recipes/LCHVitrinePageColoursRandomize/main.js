@@ -1,6 +1,6 @@
 export const LCHVitrinePageColoursRandomizeCallback = function() {
 	let element = document.querySelector('style.LCHVitrinePageColoursRandomize')
-	
+
 	if (!element) {
 		document.body.appendChild(element = document.createElement('style')).classList.add('LCHVitrinePageColoursRandomize')
 	};

@@ -19,45 +19,45 @@ describe('LCHVitrineDemoPipe', function () {
 		before(function () {
 			return browser.click(LCHVitrineDemoButtonPipe);
 		});
-		
+
 		before(function () {
 			browser.OLSKFireKeyboardEvent(browser.window, 'h');
 			return browser.OLSKFireKeyboardEvent(browser.window, 'p');
 		});
-		
+
 		before(function () {
 			browser.assert.text('.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageLinksHighlightAdd)
 		});
-		
+
 		before(function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
 		});
-		
+
 		it('adds style element', function() {
 			browser.assert.elements(elementQuery, 1)
 		});
-		
+
 		it('sets content', function() {
 			deepEqual(browser.query(elementQuery).innerHTML, 'a { background: yellow !important; }')
 		});
 
 		context('after invoke', function () {
-			
+
 			before(function () {
 				return browser.click(LCHVitrineDemoButtonPipe);
 			});
-			
+
 			before(function () {
 				browser.OLSKFireKeyboardEvent(browser.window, 'h');
 				return browser.OLSKFireKeyboardEvent(browser.window, 'p');
 			});
-			
+
 			it('hides recipe', function () {
 				browser.assert.text('.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageLinksHighlightRemove)
 			});
-		
+
 		});
-		
+
 	});
 
 	context('LCHVitrinePageLinksHighlightRemove', function () {
@@ -69,7 +69,7 @@ describe('LCHVitrineDemoPipe', function () {
 			browser.click(LCHVitrineDemoButtonPipe);
 			await browser.wait({element: '.LCHLauncherSubjectPromptPlaceholder'});
 		});
-		
+
 		it('hides recipe', async function() {
 			browser.OLSKFireKeyboardEvent(browser.window, 'r');
 			browser.OLSKFireKeyboardEvent(browser.window, 'h');
@@ -77,7 +77,7 @@ describe('LCHVitrineDemoPipe', function () {
 
 			browser.assert.elements('.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem .LCHLauncherPipeItemTitle', OLSKTestingLocalized('LCHVitrineDemoRecipeNames', 'en').LCHVitrinePageColoursRandomize)
 		});
-		
+
 		it('shows recipe on invoke sibling', async function() {
 			browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 			browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
@@ -97,14 +97,14 @@ describe('LCHVitrineDemoPipe', function () {
 
 			browser.assert.text('.LCHLauncherSubjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem .LCHLauncherPipeItemTitle', OLSKTestingLocalized('LCHVitrineDemoRecipeNames', 'en').LCHVitrinePageLinksHighlightRemove);
 		});
-		
+
 		it('removes style element', async function() {
 			browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
 			await browser.wait({element: elementQuery});
 
 			browser.assert.elements(elementQuery, 0)
 		});
-	
+
 	});
 
 });

@@ -8,7 +8,7 @@ Object.entries({
 	RCSLanguageSwitcher: '#RCSLanguageSwitcher',
 	LCHComposeFooterGuideLink: '.LCHComposeFooterGuideLink',
 	LCHComposeFooterDonateLink: '.LCHComposeFooterDonateLink',
-	
+
 	LCHComposeFooterStorageStatus: '.LCHComposeFooterStorageStatus',
 	LCHComposeFooterStorageButton: '.LCHComposeFooterStorageButton',
 }).map(function (e) {
@@ -20,10 +20,10 @@ describe('LCHComposeFooter_Access', function () {
 	before(function() {
 		return browser.visit(kDefaultRoute.OLSKRoutePath);
 	});
-	
+
 	it('on startup', function() {
 		browser.assert.elements(OLSKReloadButton, 1);
-		
+
 		browser.assert.elements(RCSLanguageSwitcher, 1);
 	});
 

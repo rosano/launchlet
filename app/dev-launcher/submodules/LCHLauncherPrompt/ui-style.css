@@ -4,7 +4,7 @@
 	padding: 3px;
 	border: solid 1px hsl(0, 0%, 90%);
 	border-radius: 6px;
-	
+
 	background: hsl(0, 0%, 95%);
 
 	/* @LCHLauncherZoneInputFlexbox:Parent */
@@ -14,7 +14,7 @@
 
 .LCHLauncherZoneInputBezel {
 	height: 20px;
-	
+
 	padding: 4px;
 	border-radius: 4px;
 

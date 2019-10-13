@@ -21,10 +21,10 @@ describe(`LCHComposeDetail_Localize-${ languageCode }`, function () {
 
 		browser.fill(LCHComposeFormOutputTypeField, 'Bool');
 		await browser.wait({ element: LCHComposeFormCanonicalExampleBodyField });
-		
+
 		browser.assert.text(`${ LCHComposeFormCanonicalExampleBodyField } .CodeMirror-placeholder`, uLocalized('LCHComposeFormCanonicalExampleBodyFieldPlaceholderText'));
 	});
 
 });
-	
+
 });
