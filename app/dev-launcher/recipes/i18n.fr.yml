@@ -1,13 +1,13 @@
 LCHStandardRecipeNames: 
   LCHActiveDocumentFocusElements: Éléments au points du document active
-  LCHCopyToClipboard: Copier au presse-papiers
+  LCHCopyToClipboard: Copier dans le presse-papier
   LCHLargeText: Texte élargi
-  LCHDOMElementFocus: Mettre au point
-  LCHRunCommand: Rouler commande
+  LCHDOMElementFocus: Faire le point
+  LCHRunCommand: Exécuter la commande
   LCHSearchWith: Chercher avec
   LCHSearchFor: Chercher pour
-  LCHSubjectContainerShowContents: Montrer contenu
-  LCHURLOpen: Ouvrir URL
+  LCHSubjectContainerShowContents: Montrer le contenu
+  LCHURLOpen: Ouvrir l'URL
   SubjectContainer: Contenant des sujets
   String: String
   Date: Date

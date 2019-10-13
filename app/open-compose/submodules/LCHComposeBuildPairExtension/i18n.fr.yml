@@ -1,6 +1,6 @@
 LCHBuildPairExtensionPublicKeyFieldLabel: Clé
 LCHBuildPairExtensionSubmitButtonLabel: Soumettre
-LCHBuildPairExtensionDeleteKeyButtonText: Supprimer clé
-LCHBuildPairExtensionAlertText: Saisie n'est pas valide
+LCHBuildPairExtensionDeleteKeyButtonText: Supprimer la clé
+LCHBuildPairExtensionAlertText: Entrée non valide
 LCHBuildPairExtensionStatusWaitingText: En attente
 LCHBuildPairExtensionStatusFailedText: Échoué
