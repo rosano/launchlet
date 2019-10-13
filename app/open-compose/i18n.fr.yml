@@ -5,7 +5,7 @@ LCHComposeDetailPlaceholderText: Aucune selection
 LCHComposeListItemToolbarCloneButtonText: Cloner
 LCHComposeListItemToolbarDeleteButtonText: Supprimer
 LCHComposeListItemDeletePromptText: Êtes-vous sûr?
-LCHComposeListItemNameFlaggedFormat: 'Signalé : %@'
+LCHComposeListItemNameFlaggedFormat: 'Marqué : %@'
 LCHComposeFormNameFieldPlaceholderText: Nom (e.g. Dire bonjour)
 LCHComposeFormInputTypesFieldPlaceholderText: Types de saisie (e.g. String, Bool)
 LCHComposeFormArgsFieldPlaceholderText: arguments
@@ -14,6 +14,6 @@ LCHComposeFormOutputTypeFieldPlaceholderText: Type de sortie (e.g. String)
 LCHComposeFormStyleFieldPlaceholderText: 'CSS (e.g. body { background: red; })'
 LCHComposeFormSignatureFieldPlaceholderText: Signature (e.g. XYZAccueillir)
 LCHComposeFormURLFilterFieldPlaceholderText: 'Filtre URL (e.g. example.com ou /https?://(.*\\.)?example\\.com/i)'
-LCHComposeFormIsAutomaticFieldLabelText: Rouler automatiquement
+LCHComposeFormIsAutomaticFieldLabelText: Exécuter automatiquement
 LCHUpdateReloadText: Recharger
-LCHComposeFormFlagAlertText: Cette recette va être ignorée parce qu'elle contiene du code potentialement non-sécurisé.
+LCHComposeFormFlagAlertText: Cette recette va être ignorée parce qu'elle contient du code potentiellement non-sécurisé.
