@@ -1,6 +1,6 @@
-import { throws, deepEqual } from 'assert';
+const { throws, deepEqual } = require('assert');
 
-import * as mainModule from './_aggregate.js';
+const mainModule = require('./_aggregate.js');
 
 describe('LCHLauncherStandardRecipes', function testLCHLauncherStandardRecipes() {
 

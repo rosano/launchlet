@@ -1,6 +1,6 @@
-import { throws, deepEqual } from 'assert';
+const { throws, deepEqual } = require('assert');
 
-import * as mainModule from './rollup-config-custom.js';
+const mainModule = require('./rollup-config-custom.js');
 
 describe('LCHVitrineRollupConfigCustom', function testLCHVitrineRollupConfigCustom() {
 

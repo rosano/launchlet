@@ -1,4 +1,4 @@
-import { throws, rejects, deepEqual } from 'assert';
+const { throws, rejects, deepEqual } = require('assert');
 
 import { LCHFormulaModelErrorsFor } from './main.js';
 

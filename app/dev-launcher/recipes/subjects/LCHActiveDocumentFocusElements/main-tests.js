@@ -1,7 +1,7 @@
-import { throws, deepEqual } from 'assert';
+const { throws, deepEqual } = require('assert');
 import { JSDOM } from 'jsdom';
 
-import * as mainModule from './main.js';
+const mainModule = require('./main.js');
 
 describe('LCHActiveDocumentsFocusElements', function testLCHActiveDocumentsFocusElements() {
 

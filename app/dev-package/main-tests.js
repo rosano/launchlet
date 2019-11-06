@@ -1,6 +1,6 @@
-import { rejects, deepEqual } from 'assert';
+const { rejects, deepEqual } = require('assert');
 
-import * as mainModule from './main.js';
+const mainModule = require('./main.js');
 
 const kTesting = {
 	StubValueClass: function(inputData) {

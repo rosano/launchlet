@@ -1,6 +1,6 @@
-import { throws, rejects, deepEqual } from 'assert';
+const { throws, rejects, deepEqual } = require('assert');
 
-import * as mainModule from './main.js';
+const mainModule = require('./main.js');
 
 describe('_LCHFlags', function test_LCHFlags() {
 

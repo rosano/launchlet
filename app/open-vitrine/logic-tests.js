@@ -1,6 +1,6 @@
-import { throws, deepEqual } from 'assert';
+const { throws, deepEqual } = require('assert');
 
-import * as mainModule from './logic.js';
+const mainModule = require('./logic.js');
 
 describe('LCHVitrineRouteGuard', function testLCHVitrineRouteGuard() {
 
