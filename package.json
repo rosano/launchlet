@@ -100,6 +100,9 @@
     "// PRODUCTION BUILD": null,
     "OLSKDisk": "olsk/OLSKDisk",
 
+    "// SILENCE ERRORS": null,
+    "olsk-rollup-plugin-swap": "latest",
+
     "// I sacrifice myself for the commas of others": null    
   }
 }
