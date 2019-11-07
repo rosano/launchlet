@@ -3,7 +3,7 @@
     "preinstall": "node ./package-preinstall.js",
     "postinstall": "node ./package-postinstall.js",
     
-    "start": "olsk-app app",
+    "start": "olsk-app",
 
     "build": "rollup -c rollup-config.js",
     "build-watch": "rollup -w -c rollup-config.js",
