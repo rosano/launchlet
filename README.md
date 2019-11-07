@@ -38,15 +38,15 @@ It should be accessible at <a href="http://localhost:3000" target="_blank">http:
 
 ## Testing
 
-Testing is generally straight-forward and pleasant but it takes some setup.
-
 Restart the test runner when creating new files so that they will be included (specifically test files, and localization files).
 
 ### Setup
 
-I use the same bash scripts across several projects to watch source files for changes and then run the tests. There is a modified (hopefully more cross-platform) version on [gist](https://gist.github.com/rosano/9acc5fcaa4c91acc8a958740c771d6e8).
+Install mocha and supervisor
 
-Save the contents of that file as *test.sh* in the same directory as this file and then `npm test` should be able to find it.
+```
+npm install -g mocha supervisor
+```
 
 ### Run unit tests
 
@@ -60,10 +60,16 @@ npm test
 npm test ui
 ```
 
-To filter tests by folder:
+To filter test paths by string:
 
 ```
-ROCO_UI_TESTS_MATCH=launcher npm test ui
+npm test ui -- --olsk-match=ResultList
+```
+
+To filter test paths by regular expressions:
+
+```
+npm test ui -- --olsk-match='/resultlist/i'
 ```
 
 If you know how to fix UI tests that fail randomly because of timing/WebSocket/timeout issues please let me know.
