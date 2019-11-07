@@ -94,9 +94,9 @@ let languageDictionary = {};
 })();
 
 
-const LCHStorageModule = require('./app/_shared/LCHStorageModule/main.js');
-const LCHDocumentStorage = require('./app/_shared/LCHDocument/storage.js');
-const LCHSettingStorage = require('./app/_shared/LCHSetting/storage.js');
+const LCHStorageModule = require('./os-app/_shared/LCHStorageModule/main.js');
+const LCHDocumentStorage = require('./os-app/_shared/LCHDocument/storage.js');
+const LCHSettingStorage = require('./os-app/_shared/LCHSetting/storage.js');
 
 (function LCHMochaStorage() {
 	if (process.env.OLSK_TESTING_BEHAVIOUR === 'true') {
@@ -110,7 +110,7 @@ const LCHSettingStorage = require('./app/_shared/LCHSetting/storage.js');
 	};
 
 	before(function(done) {
-		global.LCHTestingStorageClient = require('./app/_shared/LCHStorageClient/main.js').LCHStorageClient({
+		global.LCHTestingStorageClient = require('./os-app/_shared/LCHStorageClient/main.js').LCHStorageClient({
 			modules: [
 				LCHStorageModule.LCHStorageModule([
 					LCHDocumentStorage.LCHDocumentStorage,
