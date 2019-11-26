@@ -2,3 +2,7 @@
 	--LCHCommonBackground: hsl(0, 0%, 98%);
 	--LCHCommonForeground: hsl(0, 0%, 0%);
 }
+
+.OLSKCommon li code {
+	margin: 2px 0;
+}
