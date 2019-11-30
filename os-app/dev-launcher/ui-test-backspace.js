@@ -9,10 +9,10 @@ const uLocalized = function (inputData) {
 describe('LCHLauncherBackspace', function() {
 
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			StubRecipes: uStubStringify(uStubTwoItems()),
 			LCHOptionMode: 'LCHModePipe',
-		}));
+		});
 	});
 
 	context('throttle multiple characters', function () {

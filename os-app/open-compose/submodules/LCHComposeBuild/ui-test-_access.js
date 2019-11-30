@@ -17,7 +17,7 @@ Object.entries({
 describe('LCHComposeBuild_Access', function () {
 
 	before(function() {
-		return browser.visit(kDefaultRoute.OLSKRoutePath);
+		return browser.OLSKVisit(kDefaultRoute);
 	});
 	
 	it('shows LCHComposeBuildModePipeEnabledToggle', function() {

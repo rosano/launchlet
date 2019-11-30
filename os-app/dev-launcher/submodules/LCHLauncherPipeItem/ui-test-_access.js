@@ -22,7 +22,7 @@ describe('LCHLauncherPipeItem_Access', function () {
 	};
 
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, uStubProps()));
+		return browser.OLSKVisit(kDefaultRoute, uStubProps())
 	});
 	
 	it('shows LCHLauncherPipeItem', function () {

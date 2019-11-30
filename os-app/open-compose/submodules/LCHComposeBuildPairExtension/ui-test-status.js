@@ -5,9 +5,9 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 describe('LCHComposeBuildPairExtensionStatus', function () {
 
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			BuildPairExtensionPublicKey: 'alfa',
-		}));
+		});
 	});
 
 	context('Failed', function testFailed () {

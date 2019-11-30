@@ -4,9 +4,9 @@
 // describe('LCHLauncherTestConvertTypeServiceSearch', function () {
 
 // 	before(function() {
-// 		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+// 		return browser.OLSKVisit(kDefaultRoute, {
 	// LCHLauncherTestConvertTypeServiceSearch: 'alfa',
-// }));
+// });
 // 	});
 
 // 	it('shows one item', async function() {

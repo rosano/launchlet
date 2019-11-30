@@ -11,9 +11,9 @@ Object.entries({
 describe('LCHCopyToClipboard_Access', function () {
 
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			LCHOptionMode: 'LCHModePipe',
-		}));
+		});
 	});
 
 	before(function() {

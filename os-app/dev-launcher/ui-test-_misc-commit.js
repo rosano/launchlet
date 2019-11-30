@@ -5,10 +5,10 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 describe('LCHLauncherMisc_Commit', function () {
 
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			StubRecipes: uStubStringify(uStubTwoItems()),
 			LCHOptionMode: 'LCHModeCommit',
-		}));
+		});
 	});
 
 	before(function() {

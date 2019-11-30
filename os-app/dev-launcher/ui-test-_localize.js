@@ -13,10 +13,10 @@ const uLocalized = function (inputData) {
 describe(`LCHLauncherLocalizeCommit-${ languageCode }`, function testLCHLauncherLocalizeCommit () {
 
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			OLSKRoutingLanguage: languageCode,
 			LCHOptionMode: 'LCHModeCommit',
-		}));
+		});
 	});
 
 	it('localizes LCHLauncherFilterInput', function() {
@@ -28,10 +28,10 @@ describe(`LCHLauncherLocalizeCommit-${ languageCode }`, function testLCHLauncher
 describe(`LCHLauncherLocalizePreview-${ languageCode }`, function testLCHLauncherLocalizePreview () {
 
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			OLSKRoutingLanguage: languageCode,
 			LCHOptionMode: 'LCHModePreview',
-		}));
+		});
 	});
 
 	it('localizes LCHLauncherFilterInput', function() {
@@ -43,10 +43,10 @@ describe(`LCHLauncherLocalizePreview-${ languageCode }`, function testLCHLaunche
 describe(`LCHLauncherLocalizePipe-${ languageCode }`, function testLCHLauncherLocalizePipe () {
 
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			OLSKRoutingLanguage: languageCode,
 			LCHOptionMode: 'LCHModePipe',
-		}));
+		});
 	});
 
 	it('localizes LCHLauncherSubjectPromptHeading', function() {

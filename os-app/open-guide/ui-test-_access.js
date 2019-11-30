@@ -11,7 +11,7 @@ Object.entries({
 describe('LCHGuide_Access', function () {
 
 	before(function() {
-		return browser.visit(kDefaultRoute.OLSKRoutePath);
+		return browser.OLSKVisit(kDefaultRoute);
 	});
 
 	it('shows LCHGuide', function () {

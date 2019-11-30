@@ -5,10 +5,10 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 describe('LCHLauncherPrompt', function () {
 
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			StubRecipes: uStubStringify(uStubTwoItems()),
 			LCHOptionMode: 'LCHModePipe',
-		}));
+		});
 	});
 
 	it('selects first prompt', function() {

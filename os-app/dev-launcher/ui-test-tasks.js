@@ -17,9 +17,9 @@ describe('LCHOptionRunAutomaticRecipes', function testLCHOptionRunAutomaticRecip
 	context('not enabled', function () {
 		
 		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			return browser.OLSKVisit(kDefaultRoute, {
 				StubRecipes: uStubStringify([uStubItem()]),
-			}));
+			});
 		});
 
 		it('runs no callback', function () {
@@ -31,10 +31,10 @@ describe('LCHOptionRunAutomaticRecipes', function testLCHOptionRunAutomaticRecip
 	context('enabled', function () {
 		
 		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			return browser.OLSKVisit(kDefaultRoute, {
 				StubRecipes: uStubStringify([uStubItem()]),
 				LCHOptionRunAutomaticRecipes: true,
-			}));
+			});
 		});
 
 		it('runs callback', function () {

@@ -11,7 +11,7 @@ const uLocalized = function (inputData) {
 describe.skip(`Date_Localize-${ languageCode }`, function () {
 	
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			OLSKRoutingLanguage: languageCode,
 			LCHOptionMode: 'LCHModePipe',
 			StubRecipes: uStubStringify([{
@@ -19,7 +19,7 @@ describe.skip(`Date_Localize-${ languageCode }`, function () {
 				LCHRecipeCallback: function () {},
 				LCHRecipeOutputType: 'Date',
 			}]),
-		}));
+		});
 	});
 
 	before(function() {

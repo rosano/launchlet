@@ -5,7 +5,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 describe('LCHVitrine_Misc', function () {
 
 	before(function () {
-		return browser.visit(kDefaultRoute.OLSKRoutePath)
+		return browser.OLSKVisit(kDefaultRoute)
 	});
 
 	context('LCHVitrine', function () {

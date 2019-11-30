@@ -60,10 +60,10 @@ Object.entries({
 describe('LCHLauncher_AccessCommit', function testLCHLauncher_AccessCommit () {
 
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			StubRecipes: uStubStringify(uStubTwoItems()),
 			LCHOptionMode: 'LCHModeCommit',
-		}));
+		});
 	});
 
 	it('shows LCHLauncher', function() {
@@ -103,10 +103,10 @@ describe('LCHLauncher_AccessCommit', function testLCHLauncher_AccessCommit () {
 describe('LCHLauncherAccess_Preview', function testLCHLauncher_AccessPreview () {
 
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			StubRecipes: uStubStringify(uStubTwoItems()),
 			LCHOptionMode: 'LCHModePreview',
-		}));
+		});
 	});
 
 	it('shows LCHLauncher', function() {
@@ -134,10 +134,10 @@ describe('LCHLauncherAccess_Preview', function testLCHLauncher_AccessPreview () 
 describe('LCHLauncher_AccessPipe', function testLCHLauncher_AccessPipe () {
 
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			StubRecipes: uStubStringify(uStubTwoItems()),
 			LCHOptionMode: 'LCHModePipe',
-		}));
+		});
 	});
 
 	it('shows LCHLauncher', function() {

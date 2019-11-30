@@ -7,7 +7,7 @@ describe.skip('LCHComposeFooter_Misc', function () {
 describe('LCHComposeFooterGuideLink', function testLCHComposeFooterGuideLink () {
 
 	before(function() {
-		return browser.visit(kDefaultRoute.OLSKRoutePath);
+		return browser.OLSKVisit(kDefaultRoute);
 	});
 
 	it('sets href', function () {
@@ -23,7 +23,7 @@ describe('LCHComposeFooterGuideLink', function testLCHComposeFooterGuideLink () 
 describe('LCHComposeFooterDonateLink', function testLCHComposeFooterDonateLink () {
 
 	before(function() {
-		return browser.visit(kDefaultRoute.OLSKRoutePath);
+		return browser.OLSKVisit(kDefaultRoute);
 	});
 
 	it('sets href', function () {
@@ -39,7 +39,7 @@ describe('LCHComposeFooterDonateLink', function testLCHComposeFooterDonateLink (
 describe('LCHComposeFooterStorageButton', function testLCHComposeFooterStorageButton () {
 
 	before(function() {
-		return browser.visit(kDefaultRoute.OLSKRoutePath);
+		return browser.OLSKVisit(kDefaultRoute);
 	});
 
 	before(function () {
@@ -62,9 +62,9 @@ describe('LCHComposeFooterStorageButton', function testLCHComposeFooterStorageBu
 describe('LCHComposeFooterStorageStatus', function testLCHComposeFooterStorageStatus () {
 
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			LCHComposeFooterStorageStatus: 'alfa',
-		}));
+		});
 	});
 
 	it('shows LCHComposeFooterStorageStatus', function () {

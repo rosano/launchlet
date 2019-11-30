@@ -50,7 +50,7 @@ Object.entries({
 describe('LCHCompose_Access', function () {
 
 	before(function() {
-		return browser.visit(kDefaultRoute.OLSKRoutePath);
+		return browser.OLSKVisit(kDefaultRoute);
 	});
 	
 	it('on startup', function() {

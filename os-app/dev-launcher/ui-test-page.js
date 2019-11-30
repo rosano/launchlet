@@ -7,10 +7,10 @@ describe('LCHOptionIncludePageRecipes', function testLCHOptionIncludePageRecipes
 	context('not enabled', function () {
 		
 		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			return browser.OLSKVisit(kDefaultRoute, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
 				LCHTestSkipAutomaticLaunch: true,
-			}));
+			});
 		});
 
 		before(function () {
@@ -37,11 +37,11 @@ describe('LCHOptionIncludePageRecipes', function testLCHOptionIncludePageRecipes
 	context('enabled', function () {
 		
 		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			return browser.OLSKVisit(kDefaultRoute, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
 				LCHTestSkipAutomaticLaunch: true,
 				LCHOptionIncludePageRecipes: true,
-			}));
+			});
 		});
 
 		before(function () {
@@ -76,12 +76,12 @@ describe('LCHPageRecipes', function testLCHPageRecipes () {
 	context('defined', function () {
 		
 		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			return browser.OLSKVisit(kDefaultRoute, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
 				LCHTestSkipAutomaticLaunch: true,
 				LCHOptionMode: 'LCHModePreview',
 				LCHOptionIncludePageRecipes: true,
-			}));
+			});
 		});
 
 		before(function () {
@@ -108,12 +108,12 @@ describe('LCHPageRecipes', function testLCHPageRecipes () {
 	context('not defined', function () {
 		
 		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			return browser.OLSKVisit(kDefaultRoute, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
 				LCHTestSkipAutomaticLaunch: true,
 				LCHOptionMode: 'LCHModePreview',
 				LCHOptionIncludePageRecipes: true,
-			}));
+			});
 		});
 
 		it('posts message', async function() {
@@ -131,12 +131,12 @@ describe('LCHPageRecipes', function testLCHPageRecipes () {
 	context('not defined sent immediately', function () {
 		
 		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			return browser.OLSKVisit(kDefaultRoute, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
 				LCHTestSkipAutomaticLaunch: true,
 				LCHOptionMode: 'LCHModePreview',
 				LCHOptionIncludePageRecipes: true,
-			}));
+			});
 		});
 
 		before(function () {
@@ -175,12 +175,12 @@ describe('LCHPageRecipes', function testLCHPageRecipes () {
 	context('not defined sent not immediately', function () {
 			
 		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			return browser.OLSKVisit(kDefaultRoute, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
 				LCHTestSkipAutomaticLaunch: true,
 				LCHOptionMode: 'LCHModePreview',
 				LCHOptionIncludePageRecipes: true,
-			}));
+			});
 		});
 
 		before(function () {

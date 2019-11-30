@@ -11,7 +11,7 @@ const uLocalized = function (inputData) {
 describe(`LCHGuide_Localize-${ languageCode }`, function () {
 
 	before(function() {
-		return browser.visit(kDefaultRoute.OLSKRoutePath);
+		return browser.OLSKVisit(kDefaultRoute);
 	});
 
 	it('localizes title', function() {

@@ -5,10 +5,10 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {	
 
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			StubRecipes: uStubStringify(uStubTwoItems()),
 			LCHOptionMode: 'LCHModePreview',
-		}));
+		});
 	});
 
 	before(function() {
@@ -221,14 +221,14 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 	describe('_LCHRecipeIsSelected', function() {
 		
 		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			return browser.OLSKVisit(kDefaultRoute, {
 				StubRecipes: uStubStringify(uStubTwoItems().map(function (e) {
 					return Object.assign(e, {
 						_LCHRecipeIsSelected: true,
 					});
 				})),
 				LCHOptionMode: 'LCHModePreview',
-			}));
+			});
 		});
 
 		it('assert callbacks count 0')

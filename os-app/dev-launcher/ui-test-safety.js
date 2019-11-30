@@ -7,10 +7,10 @@ describe('LCHLauncherSafety', function () {
 describe('AutomaticRunningOfPageRecipes', function testAutomaticRunningOfPageRecipes () {
 
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			LCHOptionIncludePageRecipes: true,
 			LCHTestSkipAutomaticLaunch: true,
-		}));
+		});
 	});
 
 	before(function () {

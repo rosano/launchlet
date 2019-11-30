@@ -9,7 +9,7 @@ const uLocalized = function (inputData) {
 describe('LCHVitrineDemoPipe', function () {
 
 	before(function () {
-		return browser.visit(kDefaultRoute.OLSKRoutePath)
+		return browser.OLSKVisit(kDefaultRoute)
 	});
 
 	context('LCHVitrinePageLinksHighlightAdd', function () {

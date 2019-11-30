@@ -13,7 +13,7 @@ Object.entries({
 describe('LCHLauncherResultList_Access', function () {
 
 	before(function() {
-		return browser.visit(kDefaultRoute.OLSKRoutePath);
+		return browser.OLSKVisit(kDefaultRoute);
 	});
 	
 	it('hides LCHLauncherResultList', function () {

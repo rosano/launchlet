@@ -11,10 +11,10 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 	describe('Enter', function() {
 
 		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			return browser.OLSKVisit(kDefaultRoute, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
 				LCHOptionMode: 'LCHModePipe',
-			}));
+			});
 		});
 
 		before(function() {
@@ -64,10 +64,10 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 	describe('keydown', function() {
 
 		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			return browser.OLSKVisit(kDefaultRoute, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
 				LCHOptionMode: 'LCHModePipe',
-			}));
+			});
 		});
 
 		before(function () {
@@ -146,10 +146,10 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 	describe('MatchStop', function() {
 
 		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			return browser.OLSKVisit(kDefaultRoute, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
 				LCHOptionMode: 'LCHModePipe',
-			}));
+			});
 		});
 
 		before(function() {
@@ -213,10 +213,10 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 	describe('SubjectContainer', function() {
 
 		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			return browser.OLSKVisit(kDefaultRoute, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
 				LCHOptionMode: 'LCHModePipe',
-			}));
+			});
 		});
 
 		before(function() {
@@ -252,10 +252,10 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 	describe('keydown', function() {
 
 		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			return browser.OLSKVisit(kDefaultRoute, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
 				LCHOptionMode: 'LCHModePipe',
-			}));
+			});
 		});
 
 		before(function() {
@@ -271,10 +271,10 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 	describe('Escape', function() {
 
 		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			return browser.OLSKVisit(kDefaultRoute, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
 				LCHOptionMode: 'LCHModePipe',
-			}));
+			});
 		});
 
 		before(function() {
@@ -310,10 +310,10 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 	context('Tab', function () {
 
 		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			return browser.OLSKVisit(kDefaultRoute, {
 				StubRecipes: uStubStringify(uStubTwoItems()),
 				LCHOptionMode: 'LCHModePipe',
-			}));
+			});
 		});
 
 		before(function() {

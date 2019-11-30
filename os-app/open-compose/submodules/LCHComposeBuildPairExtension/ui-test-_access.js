@@ -18,7 +18,7 @@ Object.entries({
 describe('LCHComposeBuildPairExtension_Access', function () {
 
 	before(function() {
-		return browser.visit(kDefaultRoute.OLSKRoutePath);
+		return browser.OLSKVisit(kDefaultRoute);
 	});
 	
 	it('shows LCHBuildPairExtensionPublicKeyField', function() {

@@ -11,14 +11,14 @@ Object.entries({
 describe('LCHCopyToClipboard_Misc', function () {
 
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			StubRecipes: uStubStringify([{
 				LCHRecipeName: 'alfa',
 				LCHRecipeCallback: function () {
 					return this.api.LCHCopyToClipboard('bravo');
 				},
 			}]),
-		}));
+		});
 	});
 
 	before(function() {

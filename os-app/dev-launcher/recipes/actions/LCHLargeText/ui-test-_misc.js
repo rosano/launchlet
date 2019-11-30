@@ -5,14 +5,14 @@ const kDefaultRoute = require('../../../controller.js').OLSKControllerRoutes().s
 describe('LCHLargeText_Misc', function () {
 
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			StubRecipes: uStubStringify([{
 				LCHRecipeName: 'alfa',
 				LCHRecipeCallback: function () {
 					return this.api.LCHLargeText('bravo');
 				},
 			}]),
-		}));
+		});
 	});
 
 	before(function() {

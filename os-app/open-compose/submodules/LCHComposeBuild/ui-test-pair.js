@@ -13,7 +13,7 @@ Object.entries({
 describe('LCHComposeBuildPair', function () {
 
 	before(function() {
-		return browser.visit(kDefaultRoute.OLSKRoutePath);
+		return browser.OLSKVisit(kDefaultRoute);
 	});
 
 	context('SubmitValid', function testSubmitValid () {

@@ -13,7 +13,7 @@ describe('LCHLauncherPipeItem_Misc', function () {
 	};
 
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, uStubProps()));
+		return browser.OLSKVisit(kDefaultRoute, uStubProps())
 	});
 	
 	it('binds PipeItemTitle', function() {

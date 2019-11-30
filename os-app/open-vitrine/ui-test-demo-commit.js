@@ -10,7 +10,7 @@ const uFilter = function (inputData) {
 describe('LCHVitrineDemoCommit', function () {
 
 	before(function () {
-		return browser.visit(kDefaultRoute.OLSKRoutePath)
+		return browser.OLSKVisit(kDefaultRoute)
 	});
 
 	context('LCHVitrinePageColoursRandomize', function () {

@@ -5,7 +5,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 describe('LCHComposeBuildPairExtensionForm', function () {
 
 	before(function() {
-		return browser.visit(kDefaultRoute.OLSKRoutePath);
+		return browser.OLSKVisit(kDefaultRoute);
 	});
 
 	it('focuses textarea', function() {
@@ -52,7 +52,7 @@ describe('LCHComposeBuildPairExtensionForm', function () {
 	context('form submit', function() {
 
 		before(function() {
-			return browser.visit(kDefaultRoute.OLSKRoutePath);
+			return browser.OLSKVisit(kDefaultRoute);
 		});
 
 		before(function () {
@@ -70,9 +70,9 @@ describe('LCHComposeBuildPairExtensionForm', function () {
 	context('PreloadPublicKey', function testPreloadPublicKey () {
 		
 		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			return browser.OLSKVisit(kDefaultRoute, {
 				BuildPairExtensionPublicKey: 'alfa',
-			}));
+			});
 		});
 		
 		it('hides LCHBuildPairExtensionPublicKeyField', function() {

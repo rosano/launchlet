@@ -5,7 +5,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 describe('LCHCompose_Misc', function () {
 
 	before(function() {
-		return browser.visit(kDefaultRoute.OLSKRoutePath);
+		return browser.OLSKVisit(kDefaultRoute);
 	});
 
 	context('LCHComposeBuildAnchor', function () {
@@ -38,7 +38,7 @@ describe('LCHCompose_Misc', function () {
 	context('on filter', function () {
 		
 		before(async function() {
-			await browser.visit(kDefaultRoute.OLSKRoutePath);
+			await browser.OLSKVisit(kDefaultRoute);
 
 			await uCreateItem(browser);
 			browser.fill(LCHComposeFormNameField, 'alfa');
@@ -102,7 +102,7 @@ describe('LCHCompose_Misc', function () {
 	context('on Escape', function() {
 
 		before(async function () {
-			await browser.visit(kDefaultRoute.OLSKRoutePath);
+			await browser.OLSKVisit(kDefaultRoute);
 
 			await uCreateItem(browser);
 

@@ -9,9 +9,9 @@ const uLocalized = function (inputData) {
 describe('LCHLauncherObjectPrompt', function () {
 
 	before(function () {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			LCHOptionMode: 'LCHModePipe',
-		}));
+		});
 	});
 
 	before(function () {

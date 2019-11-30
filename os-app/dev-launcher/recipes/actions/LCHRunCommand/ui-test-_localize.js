@@ -11,11 +11,11 @@ const uLocalized = function (inputData) {
 describe(`LCHRunCommand_Localize-${ languageCode }`, function () {
 	
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			OLSKRoutingLanguage: languageCode,
 			StubRecipes: uStubStringify(uStubTwoItems()),
 			LCHOptionMode: 'LCHModePipe',
-		}));
+		});
 	});
 
 	before(function() {

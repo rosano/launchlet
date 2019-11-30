@@ -7,7 +7,7 @@ describe('LCHComposeDetail_Misc', function () {
 context('Clone', function testClone() {
 
 	before(async function () {
-		await browser.visit(kDefaultRoute.OLSKRoutePath);
+		await browser.OLSKVisit(kDefaultRoute);
 
 		await uCreateItem(browser);
 		browser.fill(LCHComposeFormNameField, 'alfa');

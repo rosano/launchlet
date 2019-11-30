@@ -5,7 +5,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 describe('LCHRecipeIsExcluded', function testLCHRecipeIsExcluded () {
 
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			StubRecipes: uStubStringify([{
 				LCHRecipeName: 'alfa',
 				LCHRecipeCallback: function () {}, // #purge-callback
@@ -13,7 +13,7 @@ describe('LCHRecipeIsExcluded', function testLCHRecipeIsExcluded () {
 					return document.querySelector('.TestRecipeOutput').value !== 'bravo';
 				},
 			}]),
-		}));
+		});
 	});
 
 	context('no match', function () {
@@ -59,9 +59,9 @@ describe('LCHRecipeURLFilter', function testLCHRecipeURLFilter () {
 	context('no match', function () {
 
 		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			return browser.OLSKVisit(kDefaultRoute, {
 				StubRecipes,
-			}));
+			});
 		});
 		
 		before(function() {
@@ -77,10 +77,10 @@ describe('LCHRecipeURLFilter', function testLCHRecipeURLFilter () {
 	context('match', function () {
 		
 		before(function() {
-			return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+			return browser.OLSKVisit(kDefaultRoute, {
 				StubRecipes,
 				charlie: '12345',
-			}));
+			});
 		});
 		
 		before(function() {
@@ -98,13 +98,13 @@ describe('LCHRecipeURLFilter', function testLCHRecipeURLFilter () {
 describe('LCHRecipeStyle', function testLCHRecipeStyle () {
 
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			StubRecipes: uStubStringify([{
 				LCHRecipeName: 'alfa',
 				LCHRecipeStyle: 'body { background: red; }',
 				LCHRecipeCallback: function () {}, // #purge-callback
 			}]),
-		}));
+		});
 	});
 
 	before(function () {

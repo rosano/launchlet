@@ -11,10 +11,10 @@ const uLocalized = function (inputData) {
 describe(`LCHCopyToClipboard_Localize-${ languageCode }`, function () {
 	
 	before(function() {
-		return browser.visit(OLSKTestingCanonicalFor(kDefaultRoute.OLSKRoutePath, {
+		return browser.OLSKVisit(kDefaultRoute, {
 			OLSKRoutingLanguage: languageCode,
 			LCHOptionMode: 'LCHModePipe',
-		}));
+		});
 	});
 
 	before(function() {
