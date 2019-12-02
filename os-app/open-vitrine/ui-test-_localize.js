@@ -32,7 +32,7 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 		browser.assert.elements(LCHVitrineIdentityName, 1);
 	});
 
-	it('localize LCHVitrineIdentityName', function () {
+	it('localizes LCHVitrineIdentityName', function () {
 		browser.assert.text(LCHVitrineIdentityName, uLocalized('LCHVitrineTitle'));
 	});
 
