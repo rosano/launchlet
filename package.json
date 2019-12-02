@@ -104,7 +104,7 @@
     "OLSKSpec": "olsk/OLSKSpec",
 
     "// SILENCE ERRORS": null,
-    "olsk-rollup-plugin-swap": "latest",
+    "OLSKRollupPluginSwap": "latest",
 
     "// I sacrifice myself for the commas of others": null    
   }
