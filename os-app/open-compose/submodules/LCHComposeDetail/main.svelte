@@ -31,15 +31,15 @@ DocumentSelectedStore.subscribe(function (val) {
 	_DocumentSelected = val;
 
 	if (mod._ValueEditorCallbackBody) {
-		mod._ValueEditorCallbackBody.LCHEditorSetDocument(val.LCHDocumentCallbackBody);
+		mod._ValueEditorCallbackBody.LCHEditorSetValue(val.LCHDocumentCallbackBody);
 	};
 
 	if (mod._ValueEditorCanonicalExampleCallbackBody) {
-		mod._ValueEditorCanonicalExampleCallbackBody.LCHEditorSetDocument(val.LCHDocumentCanonicalExampleCallbackBody);
+		mod._ValueEditorCanonicalExampleCallbackBody.LCHEditorSetValue(val.LCHDocumentCanonicalExampleCallbackBody);
 	};
 
 	if (mod._ValueEditorStyle) {
-		mod._ValueEditorStyle.LCHEditorSetDocument(val.LCHDocumentStyle);
+		mod._ValueEditorStyle.LCHEditorSetValue(val.LCHDocumentStyle);
 	};
 });
 

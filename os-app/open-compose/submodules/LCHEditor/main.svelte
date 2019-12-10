@@ -1,7 +1,7 @@
 <script>
 export let EditorInitialValue = '';
 export let EditorOptions = {};
-export const LCHEditorSetDocument = function (inputData) {
+export const LCHEditorSetValue = function (inputData) {
 	EditorInstance.setValue(inputData);
 	EditorInstance.getDoc().clearHistory();
 }
