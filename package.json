@@ -66,6 +66,9 @@
     "// FRONTEND RELOAD BUTTON": null,
     "OLSKReloadButton": "olsk/OLSKReloadButton",
 
+    "// FRONTEND ROCO ROOT LINK": null,
+    "ROCORootLink": "rosano/ROCORootLink",
+
     "// LCHVitrine content": null,
     "marked": "latest",
     "OLSKString": "olsk/OLSKString",

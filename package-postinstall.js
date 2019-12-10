@@ -81,6 +81,7 @@
 		'simplecrypto',
 		'OLSKRemoteStorage',
 		'OLSKStorageWidget',
+		'ROCORootLink',
 
 		// pass tests
 		'OLSKInputWrapper',

@@ -24,8 +24,9 @@
 		});
 	})([
 		'OLSK*',
+		'ROCO*',
 		'launchlet',
-		'rollup-plugin-i18n',
+		'MassageTXT',
 	], require('path').join(__dirname, 'node_modules'));
 
 })();
