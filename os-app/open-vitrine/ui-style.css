@@ -31,16 +31,3 @@ body {
 	max-width: 100%;
 	margin: 10px 0;
 }
-
-.ROCORootLink {
-	width: 70px;
-	display: block;
-
-	margin: 30px auto;
-	
-	background: #eaeaea;
-}
-
-.ROCORootLink img {
-	width: inherit;
-}
