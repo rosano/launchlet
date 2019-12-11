@@ -19,7 +19,7 @@ describe('LCHVitrine_Misc', function () {
 	context('LCHVitrineIdentityLogo', function () {
 		
 		it('sets role', function () {
-			browser.assert.attribute(LCHVitrineIdentityLogo, 'role', 'image')
+			browser.assert.attribute(LCHVitrineIdentityLogo, 'role', 'presentation')
 		});
 	
 	});
