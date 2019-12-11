@@ -81,6 +81,7 @@
 		'simplecrypto',
 		'OLSKRemoteStorage',
 		'OLSKStorageWidget',
+		'OLSKLanguageSwitcher',
 		'ROCORootLink',
 
 		// pass tests

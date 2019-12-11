@@ -30,8 +30,8 @@ describe('LCHVitrine_Access', function () {
 		browser.assert.elements(LCHVitrine, 1)
 	});
 	
-	it('shows RCSLanguageSwitcher', function() {
-		browser.assert.elements('#RCSLanguageSwitcher', 1)
+	it('shows OLSKLanguageSwitcher', function() {
+		browser.assert.elements('.OLSKLanguageSwitcher', 1);
 	});
 	
 	it('shows LCHVitrineIdentity', function() {

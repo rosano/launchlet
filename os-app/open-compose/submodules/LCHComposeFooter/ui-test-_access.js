@@ -3,9 +3,6 @@ import { deepEqual } from 'assert';
 const kDefaultRoute = require('../../controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
-	OLSKReloadButton: '.OLSKReloadButton',
-
-	RCSLanguageSwitcher: '#RCSLanguageSwitcher',
 	LCHComposeFooterGuideLink: '.LCHComposeFooterGuideLink',
 	LCHComposeFooterDonateLink: '.LCHComposeFooterDonateLink',
 	
@@ -20,11 +17,12 @@ describe('LCHComposeFooter_Access', function () {
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
-	
-	it('on startup', function() {
-		browser.assert.elements(OLSKReloadButton, 1);
-		
-		browser.assert.elements(RCSLanguageSwitcher, 1);
+	it('shows OLSKReloadButton', function () {
+		browser.assert.elements('.OLSKReloadButton', 1);
+	});
+
+	it('shows OLSKLanguageSwitcher', function () {
+		browser.assert.elements('.OLSKLanguageSwitcher', 1);
 	});
 
 	it('shows LCHComposeFooterGuideLink', function () {
