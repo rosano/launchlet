@@ -89,9 +89,9 @@ const mod = {
 		LCHComposeDefaultFocusNode().focus();
 	},
 
-	// COMMAND
+	// CONTROL
 
-	async commandDocumentCreate() {
+	async ControlDocumentCreate() {
 		let item = await LCHDocumentAction.LCHDocumentActionCreate(storageClient, {
 			LCHDocumentName: '',
 			LCHDocumentInputTypes: '',
@@ -109,9 +109,9 @@ const mod = {
 			return val.concat(item).sort(LCHComposeSort);
 		});
 
-		return mod.commandDocumentSelect(item);
+		return mod.ControlDocumentSelect(item);
 	},
-	commandDocumentSelect(inputData) {
+	ControlDocumentSelect(inputData) {
 		return DocumentSelectedStore.set(inputData);
 	},
 
@@ -151,14 +151,14 @@ DocumentsAllStore.subscribe(mod.reactDocumentsVisible);
 		</OLSKInputWrapper>
 
 		<OLSKToolbarElementGroup>
-			<button on:click={ mod.commandDocumentCreate } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" accesskey="n" id="LCHComposeCreateButton" title={ OLSKLocalized('LCHComposeToolbarCreateButtonText') }>{ OLSKLocalized('LCHComposeToolbarCreateButtonText') }</button>
+			<button on:click={ mod.ControlDocumentCreate } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" accesskey="n" id="LCHComposeCreateButton" title={ OLSKLocalized('LCHComposeToolbarCreateButtonText') }>{ OLSKLocalized('LCHComposeToolbarCreateButtonText') }</button>
 		</OLSKToolbarElementGroup>
 	</OLSKToolbar>
 </header>
 
 <div class="List">
 	{#each _DocumentsVisible as e}
-		<div on:click={ () => mod.commandDocumentSelect(e) } class="ListItem OLSKLayoutElementTappable" class:LCHComposeListItemFlagged={ e.LCHDocumentIsFlagged }>
+		<div on:click={ () => mod.ControlDocumentSelect(e) } class="ListItem OLSKLayoutElementTappable" class:LCHComposeListItemFlagged={ e.LCHDocumentIsFlagged }>
 			<strong>{ OLSKFormatted(e.LCHDocumentIsFlagged ? OLSKLocalized('LCHComposeListItemNameFlaggedFormat') : '%@', e.LCHDocumentName || e.LCHDocumentSignature || e.LCHDocumentID) }</strong>
 		</div>
 	{/each}

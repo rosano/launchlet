@@ -139,7 +139,7 @@ describe('LCHPackage', function testLCHPackage() {
 			LCHSingletonExists: mainModule.mod.DataSingletonExists,
 			LCHSingletonDestroy: mainModule.mod.LifecycleSingletonDestroy,
 			
-			LCHTasksRun: mainModule.mod.CommandRunTasks,
+			LCHTasksRun: mainModule.mod.ControlRunTasks,
 		});
 	});
 

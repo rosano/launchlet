@@ -19,13 +19,13 @@ const mod = {
 
 	InterfaceButtonDidClick() {
 		setTimeout(function () {
-			mod.CommandLaunch();
+			mod.ControlLaunch();
 		})
 	},
 
-	// COMMAND
+	// CONTROL
 
-	CommandLaunch() {
+	ControlLaunch() {
 		let app = new Main({
 			target: document.getElementById('LCHLauncherTarget'),
 			props: {
@@ -55,7 +55,7 @@ const mod = {
 			return;
 		};
 		
-		mod.CommandLaunch()
+		mod.ControlLaunch()
 	},
 
 	// LIFECYCLE

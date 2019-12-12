@@ -49,7 +49,7 @@ const mod = {
 	_EditorDispatchValueChanged(inputData) {
 		Object.assign($DocumentSelectedStore, inputData); // @DependancySvelteIgnoresMutableChanges
 
-		mod.commandDocumentSave();
+		mod.ControlDocumentSave();
 	},
 
 	// VALUE
@@ -60,11 +60,12 @@ const mod = {
 	
 	_ValueEditorCanonicalExampleCallbackBody: undefined,
 
-// COMMAND
+// CONTROL
 
 	_ReactThrottleMap: {},
 	_SaveThrottleMap: {},
-	commandDocumentSave() {
+
+	ControlDocumentSave() {
 		DocumentsAllStore.update(function (val) {
 			return val;
 		});
@@ -80,7 +81,7 @@ const mod = {
 				OLSKThrottleDuration: 500,
 				OLSKThrottleCallback: function () {
 					try	{
-						mod.commandFlagDocument(inputData)
+						mod.ControlFlagDocument(inputData)
 					} catch (e) {
 						if (!e.name.match('SyntaxError')) {
 							throw e
@@ -125,7 +126,8 @@ const mod = {
 			OLSKThrottle.OLSKThrottleSkip(mod._SaveThrottleMap[$DocumentSelectedStore.LCHDocumentID])	
 		};
 	},
-	async commandDocumentClone() {
+
+	async ControlDocumentClone() {
 		let item = await LCHDocumentAction.LCHDocumentActionCreate(storageClient, Object.assign(Object.assign({}, $DocumentSelectedStore), {
 			LCHDocumentID: undefined,
 		}));
@@ -134,9 +136,10 @@ const mod = {
 			return val.concat(item).sort(LCHComposeSort);
 		});
 
-		// return mod.commandDocumentSelect(item);
+		// return mod.ControlDocumentSelect(item);
 	},
-	async commandDocumentDelete() {
+	
+	async ControlDocumentDelete() {
 		if (!window.confirm(OLSKLocalized('LCHComposeListItemDeletePromptText'))) {
 			return;
 		}
@@ -152,7 +155,7 @@ const mod = {
 		return DocumentSelectedStore.set(null);
 	},
 
-	commandFlagDocument(inputData) {
+	ControlFlagDocument(inputData) {
 		Object.assign($DocumentSelectedStore, {
 			LCHDocumentIsFlagged: !!LCHFlags(LCHFormulaToEvaluate(LCHFormulaFrom(inputData))),
 			LCHDocumentSyntaxErrorMessage: '',
@@ -172,8 +175,8 @@ import LCHEditor from '../LCHEditor/main.svelte';
 <header id="LCHComposeDetailToolbar">
 	<OLSKToolbar OLSKToolbarJustify={ true }>
 		<OLSKToolbarElementGroup>
-			<button on:click={ mod.commandDocumentClone } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" id="LCHComposeDetailToolbarCloneButton" title={ OLSKLocalized('LCHComposeListItemToolbarCloneButtonText') }>{ OLSKLocalized('LCHComposeListItemToolbarCloneButtonText') }</button>
-			<button on:click={ mod.commandDocumentDelete } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" id="LCHComposeDetailToolbarDiscardButton" title={ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }>{ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }</button>
+			<button on:click={ mod.ControlDocumentClone } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" id="LCHComposeDetailToolbarCloneButton" title={ OLSKLocalized('LCHComposeListItemToolbarCloneButtonText') }>{ OLSKLocalized('LCHComposeListItemToolbarCloneButtonText') }</button>
+			<button on:click={ mod.ControlDocumentDelete } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" id="LCHComposeDetailToolbarDiscardButton" title={ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }>{ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }</button>
 		</OLSKToolbarElementGroup>
 	</OLSKToolbar>
 </header>
@@ -184,33 +187,33 @@ import LCHEditor from '../LCHEditor/main.svelte';
 	{/if}
 	
 	<p>
-		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentName } on:input={ mod.commandDocumentSave } placeholder="{ OLSKLocalized('LCHComposeFormNameFieldPlaceholderText') }" autofocus id="LCHComposeFormNameField" />
+		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentName } on:input={ mod.ControlDocumentSave } placeholder="{ OLSKLocalized('LCHComposeFormNameFieldPlaceholderText') }" autofocus id="LCHComposeFormNameField" />
 	</p>
 
 	<hr>	
 
 	<p>
-		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentSignature } on:input={ mod.commandDocumentSave } placeholder="{ OLSKLocalized('LCHComposeFormSignatureFieldPlaceholderText') }" id="LCHComposeFormSignatureField" />
+		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentSignature } on:input={ mod.ControlDocumentSave } placeholder="{ OLSKLocalized('LCHComposeFormSignatureFieldPlaceholderText') }" id="LCHComposeFormSignatureField" />
 	</p>
 
 	<p>
 		<span>function</span>
 
 		{#if $DocumentSelectedStore.LCHDocumentCallbackArgs }
-			<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentInputTypes } placeholder={ OLSKLocalized('LCHComposeFormInputTypesFieldPlaceholderText') } on:input={ mod.commandDocumentSave } id="LCHComposeFormInputTypesField" />
+			<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentInputTypes } placeholder={ OLSKLocalized('LCHComposeFormInputTypesFieldPlaceholderText') } on:input={ mod.ControlDocumentSave } id="LCHComposeFormInputTypesField" />
 			<span>→</span>
 		{/if}
 		
 		<span>(</span>
 		
-		<input id="LCHComposeFormArgsField" bind:value={ $DocumentSelectedStore.LCHDocumentCallbackArgs } placeholder={ OLSKLocalized('LCHComposeFormArgsFieldPlaceholderText') } on:input={ mod.commandDocumentSave }/>
+		<input id="LCHComposeFormArgsField" bind:value={ $DocumentSelectedStore.LCHDocumentCallbackArgs } placeholder={ OLSKLocalized('LCHComposeFormArgsFieldPlaceholderText') } on:input={ mod.ControlDocumentSave }/>
 		
 		<span>) &#123;</span>
 	</p>
 
 	<p class="LCHComposeDetailCallbackBody">
 		{#if OLSK_TESTING_BEHAVIOUR()}
-			<textarea bind:value={ $DocumentSelectedStore.LCHDocumentCallbackBody } on:input={ mod.commandDocumentSave } id="LCHComposeDetailCallbackBodyInputDebug"></textarea>
+			<textarea bind:value={ $DocumentSelectedStore.LCHDocumentCallbackBody } on:input={ mod.ControlDocumentSave } id="LCHComposeDetailCallbackBodyInputDebug"></textarea>
 		{/if}
 
 		<LCHEditor EditorOptions={ {
@@ -234,13 +237,13 @@ import LCHEditor from '../LCHEditor/main.svelte';
 
 		<span>→</span>
 
-		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentOutputType } placeholder={ OLSKLocalized('LCHComposeFormOutputTypeFieldPlaceholderText') } on:input={ mod.commandDocumentSave } id="LCHComposeFormOutputTypeField" />	
+		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentOutputType } placeholder={ OLSKLocalized('LCHComposeFormOutputTypeFieldPlaceholderText') } on:input={ mod.ControlDocumentSave } id="LCHComposeFormOutputTypeField" />	
 	</p>
 
 	{#if $DocumentSelectedStore.LCHDocumentOutputType === 'Bool'}
 		<p class="LCHComposeFormCanonicalExampleBody">
 			{#if OLSK_TESTING_BEHAVIOUR()}
-				<textarea bind:value={ $DocumentSelectedStore.LCHDocumentCanonicalExampleCallbackBody } on:input={ mod.commandDocumentSave } id="LCHComposeFormCanonicalExampleBodyDebugField"></textarea>
+				<textarea bind:value={ $DocumentSelectedStore.LCHDocumentCanonicalExampleCallbackBody } on:input={ mod.ControlDocumentSave } id="LCHComposeFormCanonicalExampleBodyDebugField"></textarea>
 			{/if}
 
 			<LCHEditor EditorOptions={ {
@@ -266,7 +269,7 @@ import LCHEditor from '../LCHEditor/main.svelte';
 
 	<div class="LCHComposeDetailStyle">
 		{#if OLSK_TESTING_BEHAVIOUR()}
-			<textarea bind:value={ $DocumentSelectedStore.LCHDocumentStyle } on:input={ mod.commandDocumentSave } id="LCHComposeDetailStyleInputDebug"></textarea>
+			<textarea bind:value={ $DocumentSelectedStore.LCHDocumentStyle } on:input={ mod.ControlDocumentSave } id="LCHComposeDetailStyleInputDebug"></textarea>
 		{/if}
 
 		<LCHEditor EditorOptions={ {
@@ -290,12 +293,12 @@ import LCHEditor from '../LCHEditor/main.svelte';
 	<hr>
 
 	<p>
-		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentURLFilter } on:input={ mod.commandDocumentSave } placeholder="{ OLSKLocalized('LCHComposeFormURLFilterFieldPlaceholderText') }" id="LCHComposeFormURLFilterField" />
+		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentURLFilter } on:input={ mod.ControlDocumentSave } placeholder="{ OLSKLocalized('LCHComposeFormURLFilterFieldPlaceholderText') }" id="LCHComposeFormURLFilterField" />
 	</p>
 
 	{#if $DocumentSelectedStore.LCHDocumentURLFilter }
 		<p>
-			<input type="checkbox" bind:checked={ $DocumentSelectedStore.LCHDocumentIsAutomatic } on:input={ mod.commandDocumentSave } id="LCHComposeFormIsAutomaticField" />
+			<input type="checkbox" bind:checked={ $DocumentSelectedStore.LCHDocumentIsAutomatic } on:input={ mod.ControlDocumentSave } id="LCHComposeFormIsAutomaticField" />
 			<label for="LCHComposeFormIsAutomaticField">{ OLSKLocalized('LCHComposeFormIsAutomaticFieldLabelText') }</label>
 		</p>
 	{/if}

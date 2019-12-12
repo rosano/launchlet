@@ -1,7 +1,7 @@
 <script>
 export let BuildPairExtensionPublicKey = '';
 export const DispatchSendPayload = function(param1, param2) {
-	mod.CommandPostPayload(param1)
+	mod.ControlPostPayload(param1)
 
 	mod.ValuePayloadHash(param2)
 };
@@ -32,7 +32,7 @@ const mod = {
     //   return;
     // }
 
-	  mod.CommandValidateMessageData(event.data);
+	  mod.ControlValidateMessageData(event.data);
 	},
 
 	// VALUE
@@ -75,16 +75,16 @@ const mod = {
 	InterfaceFormDidSubmit (event) {
 		event.preventDefault()
 		
-		mod.CommandValidatePublicKey(BuildPairExtensionPublicKey.trim())
+		mod.ControlValidatePublicKey(BuildPairExtensionPublicKey.trim())
 	},
 
 	InterfaceDeleteKeyButtonDidClick () {
 		dispatch('BuildPairExtensionDispatchPublicKeyUpdate', '');
 	},
 
-	// COMMAND
+	// CONTROL
 
-	CommandValidatePublicKey (inputData) {
+	ControlValidatePublicKey (inputData) {
 		if (!LCHComposeBuildPairExtensionPublicKeyIsValid(inputData)) {
 			return window.alert(OLSKLocalized('LCHBuildPairExtensionAlertText'));
 		};
@@ -93,7 +93,7 @@ const mod = {
 
 		dispatch('BuildPairExtensionDispatchPublicKeyUpdate', inputData);
 	},
-	CommandValidateMessageData (inputData) {
+	ControlValidateMessageData (inputData) {
 		if (!LBXResponseIsValid(inputData)) {
 			return;
 		};
@@ -104,7 +104,7 @@ const mod = {
 			mod.ValueStatusFailedError(inputData.LBXResponseError)
 		};
 	},
-	CommandPostPayload (inputData) {
+	ControlPostPayload (inputData) {
 		window.postMessage({
 			LBXRequestName: 'DispatchRequestStorePayload',
 			LBXRequestEncryptedData: inputData,

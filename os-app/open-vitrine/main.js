@@ -12,20 +12,20 @@ export const mod = {
 	// INTERFACE
 
 	InterfaceDemoButtonCommitDidClick() {
-		mod.CommandDemoCommit();
+		mod.ControlDemoCommit();
 	},
 
 	InterfaceDemoButtonPreviewDidClick() {
-		mod.CommandDemoPreview();
+		mod.ControlDemoPreview();
 	},
 
 	InterfaceDemoButtonPipeDidClick() {
-		mod.CommandDemoPipe();
+		mod.ControlDemoPipe();
 	},
 
-	// COMMAND
+	// CONTROL
 
-	CommandDemoCommit() {
+	ControlDemoCommit() {
 		Launchlet.LCHSingletonCreate({
 			LCHOptionRecipes: _LCHVitrineRecipes,
 			LCHOptionMode: Launchlet.LCHModeCommit,
@@ -33,7 +33,7 @@ export const mod = {
 		});
 	},
 
-	CommandDemoPreview() {
+	ControlDemoPreview() {
 		Launchlet.LCHSingletonCreate({
 			LCHOptionRecipes: [].concat.apply([], document.querySelectorAll('h1,h2')).map(function (e) {
 				return {
@@ -49,7 +49,7 @@ export const mod = {
 		});
 	},
 
-	CommandDemoPipe() {
+	ControlDemoPipe() {
 		Launchlet.LCHSingletonCreate({
 			LCHOptionRecipes: _LCHVitrineRecipes,
 			LCHOptionMode: Launchlet.LCHModePipe,

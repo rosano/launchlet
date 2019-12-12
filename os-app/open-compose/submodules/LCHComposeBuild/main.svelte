@@ -48,7 +48,7 @@ const mod = {
 	},
 
 	BuildPairExtensionDispatchPublicKeyUpdate (inputData) {
-		mod.CommandUpdatePublicKey(inputData.detail)
+		mod.ControlUpdatePublicKey(inputData.detail)
 	},
 
 	// DATA
@@ -120,9 +120,9 @@ const mod = {
 		})
 	},
 
-	// COMMAND
+	// CONTROL
 
-	async CommandUpdatePublicKey(inputData) {
+	async ControlUpdatePublicKey(inputData) {
 		// await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'kLCHComposePreferencePublicKey', inputData)
 		window.localStorage.setItem('kLCHComposePreferencePublicKey', inputData);
 		
@@ -132,10 +132,10 @@ const mod = {
 			return;
 		};
 
-		mod.CommandSendPayload()
+		mod.ControlSendPayload()
 	},
 	_LCHComposeBuildPairExtension: undefined,
-	async CommandSendPayload() {
+	async ControlSendPayload() {
 		const payload = {
 			LBXPayloadPackageScript: mod.DataPackageScript(),
 			LBXPayloadPackageStyle: mod.DataPackageStyle(),
@@ -144,9 +144,9 @@ const mod = {
 			LBXPayloadConfirmation: Math.random().toString(),
 		};
 
-		mod._LCHComposeBuildPairExtension.DispatchSendPayload(OLSK_TESTING_BEHAVIOUR() ? 'LBX_TESTING_REQUEST_DATA' : await mod._CommandEncrypt(JSON.stringify(payload), mod.ValuePublicKey()), payload.LBXPayloadConfirmation)
+		mod._LCHComposeBuildPairExtension.DispatchSendPayload(OLSK_TESTING_BEHAVIOUR() ? 'LBX_TESTING_REQUEST_DATA' : await mod._ControlEncrypt(JSON.stringify(payload), mod.ValuePublicKey()), payload.LBXPayloadConfirmation)
 	},
-	async _CommandEncrypt (param1, param2) {
+	async _ControlEncrypt (param1, param2) {
 		if (_LCH_DISABLE_ENCRYPTION()) {
 			return Promise.resolve(param1);
 		};
@@ -184,7 +184,7 @@ const mod = {
 		})
 	},
 
-	_CommandFlagDocument(inputData) {
+	_ControlFlagDocument(inputData) {
 		let outputData = {};
 
 		try {
@@ -207,7 +207,7 @@ const mod = {
 
 	ReactJavascriptComposition() {
 		const validDocuments = BuildDocuments.map(function (e) {
-			return Object.entries(mod._CommandFlagDocument(e)).map(function (e) {
+			return Object.entries(mod._ControlFlagDocument(e)).map(function (e) {
 				if (e[0] === 'LCHDocumentCallbackBody' && !e[1]) { // #purge
 					e[1] = 'return'
 				};
@@ -243,7 +243,7 @@ const mod = {
 			return;
 		};
 
-		mod.CommandSendPayload()
+		mod.ControlSendPayload()
 	},
 
 	// SETUP
@@ -259,7 +259,7 @@ const mod = {
 			return;
 		};
 
-		setTimeout(mod.CommandSendPayload, 100); // #purge dependency on submodule loading - move this into a non-svelte module at some point
+		setTimeout(mod.ControlSendPayload, 100); // #purge dependency on submodule loading - move this into a non-svelte module at some point
 	},
 
 	// LIFECYCLE

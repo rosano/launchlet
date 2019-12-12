@@ -29,9 +29,9 @@ export const mod = {
 	
 	_ValueSingleton: undefined,
 
-	// COMMAND
+	// CONTROL
 
-	CommandRunTasks (inputData) {
+	ControlRunTasks (inputData) {
 		LCHAPIRunTasks(inputData, window.location.href)
 	},
 	
@@ -89,7 +89,7 @@ export const LCHPackage = function () {
 		LCHSingletonExists: mod.DataSingletonExists,
 		LCHSingletonDestroy: mod.LifecycleSingletonDestroy,
 
-		LCHTasksRun: mod.CommandRunTasks,
+		LCHTasksRun: mod.ControlRunTasks,
 	};
 
 	Object.freeze(outputData);
