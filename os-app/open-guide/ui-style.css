@@ -34,13 +34,6 @@ body {
 	padding: 0;
 }
 
-.LCHRootLink {
-	display: block;
+.OLSKRootLink {
 	width: 48px;
-
-	margin: 20px auto;
-}
-
-.LCHRootLink img {
-	width: inherit;
 }

@@ -1,1 +1,8 @@
-<a class="LCHRootLink" href="<%= OLSKCanonicalLocalizedFor('LCHVitrineRoute') %>" title="<%= OLSKFormatted(OLSKLocalized('LCHSharedColonSeparatedFormat'), OLSKLocalized('LCHRootLinkLogoLabel'), OLSKLocalized('LCHRootLinkText')) %>"><img role="presentation" src="/_shared/LCHRootLink/ui-assets/identity.svg"></a>
+<div class="LCHRootLink">
+
+<%- include('../__external/OLSKRootLink/main.ejs', {
+	OLSKRootLinkURL: OLSKCanonicalLocalizedFor('LCHVitrineRoute'),
+	OLSKRootLinkImageURL: '/_shared/LCHRootLink/ui-assets/identity.svg',
+}) %>
+
+</div>

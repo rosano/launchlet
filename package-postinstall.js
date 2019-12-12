@@ -82,6 +82,7 @@
 		'OLSKRemoteStorage',
 		'OLSKStorageWidget',
 		'OLSKLanguageSwitcher',
+		'OLSKRootLink',
 		'ROCORootLink',
 
 		// pass tests
