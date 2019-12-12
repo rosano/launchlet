@@ -3,7 +3,7 @@ exports.OLSKControllerRoutes = function() {
 		OLSKRoutePath: '/compose',
 		OLSKRouteMethod: 'get',
 		OLSKRouteSignature: 'LCHComposeRoute',
-		OLSKRouteFunction: function (req, res, next) {
+		OLSKRouteFunction (req, res, next) {
 			return res.render(require('path').join(__dirname, 'ui-view'), {
 				LCHComposeBuildPackageStyle: require('fs').readFileSync(require('path').join(__dirname, '../dev-package/__compiled/launchlet.css'), 'utf8'),
 				LCHComposeBuildPackageScript: require('fs').readFileSync(require('path').join(__dirname, '../dev-package/__compiled/launchlet.js'), 'utf8'),

@@ -3,7 +3,7 @@ exports.OLSKControllerRoutes = function() {
 		OLSKRoutePath: '/stub/LCHLauncherPrompt',
 		OLSKRouteMethod: 'get',
 		OLSKRouteSignature: 'LCHLauncherPromptStubRoute',
-		OLSKRouteFunction: function(req, res, next) {
+		OLSKRouteFunction (req, res, next) {
 			return res.render(require('path').join(__dirname, 'stub-view'));
 		},
 		OLSKRouteIsHidden: process.env.NODE_ENV === 'production',

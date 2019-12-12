@@ -7,7 +7,7 @@ exports.OLSKControllerRoutes = function() {
 		LCHServiceWorkerRoute: {
 			OLSKRoutePath: '/sw.js',
 			OLSKRouteMethod: 'get',
-			OLSKRouteFunction: function(req, res, next) {
+			OLSKRouteFunction (req, res, next) {
 				return res.type('js').send(OLSKServiceWorker.OLSKServiceWorkerView({
 					VERSION_ID_TOKEN: kLCHServiceWorkerVersionID.toString(),
 					REFERRER_MATCH_TOKEN: res.locals.OLSKCanonicalFor('LCHComposeRoute').replace(/\//g, '\\/'),
