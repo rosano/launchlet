@@ -1,9 +1,9 @@
 .Container {
 	border-top: var(--LCHBorderStyle);
-	/* AppContainerFlexboxChild */
+	/* AppContainerFlexbox:Child */
 	flex-shrink: 0;
 
-	/* ContainerFlexboxParent */
+	/* ContainerFlexbox:Parent */
 	display: flex;
 	justify-content: space-between;
 	align-items: center;

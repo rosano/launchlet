@@ -170,7 +170,7 @@ DocumentsAllStore.subscribe(mod.reactDocumentsVisible);
 .Container {
 	border-right: var(--LCHBorderStyle);
 
-	/* ContainerFlexboxParent */
+	/* ContainerFlexbox:Parent */
 	display: flex;
 	flex-direction: column;
 }
@@ -180,7 +180,7 @@ header {
 }
 
 .List {
-	/* ContainerFlexboxChild */
+	/* ContainerFlexbox:Child */
 	flex-grow: 1;
 	overflow: auto;
 }

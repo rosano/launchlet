@@ -1,5 +1,5 @@
 .Container {
-	/* ContainerFlexboxParent */
+	/* ContainerFlexbox:Parent */
 	display: flex;
 	flex-direction: column;
 }
@@ -79,10 +79,10 @@ input[type=text] {
 	opacity: 0.5;
 	text-align: center;
 
-	/* ContainerFlexboxChild */
+	/* ContainerFlexbox:Child */
 	flex-grow: 1;
 
-	/* PlaceholderContainerFlexboxParent */
+	/* PlaceholderContainerFlexbox:Parent */
 	display: flex;
 	justify-content: center;
 	align-items: center;
