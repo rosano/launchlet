@@ -1,6 +1,6 @@
 exports.OLSKControllerRoutes = function() {
 	return [{
-		OLSKRoutePath: '/stubs/LCHLauncherResultList',
+		OLSKRoutePath: '/stub/LCHLauncherResultList',
 		OLSKRouteMethod: 'get',
 		OLSKRouteSignature: 'LCHLauncherResultListStubRoute',
 		OLSKRouteFunction: function(req, res, next) {

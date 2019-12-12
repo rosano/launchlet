@@ -1,6 +1,6 @@
 exports.OLSKControllerRoutes = function() {
 	return [{
-			OLSKRoutePath: '/stubs/LCHComposeBuildPairExtension',
+			OLSKRoutePath: '/stub/LCHComposeBuildPairExtension',
 			OLSKRouteMethod: 'get',
 			OLSKRouteFunction: function(req, res, next) {
 				return res.render(require('path').join(__dirname, 'stub-view'));
