@@ -7,7 +7,7 @@
 	
 	background: hsl(0, 0%, 95%);
 
-	/* @LCHLauncherZoneInputFlexbox:Parent */
+	/* LCHLauncherZoneInputFlexbox:Parent */
 	display: flex;
 	justify-content: center;
 }
@@ -18,10 +18,10 @@
 	padding: 4px;
 	border-radius: 4px;
 
-	/* @LCHLauncherZoneInputFlexbox:Child */
+	/* LCHLauncherZoneInputFlexbox:Child */
 	flex-grow: 1;
 
-	/* @LCHLauncherZoneInputBezelFlexbox:Parent */
+	/* LCHLauncherZoneInputBezelFlexbox:Parent */
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

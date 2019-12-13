@@ -21,7 +21,7 @@
 	/* CompensateExternalStyles */
 	text-align: initial;
 
-	/* @ContainerFlexbox:Parent */
+	/* ContainerFlexbox:Parent */
 	display: flex;
 	flex-direction: column;
 }
@@ -83,7 +83,7 @@ input {
 
 	color: black;
 
-	/* @LCHLauncherResultListCapAndScroll */
+	/* LCHLauncherResultListCapAndScroll */
 	max-height: 165px;
 	overflow-y: scroll;
 }
@@ -105,7 +105,7 @@ input {
 	font-size: 8pt;
 	color: hsl(0, 0%, 20%);
 
-	/* @LCHLauncherZoneInputBezelFlexbox:Child */
+	/* LCHLauncherZoneInputBezelFlexbox:Child */
 	align-self: center;
 }
 
@@ -141,7 +141,7 @@ input {
 
 	margin: 0;
 
-	/* @LCHLauncherResultListCapAndScroll */
+	/* LCHLauncherResultListCapAndScroll */
 	max-height: 220px;
 
   /* MobileSafariSmoothScrolling */

@@ -673,7 +673,7 @@ const mod = {
 			return;
 		}
 
-		/* @LCHLauncherResultListCapAndScroll */
+		/* LCHLauncherResultListCapAndScroll */
 		let element = document.querySelector('.LCHLauncherResultListItemSelected');
 
 		if (!element) {
