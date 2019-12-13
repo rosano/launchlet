@@ -61,7 +61,7 @@ export const DocumentsImport = async function(inputData) {
 
 let _DocumentsVisible = [];
 const mod = {
-	FilterInputDispatchClear() {
+	OLSKInputWrapperDispatchClear() {
 		mod.valueFilterInputText('');
 		
 		LCHComposeDefaultFocusNode().focus();
@@ -146,7 +146,7 @@ DocumentsAllStore.subscribe(mod.reactDocumentsVisible);
 
 <header>
 	<OLSKToolbar>
-		<OLSKInputWrapper bind:OLSKInputWrapperValue={ $FilterInputTextStore } on:InputWrapperDispatchClear={ mod.FilterInputDispatchClear }>
+		<OLSKInputWrapper bind:OLSKInputWrapperValue={ $FilterInputTextStore } on:OLSKInputWrapperDispatchClear={ mod.OLSKInputWrapperDispatchClear }>
 			<input bind:value={ $FilterInputTextStore } class="LCHComposeFilterInput" placeholder={ OLSKLocalized('LCHComposeFilterInputPlaceholderText') } />
 		</OLSKInputWrapper>
 
