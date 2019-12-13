@@ -44,7 +44,7 @@ import OLSKLanguageSwitcher from '../../../_shared/__external/OLSKLanguageSwitch
 
 	<OLSKToolbar OLSKToolbarJustify={ true }>
 		<OLSKToolbarElementGroup>
-			<OLSKReloadButton OLSKLocalized={ OLSKLocalized } />
+			<OLSKReloadButton />
 			
 			<OLSKLanguageSwitcher OLSKSharedActiveRouteConstant={ window.OLSKPublicConstants('OLSKSharedActiveRouteConstant') }
 				OLSKSharedPageLanguagesAvailable={ window.OLSKPublicConstants('OLSKSharedPageLanguagesAvailable') }
