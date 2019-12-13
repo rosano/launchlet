@@ -146,7 +146,7 @@ DocumentsAllStore.subscribe(mod.reactDocumentsVisible);
 
 <header>
 	<OLSKToolbar>
-		<OLSKInputWrapper bind:OLSKInputWrapperValue={ $FilterInputTextStore } on:OLSKInputWrapperDispatchClear={ mod.OLSKInputWrapperDispatchClear }>
+		<OLSKInputWrapper bind:OLSKInputWrapperValue={ $FilterInputTextStore } OLSKInputWrapperDispatchClear={ mod.OLSKInputWrapperDispatchClear }>
 			<input bind:value={ $FilterInputTextStore } class="LCHComposeFilterInput" placeholder={ OLSKLocalized('LCHComposeFilterInputPlaceholderText') } />
 		</OLSKInputWrapper>
 
