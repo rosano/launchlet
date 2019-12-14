@@ -73,6 +73,9 @@
     "OLSKRootLink": "olsk/OLSKRootLink",
     "ROCORootLink": "rationalcreative/ROCORootLink",
 
+    "// FRONTEND UI ASSETS": null,
+    "OLSKUIAssets": "olsk/OLSKUIAssets",
+
     "// LCHVitrine content": null,
     "marked": "latest",
     "OLSKString": "olsk/OLSKString",

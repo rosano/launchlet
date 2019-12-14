@@ -84,6 +84,7 @@
 		'OLSKLanguageSwitcher',
 		'OLSKRootLink',
 		'ROCORootLink',
+		'OLSKUIAssets',
 
 		// pass tests
 		'OLSKInputWrapper',
