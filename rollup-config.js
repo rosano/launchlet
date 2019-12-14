@@ -1,3 +1,3 @@
-import { OLSKRollupScanStart } from 'OLSKRollup'
+import { OLSKRollupScaffoldScanStart } from 'OLSKRollup'
 
-export default OLSKRollupScanStart(__dirname);
+export default OLSKRollupScaffoldScanStart(__dirname);
