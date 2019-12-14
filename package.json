@@ -99,7 +99,7 @@
 
     "// SVELTE": null,
     "svelte": "latest",
-    "OLSKRollup": "olsk/OLSKRollup",
+    "OLSKRollupScaffold": "olsk/OLSKRollupScaffold",
 
     "// LIVERELOAD": null,
     "livereload": "latest",
