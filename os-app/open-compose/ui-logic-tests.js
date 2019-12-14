@@ -60,25 +60,18 @@ describe('LCHComposeFilterFunction', function testLCHComposeFilterFunction() {
 
 describe('LCHComposeSort', function testLCHComposeSort() {
 
-	it('sorts by LCHDocumentModificationDate descending', function() {
-		let item1 = {
-			LCHDocumentModificationDate: new Date(0),
-		};
-		let item2 = {
-			LCHDocumentModificationDate: new Date(1),
-		};
+	const item1 = {
+		LCHDocumentModificationDate: new Date(0),
+	};
+	const item2 = {
+		LCHDocumentModificationDate: new Date(1),
+	};
 
+	it('sorts by LCHDocumentModificationDate descending', function() {
 		deepEqual([item1, item2].sort(mainModule.LCHComposeSort), [item2, item1]);
 	});
 
 	it('sorts by LCHDocumentCreationDate descending if no LCHDocumentModificationDate', function() {
-		let item1 = {
-			LCHDocumentCreationDate: new Date(0),
-		};
-		let item2 = {
-			LCHDocumentCreationDate: new Date(1),
-		};
-
 		deepEqual([item1, item2].sort(mainModule.LCHComposeSort), [item2, item1]);
 	});
 
