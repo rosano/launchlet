@@ -55,16 +55,16 @@
     "jszip": "latest",
     "file-saver": "latest",
 
-    "// FRONTEND APP FLEXBOX": null,
+    "// FRONTEND APP LAYOUT": null,
+    "OLSKLayout": "olsk/OLSKLayout",
     "OLSKViewportContent": "olsk/OLSKViewportContent",
     "OLSKToolbar": "olsk/OLSKToolbar",
     "OLSKToolbarElementGroup": "olsk/OLSKToolbarElementGroup",
-
-    "// FRONTEND FILTER INPUT": null,
     "OLSKInputWrapper": "olsk/OLSKInputWrapper",
-
-    "// FRONTEND RELOAD BUTTON": null,
+    "OLSKResults": "olsk/OLSKResults",
+    "OLSKDetailPlaceholder": "olsk/OLSKDetailPlaceholder",
     "OLSKReloadButton": "olsk/OLSKReloadButton",
+    "OLSKUIAssets": "olsk/OLSKUIAssets",
 
     "// FRONTEND LANGUAGE SWITCHER": null,
     "OLSKLanguageSwitcher": "olsk/OLSKLanguageSwitcher",
@@ -72,9 +72,6 @@
     "// FRONTEND ROOT LINK": null,
     "OLSKRootLink": "olsk/OLSKRootLink",
     "ROCORootLink": "rationalcreative/ROCORootLink",
-
-    "// FRONTEND UI ASSETS": null,
-    "OLSKUIAssets": "olsk/OLSKUIAssets",
 
     "// LCHVitrine content": null,
     "marked": "latest",
