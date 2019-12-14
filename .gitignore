@@ -13,3 +13,5 @@ os-workspace-testing
 .env
 .env.staging
 .env.test
+
+os-app/open-write/
