@@ -11,7 +11,7 @@ describe('LCHComposeFooterGuideLink', function testLCHComposeFooterGuideLink () 
 	});
 
 	it('sets href', function () {
-		browser.assert.attribute(LCHComposeFooterGuideLink, 'href', require('../../../open-guide/controller.js').OLSKControllerRoutes().LCHGuideRoute)
+		browser.assert.attribute(LCHComposeFooterGuideLink, 'href', require('../../../open-guide/controller.js').OLSKControllerRoutes().shift().OLSKRoutePath)
 	});
 
 	it('sets target', function () {
