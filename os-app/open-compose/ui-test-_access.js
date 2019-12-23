@@ -10,9 +10,9 @@ Object.entries({
 	LCHComposeToolsPairStatusFailed: '.LCHComposeToolsPairStatusFailed',
 	LCHComposeToolsPairStatusFailedError: '.LCHComposeToolsPairStatusFailedError',
 
-	LCHComposeStorageWidget: '#LCHComposeStorageWidget',
-
 	LCHComposeViewportFooter: '.LCHComposeViewportFooter',
+
+	LCHComposeStorageWidget: '#LCHComposeStorageWidget',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -67,16 +67,16 @@ describe('LCHCompose_Access', function () {
 		browser.assert.elements('.LCHComposePair', 0);
 	});
 
+	it('shows LCHComposeViewportFooter', function () {
+		browser.assert.elements(LCHComposeViewportFooter, 1);
+	});
+
 	it('shows OLSKAppToolbar', function () {
 		browser.assert.elements('.OLSKAppToolbar', 1);
 	});
 
 	it('shows LCHComposeStorageWidget', function () {
 		browser.assert.elements(LCHComposeStorageWidget, 1);
-	});
-
-	it('shows LCHComposeViewportFooter', function () {
-		browser.assert.elements(LCHComposeViewportFooter, 1);
 	});
 
 	context('create', function test_create () {
