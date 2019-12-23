@@ -158,7 +158,7 @@ const mod = {
 		mod.ControlPublicKeyUpdate('');
 	},
 
-	LCHComposeFooterDispatchStorage () {
+	OLSKAppToolbarDispatchStorage () {
 		mod._ValueStorageWidgetHidden = !mod._ValueStorageWidgetHidden;
 	},
 
@@ -198,11 +198,11 @@ const mod = {
 		mod.ControlDocumentPersist(mod._ValueDocumentSelected);
 	},
 
-	_LCHComposeFooterDispatchExport () {
+	_OLSKAppToolbarDispatchExport () {
 		mod.ControlExportData();
 	},
 
-	_LCHComposeFooterDispatchImport (inputData) {
+	_OLSKAppToolbarDispatchImport (inputData) {
 		mod.ControlImportData(inputData);
 	},
 
@@ -751,7 +751,7 @@ const mod = {
 	},
 
 	SetupStorageWidget () {
-		(new window.OLSKStorageWidget(mod._ValueStorageClient.remoteStorage)).attach('LCHComposeStorageWidget').backend(document.querySelector('.LCHComposeFooterStorageButton'));
+		(new window.OLSKStorageWidget(mod._ValueStorageClient.remoteStorage)).attach('LCHComposeStorageWidget').backend(document.querySelector('.OLSKAppToolbarStorageButton'));
 	},
 
 	SetupStorageStatus () {
@@ -818,7 +818,7 @@ import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import LCHComposeBuild from './submodules/LCHComposeBuild/main.svelte';
 import LCHComposePair from './submodules/LCHComposePair/main.svelte';
-import LCHComposeFooter from './submodules/LCHComposeFooter/main.svelte';
+import OLSKAppToolbar from './submodules/OLSKAppToolbar/main.svelte';
 import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svelte';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
@@ -890,11 +890,11 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 
 	<div id="LCHComposeStorageWidget" class:LCHComposeStorageWidgetHidden={ mod._ValueStorageWidgetHidden }></div>
 
-	<LCHComposeFooter
-		LCHComposeFooterStorageStatus={ mod._ValueFooterStorageStatus }
-		LCHComposeFooterDispatchStorage={ mod.LCHComposeFooterDispatchStorage }
-		_LCHComposeFooterDispatchExport={ mod._LCHComposeFooterDispatchExport }
-		_LCHComposeFooterDispatchImport={ mod._LCHComposeFooterDispatchImport }
+	<OLSKAppToolbar
+		OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
+		OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
+		_OLSKAppToolbarDispatchExport={ mod._OLSKAppToolbarDispatchExport }
+		_OLSKAppToolbarDispatchImport={ mod._OLSKAppToolbarDispatchImport }
 		/>
 
 </footer>

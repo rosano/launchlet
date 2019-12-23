@@ -39,7 +39,7 @@
 
 @media screen and (max-width: 760px) {
 
-.LCHCompose :global(.LCHComposeFooter) {
+.LCHCompose :global(.OLSKAppToolbar) {
 	/* browser quirks */
 	z-index: 999;
 }

@@ -67,8 +67,8 @@ describe('LCHCompose_Access', function () {
 		browser.assert.elements('.LCHComposePair', 0);
 	});
 
-	it('shows LCHComposeFooter', function () {
-		browser.assert.elements('.LCHComposeFooter', 1);
+	it('shows OLSKAppToolbar', function () {
+		browser.assert.elements('.OLSKAppToolbar', 1);
 	});
 
 	it('shows LCHComposeStorageWidget', function () {

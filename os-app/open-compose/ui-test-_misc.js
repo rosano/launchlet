@@ -635,10 +635,10 @@ describe('LCHCompose_Misc', function () {
 			browser.assert.hasClass(LCHComposeStorageWidget, 'LCHComposeStorageWidgetHidden');
 		});
 
-		context('click LCHComposeFooterStorageButton', function () {
+		context('click OLSKAppToolbarStorageButton', function () {
 			
 			before(function () {
-				return browser.pressButton('.LCHComposeFooterStorageButton');
+				return browser.pressButton('.OLSKAppToolbarStorageButton');
 			});
 			
 			it('classes LCHComposeStorageWidgetHidden', function () {
