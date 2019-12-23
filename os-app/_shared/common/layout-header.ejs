@@ -48,6 +48,10 @@
 </script>`)
 	};
 
+	if (process.env.LCH_TEMP_TOUCH_ICON_URL) {
+		outputData.push(`<link rel="apple-touch-icon" href="${ process.env.LCH_TEMP_TOUCH_ICON_URL }">`);
+	}
+
 	let pathToTag = function (e) {
 		let path = (e[0] === '/' ? '' : `/${ locals.OLSKSharedPageControllerSlug }/`).concat(e);
 
