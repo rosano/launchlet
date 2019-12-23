@@ -2,7 +2,7 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHLauncherResultList', function () {
+describe('OLSKResultsList', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
@@ -21,8 +21,8 @@ describe('LCHLauncherResultList', function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 		});
 
-		it('hides LCHLauncherResultList', function() {
-			browser.assert.elements(LCHLauncherResultList, 0);
+		it('hides OLSKResultsList', function() {
+			browser.assert.elements(OLSKResultsList, 0);
 		});
 
 		after(function () {
@@ -38,8 +38,8 @@ describe('LCHLauncherResultList', function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 		});
 
-		it('hides LCHLauncherResultList', function() {
-			browser.assert.elements(LCHLauncherResultList, 0);
+		it('hides OLSKResultsList', function() {
+			browser.assert.elements(OLSKResultsList, 0);
 		});
 
 		after(function () {
@@ -54,8 +54,8 @@ describe('LCHLauncherResultList', function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, '.');
 		});
 
-		it('hides LCHLauncherResultList', function() {
-			browser.assert.elements(LCHLauncherResultList, 0);
+		it('hides OLSKResultsList', function() {
+			browser.assert.elements(OLSKResultsList, 0);
 		});
 		
 		after(function() {
@@ -71,8 +71,8 @@ describe('LCHLauncherResultList', function () {
 			browser.OLSKFireKeyboardEvent(browser.window, 'a');
 		})
 
-		it('hides LCHLauncherResultList', function() {
-			browser.assert.elements(LCHLauncherResultList, 0);
+		it('hides OLSKResultsList', function() {
+			browser.assert.elements(OLSKResultsList, 0);
 		});
 
 	});
@@ -83,12 +83,12 @@ describe('LCHLauncherResultList', function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
 		});
 
-		it('shows LCHLauncherResultList', function() {
-			browser.assert.elements(LCHLauncherResultList, 1);
+		it('shows OLSKResultsList', function() {
+			browser.assert.elements(OLSKResultsList, 1);
 		});
 
 		it('selects first item', function() {
-			browser.assert.text('.LCHLauncherResultListItemSelected', 'alfa');
+			browser.assert.text('.OLSKResultsListItemSelected', 'alfa');
 		});
 
 		context('visible', function () {
@@ -102,7 +102,7 @@ describe('LCHLauncherResultList', function () {
 			});
 
 			it('selects next item', function() {
-				browser.assert.text('.LCHLauncherResultListItemSelected', 'bravo');
+				browser.assert.text('.OLSKResultsListItemSelected', 'bravo');
 			});
 		
 		});
@@ -118,7 +118,7 @@ describe('LCHLauncherResultList', function () {
 			});
 
 			it('keeps selection', function() {
-				browser.assert.text('.LCHLauncherResultListItemSelected', 'bravo');
+				browser.assert.text('.OLSKResultsListItemSelected', 'bravo');
 			});
 		
 		});
@@ -135,12 +135,12 @@ describe('LCHLauncherResultList', function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'ArrowUp');
 		});
 
-		it('shows LCHLauncherResultList', function() {
-			browser.assert.elements(LCHLauncherResultList, 1);
+		it('shows OLSKResultsList', function() {
+			browser.assert.elements(OLSKResultsList, 1);
 		});
 
 		it('selects first item', function() {
-			browser.assert.text('.LCHLauncherResultListItemSelected', 'alfa');
+			browser.assert.text('.OLSKResultsListItemSelected', 'alfa');
 		});
 
 		context('visible', function () {
@@ -154,7 +154,7 @@ describe('LCHLauncherResultList', function () {
 			});
 
 			it('selects previous item', function() {
-				browser.assert.text('.LCHLauncherResultListItemSelected', 'bravo');
+				browser.assert.text('.OLSKResultsListItemSelected', 'bravo');
 			});
 		
 		});
@@ -170,7 +170,7 @@ describe('LCHLauncherResultList', function () {
 			});
 
 			it('keeps selection', function() {
-				browser.assert.text('.LCHLauncherResultListItemSelected', 'bravo');
+				browser.assert.text('.OLSKResultsListItemSelected', 'bravo');
 			});
 		
 		});

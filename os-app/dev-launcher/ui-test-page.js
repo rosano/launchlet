@@ -164,7 +164,7 @@ describe('LCHPageRecipes', function testLCHPageRecipes () {
 
 			it('posts message', async function() {
 				deepEqual(await browser.OLSKMessageAsync(function () {
-					return browser.click('.LCHLauncherResultListItem:last-child');
+					return browser.click('.OLSKResultsListItem:last-child');
 				}), 'delta');
 			});
 		

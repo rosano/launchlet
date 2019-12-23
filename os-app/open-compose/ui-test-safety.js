@@ -150,9 +150,9 @@ describe('LCHComposeSafety', function () {
 			await browser.wait({ element: '.LCHLauncherFilterInput' });
 
 			browser.fill('.LCHLauncherFilterInput', 'e');
-			await browser.wait({ element: '.LCHLauncherResultListItem' });
+			await browser.wait({ element: '.OLSKResultsListItem' });
 
-			browser.assert.elements('.LCHLauncherResultListItem', 1)
+			browser.assert.elements('.OLSKResultsListItem', 1)
 		});
 
 		it('flags if not valid', async function() {
@@ -165,9 +165,9 @@ describe('LCHComposeSafety', function () {
 			await browser.wait({ element: '.LCHLauncherFilterInput' });
 
 			browser.fill('.LCHLauncherFilterInput', 'e');
-			await browser.wait({ element: '.LCHLauncherResultListItem' });
+			await browser.wait({ element: '.OLSKResultsListItem' });
 
-			browser.assert.elements('.LCHLauncherResultListItem', 1)
+			browser.assert.elements('.OLSKResultsListItem', 1)
 		});
 
 	});

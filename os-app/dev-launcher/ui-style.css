@@ -73,7 +73,7 @@ input {
 	color: #fd6666;
 }
 
-.Container :global(.LCHLauncherResultList) {
+.Container :global(.OLSKResultsList) {
 	width: 95%;
 	padding-left: 5px;
 	border-left: 1px solid hsl(0, 0%, 80%);
@@ -83,19 +83,19 @@ input {
 
 	color: black;
 
-	/* LCHLauncherResultListCapAndScroll */
+	/* OLSKResultsListCapAndScroll */
 	max-height: 165px;
 	overflow-y: scroll;
 }
 
-.Container :global(.LCHLauncherResultListItem) {
+.Container :global(.OLSKResultsListItem) {
 	/* CapWidth */
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
 
-.LCHLauncherPromptSelected :global(.LCHLauncherZoneInputBezel), .LCHLauncherPromptSelected :global(.LCHLauncherResultListItemSelected) {
+.LCHLauncherPromptSelected :global(.LCHLauncherZoneInputBezel), .LCHLauncherPromptSelected :global(.OLSKResultsListItemSelected) {
 	background: hsl(0, 0%, 85%);
 }
 
@@ -134,21 +134,21 @@ input {
 	font-size: 16pt;
 }
 
-.Container :global(.LCHLauncherResultList) {
+.Container :global(.OLSKResultsList) {
 	width: 100%;
 	padding-left: 0;
 	border-left: none;
 
 	margin: 0;
 
-	/* LCHLauncherResultListCapAndScroll */
+	/* OLSKResultsListCapAndScroll */
 	max-height: 220px;
 
   /* MobileSafariSmoothScrolling */
 	-webkit-overflow-scrolling: touch;
 }
 
-.LCHLauncherPromptSelected :global(.LCHLauncherZoneInputBezel), .LCHLauncherPromptSelected :global(.LCHLauncherResultListItemSelected) {
+.LCHLauncherPromptSelected :global(.LCHLauncherZoneInputBezel), .LCHLauncherPromptSelected :global(.OLSKResultsListItemSelected) {
 	background: hsl(0, 0%, 80%);
 }
 

@@ -23,8 +23,8 @@ describe('LCHLauncherPrompt_Access', function () {
 		browser.assert.elements(LCHLauncherPromptItemSelected, 0);
 	});
 
-	it('hides LCHLauncherResultList', function () {
-		browser.assert.elements('.LCHLauncherResultList', 0);
+	it('hides OLSKResultsList', function () {
+		browser.assert.elements('.OLSKResultsList', 0);
 	});
 
 	context('set single', function() {
@@ -33,8 +33,8 @@ describe('LCHLauncherPrompt_Access', function () {
 			return browser.pressButton('#LCHLauncherPromptTestSetPromptItemsSingle');
 		});
 
-		it('shows LCHLauncherResultListItem', function () {
-			browser.assert.elements('.LCHLauncherResultListItem', 1);
+		it('shows OLSKResultsListItem', function () {
+			browser.assert.elements('.OLSKResultsListItem', 1);
 		});
 	});
 	
@@ -44,8 +44,8 @@ describe('LCHLauncherPrompt_Access', function () {
 			return browser.pressButton('#LCHLauncherPromptTestSetPromptItemsMultiple');
 		});
 
-		it('shows LCHLauncherResultListItem', function () {
-			browser.assert.elements('.LCHLauncherResultListItem', 3);
+		it('shows OLSKResultsListItem', function () {
+			browser.assert.elements('.OLSKResultsListItem', 3);
 		});
 	});
 	
@@ -55,8 +55,8 @@ describe('LCHLauncherPrompt_Access', function () {
 			return browser.pressButton('#LCHLauncherPromptTestSetPromptItemsZero');
 		});
 
-		it('hides LCHLauncherResultListItem', function () {
-			browser.assert.elements('.LCHLauncherResultListItem', 0);
+		it('hides OLSKResultsListItem', function () {
+			browser.assert.elements('.OLSKResultsListItem', 0);
 		});
 
 		after(function () {
@@ -71,8 +71,8 @@ describe('LCHLauncherPrompt_Access', function () {
 			return browser.check('#LCHLauncherPromptTestSetResultsHidden');
 		});
 
-		it('hides LCHLauncherResultList', function () {
-			browser.assert.elements('.LCHLauncherResultList', 0);
+		it('hides OLSKResultsList', function () {
+			browser.assert.elements('.OLSKResultsList', 0);
 		});
 
 	});

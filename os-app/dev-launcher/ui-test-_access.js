@@ -7,10 +7,10 @@ Object.entries({
 
 	LCHLauncherFilterInput: '.LCHLauncherFilterInput',
 
-	LCHLauncherListItem: '.LCHLauncherResultListItem',
+	LCHLauncherListItem: '.OLSKResultsListItem',
 
-	LCHLauncherResultList: '.LCHLauncherResultList',
-	LCHLauncherResultListItem: '.LCHLauncherResultListItem',
+	OLSKResultsList: '.OLSKResultsList',
+	OLSKResultsListItem: '.OLSKResultsListItem',
 
 	LCHLauncherPromptDotModeInput: '.LCHLauncherPromptDotModeInput',
 	LCHLauncherPipeItem: '.LCHLauncherPipeItem',
@@ -160,12 +160,12 @@ describe('LCHLauncher_AccessPipe', function testLCHLauncher_AccessPipe () {
 		browser.assert.elements(LCHLauncherListItem, 0)
 	});
 
-	it('hides LCHLauncherResultList', function() {
-		browser.assert.elements(LCHLauncherResultList, 0)
+	it('hides OLSKResultsList', function() {
+		browser.assert.elements(OLSKResultsList, 0)
 	});
 
-	it('hides LCHLauncherResultListItem', function() {
-		browser.assert.elements(LCHLauncherResultListItem, 0)
+	it('hides OLSKResultsListItem', function() {
+		browser.assert.elements(OLSKResultsListItem, 0)
 	});
 
 	it('hides LCHLauncherPipeItem', function() {

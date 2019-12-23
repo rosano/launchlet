@@ -34,7 +34,7 @@ describe('LCHLauncherMisc_Commit', function () {
 			});
 
 			it('selects first item', function() {
-				browser.assert.text('.LCHLauncherResultListItemSelected', 'alfa');
+				browser.assert.text('.OLSKResultsListItemSelected', 'alfa');
 			});
 
 			it('assert callbacks count 0')
@@ -88,7 +88,7 @@ describe('LCHLauncherMisc_Commit', function () {
 			});
 
 			it('selects next item', function() {
-				browser.assert.text('.LCHLauncherResultListItemSelected', 'bravo');
+				browser.assert.text('.OLSKResultsListItemSelected', 'bravo');
 			});
 		
 		});
@@ -100,7 +100,7 @@ describe('LCHLauncherMisc_Commit', function () {
 			});
 
 			it('selects previous item', function() {
-				browser.assert.text('.LCHLauncherResultListItemSelected', 'alfa');
+				browser.assert.text('.OLSKResultsListItemSelected', 'alfa');
 			});
 		
 		});
@@ -113,7 +113,7 @@ describe('LCHLauncherMisc_Commit', function () {
 			});
 			
 			it('sets class', function () {
-				browser.assert.text('.LCHLauncherResultListItemSelected', 'bravo');	
+				browser.assert.text('.OLSKResultsListItemSelected', 'bravo');	
 			});
 		
 		});

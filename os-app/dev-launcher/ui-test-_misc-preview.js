@@ -22,7 +22,7 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 	});
 
 	it('selects no items', async function() {
-		browser.assert.elements('.LCHLauncherResultListItemSelected', 0);
+		browser.assert.elements('.OLSKResultsListItemSelected', 0);
 	});
 
 	describe('filter', function () {
@@ -38,7 +38,7 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 			});
 
 			it('selects first item', function() {
-				browser.assert.text('.LCHLauncherResultListItemSelected', 'alfa');
+				browser.assert.text('.OLSKResultsListItemSelected', 'alfa');
 			});
 
 			it('assert callbacks count 1')
@@ -100,7 +100,7 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 			});
 
 			it('selects next item', function() {
-				browser.assert.text('.LCHLauncherResultListItemSelected', 'bravo');
+				browser.assert.text('.OLSKResultsListItemSelected', 'bravo');
 			});
 			
 			it('runs callback', function () {
@@ -116,7 +116,7 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 			});
 
 			it('selects previous item', function() {
-				browser.assert.text('.LCHLauncherResultListItemSelected', 'alfa');
+				browser.assert.text('.OLSKResultsListItemSelected', 'alfa');
 			});
 			
 			it('runs callback', function () {
@@ -133,7 +133,7 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 			});
 			
 			it('sets class', function () {
-				browser.assert.text('.LCHLauncherResultListItemSelected', 'bravo');	
+				browser.assert.text('.OLSKResultsListItemSelected', 'bravo');	
 			});
 			
 			it('runs no callback', function () {
@@ -238,11 +238,11 @@ describe('LCHLauncherMisc_Preview', function testLCHLauncherMisc_Preview() {
 		});
 
 		it('selects single item', function() {
-			browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
+			browser.assert.elements('.OLSKResultsListItemSelected', 1);
 		});
 
 		it('selects first item', function() {
-			browser.assert.text('.LCHLauncherResultListItemSelected .LCHLauncherPipeItemTitle', 'alfa');
+			browser.assert.text('.OLSKResultsListItemSelected .LCHLauncherPipeItemTitle', 'alfa');
 		});
 		
 	});

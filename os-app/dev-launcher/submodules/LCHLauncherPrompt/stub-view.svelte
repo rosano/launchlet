@@ -47,10 +47,10 @@ const mod = {
 </p>
 <p>
 	<strong>TestResultListDispatchArrow</strong>
-	<span id="LCHLauncherResultListTestResultListDispatchArrow" bind:this={ TestResultListDispatchArrow }>0</span>
+	<span id="OLSKResultsListTestResultListDispatchArrow" bind:this={ TestResultListDispatchArrow }>0</span>
 </p>
 
 <p>
 	<strong>TestResultListDispatchClick</strong>
-	<span id="LCHLauncherResultListTestResultListDispatchClick" bind:this={ TestResultListDispatchClick }>0</span>
+	<span id="OLSKResultsListTestResultListDispatchClick" bind:this={ TestResultListDispatchClick }>0</span>
 </p>

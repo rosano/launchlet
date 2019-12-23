@@ -4,7 +4,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 const uFilter = function (inputData) {
 	browser.fill('.LCHLauncherFilterInput', inputData)
-	return browser.wait({ elemen: '.LCHLauncherResultListItem' })
+	return browser.wait({ elemen: '.OLSKResultsListItem' })
 };
 
 describe('LCHVitrineDemoCommit', function () {
@@ -27,7 +27,7 @@ describe('LCHVitrineDemoCommit', function () {
 		it('adds style element', async function() {
 			await uFilter('random');
 
-			browser.click('.LCHLauncherResultListItem');
+			browser.click('.OLSKResultsListItem');
 			await browser.wait({element: elementQuery});
 
 			browser.assert.elements(elementQuery, 1)
@@ -50,7 +50,7 @@ describe('LCHVitrineDemoCommit', function () {
 
 			await uFilter('random');
 
-			browser.click('.LCHLauncherResultListItem');
+			browser.click('.OLSKResultsListItem');
 			await browser.wait({element: elementQuery});
 
 			deepEqual(item, browser.query(elementQuery))
@@ -77,21 +77,21 @@ describe('LCHVitrineDemoCommit', function () {
 		
 		it('hides recipe', async function() {
 			await uFilter('colour');
-			browser.assert.elements('.LCHLauncherResultListItem', 1)
+			browser.assert.elements('.OLSKResultsListItem', 1)
 		});
 		
 		it('shows after execute sibling', async function() {
-			browser.click('.LCHLauncherResultListItem');
+			browser.click('.OLSKResultsListItem');
 			await browser.wait({element: elementQuery});
 
 			browser.click(LCHVitrineDemoButtonCommit);
 			await browser.wait({element: '.LCHLauncherFilterInput'});
 			await uFilter('colour');
-			browser.assert.elements('.LCHLauncherResultListItem', 2)
+			browser.assert.elements('.OLSKResultsListItem', 2)
 		});
 		
 		it('removes element', async function() {
-			browser.click('.LCHLauncherResultListItem');
+			browser.click('.OLSKResultsListItem');
 			await browser.wait({element: elementQuery});
 
 			browser.assert.elements(elementQuery, 0)
@@ -110,7 +110,7 @@ describe('LCHVitrineDemoCommit', function () {
 			await uFilter('send');
 
 			deepEqual(browser.OLSKAlert(function () {
-				browser.click('.LCHLauncherResultListItem');
+				browser.click('.OLSKResultsListItem');
 			}), 'mailto:')
 		});
 	
@@ -127,7 +127,7 @@ describe('LCHVitrineDemoCommit', function () {
 			await uFilter('info');
 
 			deepEqual(browser.OLSKAlert(function () {
-				browser.click('.LCHLauncherResultListItem');
+				browser.click('.OLSKResultsListItem');
 			}), 'Copied to clipboard')
 		});
 	

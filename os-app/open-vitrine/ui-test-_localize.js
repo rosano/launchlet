@@ -99,8 +99,8 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 				return browser.fill('.LCHLauncherFilterInput', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRandomize)
 			});
 
-			it('localizes LCHLauncherResultListItem', function() {
-				browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRandomize);
+			it('localizes OLSKResultsListItem', function() {
+				browser.assert.text('.OLSKResultsListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRandomize);
 			});
 		
 		});
@@ -117,8 +117,8 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 				return browser.fill('.LCHLauncherFilterInput', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRestore)
 			});
 
-			it('localizes LCHLauncherResultListItem', function() {
-				browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRestore);
+			it('localizes OLSKResultsListItem', function() {
+				browser.assert.text('.OLSKResultsListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrinePageColoursRestore);
 			});
 		
 		});
@@ -129,8 +129,8 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 				browser.fill('.LCHLauncherFilterInput', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineCopyPageInfo)
 			});
 
-			it('localizes LCHLauncherResultListItem', function() {
-				browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineCopyPageInfo);
+			it('localizes OLSKResultsListItem', function() {
+				browser.assert.text('.OLSKResultsListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineCopyPageInfo);
 			});
 		
 		});
@@ -141,8 +141,8 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 				browser.fill('.LCHLauncherFilterInput', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineSendEmail)
 			});
 
-			it('localizes LCHLauncherResultListItem', function() {
-				browser.assert.text('.LCHLauncherResultListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineSendEmail);
+			it('localizes OLSKResultsListItem', function() {
+				browser.assert.text('.OLSKResultsListItem', uLocalized('LCHVitrineDemoRecipeNames').LCHVitrineSendEmail);
 			});
 		
 		});

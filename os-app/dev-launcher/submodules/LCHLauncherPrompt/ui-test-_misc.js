@@ -19,7 +19,7 @@ describe('LCHLauncherPrompt_Misc', function () {
 		});
 
 		it('sets ResultItems', function() {
-			browser.assert.elements('.LCHLauncherResultListItem', 3);
+			browser.assert.elements('.OLSKResultsListItem', 3);
 		});
 
 	});
@@ -31,7 +31,7 @@ describe('LCHLauncherPrompt_Misc', function () {
 		});
 
 		it('sets ItemSelected', function() {
-			browser.assert.text('.LCHLauncherResultListItemSelected', 'bravo');
+			browser.assert.text('.OLSKResultsListItemSelected', 'bravo');
 		});
 
 	});
@@ -43,7 +43,7 @@ describe('LCHLauncherPrompt_Misc', function () {
 		});
 
 		it('sends ResultListDispatchArrrow', function() {
-			browser.assert.text('#LCHLauncherResultListTestResultListDispatchArrow', '1');
+			browser.assert.text('#OLSKResultsListTestResultListDispatchArrow', '1');
 		});
 
 	});
@@ -55,7 +55,7 @@ describe('LCHLauncherPrompt_Misc', function () {
 		});
 
 		it('sends ResultListDispatchArrrow', function() {
-			browser.assert.text('#LCHLauncherResultListTestResultListDispatchArrow', '2');
+			browser.assert.text('#OLSKResultsListTestResultListDispatchArrow', '2');
 		});
 
 	});
@@ -63,11 +63,11 @@ describe('LCHLauncherPrompt_Misc', function () {
 	context('click', function() {
 		
 		before(function () {
-			return browser.click('.LCHLauncherResultListItem');
+			return browser.click('.OLSKResultsListItem');
 		});
 
 		it('sends ResultListDispatchClick', function() {
-			browser.assert.text('#LCHLauncherResultListTestResultListDispatchClick', '1');
+			browser.assert.text('#OLSKResultsListTestResultListDispatchClick', '1');
 		});
 
 	});

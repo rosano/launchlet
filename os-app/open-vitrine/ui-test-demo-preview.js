@@ -15,13 +15,13 @@ describe('LCHVitrineDemoPreview', function () {
 	it('shows headings', function () {
 		deepEqual(browser.queryAll('h1,h2').map(function (e) {
 			return e.textContent
-		}), browser.queryAll('.LCHLauncherResultListItem').map(function (e) {
+		}), browser.queryAll('.OLSKResultsListItem').map(function (e) {
 			return e.textContent.trim()
 		}))
 	});
 	
 	it('selects one', function () {
-		browser.assert.elements('.LCHLauncherResultListItemSelected', 1);
+		browser.assert.elements('.OLSKResultsListItemSelected', 1);
 	});
 
 });

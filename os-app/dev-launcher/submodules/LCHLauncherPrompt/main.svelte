@@ -4,17 +4,18 @@ export let ResultsHidden = false;
 export let ItemSelected = null;
 export let ItemSelectedHidden = false;
 
-import LCHLauncherResultList from '../LCHLauncherResultList/main.svelte';
+import OLSKResults from 'OLSKResults';
 import LCHLauncherPipeItem from '../LCHLauncherPipeItem/main.svelte';
 
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 
-function ResultListDispatchArrow(event) {
-	dispatch('ResultListDispatchArrow', ItemSelected = event.detail);
+function ResultListDispatchArrow(inputData) {
+	dispatch('ResultListDispatchArrow', ItemSelected = inputData);
 }
-function ResultListDispatchClick(event) {
-	dispatch('ResultListDispatchClick', ItemSelected = event.detail);
+
+function ResultListDispatchClick(inputData) {
+	dispatch('ResultListDispatchClick', ItemSelected = inputData);
 }
 </script>
 
@@ -31,9 +32,20 @@ function ResultListDispatchClick(event) {
 </div>
 
 {#if !ResultsHidden}
-	<LCHLauncherResultList ListItems={ PromptItems } let:LCHLauncherResultListItem={ item } ItemSelected={ ItemSelected } on:ResultListDispatchArrow={ ResultListDispatchArrow } on:ResultListDispatchClick={ ResultListDispatchClick }>
-		<LCHLauncherPipeItem PipeItemTitle={ item.LCHRecipeName } PipeItemSubtitle={ item._LCHRecipeOutputTypeName } PipeItemSource={ item._LCHRecipeSource } />
-	</LCHLauncherResultList>
+	<OLSKResults
+		OLSKResultsListItems={ PromptItems }
+		OLSKResultsListItemSelected={ ItemSelected }
+		OLSKResultsDispatchClick={ ResultListDispatchClick }
+		OLSKResultsDispatchArrow={ ResultListDispatchArrow }
+		let:OLSKResultsListItem={ item }
+		OLSKResultsEnableLooping={ true }
+		>
+		<LCHLauncherPipeItem
+			PipeItemTitle={ item.LCHRecipeName }
+			PipeItemSubtitle={ item._LCHRecipeOutputTypeName }
+			PipeItemSource={ item._LCHRecipeSource }
+			/>
+	</OLSKResults>
 {/if}
 
 </div>

@@ -671,8 +671,8 @@ const mod = {
 			return;
 		}
 
-		/* LCHLauncherResultListCapAndScroll */
-		let element = document.querySelector('.LCHLauncherResultListItemSelected');
+		/* OLSKResultsListCapAndScroll */
+		let element = document.querySelector('.OLSKResultsListItemSelected');
 
 		if (!element) {
 			return;

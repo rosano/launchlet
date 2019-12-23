@@ -91,22 +91,22 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 			browser.assert.elements(LCHLauncherActionPromptItemSelected, 1);
 		});
 	
-		it('hides LCHLauncherResultList', function() {
-			browser.assert.elements(LCHLauncherResultList, 0);
+		it('hides OLSKResultsList', function() {
+			browser.assert.elements(OLSKResultsList, 0);
 		});
 
 		context('throttle', function () {
 
 			before(function () {
-				return browser.wait({ element: LCHLauncherResultList });
+				return browser.wait({ element: OLSKResultsList });
 			});
 			
-			it('shows LCHLauncherResultList', function() {
-				browser.assert.elements(LCHLauncherResultList, 1);
+			it('shows OLSKResultsList', function() {
+				browser.assert.elements(OLSKResultsList, 1);
 			});
 
 			it('selects first list item', function() {
-				browser.assert.hasClass(`${ LCHLauncherResultListItem }:first-child`, 'LCHLauncherResultListItemSelected');
+				browser.assert.hasClass(`${ OLSKResultsListItem }:first-child`, 'OLSKResultsListItemSelected');
 			});
 		
 		});
@@ -168,8 +168,8 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 			browser.assert.hasClass(LCHLauncherSubjectPromptHeading, 'LCHLauncherPromptHeadingMatchStop');
 		});
 
-		it('shows LCHLauncherResultList', function() {
-			browser.assert.elements(LCHLauncherResultList, 1);
+		it('shows OLSKResultsList', function() {
+			browser.assert.elements(OLSKResultsList, 1);
 		});
 
 		context('throttle', function () {
@@ -182,8 +182,8 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 				browser.assert.text(LCHLauncherSubjectPromptHeading, 'AXX');
 			});
 
-			it('shows LCHLauncherResultList', function() {
-				browser.assert.elements(LCHLauncherResultList, 1);
+			it('shows OLSKResultsList', function() {
+				browser.assert.elements(OLSKResultsList, 1);
 			});
 		
 		});
@@ -202,8 +202,8 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 				browser.assert.elements('.LCHLauncherPromptHeadingMatchStop', 0);
 			});
 
-			it('hides LCHLauncherResultList', function() {
-				browser.assert.elements(LCHLauncherResultList, 0);
+			it('hides OLSKResultsList', function() {
+				browser.assert.elements(OLSKResultsList, 0);
 			});
 		
 		});
@@ -286,15 +286,15 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 		});
 
 		before(function() {
-			browser.assert.elements(LCHLauncherResultList, 1);
+			browser.assert.elements(OLSKResultsList, 1);
 		});
 
 		before(function() {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 		});
 
-		it('hides LCHLauncherResultList', function() {
-			browser.assert.elements(LCHLauncherResultList, 0);
+		it('hides OLSKResultsList', function() {
+			browser.assert.elements(OLSKResultsList, 0);
 		});
 
 		before(function() {
@@ -321,12 +321,12 @@ describe('LCHLauncherMisc_Pipe', function testLCHLauncherMisc_Pipe() {
 		});
 
 		before(function() {
-			browser.assert.elements(LCHLauncherResultList, 1);
+			browser.assert.elements(OLSKResultsList, 1);
 			return browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 		});
 		
 		it('hides open result list', function() {
-			browser.assert.elements(LCHLauncherResultList, 0);
+			browser.assert.elements(OLSKResultsList, 0);
 		});
 
 	});
