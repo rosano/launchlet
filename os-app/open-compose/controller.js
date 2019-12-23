@@ -15,5 +15,6 @@ exports.OLSKControllerRoutes = function() {
 		OLSKRouteMiddlewares: [
 			'LCHSharedDonateLinkGuardMiddleware',
 		],
+		_OLSKRouteSkipLanguageRedirect: true,
 	}];
 };
