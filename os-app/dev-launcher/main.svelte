@@ -57,14 +57,13 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 			return;
 		}
 
-		OLSKThrottle.OLSKThrottleMappedTimeoutFor(mod._ValuePromptObjects[mod._ValuePromptActiveIndex], 'LCHPromptInputThrottle', function (inputData) {
-			return {
-				OLSKThrottleDuration: LCHLauncherThrottleDuration,
-				OLSKThrottleCallback: function () {
-					mod._ValuePromptObjects[inputData].LCHPromptInputThrottle = false;
-				},
-			};
-		}, mod._ValuePromptActiveIndex);
+		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValuePromptObjects[mod._ValuePromptActiveIndex], 'LCHPromptInputThrottle', {
+			OLSKThrottleInput: mod._ValuePromptActiveIndex,
+			OLSKThrottleDuration: LCHLauncherThrottleDuration,
+			OLSKThrottleCallback (inputData) {
+				mod._ValuePromptObjects[inputData].LCHPromptInputThrottle = false;
+			},
+		});
 	})();
 
 	(function ThrottleResults() {
@@ -76,14 +75,13 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 			return;
 		}
 
-		OLSKThrottle.OLSKThrottleMappedTimeoutFor(mod._ValuePromptObjects[mod._ValuePromptActiveIndex], 'LCHPromptResultsThrottle', function (inputData) {
-			return {
-				OLSKThrottleDuration: LCHLauncherThrottleDuration,
-				OLSKThrottleCallback: function () {
-					mod._ValuePromptObjects[inputData].LCHPromptResultsThrottle = false;
-				},
-			};
-		}, mod._ValuePromptActiveIndex);
+		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValuePromptObjects[mod._ValuePromptActiveIndex], 'LCHPromptResultsThrottle', {
+			OLSKThrottleInput: mod._ValuePromptActiveIndex,
+			OLSKThrottleDuration: LCHLauncherThrottleDuration,
+			OLSKThrottleCallback (inputData) {
+				mod._ValuePromptObjects[inputData].LCHPromptResultsThrottle = false;
+			},
+		});
 	})();
 
 	(function SetItems() {
