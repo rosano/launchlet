@@ -649,10 +649,10 @@ describe('LCHCompose_Misc', function () {
 	
 	});
 
-	describe('LCHComposeMainFooter', function test_LCHComposeMainFooter () {
+	describe('LCHComposeViewportFooter', function test_LCHComposeViewportFooter () {
 
 		it('sets class', function () {
-			browser.assert.hasClass(LCHComposeMainFooter, 'OLSKMobileViewFooter');
+			browser.assert.hasClass(LCHComposeViewportFooter, 'OLSKMobileViewFooter');
 		});
 
 	});

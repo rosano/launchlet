@@ -848,7 +848,7 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 		/>
 </OLSKViewportContent>
 
-<footer class="LCHComposeMainFooter OLSKMobileViewFooter">
+<footer class="LCHComposeViewportFooter OLSKMobileViewFooter">
 
 	<footer class="LCHComposeTools">
 		<OLSKToolbar OLSKToolbarJustify={ true }>

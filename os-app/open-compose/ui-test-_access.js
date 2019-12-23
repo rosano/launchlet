@@ -12,7 +12,7 @@ Object.entries({
 
 	LCHComposeStorageWidget: '#LCHComposeStorageWidget',
 
-	LCHComposeMainFooter: '.LCHComposeMainFooter',
+	LCHComposeViewportFooter: '.LCHComposeViewportFooter',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -75,8 +75,8 @@ describe('LCHCompose_Access', function () {
 		browser.assert.elements(LCHComposeStorageWidget, 1);
 	});
 
-	it('shows LCHComposeMainFooter', function () {
-		browser.assert.elements(LCHComposeMainFooter, 1);
+	it('shows LCHComposeViewportFooter', function () {
+		browser.assert.elements(LCHComposeViewportFooter, 1);
 	});
 
 	context('create', function test_create () {
