@@ -44,6 +44,16 @@
     ));
 })();
 
+(function OLSKPostinstallPatchOLSKThrottle() {
+	let filePath = './node_modules/OLSKThrottle/main.js';
+
+	require('fs').writeFileSync(filePath, require('OLSKString').OLSKStringPatch(
+		require('fs').readFileSync(filePath, 'utf8'),
+		'delete param1[param2];',
+		'// delete param1[param2]',
+    ));
+})();
+
 (function ROCOHotfixULIDForBrowserTesting() {
 	if (process.env.NODE_ENV === 'production') {
 		return;
