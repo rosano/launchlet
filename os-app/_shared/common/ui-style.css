@@ -11,3 +11,8 @@
 	width: inherit;
 	height: inherit;
 }
+
+.OLSKToolbarButton {
+	width: 20px;
+	height: 20px;
+}
