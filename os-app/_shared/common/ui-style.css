@@ -6,3 +6,8 @@
 .OLSKCommon li code {
 	margin: 2px 0;
 }
+
+.OLSKToolbarButton > *, .OLSKToolbarButton svg {
+	width: inherit;
+	height: inherit;
+}
