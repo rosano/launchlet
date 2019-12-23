@@ -32,7 +32,7 @@ export const mod = {
 	// CONTROL
 
 	ControlRunTasks (inputData) {
-		LCHAPIRunTasks(inputData, window.location.href)
+		LCHAPIRunTasks(inputData, window.location.href);
 	},
 	
 	// LIFECYCLE
@@ -66,7 +66,7 @@ export const mod = {
 	LifecycleSingletonDestroy () {
 		mod._ValueSingleton.$destroy();
 		
-		delete mod._ValueSingleton
+		delete mod._ValueSingleton;
 
 		if (typeof document === 'undefined') {
 			return;

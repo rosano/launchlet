@@ -32,12 +32,12 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 			it('localizes LCHComposePublicKeyNotValidAlert', function () {
 				deepEqual(browser.OLSKAlert(function () {
-					browser.pressButton('.LCHComposePairSubmitButton')
-				}), uLocalized('LCHComposePublicKeyNotValidAlertText'))
+					browser.pressButton('.LCHComposePairSubmitButton');
+				}), uLocalized('LCHComposePublicKeyNotValidAlertText'));
 			});
 
 			it('localizes LCHComposeToolsPairStatusWaiting', function () {
-				browser.assert.text(LCHComposeToolsPairStatusWaiting, uLocalized('LCHComposeToolsPairStatusWaitingText'))
+				browser.assert.text(LCHComposeToolsPairStatusWaiting, uLocalized('LCHComposeToolsPairStatusWaitingText'));
 			});
 		
 		});
@@ -47,11 +47,11 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			before(function () {
 				browser.evaluate(`window.postMessage({
 					LBXResponseHash: 'alfa',
-				}, window.location.href)`)
+				}, window.location.href)`);
 			});
 			
 			it('localizes LCHComposeToolsPairStatusFailed', function() {
-				browser.assert.text(LCHComposeToolsPairStatusFailed, uLocalized('LCHComposeToolsPairStatusFailedText'))
+				browser.assert.text(LCHComposeToolsPairStatusFailed, uLocalized('LCHComposeToolsPairStatusFailedText'));
 			});
 		
 		});

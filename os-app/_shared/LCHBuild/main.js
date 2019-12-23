@@ -44,7 +44,7 @@ export const LCHBuildObjectString = function (inputData) {
 
 		if (!coll[item]) {
 			coll[item] = inputData[item];
-		};
+		}
 
 		return coll;
 	}, {});
@@ -69,10 +69,10 @@ export const LCHBuildRecipeArrayString = function (inputData) {
 				'LCHDocumentCreationDate',
 				'LCHDocumentModificationDate',
 				'LCHDocumentIsFlagged',
-				].indexOf(key) !== -1) {
-				delete e[key]
-			};
-		})
+			].indexOf(key) !== -1) {
+				delete e[key];
+			}
+		});
 		return LCHFormulaTo(LCHFormulaFrom(e), 'LCHRecipe');
 	}).map(LCHBuildObjectString).join(',') }]`;
 };

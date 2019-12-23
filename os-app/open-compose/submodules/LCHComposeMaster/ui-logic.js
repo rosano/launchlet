@@ -6,7 +6,7 @@ const mod = {
 		}
 
 		return (inputData.LCHDocumentIsFlagged ? [OLSKLocalized('LCHComposeMasterListItemFlaggedAlertText')] : []).concat([
-		inputData.LCHDocumentName || inputData.LCHDocumentSignature || OLSKLocalized('LCHComposeMasterListItemUntitledText')]).join('\n');
+			inputData.LCHDocumentName || inputData.LCHDocumentSignature || OLSKLocalized('LCHComposeMasterListItemUntitledText')]).join('\n');
 	},
 
 	LCHComposeMasterListItemTitle (inputData) {

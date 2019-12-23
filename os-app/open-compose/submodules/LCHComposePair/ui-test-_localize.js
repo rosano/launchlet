@@ -17,11 +17,11 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		});
 	
 		it('localizes LCHComposePairKeyField', function () {
-			browser.assert.attribute(LCHComposePairKeyField, 'placeholder', uLocalized('LCHComposePairKeyFieldText'))
+			browser.assert.attribute(LCHComposePairKeyField, 'placeholder', uLocalized('LCHComposePairKeyFieldText'));
 		});
 
 		it('localizes LCHComposePairSubmitButton', function () {
-			browser.assert.text(LCHComposePairSubmitButton, uLocalized('LCHComposePairSubmitButtonText'))
+			browser.assert.text(LCHComposePairSubmitButton, uLocalized('LCHComposePairSubmitButtonText'));
 		});
 
 		context('LCHComposePairClearIsVisible', function () {

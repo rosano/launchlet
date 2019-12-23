@@ -7,7 +7,7 @@
 		'e.redirectUri=m.cordova?l.cordovaRedirectUri:String(h.getLocation())',
 		// 'options.redirectUri = globalContext.cordova ? config.cordovaRedirectUri : String(config.OLSKPatchRemoteStorageAuthRedirectURI || Authorize.getLocation());'
 		'e.redirectUri=m.cordova?l.cordovaRedirectUri:String(l.OLSKPatchRemoteStorageAuthRedirectURI || h.getLocation())'
-		));
+	));
 })();
 
 (function OLSKPostinstallPatchSimplecryptoForUITests() {
@@ -24,7 +24,7 @@
     if (!_crypto) {
         return
     };`
-    ));
+	));
 })();
 
 (function OLSKPostinstallPatchZombieForUITests() {
@@ -41,7 +41,7 @@
 			const handled = browser.emit('OLSKMessage', data);
 		  if (!handled)
 		      browser.log('Unhandled message("%s")');`
-    ));
+	));
 })();
 
 (function OLSKPostinstallPatchOLSKThrottle() {
@@ -51,7 +51,7 @@
 		require('fs').readFileSync(filePath, 'utf8'),
 		'delete param1[param2];',
 		'// delete param1[param2]',
-    ));
+	));
 })();
 
 (function ROCOHotfixULIDForBrowserTesting() {

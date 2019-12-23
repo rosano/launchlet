@@ -220,7 +220,7 @@ describe('LCHComposeDetail_Misc', function () {
 
 		it('sets type', function () {
 			browser.assert.attribute(LCHComposeDetailFormNameField, 'type', 'text');
-		})
+		});
 
 		it('binds LCHDocumentName', function () {
 			browser.assert.input(LCHComposeDetailFormNameField, 'alfa');
@@ -268,7 +268,7 @@ describe('LCHComposeDetail_Misc', function () {
 
 		it('sets type', function () {
 			browser.assert.attribute(LCHComposeDetailFormSignatureField, 'type', 'text');
-		})
+		});
 
 		it('binds LCHDocumentSignature', function () {
 			browser.assert.input(LCHComposeDetailFormSignatureField, 'alfa');
@@ -317,7 +317,7 @@ describe('LCHComposeDetail_Misc', function () {
 
 		it('sets type', function () {
 			browser.assert.attribute(LCHComposeDetailFormInputTypesField, 'type', 'text');
-		})
+		});
 
 		it('binds LCHDocumentInputTypes', function () {
 			browser.assert.input(LCHComposeDetailFormInputTypesField, 'alfa');
@@ -367,7 +367,7 @@ describe('LCHComposeDetail_Misc', function () {
 
 		it('sets type', function () {
 			browser.assert.attribute(LCHComposeDetailFormCallbackArgsField, 'type', 'text');
-		})
+		});
 
 		it('binds LCHDocumentCallbackArgs', function () {
 			browser.assert.input(LCHComposeDetailFormCallbackArgsField, 'alfa');
@@ -461,7 +461,7 @@ describe('LCHComposeDetail_Misc', function () {
 
 		it('sets type', function () {
 			browser.assert.attribute(LCHComposeDetailFormOutputTypeField, 'type', 'text');
-		})
+		});
 
 		it('binds LCHDocumentOutputType', function () {
 			browser.assert.input(LCHComposeDetailFormOutputTypeField, 'alfa');

@@ -10,7 +10,7 @@ export const LCHFormulaSafeStringFields = [
 	'LCHFormulaModificationDate',
 	'LCHFormulaSyntaxErrorMessage',
 	'@context',
-]
+];
 
 export const LCHFormulaModelErrorsFor = function(inputData, options = {}) {
 	if (typeof inputData !== 'object' || inputData === null) {
@@ -133,14 +133,14 @@ export const LCHFormulaToEvaluate = function(inputData) {
 
 	if (outputData.LCHFormulaCallbackArgs || outputData.LCHFormulaCallbackBody) {
 		outputData.LCHFormulaCallbackRaw = `(function (${ outputData.LCHFormulaCallbackArgs || '' }) { ${ outputData.LCHFormulaCallbackBody || '' } })`;
-		delete outputData.LCHFormulaCallbackArgs
-		delete outputData.LCHFormulaCallbackBody
-	};
+		delete outputData.LCHFormulaCallbackArgs;
+		delete outputData.LCHFormulaCallbackBody;
+	}
 
 	if (outputData.LCHFormulaCanonicalExampleCallbackBody) {
 		outputData.LCHFormulaCanonicalExampleCallbackRaw = `(function () { ${ outputData.LCHFormulaCanonicalExampleCallbackBody || '' } })`;
-		delete outputData.LCHFormulaCanonicalExampleCallbackBody
-	};
+		delete outputData.LCHFormulaCanonicalExampleCallbackBody;
+	}
 
 	return outputData;
 };

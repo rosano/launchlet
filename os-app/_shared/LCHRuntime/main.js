@@ -13,7 +13,7 @@ export const LCHRuntimeURLFilter = function (param1, param2) {
 
 	if (param1 === '*') {
 		return true;
-	};
+	}
 
 	let match = param1.match(/^\/(.*)\/(\w*)/i);
 
@@ -76,9 +76,9 @@ export const LCHRuntimeAPI = function(inputData) {
 
 				(item.LCHRecipeInputTypes ? LCHRuntimeInputTypes(item.LCHRecipeInputTypes) : []).forEach(function (e, i) {
 					if (!coll[e](args[i])) {
-						throw new Error('LCHErrorTypeMismatch')
-					};
-				})
+						throw new Error('LCHErrorTypeMismatch');
+					}
+				});
 
 				return item.LCHRecipeCallback.apply({
 					api: outputData,

@@ -12,21 +12,21 @@ export const LCHDocumentStorage = function (privateClient, publicClient, changeD
 	privateClient.on('change', function (event) {
 		if (!changeDelegate) {
 			return;
-		};
+		}
 		
 		if (event.relativePath.indexOf(kCollection) !== 0) {
 			return;
-		};
+		}
 
 		const delegateMethod = OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateProperty(event);
 
 		if (!delegateMethod) {
 			return;
-		};
+		}
 
 		if (typeof changeDelegate[delegateMethod] !== 'function') {
 			return console.warn(`${ delegateMethod } not function`);
-		};
+		}
 
 		changeDelegate[delegateMethod](LCHDocumentModel.LCHDocumentModelPostJSONParse(event[OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateInput(delegateMethod)]));
 	});
@@ -39,7 +39,7 @@ export const LCHDocumentStorage = function (privateClient, publicClient, changeD
 		})).map(function (e) {
 			if (Object.keys(LCHDocumentModel.LCHDocumentModelErrorsFor({})).indexOf(e[0]) === -1) {
 				e[1].push('__RSOptional');
-			};
+			}
 
 			return e;
 		}).reduce(function (coll, item) {

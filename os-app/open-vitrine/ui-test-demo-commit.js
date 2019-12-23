@@ -3,14 +3,14 @@ import { deepEqual } from 'assert';
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 const uFilter = function (inputData) {
-	browser.fill('.LCHLauncherFilterInput', inputData)
-	return browser.wait({ elemen: '.OLSKResultsListItem' })
+	browser.fill('.LCHLauncherFilterInput', inputData);
+	return browser.wait({ elemen: '.OLSKResultsListItem' });
 };
 
 describe('LCHVitrineDemoCommit', function () {
 
 	before(function () {
-		return browser.OLSKVisit(kDefaultRoute)
+		return browser.OLSKVisit(kDefaultRoute);
 	});
 
 	context('LCHVitrinePageColoursRandomize', function () {
@@ -30,18 +30,18 @@ describe('LCHVitrineDemoCommit', function () {
 			browser.click('.OLSKResultsListItem');
 			await browser.wait({element: elementQuery});
 
-			browser.assert.elements(elementQuery, 1)
+			browser.assert.elements(elementQuery, 1);
 
-			item = browser.query(elementQuery)
+			item = browser.query(elementQuery);
 			initialContent = item.innerHTML;
 		});
 		
 		it('sets --LCHCommonBackground', async function() {
-			deepEqual(initialContent.includes('--LCHCommonBackground'), true)
+			deepEqual(initialContent.includes('--LCHCommonBackground'), true);
 		});
 		
 		it('sets --LCHCommonForeground', async function() {
-			deepEqual(initialContent.includes('--LCHCommonForeground'), true)
+			deepEqual(initialContent.includes('--LCHCommonForeground'), true);
 		});
 		
 		it('updates element', async function() {
@@ -53,11 +53,11 @@ describe('LCHVitrineDemoCommit', function () {
 			browser.click('.OLSKResultsListItem');
 			await browser.wait({element: elementQuery});
 
-			deepEqual(item, browser.query(elementQuery))
+			deepEqual(item, browser.query(elementQuery));
 		});
 		
 		it('updates declarations', async function() {
-			deepEqual(initialContent !== browser.query(elementQuery).innerHTML, true)
+			deepEqual(initialContent !== browser.query(elementQuery).innerHTML, true);
 		});
 	
 	});
@@ -67,7 +67,7 @@ describe('LCHVitrineDemoCommit', function () {
 		const elementQuery = 'style.LCHVitrinePageColoursRandomize';
 
 		before(async function () {
-			browser.query('style').remove()
+			browser.query('style').remove();
 			
 			browser.click(LCHVitrineDemoButtonCommit);
 			await browser.wait({element: '.LCHLauncherFilterInput'});
@@ -77,7 +77,7 @@ describe('LCHVitrineDemoCommit', function () {
 		
 		it('hides recipe', async function() {
 			await uFilter('colour');
-			browser.assert.elements('.OLSKResultsListItem', 1)
+			browser.assert.elements('.OLSKResultsListItem', 1);
 		});
 		
 		it('shows after execute sibling', async function() {
@@ -87,14 +87,14 @@ describe('LCHVitrineDemoCommit', function () {
 			browser.click(LCHVitrineDemoButtonCommit);
 			await browser.wait({element: '.LCHLauncherFilterInput'});
 			await uFilter('colour');
-			browser.assert.elements('.OLSKResultsListItem', 2)
+			browser.assert.elements('.OLSKResultsListItem', 2);
 		});
 		
 		it('removes element', async function() {
 			browser.click('.OLSKResultsListItem');
 			await browser.wait({element: elementQuery});
 
-			browser.assert.elements(elementQuery, 0)
+			browser.assert.elements(elementQuery, 0);
 		});
 	
 	});
@@ -111,7 +111,7 @@ describe('LCHVitrineDemoCommit', function () {
 
 			deepEqual(browser.OLSKAlert(function () {
 				browser.click('.OLSKResultsListItem');
-			}), 'mailto:')
+			}), 'mailto:');
 		});
 	
 	});
@@ -128,7 +128,7 @@ describe('LCHVitrineDemoCommit', function () {
 
 			deepEqual(browser.OLSKAlert(function () {
 				browser.click('.OLSKResultsListItem');
-			}), 'Copied to clipboard')
+			}), 'Copied to clipboard');
 		});
 	
 	});

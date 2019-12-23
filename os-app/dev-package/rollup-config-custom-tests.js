@@ -8,7 +8,7 @@ describe('LCHPackageRollupConfigCustom', function testLCHPackageRollupConfigCust
 		throws(function() {
 			mainModule.LCHPackageRollupConfigCustom(null);
 		}, /LCHErrorInputNotValid/);
-	})
+	});
 
 	it('sets output.name', function() {
 		deepEqual(mainModule.LCHPackageRollupConfigCustom({

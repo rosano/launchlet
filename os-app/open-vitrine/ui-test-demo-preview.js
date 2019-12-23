@@ -5,7 +5,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 describe('LCHVitrineDemoPreview', function () {
 
 	before(function () {
-		return browser.OLSKVisit(kDefaultRoute)
+		return browser.OLSKVisit(kDefaultRoute);
 	});
 
 	before(function () {
@@ -14,10 +14,10 @@ describe('LCHVitrineDemoPreview', function () {
 	
 	it('shows headings', function () {
 		deepEqual(browser.queryAll('h1,h2').map(function (e) {
-			return e.textContent
+			return e.textContent;
 		}), browser.queryAll('.OLSKResultsListItem').map(function (e) {
-			return e.textContent.trim()
-		}))
+			return e.textContent.trim();
+		}));
 	});
 	
 	it('selects one', function () {

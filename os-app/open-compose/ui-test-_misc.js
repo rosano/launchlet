@@ -600,7 +600,7 @@ describe('LCHCompose_Misc', function () {
 				browser.evaluate(`window.postMessage({
 					LBXResponseHash: 'alfa',
 					LBXResponseError: 'bravo',
-				}, window.location.href)`)
+				}, window.location.href)`);
 			});
 			
 			it('binds LBXResponseError', function() {
@@ -614,7 +614,7 @@ describe('LCHCompose_Misc', function () {
 			before(function () {
 				browser.evaluate(`window.postMessage({
 					LBXResponseHash: 'LBX_TESTING_RESPONSE_HASH',
-				}, window.location.href)`)
+				}, window.location.href)`);
 			});
 			
 			it('hides LCHComposeToolsPairStatusWaiting', function() {

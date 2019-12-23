@@ -15,7 +15,7 @@ describe('LCHCompose_Pair', function () {
 		});
 
 		before(function () {
-			browser.fill('.LCHComposePairKeyField', '{}')
+			browser.fill('.LCHComposePairKeyField', '{}');
 		});
 		
 		it('posts message', async function() {
@@ -51,7 +51,7 @@ describe('LCHCompose_Pair', function () {
 		it('posts no message', async function() {
 			deepEqual(await browser.OLSKMessageAsync(function () {
 				return browser.pressButton('.LCHComposePairClearButton');
-			}), undefined)
+			}), undefined);
 		});
 
 		it('sets LCHComposePairClearIsVisible', function () {

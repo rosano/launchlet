@@ -78,7 +78,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 				});
 
 				it('localizes LCHComposeDetailFormCanonicalExampleBodyField', function () {
-					browser.assert.text(`.LCHComposeDetailFormCanonicalExampleBody .CodeMirror-placeholder`, uLocalized('LCHComposeDetailFormCanonicalExampleBodyFieldText')); // #skip-codemirror
+					browser.assert.text('.LCHComposeDetailFormCanonicalExampleBody .CodeMirror-placeholder', uLocalized('LCHComposeDetailFormCanonicalExampleBodyFieldText')); // #skip-codemirror
 				});
 				
 			});

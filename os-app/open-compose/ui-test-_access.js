@@ -212,7 +212,7 @@ describe('LCHCompose_Access', function () {
 			before(function () {
 				browser.evaluate(`window.postMessage({
 					LBXResponseHash: 'alfa',
-				}, window.location.href)`)
+				}, window.location.href)`);
 			});
 			
 			it('hides LCHComposeToolsPairStatusWaiting', function () {

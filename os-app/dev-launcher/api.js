@@ -68,7 +68,7 @@ export const LCHRecipesModelErrorsFor = function(inputData, options = {}) {
 			errors.LCHRecipeSignature = [
 				'LCHErrorNotTrimmed',
 			];
-		};
+		}
 	}
 
 	return Object.entries(errors).length ? errors : null;
@@ -313,7 +313,7 @@ export const LCHAPITypeNameMap = function(inputData) {
 	return validRecipes.reduce(function (coll, item) {
 		if (coll[item.LCHRecipeSignature]) {
 			return coll;
-		};
+		}
 
 		coll[item.LCHRecipeSignature] = item.LCHRecipeName || item.LCHRecipeSignature;
 
@@ -553,14 +553,14 @@ export const LCHRuntimeFilteredRecipes = function (param1, param2) {
 	return param1.filter(function (e) {
 		if (LCHRecipesModelErrorsFor(e)) {
 			return false;
-		};
+		}
 
 		if (typeof e.LCHRecipeURLFilter === 'undefined') {
 			return true;
-		};
+		}
 
-		return LCHRuntime.LCHRuntimeURLFilter(e.LCHRecipeURLFilter, param2)
-	})
+		return LCHRuntime.LCHRuntimeURLFilter(e.LCHRecipeURLFilter, param2);
+	});
 };
 
 export const LCHRuntimeFilteredTasks = function (inputData) {
@@ -571,14 +571,14 @@ export const LCHRuntimeFilteredTasks = function (inputData) {
 	return inputData.filter(function (e) {
 		if (!LCHRecipesModelIsTask(e)) {
 			return false;
-		};
+		}
 
 		if (e.LCHRecipeIsExcluded) {
 			return !e.LCHRecipeIsExcluded();
-		};
+		}
 
 		return true;
-	})
+	});
 };
 
 import { LCHLauncherStandardRecipes } from './recipes/_aggregate.js';
@@ -589,7 +589,7 @@ export const LCHAPIRunTasks = function () {
 
 	return Promise.all(LCHRuntimeFilteredTasks(inputData).map(function (e) {
 		return LCHAPIExecuteRecipe(e, [], api);
-	}))
+	}));
 };
 
 export const LCHRecipeProxyModelErrorsFor = function(inputData, options = {}) {

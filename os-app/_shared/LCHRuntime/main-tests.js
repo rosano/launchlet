@@ -135,13 +135,13 @@ describe('LCHRuntimeAPI', function testLCHRuntimeAPI() {
 					LCHRecipeSignature: 'alfa',
 					LCHRecipeOutputType: 'Bool',
 					LCHRecipeCallback(inputData) {
-						return inputData === 'bravo'
+						return inputData === 'bravo';
 					},
 				}, {
 					LCHRecipeSignature: 'charlie',
 					LCHRecipeInputTypes: 'alfa',
 					LCHRecipeCallback() {},
-				}]).charlie('delta')
+				}]).charlie('delta');
 			}, /ErrorTypeMismatch/);
 		});
 
@@ -151,7 +151,7 @@ describe('LCHRuntimeAPI', function testLCHRuntimeAPI() {
 					LCHRecipeSignature: 'alfa',
 					LCHRecipeOutputType: 'Bool',
 					LCHRecipeCallback(inputData) {
-						return inputData === 'bravo'
+						return inputData === 'bravo';
 					},
 				}, {
 					LCHRecipeSignature: 'charlie',

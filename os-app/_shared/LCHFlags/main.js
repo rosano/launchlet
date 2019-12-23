@@ -10,40 +10,40 @@ export const _LCHFlags = function(inputData) {
 
 	if (!ast.body.length) {
 		return [];
-	};
+	}
 
 	if (ast.body.length > 1) {
-		return ['LCHFlagMultipleExpressions']
-	};
+		return ['LCHFlagMultipleExpressions'];
+	}
 
 	if (ast.body[0].type === 'ExpressionStatement' && ast.body[0].expression.type === 'SequenceExpression' && ast.body[0].expression.expressions.length > 1) {
-		return ['LCHFlagMultipleExpressions']
-	};
+		return ['LCHFlagMultipleExpressions'];
+	}
 
 	let outputData = [];
 
 	function flagIdentifier(inputData) {
 		if (['eval', 'Function'].indexOf(inputData) !== -1) {
-			outputData.push('LCHFlagEval')
-		};
+			outputData.push('LCHFlagEval');
+		}
 
 		if (['cookie', 'localStorage', 'sessionStorage', 'indexedDB', 'Cache'].indexOf(inputData) !== -1) {
-			outputData.push('LCHFlagStateful')
-		};
+			outputData.push('LCHFlagStateful');
+		}
 
 		if (['XMLHttpRequest', '$', 'fetch'].indexOf(inputData) !== -1) {
-			outputData.push('LCHFlagStateful')
-		};
+			outputData.push('LCHFlagStateful');
+		}
 	}
 
 	simple(ast, {
 	  Identifier(node) {
-	  	flagIdentifier(node.name)
+	  	flagIdentifier(node.name);
 	  },
 	  MemberExpression(node) {
-	  	flagIdentifier(node.property.name)
+	  	flagIdentifier(node.property.name);
 	  },
-	})
+	});
 
 	return outputData;
 };
@@ -57,8 +57,8 @@ export const LCHFlags = function(inputData) {
 		const flags = typeof item[1] === 'string' ? _LCHFlags(item[1]) : [];
 		
 		if (flags.length) {
-			(coll = coll || {})[item[0]] = flags
-		};
+			(coll = coll || {})[item[0]] = flags;
+		}
 		
 		return coll;
 	}, null);

@@ -1321,18 +1321,18 @@ describe('LCHRuntimeFilteredRecipes', function testLCHRuntimeFilteredRecipes() {
 
 	it('throws if param1 not array', function () {
 		throws(function () {
-			mainModule.LCHRuntimeFilteredRecipes(null, '')
+			mainModule.LCHRuntimeFilteredRecipes(null, '');
 		}, /ErrorInputInvalid/);
 	});
 
 	it('throws if param2 not string', function () {
 		throws(function () {
-			mainModule.LCHRuntimeFilteredRecipes([], null)
+			mainModule.LCHRuntimeFilteredRecipes([], null);
 		}, /ErrorInputInvalid/);
 	});
 
 	it('returns array', function () {
-		deepEqual(mainModule.LCHRuntimeFilteredRecipes([], ''), [])
+		deepEqual(mainModule.LCHRuntimeFilteredRecipes([], ''), []);
 	});
 
 	it('excludes if not valid', function() {
@@ -1382,16 +1382,16 @@ describe('LCHRuntimeFilteredTasks', function testLCHRuntimeFilteredTasks() {
 			LCHRecipeURLFilter: '*',
 			LCHRecipeIsAutomatic: true,
 		};
-	}
+	};
 
 	it('throws if not array', function () {
 		throws(function () {
-			mainModule.LCHRuntimeFilteredTasks(null)
+			mainModule.LCHRuntimeFilteredTasks(null);
 		}, /ErrorInputInvalid/);
 	});
 
 	it('returns array', function () {
-		deepEqual(mainModule.LCHRuntimeFilteredTasks([]), [])
+		deepEqual(mainModule.LCHRuntimeFilteredTasks([]), []);
 	});
 
 	it('excludes if not task', function() {
@@ -1420,7 +1420,7 @@ describe('LCHAPIRunTasks', function testLCHAPIRunTasks() {
 			LCHRecipeURLFilter: '*',
 			LCHRecipeIsAutomatic: true,
 		};
-	}
+	};
 
 	it('excludes if not matching', async function() {
 		deepEqual(await mainModule.LCHAPIRunTasks([Object.assign(uStubItem(), {

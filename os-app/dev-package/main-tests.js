@@ -14,7 +14,7 @@ const kTesting = {
 	},
 };
 
-mainModule.mod._ValueClass = kTesting.StubValueClass('alfa')
+mainModule.mod._ValueClass = kTesting.StubValueClass('alfa');
 
 describe('DataSingletonExists', function testDataSingletonExists() {
 
@@ -70,7 +70,7 @@ describe('LifecycleSingletonCreate', function testLifecycleSingletonCreate() {
 	it('calls LifecycleSingletonDestroy if exists', function() {
 		mainModule.mod.LifecycleSingletonCreate();
 		
-		mainModule.mod._ValueClass = kTesting.StubValueClass('bravo')
+		mainModule.mod._ValueClass = kTesting.StubValueClass('bravo');
 
 		mainModule.mod.LifecycleSingletonCreate();
 

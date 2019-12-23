@@ -13,19 +13,19 @@ module.exports = {
 		inputData.plugins.splice(inputData.plugins.indexOf(inputData.plugins.filter(function (e) {
 			if (typeof e !== 'object') {
 				return false;
-			};
+			}
 
 			return e.name === 'livereload';
 		}).pop()), 1);
 
 		if (!inputData.plugins.length) {
-			return inputData
-		};
+			return inputData;
+		}
 
 		inputData.plugins.splice(inputData.plugins.indexOf(inputData.plugins.filter(function (e) {
 			if (typeof e !== 'object') {
 				return false;
-			};
+			}
 
 			return e.name === 'svelte';
 		}).pop()), 1, require('rollup-plugin-svelte')(Object.assign(require('OLSKRollupScaffold').OLSKRollupScaffoldSvelteConfig(options), {
