@@ -891,6 +891,8 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 	<div id="LCHComposeStorageWidget" class:LCHComposeStorageWidgetHidden={ mod._ValueStorageWidgetHidden }></div>
 
 	<OLSKAppToolbar
+		OLSKAppToolbarGuideURL={ window.OLSKCanonicalFor('LCHGuideRoute') }
+		OLSKAppToolbarDonateURL={ window.OLSKPublicConstants('LCH_SHARED_DONATE_URL') }
 		OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
 		OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
 		_OLSKAppToolbarDispatchExport={ mod._OLSKAppToolbarDispatchExport }
