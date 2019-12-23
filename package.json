@@ -92,17 +92,12 @@
 
     "// UI TESTS": null,
     "zombie": "latest",
-    "jsdom": "latest",
 
     "// MOCHA PREPROCESS": null,
     "OLSKTesting": "olsk/OLSKTesting",
 
-    "// SVELTE": null,
-    "svelte": "latest",
+    "// SVELTE & ROLLUP": null,
     "OLSKRollupScaffold": "olsk/OLSKRollupScaffold",
-
-    "// LIVERELOAD": null,
-    "livereload": "latest",
 
     "// PRODUCTION BUILD": null,
     "OLSKDisk": "olsk/OLSKDisk",
@@ -110,10 +105,9 @@
     "// SPEC": null,
     "OLSKSpec": "olsk/OLSKSpec",
 
-    "// SILENCE ERRORS": null,
-    "OLSKRollupPluginSwap": "olsk/OLSKRollupPluginSwap",
-    "OLSKRollupPluginLocalize": "olsk/OLSKRollupPluginLocalize",
-
+    "// SPEC ACTIVE DOCUMENT FOCUS ELEMENTS": null,
+    "jsdom": "latest",
+    
     "// I sacrifice myself for the commas of others": null    
   }
 }
