@@ -818,7 +818,7 @@ import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import LCHComposeBuild from './submodules/LCHComposeBuild/main.svelte';
 import LCHComposePair from './submodules/LCHComposePair/main.svelte';
-import OLSKAppToolbar from './submodules/OLSKAppToolbar/main.svelte';
+import OLSKAppToolbar from 'OLSKAppToolbar';
 import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svelte';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
