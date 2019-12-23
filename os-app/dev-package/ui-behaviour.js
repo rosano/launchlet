@@ -3,14 +3,16 @@ const mod = {
 	// SETUP
 
 	SetupEverything() {
-		Launchlet.LCHSingletonCreate([
-			{
-				LCHRecipeName: 'Alfa',
-				LCHRecipeCallback () {
-					alert('Alfa');
+		Launchlet.LCHSingletonCreate({
+			LCHOptionRecipes: [
+				{
+					LCHRecipeName: 'Alfa',
+					LCHRecipeCallback () {
+						alert('Alfa');
+					},
 				},
-			},
-		]);
+			],
+		});
 	},
 
 	// LIFECYCLE
