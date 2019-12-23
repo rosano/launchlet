@@ -1,173 +1,193 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHComposeSafety', function () {
+describe('LCHCompose_Safety', function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 
-	context('Master', async function testMaster() {
+	before(function () {
+		return browser.pressButton('.LCHComposeMasterCreateButton');
+	});
+	
+	context('LCHDocumentCallbackBody', function test_LCHDocumentCallbackBody () {
+
+		context('flagged', function () {
+			
+			before(function () {
+				browser.assert.elements('.LCHComposeDetailFlagAlert', 0);
+			});
+
+			before(function () {
+				browser.fill('.LCHComposeDetailFormCallbackBody .LCHComposeInputFieldDebug', 'eval');
+			});
+
+			it('sets LCHDocumentIsFlagged', function() {
+				browser.assert.elements('.LCHComposeDetailFlagAlert', 1);
+			});
+		
+		});
+
+		context('syntax error', function () {
+			
+			before(function () {
+				browser.fill('.LCHComposeDetailFormCallbackBody .LCHComposeInputFieldDebug', '{');
+			});
+
+			it('sets LCHDocumentSyntaxErrorMessage', function() {
+				browser.assert.text('.LCHComposeDetailFlagAlert', 'Unexpected token (1:18)');
+			});
+		
+		});
+
+		context('no issue', function () {
+			
+			before(function () {
+				browser.fill('.LCHComposeDetailFormCallbackBody .LCHComposeInputFieldDebug', '');
+			});
+
+			it('sets LCHDocumentIsFlagged', function() {
+				browser.assert.elements('.LCHComposeDetailFlagAlert', 0);
+			});
+		
+		});
+
+	});
+	
+	context('LCHDocumentCanonicalExampleCallbackBody', function test_LCHDocumentCanonicalExampleCallbackBody () {
 
 		before(function () {
-			return uCreateItem(browser);
+			browser.fill('.LCHComposeDetailFormOutputTypeField', 'Bool');
 		});
 
-		it('adds class if flagged', async function() {
-			browser.fill(LCHComposeDetailCallbackBodyInputDebug, 'eval');
-			await browser.wait({ element: LCHComposeFormFlagAlert });
+		context('flagged', function () {
+			
+			before(function () {
+				browser.assert.elements('.LCHComposeDetailFlagAlert', 0);
+			});
 
-			browser.assert.hasClass(LCHComposeListItem, 'LCHComposeListItemFlagged');
+			before(function () {
+				browser.fill('.LCHComposeDetailFormCanonicalExampleCallbackBody .LCHComposeInputFieldDebug', 'eval');
+			});
+
+			it('sets LCHDocumentIsFlagged', function() {
+				browser.assert.elements('.LCHComposeDetailFlagAlert', 1);
+			});
+		
 		});
 
-		it('removes class if not flagged', async function() {
-			browser.fill(LCHComposeDetailCallbackBodyInputDebug, '');
-			await browser.wait({ element: LCHComposeFormFlagAlert });
+		context('syntax error', function () {
+			
+			before(function () {
+				browser.fill('.LCHComposeDetailFormCanonicalExampleCallbackBody .LCHComposeInputFieldDebug', '{');
+			});
 
-			browser.assert.attribute(LCHComposeListItem, 'ListItem');
+			it('sets LCHDocumentSyntaxErrorMessage', function() {
+				browser.assert.text('.LCHComposeDetailFlagAlert', 'Unexpected token (1:18)');
+			});
+		
+		});
+
+		context('no issue', function () {
+			
+			before(function () {
+				browser.fill('.LCHComposeDetailFormCanonicalExampleCallbackBody .LCHComposeInputFieldDebug', '');
+			});
+
+			it('sets LCHDocumentIsFlagged', function() {
+				browser.assert.elements('.LCHComposeDetailFlagAlert', 0);
+			});
+		
 		});
 
 	});
 
-	context('Detail', async function testDetail() {
+	context.skip('flagged', function test_flagged() {
 
-		it('adds no alert if LCHDocumentName flagged', async function() {
-			browser.fill(LCHComposeFormNameField, 'eval');
-			await browser.wait({ element: LCHComposeFormFlagAlert });
-
-			browser.assert.elements(LCHComposeFormFlagAlert, 0);
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute);
 		});
-
-		it('adds no alert if LCHDocumentSignature flagged', async function() {
-			browser.fill(LCHComposeFormSignatureField, 'eval');
-			await browser.wait({ element: LCHComposeFormFlagAlert });
-
-			browser.assert.elements(LCHComposeFormFlagAlert, 0);
-		});
-
-		it('adds no alert if LCHDocumentCallbackArgs flagged', async function() {
-			browser.fill(LCHComposeFormArgsField, 'eval');
-			await browser.wait({ element: LCHComposeFormFlagAlert });
-
-			browser.assert.elements(LCHComposeFormFlagAlert, 0);
-		});
-
-		it('adds no alert if LCHDocumentInputTypes flagged', async function() {
-			browser.fill(LCHComposeFormInputTypesField, 'eval');
-			await browser.wait({ element: LCHComposeFormFlagAlert });
-
-			browser.assert.elements(LCHComposeFormFlagAlert, 0);
-		});
-
-		it('adds alert if LCHDocumentCallbackBody flagged', async function() {
-			browser.fill(LCHComposeDetailCallbackBodyInputDebug, 'eval');
-			await browser.wait({ element: LCHComposeFormFlagAlert });
-
-			browser.assert.elements(LCHComposeFormFlagAlert, 1);
-		})
-
-		it('removes alert if LCHDocumentCallbackBody not flagged', async function() {
-			browser.fill(LCHComposeDetailCallbackBodyInputDebug, '');
-			await browser.wait({ element: LCHComposeFormFlagAlert });
-
-			browser.assert.elements(LCHComposeFormFlagAlert, 0);
-		});
-
-		it('adds alert if LCHDocumentCallbackBody contains syntax error', async function() {
-			browser.fill(LCHComposeDetailCallbackBodyInputDebug, '{');
-			await browser.wait({ element: LCHComposeFormFlagAlert });
-
-			browser.assert.elements(LCHComposeFormFlagAlert, 1);
-		})
-
-		it('removes alert if LCHDocumentCallbackBody contains no syntax error', async function() {
-			browser.fill(LCHComposeDetailCallbackBodyInputDebug, '');
-			await browser.wait({ element: LCHComposeFormFlagAlert });
-
-			browser.assert.elements(LCHComposeFormFlagAlert, 0);
-		});
-
-		it('adds no alert if LCHDocumentOutputType flagged', async function() {
-			browser.fill(LCHComposeFormOutputTypeField, 'eval');
-			await browser.wait({ element: LCHComposeFormFlagAlert });
-
-			browser.assert.elements(LCHComposeFormFlagAlert, 0);
-		});
-
-		it('adds alert if LCHDocumentCanonicalExampleCallbackBody flagged', async function() {
-			browser.fill(LCHComposeFormOutputTypeField, 'Bool');
-			await browser.wait({ element: LCHComposeFormCanonicalExampleBodyDebugField });
-
-			browser.fill(LCHComposeFormCanonicalExampleBodyDebugField, 'eval');
-			await browser.wait({ element: LCHComposeFormFlagAlert });
-
-			browser.assert.elements(LCHComposeFormFlagAlert, 1);
-		});
-
-		it('removes alert if LCHDocumentCanonicalExampleCallbackBody not flagged', async function() {
-			browser.fill(LCHComposeFormCanonicalExampleBodyDebugField, '');
-			await browser.wait({ element: LCHComposeFormFlagAlert });
-
-			browser.assert.elements(LCHComposeFormFlagAlert, 0);
-		});
-
-		it('adds no alert if LCHDocumentStyle flagged', async function() {
-			browser.fill(LCHComposeDetailStyleInputDebug, 'eval');
-			await browser.wait({ element: LCHComposeFormFlagAlert });
-
-			browser.assert.elements(LCHComposeFormFlagAlert, 0);
-		});
-
-		it('adds no alert if LCHDocumentURLFilter flagged', async function() {
-			browser.fill(LCHComposeFormURLFilterField, 'eval');
-			await browser.wait({ element: LCHComposeFormFlagAlert });
-
-			browser.assert.elements(LCHComposeFormFlagAlert, 0);
-		});
-
-	});
-
-	context('Build', async function testBuild() {
 
 		before(function () {
-			browser.fill(LCHComposeFormArgsField, '');
-			browser.fill(LCHComposeFormInputTypesField, '');
-			browser.fill(LCHComposeFormOutputTypeField, '');
-			browser.fill(LCHComposeFormURLFilterField, '');
+			return browser.pressButton('.LCHComposeMasterCreateButton');
 		});
 
-		it('ignores if flagged', async function() {
-			await uCreateItem(browser);
-
-			browser.fill(LCHComposeFormNameField, 'eval2');
-			browser.fill(LCHComposeDetailCallbackBodyInputDebug, 'eval');
-			await browser.wait({ element: LCHComposeFormFlagAlert });
-
-			browser.assert.elements(LCHComposeFormFlagAlert, 1);
-
-			browser.click(LCHComposeBuildAnchor);
-			await browser.wait({ element: '.LCHLauncherFilterInput' });
-
-			browser.fill('.LCHLauncherFilterInput', 'e');
-			await browser.wait({ element: '.OLSKResultsListItem' });
-
-			browser.assert.elements('.OLSKResultsListItem', 1)
+		before(function () {
+			browser.fill('.LCHComposeDetailFormNameField', 'example-1');
 		});
+		
+		context('internal input', function () {
 
-		it('flags if not valid', async function() {
-			await uCreateItem(browser);
+			before(function () {
+				browser.assert.elements('.LCHComposeMasterListItemFlagged', 0);
+			});
 
-			browser.fill(LCHComposeFormNameField, 'eval3');
-			browser.fill(LCHComposeDetailCallbackBodyInputDebug, 'LCH_TEST_FLAG_ON_BUILD');
+			before(function () {
+				return browser.pressButton('.LCHComposeMasterCreateButton');
+			});
 
-			browser.click(LCHComposeBuildAnchor);
-			await browser.wait({ element: '.LCHLauncherFilterInput' });
+			before(function () {
+				browser.fill('.LCHComposeDetailFormNameField', 'example-2');
+				browser.fill('.LCHComposeDetailFormCallbackBody .LCHComposeInputFieldDebug', 'eval');
+			});
 
-			browser.fill('.LCHLauncherFilterInput', 'e');
-			await browser.wait({ element: '.OLSKResultsListItem' });
+			before(function () {
+				return browser.click('.LCHComposeBuildRunLink');
+			});
 
-			browser.assert.elements('.OLSKResultsListItem', 1)
+			before(function () {
+				return browser.wait({ element: '.LCHLauncherFilterInput' });
+			});
+
+			before(function () {
+				return browser.fill('.LCHLauncherFilterInput', 'example');
+			});
+
+			it('ignores document', function () {
+				browser.assert.elements('.OLSKResultsListItem', 1);
+			});
+
+			it('flags document', function () {
+				browser.assert.elements('.LCHComposeMasterListItemFlagged', 1);
+			});
+		
+		});
+		
+		context('external input', function () {
+
+			before(function () {
+				return browser.pressButton('.LCHComposeMasterCreateButton');
+			});
+
+			before(function () {
+				browser.assert.elements('.LCHComposeMasterListItemFlagged', 1);
+			});
+
+			before(function () {
+				browser.fill('.LCHComposeDetailFormNameField', 'example-3');
+				browser.fill('.LCHComposeDetailFormCallbackBody .LCHComposeInputFieldDebug', 'LCH_TEST_FLAG_ON_BUILD');
+			});
+
+			before(function () {
+				return browser.click('.LCHComposeBuildRunLink');
+			});
+
+			before(function () {
+				return browser.wait({ element: '.LCHLauncherFilterInput' });
+			});
+
+			before(function () {
+				return browser.fill('.LCHLauncherFilterInput', 'example');
+			});
+
+			it('ignores document', function () {
+				browser.assert.elements('.OLSKResultsListItem', 1);
+			});
+
+			it('flags document', function () {
+				browser.assert.elements('.OLSKResultsListItem', 2);
+			});
+		
 		});
 
 	});

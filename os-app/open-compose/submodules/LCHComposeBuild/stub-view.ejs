@@ -4,8 +4,6 @@
 	<link rel="stylesheet" type="text/css" href="/_shared/__external/normalize.css/normalize.css">
 	<link rel="stylesheet" type="text/css" href="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-style.css">
 
-	<script src="/_shared/__external/simplecrypto/src/simplecrypto.js"></script>
-
 	<script type="text/javascript">
 		window.OLSKPublicConstants = function (inputData) {
 			return <%- JSON.stringify({
@@ -17,6 +15,23 @@
 <body>
 
 <script src="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-behaviour.js"></script>
+
+<p>
+	<strong>TestLCHComposeBuildDispatchRun</strong>
+	<span id="TestLCHComposeBuildDispatchRun">0</span>
+</p>
+
+<p>
+	<strong>TestLCHComposeBuildDispatchPipeModeEnabled</strong>
+	<span id="TestLCHComposeBuildDispatchPipeModeEnabled">0</span>
+	<span id="TestLCHComposeBuildDispatchPipeModeEnabledData">undefined</span>
+</p>
+
+<p>
+	<strong>TestLCHComposeBuildDispatchPageRecipesEnabled</strong>
+	<span id="TestLCHComposeBuildDispatchPageRecipesEnabled">0</span>
+	<span id="TestLCHComposeBuildDispatchPageRecipesEnabledData">undefined</span>
+</p>
 
 </body>
 </html>

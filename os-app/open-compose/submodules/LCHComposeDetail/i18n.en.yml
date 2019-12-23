@@ -1,1 +1,15 @@
-LCHComposeFormCanonicalExampleBodyFieldPlaceholderText: Canonical Example Body
+LCHComposeDetailToolbarBackButtonText: Back
+LCHComposeDetailToolbarCloneButtonText: Clone
+LCHComposeDetailToolbarDiscardButtonText: Discard
+LCHComposeDetailDiscardPromptText: Are you sure?
+LCHComposeDetailFlagAlertText: This recipe will be ignored because it contains potentially unsafe code.
+LCHComposeDetailFormNameFieldText: Name (e.g. Say Hello)
+LCHComposeDetailFormSignatureFieldText: Signature (e.g. XYZGreet)
+LCHComposeDetailFormInputTypesFieldText: Input Types (e.g. String, Bool)
+LCHComposeDetailFormCallbackArgsFieldText: arguments
+LCHComposeDetailFormCallbackBodyFieldText: Function Body (e.g. window.alert('Hello');)
+LCHComposeDetailFormOutputTypeFieldText: Output Type (e.g. String)
+LCHComposeDetailFormCanonicalExampleCallbackBodyFieldText: Canonical Example Body
+LCHComposeDetailFormStyleFieldText: 'CSS (e.g. body { background: red; })'
+LCHComposeDetailFormURLFilterFieldText: 'URL Filter (e.g. example.com or /https?://(.*\\.)?example\\.com/i)'
+LCHComposeDetailFormIsAutomaticFieldLabelText: Run automatically

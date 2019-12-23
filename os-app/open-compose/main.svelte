@@ -1,129 +1,904 @@
 <script>
+export let TestLCHComposeToolsPairIsVisible = false;
+
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
 };
 
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
-
-import { storageClient, isLoading, DocumentsAllStore } from './persistence.js';
-import * as LCHSettingsAction from '../_shared/LCHSetting/action.js';
-
-let LCHComposeFooterStorageStatus = '';
+import OLSKThrottle from 'OLSKThrottle';
+import * as LCHStorageClient from '../_shared/LCHStorageClient/main.js';
+import { LCHStorageModule } from '../_shared/LCHStorageModule/main.js';
+import { LCHDocumentStorage } from '../_shared/LCHDocument/storage.js';
+import { LCHDocumentModelPostJSONParse } from '../_shared/LCHDocument/model.js';
+import { LCHSettingStorage } from '../_shared/LCHSetting/storage.js';
+import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 import * as OLSKRemoteStorage from '../_shared/__external/OLSKRemoteStorage/main.js'
-OLSKRemoteStorage.OLSKRemoteStorageStatus(storageClient.remoteStorage, function (inputData) {
-	LCHComposeFooterStorageStatus = inputData
-}, OLSKLocalized)
+import * as LCHDocumentAction from '../_shared/LCHDocument/action.js';
+import * as LCHDocumentMetal from '../_shared/LCHDocument/metal.js';
+import * as LCHSettingAction from '../_shared/LCHSetting/action.js';
+import * as LCHSettingMetal from '../_shared/LCHSetting/metal.js';
+import LCHComposeLogic from './ui-logic.js';
+import { LCHFlags } from '../_shared/LCHFlags/main.js'
+import { LCHFormulaFrom, LCHFormulaToEvaluate } from '../_shared/LCHFormula/main.js'
+import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../dev-launcher/ui-logic.js';
+import {
+	LCHBuildRecipeArrayString,
+	LCHBuildStripLivereload,
+	LCHBuildStripSourceMap,
+	LCHBuildBoomarkletTemplate,
+	LCHBuildEscape,
+} from '../_shared/LCHBuild/main.js';
+import OLSKString from 'OLSKString';
 
-import { onMount } from 'svelte';
-onMount(function () {
-	(new window.OLSKStorageWidget(storageClient.remoteStorage)).attach('LCHComposeStorageWidget').backend(document.querySelector('.LCHComposeFooterStorageButton'));
-});
-
-let masterInstance;
 const mod = {
-	
-	FooterDispatchExport () {
-		masterInstance.DocumentsExport();
-	},
-	FooterDispatchImport (event) {
-		masterInstance.DocumentsImport(event.detail);
-	},
 
-	BuildDispatchModePipeEnabledToggleDidInput (event) {
-		LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'kLCHComposePreferenceModePipeEnabled', event.detail.toString())
-	},
-	
-	LCHComposeBuildDispatchIncludePageRecipes (event) {
-		LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'kLCHComposePreferenceIncludePageRecipes', event.detail.toString())
-	},
+	MessageReceived(event) {
+		// We only accept messages from ourselves
+	  if (event.source !== window && !OLSK_TESTING_BEHAVIOUR()) {
+	    return;
+	  }
 
-	StorageHidden: true,
-	LCHComposeFootetDispatchStorage () {
-		mod.StorageHidden = !mod.StorageHidden;
+  	if (event.data === 'LCHPageRecipes') {
+	    return;
+	  }
+
+  	// We only accept messages from ourselves
+    // if (not launchlet.dev) {
+    //   return;
+    // }
+
+	  mod.ControlPairResponseReceive(event.data);
 	},
 
 	// VALUE
 
-	_ValueInitializeModePipeEnabled: undefined,
-	ValueInitializeModePipeEnabled(inputData) {
-		if (typeof inputData === 'undefined') {
-			return mod._ValueInitializeModePipeEnabled;
-		}
+	_ValueIsLoading: true,
 
-		mod._ValueInitializeModePipeEnabled = inputData === 'true'
+	_ValueDocumentsAll: [],
+
+	ValueDocumentsAll (inputData, shouldSort = true) {
+		mod.ValueDocumentsVisible(mod._ValueDocumentsAll = inputData, shouldSort);
 	},
 
-	_ValueIncludePageRecipes: undefined,
-	ValueIncludePageRecipes(inputData) {
-		if (typeof inputData === 'undefined') {
-			return mod._ValueIncludePageRecipes;
+	_ValueDocumentsVisible: [],
+
+	ValueDocumentsVisible (inputData, shouldSort = true) {
+		const items = !mod._ValueFilterText ? inputData : inputData.filter(function (e) {
+			return e.LCHDocumentName.toLowerCase().match(mod._ValueFilterText.toLowerCase());
+		});
+		mod._ValueDocumentsVisible = shouldSort ? items.sort(LCHComposeLogic.LCHComposeSort) : items;
+	},
+	
+	_ValueDocumentSelected: undefined,
+
+	ValueDocumentSelected (inputData) {
+		mod._ValueDocumentSelected = inputData;
+
+		if (!inputData) {
+			mod.OLSKMobileViewInactive = false;	
+		}
+	},
+	
+	_ValueFilterText: '',
+
+	_JavascriptComposition: '', 
+	_JavascriptCompositionBinary: '',
+	_ValueRecipesArrayString: '',
+	
+	_ValueStorageWidgetHidden: true,
+
+	_ValueFooterStorageStatus: '',
+
+	_ValuePersistThrottleMap: {},
+
+	_ValuePipeModeEnabled: false,
+
+	_ValueToolsPairIsVisible: undefined,
+
+	LCHComposeDetailInstance: undefined,
+
+	OLSKMobileViewInactive: false,
+
+	_ValuePublicKey: null,
+	ValuePublicKeySet (inputData) {
+		mod._ValuePublicKey = inputData;
+
+		mod._ValueToolsPairIsVisible = !!inputData;
+	},
+
+	_ValuePairStatus: 'kStatusWaiting',
+	_ValueToolsPairStatusFailedError: '',
+
+	// DATA
+
+	DataIsMobile () {
+		return window.innerWidth <= 760;
+	},
+
+	DataPackageStyle () {
+		return [window.LCHComposeBuildPackageStyle.textContent].map(LCHBuildStripSourceMap).pop();
+	},
+
+	DataPackageScript () {
+		return [window.LCHComposeBuildPackageScript.textContent].map(LCHBuildStripLivereload).map(LCHBuildStripSourceMap).pop();
+	},
+
+	DataPackageOptions () {
+		return {
+			LCHOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
+			LCHOptionMode: mod._ValuePipeModeEnabled ? LCHLauncherModePipe() : LCHLauncherModeCommit(),
+			LCHOptionIncludePageRecipes: mod._ValuePageRecipesEnabled,
+		};
+	},
+
+	_LCH_DISABLE_ENCRYPTION () {
+		return false;
+	},
+
+	// MESSAGE
+
+	LCHComposeBuildDispatchRun () {
+		mod.ControlRun();
+	},
+
+	LCHComposeBuildDispatchPipeModeEnabled (inputData) {
+		mod.ControlPipeModeEnabledPersist(mod._ValuePipeModeEnabled = inputData); // #purge-svelte-update
+	},
+
+	LCHComposeBuildDispatchPageRecipesEnabled (inputData) {
+		mod.ControlPageRecipesEnabledPersist(mod._ValuePageRecipesEnabled = inputData); // #purge-svelte-update
+	},
+
+	LCHComposePairDispatchSubmit (inputData) {
+		mod.ControlPublicKeyValidate(inputData);
+	},
+
+	LCHComposePairDispatchClear () {
+		mod.ControlPublicKeyUpdate('');
+	},
+
+	LCHComposeFooterDispatchStorage () {
+		mod._ValueStorageWidgetHidden = !mod._ValueStorageWidgetHidden;
+	},
+
+	LCHComposeMasterDispatchCreate () {
+		mod.ControlDocumentCreate();
+	},
+
+	LCHComposeMasterDispatchClick (inputData) {
+		mod.ControlDocumentSelect(inputData);
+	},
+
+	LCHComposeMasterDispatchArrow (inputData) {
+		mod.ValueDocumentSelected(inputData);
+	},
+
+	LCHComposeMasterDispatchFilter (inputData) {
+		mod.ControlFilter(inputData);
+	},
+
+	LCHComposeDetailDispatchBack () {
+		// mod.ControlDocumentSelect(null);
+
+		mod.OLSKMobileViewInactive = false;
+	},
+
+	LCHComposeDetailDispatchClone () {
+		mod.ControlDocumentClone(mod._ValueDocumentSelected);
+	},
+
+	LCHComposeDetailDispatchDiscard () {
+		mod.ControlDocumentDiscard(mod._ValueDocumentSelected);
+	},
+
+	LCHComposeDetailDispatchUpdate () {
+		mod._ValueDocumentSelected = mod._ValueDocumentSelected; // #purge-svelte-force-update
+
+		mod.ControlDocumentPersist(mod._ValueDocumentSelected);
+	},
+
+	_LCHComposeFooterDispatchExport () {
+		mod.ControlExportData();
+	},
+
+	_LCHComposeFooterDispatchImport (inputData) {
+		mod.ControlImportData(inputData);
+	},
+
+	// INTERFACE	
+
+	InterfaceWindowDidKeydown (event) {
+		if (document.querySelector('.LCHLauncher')) {
+			return;
 		}
 
-		mod._ValueIncludePageRecipes = inputData === 'true'
+		const handlerFunctions = {
+			Escape () {
+				mod.ControlFilter('');
+
+				if (!OLSK_TESTING_BEHAVIOUR()) {
+					document.querySelector('.LCHComposeMasterBody').scrollTo(0, 0);
+				}
+			},
+			Tab () {
+				if (document.activeElement === document.querySelector('.LCHComposeMasterFilterField') && mod._ValueDocumentSelected) {
+					mod.ControlFocusDetail();
+
+					return event.preventDefault();
+				}
+
+				if (document.activeElement === document.querySelector('.LCHComposeDetailFormNameField') && event.shiftKey) {
+					document.querySelector('.LCHComposeMasterFilterField').focus();
+
+					return event.preventDefault();
+				}
+			},
+		};
+
+		handlerFunctions[event.key] && handlerFunctions[event.key]();
+	},
+
+	InterfaceToolsPairButtonDidClick() {
+		mod._ValueToolsPairIsVisible = !mod._ValueToolsPairIsVisible;
+	},
+
+	// CONTROL
+
+	ControlFocusDetail () {
+		setTimeout(function () {
+			document.querySelector('.LCHComposeDetailFormNameField').focus();
+		});
+	},
+
+	ControlDocumentPersist(inputData) {
+		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValuePersistThrottleMap, inputData.LCHDocumentID, {
+			OLSKThrottleDuration: 500,
+			OLSKThrottleInput: inputData,
+			async OLSKThrottleCallback (inputData) {
+				mod._ControlDocumentFlag(inputData);
+
+				if (inputData.LCHDocumentCallbackBody === 'LCH_TEST_FLAG_ON_BUILD') {
+					Object.assign(inputData, {
+						LCHDocumentCallbackBody: 'eval("console.log(\'hello\')")',
+					});
+				}
+				
+				await mod._ControlDocumentSave(inputData);
+
+				mod.ReactDocuments(mod._ValueDocumentsAll);
+			},
+		});
+
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			OLSKThrottle.OLSKThrottleSkip(mod._ValuePersistThrottleMap[inputData.LCHDocumentID]);
+		}
+	},
+
+	async _ControlDocumentSave(inputData) {
+		await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueStorageClient, inputData);
+	},
+
+	_ControlDocumentFlag(inputData) {
+		Object.assign(inputData, {
+			LCHDocumentSyntaxErrorMessage: '',
+		});
+
+		try	{
+			inputData.LCHDocumentIsFlagged = !!LCHFlags(LCHFormulaToEvaluate(LCHFormulaFrom(inputData)));
+		} catch (e) {
+			if (!e.name.match('SyntaxError')) {
+				throw e
+			}
+
+			inputData.LCHDocumentIsFlagged = true;
+			inputData.LCHDocumentSyntaxErrorMessage = e.message;
+
+			// Object.assign(inputData, {
+			// 	LCHDocumentIsFlagged: true,
+			// 	LCHDocumentSyntaxErrorMessage: e.message,
+			// });
+		}
+
+		// if (inputData === mod._ValueDocumentSelected) {
+		// 	// causes reload of codemirror
+		// 	// inputData.LCHDocumentIsFlagged = inputData.LCHDocumentIsFlagged;
+		// };
+
+		if (inputData === mod._ValueDocumentSelected) {
+			mod._ValueDocumentSelected = mod._ValueDocumentSelected; // #purge-svelte-force-update
+		}
+
+		return inputData;
+	},
+
+	async ControlDocumentCreate(inputData) {
+		const item = await LCHDocumentAction.LCHDocumentActionCreate(mod._ValueStorageClient, inputData || {
+			LCHDocumentName: '',
+			LCHDocumentInputTypes: '',
+			LCHDocumentCallbackArgs: '',
+			LCHDocumentCallbackBody: '',
+			LCHDocumentOutputType: '',
+			LCHDocumentCanonicalExampleCallbackBody: '',
+			LCHDocumentSignature: '',
+			LCHDocumentURLFilter: '',
+			LCHDocumentStyle: '',
+		});
+
+		mod.ValueDocumentsAll(mod._ValueDocumentsAll.concat(item));
+
+		mod.ControlDocumentSelect(item);
+
+		if (mod.DataIsMobile()) {
+			mod.ControlFocusDetail();
+		}
+	},
+	
+	ControlDocumentSelect(inputData) {
+		mod.ValueDocumentSelected(inputData);
+
+		if (!inputData) {
+			return !mod.DataIsMobile() && document.querySelector('.LCHComposeMasterFilterField').focus();
+		}
+
+		mod.OLSKMobileViewInactive = true;
+
+		if (mod.DataIsMobile()) {
+			return;
+		}
+		
+		setTimeout(mod.ControlFocusDetail)
+	},
+	
+	async ControlDocumentClone (inputData) {
+		mod.ControlDocumentCreate(Object.assign(Object.assign({}, inputData), {
+			LCHDocumentID: undefined,
+		}));
+	},
+	
+	async ControlDocumentDiscard (inputData) {
+		mod.ValueDocumentsAll(mod._ValueDocumentsAll.filter(function (e) {
+			return e !== inputData;
+		}))
+
+		await LCHDocumentAction.LCHDocumentActionDelete(mod._ValueStorageClient, inputData.LCHDocumentID);
+
+		mod.ControlDocumentSelect(null);
+	},
+	
+	ControlFilter(inputData) {
+		mod._ValueFilterText = inputData;
+
+		mod.ValueDocumentsVisible(mod._ValueDocumentsAll);
+
+		if (!inputData) {
+			return mod.ControlDocumentSelect(null);
+		}
+
+		if (!mod._ValueDocumentsVisible.length) {
+			return mod.ControlDocumentSelect(null);
+		}
+
+		mod.ValueDocumentSelected(mod._ValueDocumentsVisible.filter(function (e) {
+			return e.LCHDocumentName.toLowerCase() === inputData.toLowerCase();
+		}).concat(mod._ValueDocumentsVisible.filter(function (e) {
+			return e.LCHDocumentName.toLowerCase().includes(inputData.toLowerCase());
+		})).shift());
+	},
+
+	ControlRun() {
+		setTimeout(new Function(mod._JavascriptComposition));
+	},
+
+	async ControlExportData () {
+		let zip = new JSZip();
+
+		const fileName = [
+			'com.launchlet.export',
+			(new Date()).toJSON(),
+		].join(' ');
+
+		zip.file(`${ fileName }.json`, JSON.stringify({
+			LCHDocumentObjects: mod._ValueDocumentsAll,
+			LCHSettingObjects: await LCHSettingAction.LCHSettingsActionQuery(mod._ValueStorageClient, {}),
+		}));
+		
+		zip.generateAsync({type: 'blob'}).then(function (content) {
+			saveAs(content, `${ fileName }.zip`);
+		});	
+	},
+
+	async ControlImportData (inputData) {
+		let outputData;
+		try {
+			outputData = JSON.parse(inputData);
+		} catch (e)  {
+			console.log(e);
+		}
+
+		if (typeof outputData !== 'object' || outputData === null) {
+			return;
+		}
+
+		if (!Array.isArray(outputData.LCHDocumentObjects)) {
+			return;
+		}
+
+		if (!Array.isArray(outputData.LCHSettingObjects)) {
+			return;
+		}
+
+		await Promise.all(outputData.LCHSettingObjects.map(function (e) {
+			return LCHSettingMetal.LCHSettingsMetalWrite(mod._ValueStorageClient, e);
+		}));
+
+		await Promise.all(outputData.LCHDocumentObjects.map(function (e) {
+			return LCHDocumentMetal.LCHDocumentMetalWrite(mod._ValueStorageClient, LCHDocumentModelPostJSONParse(e));
+		}));
+
+		mod.ValueDocumentsAll(await LCHDocumentAction.LCHDocumentActionList(mod._ValueStorageClient));
+	},
+
+	ControlPipeModeEnabledPersist (inputData) {
+		mod.ReactDocuments(mod._ValueDocumentsAll);
+
+		LCHSettingAction.LCHSettingsActionProperty(mod._ValueStorageClient, 'kLCHComposePreferenceModePipeEnabled', inputData.toString())
+	},
+
+	ControlPageRecipesEnabledPersist (inputData) {
+		mod.ReactDocuments(mod._ValueDocumentsAll);
+
+		LCHSettingAction.LCHSettingsActionProperty(mod._ValueStorageClient, 'kLCHComposePreferenceIncludePageRecipes', inputData.toString())
+	},
+
+	ControlPublicKeyValidate (inputData) {
+		if (!LCHComposeLogic.LCHComposePublicKeyIsValid(inputData)) {
+			return window.alert(OLSKLocalized('LCHComposePublicKeyNotValidAlertText'));
+		}
+
+		mod.ControlPublicKeyUpdate(inputData);
+	},
+
+	ControlPublicKeyUpdate (inputData) {
+		window.localStorage.setItem('kLCHComposePreferencePublicKey', inputData);
+		
+		mod.ValuePublicKeySet(JSON.parse(inputData || 'null'));
+
+		if (!inputData) {
+			return;
+		}
+
+		mod.ControlPairPayloadSend();
+	},
+
+	async ControlPairPayloadSend() {
+		const item = {
+			LBXPayloadPackageScript: mod.DataPackageScript(),
+			LBXPayloadPackageStyle: mod.DataPackageStyle(),
+			LBXPayloadPackageOptions: mod.DataPackageOptions(),
+			LBXPayloadRecipes: mod._ValueRecipesArrayString,
+			LBXPayloadConfirmation: Math.random().toString(),
+		};
+
+		mod._ControlPairPayloadPost(OLSK_TESTING_BEHAVIOUR() ? 'LBX_TESTING_REQUEST_DATA' : await mod._ControlPairPayloadEncrypt(JSON.stringify(item), mod._ValuePublicKey));
+
+		mod._ValuePairPayloadHash = item.LBXPayloadConfirmation;
+	},
+
+	async _ControlPairPayloadEncrypt (param1, param2) {
+		if (mod._LCH_DISABLE_ENCRYPTION()) {
+			return Promise.resolve(param1);
+		};
+
+		return new Promise(function (resolve, reject) {;
+			return simpleCrypto.asym.importEncryptPublicKey(param2, reject, function (inputData) {
+				return simpleCrypto.asym.encrypt(inputData, (new TextEncoder()).encode(param1), reject, function (inputData) {
+					return resolve((function SerializeCipher(inputData) {
+						// javascript - Converting array buffer to string - Maximum call stack size exceeded - Stack Overflow https://stackoverflow.com/a/20604561
+						function ab2str(buffer) {
+							var bufView = new Uint16Array(buffer);
+							var length = bufView.length;
+							var result = '';
+							var addition = Math.pow(2,16)-1;
+
+							for (var i = 0; i<length; i+=addition) {
+
+							    if(i + addition > length){
+							        addition = length - i;
+							    }
+							    result += String.fromCharCode.apply(null, bufView.subarray(i,i+addition));
+							}
+
+							return result;
+						};
+
+						return JSON.stringify(Object.keys(inputData).reduce(function (coll, item) {
+							coll[item] = ab2str(inputData[item]);
+
+							return coll;
+						}, {}));
+					})(inputData));
+				});
+			})
+		})
+	},
+
+	_ControlPairPayloadPost (inputData) {
+		window.postMessage({
+			LBXRequestName: 'DispatchRequestStorePayload',
+			LBXRequestEncryptedData: inputData,
+		}, window.location.href);
+	},
+
+
+	ControlPairResponseReceive (inputData) {
+		if (!LCHComposeLogic.LBXResponseIsValid(inputData)) {
+			return;
+		}
+
+		mod._ValuePairStatus = inputData.LBXResponseHash === (OLSK_TESTING_BEHAVIOUR() ? 'LBX_TESTING_RESPONSE_HASH' : mod._ValuePairPayloadHash) ? 'kStatusSuccess' : 'kStatusFailed';
+
+		if (mod._ValuePairStatus === 'kStatusFailed') {
+			mod._ValueToolsPairStatusFailedError = inputData.LBXResponseError
+		}
+	},
+
+	// REACT
+
+	ReactIsLoading (inputData) {
+		if (inputData) {
+			return;
+		}
+
+		if (mod.DataIsMobile()) {
+			return;
+		}
+
+		setTimeout(function () {
+			document.querySelector('.LCHComposeMasterFilterField').focus();
+		})
+	},
+
+	ReactDocuments(inputData) {
+		const _validDocuments = inputData.map(function (e) {
+			return Object.entries(mod._ControlDocumentFlag(e)).map(function (e) {
+				if (e[0] === 'LCHDocumentCallbackBody' && !e[1]) { // #purge
+					e[1] = 'return'
+				};
+
+				return e;
+			}).filter(function (e) {
+				if (typeof e[1] === 'string' && !e[1]) {
+					return false;
+				}
+
+				return true;
+			}).reduce(function (coll, item) {
+				coll[item[0]] = item[1];
+
+				return coll;
+			}, {});
+		}).filter(function (e) {
+			return !e.LCHDocumentIsFlagged;
+		});
+
+		mod._ValueRecipesArrayString = LCHBuildRecipeArrayString(_validDocuments);
+
+		mod._JavascriptComposition = OLSKString.OLSKStringReplaceTokens(LCHBuildBoomarkletTemplate(), {
+			LCHBuildBoomarkletTemplate_Style: mod.DataPackageStyle(),
+			LCHBuildBoomarkletTemplate_Script: mod.DataPackageScript(),
+			LCHBuildBoomarkletTemplate_Options: JSON.stringify(mod.DataPackageOptions()),
+			LCHBuildBoomarkletTemplate_Recipes: mod._ValueRecipesArrayString,
+		})
+
+		mod._JavascriptCompositionBinary = LCHBuildEscape(mod._JavascriptComposition);
+
+		if (!mod._ValuePublicKey) {
+			return;
+		}
+
+		mod.ControlPairPayloadSend();
 	},
 
 	// SETUP
 
-	SetupEverything() {
-		mod.SetupValueInitializeModePipeEnabled()
+	async SetupEverything () {
+		mod.SetupStorageClient();
+
+		mod.SetupRemoteStorage();
+
+		mod.SetupStorageWidget();
+
+		mod.SetupStorageStatus();
+
+		await mod.SetupStorageNotifications();
+
+		await mod.SetupDataCache();
+
+		await mod.SetupValuePipeModeEnabled();
+
+		await mod.SetupValuePageRecipesEnabled();
+
+		mod.SetupValuePublicKey();
+
+		mod.SetupValueToolsPairIsVisible();
 		
-		mod.SetupValueIncludePageRecipes()
+		await mod.SetupValueDocumentsAll();
+
+		mod.SetupPageRecipes();
+
+		mod.ReactDocuments(mod._ValueDocumentsAll);
+
+		mod.ReactIsLoading(mod._ValueIsLoading = false);
 	},
 
-	async SetupValueInitializeModePipeEnabled() {
-		mod.ValueInitializeModePipeEnabled(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'kLCHComposePreferenceModePipeEnabled'))
+	SetupStorageClient() {
+		mod._ValueStorageClient = LCHStorageClient.LCHStorageClient({
+			modules: [
+				LCHStorageModule([
+					LCHDocumentStorage,
+					LCHSettingStorage,
+					].map(function (e) {
+						return {
+							LCHCollectionStorageGenerator: e,
+							LCHCollectionChangeDelegate: e === LCHDocumentStorage ? {
+								OLSKChangeDelegateCreate (inputData) {
+									// console.log('OLSKChangeDelegateCreate', inputData);
+
+									mod.ValueDocumentsAll(mod._ValueDocumentsAll.filter(function (e) {
+										return e.LCHDocumentID !== inputData.LCHDocumentID; // @Hotfix Dropbox sending DelegateAdd
+									}).concat(inputData));
+								},
+								OLSKChangeDelegateUpdate (inputData) {
+									// console.log('OLSKChangeDelegateUpdate', inputData);
+
+									if (mod._ValueDocumentSelected && (mod._ValueDocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
+										mod.ControlDocumentSelect(Object.assign(mod._ValueDocumentSelected, inputData));
+									}
+
+									mod.ValueDocumentsAll(mod._ValueDocumentsAll.map(function (e) {
+										return Object.assign(e, e.LCHDocumentID === inputData.LCHDocumentID ? inputData : {});
+									}), false);
+								},
+								OLSKChangeDelegateDelete (inputData) {
+									// console.log('OLSKChangeDelegateDelete', inputData);
+
+									if (mod._ValueDocumentSelected && (mod._ValueDocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
+										mod.ControlDocumentSelect(null);
+									}
+
+									mod.ValueDocumentsAll(mod._ValueDocumentsAll.filter(function (e) {
+										return e.LCHDocumentID !== inputData.LCHDocumentID;
+									}), false);
+								},
+							} : null,
+						}
+					})),
+			],
+			OLSKPatchRemoteStorageAuthRedirectURI: OLSK_TESTING_BEHAVIOUR() ? undefined : window.location.origin + window.OLSKCanonicalFor('LCHComposeRoute'),
+		});
 	},
-	
-	async SetupValueIncludePageRecipes() {
-		mod.ValueIncludePageRecipes(await LCHSettingsAction.LCHSettingsActionProperty(storageClient, 'kLCHComposePreferenceIncludePageRecipes'))
+
+	SetupRemoteStorage () {
+		mod._ValueStorageClient.remoteStorage.setApiKeys(window.OLSKPublicConstants('LCHDropboxAppKey') ? {
+			dropbox: window.atob(window.OLSKPublicConstants('LCHDropboxAppKey')),
+			googledrive: window.atob(window.OLSKPublicConstants('LCHGoogleClientKey')),
+		} : {});
+	},
+
+	async SetupStorageNotifications () {
+		mod._ValueStorageClient.remoteStorage.on('not-connected', () => {
+			if (!OLSK_TESTING_BEHAVIOUR()) {
+				console.debug('not-connected', arguments);
+			}
+		});
+
+		mod._ValueStorageClient.remoteStorage.on('disconnected', () => {
+			if (!OLSK_TESTING_BEHAVIOUR()) {
+				console.debug('disconnected', arguments);
+			}
+		});
+
+		mod._ValueStorageClient.remoteStorage.on('connected', () => {
+			if (!OLSK_TESTING_BEHAVIOUR()) {
+				console.debug('connected', arguments);
+			}
+		});
+
+		mod._ValueStorageClient.remoteStorage.on('sync-done', () => {
+			if (!OLSK_TESTING_BEHAVIOUR()) {
+				console.debug('sync-done', arguments);
+			}
+		});
+
+		let isOffline;
+
+		mod._ValueStorageClient.remoteStorage.on('network-offline', () => {
+			if (!OLSK_TESTING_BEHAVIOUR()) {
+				console.debug('network-offline', arguments);
+			}
+
+			isOffline = true;
+		});
+
+		mod._ValueStorageClient.remoteStorage.on('network-online', () => {
+			if (!OLSK_TESTING_BEHAVIOUR()) {
+				console.debug('network-online', arguments);
+			}
+			
+			isOffline = false;
+		});
+
+		mod._ValueStorageClient.remoteStorage.on('error', (error) => {
+			if (isOffline && inputData.message === 'Sync failed: Network request failed.') {
+				return;
+			};
+
+			if (!OLSK_TESTING_BEHAVIOUR()) {
+				console.debug('error', error);
+			}
+		});
+
+		return new Promise(function (res, rej) {
+			mod._ValueStorageClient.remoteStorage.on('ready', () => {
+				if (!OLSK_TESTING_BEHAVIOUR()) {
+					console.debug('ready', arguments);
+				}
+
+				res();
+			});
+		})
+	},
+
+	SetupStorageWidget () {
+		(new window.OLSKStorageWidget(mod._ValueStorageClient.remoteStorage)).attach('LCHComposeStorageWidget').backend(document.querySelector('.LCHComposeFooterStorageButton'));
+	},
+
+	SetupStorageStatus () {
+		OLSKRemoteStorage.OLSKRemoteStorageStatus(mod._ValueStorageClient.remoteStorage, function (inputData) {
+			mod._ValueFooterStorageStatus = inputData;
+		}, OLSKLocalized)
+	},
+
+	async SetupDataCache() {
+		await mod._ValueStorageClient.remoteStorage.launchlet.lch_documents.init();
+		await mod._ValueStorageClient.remoteStorage.launchlet.lch_settings.init();
+	},
+
+	async SetupValuePipeModeEnabled() {
+		mod._ValuePipeModeEnabled = (await LCHSettingAction.LCHSettingsActionProperty(mod._ValueStorageClient, 'kLCHComposePreferenceModePipeEnabled')) === 'true';
+	},
+
+	async SetupValuePageRecipesEnabled() {
+		mod._ValuePageRecipesEnabled = (await LCHSettingAction.LCHSettingsActionProperty(mod._ValueStorageClient, 'kLCHComposePreferenceIncludePageRecipes')) === 'true';
+	},
+
+	SetupValuePublicKey() {
+		mod.ValuePublicKeySet(JSON.parse(localStorage.getItem('kLCHComposePreferencePublicKey') || 'null'));
+	},
+
+	SetupValueToolsPairIsVisible() {
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			mod._ValueToolsPairIsVisible = TestLCHComposeToolsPairIsVisible;
+		}
+	},
+
+	async SetupValueDocumentsAll() {
+		mod.ValueDocumentsAll(await LCHDocumentAction.LCHDocumentActionList(mod._ValueStorageClient));
+	},
+
+	SetupPageRecipes() {
+		if (!OLSK_TESTING_BEHAVIOUR()) {
+			return;
+		}
+
+		window.LCHPageRecipes = [{
+			LCHRecipeName: 'LCH_TEST_PAGE_RECIPES',
+			LCHRecipeCallback () {},
+		}];
 	},
 
 	// LIFECYCLE
 
-	LifecycleComponentWillMount() {
-		mod.SetupEverything()
+	LifecycleModuleWillMount() {
+		mod.SetupEverything();
 	},
 
 };
 
-mod.LifecycleComponentWillMount();
+import { onMount } from 'svelte';
+onMount(mod.LifecycleModuleWillMount);
+
+window.addEventListener('message', mod.MessageReceived, false);
 
 import OLSKViewportContent from 'OLSKViewportContent';
-import LCHComposeFooter from './submodules/LCHComposeFooter/main.svelte';
 import LCHComposeMaster from './submodules/LCHComposeMaster/main.svelte';
 import LCHComposeDetail from './submodules/LCHComposeDetail/main.svelte';
+import OLSKToolbar from 'OLSKToolbar';
+import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import LCHComposeBuild from './submodules/LCHComposeBuild/main.svelte';
+import LCHComposePair from './submodules/LCHComposePair/main.svelte';
+import LCHComposeFooter from './submodules/LCHComposeFooter/main.svelte';
 import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svelte';
 </script>
+<svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 
-<div class="Container OLSKViewport" class:OLSKIsLoading={ $isLoading }>
+<div class="LCHCompose OLSKViewport" class:OLSKIsLoading={ mod._ValueIsLoading }>
 
 <OLSKViewportContent>
-	<LCHComposeMaster bind:this={ masterInstance } />
-	<LCHComposeDetail />
+	<LCHComposeMaster
+		LCHComposeMasterListItems={ mod._ValueDocumentsVisible }
+		LCHComposeMasterListItemSelected={ mod._ValueDocumentSelected }
+		LCHComposeMasterFilterText={ mod._ValueFilterText }
+		LCHComposeMasterDispatchCreate={ mod.LCHComposeMasterDispatchCreate }
+		LCHComposeMasterDispatchClick={ mod.LCHComposeMasterDispatchClick }
+		LCHComposeMasterDispatchArrow={ mod.LCHComposeMasterDispatchArrow }
+		LCHComposeMasterDispatchFilter={ mod.LCHComposeMasterDispatchFilter }
+		OLSKMobileViewInactive={ mod.OLSKMobileViewInactive }
+		/>
+	
+	<LCHComposeDetail
+		LCHComposeDetailItem={ mod._ValueDocumentSelected }
+		LCHComposeDetailDispatchBack={ mod.LCHComposeDetailDispatchBack }
+		LCHComposeDetailDispatchClone={ mod.LCHComposeDetailDispatchClone }
+		LCHComposeDetailDispatchDiscard={ mod.LCHComposeDetailDispatchDiscard }
+		LCHComposeDetailDispatchUpdate={ mod.LCHComposeDetailDispatchUpdate }
+		OLSKMobileViewInactive={ !mod.OLSKMobileViewInactive }
+		bind:this={ mod.LCHComposeDetailInstance }
+		/>
 </OLSKViewportContent>
 
-<LCHComposeBuild
-	BuildInitializeModePipeEnabled={ mod._ValueInitializeModePipeEnabled }
-	LCHComposeBuildIncludePageRecipes={ mod._ValueIncludePageRecipes }
-	BuildDocuments={ $DocumentsAllStore }
-	LCHComposeBuildPackageStyle={ window.LCHComposeBuildPackageStyle.textContent }
-	LCHComposeBuildPackageScript={ window.LCHComposeBuildPackageScript.textContent }
-	BuildAppLanguageCode={ window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage') }
+<footer class="LCHComposeMainFooter OLSKMobileViewFooter">
 
-	on:BuildDispatchModePipeEnabledToggleDidInput={ mod.BuildDispatchModePipeEnabledToggleDidInput }
-	on:LCHComposeBuildDispatchIncludePageRecipes={ mod.LCHComposeBuildDispatchIncludePageRecipes }
-	/>
+	<footer class="LCHComposeTools">
+		<OLSKToolbar OLSKToolbarJustify={ true }>
+			<OLSKToolbarElementGroup>
+				<LCHComposeBuild
+					LCHComposeBuildRunLink={ mod._JavascriptCompositionBinary }
+					LCHComposeBuildPipeModeEnabled={ mod._ValuePipeModeEnabled }
+					LCHComposeBuildPageRecipesEnabled={ mod._ValuePageRecipesEnabled }
+					LCHComposeBuildDispatchRun={ mod.LCHComposeBuildDispatchRun }
+					LCHComposeBuildDispatchPipeModeEnabled={ mod.LCHComposeBuildDispatchPipeModeEnabled }
+					LCHComposeBuildDispatchPageRecipesEnabled={ mod.LCHComposeBuildDispatchPageRecipesEnabled }
+					/>
+			</OLSKToolbarElementGroup>
 
-<div id="LCHComposeStorageWidget" class:StorageHidden={ mod.StorageHidden }></div>
+			<div>
+				{#if !mod._ValueToolsPairIsVisible}
+					<button class="LCHComposeToolsPairButton" on:click={ mod.InterfaceToolsPairButtonDidClick }>{ OLSKLocalized('LCHComposeToolsPairButtonText') }</button>
+				{/if}
 
-<LCHComposeFooter on:FooterDispatchExport={ mod.FooterDispatchExport } on:FooterDispatchImport={ mod.FooterDispatchImport } { LCHComposeFooterStorageStatus } on:LCHComposeFootetDispatchStorage={ mod.LCHComposeFootetDispatchStorage } />
+				{#if mod._ValueToolsPairIsVisible}
+					{#if mod._ValuePairStatus === 'kStatusWaiting' }
+						<span class="LCHComposeToolsPairStatusWaiting">{ OLSKLocalized('LCHComposeToolsPairStatusWaitingText') }</span>
+					{/if}
 
-</div>
+					{#if mod._ValuePairStatus === 'kStatusFailed' }
+						<span class="LCHComposeToolsPairStatusFailed">{ OLSKLocalized('LCHComposeToolsPairStatusFailedText') }</span>
+						<span class="LCHComposeToolsPairStatusFailedError">{ mod._ValueToolsPairStatusFailedError }</span>
+					{/if}
+					
+					<LCHComposePair
+						LCHComposePairClearIsVisible={ !!mod._ValuePublicKey }
+						LCHComposePairDispatchSubmit={ mod.LCHComposePairDispatchSubmit }
+						LCHComposePairDispatchClear={ mod.LCHComposePairDispatchClear }
+						/>
+				{/if}
+			</div>
+		</OLSKToolbar>
+	</footer>
 
-<div class="LCHComposeDebug" class:LCHComposeDebugError={ false }>
-	<button class="OLSKLayoutButtonNoStyle" onclick="location.reload();">{ OLSKLocalized('LCHUpdateReloadText') }</button>
+	<div id="LCHComposeStorageWidget" class:LCHComposeStorageWidgetHidden={ mod._ValueStorageWidgetHidden }></div>
+
+	<LCHComposeFooter
+		LCHComposeFooterStorageStatus={ mod._ValueFooterStorageStatus }
+		LCHComposeFooterDispatchStorage={ mod.LCHComposeFooterDispatchStorage }
+		_LCHComposeFooterDispatchExport={ mod._LCHComposeFooterDispatchExport }
+		_LCHComposeFooterDispatchImport={ mod._LCHComposeFooterDispatchImport }
+		/>
+
+</footer>
+
 </div>
 
 {#if !OLSK_TESTING_BEHAVIOUR()}

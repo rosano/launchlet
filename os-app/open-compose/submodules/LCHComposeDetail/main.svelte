@@ -1,313 +1,173 @@
 <script>
-import * as LCHDocumentAction from '../../../_shared/LCHDocument/action.js';
+export let LCHComposeDetailItem;
+export let LCHComposeDetailDispatchBack;
+export let LCHComposeDetailDispatchClone;
+export let LCHComposeDetailDispatchDiscard;
+export let LCHComposeDetailDispatchUpdate;
+export let OLSKMobileViewInactive = false;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
 };
 
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
+import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 
-import { storageClient, DocumentsAllStore, DocumentSelectedStore } from '../../persistence.js';
-import { modelDidChange } from '../../model.js'
-import { LCHComposeSort } from '../../ui-logic.js';
-import { LCHFlags } from '../../../_shared/LCHFlags/main.js'
-import { LCHFormulaFrom, LCHFormulaToEvaluate } from '../../../_shared/LCHFormula/main.js'
-
-let _DocumentSelected;
-DocumentSelectedStore.subscribe(function (val) {
-	if (!val) {
-		return;
-	}
-
-	if (val === _DocumentSelected) {
-		return;
-	};
-
-	setTimeout(function () {
-		document.querySelector('#LCHComposeFormNameField').focus();
-	});
-
-	_DocumentSelected = val;
-
-	if (mod._ValueEditorCallbackBody) {
-		mod._ValueEditorCallbackBody.LCHEditorSetValue(val.LCHDocumentCallbackBody);
-	};
-
-	if (mod._ValueEditorCanonicalExampleCallbackBody) {
-		mod._ValueEditorCanonicalExampleCallbackBody.LCHEditorSetValue(val.LCHDocumentCanonicalExampleCallbackBody);
-	};
-
-	if (mod._ValueEditorStyle) {
-		mod._ValueEditorStyle.LCHEditorSetValue(val.LCHDocumentStyle);
-	};
-});
-
-import OLSKThrottle from 'OLSKThrottle';
-const mod = {
-
-	_EditorDispatchValueChanged(inputData) {
-		Object.assign($DocumentSelectedStore, inputData); // @DependancySvelteIgnoresMutableChanges
-
-		mod.ControlDocumentSave();
-	},
-
-	// VALUE
-
-	_ValueEditorCallbackBody: undefined,
-
-	_ValueEditorStyle: undefined,
-	
-	_ValueEditorCanonicalExampleCallbackBody: undefined,
-
-// CONTROL
-
-	_ReactThrottleMap: {},
-	_SaveThrottleMap: {},
-
-	ControlDocumentSave() {
-		DocumentsAllStore.update(function (val) {
-			return val;
-		});
-
-		if (OLSK_TESTING_BEHAVIOUR() && $DocumentSelectedStore.LCHDocumentCallbackBody === 'LCH_TEST_FLAG_ON_BUILD') {
-			Object.assign($DocumentSelectedStore, {
-				LCHDocumentCallbackBody: 'eval',
-			});
-		};
-
-		OLSKThrottle.OLSKThrottleMappedTimeoutFor(mod._ReactThrottleMap, 'Default', function (inputData) {
-			return {
-				OLSKThrottleDuration: 500,
-				OLSKThrottleCallback: function () {
-					try	{
-						mod.ControlFlagDocument(inputData)
-					} catch (e) {
-						if (!e.name.match('SyntaxError')) {
-							throw e
-						}
-
-						Object.assign(inputData, {
-							LCHDocumentIsFlagged: true,
-							LCHDocumentSyntaxErrorMessage: e.message,
-						});
-
-						if (inputData === $DocumentSelectedStore) {
-							// causes reload of codemirror
-							// $DocumentSelectedStore.LCHDocumentIsFlagged = inputData.LCHDocumentIsFlagged;
-						};
-					}
-
-					DocumentsAllStore.update(function (val) {
-						return val;
-					});
-
-					modelDidChange.set(Date.now());
-				},
-			};
-		}, $DocumentSelectedStore);
-
-		if (OLSK_TESTING_BEHAVIOUR()) {
-			OLSKThrottle.OLSKThrottleSkip(mod._ReactThrottleMap['Default'])	
-		};
-
-		OLSKThrottle.OLSKThrottleMappedTimeoutFor(mod._SaveThrottleMap, $DocumentSelectedStore.LCHDocumentID, function (inputData) {
-			return {
-				OLSKThrottleDuration: 500,
-				OLSKThrottleCallback: async function () {
-					delete mod._SaveThrottleMap[inputData.LCHDocumentID];
-
-					await LCHDocumentAction.LCHDocumentActionUpdate(storageClient, inputData);
-				},
-			};
-		}, $DocumentSelectedStore);
-
-		if (OLSK_TESTING_BEHAVIOUR()) {
-			OLSKThrottle.OLSKThrottleSkip(mod._SaveThrottleMap[$DocumentSelectedStore.LCHDocumentID])	
-		};
-	},
-
-	async ControlDocumentClone() {
-		let item = await LCHDocumentAction.LCHDocumentActionCreate(storageClient, Object.assign(Object.assign({}, $DocumentSelectedStore), {
-			LCHDocumentID: undefined,
-		}));
-
-		DocumentsAllStore.update(function (val) {
-			return val.concat(item).sort(LCHComposeSort);
-		});
-
-		// return mod.ControlDocumentSelect(item);
-	},
-	
-	async ControlDocumentDelete() {
-		if (!window.confirm(OLSKLocalized('LCHComposeListItemDeletePromptText'))) {
-			return;
-		}
-
-		DocumentsAllStore.update(function (val) {
-			return val.filter(function(e) {
-				return e !== $DocumentSelectedStore;
-			});
-		});
-
-		await LCHDocumentAction.LCHDocumentActionDelete(storageClient, $DocumentSelectedStore.LCHDocumentID);
-
-		return DocumentSelectedStore.set(null);
-	},
-
-	ControlFlagDocument(inputData) {
-		Object.assign($DocumentSelectedStore, {
-			LCHDocumentIsFlagged: !!LCHFlags(LCHFormulaToEvaluate(LCHFormulaFrom(inputData))),
-			LCHDocumentSyntaxErrorMessage: '',
-		})
-	},
-
-};
 import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
-
-import LCHEditor from '../LCHEditor/main.svelte';
+import OLSKDetailPlaceholder from 'OLSKDetailPlaceholder';
+import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedBack.svg';
+import _OLSKSharedClone from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedClone.svg';
+import _OLSKSharedDiscard from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedDiscard.svg';
+import LCHComposeInput from '../LCHComposeInput/main.svelte';
 </script>
 
-<div class="Container OLSKViewportDetail">
+<div class="LCHComposeDetail OLSKViewportDetail" class:OLSKMobileViewInactive={ OLSKMobileViewInactive } aria-hidden={ OLSKMobileViewInactive ? true : null }>
 
-{#if $DocumentSelectedStore}
-<header id="LCHComposeDetailToolbar">
+{#if !LCHComposeDetailItem}
+<OLSKDetailPlaceholder />
+{/if}
+
+{#if LCHComposeDetailItem}
+<header class="LCHComposeDetailToolbar OLSKMobileViewHeader">
 	<OLSKToolbar OLSKToolbarJustify={ true }>
 		<OLSKToolbarElementGroup>
-			<button on:click={ mod.ControlDocumentClone } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" id="LCHComposeDetailToolbarCloneButton" title={ OLSKLocalized('LCHComposeListItemToolbarCloneButtonText') }>{ OLSKLocalized('LCHComposeListItemToolbarCloneButtonText') }</button>
-			<button on:click={ mod.ControlDocumentDelete } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" id="LCHComposeDetailToolbarDiscardButton" title={ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }>{ OLSKLocalized('LCHComposeListItemToolbarDeleteButtonText') }</button>
+			<button class="LCHComposeDetailToolbarBackButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeDetailToolbarBackButtonText') } on:click={ LCHComposeDetailDispatchBack }>
+				<div class="LCHComposeDetailToolbarBackButtonImage">{@html _OLSKSharedBack }</div>
+			</button>
+		</OLSKToolbarElementGroup>
+
+		<OLSKToolbarElementGroup>
+			<button class="LCHComposeDetailToolbarCloneButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeDetailToolbarCloneButtonText') } on:click={ LCHComposeDetailDispatchClone }>
+				<div class="LCHComposeDetailToolbarCloneButtonImage">{@html _OLSKSharedClone }</div>
+			</button>
+			<button class="LCHComposeDetailToolbarDiscardButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeDetailToolbarDiscardButtonText') } on:click={ () => window.confirm(OLSKLocalized('LCHComposeDetailDiscardPromptText')) && LCHComposeDetailDispatchDiscard() }>
+				<div class="LCHComposeDetailToolbarDiscardButtonImage">{@html _OLSKSharedDiscard }</div>
+			</button>
 		</OLSKToolbarElementGroup>
 	</OLSKToolbar>
 </header>
 
-<div class="FormContainer">
-	{#if $DocumentSelectedStore.LCHDocumentIsFlagged}
-		<div class="LCHComposeFormFlagAlert">{ $DocumentSelectedStore.LCHDocumentSyntaxErrorMessage ? $DocumentSelectedStore.LCHDocumentSyntaxErrorMessage : OLSKLocalized('LCHComposeFormFlagAlertText') }</div>
+<div class="LCHComposeDetailForm">
+
+{#if LCHComposeDetailItem.LCHDocumentIsFlagged}
+	<div class="LCHComposeDetailFlagAlert">{ LCHComposeDetailItem.LCHDocumentSyntaxErrorMessage || OLSKLocalized('LCHComposeDetailFlagAlertText') }</div>
+{/if}
+
+<p>
+	<input class="LCHComposeDetailFormNameField" placeholder="{ OLSKLocalized('LCHComposeDetailFormNameFieldText') }" type="text" bind:value={ LCHComposeDetailItem.LCHDocumentName } on:input={ LCHComposeDetailDispatchUpdate } />
+</p>
+
+<p>
+	<input class="LCHComposeDetailFormSignatureField" placeholder="{ OLSKLocalized('LCHComposeDetailFormSignatureFieldText') }" type="text" bind:value={ LCHComposeDetailItem.LCHDocumentSignature } on:input={ LCHComposeDetailDispatchUpdate } />
+</p>
+
+<p>
+	<span>function</span>
+
+	{#if LCHComposeDetailItem.LCHDocumentCallbackArgs }
+		<input class="LCHComposeDetailFormInputTypesField" placeholder="{ OLSKLocalized('LCHComposeDetailFormInputTypesFieldText') }" type="text" bind:value={ LCHComposeDetailItem.LCHDocumentInputTypes } on:input={ LCHComposeDetailDispatchUpdate } />
+		<span>→</span>
 	{/if}
 	
-	<p>
-		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentName } on:input={ mod.ControlDocumentSave } placeholder="{ OLSKLocalized('LCHComposeFormNameFieldPlaceholderText') }" autofocus id="LCHComposeFormNameField" />
-	</p>
+	<span>(</span>
+	
+	<input class="LCHComposeDetailFormCallbackArgsField" placeholder="{ OLSKLocalized('LCHComposeDetailFormCallbackArgsFieldText') }" type="text" bind:value={ LCHComposeDetailItem.LCHDocumentCallbackArgs } on:input={ LCHComposeDetailDispatchUpdate } />
+	
+	<span>) &#123;</span>
+</p>
 
-	<hr>	
-
-	<p>
-		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentSignature } on:input={ mod.ControlDocumentSave } placeholder="{ OLSKLocalized('LCHComposeFormSignatureFieldPlaceholderText') }" id="LCHComposeFormSignatureField" />
-	</p>
-
-	<p>
-		<span>function</span>
-
-		{#if $DocumentSelectedStore.LCHDocumentCallbackArgs }
-			<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentInputTypes } placeholder={ OLSKLocalized('LCHComposeFormInputTypesFieldPlaceholderText') } on:input={ mod.ControlDocumentSave } id="LCHComposeFormInputTypesField" />
-			<span>→</span>
-		{/if}
-		
-		<span>(</span>
-		
-		<input id="LCHComposeFormArgsField" bind:value={ $DocumentSelectedStore.LCHDocumentCallbackArgs } placeholder={ OLSKLocalized('LCHComposeFormArgsFieldPlaceholderText') } on:input={ mod.ControlDocumentSave }/>
-		
-		<span>) &#123;</span>
-	</p>
-
-	<p class="LCHComposeDetailCallbackBody">
-		{#if OLSK_TESTING_BEHAVIOUR()}
-			<textarea bind:value={ $DocumentSelectedStore.LCHDocumentCallbackBody } on:input={ mod.ControlDocumentSave } id="LCHComposeDetailCallbackBodyInputDebug"></textarea>
-		{/if}
-
-		<LCHEditor EditorOptions={ {
+<p class="LCHComposeDetailFormCallbackBody">
+	<LCHComposeInput
+		LCHComposeInputItem={ LCHComposeDetailItem }
+		LCHComposeInputKey={ 'LCHDocumentCallbackBody' }
+		LCHComposeInputOptions={ {
 			mode: 'javascript',
 
 			lineNumbers: true,
 			lineWrapping: true,
 
-			placeholder: OLSKLocalized('LCHComposeFormScriptFieldPlaceholderText'),
+			placeholder: OLSKLocalized('LCHComposeDetailFormCallbackBodyFieldText'),
 			
 		  keyMap: 'sublime',
 
 			extraKeys: {
 				Tab: false,
 			},
-		} } on:EditorDispatchValueChanged={ (event) => mod._EditorDispatchValueChanged({
-		LCHDocumentCallbackBody: event.detail,
-	}) } EditorInitialValue={ $DocumentSelectedStore.LCHDocumentCallbackBody } bind:this={ mod._ValueEditorCallbackBody }/>
+		} }
+		LCHComposeInputDispatchUpdate={ LCHComposeDetailDispatchUpdate }
+		/>
 
 		<span>&#125;</span>
 
 		<span>→</span>
 
-		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentOutputType } placeholder={ OLSKLocalized('LCHComposeFormOutputTypeFieldPlaceholderText') } on:input={ mod.ControlDocumentSave } id="LCHComposeFormOutputTypeField" />	
-	</p>
+		<input class="LCHComposeDetailFormOutputTypeField" placeholder="{ OLSKLocalized('LCHComposeDetailFormOutputTypeFieldText') }" type="text" bind:value={ LCHComposeDetailItem.LCHDocumentOutputType } on:input={ LCHComposeDetailDispatchUpdate } />
+</p>
 
-	{#if $DocumentSelectedStore.LCHDocumentOutputType === 'Bool'}
-		<p class="LCHComposeFormCanonicalExampleBody">
-			{#if OLSK_TESTING_BEHAVIOUR()}
-				<textarea bind:value={ $DocumentSelectedStore.LCHDocumentCanonicalExampleCallbackBody } on:input={ mod.ControlDocumentSave } id="LCHComposeFormCanonicalExampleBodyDebugField"></textarea>
-			{/if}
-
-			<LCHEditor EditorOptions={ {
+{#if LCHComposeDetailItem.LCHDocumentOutputType === 'Bool'}
+	<p class="LCHComposeDetailFormCanonicalExampleCallbackBody">
+		<LCHComposeInput
+			LCHComposeInputItem={ LCHComposeDetailItem }
+			LCHComposeInputKey={ 'LCHDocumentCanonicalExampleCallbackBody' }
+			LCHComposeInputOptions={ {
 				mode: 'javascript',
 
 				lineNumbers: true,
 				lineWrapping: true,
 
-				placeholder: OLSKLocalized('LCHComposeFormCanonicalExampleBodyFieldPlaceholderText'),
+				placeholder: OLSKLocalized('LCHComposeDetailFormCanonicalExampleCallbackBodyFieldText'),
 				
 			  keyMap: 'sublime',
 
 				extraKeys: {
 					Tab: false,
 				},
-			} } on:EditorDispatchValueChanged={ (event) => mod._EditorDispatchValueChanged({
-			LCHDocumentCanonicalExampleCallbackBody: event.detail,
-		}) } EditorInitialValue={ $DocumentSelectedStore.LCHDocumentCanonicalExampleCallbackBody } bind:this={ mod._ValueEditorCanonicalExampleCallbackBody } />
-		</p>
-	{/if}
+			} }
+			LCHComposeInputDispatchUpdate={ LCHComposeDetailDispatchUpdate }
+			/>
+	</p>
+{/if}
 
-	<hr>
+<hr>
 
-	<div class="LCHComposeDetailStyle">
-		{#if OLSK_TESTING_BEHAVIOUR()}
-			<textarea bind:value={ $DocumentSelectedStore.LCHDocumentStyle } on:input={ mod.ControlDocumentSave } id="LCHComposeDetailStyleInputDebug"></textarea>
-		{/if}
-
-		<LCHEditor EditorOptions={ {
-			mode: 'css',
+<p class="LCHComposeDetailFormStyle">
+	<LCHComposeInput
+		LCHComposeInputItem={ LCHComposeDetailItem }
+		LCHComposeInputKey={ 'LCHDocumentStyle' }
+		LCHComposeInputOptions={ {
+			mode: 'javascript',
 
 			lineNumbers: true,
 			lineWrapping: true,
 
-			placeholder: OLSKLocalized('LCHComposeFormStyleFieldPlaceholderText'),
+			placeholder: OLSKLocalized('LCHComposeDetailFormStyleFieldText'),
 			
 		  keyMap: 'sublime',
 
 			extraKeys: {
 				Tab: false,
 			},
-		} } on:EditorDispatchValueChanged={ (event) => mod._EditorDispatchValueChanged({
-		LCHDocumentStyle: event.detail,
-	}) } EditorInitialValue={ $DocumentSelectedStore.LCHDocumentStyle } bind:this={ mod._ValueEditorStyle }/>
-	</div>
+		} }
+		LCHComposeInputDispatchUpdate={ LCHComposeDetailDispatchUpdate }
+		/>
+</p>
 
-	<hr>
+<hr>
 
+<p>
+	<input class="LCHComposeDetailFormURLFilterField" placeholder="{ OLSKLocalized('LCHComposeDetailFormURLFilterFieldText') }" type="text" bind:value={ LCHComposeDetailItem.LCHDocumentURLFilter } on:input={ LCHComposeDetailDispatchUpdate } />
+</p>
+
+{#if LCHComposeDetailItem.LCHDocumentURLFilter }
 	<p>
-		<input type="text" bind:value={ $DocumentSelectedStore.LCHDocumentURLFilter } on:input={ mod.ControlDocumentSave } placeholder="{ OLSKLocalized('LCHComposeFormURLFilterFieldPlaceholderText') }" id="LCHComposeFormURLFilterField" />
+		<label>
+			<input class="LCHComposeDetailFormIsAutomaticField" type="checkbox" bind:checked={ LCHComposeDetailItem.LCHDocumentIsAutomatic } on:input={ () => window.setTimeout(LCHComposeDetailDispatchUpdate) } />
+			<span class="LCHComposeDetailFormIsAutomaticFieldLabel">{ OLSKLocalized('LCHComposeDetailFormIsAutomaticFieldLabelText') }</span>
+		</label>
 	</p>
-
-	{#if $DocumentSelectedStore.LCHDocumentURLFilter }
-		<p>
-			<input type="checkbox" bind:checked={ $DocumentSelectedStore.LCHDocumentIsAutomatic } on:input={ mod.ControlDocumentSave } id="LCHComposeFormIsAutomaticField" />
-			<label for="LCHComposeFormIsAutomaticField">{ OLSKLocalized('LCHComposeFormIsAutomaticFieldLabelText') }</label>
-		</p>
-	{/if}
-</div>
 {/if}
 
-{#if !$DocumentSelectedStore}
-<div class="PlaceholderContainer">
-	<span>{ OLSKLocalized('LCHComposeDetailPlaceholderText') }</span>
 </div>
 {/if}
 

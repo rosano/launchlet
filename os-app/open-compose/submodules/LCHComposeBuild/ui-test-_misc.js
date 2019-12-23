@@ -5,33 +5,155 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 describe('LCHComposeBuild_Misc', function () {
 
 	before(function() {
-		return browser.OLSKVisit(kDefaultRoute);
+		return browser.OLSKVisit(kDefaultRoute, {
+			LCHComposeBuildRunLink: 'alfa',
+		});
 	});
-	
-	describe('LCHComposeBuildIncludePageRecipesField', function() {
-		
-		it('sets type', function () {
-			browser.assert.attribute(LCHComposeBuildIncludePageRecipesField, 'type', 'checkbox')
+
+	describe('LCHComposeBuildRunLink', function testLCHComposeBuildRunLink () {
+
+		it('sets href', function () {
+			browser.assert.attribute(LCHComposeBuildRunLink, 'href', 'alfa');
 		});
 
-		it.skip('sets checked', async function () {
-			browser.assert.attribute(LCHComposeBuildIncludePageRecipesField, 'checked', 'false');
+		it('sets accesskey', function () {
+			browser.assert.attribute(LCHComposeBuildRunLink, 'accesskey', 'r');
 		});
 
 		context('click', function () {
-			
+
 			before(function () {
-				browser.assert.text('#TestLCHComposeBuildDispatchIncludePageRecipes', '0');
-				browser.assert.text('#TestLCHComposeBuildDispatchIncludePageRecipesValue', 'undefined');
+				browser.assert.text('#TestLCHComposeBuildDispatchRun', '0');
 			});
 
 			before(function () {
-				browser.check(LCHComposeBuildIncludePageRecipesField)
-			}); 
+				return browser.click(LCHComposeBuildRunLink);
+			});
+	
+			it('sends LCHComposeBuildDispatchRun', function () {
+				browser.assert.text('#TestLCHComposeBuildDispatchRun', '1');
+			});
+	
+		});
 
-			it('sends LCHComposeBuildDispatchIncludePageRecipes', function() {
-				browser.assert.text('#TestLCHComposeBuildDispatchIncludePageRecipes', '1');
-				browser.assert.text('#TestLCHComposeBuildDispatchIncludePageRecipesValue', 'true');
+	});
+
+	describe('LCHComposeBuildPipeModeEnabledField', function test_LCHComposeBuildPipeModeEnabledField() {
+
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute, {
+				LCHComposeBuildRunLink: 'alfa',
+			});
+		});
+
+		it('sets type', function () {
+			browser.assert.attribute(LCHComposeBuildPipeModeEnabledField, 'type', 'checkbox');
+		});
+
+		context('false', function () {
+			
+			it('binds LCHComposeBuildPipeModeEnabled', function () {
+				deepEqual(browser.query(LCHComposeBuildPipeModeEnabledField).checked, false);
+			});
+			
+		});
+
+		context('true', function () {
+			
+			before(function() {
+				return browser.OLSKVisit(kDefaultRoute, {
+					LCHComposeBuildRunLink: 'alfa',
+					LCHComposeBuildPipeModeEnabled: true,
+				});
+			});
+
+			it('binds LCHComposeBuildPipeModeEnabled', function () {
+				deepEqual(browser.query(LCHComposeBuildPipeModeEnabledField).checked, true);
+			});
+		
+		});
+
+		context('input', function () {
+
+			before(function () {
+				browser.assert.text('#TestLCHComposeBuildDispatchPipeModeEnabled', '0');
+			});
+
+			before(function () {
+				browser.assert.text('#TestLCHComposeBuildDispatchPipeModeEnabledData', 'undefined');
+			});
+
+			before(function () {
+				return browser.uncheck(LCHComposeBuildPipeModeEnabledField);
+			});
+
+			it('sends LCHComposeBuildDispatchPipeModeEnabled', function () {
+				browser.assert.text('#TestLCHComposeBuildDispatchPipeModeEnabled', '1');
+			});
+
+			it('sends LCHComposeBuildDispatchPipeModeEnabledData', function () {
+				browser.assert.text('#TestLCHComposeBuildDispatchPipeModeEnabledData', 'false');
+			});
+		
+		});
+
+	});
+
+	describe('LCHComposeBuildPageRecipesEnabledField', function test_LCHComposeBuildPageRecipesEnabledField() {
+
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute, {
+				LCHComposeBuildRunLink: 'alfa',
+			});
+		});
+
+		it('sets type', function () {
+			browser.assert.attribute(LCHComposeBuildPageRecipesEnabledField, 'type', 'checkbox');
+		});
+
+		context('false', function () {
+			
+			it('binds LCHComposeBuildPageRecipesEnabled', function () {
+				deepEqual(browser.query(LCHComposeBuildPageRecipesEnabledField).checked, false);
+			});
+			
+		});
+
+		context('true', function () {
+			
+			before(function() {
+				return browser.OLSKVisit(kDefaultRoute, {
+					LCHComposeBuildRunLink: 'alfa',
+					LCHComposeBuildPageRecipesEnabled: true,
+				});
+			});
+
+			it('binds LCHComposeBuildPageRecipesEnabled', function () {
+				deepEqual(browser.query(LCHComposeBuildPageRecipesEnabledField).checked, true);
+			});
+		
+		});
+
+		context('input', function () {
+
+			before(function () {
+				browser.assert.text('#TestLCHComposeBuildDispatchPageRecipesEnabled', '0');
+			});
+
+			before(function () {
+				browser.assert.text('#TestLCHComposeBuildDispatchPageRecipesEnabledData', 'undefined');
+			});
+
+			before(function () {
+				return browser.uncheck(LCHComposeBuildPageRecipesEnabledField);
+			});
+
+			it('sends LCHComposeBuildDispatchPageRecipesEnabled', function () {
+				browser.assert.text('#TestLCHComposeBuildDispatchPageRecipesEnabled', '1');
+			});
+
+			it('sends LCHComposeBuildDispatchPageRecipesEnabledData', function () {
+				browser.assert.text('#TestLCHComposeBuildDispatchPageRecipesEnabledData', 'false');
 			});
 		
 		});

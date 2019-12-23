@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/_shared/__external/normalize.css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-style.css">
+
+	<script type="text/javascript">
+		window.OLSKPublicConstants = function (inputData) {
+			return <%- JSON.stringify({
+				OLSKSharedPageCurrentLanguage,
+			}) %>[inputData];
+		};
+	</script>
+</head>
+<body>
+
+<script src="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-behaviour.js"></script>
+
+<p>
+	<strong>TestLCHComposeMasterListItemDispatchCreate</strong>
+	<span id="TestLCHComposeMasterListItemDispatchCreate">0</span>
+	<span id="TestLCHComposeMasterListItemDispatchCreateData">undefined</span>
+</p>
+
+<p>
+	<strong>TestLCHComposeMasterListItemDispatchClick</strong>
+	<span id="TestLCHComposeMasterListItemDispatchClick">0</span>
+	<span id="TestLCHComposeMasterListItemDispatchClickData">undefined</span>
+</p>
+
+<p>
+	<strong>TestLCHComposeMasterListItemDispatchArrow</strong>
+	<span id="TestLCHComposeMasterListItemDispatchArrow">0</span>
+	<span id="TestLCHComposeMasterListItemDispatchArrowData">undefined</span>
+</p>
+
+<p>
+	<strong>TestLCHComposeMasterListItemDispatchFilter</strong>
+	<span id="TestLCHComposeMasterListItemDispatchFilter">0</span>
+	<span id="TestLCHComposeMasterListItemDispatchFilterData">undefined</span>
+</p>
+
+</body>
+</html>

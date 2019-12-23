@@ -1,15 +1,15 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
-	LCHComposeBuildModePipeEnabledToggle: '#LCHComposeBuildModePipeEnabledToggle',
+	LCHComposeBuild: '.LCHComposeBuild',
 	
-	LCHComposeBuildIncludePageRecipesFieldLabel: '.LCHComposeBuildIncludePageRecipesFieldLabel',
-	LCHComposeBuildIncludePageRecipesField: '.LCHComposeBuildIncludePageRecipesField',
+	LCHComposeBuildRunLink: '.LCHComposeBuildRunLink',
 
-	LCHComposeBuildPairButton: '.LCHComposeBuildPairButton',
-	LCHComposeBuildPairExtension: '.LCHComposeBuildPairExtension',
+	LCHComposeBuildPipeModeEnabledField: '.LCHComposeBuildPipeModeEnabledField',
+	LCHComposeBuildPipeModeEnabledFieldLabel: '.LCHComposeBuildPipeModeEnabledFieldLabel',
+
+	LCHComposeBuildPageRecipesEnabledField: '.LCHComposeBuildPageRecipesEnabledField',
+	LCHComposeBuildPageRecipesEnabledFieldLabel: '.LCHComposeBuildPageRecipesEnabledFieldLabel',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -17,40 +17,33 @@ Object.entries({
 describe('LCHComposeBuild_Access', function () {
 
 	before(function() {
-		return browser.OLSKVisit(kDefaultRoute);
-	});
-	
-	it('shows LCHComposeBuildModePipeEnabledToggle', function() {
-		browser.assert.elements(LCHComposeBuildModePipeEnabledToggle, 1);
-	});
-	
-	it('shows LCHComposeBuildIncludePageRecipesFieldLabel', function() {
-		browser.assert.elements(LCHComposeBuildIncludePageRecipesFieldLabel, 1);
-	});
-	
-	it('shows LCHComposeBuildIncludePageRecipesField', function() {
-		browser.assert.elements(LCHComposeBuildIncludePageRecipesField, 1);
-	});
-	
-	it('shows LCHComposeBuildPairButton', function() {
-		browser.assert.elements(LCHComposeBuildPairButton, 1);
+		return browser.OLSKVisit(kDefaultRoute, {
+			LCHComposeBuildRunLink: 'alfa',
+		});
 	});
 
-	context('ClickPairButton', function () {
-		
-		before(function () {
-			browser.click(LCHComposeBuildPairButton)
-			return browser.wait({ elements: LCHComposeBuildPairExtension })
-		});
-		
-		it('hides LCHComposeBuildPairButton', function() {
-			browser.assert.elements(LCHComposeBuildPairButton, 0);
-		});
-	
-		it('shows LCHComposeBuildPairExtension', function() {
-			browser.assert.elements(LCHComposeBuildPairExtension, 1);
-		});
-	
+	it('shows LCHComposeBuild', function () {
+		browser.assert.elements(LCHComposeBuild, 1);
+	});
+
+	it('shows LCHComposeBuildRunLink', function () {
+		browser.assert.elements(LCHComposeBuildRunLink, 1);
+	});
+
+	it('shows LCHComposeBuildPipeModeEnabledField', function () {
+		browser.assert.elements(LCHComposeBuildPipeModeEnabledField, 1);
+	});
+
+	it('shows LCHComposeBuildPipeModeEnabledFieldLabel', function () {
+		browser.assert.elements(LCHComposeBuildPipeModeEnabledFieldLabel, 1);
+	});
+
+	it('shows LCHComposeBuildPageRecipesEnabledField', function () {
+		browser.assert.elements(LCHComposeBuildPageRecipesEnabledField, 1);
+	});
+
+	it('shows LCHComposeBuildPageRecipesEnabledFieldLabel', function () {
+		browser.assert.elements(LCHComposeBuildPageRecipesEnabledFieldLabel, 1);
 	});
 
 });

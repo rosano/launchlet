@@ -1,76 +1,98 @@
 import { deepEqual } from 'assert';
 
-const kDefaultRoute = require('../../controller.js').OLSKControllerRoutes().shift();
+const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe.skip('LCHComposeFooter_Misc', function () {
+describe('LCHComposeFooter_Misc', function () {
 
-describe('LCHComposeFooterGuideLink', function testLCHComposeFooterGuideLink () {
-
-	before(function() {
-		return browser.OLSKVisit(kDefaultRoute);
-	});
-
-	it('sets href', function () {
-		browser.assert.attribute(LCHComposeFooterGuideLink, 'href', require('../../../open-guide/controller.js').OLSKControllerRoutes().shift().OLSKRoutePath)
-	});
-
-	it('sets target', function () {
-		browser.assert.attribute(LCHComposeFooterGuideLink, 'target', '_blank')
-	});
-
-});
-
-describe('LCHComposeFooterDonateLink', function testLCHComposeFooterDonateLink () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 
-	it('sets href', function () {
-		browser.assert.attribute(LCHComposeFooterDonateLink, 'href', process.env.LCH_SHARED_DONATE_URL)
-	});
+	describe('LCHComposeFooterGuideLink', function testLCHComposeFooterGuideLink () {
 
-	it('sets target', function () {
-		browser.assert.attribute(LCHComposeFooterDonateLink, 'target', '_blank')
-	});
-
-});
-
-describe('LCHComposeFooterStorageButton', function testLCHComposeFooterStorageButton () {
-
-	before(function() {
-		return browser.OLSKVisit(kDefaultRoute);
-	});
-
-	before(function () {
-		browser.assert.text('#TestLCHComposeFootetDispatchStorage', '0')
-
-		browser.click(LCHComposeFooterStorageButton)
-	});
-	
-	it('has class', function () {
-		browser.assert.hasClass(LCHComposeFooterStorageButton, 'OLSKLayoutButtonNoStyle')
-		browser.assert.hasClass(LCHComposeFooterStorageButton, 'OLSKLayoutElementTappable')
-	});
-	
-	it('sends LCHComposeFootetDispatchStorage', function () {
-		browser.assert.text('#TestLCHComposeFootetDispatchStorage', '1')
-	});
-
-});
-
-describe('LCHComposeFooterStorageStatus', function testLCHComposeFooterStorageStatus () {
-
-	before(function() {
-		return browser.OLSKVisit(kDefaultRoute, {
-			LCHComposeFooterStorageStatus: 'alfa',
+		it('sets href', function () {
+			browser.assert.attribute(LCHComposeFooterGuideLink, 'href', require('../../../open-guide/controller.js').OLSKControllerRoutes().shift().OLSKRoutePath);
 		});
+
+		it('sets target', function () {
+			browser.assert.attribute(LCHComposeFooterGuideLink, 'target', '_blank');
+		});
+
 	});
 
-	it('shows LCHComposeFooterStorageStatus', function () {
-		browser.assert.text(OSWRootRemoteStorageError, 'alfa')
+	describe('LCHComposeFooterDonateLink', function testLCHComposeFooterDonateLink () {
+
+		it('sets href', function () {
+			browser.assert.attribute(LCHComposeFooterDonateLink, 'href', process.env.LCH_SHARED_DONATE_URL);
+		});
+
+		it('sets target', function () {
+			browser.assert.attribute(LCHComposeFooterDonateLink, 'target', '_blank');
+		});
+
 	});
 
-});
+	describe('LCHComposeFooterStorageStatus', function testLCHComposeFooterStorageStatus () {
+
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute, {
+				LCHComposeFooterStorageStatus: 'alfa',
+			});
+		});
+
+		it('sets text', function () {
+			browser.assert.text(LCHComposeFooterStorageStatus, 'alfa');
+		});
+
+	});
+
+	describe('LCHComposeFooterStorageButton', function testLCHComposeFooterStorageButton () {
+
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute);
+		});
+
+		it('classes OLSKLayoutButtonNoStyle', function () {
+			browser.assert.hasClass(LCHComposeFooterStorageButton, 'OLSKLayoutButtonNoStyle');
+		});
+
+		it('classes OLSKLayoutElementTappable', function () {
+			browser.assert.hasClass(LCHComposeFooterStorageButton, 'OLSKLayoutElementTappable');
+		});
+
+		it('classes OLSKToolbarButton', function () {
+			browser.assert.hasClass(LCHComposeFooterStorageButton, 'OLSKToolbarButton');
+		});
+	
+		context('click', function () {
+
+			before(function () {
+				browser.assert.text('#TestLCHComposeFooterDispatchStorage', '0');
+			});
+
+			before(function () {
+				browser.click(LCHComposeFooterStorageButton);
+			});
+	
+			it('sends LCHComposeFooterDispatchStorage', function () {
+				browser.assert.text('#TestLCHComposeFooterDispatchStorage', '1');
+			});
+	
+		});
+
+	});
+
+	describe('LCHComposeFooterStorageButtonImage', function testLCHComposeFooterStorageButtonImage () {
+
+		before(function() {
+			return browser.OLSKVisit(kDefaultRoute);
+		});
+	
+		it('sets src', function () {
+			browser.assert.elements(`${ LCHComposeFooterStorageButtonImage } #_OLSKSharedCloud`, 1);
+		});
+
+	});
 
 });

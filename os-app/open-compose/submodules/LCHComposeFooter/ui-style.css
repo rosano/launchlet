@@ -1,19 +1,24 @@
-.Container {
+.LCHComposeFooter {
 	border-top: var(--LCHBorderStyle);
+	
 	/* AppContainerFlexbox:Child */
 	flex-shrink: 0;
 
-	/* ContainerFlexbox:Parent */
+	/* LCHComposeFooterFlexbox:Parent */
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 
-.Container :global(.OLSKToolbar) {
+.LCHComposeFooter a {
+	color: var(--LCHCommonForeground);
+}
+
+.LCHComposeFooter :global(.OLSKToolbar) {
 	flex-grow: 1;
 }
 
-.Container :global(.OLSKToolbar > div) {
+.LCHComposeFooter :global(.OLSKToolbar > div) {
 	display: flex;
 	align-items: center;
 }
@@ -24,7 +29,7 @@ h1 {
 	font-size: 20px;
 }
 
-.Container :global(.OLSKToolbarElementGroup > *:not(:first-child)) {
+.LCHComposeFooter :global(.OLSKToolbarElementGroup > *:not(:first-child)) {
 	margin-left: 10px;
 }
 
@@ -33,19 +38,10 @@ h1 {
 	padding-left: 4px;
 }
 
-.LCHComposeFooterStorageButton {
-	padding: 0 5px;
-}
-
-.LCHComposeFooterStorageButton :global(svg,img) {
-	width: 20px;
-	height: 20px;
-}
-
-.LCHComposeFooterStorageButton :global(path) {
-	fill: black;
-}
-
-.LCHComposeFooterStorageButton.OSWIconVisible img {
+.LCHComposeFooterStorageButton.OSWIconVisible .LCHComposeFooterStorageButtonImage {
 	display: none;
+}
+
+.LCHComposeFooterStorageButton :global(.OSWOptionImage path) {
+	fill: black;
 }

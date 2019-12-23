@@ -1,4 +1,3 @@
-LCHComposeBuildAnchorText: Run
-LCHComposeBuildPairButtonText: Pair extension
-LCHComposeBuildModePipeEnabledToggleLabelText: Pipe mode
-LCHComposeBuildIncludePageRecipesFieldLabelText: Include page recipes
+LCHComposeBuildRunLinkText: Run
+LCHComposeBuildPipeModeEnabledFieldLabelText: Pipe mode
+LCHComposeBuildPageRecipesEnabledFieldLabelText: Include page recipes

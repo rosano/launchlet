@@ -1,4 +1,4 @@
-.Container {
+.LCHCompose {
 	--LCHBorderStyle: 1px solid #ddd;
 	
 	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
@@ -8,30 +8,40 @@
 	color: var(--LCHCommonForeground);
 }
 
+.LCHCompose :global(.OLSKToolbar) {
+	--OLSKToolbarBackground: var(--LCHCommonBackground);
+}
+
+.LCHComposeTools {
+	border-top: var(--LCHBorderStyle);
+}
+
+@media screen and (max-width: 760px) {
+
+.LCHComposeTools :last-child {
+	display: none;
+}
+
+}
+
 #LCHComposeStorageWidget {
-	border-top: var(--LCHBorderStyle)
+	border-top: var(--LCHBorderStyle);
+	
+	background: var(--LCHCommonBackground);
+
+	/* AppContainerFlexbox:Child */
+	flex-shrink: 0;
 }
 
-.LCHComposeDebug {
+.LCHComposeStorageWidgetHidden {
 	display: none;
-
-	font-family: sans-serif;
 }
 
-.LCHComposeDebug button {
-	padding: 10px;
-	border: 1px solid #bbb;
+@media screen and (max-width: 760px) {
 
-	margin: 10px;
+.LCHCompose :global(.LCHComposeFooter) {
+	/* browser quirks */
+	z-index: 999;
 }
 
-.LCHComposeDebug.LCHComposeDebugError {
-	display: unset;
-
-	position: absolute;
-	bottom: 100px;
-	right: 0;
-}
-.StorageHidden{
-	display: none;
 }

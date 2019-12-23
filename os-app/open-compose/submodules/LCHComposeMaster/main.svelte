@@ -1,197 +1,147 @@
 <script>
-import OLSKToolbar from 'OLSKToolbar';
-import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
-
-import { LCHComposeDefaultFocusNode } from '../../_shared.js';
-
-import * as LCHDocumentAction from '../../../_shared/LCHDocument/action.js';
-import * as LCHDocumentMetal from '../../../_shared/LCHDocument/metal.js';
-import { LCHDocumentModelPostJSONParse } from '../../../_shared/LCHDocument/model.js';
-import { LCHComposeFilterFunction, LCHComposeSort } from '../../ui-logic.js';
+export let LCHComposeMasterFilterText;
+export let LCHComposeMasterListItems;
+export let LCHComposeMasterListItemSelected = null;
+export let LCHComposeMasterDispatchCreate;
+export let LCHComposeMasterDispatchClick;
+export let LCHComposeMasterDispatchArrow;
+export let LCHComposeMasterDispatchFilter;
+export let OLSKMobileViewInactive = false;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
 };
 
-import OLSKString from 'OLSKString';
-export const OLSKFormatted = function () {
-	return OLSKString.OLSKStringWithFormat.apply(null, arguments)
-};
+import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
 
-import { storageClient, DocumentsAllStore, DocumentSelectedStore } from '../../persistence.js';
+import LCHComposeMasterLogic from './ui-logic.js';
 
-import { writable } from 'svelte/store';
-import OLSKInputWrapper from '../../../_shared/__external/OLSKInputWrapper/main.svelte';
-let FilterInputTextStore = writable('');
-
-export const DocumentsExport = function() {
-	let zip = new JSZip();
-
-	const fileName = [
-		'dev.launchlet.export',
-		(new Date()).toJSON(),
-	].join(' ');
-
-	zip.file(`${ fileName }.json`, JSON.stringify($DocumentsAllStore));
-	
-	zip.generateAsync({type: 'blob'}).then(function (content) {
-		saveAs(content, `${ fileName }.zip`);
-	});	
-};
-
-export const DocumentsImport = async function(inputData) {
-	let outputData;
-	try {
-		outputData = JSON.parse(inputData);
-	} catch (e)  {
-		console.log(e);
-	}
-
-	if (!Array.isArray(outputData)) {
-		return;
-	}
-
-	await Promise.all(outputData.map(function (e) {
-		return LCHDocumentMetal.LCHDocumentMetalWrite(storageClient, LCHDocumentModelPostJSONParse(e));
-	}));
-
-	DocumentsAllStore.set(await LCHDocumentAction.LCHDocumentActionList(storageClient));
-};
-
-let _DocumentsVisible = [];
 const mod = {
-	OLSKInputWrapperDispatchClear() {
-		mod.valueFilterInputText('');
-		
-		LCHComposeDefaultFocusNode().focus();
+
+	// MESSAGE
+
+	OLSKInputWrapperDispatchClear () {
+		LCHComposeMasterDispatchFilter('');
 	},
 
 	// VALUE
 
-	valueFilterInputText(inputData) {
-		if (typeof inputData === 'undefined') {
-			return $FilterInputTextStore;
-		}
+	_ValueFilterFieldFocused: true,
 
-		FilterInputTextStore.set(inputData);
+	// DATA
+
+	DataIsFocused () {
+		return document.activeElement === document.querySelector('.LCHComposeMasterFilterField');
+	},
+
+	DataIsMobile () {
+		return window.innerWidth <= 760;
 	},
 
 	// INTERFACE
 
-	interfaceDidKeydown(event) {
-		if (event.key !== 'Escape') {
-			return;
-		}
-
-		mod.valueFilterInputText('');
-
-		LCHComposeDefaultFocusNode().focus();
+	InterfaceFilterFieldDidInput (event) {
+		LCHComposeMasterDispatchFilter(this.value);
 	},
 
-	// CONTROL
-
-	async ControlDocumentCreate() {
-		let item = await LCHDocumentAction.LCHDocumentActionCreate(storageClient, {
-			LCHDocumentName: '',
-			LCHDocumentInputTypes: '',
-			LCHDocumentCallbackArgs: '',
-			LCHDocumentCallbackBody: '',
-			LCHDocumentOutputType: '',
-			LCHDocumentCanonicalExampleCallbackBody: '',
-			LCHDocumentSignature: '',
-			LCHDocumentURLFilter: '',
-			LCHDocumentStyle: '',
-			LCHDocumentModificationDate: new Date(),
-		});
-
-		DocumentsAllStore.update(function (val) {
-			return val.concat(item).sort(LCHComposeSort);
-		});
-
-		return mod.ControlDocumentSelect(item);
-	},
-	ControlDocumentSelect(inputData) {
-		return DocumentSelectedStore.set(inputData);
+	InterfaceCreateButtonDidClick () {
+		LCHComposeMasterDispatchCreate();
 	},
 
-	// REACT
+	// SETUP
 
-	reactDocumentsVisible() {
-		if (!$FilterInputTextStore) {
-			return _DocumentsVisible = $DocumentsAllStore;
-		}
+	SetupEverything () {
+		mod.SetupFilterFieldEventListeners();
+	},
 
-		_DocumentsVisible = $DocumentsAllStore.filter(LCHComposeFilterFunction($FilterInputTextStore));
+	SetupFilterFieldEventListeners () {
+		setTimeout(function () {
+			document.querySelector('.LCHComposeMasterFilterField').addEventListener('focus', function () {
+				mod._ValueFilterFieldFocused = true;
+			});
+
+			document.querySelector('.LCHComposeMasterFilterField').addEventListener('blur', function () {
+				mod._ValueFilterFieldFocused = false;
+			});
+		}, 100);
 	},
 
 	// LIFECYCLE
 
-	lifecycleComponentDidMount() {
-		setTimeout(function () {
-			LCHComposeDefaultFocusNode().focus();
-		}, 200);
+	LifecycleComponentDidMount () {
+		mod.SetupEverything();
 	},
+
+	LifecycleComponentDidUpdate () {
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			return;
+		}
+
+		if (mod.DataIsMobile()) {
+			return;
+		}
+		
+		const element = document.querySelector('.OLSKResultsListItemSelected');
+
+		if (!element) {
+			return;
+		}
+		
+		element.scrollIntoView({
+			block: 'nearest',
+			inline: 'nearest',
+		});
+	},
+
 };
 
 import { onMount } from 'svelte';
-onMount(mod.lifecycleComponentDidMount);
+onMount(mod.LifecycleComponentDidMount);
 
-FilterInputTextStore.subscribe(mod.reactDocumentsVisible);
-DocumentsAllStore.subscribe(mod.reactDocumentsVisible);
+import { afterUpdate } from 'svelte';
+afterUpdate(mod.LifecycleComponentDidUpdate);
+
+import OLSKToolbar from 'OLSKToolbar';
+import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
+import OLSKInputWrapper from 'OLSKInputWrapper';
+import _OLSKSharedCreate from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedCreate.svg';
+import OLSKResults from 'OLSKResults';
+import LCHComposeMasterListItem from '../LCHComposeMasterListItem/main.svelte';
 </script>
-<svelte:window on:keydown={ mod.interfaceDidKeydown }/>
 
-<div class="Container OLSKViewportMaster">
+<div class="LCHComposeMaster OLSKViewportMaster" class:OLSKMobileViewInactive={ OLSKMobileViewInactive } class:LCHComposeMasterFocused={ mod._ValueFilterFieldFocused } aria-hidden={ OLSKMobileViewInactive ? true : null }>
 
-<header>
+<header class="LCHComposeMasterToolbar OLSKMobileViewHeader">
 	<OLSKToolbar>
-		<OLSKInputWrapper bind:OLSKInputWrapperValue={ $FilterInputTextStore } OLSKInputWrapperDispatchClear={ mod.OLSKInputWrapperDispatchClear }>
-			<input bind:value={ $FilterInputTextStore } class="LCHComposeFilterInput" placeholder={ OLSKLocalized('LCHComposeFilterInputPlaceholderText') } />
+		<OLSKInputWrapper OLSKInputWrapperValue={ LCHComposeMasterFilterText } OLSKInputWrapperDispatchClear={ mod.OLSKInputWrapperDispatchClear } >
+			<input class="LCHComposeMasterFilterField" placeholder={ OLSKLocalized('LCHComposeMasterFilterFieldText') } bind:value={ LCHComposeMasterFilterText } on:input={ mod.InterfaceFilterFieldDidInput } />
 		</OLSKInputWrapper>
 
 		<OLSKToolbarElementGroup>
-			<button on:click={ mod.ControlDocumentCreate } class="OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" accesskey="n" id="LCHComposeCreateButton" title={ OLSKLocalized('LCHComposeToolbarCreateButtonText') }>{ OLSKLocalized('LCHComposeToolbarCreateButtonText') }</button>
+			<button class="LCHComposeMasterCreateButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n" title={ OLSKLocalized('LCHComposeMasterCreateButtonText') }>
+				<div class="LCHComposeMasterCreateButtonImage">{@html _OLSKSharedCreate }</div>
+			</button>
 		</OLSKToolbarElementGroup>
 	</OLSKToolbar>
 </header>
 
-<div class="List">
-	{#each _DocumentsVisible as e}
-		<div on:click={ () => mod.ControlDocumentSelect(e) } class="ListItem OLSKLayoutElementTappable" class:LCHComposeListItemFlagged={ e.LCHDocumentIsFlagged }>
-			<strong>{ OLSKFormatted(e.LCHDocumentIsFlagged ? OLSKLocalized('LCHComposeListItemNameFlaggedFormat') : '%@', e.LCHDocumentName || e.LCHDocumentSignature || e.LCHDocumentID) }</strong>
-		</div>
-	{/each}
-</div>
+<section class="LCHComposeMasterBody OLSKMobileViewBody">
+	<OLSKResults
+		OLSKResultsListItems={ LCHComposeMasterListItems }
+		OLSKResultsListItemSelected={ LCHComposeMasterListItemSelected }
+		OLSKResultsDispatchClick={ LCHComposeMasterDispatchClick }
+		OLSKResultsDispatchArrow={ (inputData) => mod.DataIsFocused() && LCHComposeMasterDispatchArrow(inputData) }
+		let:OLSKResultsListItem={ e }
+		>
+		<LCHComposeMasterListItem
+			LCHComposeMasterListItemAccessibilitySummary={ LCHComposeMasterLogic.LCHComposeMasterListItemAccessibilitySummary(e, OLSKLocalized) }
+			LCHComposeMasterListItemTitle={ LCHComposeMasterLogic.LCHComposeMasterListItemTitle(e) }
+			LCHComposeMasterListItemFlagged={ e.LCHDocumentIsFlagged }
+			/>
+	</OLSKResults>
+</section>
 
 </div>
 
-<style>
-.Container {
-	border-right: var(--LCHBorderStyle);
-
-	/* ContainerFlexbox:Parent */
-	display: flex;
-	flex-direction: column;
-}
-
-header {
-	border-bottom: var(--LCHBorderStyle);
-}
-
-.List {
-	/* ContainerFlexbox:Child */
-	flex-grow: 1;
-	overflow: auto;
-}
-
-.ListItem {
-	min-height: 40px;
-	padding: 5px;
-	border-bottom: var(--LCHBorderStyle)
-}
-
-.LCHComposeListItemFlagged {
-	background: #ffff66;
-}
-</style>
+<style src="./ui-style.css"></style>

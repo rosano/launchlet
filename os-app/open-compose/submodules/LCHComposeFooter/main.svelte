@@ -1,46 +1,45 @@
 <script>
 export let LCHComposeFooterStorageStatus = '';
+export let LCHComposeFooterDispatchStorage;
+export let _LCHComposeFooterDispatchExport;
+export let _LCHComposeFooterDispatchImport;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
 };
 
-import { createEventDispatcher } from 'svelte';
-const dispatch = createEventDispatcher();
-
 const mod = {
 
 	// INTERFACE
 
-	InterfaceStorageButtonDidClick () {
-		dispatch('LCHComposeFootetDispatchStorage')
+	InterfaceExportButtonDidClick () {
+		_LCHComposeFooterDispatchExport();
 	},
 
-	interfaceExportButtonDidClick () {
-		dispatch('FooterDispatchExport');
-	},
-	interfaceImportButtonDidClick (event) {
-		let inputElement = event.target;
-		let reader = new FileReader();
+	InterfaceImportButtonDidClick (event) {
+		const inputElement = event.target;
+		const fileReader = new FileReader();
 		
-		reader.onload = function (event) {
-			dispatch('FooterDispatchImport', event.target.result);
+		fileReader.onload = function (event) {
+			_LCHComposeFooterDispatchImport(event.target.result);
 			
 			inputElement.value = null;
 		};
 
-		reader.readAsText(event.target.files.item(0));
+		fileReader.readAsText(event.target.files.item(0));
 	},
+
 };
 
 import OLSKToolbar from 'OLSKToolbar';
 import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import OLSKReloadButton from '../../../_shared/__external/OLSKReloadButton/main.svelte';
 import OLSKLanguageSwitcher from '../../../_shared/__external/OLSKLanguageSwitcher/main.svelte';
+import _OLSKSharedCloud from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedCloud.svg';
 </script>
 
-<footer class="Container">
+<footer class="LCHComposeFooter">
 
 	<OLSKToolbar OLSKToolbarJustify={ true }>
 		<OLSKToolbarElementGroup>
@@ -55,17 +54,18 @@ import OLSKLanguageSwitcher from '../../../_shared/__external/OLSKLanguageSwitch
 
 			<a class="LCHComposeFooterDonateLink" href={ window.OLSKPublicConstants('LCH_SHARED_DONATE_URL') } target="_blank">{ OLSKLocalized('LCHComposeFooterDonateLinkText') }</a>
 
-			<!-- <button on:click={ mod.interfaceExportButtonDidClick }>Export</button> -->
+			<!-- <button on:click={ mod.InterfaceExportButtonDidClick }>Export</button>
 
-			<!-- <input type="file" accept=".json" on:change={ mod.interfaceImportButtonDidClick } /> -->
+			<input type="file" accept=".json" on:change={ mod.InterfaceImportButtonDidClick } /> -->
 		</OLSKToolbarElementGroup>
 
-		<div>
+		<OLSKToolbarElementGroup>
 			<div class="LCHComposeFooterStorageStatus">{ LCHComposeFooterStorageStatus }</div>
-			<button class="LCHComposeFooterStorageButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable" title={ OLSKLocalized('LCHComposeFooterStorageButtonText') } on:click={ mod.InterfaceStorageButtonDidClick } class:OSWIconVisible={ false }>
-				<img src="/open-compose/submodules/LCHComposeFooter/ui-images/LCHComposeFooterStorageButton.svg">
+			
+			<button class="LCHComposeFooterStorageButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeFooterStorageButtonText') } on:click={ LCHComposeFooterDispatchStorage } class:OSWIconVisible={ false }>
+				<div class="LCHComposeFooterStorageButtonImage">{@html _OLSKSharedCloud }</div>
 			</button>
-		</div>
+		</OLSKToolbarElementGroup>
 	</OLSKToolbar>
 	
 </footer>
