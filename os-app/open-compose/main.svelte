@@ -784,7 +784,9 @@ const mod = {
 	},
 
 	async SetupValueDocumentsAll() {
-		mod.ValueDocumentsAll(await LCHDocumentAction.LCHDocumentActionList(mod._ValueStorageClient));
+		mod.ValueDocumentsAll((await LCHDocumentAction.LCHDocumentActionList(mod._ValueStorageClient)).filter(function (e) {
+			return typeof e === 'object'; // #patch-remotestorage-true
+		}));
 	},
 
 	SetupPageRecipes() {
