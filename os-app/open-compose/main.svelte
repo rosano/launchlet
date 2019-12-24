@@ -254,8 +254,7 @@ const mod = {
 	ControlDocumentPersist(inputData) {
 		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValuePersistThrottleMap, inputData.LCHDocumentID, {
 			OLSKThrottleDuration: 500,
-			OLSKThrottleInput: inputData,
-			async OLSKThrottleCallback (inputData) {
+			async OLSKThrottleCallback () {
 				mod._ControlDocumentFlag(inputData);
 
 				if (inputData.LCHDocumentCallbackBody === 'LCH_TEST_FLAG_ON_BUILD') {
