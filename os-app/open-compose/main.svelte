@@ -686,6 +686,16 @@ const mod = {
 		} : {});
 	},
 
+	SetupStorageWidget () {
+		(new window.OLSKStorageWidget(mod._ValueStorageClient.remoteStorage)).attach('LCHComposeStorageWidget').backend(document.querySelector('.OLSKAppToolbarStorageButton'));
+	},
+
+	SetupStorageStatus () {
+		OLSKRemoteStorage.OLSKRemoteStorageStatus(mod._ValueStorageClient.remoteStorage, function (inputData) {
+			mod._ValueFooterStorageStatus = inputData;
+		}, OLSKLocalized)
+	},
+
 	async SetupStorageNotifications () {
 		mod._ValueStorageClient.remoteStorage.on('not-connected', () => {
 			if (!OLSK_TESTING_BEHAVIOUR()) {
@@ -748,16 +758,6 @@ const mod = {
 				res();
 			});
 		})
-	},
-
-	SetupStorageWidget () {
-		(new window.OLSKStorageWidget(mod._ValueStorageClient.remoteStorage)).attach('LCHComposeStorageWidget').backend(document.querySelector('.OLSKAppToolbarStorageButton'));
-	},
-
-	SetupStorageStatus () {
-		OLSKRemoteStorage.OLSKRemoteStorageStatus(mod._ValueStorageClient.remoteStorage, function (inputData) {
-			mod._ValueFooterStorageStatus = inputData;
-		}, OLSKLocalized)
 	},
 
 	async SetupDataCache() {
