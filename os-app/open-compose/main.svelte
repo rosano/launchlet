@@ -7,7 +7,6 @@ const OLSKLocalized = function(translationConstant) {
 };
 
 import OLSKThrottle from 'OLSKThrottle';
-import * as LCHStorageClient from '../_shared/LCHStorageClient/main.js';
 import { LCHStorageModule } from '../_shared/LCHStorageModule/main.js';
 import { LCHDocumentStorage } from '../_shared/LCHDocument/storage.js';
 import { LCHDocumentModelPostJSONParse } from '../_shared/LCHDocument/model.js';
@@ -24,6 +23,8 @@ import { LCHFormulaFrom, LCHFormulaToEvaluate } from '../_shared/LCHFormula/main
 import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../dev-launcher/ui-logic.js';
 import LCHBuild from '../_shared/LCHBuild/main.js';
 import OLSKString from 'OLSKString';
+import * as RemoteStoragePackage from 'remotestoragejs';
+const RemoteStorage = RemoteStoragePackage.default || RemoteStoragePackage;
 
 const mod = {
 
@@ -43,6 +44,38 @@ const mod = {
     // }
 
 	  mod.ControlPairResponseReceive(event.data);
+	},
+
+	OLSKChangeDelegateCreateDocument (inputData) {
+		// console.log('OLSKChangeDelegateCreate', inputData);
+
+		mod.ValueDocumentsAll(mod._ValueDocumentsAll.filter(function (e) {
+			return e.LCHDocumentID !== inputData.LCHDocumentID; // @Hotfix Dropbox sending DelegateAdd
+		}).concat(inputData));
+	},
+
+	OLSKChangeDelegateUpdateDocument (inputData) {
+		// console.log('OLSKChangeDelegateUpdate', inputData);
+
+		if (mod._ValueDocumentSelected && (mod._ValueDocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
+			mod.ControlDocumentSelect(Object.assign(mod._ValueDocumentSelected, inputData));
+		}
+
+		mod.ValueDocumentsAll(mod._ValueDocumentsAll.map(function (e) {
+			return Object.assign(e, e.LCHDocumentID === inputData.LCHDocumentID ? inputData : {});
+		}), false);
+	},
+
+	OLSKChangeDelegateDeleteDocument (inputData) {
+		// console.log('OLSKChangeDelegateDelete', inputData);
+
+		if (mod._ValueDocumentSelected && (mod._ValueDocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
+			mod.ControlDocumentSelect(null);
+		}
+
+		mod.ValueDocumentsAll(mod._ValueDocumentsAll.filter(function (e) {
+			return e.LCHDocumentID !== inputData.LCHDocumentID;
+		}), false);
 	},
 
 	// VALUE
@@ -606,8 +639,6 @@ const mod = {
 
 		await mod.SetupStorageNotifications();
 
-		await mod.SetupDataCache();
-
 		await mod.SetupValuePipeModeEnabled();
 
 		await mod.SetupValuePageRecipesEnabled();
@@ -626,89 +657,64 @@ const mod = {
 	},
 
 	SetupStorageClient() {
-		mod._ValueStorageClient = LCHStorageClient.LCHStorageClient({
-			modules: [
-				LCHStorageModule([
-					LCHDocumentStorage,
-					LCHSettingStorage,
-					].map(function (e) {
-						return {
-							LCHCollectionStorageGenerator: e,
-							LCHCollectionChangeDelegate: e === LCHDocumentStorage ? {
-								OLSKChangeDelegateCreate (inputData) {
-									// console.log('OLSKChangeDelegateCreate', inputData);
-
-									mod.ValueDocumentsAll(mod._ValueDocumentsAll.filter(function (e) {
-										return e.LCHDocumentID !== inputData.LCHDocumentID; // @Hotfix Dropbox sending DelegateAdd
-									}).concat(inputData));
-								},
-								OLSKChangeDelegateUpdate (inputData) {
-									// console.log('OLSKChangeDelegateUpdate', inputData);
-
-									if (mod._ValueDocumentSelected && (mod._ValueDocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
-										mod.ControlDocumentSelect(Object.assign(mod._ValueDocumentSelected, inputData));
-									}
-
-									mod.ValueDocumentsAll(mod._ValueDocumentsAll.map(function (e) {
-										return Object.assign(e, e.LCHDocumentID === inputData.LCHDocumentID ? inputData : {});
-									}), false);
-								},
-								OLSKChangeDelegateDelete (inputData) {
-									// console.log('OLSKChangeDelegateDelete', inputData);
-
-									if (mod._ValueDocumentSelected && (mod._ValueDocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
-										mod.ControlDocumentSelect(null);
-									}
-
-									mod.ValueDocumentsAll(mod._ValueDocumentsAll.filter(function (e) {
-										return e.LCHDocumentID !== inputData.LCHDocumentID;
-									}), false);
-								},
-							} : null,
-						}
-					})),
-			],
+		const storageModule = LCHStorageModule([
+			Object.assign(LCHDocumentStorage, {
+				LCHStorageChangeDelegate: {
+					OLSKChangeDelegateCreate: mod.OLSKChangeDelegateCreateDocument,
+					OLSKChangeDelegateUpdate: mod.OLSKChangeDelegateUpdateDocument,
+					OLSKChangeDelegateDelete: mod.OLSKChangeDelegateDeleteDocument,
+				},
+			}),
+			LCHSettingStorage,
+			]);
+		
+		mod._ValueStorageClient = new RemoteStorage({
+			modules: [ storageModule ],
 			OLSKPatchRemoteStorageAuthRedirectURI: OLSK_TESTING_BEHAVIOUR() ? undefined : window.location.origin + window.OLSKCanonicalFor('LCHComposeRoute'),
 		});
+
+		mod._ValueStorageClient.access.claim(storageModule.name, 'rw');
+
+		mod._ValueStorageClient.caching.enable(`/${ storageModule.name }/`);
 	},
 
 	SetupRemoteStorage () {
-		mod._ValueStorageClient.remoteStorage.setApiKeys(window.OLSKPublicConstants('LCHDropboxAppKey') ? {
+		mod._ValueStorageClient.setApiKeys(window.OLSKPublicConstants('LCHDropboxAppKey') ? {
 			dropbox: window.atob(window.OLSKPublicConstants('LCHDropboxAppKey')),
 			googledrive: window.atob(window.OLSKPublicConstants('LCHGoogleClientKey')),
 		} : {});
 	},
 
 	SetupStorageWidget () {
-		(new window.OLSKStorageWidget(mod._ValueStorageClient.remoteStorage)).attach('LCHComposeStorageWidget').backend(document.querySelector('.OLSKAppToolbarStorageButton'));
+		(new window.OLSKStorageWidget(mod._ValueStorageClient)).attach('LCHComposeStorageWidget').backend(document.querySelector('.OLSKAppToolbarStorageButton'));
 	},
 
 	SetupStorageStatus () {
-		OLSKRemoteStorage.OLSKRemoteStorageStatus(mod._ValueStorageClient.remoteStorage, function (inputData) {
+		OLSKRemoteStorage.OLSKRemoteStorageStatus(mod._ValueStorageClient, function (inputData) {
 			mod._ValueFooterStorageStatus = inputData;
 		}, OLSKLocalized)
 	},
 
 	async SetupStorageNotifications () {
-		mod._ValueStorageClient.remoteStorage.on('not-connected', () => {
+		mod._ValueStorageClient.on('not-connected', () => {
 			if (!OLSK_TESTING_BEHAVIOUR()) {
 				console.debug('not-connected', arguments);
 			}
 		});
 
-		mod._ValueStorageClient.remoteStorage.on('disconnected', () => {
+		mod._ValueStorageClient.on('disconnected', () => {
 			if (!OLSK_TESTING_BEHAVIOUR()) {
 				console.debug('disconnected', arguments);
 			}
 		});
 
-		mod._ValueStorageClient.remoteStorage.on('connected', () => {
+		mod._ValueStorageClient.on('connected', () => {
 			if (!OLSK_TESTING_BEHAVIOUR()) {
 				console.debug('connected', arguments);
 			}
 		});
 
-		mod._ValueStorageClient.remoteStorage.on('sync-done', () => {
+		mod._ValueStorageClient.on('sync-done', () => {
 			if (!OLSK_TESTING_BEHAVIOUR()) {
 				console.debug('sync-done', arguments);
 			}
@@ -716,7 +722,7 @@ const mod = {
 
 		let isOffline;
 
-		mod._ValueStorageClient.remoteStorage.on('network-offline', () => {
+		mod._ValueStorageClient.on('network-offline', () => {
 			if (!OLSK_TESTING_BEHAVIOUR()) {
 				console.debug('network-offline', arguments);
 			}
@@ -724,7 +730,7 @@ const mod = {
 			isOffline = true;
 		});
 
-		mod._ValueStorageClient.remoteStorage.on('network-online', () => {
+		mod._ValueStorageClient.on('network-online', () => {
 			if (!OLSK_TESTING_BEHAVIOUR()) {
 				console.debug('network-online', arguments);
 			}
@@ -732,7 +738,7 @@ const mod = {
 			isOffline = false;
 		});
 
-		mod._ValueStorageClient.remoteStorage.on('error', (error) => {
+		mod._ValueStorageClient.on('error', (error) => {
 			if (isOffline && inputData.message === 'Sync failed: Network request failed.') {
 				return;
 			};
@@ -743,7 +749,7 @@ const mod = {
 		});
 
 		return new Promise(function (res, rej) {
-			mod._ValueStorageClient.remoteStorage.on('ready', () => {
+			mod._ValueStorageClient.on('ready', () => {
 				if (!OLSK_TESTING_BEHAVIOUR()) {
 					console.debug('ready', arguments);
 				}
@@ -751,11 +757,6 @@ const mod = {
 				res();
 			});
 		})
-	},
-
-	async SetupDataCache() {
-		await mod._ValueStorageClient.remoteStorage.launchlet.lch_documents.init();
-		await mod._ValueStorageClient.remoteStorage.launchlet.lch_settings.init();
 	},
 
 	async SetupValuePipeModeEnabled() {

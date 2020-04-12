@@ -1,3 +1,5 @@
+const RemoteStorage = require('remotestoragejs');
+
 const LCHStorageModule = require('./os-app/_shared/LCHStorageModule/main.js');
 const LCHDocumentStorage = require('./os-app/_shared/LCHDocument/storage.js');
 const LCHSettingStorage = require('./os-app/_shared/LCHSetting/storage.js');
@@ -13,30 +15,20 @@ const LCHSettingStorage = require('./os-app/_shared/LCHSetting/storage.js');
 		}, Promise.resolve([]));
 	};
 
-	before(function(done) {
-		global.LCHTestingStorageClient = require('./os-app/_shared/LCHStorageClient/main.js').LCHStorageClient({
-			modules: [
-				LCHStorageModule.LCHStorageModule([
-					LCHDocumentStorage.LCHDocumentStorage,
-					LCHSettingStorage.LCHSettingStorage,
-				].map(function (e) {
-					return {
-						LCHCollectionStorageGenerator: e,
-						LCHCollectionChangeDelegate: null,
-					};
-				}))
-			],
-		});
+	const storageModule = LCHStorageModule.LCHStorageModule([
+		LCHDocumentStorage.LCHDocumentStorage,
+		LCHSettingStorage.LCHSettingStorage,
+	]);
 
-		done();
+	before(function() {
+		global.LCHTestingStorageClient = new RemoteStorage({ modules: [ storageModule ] });
+
+		global.LCHTestingStorageClient.access.claim(storageModule.name, 'rw');
 	});
 
 	beforeEach(async function() {
-		await uSerial([
-			'lch_documents',
-			'lch_settings',
-		].map(async function (e) {
-			return await Promise.all(Object.keys(await global.LCHTestingStorageClient.launchlet[e].listObjects()).map(global.LCHTestingStorageClient.launchlet[e].deleteObject));
+		await uSerial(Object.keys(global.LCHTestingStorageClient[storageModule.name]).map(async function (e) {
+			return await Promise.all(Object.keys(await global.LCHTestingStorageClient[storageModule.name][e].LCHStorageList()).map(global.LCHTestingStorageClient[storageModule.name][e].LCHStorageDelete));
 		}));
 	});
 })();

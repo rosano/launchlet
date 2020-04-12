@@ -12,7 +12,7 @@ export const LCHDocumentMetalWrite = async function(storageClient, inputData) {
 		});
 	}
 
-	return await storageClient.launchlet.lch_documents.writeObject(inputData.LCHDocumentID, inputData);
+	return await storageClient.launchlet.lch_documents.LCHStorageWrite(inputData.LCHDocumentID, inputData);
 };
 
 export const LCHDocumentMetalRead = async function(storageClient, inputData) {
@@ -20,11 +20,11 @@ export const LCHDocumentMetalRead = async function(storageClient, inputData) {
 		return Promise.reject(new Error('LCHErrorInputNotValid'));
 	}
 
-	return LCHDocumentModelPostJSONParse(await storageClient.launchlet.lch_documents.readObject(inputData));
+	return LCHDocumentModelPostJSONParse(await storageClient.launchlet.lch_documents.LCHStorageRead(inputData));
 };
 
 export const LCHDocumentMetalList = async function(storageClient) {
-	let outputData = await storageClient.launchlet.lch_documents.listObjects();
+	let outputData = await storageClient.launchlet.lch_documents.LCHStorageList();
 
 	for (let key in outputData) {
 		LCHDocumentModelPostJSONParse(outputData[key]);
@@ -38,5 +38,5 @@ export const LCHDocumentMetalDelete = async function(storageClient, inputData) {
 		return Promise.reject(new Error('LCHErrorInputNotValid'));
 	}
 
-	return await storageClient.launchlet.lch_documents.deleteObject(inputData);
+	return await storageClient.launchlet.lch_documents.LCHStorageDelete(inputData);
 };

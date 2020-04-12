@@ -14,20 +14,17 @@ export const LCHSettingStorage = function (privateClient, publicClient, changeDe
 		LCHStorageType: kType,
 		LCHStorageModelErrors: LCHSettingModel.LCHSettingModelErrorsFor({}),
 		LCHStorageExports: {
-			init: function () {
-				return privateClient.cache(LCHSettingStoragePath());
-			},
-			listObjects: function () {
+			LCHStorageList () {
 				return privateClient.getAll(LCHSettingStoragePath(), false);
 			},
-			writeObject: async function (param1, param2) {
+			async LCHStorageWrite (param1, param2) {
 				await privateClient.storeObject(kType, LCHSettingStoragePath(param1), param2);
 				return param2;
 			},
-			readObject: function (inputData) {
+			LCHStorageRead (inputData) {
 				return privateClient.getObject(LCHSettingStoragePath(inputData));
 			},
-			deleteObject: function (inputData) {
+			LCHStorageDelete (inputData) {
 				return privateClient.remove(LCHSettingStoragePath(inputData));
 			},
 		},

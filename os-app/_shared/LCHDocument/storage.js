@@ -48,20 +48,17 @@ export const LCHDocumentStorage = function (privateClient, publicClient, changeD
 			return coll;
 		}, {}),
 		LCHStorageExports: {
-			init: function () {
-				return privateClient.cache(LCHDocumentStoragePath());
-			},
-			listObjects: function () {
+			LCHStorageList () {
 				return privateClient.getAll(LCHDocumentStoragePath(), false);
 			},
-			writeObject: async function (param1, param2) {
+			async LCHStorageWrite (param1, param2) {
 				await privateClient.storeObject(kType, `${ kCollection }/${ param1 }`, LCHDocumentModel.LCHDocumentModelPreJSONSchemaValidate(param2));
 				return LCHDocumentModel.LCHDocumentModelPostJSONParse(param2);
 			},
-			readObject: function (inputData) {
+			LCHStorageRead (inputData) {
 				return privateClient.getObject(`${ kCollection }/${ inputData }`);
 			},
-			deleteObject: function (inputData) {
+			LCHStorageDelete (inputData) {
 				return privateClient.remove(`${ kCollection }/${ inputData }`);
 			},
 		},

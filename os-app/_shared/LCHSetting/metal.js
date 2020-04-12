@@ -12,7 +12,7 @@ export const LCHSettingsMetalWrite = async function(storageClient, inputData) {
 		});
 	}
 
-	return await storageClient.launchlet.lch_settings.writeObject(inputData.LCHSettingKey, inputData);
+	return await storageClient.launchlet.lch_settings.LCHStorageWrite(inputData.LCHSettingKey, inputData);
 };
 
 export const LCHSettingsMetalRead = async function(storageClient, inputData) {
@@ -20,11 +20,11 @@ export const LCHSettingsMetalRead = async function(storageClient, inputData) {
 		return Promise.reject(new Error('LCHErrorInputNotValid'));
 	}
 
-	return await storageClient.launchlet.lch_settings.readObject(inputData);
+	return await storageClient.launchlet.lch_settings.LCHStorageRead(inputData);
 };
 
 export const LCHSettingsMetalList = async function(storageClient) {
-	return await storageClient.launchlet.lch_settings.listObjects();
+	return await storageClient.launchlet.lch_settings.LCHStorageList();
 };
 
 export const LCHSettingsMetalDelete = async function(storageClient, inputData) {
@@ -32,5 +32,5 @@ export const LCHSettingsMetalDelete = async function(storageClient, inputData) {
 		return Promise.reject(new Error('LCHErrorInputNotValid'));
 	}
 
-	return await storageClient.launchlet.lch_settings.deleteObject(inputData);
+	return await storageClient.launchlet.lch_settings.LCHStorageDelete(inputData);
 };
