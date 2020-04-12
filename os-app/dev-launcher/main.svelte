@@ -2,15 +2,15 @@
 export let LRTOptions = {};
 export let LRTDidFinish = null;
 
+import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
+
 import { LCHLauncherOptions } from './ui-logic.js';
-LRTOptions = LCHLauncherOptions(LRTOptions, _LCHIsTestingBehaviour() ? undefined : console.warn);
+LRTOptions = LCHLauncherOptions(LRTOptions, OLSK_TESTING_BEHAVIOUR() ? undefined : console.warn);
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[LRTOptions.LCHOptionLanguage]);
 };
-
-import { _LCHIsTestingBehaviour } from '../_shared/common/global.js';
 
 import { LCHLauncherThrottleDuration } from './ui-logic.js';
 import fuzzysort from 'fuzzysort';
@@ -104,7 +104,7 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 				key: 'LCHRecipeName',
 			});
 
-			if (!results.length && _LCHIsTestingBehaviour() && !mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptFilterText.slice(0, 3).match(/[^A-Z]/)) {
+			if (!results.length && OLSK_TESTING_BEHAVIOUR() && !mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptFilterText.slice(0, 3).match(/[^A-Z]/)) {
 				return visibleRecipes.filter(function (e) {
 					return e.LCHRecipeSignature === mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptFilterText;
 				});
@@ -669,7 +669,7 @@ const mod = {
 	},
 
 	ReactScrollSelectedItemIntoView() {
-		if (_LCHIsTestingBehaviour()) {
+		if (OLSK_TESTING_BEHAVIOUR()) {
 			return;
 		}
 
@@ -722,7 +722,7 @@ const mod = {
 		if (!inputData && window.location.origin && window.location.origin !== 'null') { // about:blank has no origin
 			await (new Promise(function (resolve, reject) {
 				function receiveMessage(event) {
-					if (event.source !== window && !_LCHIsTestingBehaviour()) {
+					if (event.source !== window && !OLSK_TESTING_BEHAVIOUR()) {
 					  return console.log('not window');
 					}
 

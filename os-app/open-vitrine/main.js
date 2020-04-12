@@ -1,4 +1,7 @@
-import { OLSKLocalized } from '../_shared/common/global.js'
+import OLSKInternational from 'OLSKInternational';
+export const OLSKLocalized = function(translationConstant) {
+	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
+};
 
 import { LCHVitrineRecipes } from './recipes/_aggregate.js'
 const _LCHVitrineRecipes = LCHVitrineRecipes().map(function (e) {
