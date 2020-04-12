@@ -1,6 +1,6 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./main.js');
+const mainModule = require('./main.js').default;
 
 describe('LCHBuildFunctionString', function testLCHBuildFunctionString() {
 

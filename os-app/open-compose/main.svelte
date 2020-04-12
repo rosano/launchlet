@@ -22,13 +22,7 @@ import LCHComposeLogic from './ui-logic.js';
 import { LCHFlags } from '../_shared/LCHFlags/main.js'
 import { LCHFormulaFrom, LCHFormulaToEvaluate } from '../_shared/LCHFormula/main.js'
 import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../dev-launcher/ui-logic.js';
-import {
-	LCHBuildRecipeArrayString,
-	LCHBuildStripLivereload,
-	LCHBuildStripSourceMap,
-	LCHBuildBoomarkletTemplate,
-	LCHBuildEscape,
-} from '../_shared/LCHBuild/main.js';
+import LCHBuild from '../_shared/LCHBuild/main.js';
 import OLSKString from 'OLSKString';
 
 const mod = {
@@ -117,11 +111,11 @@ const mod = {
 	},
 
 	DataPackageStyle () {
-		return [window.LCHComposeBuildPackageStyle.textContent].map(LCHBuildStripSourceMap).pop();
+		return [window.LCHComposeBuildPackageStyle.textContent].map(LCHBuild.LCHBuildStripSourceMap).pop();
 	},
 
 	DataPackageScript () {
-		return [window.LCHComposeBuildPackageScript.textContent].map(LCHBuildStripLivereload).map(LCHBuildStripSourceMap).pop();
+		return [window.LCHComposeBuildPackageScript.textContent].map(LCHBuild.LCHBuildStripLivereload).map(LCHBuild.LCHBuildStripSourceMap).pop();
 	},
 
 	DataPackageOptions () {
@@ -581,16 +575,16 @@ const mod = {
 			return !e.LCHDocumentIsFlagged;
 		});
 
-		mod._ValueRecipesArrayString = LCHBuildRecipeArrayString(_validDocuments);
+		mod._ValueRecipesArrayString = LCHBuild.LCHBuildRecipeArrayString(_validDocuments);
 
-		mod._JavascriptComposition = OLSKString.OLSKStringReplaceTokens(LCHBuildBoomarkletTemplate(), {
+		mod._JavascriptComposition = OLSKString.OLSKStringReplaceTokens(LCHBuild.LCHBuildBoomarkletTemplate(), {
 			LCHBuildBoomarkletTemplate_Style: mod.DataPackageStyle(),
 			LCHBuildBoomarkletTemplate_Script: mod.DataPackageScript(),
 			LCHBuildBoomarkletTemplate_Options: JSON.stringify(mod.DataPackageOptions()),
 			LCHBuildBoomarkletTemplate_Recipes: mod._ValueRecipesArrayString,
 		})
 
-		mod._JavascriptCompositionBinary = LCHBuildEscape(mod._JavascriptComposition);
+		mod._JavascriptCompositionBinary = LCHBuild.LCHBuildEscape(mod._JavascriptComposition);
 
 		if (!mod._ValuePublicKey) {
 			return;
