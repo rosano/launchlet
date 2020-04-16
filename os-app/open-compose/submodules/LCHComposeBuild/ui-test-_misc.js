@@ -10,7 +10,7 @@ describe('LCHComposeBuild_Misc', function () {
 		});
 	});
 
-	describe('LCHComposeBuildRunLink', function testLCHComposeBuildRunLink () {
+	describe('LCHComposeBuildRunLink', function test_LCHComposeBuildRunLink () {
 
 		it('sets href', function () {
 			browser.assert.attribute(LCHComposeBuildRunLink, 'href', 'alfa');

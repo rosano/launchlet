@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./main.js');
 
-describe('LCHVitrinePageColoursRestoreRecipe', function testLCHVitrinePageColoursRestoreRecipe() {
+describe('LCHVitrinePageColoursRestoreRecipe', function test_LCHVitrinePageColoursRestoreRecipe() {
 
 	it('returns LCHRecipe', async function() {
 		deepEqual(mainModule.LCHVitrinePageColoursRestoreRecipe(), {

@@ -146,7 +146,7 @@ describe('_LCHFlags', function test_LCHFlags() {
 
 });
 
-describe('LCHFlags', function testLCHFlags() {
+describe('LCHFlags', function test_LCHFlags() {
 
 	it('throws error if not object', function() {
 		throws(function() {

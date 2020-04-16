@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./main.js');
 
-describe('LCHVitrineSendEmailRecipe', function testLCHVitrineSendEmailRecipe() {
+describe('LCHVitrineSendEmailRecipe', function test_LCHVitrineSendEmailRecipe() {
 
 	it('returns LCHRecipe', async function() {
 		deepEqual(mainModule.LCHVitrineSendEmailRecipe(), {

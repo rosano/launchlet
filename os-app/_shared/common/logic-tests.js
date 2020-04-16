@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./logic.js');
 
-describe('LCHSharedGitHubLinkGuard', function testLCHSharedGitHubLinkGuard() {
+describe('LCHSharedGitHubLinkGuard', function test_LCHSharedGitHubLinkGuard() {
 
 	const StubEnvValid = function () {
 		return {
@@ -30,7 +30,7 @@ describe('LCHSharedGitHubLinkGuard', function testLCHSharedGitHubLinkGuard() {
 
 });
 
-describe('LCHSharedExtensionDocsLinkGuard', function testLCHSharedExtensionDocsLinkGuard() {
+describe('LCHSharedExtensionDocsLinkGuard', function test_LCHSharedExtensionDocsLinkGuard() {
 
 	const StubEnvValid = function () {
 		return {
@@ -58,7 +58,7 @@ describe('LCHSharedExtensionDocsLinkGuard', function testLCHSharedExtensionDocsL
 
 });
 
-describe('LCHSharedPackageDocsLinkGuard', function testLCHSharedPackageDocsLinkGuard() {
+describe('LCHSharedPackageDocsLinkGuard', function test_LCHSharedPackageDocsLinkGuard() {
 
 	const StubEnvValid = function () {
 		return {
@@ -86,7 +86,7 @@ describe('LCHSharedPackageDocsLinkGuard', function testLCHSharedPackageDocsLinkG
 
 });
 
-describe('LCHSharedDonateLinkGuard', function testLCHSharedDonateLinkGuard() {
+describe('LCHSharedDonateLinkGuard', function test_LCHSharedDonateLinkGuard() {
 
 	const StubEnvValid = function () {
 		return {

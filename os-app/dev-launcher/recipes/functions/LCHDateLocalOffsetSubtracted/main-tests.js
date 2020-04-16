@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./main.js');
 
-describe('LCHDateLocalOffsetSubtractedCallback', function testLCHDateLocalOffsetSubtractedCallback() {
+describe('LCHDateLocalOffsetSubtractedCallback', function test_LCHDateLocalOffsetSubtractedCallback() {
 
 	it('returns date', function() {
 		deepEqual(mainModule.LCHDateLocalOffsetSubtractedCallback(new Date()) instanceof Date, true);
@@ -15,7 +15,7 @@ describe('LCHDateLocalOffsetSubtractedCallback', function testLCHDateLocalOffset
 
 });
 
-describe('LCHDateLocalOffsetSubtractedRecipe', function testLCHDateLocalOffsetSubtractedRecipe() {
+describe('LCHDateLocalOffsetSubtractedRecipe', function test_LCHDateLocalOffsetSubtractedRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHDateLocalOffsetSubtractedRecipe(), {

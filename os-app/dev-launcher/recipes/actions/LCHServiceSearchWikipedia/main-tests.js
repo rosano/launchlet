@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./main.js');
 
-describe('LCHServiceSearchWikipediaCallback', function testLCHServiceSearchWikipediaCallback() {
+describe('LCHServiceSearchWikipediaCallback', function test_LCHServiceSearchWikipediaCallback() {
 
 	it('returns string', function() {
 		deepEqual(mainModule.LCHServiceSearchWikipediaCallback(), 'https://wikipedia.org/w/index.php?search=LCHSEARCHTOKEN');
@@ -10,7 +10,7 @@ describe('LCHServiceSearchWikipediaCallback', function testLCHServiceSearchWikip
 
 });
 
-describe('LCHServiceSearchWikipediaRecipe', function testLCHServiceSearchWikipediaRecipe() {
+describe('LCHServiceSearchWikipediaRecipe', function test_LCHServiceSearchWikipediaRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHServiceSearchWikipediaRecipe(), {

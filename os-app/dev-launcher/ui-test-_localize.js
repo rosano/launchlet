@@ -10,7 +10,7 @@ const uLocalized = function (inputData) {
 	return OLSKTestingLocalized(inputData, languageCode);
 };
 
-describe(`LCHLauncherLocalizeCommit-${ languageCode }`, function testLCHLauncherLocalizeCommit () {
+describe(`LCHLauncherLocalizeCommit-${ languageCode }`, function test_LCHLauncherLocalizeCommit () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
@@ -25,7 +25,7 @@ describe(`LCHLauncherLocalizeCommit-${ languageCode }`, function testLCHLauncher
 
 });
 
-describe(`LCHLauncherLocalizePreview-${ languageCode }`, function testLCHLauncherLocalizePreview () {
+describe(`LCHLauncherLocalizePreview-${ languageCode }`, function test_LCHLauncherLocalizePreview () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
@@ -40,7 +40,7 @@ describe(`LCHLauncherLocalizePreview-${ languageCode }`, function testLCHLaunche
 
 });
 
-describe(`LCHLauncherLocalizePipe-${ languageCode }`, function testLCHLauncherLocalizePipe () {
+describe(`LCHLauncherLocalizePipe-${ languageCode }`, function test_LCHLauncherLocalizePipe () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {

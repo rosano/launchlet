@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./main.js');
 
-describe('LCHURLOpenCallback', function testLCHURLOpenCallback() {
+describe('LCHURLOpenCallback', function test_LCHURLOpenCallback() {
 
 	it('returns undefined', function() {
 		deepEqual(mainModule.LCHURLOpenCallback(), undefined);
@@ -10,7 +10,7 @@ describe('LCHURLOpenCallback', function testLCHURLOpenCallback() {
 
 });
 
-describe('LCHURLOpenRecipe', function testLCHURLOpenRecipe() {
+describe('LCHURLOpenRecipe', function test_LCHURLOpenRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHURLOpenRecipe(), {

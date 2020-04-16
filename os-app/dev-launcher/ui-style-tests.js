@@ -2,7 +2,7 @@ import { deepEqual } from 'assert';
 
 const inputData = require('fs').readFileSync(require('path').join(__dirname, '__compiled/ui-style.css'), 'utf8');
 
-describe('LCHLauncherStyle', function testLCHLauncherStyle() {
+describe('LCHLauncherStyle', function test_LCHLauncherStyle() {
 
 	it('contains normalize', function() {
 		deepEqual(inputData.match(/\{(.*00%)\}/)[1], 'line-height:1.15;-webkit-text-size-adjust:100%');

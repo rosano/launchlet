@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./main.js');
 
-describe('LCHPrimitiveURLCallback', function testLCHPrimitiveURLCallback() {
+describe('LCHPrimitiveURLCallback', function test_LCHPrimitiveURLCallback() {
 
 	it.skip('throws error if not string', function() {
 		throws(function() {
@@ -60,7 +60,7 @@ describe('LCHPrimitiveURLCallback', function testLCHPrimitiveURLCallback() {
 
 });
 
-describe('LCHPrimitiveStringCanonicalExampleCallback', function testLCHPrimitiveStringCanonicalExampleCallback() {
+describe('LCHPrimitiveStringCanonicalExampleCallback', function test_LCHPrimitiveStringCanonicalExampleCallback() {
 
 	it('returns string', function() {
 		deepEqual(mainModule.LCHPrimitiveStringCanonicalExampleCallback(), 'http://example.com');
@@ -68,7 +68,7 @@ describe('LCHPrimitiveStringCanonicalExampleCallback', function testLCHPrimitive
 
 });
 
-describe('LCHPrimitiveURLRecipe', function testLCHPrimitiveURLRecipe() {
+describe('LCHPrimitiveURLRecipe', function test_LCHPrimitiveURLRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHPrimitiveURLRecipe(), {

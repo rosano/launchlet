@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./main.js');
 
-describe('LCHPrimitiveDOMElementCallback', function testLCHPrimitiveDOMElementCallback() {
+describe('LCHPrimitiveDOMElementCallback', function test_LCHPrimitiveDOMElementCallback() {
 
 	it('returns false if not object', function() {
 		deepEqual(mainModule.LCHPrimitiveDOMElementCallback(null), false);
@@ -18,7 +18,7 @@ describe('LCHPrimitiveDOMElementCallback', function testLCHPrimitiveDOMElementCa
 
 });
 
-describe('LCHPrimitiveDOMElementCanonicalExampleCallback', function testLCHPrimitiveDOMElementCanonicalExampleCallback() {
+describe('LCHPrimitiveDOMElementCanonicalExampleCallback', function test_LCHPrimitiveDOMElementCanonicalExampleCallback() {
 
 	it('returns object', function() {
 		deepEqual(typeof mainModule.LCHPrimitiveDOMElementCanonicalExampleCallback(), 'object');
@@ -34,7 +34,7 @@ describe('LCHPrimitiveDOMElementCanonicalExampleCallback', function testLCHPrimi
 
 });
 
-describe('LCHPrimitiveDOMElementRecipe', function testLCHPrimitiveDOMElementRecipe() {
+describe('LCHPrimitiveDOMElementRecipe', function test_LCHPrimitiveDOMElementRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHPrimitiveDOMElementRecipe(), {

@@ -2,7 +2,7 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHOptionRunAutomaticRecipes', function testLCHOptionRunAutomaticRecipes () {
+describe('LCHOptionRunAutomaticRecipes', function test_LCHOptionRunAutomaticRecipes () {
 
 	const uStubItem = function () {
 		return {

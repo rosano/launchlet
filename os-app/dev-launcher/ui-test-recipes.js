@@ -2,7 +2,7 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHRecipeIsExcluded', function testLCHRecipeIsExcluded () {
+describe('LCHRecipeIsExcluded', function test_LCHRecipeIsExcluded () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
@@ -46,7 +46,7 @@ describe('LCHRecipeIsExcluded', function testLCHRecipeIsExcluded () {
 
 });
 
-describe('LCHRecipeURLFilter', function testLCHRecipeURLFilter () {
+describe('LCHRecipeURLFilter', function test_LCHRecipeURLFilter () {
 
 	const StubRecipes = uStubStringify([{
 		LCHRecipeName: 'alfa',
@@ -95,7 +95,7 @@ describe('LCHRecipeURLFilter', function testLCHRecipeURLFilter () {
 
 });
 
-describe('LCHRecipeStyle', function testLCHRecipeStyle () {
+describe('LCHRecipeStyle', function test_LCHRecipeStyle () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {

@@ -11,7 +11,7 @@ const kTesting = {
 	},
 };
 
-describe('LCHSettingsMetalWrite', function testLCHSettingsMetalWrite() {
+describe('LCHSettingsMetalWrite', function test_LCHSettingsMetalWrite() {
 
 	it('rejects if not object', async function() {
 		await rejects(mainModule.LCHSettingsMetalWrite(LCHTestingStorageClient, null), /LCHErrorInputNotValid/);
@@ -37,7 +37,7 @@ describe('LCHSettingsMetalWrite', function testLCHSettingsMetalWrite() {
 
 });
 
-describe('LCHSettingsMetalRead', function testLCHSettingsMetalRead() {
+describe('LCHSettingsMetalRead', function test_LCHSettingsMetalRead() {
 
 	it('rejects if not string', async function() {
 		await rejects(mainModule.LCHSettingsMetalRead(LCHTestingStorageClient, 1), /LCHErrorInputNotValid/);
@@ -55,7 +55,7 @@ describe('LCHSettingsMetalRead', function testLCHSettingsMetalRead() {
 
 });
 
-describe('LCHSettingsMetalList', function testLCHSettingsMetalList() {
+describe('LCHSettingsMetalList', function test_LCHSettingsMetalList() {
 
 	it('returns empty array if none', async function() {
 		deepEqual(await mainModule.LCHSettingsMetalList(LCHTestingStorageClient), {});
@@ -69,7 +69,7 @@ describe('LCHSettingsMetalList', function testLCHSettingsMetalList() {
 
 });
 
-describe('LCHSettingsMetalDelete', function testLCHSettingsMetalDelete() {
+describe('LCHSettingsMetalDelete', function test_LCHSettingsMetalDelete() {
 
 	it('rejects if not string', async function() {
 		await rejects(mainModule.LCHSettingsMetalDelete(LCHTestingStorageClient, 1), /LCHErrorInputNotValid/);

@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./_aggregate.js');
 
-describe('LCHVitrineRecipes', function testLCHVitrineRecipes() {
+describe('LCHVitrineRecipes', function test_LCHVitrineRecipes() {
 
 	it('returns LCHRecipe for each folder', function() {
 		const items = [].concat.apply([], require('glob').sync('**/main.js', {

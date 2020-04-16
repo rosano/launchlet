@@ -2,7 +2,7 @@ const { throws, rejects, deepEqual } = require('assert');
 
 import { LCHFormulaModelErrorsFor } from './main.js';
 
-describe('LCHFormulaModelErrorsFor', function testLCHFormulaModelErrorsFor() {
+describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 
 	it('throws error if not object', function() {
 		throws(function() {
@@ -210,7 +210,7 @@ describe('LCHFormulaModelErrorsFor', function testLCHFormulaModelErrorsFor() {
 
 import { LCHFormulaFrom } from './main.js';
 
-describe('LCHFormulaFrom', function testLCHFormulaFrom() {
+describe('LCHFormulaFrom', function test_LCHFormulaFrom() {
 
 	it('throws error if not object', function() {
 		throws(function() {
@@ -234,7 +234,7 @@ describe('LCHFormulaFrom', function testLCHFormulaFrom() {
 
 import { LCHFormulaTo } from './main.js';
 
-describe('LCHFormulaTo', function testLCHFormulaTo() {
+describe('LCHFormulaTo', function test_LCHFormulaTo() {
 
 	it('throws error if not object', function() {
 		throws(function() {
@@ -264,7 +264,7 @@ describe('LCHFormulaTo', function testLCHFormulaTo() {
 
 import { LCHFormulaSafeStringFields } from './main.js';
 
-describe('LCHFormulaSafeStringFields', function testLCHFormulaSafeStringFields() {
+describe('LCHFormulaSafeStringFields', function test_LCHFormulaSafeStringFields() {
 
 	it('prefixes fields with with LCHFormula', function() {
 		deepEqual(LCHFormulaSafeStringFields.filter(function (e) {
@@ -279,7 +279,7 @@ describe('LCHFormulaSafeStringFields', function testLCHFormulaSafeStringFields()
 });
 
 import { LCHFormulaToEvaluate, LCHFormulaSafeStringFields } from './main.js';
-describe('LCHFormulaToEvaluate', function testLCHFormulaToEvaluate() {
+describe('LCHFormulaToEvaluate', function test_LCHFormulaToEvaluate() {
 
 	it('throws error if not valid', function() {
 		throws(function() {

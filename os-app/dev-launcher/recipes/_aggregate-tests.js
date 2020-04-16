@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./_aggregate.js');
 
-describe('LCHLauncherStandardRecipes', function testLCHLauncherStandardRecipes() {
+describe('LCHLauncherStandardRecipes', function test_LCHLauncherStandardRecipes() {
 
 	it('returns LCHRecipe for each folder', function() {
 		const items = [].concat.apply([], require('glob').sync('*/**/main.js', {

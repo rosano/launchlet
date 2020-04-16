@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./rollup-config-custom.js');
 
-describe('LCHPackageRollupConfigCustom', function testLCHPackageRollupConfigCustom() {
+describe('LCHPackageRollupConfigCustom', function test_LCHPackageRollupConfigCustom() {
 
 	it('throws error if not object', function() {
 		throws(function() {

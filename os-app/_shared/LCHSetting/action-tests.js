@@ -2,7 +2,7 @@ const { rejects, deepEqual } = require('assert');
 
 const mainModule = require('./action.js');
 
-describe('LCHSettingsActionProperty', function testLCHSettingsActionProperty() {
+describe('LCHSettingsActionProperty', function test_LCHSettingsActionProperty() {
 
 	it('rejects if param1 not string', async function() {
 		await rejects(mainModule.LCHSettingsActionProperty(LCHTestingStorageClient, null));
@@ -28,7 +28,7 @@ describe('LCHSettingsActionProperty', function testLCHSettingsActionProperty() {
 
 });
 
-describe('LCHSettingsActionDelete', function testLCHSettingsActionDelete() {
+describe('LCHSettingsActionDelete', function test_LCHSettingsActionDelete() {
 
 	it('rejects if not string', async function() {
 		await rejects(mainModule.LCHSettingsActionDelete(LCHTestingStorageClient, 1), /LCHErrorInputNotValid/);

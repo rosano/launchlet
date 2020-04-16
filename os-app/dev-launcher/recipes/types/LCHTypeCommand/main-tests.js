@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./main.js');
 
-describe('LCHTypeCommandCallback', function testLCHTypeCommandCallback() {
+describe('LCHTypeCommandCallback', function test_LCHTypeCommandCallback() {
 
 	it.skip('throws error if not valid', function() {
 		throws(function() {
@@ -28,7 +28,7 @@ describe('LCHTypeCommandCallback', function testLCHTypeCommandCallback() {
 
 });
 
-describe('LCHTypeStringCanonicalExampleCallback', function testLCHTypeStringCanonicalExampleCallback() {
+describe('LCHTypeStringCanonicalExampleCallback', function test_LCHTypeStringCanonicalExampleCallback() {
 
 	it('returns object', function() {
 		deepEqual(typeof mainModule.LCHTypeStringCanonicalExampleCallback(), 'object');
@@ -52,7 +52,7 @@ describe('LCHTypeStringCanonicalExampleCallback', function testLCHTypeStringCano
 
 });
 
-describe('LCHTypeCommandRecipe', function testLCHTypeCommandRecipe() {
+describe('LCHTypeCommandRecipe', function test_LCHTypeCommandRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHTypeCommandRecipe(), {

@@ -2,7 +2,7 @@ const { throws, rejects, deepEqual } = require('assert');
 
 const mainModule = require('./main.js');
 
-describe('LCHRuntimeURLFilter', function testLCHRuntimeURLFilter() {
+describe('LCHRuntimeURLFilter', function test_LCHRuntimeURLFilter() {
 
 	it('throws if param1 not string', function() {
 		throws(function() {
@@ -76,7 +76,7 @@ describe('LCHRuntimeURLFilter', function testLCHRuntimeURLFilter() {
 
 });
 
-describe('LCHRuntimeInputTypes', function testLCHRuntimeInputTypes() {
+describe('LCHRuntimeInputTypes', function test_LCHRuntimeInputTypes() {
 
 	it('throws if not string', function() {
 		throws(function() {
@@ -106,7 +106,7 @@ describe('LCHRuntimeInputTypes', function testLCHRuntimeInputTypes() {
 
 });
 
-describe('LCHRuntimeAPI', function testLCHRuntimeAPI() {
+describe('LCHRuntimeAPI', function test_LCHRuntimeAPI() {
 
 	it('throws if not array', function() {
 		throws(function() {

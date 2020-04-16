@@ -16,7 +16,7 @@ const kTesting = {
 
 mainModule.mod._ValueClass = kTesting.StubValueClass('alfa');
 
-describe('DataSingletonExists', function testDataSingletonExists() {
+describe('DataSingletonExists', function test_DataSingletonExists() {
 
 	beforeEach(function () {
 		deepEqual(mainModule.mod._ValueSingleton, undefined);
@@ -47,7 +47,7 @@ describe('DataSingletonExists', function testDataSingletonExists() {
 
 });
 
-describe('LifecycleSingletonCreate', function testLifecycleSingletonCreate() {
+describe('LifecycleSingletonCreate', function test_LifecycleSingletonCreate() {
 
 	beforeEach(function () {
 		deepEqual(mainModule.mod._ValueSingleton, undefined);
@@ -79,7 +79,7 @@ describe('LifecycleSingletonCreate', function testLifecycleSingletonCreate() {
 
 });
 
-describe('LifecycleSingletonDestroy', function testLifecycleSingletonDestroy() {
+describe('LifecycleSingletonDestroy', function test_LifecycleSingletonDestroy() {
 
 	beforeEach(function () {
 		deepEqual(mainModule.mod._ValueSingleton, undefined);
@@ -103,7 +103,7 @@ describe('LifecycleSingletonDestroy', function testLifecycleSingletonDestroy() {
 
 import { LCHLauncherModeCommit, LCHLauncherModePreview, LCHLauncherModePipe } from '../dev-launcher/ui-logic.js';
 
-describe('LCHModeCommit', function testLCHModeCommit() {
+describe('LCHModeCommit', function test_LCHModeCommit() {
 
 	it('sets value', function() {
 		deepEqual(mainModule.LCHModeCommit, LCHLauncherModeCommit());
@@ -111,7 +111,7 @@ describe('LCHModeCommit', function testLCHModeCommit() {
 
 });
 
-describe('LCHModePreview', function testLCHModePreview() {
+describe('LCHModePreview', function test_LCHModePreview() {
 
 	it('sets value', function() {
 		deepEqual(mainModule.LCHModePreview, LCHLauncherModePreview());
@@ -119,7 +119,7 @@ describe('LCHModePreview', function testLCHModePreview() {
 
 });
 
-describe('LCHModePipe', function testLCHModePipe() {
+describe('LCHModePipe', function test_LCHModePipe() {
 
 	it('sets value', function() {
 		deepEqual(mainModule.LCHModePipe, LCHLauncherModePipe());
@@ -127,7 +127,7 @@ describe('LCHModePipe', function testLCHModePipe() {
 
 });
 
-describe('LCHPackage', function testLCHPackage() {
+describe('LCHPackage', function test_LCHPackage() {
 
 	it('returns object', function() {
 		deepEqual(mainModule.LCHPackage(), {

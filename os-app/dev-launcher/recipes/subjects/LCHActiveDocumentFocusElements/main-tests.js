@@ -3,7 +3,7 @@ import { JSDOM } from 'jsdom';
 
 const mainModule = require('./main.js');
 
-describe('LCHActiveDocumentsFocusElements', function testLCHActiveDocumentsFocusElements() {
+describe('LCHActiveDocumentsFocusElements', function test_LCHActiveDocumentsFocusElements() {
 
 	it('throws if not object', function() {
 		throws(function() {
@@ -21,7 +21,7 @@ describe('LCHActiveDocumentsFocusElements', function testLCHActiveDocumentsFocus
 		deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('')), []);
 	});
 
-	context('FocusElementAnchor', function testFocusElementAnchor () {
+	context('FocusElementAnchor', function test_FocusElementAnchor () {
 
 		it('excludes if no href', function() {
 			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<a href="">alfa</a>')), []);
@@ -77,7 +77,7 @@ describe('LCHActiveDocumentsFocusElements', function testLCHActiveDocumentsFocus
 	
 	});
 
-	context('FocusElementInput', function testFocusElementInput () {
+	context('FocusElementInput', function test_FocusElementInput () {
 		
 		it('excludes if name only whitespace', function() {
 			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<input name=" " />')), []);
@@ -153,7 +153,7 @@ describe('LCHActiveDocumentsFocusElements', function testLCHActiveDocumentsFocus
 	
 	});
 
-	context('FocusElementButton', function testFocusElementButton () {
+	context('FocusElementButton', function test_FocusElementButton () {
 		
 		it('excludes if textContent only whitespace', function() {
 			deepEqual(mainModule.LCHActiveDocumentsFocusElements(JSDOM.fragment('<button> </button>')), []);
@@ -191,11 +191,11 @@ describe('LCHActiveDocumentsFocusElements', function testLCHActiveDocumentsFocus
 
 });
 
-describe('LCHActiveDocumentFocusElementsCallback', function testLCHActiveDocumentFocusElementsCallback() {
+describe('LCHActiveDocumentFocusElementsCallback', function test_LCHActiveDocumentFocusElementsCallback() {
 
 });
 
-describe('LCHActiveDocumentFocusElementsRecipe', function testLCHActiveDocumentFocusElementsRecipe() {
+describe('LCHActiveDocumentFocusElementsRecipe', function test_LCHActiveDocumentFocusElementsRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHActiveDocumentFocusElementsRecipe(), {

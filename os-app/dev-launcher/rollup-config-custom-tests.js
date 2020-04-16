@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./rollup-config-custom.js');
 
-describe('LCHLauncherRollupGrabContainerSelector', function testLCHLauncherRollupGrabContainerSelector() {
+describe('LCHLauncherRollupGrabContainerSelector', function test_LCHLauncherRollupGrabContainerSelector() {
 
 	it('throws error if not string', function() {
 		throws(function() {
@@ -36,7 +36,7 @@ describe('LCHLauncherRollupGrabContainerSelector', function testLCHLauncherRollu
 
 });
 
-describe('LCHLauncherRollupPrefixSelector', function testLCHLauncherRollupPrefixSelector() {
+describe('LCHLauncherRollupPrefixSelector', function test_LCHLauncherRollupPrefixSelector() {
 
 	it('throws error if param1 not string', function() {
 		throws(function() {
@@ -100,7 +100,7 @@ display: none;
 
 });
 
-describe('LCHLauncherRollupConfigCustom', function testLCHLauncherRollupConfigCustom() {
+describe('LCHLauncherRollupConfigCustom', function test_LCHLauncherRollupConfigCustom() {
 
 	it('throws error if not object', function() {
 		throws(function() {

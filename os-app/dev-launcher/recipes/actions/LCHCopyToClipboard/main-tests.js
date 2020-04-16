@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./main.js');
 
-describe('LCHCopyToClipboardCallback', function testLCHCopyToClipboardCallback() {
+describe('LCHCopyToClipboardCallback', function test_LCHCopyToClipboardCallback() {
 
 	it('throws error if not string', function() {
 		throws(function() {
@@ -35,7 +35,7 @@ describe('LCHCopyToClipboardCallback', function testLCHCopyToClipboardCallback()
 
 });
 
-describe('LCHCopyToClipboardRecipe', function testLCHCopyToClipboardRecipe() {
+describe('LCHCopyToClipboardRecipe', function test_LCHCopyToClipboardRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHCopyToClipboardRecipe(), {

@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./storage.js');
 
-describe('LCHSettingStoragePath', function testLCHSettingStoragePath() {
+describe('LCHSettingStoragePath', function test_LCHSettingStoragePath() {
 
 	it('returns string', function() {
 		deepEqual(mainModule.LCHSettingStoragePath('alfa'), 'lch_settings/alfa');

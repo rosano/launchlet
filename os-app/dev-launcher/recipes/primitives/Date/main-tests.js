@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./main.js');
 
-describe('LCHPrimitiveDateCallback', function testLCHPrimitiveDateCallback() {
+describe('LCHPrimitiveDateCallback', function test_LCHPrimitiveDateCallback() {
 
 	it('returns false if not date', function() {
 		deepEqual(mainModule.LCHPrimitiveDateCallback(null), false);
@@ -18,7 +18,7 @@ describe('LCHPrimitiveDateCallback', function testLCHPrimitiveDateCallback() {
 
 });
 
-describe('LCHPrimitiveDateCanonicalExampleCallback', function testLCHPrimitiveDateCanonicalExampleCallback() {
+describe('LCHPrimitiveDateCanonicalExampleCallback', function test_LCHPrimitiveDateCanonicalExampleCallback() {
 
 	it('returns Date', function() {
 		deepEqual(mainModule.LCHPrimitiveDateCanonicalExampleCallback(), new Date(0));
@@ -26,7 +26,7 @@ describe('LCHPrimitiveDateCanonicalExampleCallback', function testLCHPrimitiveDa
 
 });
 
-describe('LCHPrimitiveDateRecipe', function testLCHPrimitiveDateRecipe() {
+describe('LCHPrimitiveDateRecipe', function test_LCHPrimitiveDateRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHPrimitiveDateRecipe(), {

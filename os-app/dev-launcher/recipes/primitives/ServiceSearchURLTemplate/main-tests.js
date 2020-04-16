@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./main.js');
 
-describe('LCHPrimitiveServiceSearchURLTemplateCallback', function testLCHPrimitiveServiceSearchURLTemplateCallback() {
+describe('LCHPrimitiveServiceSearchURLTemplateCallback', function test_LCHPrimitiveServiceSearchURLTemplateCallback() {
 
 	it('returns false if not URL', function() {
 		deepEqual(mainModule.LCHPrimitiveServiceSearchURLTemplateCallback('://example'), false);
@@ -22,7 +22,7 @@ describe('LCHPrimitiveServiceSearchURLTemplateCallback', function testLCHPrimiti
 
 });
 
-describe('LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback', function testLCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback() {
+describe('LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback', function test_LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback() {
 
 	it('returns string', function() {
 		deepEqual(mainModule.LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback(), 'http://example.com?q=LCHSEARCHTOKEN');
@@ -30,7 +30,7 @@ describe('LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback', functio
 
 });
 
-describe('LCHPrimitiveServiceSearchURLTemplateRecipe', function testLCHPrimitiveServiceSearchURLTemplateRecipe() {
+describe('LCHPrimitiveServiceSearchURLTemplateRecipe', function test_LCHPrimitiveServiceSearchURLTemplateRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHPrimitiveServiceSearchURLTemplateRecipe(), {

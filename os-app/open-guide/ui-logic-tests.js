@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./ui-logic.js');
 
-describe('LCHGuideExampleFormatted', function testLCHGuideExampleFormatted() {
+describe('LCHGuideExampleFormatted', function test_LCHGuideExampleFormatted() {
 
 	it('throws error if not object', function() {
 		throws(function() {
@@ -36,7 +36,7 @@ describe('LCHGuideExampleFormatted', function testLCHGuideExampleFormatted() {
 
 });
 
-describe('LCHGuideExampleQuoted', function testLCHGuideExampleQuoted() {
+describe('LCHGuideExampleQuoted', function test_LCHGuideExampleQuoted() {
 
 	it('throws error if not object', function() {
 		throws(function() {
@@ -56,7 +56,7 @@ describe('LCHGuideExampleQuoted', function testLCHGuideExampleQuoted() {
 
 });
 
-describe('LCHGuideExampleTemplate', function testLCHGuideExampleTemplate() {
+describe('LCHGuideExampleTemplate', function test_LCHGuideExampleTemplate() {
 
 	it('throws error if not array', function() {
 		throws(function() {
@@ -78,7 +78,7 @@ describe('LCHGuideExampleTemplate', function testLCHGuideExampleTemplate() {
 
 });
 
-describe('LCHGuideStringify', function testLCHGuideStringify() {
+describe('LCHGuideStringify', function test_LCHGuideStringify() {
 
 	it('throws error if not object', function() {
 		throws(function() {

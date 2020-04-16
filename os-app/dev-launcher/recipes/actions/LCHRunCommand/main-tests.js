@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./main.js');
 
-describe('LCHRunCommandCallback', function testLCHRunCommandCallback() {
+describe('LCHRunCommandCallback', function test_LCHRunCommandCallback() {
 
 	it('returns inputData', function() {
 		const item = function () {};
@@ -11,7 +11,7 @@ describe('LCHRunCommandCallback', function testLCHRunCommandCallback() {
 
 });
 
-describe('LCHRunCommandRecipe', function testLCHRunCommandRecipe() {
+describe('LCHRunCommandRecipe', function test_LCHRunCommandRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHRunCommandRecipe(), {

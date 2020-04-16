@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./main.js');
 
-describe('LCHTypeServiceSearchCallback', function testLCHTypeServiceSearchCallback() {
+describe('LCHTypeServiceSearchCallback', function test_LCHTypeServiceSearchCallback() {
 
 	it('returns false if no LCHRecipeName', function() {
 		deepEqual(mainModule.LCHTypeServiceSearchCallback(Object.assign(mainModule.LCHTypeServiceSearchCanonicalExampleCallback(), {
@@ -28,7 +28,7 @@ describe('LCHTypeServiceSearchCallback', function testLCHTypeServiceSearchCallba
 
 });
 
-describe('LCHTypeServiceSearchCanonicalExampleCallback', function testLCHTypeServiceSearchCanonicalExampleCallback() {
+describe('LCHTypeServiceSearchCanonicalExampleCallback', function test_LCHTypeServiceSearchCanonicalExampleCallback() {
 
 	it('returns object', function() {
 		deepEqual(typeof mainModule.LCHTypeServiceSearchCanonicalExampleCallback(), 'object');
@@ -64,7 +64,7 @@ describe('LCHTypeServiceSearchCanonicalExampleCallback', function testLCHTypeSer
 
 });
 
-describe('LCHTypeServiceSearchRecipe', function testLCHTypeServiceSearchRecipe() {
+describe('LCHTypeServiceSearchRecipe', function test_LCHTypeServiceSearchRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHTypeServiceSearchRecipe(), {

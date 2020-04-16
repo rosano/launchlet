@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./main.js');
 
-describe('LCHVitrineCopyPageInfoRecipe', function testLCHVitrineCopyPageInfoRecipe() {
+describe('LCHVitrineCopyPageInfoRecipe', function test_LCHVitrineCopyPageInfoRecipe() {
 
 	it('returns LCHRecipe', async function() {
 		deepEqual(mainModule.LCHVitrineCopyPageInfoRecipe(), {

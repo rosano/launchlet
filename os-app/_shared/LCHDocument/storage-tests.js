@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./storage.js');
 
-describe('LCHDocumentStoragePath', function testLCHDocumentStoragePath() {
+describe('LCHDocumentStoragePath', function test_LCHDocumentStoragePath() {
 
 	it('returns string', function() {
 		deepEqual(mainModule.LCHDocumentStoragePath('alfa'), 'lch_documents/alfa');

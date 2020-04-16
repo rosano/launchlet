@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./main.js');
 
-describe('LCHTypeSubjectContainerCallback', function testLCHTypeSubjectContainerCallback() {
+describe('LCHTypeSubjectContainerCallback', function test_LCHTypeSubjectContainerCallback() {
 
 	it('returns false if no LCHRecipeName', function() {
 		deepEqual(mainModule.LCHTypeSubjectContainerCallback(Object.assign(mainModule.LCHTypeSubjectContainerCanonicalExampleCallback(), {
@@ -22,7 +22,7 @@ describe('LCHTypeSubjectContainerCallback', function testLCHTypeSubjectContainer
 
 });
 
-describe('LCHTypeSubjectContainerCanonicalExampleCallback', function testLCHTypeSubjectContainerCanonicalExampleCallback() {
+describe('LCHTypeSubjectContainerCanonicalExampleCallback', function test_LCHTypeSubjectContainerCanonicalExampleCallback() {
 
 	it('returns object', function() {
 		deepEqual(typeof mainModule.LCHTypeSubjectContainerCanonicalExampleCallback(), 'object');
@@ -54,7 +54,7 @@ describe('LCHTypeSubjectContainerCanonicalExampleCallback', function testLCHType
 
 });
 
-describe('LCHTypeSubjectContainerRecipe', function testLCHTypeSubjectContainerRecipe() {
+describe('LCHTypeSubjectContainerRecipe', function test_LCHTypeSubjectContainerRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHTypeSubjectContainerRecipe(), {

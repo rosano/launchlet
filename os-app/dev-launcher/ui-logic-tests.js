@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./ui-logic.js');
 
-describe('LCHLauncherModeCommit', function testLCHLauncherModeCommit() {
+describe('LCHLauncherModeCommit', function test_LCHLauncherModeCommit() {
 
 	it('returns string', function() {
 		deepEqual(mainModule.LCHLauncherModeCommit(), 'kLCHLauncherModeCommit');
@@ -10,7 +10,7 @@ describe('LCHLauncherModeCommit', function testLCHLauncherModeCommit() {
 
 });
 
-describe('LCHLauncherModePreview', function testLCHLauncherModePreview() {
+describe('LCHLauncherModePreview', function test_LCHLauncherModePreview() {
 
 	it('returns string', function() {
 		deepEqual(mainModule.LCHLauncherModePreview(), 'kLCHLauncherModePreview');
@@ -18,7 +18,7 @@ describe('LCHLauncherModePreview', function testLCHLauncherModePreview() {
 
 });
 
-describe('LCHLauncherModePipe', function testLCHLauncherModePipe() {
+describe('LCHLauncherModePipe', function test_LCHLauncherModePipe() {
 
 	it('returns string', function() {
 		deepEqual(mainModule.LCHLauncherModePipe(), 'kLCHLauncherModePipe');
@@ -26,7 +26,7 @@ describe('LCHLauncherModePipe', function testLCHLauncherModePipe() {
 
 });
 
-describe('LCHLauncherModeTask', function testLCHLauncherModeTask() {
+describe('LCHLauncherModeTask', function test_LCHLauncherModeTask() {
 
 	it('returns string', function() {
 		deepEqual(mainModule.LCHLauncherModeTask(), 'kLCHLauncherModeTask');
@@ -34,7 +34,7 @@ describe('LCHLauncherModeTask', function testLCHLauncherModeTask() {
 
 });
 
-describe('LCHLauncherModes', function testLCHLauncherModes() {
+describe('LCHLauncherModes', function test_LCHLauncherModes() {
 
 	it('returns array', function() {
 		deepEqual(mainModule.LCHLauncherModes(), [
@@ -47,7 +47,7 @@ describe('LCHLauncherModes', function testLCHLauncherModes() {
 
 });
 
-describe('LCHLauncherOptions', function testLCHLauncherOptions() {
+describe('LCHLauncherOptions', function test_LCHLauncherOptions() {
 
 	it('throws error if not object', function() {
 		throws(function() {
@@ -156,7 +156,7 @@ describe('LCHLauncherOptions', function testLCHLauncherOptions() {
 
 });
 
-describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode() {
+describe('LCHLauncherUIRecipesForMode', function test_LCHLauncherUIRecipesForMode() {
 
 	it('throws error if param1 not array', function() {
 		throws(function() {
@@ -265,7 +265,7 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 
 });
 
-// describe('LCHLauncherFilterForText', function testLCHLauncherFilterForText() {
+// describe('LCHLauncherFilterForText', function test_LCHLauncherFilterForText() {
 
 // 	it('throws error if not string', function() {
 // 		throws(function() {
@@ -339,7 +339,7 @@ describe('LCHLauncherUIRecipesForMode', function testLCHLauncherUIRecipesForMode
 
 // });
 
-describe('LCHLauncherKeyboardEventIsTextInput', function testLCHLauncherKeyboardEventIsTextInput() {
+describe('LCHLauncherKeyboardEventIsTextInput', function test_LCHLauncherKeyboardEventIsTextInput() {
 
 	it('throws error if not object', function() {
 		throws(function() {
@@ -455,7 +455,7 @@ describe('LCHLauncherKeyboardEventIsTextInput', function testLCHLauncherKeyboard
 
 });
 
-describe('LCHLauncherActionComparator', function testLCHLauncherActionComparator() {
+describe('LCHLauncherActionComparator', function test_LCHLauncherActionComparator() {
 
 	it('throws error if not string', function() {
 		throws(function() {
@@ -506,7 +506,7 @@ describe('LCHLauncherActionComparator', function testLCHLauncherActionComparator
 
 });
 
-describe('LCHLauncherConstrainIndex', function testLCHLauncherConstrainIndex() {
+describe('LCHLauncherConstrainIndex', function test_LCHLauncherConstrainIndex() {
 
 	it('throws error if param1 not array', function() {
 		throws(function() {
@@ -534,7 +534,7 @@ describe('LCHLauncherConstrainIndex', function testLCHLauncherConstrainIndex() {
 
 });
 
-describe('LCHLauncherReloadableSubjects', function testLCHLauncherReloadableSubjects() {
+describe('LCHLauncherReloadableSubjects', function test_LCHLauncherReloadableSubjects() {
 
 	it('throws error if not array', function() {
 		throws(function() {

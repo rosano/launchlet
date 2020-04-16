@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./main.js').default;
 
-describe('LCHBuildFunctionString', function testLCHBuildFunctionString() {
+describe('LCHBuildFunctionString', function test_LCHBuildFunctionString() {
 
 	it('throws error if param1 not string', function() {
 		throws(function() {
@@ -30,7 +30,7 @@ describe('LCHBuildFunctionString', function testLCHBuildFunctionString() {
 
 });
 
-describe('LCHBuildConvertDocumentFunctions', function testLCHBuildConvertDocumentFunctions() {
+describe('LCHBuildConvertDocumentFunctions', function test_LCHBuildConvertDocumentFunctions() {
 
 	it('throws error if not object', function() {
 		throws(function() {
@@ -82,7 +82,7 @@ describe('LCHBuildConvertDocumentFunctions', function testLCHBuildConvertDocumen
 
 });
 
-describe('LCHBuildObjectString', function testLCHBuildObjectString() {
+describe('LCHBuildObjectString', function test_LCHBuildObjectString() {
 
 	it('throws error if not object', function() {
 		throws(function() {
@@ -121,7 +121,7 @@ bravo
 
 });
 
-describe('LCHBuildRecipeArrayString', function testLCHBuildRecipeArrayString() {
+describe('LCHBuildRecipeArrayString', function test_LCHBuildRecipeArrayString() {
 
 	it('throws error if not array', function() {
 		throws(function() {
@@ -179,7 +179,7 @@ describe('LCHBuildRecipeArrayString', function testLCHBuildRecipeArrayString() {
 
 });
 
-describe('LCHBuildStripLivereload', function testLCHBuildStripLivereload() {
+describe('LCHBuildStripLivereload', function test_LCHBuildStripLivereload() {
 
 	it('throws error if not string', function() {
 		throws(function() {
@@ -205,7 +205,7 @@ describe('LCHBuildStripLivereload', function testLCHBuildStripLivereload() {
 
 });
 
-describe('LCHBuildStripSourceMap', function testLCHBuildStripSourceMap() {
+describe('LCHBuildStripSourceMap', function test_LCHBuildStripSourceMap() {
 
 	it('throws error if not string', function() {
 		throws(function() {
@@ -231,7 +231,7 @@ describe('LCHBuildStripSourceMap', function testLCHBuildStripSourceMap() {
 
 });
 
-describe('LCHBuildEscape', function testLCHBuildEscape() {
+describe('LCHBuildEscape', function test_LCHBuildEscape() {
 
 	it('throws error if not string', function() {
 		throws(function() {

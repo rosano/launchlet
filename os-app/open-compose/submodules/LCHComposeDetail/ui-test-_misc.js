@@ -120,7 +120,7 @@ describe('LCHComposeDetail_Misc', function () {
 	
 	});
 
-	describe('LCHComposeDetailToolbarBackButtonImage', function testLCHComposeDetailToolbarBackButtonImage () {
+	describe('LCHComposeDetailToolbarBackButtonImage', function test_LCHComposeDetailToolbarBackButtonImage () {
 
 		it('sets src', function () {
 			browser.assert.elements(`${ LCHComposeDetailToolbarBackButtonImage } #_OLSKSharedBack`, 1);
@@ -160,7 +160,7 @@ describe('LCHComposeDetail_Misc', function () {
 	
 	});
 
-	describe('LCHComposeDetailToolbarCloneButtonImage', function testLCHComposeDetailToolbarCloneButtonImage () {
+	describe('LCHComposeDetailToolbarCloneButtonImage', function test_LCHComposeDetailToolbarCloneButtonImage () {
 
 		it('sets src', function () {
 			browser.assert.elements(`${ LCHComposeDetailToolbarCloneButtonImage } #_OLSKSharedClone`, 1);
@@ -200,7 +200,7 @@ describe('LCHComposeDetail_Misc', function () {
 	
 	});
 
-	describe('LCHComposeDetailToolbarDiscardButtonImage', function testLCHComposeDetailToolbarDiscardButtonImage () {
+	describe('LCHComposeDetailToolbarDiscardButtonImage', function test_LCHComposeDetailToolbarDiscardButtonImage () {
 
 		it('sets src', function () {
 			browser.assert.elements(`${ LCHComposeDetailToolbarDiscardButtonImage } #_OLSKSharedDiscard`, 1);

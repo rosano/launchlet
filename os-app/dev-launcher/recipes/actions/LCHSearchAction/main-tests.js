@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./main.js');
 
-describe('LCHSearchActionURLFrom', function testLCHSearchActionURLFrom() {
+describe('LCHSearchActionURLFrom', function test_LCHSearchActionURLFrom() {
 
 	it('throws error if param1 not string', function() {
 		throws(function() {
@@ -42,7 +42,7 @@ describe('LCHSearchActionURLFrom', function testLCHSearchActionURLFrom() {
 
 });
 
-describe('LCHSearchWithCallback', function testLCHSearchWithCallback() {
+describe('LCHSearchWithCallback', function test_LCHSearchWithCallback() {
 
 	it('calls api with result', function() {
 		deepEqual(mainModule.LCHSearchWithCallback.bind({
@@ -58,7 +58,7 @@ describe('LCHSearchWithCallback', function testLCHSearchWithCallback() {
 
 });
 
-describe('LCHSearchWithRecipe', function testLCHSearchWithRecipe() {
+describe('LCHSearchWithRecipe', function test_LCHSearchWithRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHSearchWithRecipe(), {
@@ -70,7 +70,7 @@ describe('LCHSearchWithRecipe', function testLCHSearchWithRecipe() {
 
 });
 
-describe('LCHSearchForCallback', function testLCHSearchForCallback() {
+describe('LCHSearchForCallback', function test_LCHSearchForCallback() {
 
 	it('calls LCHFlip with LCHSearchWithCallback', function() {
 		deepEqual(mainModule.LCHSearchForCallback.bind({
@@ -86,7 +86,7 @@ describe('LCHSearchForCallback', function testLCHSearchForCallback() {
 
 });
 
-describe('LCHSearchForRecipe', function testLCHSearchForRecipe() {
+describe('LCHSearchForRecipe', function test_LCHSearchForRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHSearchForRecipe(), {

@@ -4,7 +4,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('LCHLauncherSafety', function () {
 
-describe('AutomaticRunningOfPageRecipes', function testAutomaticRunningOfPageRecipes () {
+describe('AutomaticRunningOfPageRecipes', function test_AutomaticRunningOfPageRecipes () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {

@@ -214,7 +214,7 @@ describe('LCHComposeMaster_Misc', function () {
 	
 	});
 
-	describe('LCHComposeMasterCreateButtonImage', function testLCHComposeMasterCreateButtonImage () {
+	describe('LCHComposeMasterCreateButtonImage', function test_LCHComposeMasterCreateButtonImage () {
 
 		it('sets src', function () {
 			browser.assert.elements(`${ LCHComposeMasterCreateButtonImage } #_OLSKSharedCreate`, 1);

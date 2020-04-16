@@ -20,7 +20,7 @@ const kTesting = {
 	},
 };
 
-describe('LCHDocumentActionCreate', function testLCHDocumentActionCreate() {
+describe('LCHDocumentActionCreate', function test_LCHDocumentActionCreate() {
 
 	it('rejects if not object', async function() {
 		await rejects(mainModule.LCHDocumentActionCreate(LCHTestingStorageClient, null), /LCHErrorInputNotValid/);
@@ -64,7 +64,7 @@ describe('LCHDocumentActionCreate', function testLCHDocumentActionCreate() {
 
 });
 
-describe('LCHDocumentActionRead', function testLCHDocumentActionRead() {
+describe('LCHDocumentActionRead', function test_LCHDocumentActionRead() {
 
 	it('rejects if not string', async function() {
 		await rejects(mainModule.LCHDocumentActionRead(LCHTestingStorageClient, null), /LCHErrorInputNotValid/);
@@ -82,7 +82,7 @@ describe('LCHDocumentActionRead', function testLCHDocumentActionRead() {
 
 });
 
-describe('LCHDocumentActionUpdate', function testLCHDocumentActionUpdate() {
+describe('LCHDocumentActionUpdate', function test_LCHDocumentActionUpdate() {
 
 	it('rejects if not object', async function() {
 		await rejects(mainModule.LCHDocumentActionUpdate(LCHTestingStorageClient, null), /LCHErrorInputNotValid/);
@@ -127,7 +127,7 @@ describe('LCHDocumentActionUpdate', function testLCHDocumentActionUpdate() {
 
 });
 
-describe('LCHDocumentActionDelete', function testLCHDocumentActionDelete() {
+describe('LCHDocumentActionDelete', function test_LCHDocumentActionDelete() {
 
 	it('rejects if not string', async function() {
 		await rejects(mainModule.LCHDocumentActionDelete(LCHTestingStorageClient, null), /LCHErrorInputNotValid/);
@@ -147,7 +147,7 @@ describe('LCHDocumentActionDelete', function testLCHDocumentActionDelete() {
 
 });
 
-describe('LCHDocumentActionList', function testLCHDocumentActionList() {
+describe('LCHDocumentActionList', function test_LCHDocumentActionList() {
 
 	it('returns array', async function() {
 		deepEqual(await mainModule.LCHDocumentActionList(LCHTestingStorageClient), []);

@@ -2,7 +2,7 @@ import { deepEqual } from 'assert';
 
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHOptionIncludePageRecipes', function testLCHOptionIncludePageRecipes () {
+describe('LCHOptionIncludePageRecipes', function test_LCHOptionIncludePageRecipes () {
 
 	context('not enabled', function () {
 		
@@ -71,7 +71,7 @@ describe('LCHOptionIncludePageRecipes', function testLCHOptionIncludePageRecipes
 
 });
 
-describe('LCHPageRecipes', function testLCHPageRecipes () {
+describe('LCHPageRecipes', function test_LCHPageRecipes () {
 
 	context('defined', function () {
 		

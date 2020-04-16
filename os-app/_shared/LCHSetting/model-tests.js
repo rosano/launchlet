@@ -11,7 +11,7 @@ const kTesting = {
 	},
 };
 
-describe('LCHSettingModelErrorsFor', function testLCHSettingModelErrorsFor() {
+describe('LCHSettingModelErrorsFor', function test_LCHSettingModelErrorsFor() {
 
 	it('throws error if not object', function() {
 		throws(function() {

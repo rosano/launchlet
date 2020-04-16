@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./logic.js');
 
-describe('LCHVitrineRouteGuard', function testLCHVitrineRouteGuard() {
+describe('LCHVitrineRouteGuard', function test_LCHVitrineRouteGuard() {
 
 	const StubEnvValid = function () {
 		return {

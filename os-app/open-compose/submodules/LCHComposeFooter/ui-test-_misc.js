@@ -9,7 +9,7 @@ describe('LCHComposeFooter_Misc', function () {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 
-	describe('LCHComposeFooterGuideLink', function testLCHComposeFooterGuideLink () {
+	describe('LCHComposeFooterGuideLink', function test_LCHComposeFooterGuideLink () {
 
 		it('sets href', function () {
 			browser.assert.attribute(LCHComposeFooterGuideLink, 'href', require('../../../open-guide/controller.js').OLSKControllerRoutes().shift().OLSKRoutePath);
@@ -21,7 +21,7 @@ describe('LCHComposeFooter_Misc', function () {
 
 	});
 
-	describe('LCHComposeFooterDonateLink', function testLCHComposeFooterDonateLink () {
+	describe('LCHComposeFooterDonateLink', function test_LCHComposeFooterDonateLink () {
 
 		it('sets href', function () {
 			browser.assert.attribute(LCHComposeFooterDonateLink, 'href', process.env.LCH_SHARED_DONATE_URL);
@@ -33,7 +33,7 @@ describe('LCHComposeFooter_Misc', function () {
 
 	});
 
-	describe('LCHComposeFooterStorageStatus', function testLCHComposeFooterStorageStatus () {
+	describe('LCHComposeFooterStorageStatus', function test_LCHComposeFooterStorageStatus () {
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
@@ -47,7 +47,7 @@ describe('LCHComposeFooter_Misc', function () {
 
 	});
 
-	describe('LCHComposeFooterStorageButton', function testLCHComposeFooterStorageButton () {
+	describe('LCHComposeFooterStorageButton', function test_LCHComposeFooterStorageButton () {
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute);
@@ -83,7 +83,7 @@ describe('LCHComposeFooter_Misc', function () {
 
 	});
 
-	describe('LCHComposeFooterStorageButtonImage', function testLCHComposeFooterStorageButtonImage () {
+	describe('LCHComposeFooterStorageButtonImage', function test_LCHComposeFooterStorageButtonImage () {
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute);

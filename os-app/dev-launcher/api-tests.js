@@ -74,7 +74,7 @@ const kTesting = {
 	},
 };
 
-describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
+describe('LCHRecipesModelErrorsFor', function test_LCHRecipesModelErrorsFor() {
 
 	it('throws if not object', function() {
 		throws(function() {
@@ -277,7 +277,7 @@ describe('LCHRecipesModelErrorsFor', function testLCHRecipesModelErrorsFor() {
 
 });
 
-describe('LCHRecipesModelIsCommand', function testLCHRecipesModelIsCommand() {
+describe('LCHRecipesModelIsCommand', function test_LCHRecipesModelIsCommand() {
 
 	it('throws if not valid', function() {
 		throws(function() {
@@ -309,7 +309,7 @@ describe('LCHRecipesModelIsCommand', function testLCHRecipesModelIsCommand() {
 
 });
 
-describe('LCHRecipesModelIsSubject', function testLCHRecipesModelIsSubject() {
+describe('LCHRecipesModelIsSubject', function test_LCHRecipesModelIsSubject() {
 
 	it('throws if not valid', function() {
 		throws(function() {
@@ -341,7 +341,7 @@ describe('LCHRecipesModelIsSubject', function testLCHRecipesModelIsSubject() {
 
 });
 
-describe('LCHRecipesModelIsAction', function testLCHRecipesModelIsAction() {
+describe('LCHRecipesModelIsAction', function test_LCHRecipesModelIsAction() {
 
 	it('throws if not valid', function() {
 		throws(function() {
@@ -373,7 +373,7 @@ describe('LCHRecipesModelIsAction', function testLCHRecipesModelIsAction() {
 
 });
 
-describe('LCHRecipesModelIsType', function testLCHRecipesModelIsType() {
+describe('LCHRecipesModelIsType', function test_LCHRecipesModelIsType() {
 
 	it('throws if not valid', function() {
 		throws(function() {
@@ -417,7 +417,7 @@ describe('LCHRecipesModelIsType', function testLCHRecipesModelIsType() {
 
 });
 
-describe('LCHRecipesModelIsTask', function testLCHRecipesModelIsTask() {
+describe('LCHRecipesModelIsTask', function test_LCHRecipesModelIsTask() {
 
 	it('throws if not valid', function() {
 		throws(function() {
@@ -450,7 +450,7 @@ describe('LCHRecipesModelIsTask', function testLCHRecipesModelIsTask() {
 });
 
 import { LCHTypeServiceSearchRecipe } from './recipes/types/ServiceSearch/main.js';
-describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertTypeServiceSearch() {
+describe('LCHLauncherConvertTypeServiceSearch', function test_LCHLauncherConvertTypeServiceSearch() {
 
 	it('throws if not array', function() {
 		throws(function() {
@@ -539,7 +539,7 @@ describe('LCHLauncherConvertTypeServiceSearch', function testLCHLauncherConvertT
 
 });
 
-describe('LCHRecipesModelActionTakesObject', function testLCHRecipesModelActionTakesObject() {
+describe('LCHRecipesModelActionTakesObject', function test_LCHRecipesModelActionTakesObject() {
 
 	it('throws if not valid', function() {
 		throws(function() {
@@ -576,7 +576,7 @@ describe('LCHRecipesModelActionTakesObject', function testLCHRecipesModelActionT
 
 });
 
-describe('LCHRecipesModelActionTakesParams', function testLCHRecipesModelActionTakesParams() {
+describe('LCHRecipesModelActionTakesParams', function test_LCHRecipesModelActionTakesParams() {
 
 	it('throws if not valid', function() {
 		throws(function() {
@@ -627,7 +627,7 @@ describe('LCHRecipesModelActionTakesParams', function testLCHRecipesModelActionT
 
 });
 
-describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenceMapForRecipes() {
+describe('LCHAPITypeEquivalenceMapForRecipes', function test_LCHAPITypeEquivalenceMapForRecipes() {
 
 	it('throws if not array', function() {
 		throws(function() {
@@ -781,7 +781,7 @@ describe('LCHAPITypeEquivalenceMapForRecipes', function testLCHAPITypeEquivalenc
 
 });
 
-describe('LCHAPITypeNameMap', function testLCHAPITypeNameMap() {
+describe('LCHAPITypeNameMap', function test_LCHAPITypeNameMap() {
 
 	it('throws if not array', function() {
 		throws(function() {
@@ -838,7 +838,7 @@ describe('LCHAPITypeNameMap', function testLCHAPITypeNameMap() {
 
 });
 
-describe('LCHAPIActionsForType', function testLCHAPIActionsForType() {
+describe('LCHAPIActionsForType', function test_LCHAPIActionsForType() {
 
 	it('throws if param1 not string', function() {
 		throws(function() {
@@ -881,7 +881,7 @@ describe('LCHAPIActionsForType', function testLCHAPIActionsForType() {
 
 });
 
-describe('LCHAPISubjectsForType', function testLCHAPISubjectsForType() {
+describe('LCHAPISubjectsForType', function test_LCHAPISubjectsForType() {
 
 	it('throws if param1 not string', function() {
 		throws(function() {
@@ -948,7 +948,7 @@ describe('_LCHIntersect', function test_LCHIntersect() {
 
 });
 
-describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
+describe('LCHCompositionModelErrors', function test_LCHCompositionModelErrors() {
 
 	it('throws if not object', function() {
 		throws(function() {
@@ -1073,7 +1073,7 @@ describe('LCHCompositionModelErrors', function testLCHCompositionModelErrors() {
 
 });
 
-describe('LCHAPIExecuteComposition', function testLCHAPIExecuteComposition() {
+describe('LCHAPIExecuteComposition', function test_LCHAPIExecuteComposition() {
 
 	it('rejects if param1 not LCHComposition', async function() {
 		await rejects(mainModule.LCHAPIExecuteComposition({}, kTesting.StubAPIObjectValid()), /LCHErrorInputNotValid/);
@@ -1122,7 +1122,7 @@ describe('LCHAPIExecuteComposition', function testLCHAPIExecuteComposition() {
 
 import { LCHRuntimeAPI } from '../_shared/LCHRuntime/main.js';
 
-describe('LCHAPIExecuteRecipe', function testLCHAPIExecuteRecipe() {
+describe('LCHAPIExecuteRecipe', function test_LCHAPIExecuteRecipe() {
 
 	it('rejects if param1 not valid', async function() {
 		await rejects(mainModule.LCHAPIExecuteRecipe({}, [], kTesting.StubAPIObjectValid()), /LCHErrorInputNotValid/);
@@ -1203,7 +1203,7 @@ describe('LCHAPIExecuteRecipe', function testLCHAPIExecuteRecipe() {
 
 });
 
-describe('LCHComponentDescriptorsModelErrorsFor', function testLCHComponentDescriptorsModelErrorsFor() {
+describe('LCHComponentDescriptorsModelErrorsFor', function test_LCHComponentDescriptorsModelErrorsFor() {
 
 	it('throws if not object', function() {
 		throws(function() {
@@ -1311,7 +1311,7 @@ describe('LCHComponentDescriptorsModelErrorsFor', function testLCHComponentDescr
 
 });
 
-describe('LCHRuntimeFilteredRecipes', function testLCHRuntimeFilteredRecipes() {
+describe('LCHRuntimeFilteredRecipes', function test_LCHRuntimeFilteredRecipes() {
 
 	const uStubItem = function () {
 		return {
@@ -1374,7 +1374,7 @@ describe('LCHRuntimeFilteredRecipes', function testLCHRuntimeFilteredRecipes() {
 
 });
 
-describe('LCHRuntimeFilteredTasks', function testLCHRuntimeFilteredTasks() {
+describe('LCHRuntimeFilteredTasks', function test_LCHRuntimeFilteredTasks() {
 
 	const uStubItem = function () {
 		return {
@@ -1410,7 +1410,7 @@ describe('LCHRuntimeFilteredTasks', function testLCHRuntimeFilteredTasks() {
 
 });
 
-describe('LCHAPIRunTasks', function testLCHAPIRunTasks() {
+describe('LCHAPIRunTasks', function test_LCHAPIRunTasks() {
 
 	const uStubItem = function () {
 		return {
@@ -1455,7 +1455,7 @@ describe('LCHAPIRunTasks', function testLCHAPIRunTasks() {
 
 });
 
-describe('LCHRecipeProxyModelErrorsFor', function testLCHRecipeProxyModelErrorsFor() {
+describe('LCHRecipeProxyModelErrorsFor', function test_LCHRecipeProxyModelErrorsFor() {
 
 	it('returns object if not object', function() {
 		deepEqual(mainModule.LCHRecipeProxyModelErrorsFor(null), {});

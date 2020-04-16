@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./main.js');
 
-describe('LCHPrimitiveBoolCallback', function testLCHPrimitiveBoolCallback() {
+describe('LCHPrimitiveBoolCallback', function test_LCHPrimitiveBoolCallback() {
 
 	it('returns false if not present', function() {
 		deepEqual(mainModule.LCHPrimitiveBoolCallback(), false);
@@ -30,7 +30,7 @@ describe('LCHPrimitiveBoolCallback', function testLCHPrimitiveBoolCallback() {
 
 });
 
-describe('LCHPrimitiveBoolRecipe', function testLCHPrimitiveBoolRecipe() {
+describe('LCHPrimitiveBoolRecipe', function test_LCHPrimitiveBoolRecipe() {
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHPrimitiveBoolRecipe(), {

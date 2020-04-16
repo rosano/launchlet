@@ -13,7 +13,7 @@ const kTesting = {
 	},
 };
 
-describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
+describe('LCHDocumentModelErrorsFor', function test_LCHDocumentModelErrorsFor() {
 
 	it('throws error if not object', function() {
 		throws(function() {
@@ -143,7 +143,7 @@ describe('LCHDocumentModelErrorsFor', function testLCHDocumentModelErrorsFor() {
 
 });
 
-describe('LCHDocumentModelPreJSONSchemaValidate', function testLCHDocumentModelPreJSONSchemaValidate() {
+describe('LCHDocumentModelPreJSONSchemaValidate', function test_LCHDocumentModelPreJSONSchemaValidate() {
 
 	it('returns input', function() {
 		deepEqual(mainModule.LCHDocumentModelPreJSONSchemaValidate({}), {});
@@ -167,7 +167,7 @@ describe('LCHDocumentModelPreJSONSchemaValidate', function testLCHDocumentModelP
 
 });
 
-describe('LCHDocumentModelPostJSONParse', function testLCHDocumentModelPostJSONParse() {
+describe('LCHDocumentModelPostJSONParse', function test_LCHDocumentModelPostJSONParse() {
 
 	it('returns input null', function() {
 		deepEqual(mainModule.LCHDocumentModelPostJSONParse(null), null);

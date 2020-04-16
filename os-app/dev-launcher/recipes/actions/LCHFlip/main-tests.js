@@ -2,7 +2,7 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./main.js');
 
-describe('LCHFlip', function testLCHFlip() {
+describe('LCHFlip', function test_LCHFlip() {
 
 	it('throws error if not function', function() {
 		throws(function() {
