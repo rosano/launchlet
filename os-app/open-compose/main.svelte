@@ -7,7 +7,7 @@ const OLSKLocalized = function(translationConstant) {
 };
 
 import OLSKThrottle from 'OLSKThrottle';
-import { LCHStorageModule } from '../_shared/LCHStorageModule/main.js';
+import LCH_Data from '../_shared/LCH_Data/main.js';
 import { LCHDocumentStorage } from '../_shared/LCHDocument/storage.js';
 import { LCHDocumentModelPostJSONParse } from '../_shared/LCHDocument/model.js';
 import { LCHSettingStorage } from '../_shared/LCHSetting/storage.js';
@@ -657,7 +657,7 @@ const mod = {
 	},
 
 	SetupStorageClient() {
-		const storageModule = LCHStorageModule([
+		const storageModule = LCH_Data.LCH_DataModule([
 			Object.assign(LCHDocumentStorage, {
 				LCHStorageChangeDelegate: {
 					OLSKChangeDelegateCreate: mod.OLSKChangeDelegateCreateDocument,

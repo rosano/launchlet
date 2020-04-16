@@ -1,6 +1,6 @@
 const RemoteStorage = require('remotestoragejs');
 
-const LCHStorageModule = require('./os-app/_shared/LCHStorageModule/main.js');
+const LCH_Data = require('./os-app/_shared/LCH_Data/main.js').default;
 const LCHDocumentStorage = require('./os-app/_shared/LCHDocument/storage.js');
 const LCHSettingStorage = require('./os-app/_shared/LCHSetting/storage.js');
 
@@ -15,7 +15,7 @@ const LCHSettingStorage = require('./os-app/_shared/LCHSetting/storage.js');
 		}, Promise.resolve([]));
 	};
 
-	const storageModule = LCHStorageModule.LCHStorageModule([
+	const storageModule = LCH_Data.LCH_DataModule([
 		LCHDocumentStorage.LCHDocumentStorage,
 		LCHSettingStorage.LCHSettingStorage,
 	]);
