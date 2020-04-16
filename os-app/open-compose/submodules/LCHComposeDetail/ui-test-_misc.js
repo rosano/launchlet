@@ -12,7 +12,7 @@ describe('LCHComposeDetail_Misc', function () {
 			});
 		});
 
-		it('sets class', function () {
+		it('classes OLSKViewportDetail', function () {
 			browser.assert.hasClass(LCHComposeDetail, 'OLSKViewportDetail');
 		});
 
@@ -82,7 +82,7 @@ describe('LCHComposeDetail_Misc', function () {
 
 	describe('OLSKToolbar', function test_OLSKToolbar () {
 
-		it('sets class', function () {
+		it('classes OLSKToolbarJustify', function () {
 			browser.assert.hasClass('.OLSKToolbar', 'OLSKToolbarJustify');
 		});
 	

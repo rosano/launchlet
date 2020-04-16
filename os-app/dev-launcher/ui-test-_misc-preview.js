@@ -132,7 +132,7 @@ describe('LCHLauncherMisc_Preview', function test_LCHLauncherMisc_Preview() {
 				return browser.fire(`${ LCHLauncherListItem }:nth-child(2)`, 'mouseover');
 			});
 			
-			it('sets class', function () {
+			it('classes OLSKResultsListItemSelected', function () {
 				browser.assert.text('.OLSKResultsListItemSelected', 'bravo');	
 			});
 			

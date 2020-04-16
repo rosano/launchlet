@@ -58,7 +58,7 @@ describe('LCHLauncherObjectPrompt', function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 		});
 
-		it('sets class', function() {
+		it('classes LCHLauncherPromptSelected', function() {
 			browser.assert.hasClass(LCHLauncherObjectPrompt, 'LCHLauncherPromptSelected');
 		});
 	
@@ -82,7 +82,7 @@ describe('LCHLauncherObjectPrompt', function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'Tab');
 		});
 
-		it('sets class', function() {
+		it('classes LCHLauncherPromptSelected', function() {
 			browser.assert.hasClass(LCHLauncherSubjectPrompt, 'LCHLauncherPromptSelected');
 		});
 	

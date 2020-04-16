@@ -651,7 +651,7 @@ describe('LCHCompose_Misc', function () {
 
 	describe('LCHComposeViewportFooter', function test_LCHComposeViewportFooter () {
 
-		it('sets class', function () {
+		it('classes OLSKMobileViewFooter', function () {
 			browser.assert.hasClass(LCHComposeViewportFooter, 'OLSKMobileViewFooter');
 		});
 

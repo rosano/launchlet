@@ -112,7 +112,7 @@ describe('LCHLauncherMisc_Commit', function () {
 				return browser.fire(`${ LCHLauncherListItem }:nth-child(2)`, 'mouseover');
 			});
 			
-			it('sets class', function () {
+			it('classes OLSKResultsListItemSelected', function () {
 				browser.assert.text('.OLSKResultsListItemSelected', 'bravo');	
 			});
 		

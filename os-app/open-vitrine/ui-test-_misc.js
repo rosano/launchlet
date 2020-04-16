@@ -10,7 +10,7 @@ describe('LCHVitrine_Misc', function () {
 
 	context('LCHVitrine', function () {
 		
-		it('sets class', function () {
+		it('classes OLSKCommon', function () {
 			browser.assert.hasClass(LCHVitrine, 'OLSKCommon');
 		});
 	

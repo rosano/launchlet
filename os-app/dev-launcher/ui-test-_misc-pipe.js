@@ -164,7 +164,7 @@ describe('LCHLauncherMisc_Pipe', function test_LCHLauncherMisc_Pipe() {
 			browser.OLSKFireKeyboardEvent(browser.window, 'x');
 		});
 
-		it('sets class', function() {
+		it('classes LCHLauncherPromptHeadingMatchStop', function() {
 			browser.assert.hasClass(LCHLauncherSubjectPromptHeading, 'LCHLauncherPromptHeadingMatchStop');
 		});
 
@@ -198,7 +198,7 @@ describe('LCHLauncherMisc_Pipe', function test_LCHLauncherMisc_Pipe() {
 				browser.assert.text(LCHLauncherSubjectPromptHeading, 'A');
 			});
 
-			it('sets class', function() {
+			it('classes LCHLauncherPromptHeadingMatchStop', function() {
 				browser.assert.elements('.LCHLauncherPromptHeadingMatchStop', 0);
 			});
 

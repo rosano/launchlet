@@ -10,7 +10,7 @@ describe('LCHGuide_Misc', function () {
 
 	context('LCHGuide', function () {
 		
-		it('sets class', function () {
+		it('classes OLSKCommon', function () {
 			browser.assert.hasClass(LCHGuide, 'OLSKCommon')
 		});
 	
