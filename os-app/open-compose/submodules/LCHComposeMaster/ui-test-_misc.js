@@ -133,6 +133,10 @@ describe('LCHComposeMaster_Misc', function () {
 			});
 		});
 
+		it('classes OLSKMobileSafariRemoveDefaultInputStyle', function () {
+			browser.assert.hasClass(LCHComposeMasterFilterField, 'OLSKMobileSafariRemoveDefaultInputStyle');
+		});
+
 		it('binds LCHComposeMasterFilterText', function () {
 			browser.assert.input(LCHComposeMasterFilterField, 'alfa');
 		});

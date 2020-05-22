@@ -115,7 +115,7 @@ import LCHComposeMasterListItem from '../LCHComposeMasterListItem/main.svelte';
 <header class="LCHComposeMasterToolbar OLSKMobileViewHeader">
 	<OLSKToolbar>
 		<OLSKInputWrapper OLSKInputWrapperValue={ LCHComposeMasterFilterText } OLSKInputWrapperDispatchClear={ mod.OLSKInputWrapperDispatchClear } >
-			<input class="LCHComposeMasterFilterField" placeholder={ OLSKLocalized('LCHComposeMasterFilterFieldText') } bind:value={ LCHComposeMasterFilterText } on:input={ mod.InterfaceFilterFieldDidInput } />
+			<input class="LCHComposeMasterFilterField OLSKMobileSafariRemoveDefaultInputStyle" placeholder={ OLSKLocalized('LCHComposeMasterFilterFieldText') } bind:value={ LCHComposeMasterFilterText } on:input={ mod.InterfaceFilterFieldDidInput } />
 		</OLSKInputWrapper>
 
 		<OLSKToolbarElementGroup>
