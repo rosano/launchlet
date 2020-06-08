@@ -50,7 +50,7 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 	});
 
 	it('localizes LCHComposeRoute', function() {
-		browser.assert.element(`a[href="${ OLSKTestingCanonicalFor(require('../open-compose/controller.js').OLSKControllerRoutes().shift().OLSKRoutePath, {
+		browser.assert.element(`a[href="${ OLSKTestingCanonical(require('../open-compose/controller.js').OLSKControllerRoutes().shift(), {
 			OLSKRoutingLanguage: languageCode,
 		}) }"]`);
 	});
