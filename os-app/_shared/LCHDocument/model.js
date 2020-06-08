@@ -61,31 +61,3 @@ export const LCHDocumentModelErrorsFor = function(inputData, options = {}) {
 
 	return Object.entries(errors).length ? errors : null;
 };
-
-export const LCHDocumentModelPreJSONSchemaValidate = function(inputData) {
-	if (inputData.LCHDocumentCreationDate) {
-		inputData.LCHDocumentCreationDate = inputData.LCHDocumentCreationDate.toISOString();
-	}
-
-	if (inputData.LCHDocumentModificationDate) {
-		inputData.LCHDocumentModificationDate = inputData.LCHDocumentModificationDate.toISOString();
-	}
-
-	return inputData;
-};
-
-export const LCHDocumentModelPostJSONParse = function(inputData) {
-	if (!inputData) {
-		return inputData;
-	}
-
-	if (inputData.LCHDocumentCreationDate) {
-		inputData.LCHDocumentCreationDate = new Date(inputData.LCHDocumentCreationDate);
-	}
-
-	if (inputData.LCHDocumentModificationDate) {
-		inputData.LCHDocumentModificationDate = new Date(inputData.LCHDocumentModificationDate);
-	}
-
-	return inputData;
-};

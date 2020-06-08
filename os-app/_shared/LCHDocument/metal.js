@@ -1,11 +1,13 @@
-import { LCHDocumentModelErrorsFor, LCHDocumentModelPostJSONParse } from './model.js';
+import * as LCHDocumentModel from './model.js';
+import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
+const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 
 export const LCHDocumentMetalWrite = async function(storageClient, inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		return Promise.reject(new Error('LCHErrorInputNotValid'));
 	}
 
-	let errors = LCHDocumentModelErrorsFor(inputData);
+	let errors = LCHDocumentModel.LCHDocumentModelErrorsFor(inputData);
 	if (errors) {
 		return Promise.resolve({
 			LCHErrors: errors,
@@ -20,14 +22,14 @@ export const LCHDocumentMetalRead = async function(storageClient, inputData) {
 		return Promise.reject(new Error('LCHErrorInputNotValid'));
 	}
 
-	return LCHDocumentModelPostJSONParse(await storageClient.launchlet.lch_documents.LCHStorageRead(inputData));
+	return OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(await storageClient.launchlet.lch_documents.LCHStorageRead(inputData));
 };
 
 export const LCHDocumentMetalList = async function(storageClient) {
 	let outputData = await storageClient.launchlet.lch_documents.LCHStorageList();
 
 	for (let key in outputData) {
-		LCHDocumentModelPostJSONParse(outputData[key]);
+		OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(outputData[key]);
 	}
 	
 	return outputData;

@@ -29,7 +29,7 @@ export const LCHDocumentStorage = function (privateClient, publicClient, changeD
 			return console.warn(`${ delegateMethod } not function`);
 		}
 
-		changeDelegate[delegateMethod](LCHDocumentModel.LCHDocumentModelPostJSONParse(event[OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateInput(delegateMethod)]));
+		changeDelegate[delegateMethod](OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(event[OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateInput(delegateMethod)]));
 	});
 
 	return {
@@ -53,8 +53,8 @@ export const LCHDocumentStorage = function (privateClient, publicClient, changeD
 				return privateClient.getAll(LCHDocumentStoragePath(), false);
 			},
 			async LCHStorageWrite (param1, param2) {
-				await privateClient.storeObject(kType, `${ kCollection }/${ param1 }`, LCHDocumentModel.LCHDocumentModelPreJSONSchemaValidate(param2));
-				return LCHDocumentModel.LCHDocumentModelPostJSONParse(param2);
+				await privateClient.storeObject(kType, `${ kCollection }/${ param1 }`, OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(param2));
+				return OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(param2);
 			},
 			LCHStorageRead (inputData) {
 				return privateClient.getObject(`${ kCollection }/${ inputData }`);

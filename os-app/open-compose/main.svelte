@@ -9,7 +9,6 @@ const OLSKLocalized = function(translationConstant) {
 import OLSKThrottle from 'OLSKThrottle';
 import LCH_Data from '../_shared/LCH_Data/main.js';
 import { LCHDocumentStorage } from '../_shared/LCHDocument/storage.js';
-import { LCHDocumentModelPostJSONParse } from '../_shared/LCHDocument/model.js';
 import { LCHSettingStorage } from '../_shared/LCHSetting/storage.js';
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 import * as OLSKRemoteStoragePackage from '../_shared/__external/OLSKRemoteStorage/main.js'
@@ -460,7 +459,7 @@ const mod = {
 		}));
 
 		await Promise.all(outputData.LCHDocumentObjects.map(function (e) {
-			return LCHDocumentMetal.LCHDocumentMetalWrite(mod._ValueStorageClient, LCHDocumentModelPostJSONParse(e));
+			return LCHDocumentMetal.LCHDocumentMetalWrite(mod._ValueStorageClient, OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(e));
 		}));
 
 		mod.ValueDocumentsAll(await LCHDocumentAction.LCHDocumentActionList(mod._ValueStorageClient));
