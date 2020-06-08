@@ -12,7 +12,8 @@ import { LCHDocumentStorage } from '../_shared/LCHDocument/storage.js';
 import { LCHDocumentModelPostJSONParse } from '../_shared/LCHDocument/model.js';
 import { LCHSettingStorage } from '../_shared/LCHSetting/storage.js';
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
-import * as OLSKRemoteStorage from '../_shared/__external/OLSKRemoteStorage/main.js'
+import * as OLSKRemoteStoragePackage from '../_shared/__external/OLSKRemoteStorage/main.js'
+const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 import * as LCHDocumentAction from '../_shared/LCHDocument/action.js';
 import * as LCHDocumentMetal from '../_shared/LCHDocument/metal.js';
 import * as LCHSettingAction from '../_shared/LCHSetting/action.js';
@@ -896,7 +897,7 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 </div>
 
 {#if !OLSK_TESTING_BEHAVIOUR()}
-	<OLSKServiceWorker OLSKLocalized={ OLSKLocalized } registrationRoute={ window.OLSKCanonicalFor('LCHServiceWorkerRoute') } />
+	<OLSKServiceWorker OLSKServiceWorkerRegistrationRoute={ window.OLSKCanonicalFor('LCHServiceWorkerRoute') } />
 {/if}
 
 <style src="./ui-style.css"></style>
