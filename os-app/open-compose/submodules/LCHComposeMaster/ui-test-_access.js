@@ -30,10 +30,6 @@ describe('LCHComposeMaster_Access', function () {
 		browser.assert.elements(LCHComposeMasterToolbar, 1);
 	});
 
-	it('shows OLSKToolbar', function () {
-		browser.assert.elements('.OLSKToolbar', 1);
-	});
-
 	it('shows OLSKInputWrapper', function () {
 		browser.assert.elements('.OLSKInputWrapper', 1);
 	});

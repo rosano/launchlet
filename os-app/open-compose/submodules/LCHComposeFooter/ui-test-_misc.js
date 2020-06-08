@@ -9,6 +9,18 @@ describe('LCHComposeFooter_Misc', function () {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 
+	describe('LCHComposeFooter', function test_LCHComposeFooter () {
+
+		it('classes OLSKToolbar', function () {
+			browser.assert.hasClass(name, 'OLSKToolbar');
+		});
+
+		it('classes OLSKToolbarJustify', function () {
+			browser.assert.hasClass(name, 'OLSKToolbarJustify');
+		});
+
+	});
+
 	describe('LCHComposeFooterGuideLink', function test_LCHComposeFooterGuideLink () {
 
 		it('sets href', function () {

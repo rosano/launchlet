@@ -14,11 +14,11 @@
 	color: var(--LCHCommonForeground);
 }
 
-.LCHComposeFooter :global(.OLSKToolbar) {
+.LCHComposeFooter .OLSKToolbar {
 	flex-grow: 1;
 }
 
-.LCHComposeFooter :global(.OLSKToolbar > div) {
+.LCHComposeFooter .OLSKToolbar > div {
 	display: flex;
 	align-items: center;
 }
@@ -29,7 +29,7 @@ h1 {
 	font-size: 20px;
 }
 
-.LCHComposeFooter :global(.OLSKToolbarElementGroup > *:not(:first-child)) {
+.LCHComposeFooter .OLSKToolbarElementGroup > *:not(:first-child) {
 	margin-left: 10px;
 }
 

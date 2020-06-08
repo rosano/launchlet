@@ -590,6 +590,14 @@ describe('LCHCompose_Misc', function () {
 
 	describe('LCHComposeTools', function test_LCHComposeTools () {
 
+		it('classes OLSKToolbar', function () {
+			browser.assert.hasClass(LCHComposeTools, 'OLSKToolbar');
+		});
+
+		it('classes OLSKToolbarJustify', function () {
+			browser.assert.hasClass(LCHComposeTools, 'OLSKToolbarJustify');
+		});
+
 		context('LCHComposeToolsPairStatusFailedError', function test_LCHComposeToolsPairStatusFailedError () {
 
 			before(function () {

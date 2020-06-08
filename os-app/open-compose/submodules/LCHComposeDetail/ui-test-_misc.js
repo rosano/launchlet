@@ -73,17 +73,17 @@ describe('LCHComposeDetail_Misc', function () {
 				LCHComposeDetailItem: JSON.stringify({}),
 			});
 		});
+
+		it('classes OLSKToolbar', function () {
+			browser.assert.hasClass(LCHComposeDetailToolbar, 'OLSKToolbar');
+		});
+
+		it('classes OLSKToolbarJustify', function () {
+			browser.assert.hasClass(LCHComposeDetailToolbar, 'OLSKToolbarJustify');
+		});
 		
 		it('classes OLSKMobileViewHeader', function () {
 			browser.assert.hasClass(LCHComposeDetailToolbar, 'OLSKMobileViewHeader');
-		});
-	
-	});
-
-	describe('OLSKToolbar', function test_OLSKToolbar () {
-
-		it('classes OLSKToolbarJustify', function () {
-			browser.assert.hasClass('.OLSKToolbar', 'OLSKToolbarJustify');
 		});
 	
 	});

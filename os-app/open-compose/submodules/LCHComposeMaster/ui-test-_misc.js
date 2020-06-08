@@ -122,6 +122,10 @@ describe('LCHComposeMaster_Misc', function () {
 		it('classes OLSKMobileViewHeader', function () {
 			browser.assert.hasClass(LCHComposeMasterToolbar, 'OLSKMobileViewHeader');
 		});
+
+		it('classes OLSKToolbar', function () {
+			browser.assert.hasClass(LCHComposeMasterToolbar, 'OLSKToolbar');
+		});
 	
 	});
 

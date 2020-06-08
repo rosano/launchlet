@@ -32,41 +32,37 @@ const mod = {
 
 };
 
-import OLSKToolbar from 'OLSKToolbar';
-import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import OLSKReloadButton from '../../../_shared/__external/OLSKReloadButton/main.svelte';
 import OLSKLanguageSwitcher from '../../../_shared/__external/OLSKLanguageSwitcher/main.svelte';
 import _OLSKSharedCloud from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedCloud.svg';
 </script>
 
-<footer class="LCHComposeFooter">
+<footer class="LCHComposeFooter OLSKToolbar OLSKToolbarJustify">
 
-	<OLSKToolbar OLSKToolbarJustify={ true }>
-		<OLSKToolbarElementGroup>
-			<OLSKReloadButton />
-			
-			<OLSKLanguageSwitcher OLSKSharedActiveRouteConstant={ window.OLSKPublicConstants('OLSKSharedActiveRouteConstant') }
-				OLSKSharedPageLanguagesAvailable={ window.OLSKPublicConstants('OLSKSharedPageLanguagesAvailable') }
-				OLSKSharedPageCurrentLanguage={ window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage') }
-				/>
+	<div class="OLSKToolbarElementGroup">
+		<OLSKReloadButton />
+		
+		<OLSKLanguageSwitcher OLSKSharedActiveRouteConstant={ window.OLSKPublicConstants('OLSKSharedActiveRouteConstant') }
+			OLSKSharedPageLanguagesAvailable={ window.OLSKPublicConstants('OLSKSharedPageLanguagesAvailable') }
+			OLSKSharedPageCurrentLanguage={ window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage') }
+			/>
 
-			<a class="LCHComposeFooterGuideLink" href={ window.OLSKCanonicalFor('LCHGuideRoute') } target="_blank">{ OLSKLocalized('LCHComposeFooterGuideLinkText') }</a>
+		<a class="LCHComposeFooterGuideLink" href={ window.OLSKCanonicalFor('LCHGuideRoute') } target="_blank">{ OLSKLocalized('LCHComposeFooterGuideLinkText') }</a>
 
-			<a class="LCHComposeFooterDonateLink" href={ window.OLSKPublicConstants('LCH_SHARED_DONATE_URL') } target="_blank">{ OLSKLocalized('LCHComposeFooterDonateLinkText') }</a>
+		<a class="LCHComposeFooterDonateLink" href={ window.OLSKPublicConstants('LCH_SHARED_DONATE_URL') } target="_blank">{ OLSKLocalized('LCHComposeFooterDonateLinkText') }</a>
 
-			<!-- <button on:click={ mod.InterfaceExportButtonDidClick }>Export</button>
+		<!-- <button on:click={ mod.InterfaceExportButtonDidClick }>Export</button>
 
-			<input type="file" accept=".json" on:change={ mod.InterfaceImportButtonDidClick } /> -->
-		</OLSKToolbarElementGroup>
+		<input type="file" accept=".json" on:change={ mod.InterfaceImportButtonDidClick } /> -->
+	</div>
 
-		<OLSKToolbarElementGroup>
-			<div class="LCHComposeFooterStorageStatus">{ LCHComposeFooterStorageStatus }</div>
-			
-			<button class="LCHComposeFooterStorageButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeFooterStorageButtonText') } on:click={ LCHComposeFooterDispatchStorage } class:OSWIconVisible={ false }>
-				<div class="LCHComposeFooterStorageButtonImage">{@html _OLSKSharedCloud }</div>
-			</button>
-		</OLSKToolbarElementGroup>
-	</OLSKToolbar>
+	<div class="OLSKToolbarElementGroup">
+		<div class="LCHComposeFooterStorageStatus">{ LCHComposeFooterStorageStatus }</div>
+		
+		<button class="LCHComposeFooterStorageButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeFooterStorageButtonText') } on:click={ LCHComposeFooterDispatchStorage } class:OSWIconVisible={ false }>
+			<div class="LCHComposeFooterStorageButtonImage">{@html _OLSKSharedCloud }</div>
+		</button>
+	</div>
 	
 </footer>
 

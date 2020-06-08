@@ -13,13 +13,13 @@
 	flex-shrink: 0;
 }
 
-.LCHComposeMasterToolbar :global(.OLSKToolbarElementGroup) {
+.LCHComposeMasterToolbar .OLSKToolbarElementGroup {
 	margin-left: 4px;
 }
 
 @media screen and (max-width: 760px) {
 
-.LCHComposeMasterToolbar :global(.OLSKToolbarElementGroup) {
+.LCHComposeMasterToolbar .OLSKToolbarElementGroup {
 	margin-left: 8px;
 }
 

@@ -810,8 +810,6 @@ window.addEventListener('message', mod.MessageReceived, false);
 import OLSKViewportContent from 'OLSKViewportContent';
 import LCHComposeMaster from './submodules/LCHComposeMaster/main.svelte';
 import LCHComposeDetail from './submodules/LCHComposeDetail/main.svelte';
-import OLSKToolbar from 'OLSKToolbar';
-import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import LCHComposeBuild from './submodules/LCHComposeBuild/main.svelte';
 import LCHComposePair from './submodules/LCHComposePair/main.svelte';
 import OLSKAppToolbar from 'OLSKAppToolbar';
@@ -846,42 +844,40 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 
 <footer class="LCHComposeViewportFooter OLSKMobileViewFooter">
 
-	<footer class="LCHComposeTools">
-		<OLSKToolbar OLSKToolbarJustify={ true }>
-			<OLSKToolbarElementGroup>
-				<LCHComposeBuild
-					LCHComposeBuildRunLink={ mod._JavascriptCompositionBinary }
-					LCHComposeBuildPipeModeEnabled={ mod._ValuePipeModeEnabled }
-					LCHComposeBuildPageRecipesEnabled={ mod._ValuePageRecipesEnabled }
-					LCHComposeBuildDispatchRun={ mod.LCHComposeBuildDispatchRun }
-					LCHComposeBuildDispatchPipeModeEnabled={ mod.LCHComposeBuildDispatchPipeModeEnabled }
-					LCHComposeBuildDispatchPageRecipesEnabled={ mod.LCHComposeBuildDispatchPageRecipesEnabled }
+	<footer class="LCHComposeTools OLSKToolbar OLSKToolbarJustify">
+		<div class="OLSKToolbarElementGroup">
+			<LCHComposeBuild
+				LCHComposeBuildRunLink={ mod._JavascriptCompositionBinary }
+				LCHComposeBuildPipeModeEnabled={ mod._ValuePipeModeEnabled }
+				LCHComposeBuildPageRecipesEnabled={ mod._ValuePageRecipesEnabled }
+				LCHComposeBuildDispatchRun={ mod.LCHComposeBuildDispatchRun }
+				LCHComposeBuildDispatchPipeModeEnabled={ mod.LCHComposeBuildDispatchPipeModeEnabled }
+				LCHComposeBuildDispatchPageRecipesEnabled={ mod.LCHComposeBuildDispatchPageRecipesEnabled }
+				/>
+		</div>
+
+		<div>
+			{#if !mod._ValueToolsPairIsVisible}
+				<button class="LCHComposeToolsPairButton" on:click={ mod.InterfaceToolsPairButtonDidClick }>{ OLSKLocalized('LCHComposeToolsPairButtonText') }</button>
+			{/if}
+
+			{#if mod._ValueToolsPairIsVisible}
+				{#if mod._ValuePairStatus === 'kStatusWaiting' }
+					<span class="LCHComposeToolsPairStatusWaiting">{ OLSKLocalized('LCHComposeToolsPairStatusWaitingText') }</span>
+				{/if}
+
+				{#if mod._ValuePairStatus === 'kStatusFailed' }
+					<span class="LCHComposeToolsPairStatusFailed">{ OLSKLocalized('LCHComposeToolsPairStatusFailedText') }</span>
+					<span class="LCHComposeToolsPairStatusFailedError">{ mod._ValueToolsPairStatusFailedError }</span>
+				{/if}
+				
+				<LCHComposePair
+					LCHComposePairClearIsVisible={ !!mod._ValuePublicKey }
+					LCHComposePairDispatchSubmit={ mod.LCHComposePairDispatchSubmit }
+					LCHComposePairDispatchClear={ mod.LCHComposePairDispatchClear }
 					/>
-			</OLSKToolbarElementGroup>
-
-			<div>
-				{#if !mod._ValueToolsPairIsVisible}
-					<button class="LCHComposeToolsPairButton" on:click={ mod.InterfaceToolsPairButtonDidClick }>{ OLSKLocalized('LCHComposeToolsPairButtonText') }</button>
-				{/if}
-
-				{#if mod._ValueToolsPairIsVisible}
-					{#if mod._ValuePairStatus === 'kStatusWaiting' }
-						<span class="LCHComposeToolsPairStatusWaiting">{ OLSKLocalized('LCHComposeToolsPairStatusWaitingText') }</span>
-					{/if}
-
-					{#if mod._ValuePairStatus === 'kStatusFailed' }
-						<span class="LCHComposeToolsPairStatusFailed">{ OLSKLocalized('LCHComposeToolsPairStatusFailedText') }</span>
-						<span class="LCHComposeToolsPairStatusFailedError">{ mod._ValueToolsPairStatusFailedError }</span>
-					{/if}
-					
-					<LCHComposePair
-						LCHComposePairClearIsVisible={ !!mod._ValuePublicKey }
-						LCHComposePairDispatchSubmit={ mod.LCHComposePairDispatchSubmit }
-						LCHComposePairDispatchClear={ mod.LCHComposePairDispatchClear }
-						/>
-				{/if}
-			</div>
-		</OLSKToolbar>
+			{/if}
+		</div>
 	</footer>
 
 	<div id="LCHComposeStorageWidget" class:LCHComposeStorageWidgetHidden={ mod._ValueStorageWidgetHidden }></div>

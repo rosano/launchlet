@@ -102,8 +102,6 @@ onMount(mod.LifecycleComponentDidMount);
 import { afterUpdate } from 'svelte';
 afterUpdate(mod.LifecycleComponentDidUpdate);
 
-import OLSKToolbar from 'OLSKToolbar';
-import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import OLSKInputWrapper from 'OLSKInputWrapper';
 import _OLSKSharedCreate from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedCreate.svg';
 import OLSKResults from 'OLSKResults';
@@ -112,18 +110,16 @@ import LCHComposeMasterListItem from '../LCHComposeMasterListItem/main.svelte';
 
 <div class="LCHComposeMaster OLSKViewportMaster" class:OLSKMobileViewInactive={ OLSKMobileViewInactive } class:LCHComposeMasterFocused={ mod._ValueFilterFieldFocused } aria-hidden={ OLSKMobileViewInactive ? true : null }>
 
-<header class="LCHComposeMasterToolbar OLSKMobileViewHeader">
-	<OLSKToolbar>
-		<OLSKInputWrapper OLSKInputWrapperValue={ LCHComposeMasterFilterText } OLSKInputWrapperDispatchClear={ mod.OLSKInputWrapperDispatchClear } >
-			<input class="LCHComposeMasterFilterField OLSKMobileSafariRemoveDefaultInputStyle" placeholder={ OLSKLocalized('LCHComposeMasterFilterFieldText') } bind:value={ LCHComposeMasterFilterText } on:input={ mod.InterfaceFilterFieldDidInput } />
-		</OLSKInputWrapper>
+<header class="LCHComposeMasterToolbar OLSKMobileViewHeader OLSKToolbar">
+	<OLSKInputWrapper OLSKInputWrapperValue={ LCHComposeMasterFilterText } OLSKInputWrapperDispatchClear={ mod.OLSKInputWrapperDispatchClear } >
+		<input class="LCHComposeMasterFilterField OLSKMobileSafariRemoveDefaultInputStyle" placeholder={ OLSKLocalized('LCHComposeMasterFilterFieldText') } bind:value={ LCHComposeMasterFilterText } on:input={ mod.InterfaceFilterFieldDidInput } />
+	</OLSKInputWrapper>
 
-		<OLSKToolbarElementGroup>
-			<button class="LCHComposeMasterCreateButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n" title={ OLSKLocalized('LCHComposeMasterCreateButtonText') }>
-				<div class="LCHComposeMasterCreateButtonImage">{@html _OLSKSharedCreate }</div>
-			</button>
-		</OLSKToolbarElementGroup>
-	</OLSKToolbar>
+	<div class="OLSKToolbarElementGroup">
+		<button class="LCHComposeMasterCreateButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n" title={ OLSKLocalized('LCHComposeMasterCreateButtonText') }>
+			<div class="LCHComposeMasterCreateButtonImage">{@html _OLSKSharedCreate }</div>
+		</button>
+	</div>
 </header>
 
 <section class="LCHComposeMasterBody OLSKMobileViewBody">

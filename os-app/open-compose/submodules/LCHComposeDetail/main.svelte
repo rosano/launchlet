@@ -13,8 +13,6 @@ const OLSKLocalized = function(translationConstant) {
 
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 
-import OLSKToolbar from 'OLSKToolbar';
-import OLSKToolbarElementGroup from 'OLSKToolbarElementGroup';
 import OLSKDetailPlaceholder from 'OLSKDetailPlaceholder';
 import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedBack.svg';
 import _OLSKSharedClone from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedClone.svg';
@@ -29,23 +27,21 @@ import LCHComposeInput from '../LCHComposeInput/main.svelte';
 {/if}
 
 {#if LCHComposeDetailItem}
-<header class="LCHComposeDetailToolbar OLSKMobileViewHeader">
-	<OLSKToolbar OLSKToolbarJustify={ true }>
-		<OLSKToolbarElementGroup>
-			<button class="LCHComposeDetailToolbarBackButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeDetailToolbarBackButtonText') } on:click={ LCHComposeDetailDispatchBack }>
-				<div class="LCHComposeDetailToolbarBackButtonImage">{@html _OLSKSharedBack }</div>
-			</button>
-		</OLSKToolbarElementGroup>
+<header class="LCHComposeDetailToolbar OLSKToolbar OLSKToolbarJustify OLSKMobileViewHeader">
+	<div class="OLSKToolbarElementGroup">
+		<button class="LCHComposeDetailToolbarBackButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeDetailToolbarBackButtonText') } on:click={ LCHComposeDetailDispatchBack }>
+			<div class="LCHComposeDetailToolbarBackButtonImage">{@html _OLSKSharedBack }</div>
+		</button>
+	</div>
 
-		<OLSKToolbarElementGroup>
-			<button class="LCHComposeDetailToolbarCloneButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeDetailToolbarCloneButtonText') } on:click={ LCHComposeDetailDispatchClone }>
-				<div class="LCHComposeDetailToolbarCloneButtonImage">{@html _OLSKSharedClone }</div>
-			</button>
-			<button class="LCHComposeDetailToolbarDiscardButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeDetailToolbarDiscardButtonText') } on:click={ () => window.confirm(OLSKLocalized('LCHComposeDetailDiscardPromptText')) && LCHComposeDetailDispatchDiscard() }>
-				<div class="LCHComposeDetailToolbarDiscardButtonImage">{@html _OLSKSharedDiscard }</div>
-			</button>
-		</OLSKToolbarElementGroup>
-	</OLSKToolbar>
+	<div class="OLSKToolbarElementGroup">
+		<button class="LCHComposeDetailToolbarCloneButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeDetailToolbarCloneButtonText') } on:click={ LCHComposeDetailDispatchClone }>
+			<div class="LCHComposeDetailToolbarCloneButtonImage">{@html _OLSKSharedClone }</div>
+		</button>
+		<button class="LCHComposeDetailToolbarDiscardButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeDetailToolbarDiscardButtonText') } on:click={ () => window.confirm(OLSKLocalized('LCHComposeDetailDiscardPromptText')) && LCHComposeDetailDispatchDiscard() }>
+			<div class="LCHComposeDetailToolbarDiscardButtonImage">{@html _OLSKSharedDiscard }</div>
+		</button>
+	</div>
 </header>
 
 <div class="LCHComposeDetailForm">
