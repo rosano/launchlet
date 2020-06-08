@@ -12,11 +12,11 @@ describe('LCHComposeFooter_Misc', function () {
 	describe('LCHComposeFooter', function test_LCHComposeFooter () {
 
 		it('classes OLSKToolbar', function () {
-			browser.assert.hasClass(name, 'OLSKToolbar');
+			browser.assert.hasClass(LCHComposeFooter, 'OLSKToolbar');
 		});
 
 		it('classes OLSKToolbarJustify', function () {
-			browser.assert.hasClass(name, 'OLSKToolbarJustify');
+			browser.assert.hasClass(LCHComposeFooter, 'OLSKToolbarJustify');
 		});
 
 	});
