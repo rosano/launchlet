@@ -3,7 +3,7 @@ export const LCHSettingModelErrorsFor = function(inputData) {
 		throw new Error('LCHErrorInputNotValid');
 	}
 
-	var errors = {};
+	const errors = {};
 
 	if (typeof inputData.LCHSettingKey !== 'string') {
 		errors.LCHSettingKey = [
