@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('LCHComposeBuild_Misc', function () {
@@ -53,7 +51,7 @@ describe('LCHComposeBuild_Misc', function () {
 		context('false', function () {
 			
 			it('binds LCHComposeBuildPipeModeEnabled', function () {
-				deepEqual(browser.query(LCHComposeBuildPipeModeEnabledField).checked, false);
+				browser.assert.OLSKIsChecked(LCHComposeBuildPipeModeEnabledField, false);
 			});
 			
 		});
@@ -68,7 +66,7 @@ describe('LCHComposeBuild_Misc', function () {
 			});
 
 			it('binds LCHComposeBuildPipeModeEnabled', function () {
-				deepEqual(browser.query(LCHComposeBuildPipeModeEnabledField).checked, true);
+				browser.assert.OLSKIsChecked(LCHComposeBuildPipeModeEnabledField, true);
 			});
 		
 		});
@@ -114,7 +112,7 @@ describe('LCHComposeBuild_Misc', function () {
 		context('false', function () {
 			
 			it('binds LCHComposeBuildPageRecipesEnabled', function () {
-				deepEqual(browser.query(LCHComposeBuildPageRecipesEnabledField).checked, false);
+				browser.assert.OLSKIsChecked(LCHComposeBuildPageRecipesEnabledField, false);
 			});
 			
 		});
@@ -129,7 +127,7 @@ describe('LCHComposeBuild_Misc', function () {
 			});
 
 			it('binds LCHComposeBuildPageRecipesEnabled', function () {
-				deepEqual(browser.query(LCHComposeBuildPageRecipesEnabledField).checked, true);
+				browser.assert.OLSKIsChecked(LCHComposeBuildPageRecipesEnabledField, true);
 			});
 		
 		});

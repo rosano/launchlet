@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('LCHComposeDetail_Misc', function () {
@@ -657,7 +655,7 @@ describe('LCHComposeDetail_Misc', function () {
 		context('false', function () {
 			
 			it('binds LCHDocumentIsAutomatic', function () {
-				deepEqual(browser.query(LCHComposeDetailFormIsAutomaticField).checked, false);
+				browser.assert.OLSKIsChecked(LCHComposeDetailFormIsAutomaticField, false);
 			});
 			
 		});
@@ -674,7 +672,7 @@ describe('LCHComposeDetail_Misc', function () {
 			});
 
 			it('binds LCHDocumentIsAutomatic', function () {
-				deepEqual(browser.query(LCHComposeDetailFormIsAutomaticField).checked, true);
+				browser.assert.OLSKIsChecked(LCHComposeDetailFormIsAutomaticField, true);
 			});
 		
 		});
