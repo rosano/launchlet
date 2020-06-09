@@ -5,18 +5,38 @@ describe('LCHCompose_Misc', function () {
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
+
+	it('assigns link:apple-touch-icon', function () {
+		browser.assert.attribute('link[rel=apple-touch-icon]', 'href', process.env.LCH_TEMP_TOUCH_ICON_URL);
+	});
 	
-	it('classes OLSKMobileViewInactive', function () {
-		browser.assert.hasNoClass('.LCHComposeMaster', 'OLSKMobileViewInactive');
-		browser.assert.hasClass('.LCHComposeDetail', 'OLSKMobileViewInactive');
+	it('assigns meta:viewport', function () {
+		browser.assert.attribute('meta[name=viewport]', 'content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
+	});
+	
+	it('assigns meta:mobile-web-app-capable', function () {
+		browser.assert.attribute('meta[name=mobile-web-app-capable]', 'content', 'yes');
+	});
+	
+	it('assigns meta:apple-mobile-web-app-capable', function () {
+		browser.assert.attribute('meta[name=apple-mobile-web-app-capable]', 'content', 'yes');
 	});
 
-	it('sets LCHComposeDetailItem', function () {
-		browser.assert.elements('.OLSKDetailPlaceholder', 1);
-	});
+	context('LCHCompose', function () {
+		
+		it('classes OLSKMobileViewInactive', function () {
+			browser.assert.hasNoClass('.LCHComposeMaster', 'OLSKMobileViewInactive');
+			browser.assert.hasClass('.LCHComposeDetail', 'OLSKMobileViewInactive');
+		});
 
-	it('focuses LCHComposeMasterFilterField', function() {
-		browser.assert.hasFocus('.LCHComposeMasterFilterField');
+		it('sets LCHComposeDetailItem', function () {
+			browser.assert.elements('.OLSKDetailPlaceholder', 1);
+		});
+
+		it('focuses LCHComposeMasterFilterField', function() {
+			browser.assert.hasFocus('.LCHComposeMasterFilterField');
+		});
+	
 	});
 	
 	context('create', function test_create () {

@@ -8,6 +8,9 @@ locals.OLSKPageAssets = [
 	'ui-style.css',
 ];
 locals.OLSKPageUseLivereload = process.env.NODE_ENV === 'development';
+locals.OLSKPageMetaTags = {
+	viewport: 'width=device-width',
+};
 %>
 
 <%- include('../_shared/common/layout-header.ejs') %>
