@@ -71,7 +71,7 @@ const mod = {
 					'LCHDocumentCreationDate',
 					'LCHDocumentModificationDate',
 					'LCHDocumentIsFlagged',
-				].indexOf(key) !== -1) {
+				].includes(key)) {
 					delete e[key];
 				}
 			});

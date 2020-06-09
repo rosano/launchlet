@@ -28,7 +28,7 @@ export const LCHLauncherOptions = function (inputData, notify = function () {}) 
 	};
 
 	if (typeof inputData.LCHOptionMode !== 'undefined') {
-		if (LCHLauncherModes().indexOf(inputData.LCHOptionMode) === -1) {
+		if (!LCHLauncherModes().includes(inputData.LCHOptionMode)) {
 			throw new Error('LCHOptionModeNotValid');
 		};
 	};
@@ -81,7 +81,7 @@ export const LCHLauncherUIRecipesForMode = function (param1, param2) {
 		throw new Error('LCHErrorInputNotValid');
 	}
 
-	if (LCHLauncherModes().indexOf(param2) === -1) {
+	if (!LCHLauncherModes().includes(param2)) {
 		throw new Error('LCHErrorInputNotValid');
 	}
 
@@ -155,7 +155,7 @@ export const LCHLauncherKeyboardEventIsTextInput = function (inputData) {
 		inputData.shiftKey,
 		inputData.ctrlKey,
 		inputData.altKey,
-	].indexOf(true) !== -1) {
+	].includes(true)) {
 		return false;
 	}
 
@@ -174,7 +174,7 @@ export const LCHLauncherKeyboardEventIsTextInput = function (inputData) {
 		'.',
 		',',
 		' ',
-	].indexOf(inputData.key) !== -1) {
+	].includes(inputData.key)) {
 		return false;
 	}
 	

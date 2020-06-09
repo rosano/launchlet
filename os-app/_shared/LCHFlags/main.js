@@ -23,15 +23,15 @@ export const _LCHFlags = function(inputData) {
 	let outputData = [];
 
 	function flagIdentifier(inputData) {
-		if (['eval', 'Function'].indexOf(inputData) !== -1) {
+		if (['eval', 'Function'].includes(inputData)) {
 			outputData.push('LCHFlagEval');
 		}
 
-		if (['cookie', 'localStorage', 'sessionStorage', 'indexedDB', 'Cache'].indexOf(inputData) !== -1) {
+		if (['cookie', 'localStorage', 'sessionStorage', 'indexedDB', 'Cache'].includes(inputData)) {
 			outputData.push('LCHFlagStateful');
 		}
 
-		if (['XMLHttpRequest', '$', 'fetch'].indexOf(inputData) !== -1) {
+		if (['XMLHttpRequest', '$', 'fetch'].includes(inputData)) {
 			outputData.push('LCHFlagStateful');
 		}
 	}

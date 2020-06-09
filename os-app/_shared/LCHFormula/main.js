@@ -128,7 +128,7 @@ export const LCHFormulaToEvaluate = function(inputData) {
 	}
 
 	let outputData = Object.fromEntries(Object.entries(inputData).filter(function (e) {
-		return LCHFormulaSafeStringFields.indexOf(e[0]) === -1;
+		return !LCHFormulaSafeStringFields.includes(e[0]);
 	}));
 
 	if (outputData.LCHFormulaCallbackArgs || outputData.LCHFormulaCallbackBody) {

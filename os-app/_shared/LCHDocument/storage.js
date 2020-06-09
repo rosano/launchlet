@@ -38,7 +38,7 @@ export const LCHDocumentStorage = function (privateClient, publicClient, changeD
 		LCHStorageModelErrors: Object.entries(LCHDocumentModel.LCHDocumentModelErrorsFor({}, {
 			LCHOptionValidateIfNotPresent: true,
 		})).map(function (e) {
-			if (Object.keys(LCHDocumentModel.LCHDocumentModelErrorsFor({})).indexOf(e[0]) === -1) {
+			if (!Object.keys(LCHDocumentModel.LCHDocumentModelErrorsFor({})).includes(e[0])) {
 				e[1].push('__RSOptional');
 			}
 

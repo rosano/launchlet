@@ -192,7 +192,7 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 		mod._ValuePromptObjects[2].LCHPromptIsVisible = LCHRecipesModelActionTakesObject(mod._ValuePromptObjects[1].LCHPromptItemSelected);
 
 		mod._ValuePromptObjects[2].LCHPromptItemsAll = !mod._ValuePromptObjects[2].LCHPromptIsVisible || LCHRuntime.LCHRuntimeInputTypes(mod._ValuePromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop() === 'String' ? [] : mod._ValueAllSubjects.filter(function (e) {
-			return mod._ValueTypeEquivalenceMap[LCHRuntime.LCHRuntimeInputTypes(mod._ValuePromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop()].indexOf(e.LCHRecipeOutputType) !== -1;
+			return mod._ValueTypeEquivalenceMap[LCHRuntime.LCHRuntimeInputTypes(mod._ValuePromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop()].includes(e.LCHRecipeOutputType);
 		});
 
 		mod._ValuePromptObjects[2].LCHPromptItemsVisible = mod._ValuePromptObjects[2].LCHPromptItemsAll;
@@ -806,7 +806,7 @@ const mod = {
 
 				return false;
 			}).filter(function (e) {
-				return !e.LCHRecipeOutputType || (Object.keys(mod._ValueTypeEquivalenceMap).indexOf(e.LCHRecipeOutputType) !== -1);
+				return !e.LCHRecipeOutputType || Object.keys(mod._ValueTypeEquivalenceMap).includes(e.LCHRecipeOutputType);
 			}).map(function (e) {
 				return Object.assign(e, {
 					_LCHRecipeOutputTypeName: typeNameMap[e.LCHRecipeOutputType],
@@ -826,7 +826,7 @@ const mod = {
 				LCHPromptHeading: OLSKLocalized('LCHLauncherSubjectPromptHeadingText'),
 				LCHPromptItemsVisible: [],
 				LCHPromptItemsAll: mod._ValueAllSubjects.filter(function (e) {
-					return !e.LCHRecipeOutputType || _ActionableTypesForPrimarySubject.indexOf(e.LCHRecipeOutputType) !== -1;
+					return !e.LCHRecipeOutputType || _ActionableTypesForPrimarySubject.includes(e.LCHRecipeOutputType);
 				}),
 				// LCHPromptItemSelected: null,
 				LCHPromptInputThrottle: undefined,
@@ -940,7 +940,7 @@ import LCHLauncherPipeItem from './submodules/LCHLauncherPipeItem/main.svelte';
 			<input class="LCHLauncherFilterInput" placeholder="{ LRTOptions.LCHOptionMode === LCHLauncherModePreview() ? OLSKLocalized('LCHLauncherInputPlaceholderPreview') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ mod._ValuePromptObjects[0].LCHPromptFilterText } bind:this={ mod._ValueFilterInputInstance } on:input={ () => ActivePromptFilterTextShouldUpdate(mod._ValueFilterInputInstance.value) } autofocus />
 		{/if}
 
-		{#if ['LCHLauncherFilterPrompt', 'LCHLauncherActionPrompt'].indexOf(e.LCHPromptClass) === -1 && e.LCHPromptDotModeEnabled }
+		{#if !['LCHLauncherFilterPrompt', 'LCHLauncherActionPrompt'].includes(e.LCHPromptClass) && e.LCHPromptDotModeEnabled }
 			<input bind:value={ e.LCHPromptDotModeText } on:input={ mod.InterfaceDotModeFieldDidInput } class="LCHLauncherPromptDotModeInput" autofocus />
 		{/if}
 	</LCHLauncherPrompt>

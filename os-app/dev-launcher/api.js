@@ -265,7 +265,7 @@ export const LCHAPITypeEquivalenceMapForRecipes = function(inputData) {
 			return false;
 		}
 
-		if (uniqueSignatures.indexOf(e.LCHRecipeSignature) !== -1) {
+		if (uniqueSignatures.includes(e.LCHRecipeSignature)) {
 			return false;
 		}
 
@@ -420,7 +420,7 @@ export const LCHCompositionModelErrors = function(inputData) {
 	// 	];
 	// }
 
-	else if (inputData.LCHCompositionAction.LCHRecipeInputTypes && LCHRuntime.LCHRuntimeInputTypes(inputData.LCHCompositionAction.LCHRecipeInputTypes).indexOf(inputData.LCHCompositionSubjectPrimary.LCHRecipeOutputType) === -1) {
+	else if (inputData.LCHCompositionAction.LCHRecipeInputTypes && !LCHRuntime.LCHRuntimeInputTypes(inputData.LCHCompositionAction.LCHRecipeInputTypes).includes(inputData.LCHCompositionSubjectPrimary.LCHRecipeOutputType)) {
 		errors.LCHCompositionSubjectPrimary = [
 			'LCHErrorInputNotValid',
 		];
@@ -439,7 +439,7 @@ export const LCHCompositionModelErrors = function(inputData) {
 			];
 		}
 
-		if (inputData.LCHCompositionAction.LCHRecipeInputTypes && LCHRuntime.LCHRuntimeInputTypes(inputData.LCHCompositionAction.LCHRecipeInputTypes).indexOf(inputData.LCHCompositionSubjectSecondary.LCHRecipeOutputType) === -1) {
+		if (inputData.LCHCompositionAction.LCHRecipeInputTypes && !LCHRuntime.LCHRuntimeInputTypes(inputData.LCHCompositionAction.LCHRecipeInputTypes).includes(inputData.LCHCompositionSubjectSecondary.LCHRecipeOutputType)) {
 			errors.LCHCompositionSubjectSecondary = [
 				'LCHErrorInputNotValid',
 			];
