@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
@@ -97,10 +95,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 			context('discard', function () {
 			
-				it('localizes LCHComposeDetailDiscardPrompt', async function() {
-					deepEqual((await browser.OLSKConfirm(async function () {
-						browser.pressButton(LCHComposeDetailToolbarDiscardButton);
-					})).question, uLocalized('LCHComposeDetailDiscardPromptText'));
+				it('localizes LCHComposeDetailDiscardPrompt', function() {
+					browser.assert.OLSKConfirmQuestion(function () {
+						return browser.pressButton(LCHComposeDetailToolbarDiscardButton);
+					}, uLocalized('LCHComposeDetailDiscardPromptText'));
 				});
 		
 			});
