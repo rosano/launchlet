@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 const uLocalized = function (inputData) {
@@ -38,7 +36,7 @@ describe('LCHVitrineDemoPipe', function () {
 		});
 		
 		it('sets content', function() {
-			deepEqual(browser.query(elementQuery).innerHTML, 'a { background: yellow !important; }');
+			browser.assert.OLSKInnerHTML(elementQuery, 'a { background: yellow !important; }');
 		});
 
 		context('after invoke', function () {
