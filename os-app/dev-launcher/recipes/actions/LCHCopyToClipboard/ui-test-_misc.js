@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('../../../controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
@@ -8,7 +6,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHCopyToClipboard_Misc', function () {
+describe.only('LCHCopyToClipboard_Misc', function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
@@ -34,7 +32,7 @@ describe('LCHCopyToClipboard_Misc', function () {
 	});
 
 	it('focuses LCHCopyToClipboardButton', function() {
-		deepEqual(browser.document.activeElement, browser.query(LCHCopyToClipboardButton));
+		browser.assert.hasFocus(LCHCopyToClipboardButton);
 	});
 
 	context('click', function () {

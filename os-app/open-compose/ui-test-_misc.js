@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('LCHCompose_Misc', function () {
@@ -241,11 +239,11 @@ describe('LCHCompose_Misc', function () {
 		});
 
 		before(function () {
-			browser.query('.LCHComposeInputFieldDebug').focus();
+			browser.query('.LCHComposeDetailFormCallbackBody .LCHComposeInputFieldDebug').focus();
 		});
 
 		before(function () {
-			deepEqual(browser.activeElement, browser.query('.LCHComposeInputFieldDebug'));
+			browser.assert.hasFocus('.LCHComposeDetailFormCallbackBody .LCHComposeInputFieldDebug');
 		});
 
 		before(function () {
@@ -253,7 +251,7 @@ describe('LCHCompose_Misc', function () {
 		});
 		
 		it('focuses LCHComposeMasterFilterField', function() {
-			deepEqual(browser.activeElement, browser.query('.LCHComposeMasterFilterField'));
+			browser.assert.hasFocus('.LCHComposeMasterFilterField');
 		});
 		
 		it('clears LCHComposeMasterFilterText', function() {
