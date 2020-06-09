@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
@@ -38,7 +36,9 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 
 	it('localizes LCHVitrineContent', function() {
 		const item = require('fs').readFileSync(require('path').join(__dirname, `text.${ languageCode }.md`), 'utf-8').replace(/_/g, '');
-		deepEqual(browser.query(LCHVitrineContent).textContent.trim().slice(0, 20), item.slice(0, 20))
+		browser.assert.OLSKTextContent(LCHVitrineContent, item.slice(0, 20), function (inputData) {
+			return inputData.slice(0, 20);
+		});
 	});
 
 	it('localizes LCH_VITRINE_QUICKSILVER_URL', function() {
