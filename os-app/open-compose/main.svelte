@@ -245,18 +245,18 @@ const mod = {
 				mod.ControlFilter('');
 
 				if (!OLSK_TESTING_BEHAVIOUR()) {
-					document.querySelector('.LCHComposeMasterBody').scrollTo(0, 0);
+					document.querySelector('.OLSKMasterListBody').scrollTo(0, 0);
 				}
 			},
 			Tab () {
-				if (document.activeElement === document.querySelector('.LCHComposeMasterFilterField') && mod._ValueDocumentSelected) {
+				if (document.activeElement === document.querySelector('.OLSKMasterListFilterField') && mod._ValueDocumentSelected) {
 					mod.ControlFocusDetail();
 
 					return event.preventDefault();
 				}
 
 				if (document.activeElement === document.querySelector('.LCHComposeDetailFormNameField') && event.shiftKey) {
-					document.querySelector('.LCHComposeMasterFilterField').focus();
+					document.querySelector('.OLSKMasterListFilterField').focus();
 
 					return event.preventDefault();
 				}
@@ -364,7 +364,7 @@ const mod = {
 		mod.ValueDocumentSelected(inputData);
 
 		if (!inputData) {
-			return !mod.DataIsMobile() && document.querySelector('.LCHComposeMasterFilterField').focus();
+			return !mod.DataIsMobile() && document.querySelector('.OLSKMasterListFilterField').focus();
 		}
 
 		mod.OLSKMobileViewInactive = true;
@@ -581,7 +581,7 @@ const mod = {
 		}
 
 		setTimeout(function () {
-			document.querySelector('.LCHComposeMasterFilterField').focus();
+			document.querySelector('.OLSKMasterListFilterField').focus();
 		})
 	},
 

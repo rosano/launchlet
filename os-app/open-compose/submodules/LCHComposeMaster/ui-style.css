@@ -1,48 +1,18 @@
-.LCHComposeMaster {
+:global(.LCHComposeMaster) {
 	border-right: var(--LCHBorderStyle);
-
-	/* LCHComposeMasterFlexbox:Parent */
-	display: flex;
-	flex-direction: column;
 }
 
-.LCHComposeMasterToolbar {
+:global(.LCHComposeMaster .OLSKMasterListToolbar) {
 	border-bottom: var(--LCHBorderStyle);
-
-	/* LCHComposeMasterFlexbox:Child */
-	flex-shrink: 0;
 }
 
-.LCHComposeMasterToolbar .OLSKToolbarElementGroup {
-	margin-left: 4px;
-}
-
-@media screen and (max-width: 760px) {
-
-.LCHComposeMasterToolbar .OLSKToolbarElementGroup {
-	margin-left: 8px;
-}
-
-}
-
-.LCHComposeMasterBody {
-	overflow: auto;
-	
-	/* LCHComposeMasterFlexbox:Child */
-	flex-grow: 1;
-}
-
-:global(.OLSKIsLoading) .LCHComposeMasterBody {
-	visibility: hidden;
-}
-
-.LCHComposeMasterBody :global(.OLSKResultsListItemSelected .LCHComposeMasterListItem) {
+:global(.LCHComposeMaster .OLSKMasterListBody .OLSKResultsListItemSelected .LCHComposeMasterListItem) {
 	background: #e6e6e6;
 }
 
 @media screen and (min-width: 760px) {
 
-.LCHComposeMasterFocused :global(.OLSKResultsListItemSelected .LCHComposeMasterListItem) {
+:global(.LCHComposeMaster.OLSKMasterListFocused .OLSKMasterListBody  .OLSKResultsListItemSelected .LCHComposeMasterListItem) {
 	background: #1a81ff;
 	color: white;
 }

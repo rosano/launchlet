@@ -96,6 +96,7 @@
 		'OLSKUIAssets',
 
 		// pass tests
+		'OLSKMasterList',
 		'OLSKInputWrapper',
 		'OLSKDetailPlaceholder',
 		'OLSKAppToolbar',

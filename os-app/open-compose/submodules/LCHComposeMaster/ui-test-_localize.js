@@ -14,10 +14,6 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			});
 		});
 	
-		it('localizes LCHComposeMasterFilterField', function () {
-			browser.assert.attribute(LCHComposeMasterFilterField, 'placeholder', uLocalized('LCHComposeMasterFilterFieldText'));
-		});
-	
 		it('localizes LCHComposeMasterCreateButton', function () {
 			browser.assert.attribute(LCHComposeMasterCreateButton, 'title', uLocalized('LCHComposeMasterCreateButtonText'));
 		});

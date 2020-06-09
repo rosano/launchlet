@@ -1,5 +1,8 @@
 import RollupStart from './main.svelte';
 
+import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
+const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
+
 const LCHComposeMaster = new RollupStart({
 	target: document.body,
 	props: Object.assign({
@@ -27,9 +30,17 @@ const LCHComposeMaster = new RollupStart({
 		}
 
 		if (e[0] === 'LCHComposeMasterListItemSelected') {
-			e[1] = coll[0][1].filter(function (item) {
+			e[1] = coll[1][1].filter(function (item) {
 				return item.LCHDocumentID === e[1].LCHDocumentID;
 			}).shift();
+		}
+
+		if (e[0] === 'LCHComposeMasterListItemSelected') {
+			e[1] = OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(e[1]);
+		}
+
+		if (e[0] === 'LCHComposeMasterListItems') {
+			e[1] = e[1].map(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse);
 		}
 
 		return e;
