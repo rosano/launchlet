@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 require('./controller.js').OLSKControllerRoutes().forEach(function (kDefaultRoute) {
 
 	describe(`LCHRootLink_Misc--${ kDefaultRoute.OLSKRouteSignature }`, function () {

@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 Object.entries({
 	LCHRootLink: '.LCHRootLink',
 }).map(function (e) {
