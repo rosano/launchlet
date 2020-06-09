@@ -6,7 +6,7 @@ Object.entries({
 	return global[e.shift()]  = e.pop();
 });
 
-describe.only('LCHCopyToClipboard_Misc', function () {
+describe('LCHCopyToClipboard_Misc', function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
