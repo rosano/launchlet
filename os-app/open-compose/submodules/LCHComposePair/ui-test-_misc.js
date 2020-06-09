@@ -20,9 +20,6 @@ describe('LCHComposePair_Misc', function () {
 			
 			before(function () {
 				browser.assert.text('#TestLCHComposePairDispatchSubmit', '0');
-			});
-			
-			before(function () {
 				browser.assert.text('#TestLCHComposePairDispatchSubmitData', 'undefined');
 			});
 			
@@ -36,9 +33,6 @@ describe('LCHComposePair_Misc', function () {
 
 			it.skip('sends LCHComposePairDispatchSubmit', function () { // #skip-zombie-form
 				browser.assert.text('#TestLCHComposePairDispatchSubmit', '1');
-			});
-
-			it('sends LCHComposePairDispatchSubmitData', function () {
 				browser.assert.text('#TestLCHComposePairDispatchSubmitData', 'alfa');
 			});
 

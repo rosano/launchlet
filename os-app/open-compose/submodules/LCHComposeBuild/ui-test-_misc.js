@@ -75,9 +75,6 @@ describe('LCHComposeBuild_Misc', function () {
 
 			before(function () {
 				browser.assert.text('#TestLCHComposeBuildDispatchPipeModeEnabled', '0');
-			});
-
-			before(function () {
 				browser.assert.text('#TestLCHComposeBuildDispatchPipeModeEnabledData', 'undefined');
 			});
 
@@ -87,9 +84,6 @@ describe('LCHComposeBuild_Misc', function () {
 
 			it('sends LCHComposeBuildDispatchPipeModeEnabled', function () {
 				browser.assert.text('#TestLCHComposeBuildDispatchPipeModeEnabled', '1');
-			});
-
-			it('sends LCHComposeBuildDispatchPipeModeEnabledData', function () {
 				browser.assert.text('#TestLCHComposeBuildDispatchPipeModeEnabledData', 'false');
 			});
 		
@@ -136,9 +130,6 @@ describe('LCHComposeBuild_Misc', function () {
 
 			before(function () {
 				browser.assert.text('#TestLCHComposeBuildDispatchPageRecipesEnabled', '0');
-			});
-
-			before(function () {
 				browser.assert.text('#TestLCHComposeBuildDispatchPageRecipesEnabledData', 'undefined');
 			});
 
@@ -148,9 +139,6 @@ describe('LCHComposeBuild_Misc', function () {
 
 			it('sends LCHComposeBuildDispatchPageRecipesEnabled', function () {
 				browser.assert.text('#TestLCHComposeBuildDispatchPageRecipesEnabled', '1');
-			});
-
-			it('sends LCHComposeBuildDispatchPageRecipesEnabledData', function () {
 				browser.assert.text('#TestLCHComposeBuildDispatchPageRecipesEnabledData', 'false');
 			});
 		
