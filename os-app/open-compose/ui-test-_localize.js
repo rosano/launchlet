@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
@@ -31,9 +29,9 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			});
 
 			it('localizes LCHComposePublicKeyNotValidAlert', function () {
-				deepEqual(browser.OLSKAlert(function () {
-					browser.pressButton('.LCHComposePairSubmitButton');
-				}), uLocalized('LCHComposePublicKeyNotValidAlertText'));
+				browser.assert.OLSKAlertText(function () {
+					return browser.pressButton('.LCHComposePairSubmitButton');
+				}, uLocalized('LCHComposePublicKeyNotValidAlertText'));
 			});
 
 			it('localizes LCHComposeToolsPairStatusWaiting', function () {

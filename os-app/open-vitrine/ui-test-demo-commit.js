@@ -109,9 +109,9 @@ describe('LCHVitrineDemoCommit', function () {
 		it('opens mailto', async function() {
 			await uFilter('send');
 
-			deepEqual(browser.OLSKAlert(function () {
-				browser.click('.OLSKResultsListItem');
-			}), 'mailto:');
+			browser.assert.OLSKAlertText(function () {
+				return browser.click('.OLSKResultsListItem');
+			}, 'mailto:');
 		});
 	
 	});
@@ -126,9 +126,9 @@ describe('LCHVitrineDemoCommit', function () {
 		it('copies to clipboard', async function() {
 			await uFilter('info');
 
-			deepEqual(browser.OLSKAlert(function () {
-				browser.click('.OLSKResultsListItem');
-			}), 'Copied to clipboard');
+			browser.assert.OLSKAlertText(function () {
+				return browser.click('.OLSKResultsListItem');
+			}, 'Copied to clipboard');
 		});
 	
 	});
