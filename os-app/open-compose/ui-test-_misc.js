@@ -655,22 +655,22 @@ describe('LCHCompose_Misc', function () {
 	
 	});
 
-	describe('LCHComposeStorageWidget', function test_LCHComposeStorageWidget () {
-		
-		it('classes LCHComposeStorageWidgetHidden', function () {
-			browser.assert.hasClass(LCHComposeStorageWidget, 'LCHComposeStorageWidgetHidden');
+	describe('LCHComposeStorageToolbar', function test_LCHComposeStorageToolbar () {
+
+		before(function () {
+			return browser.pressButton('.OLSKAppToolbarStorageButton');
 		});
 
-		context('click OLSKAppToolbarStorageButton', function () {
-			
-			before(function () {
-				return browser.pressButton('.OLSKAppToolbarStorageButton');
-			});
-			
-			it('classes LCHComposeStorageWidgetHidden', function () {
-				browser.assert.hasNoClass(LCHComposeStorageWidget, 'LCHComposeStorageWidgetHidden');
-			});
+		it('classes OLSKToolbar', function () {
+			browser.assert.hasClass(LCHComposeStorageToolbar, 'OLSKToolbar');
+		});
+
+		it('classes OLSKToolbarJustify', function () {
+			browser.assert.hasClass(LCHComposeStorageToolbar, 'OLSKToolbarJustify');
+		});
 		
+		it('classes OLSKStorageToolbar', function () {
+			browser.assert.hasClass(LCHComposeStorageToolbar, 'OLSKStorageToolbar');
 		});
 	
 	});

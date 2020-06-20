@@ -113,7 +113,7 @@ const mod = {
 	_JavascriptCompositionBinary: '',
 	_ValueRecipesArrayString: '',
 	
-	_ValueStorageWidgetHidden: true,
+	_ValueStorageToolbarHidden: true,
 
 	_ValueFooterStorageStatus: '',
 
@@ -186,7 +186,7 @@ const mod = {
 	},
 
 	OLSKAppToolbarDispatchStorage () {
-		mod._ValueStorageWidgetHidden = !mod._ValueStorageWidgetHidden;
+		mod._ValueStorageToolbarHidden = !mod._ValueStorageToolbarHidden;
 	},
 
 	LCHComposeMasterDispatchCreate () {
@@ -633,8 +633,6 @@ const mod = {
 
 		mod.SetupRemoteStorage();
 
-		mod.SetupStorageWidget();
-
 		mod.SetupStorageStatus();
 
 		await mod.SetupStorageNotifications();
@@ -683,10 +681,6 @@ const mod = {
 			dropbox: window.atob(window.OLSKPublicConstants('LCHDropboxAppKey')),
 			googledrive: window.atob(window.OLSKPublicConstants('LCHGoogleClientKey')),
 		} : {});
-	},
-
-	SetupStorageWidget () {
-		(new window.OLSKStorageWidget(mod._ValueStorageClient)).attach('LCHComposeStorageWidget').backend(document.querySelector('.OLSKAppToolbarStorageButton'));
 	},
 
 	SetupStorageStatus () {
@@ -814,6 +808,7 @@ import LCHComposeBuild from './submodules/LCHComposeBuild/main.svelte';
 import LCHComposePair from './submodules/LCHComposePair/main.svelte';
 import OLSKAppToolbar from 'OLSKAppToolbar';
 import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svelte';
+import OLSKStorageWidget from 'OLSKStorageWidget';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 
@@ -880,7 +875,17 @@ import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svel
 		</div>
 	</footer>
 
-	<div id="LCHComposeStorageWidget" class:LCHComposeStorageWidgetHidden={ mod._ValueStorageWidgetHidden }></div>
+	{#if !mod._ValueStorageToolbarHidden }
+		<div class="LCHComposeStorageToolbar OLSKToolbar OLSKToolbarJustify OLSKStorageToolbar">
+			<div class="OLSKToolbarElementGroup">
+				<div></div>
+			</div>
+
+			<div class="OLSKToolbarElementGroup">
+				<OLSKStorageWidget StorageClient={ mod._ValueStorageClient.remoteStorage } />
+			</div>
+		</div>
+	{/if}
 
 	<OLSKAppToolbar
 		OLSKAppToolbarGuideURL={ window.OLSKCanonicalFor('LCHGuideRoute') }

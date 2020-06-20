@@ -24,17 +24,13 @@
 
 }
 
-#LCHComposeStorageWidget {
+.LCHComposeStorageToolbar {
 	border-top: var(--LCHBorderStyle);
 	
 	background: var(--LCHCommonBackground);
 
 	/* AppContainerFlexbox:Child */
 	flex-shrink: 0;
-}
-
-.LCHComposeStorageWidgetHidden {
-	display: none;
 }
 
 @media screen and (max-width: 760px) {
