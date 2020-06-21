@@ -9,7 +9,7 @@ export const LCHDocumentStoragePath = function(inputData) {
 	return `${ kCollection }/${ inputData || '' }`;
 };
 
-export const LCHDocumentStorage = function (privateClient, publicClient, changeDelegate) {
+export const LCHDocumentStorageBuild = function (privateClient, publicClient, changeDelegate) {
 	privateClient.on('change', function (event) {
 		if (!changeDelegate) {
 			return;
@@ -33,11 +33,9 @@ export const LCHDocumentStorage = function (privateClient, publicClient, changeD
 	});
 
 	return {
-		LCHStorageCollection: kCollection,
-		LCHStorageType: kType,
-		LCHStorageModelErrors: Object.entries(LCHDocumentModel.LCHDocumentModelErrorsFor({}, {
-			LCHOptionValidateIfNotPresent: true,
-		})).map(function (e) {
+		OLSKRemoteStorageCollectionName: kCollection,
+		OLSKRemoteStorageCollectionType: kType,
+		OLSKRemoteStorageCollectionModelErrors: Object.entries(LCHDocumentModel.LCHDocumentModelErrorsFor({})).map(function (e) {
 			if (!Object.keys(LCHDocumentModel.LCHDocumentModelErrorsFor({})).includes(e[0])) {
 				e[1].push('__RSOptional');
 			}
@@ -48,7 +46,7 @@ export const LCHDocumentStorage = function (privateClient, publicClient, changeD
 
 			return coll;
 		}, {}),
-		LCHStorageExports: {
+		OLSKRemoteStorageCollectionExports: {
 			LCHStorageList () {
 				return privateClient.getAll(LCHDocumentStoragePath(), false);
 			},

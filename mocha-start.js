@@ -9,16 +9,12 @@ const LCHSettingStorage = require('./os-app/_shared/LCHSetting/storage.js');
 		return;
 	}
 
-	const uSerial = function (inputData) {
-		return inputData.reduce(async function (coll, e) {
-			return e.then(Array.prototype.concat.bind(await coll));
-		}, Promise.resolve([]));
-	};
-
 	const storageModule = LCH_Data.LCH_DataModule([
-		LCHDocumentStorage.LCHDocumentStorage,
-		LCHSettingStorage.LCHSettingStorage,
-	]);
+		LCHDocumentStorage.LCHDocumentStorageBuild,
+		LCHSettingStorage.LCHSettingStorageBuild,
+	], {
+		OLSKOptionIncludeDebug: true,
+	});
 
 	before(function() {
 		global.LCHTestingStorageClient = new RemoteStorage({ modules: [ storageModule ] });
@@ -27,8 +23,6 @@ const LCHSettingStorage = require('./os-app/_shared/LCHSetting/storage.js');
 	});
 
 	beforeEach(async function() {
-		await uSerial(Object.keys(global.LCHTestingStorageClient[storageModule.name]).map(async function (e) {
-			return await Promise.all(Object.keys(await global.LCHTestingStorageClient[storageModule.name][e].LCHStorageList()).map(global.LCHTestingStorageClient[storageModule.name][e].LCHStorageDelete));
-		}));
+		return await global.LCHTestingStorageClient[storageModule.name].__DEBUG._OLSKRemoteStorageReset();
 	});
 })();

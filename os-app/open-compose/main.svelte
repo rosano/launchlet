@@ -8,8 +8,8 @@ const OLSKLocalized = function(translationConstant) {
 
 import OLSKThrottle from 'OLSKThrottle';
 import LCH_Data from '../_shared/LCH_Data/main.js';
-import { LCHDocumentStorage } from '../_shared/LCHDocument/storage.js';
-import { LCHSettingStorage } from '../_shared/LCHSetting/storage.js';
+import * as LCHDocumentStorage from '../_shared/LCHDocument/storage.js';
+import * as LCHSettingStorage from '../_shared/LCHSetting/storage.js';
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 import * as OLSKRemoteStoragePackage from '../_shared/__external/OLSKRemoteStorage/main.js'
 const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
@@ -656,14 +656,14 @@ const mod = {
 
 	SetupStorageClient() {
 		const storageModule = LCH_Data.LCH_DataModule([
-			Object.assign(LCHDocumentStorage, {
+			Object.assign(LCHDocumentStorage.LCHDocumentStorageBuild, {
 				LCHStorageChangeDelegate: {
 					OLSKChangeDelegateCreate: mod.OLSKChangeDelegateCreateDocument,
 					OLSKChangeDelegateUpdate: mod.OLSKChangeDelegateUpdateDocument,
 					OLSKChangeDelegateDelete: mod.OLSKChangeDelegateDeleteDocument,
 				},
 			}),
-			LCHSettingStorage,
+			LCHSettingStorage.LCHSettingStorageBuild,
 			]);
 		
 		mod._ValueStorageClient = new RemoteStorage({

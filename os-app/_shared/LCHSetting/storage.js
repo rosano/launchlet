@@ -8,12 +8,22 @@ export const LCHSettingStoragePath = function(inputData) {
 };
 
 import { LCHFormulaModelErrorsFor, LCHFormulaFrom, LCHFormulaTo } from '../LCHFormula/main.js';
-export const LCHSettingStorage = function (privateClient, publicClient, changeDelegate) {
+export const LCHSettingStorageBuild = function (privateClient, publicClient, changeDelegate) {
 	return {
-		LCHStorageCollection: kCollection,
-		LCHStorageType: kType,
-		LCHStorageModelErrors: LCHSettingModel.LCHSettingModelErrorsFor({}),
-		LCHStorageExports: {
+		OLSKRemoteStorageCollectionName: kCollection,
+		OLSKRemoteStorageCollectionType: kType,
+		OLSKRemoteStorageCollectionModelErrors: Object.entries(LCHSettingModel.LCHSettingModelErrorsFor({})).map(function (e) {
+			if (!Object.keys(LCHSettingModel.LCHSettingModelErrorsFor({})).includes(e[0])) {
+				e[1].push('__RSOptional');
+			}
+
+			return e;
+		}).reduce(function (coll, item) {
+			coll[item[0]] = item[1];
+
+			return coll;
+		}, {}),
+		OLSKRemoteStorageCollectionExports: {
 			LCHStorageList () {
 				return privateClient.getAll(LCHSettingStoragePath(), false);
 			},
