@@ -657,7 +657,7 @@ const mod = {
 	SetupStorageClient() {
 		const storageModule = LCH_Data.LCH_DataModule([
 			Object.assign(LCHDocumentStorage.LCHDocumentStorageBuild, {
-				LCHStorageChangeDelegate: {
+				OLSKChangeDelegate: {
 					OLSKChangeDelegateCreate: mod.OLSKChangeDelegateCreateDocument,
 					OLSKChangeDelegateUpdate: mod.OLSKChangeDelegateUpdateDocument,
 					OLSKChangeDelegateDelete: mod.OLSKChangeDelegateDeleteDocument,
