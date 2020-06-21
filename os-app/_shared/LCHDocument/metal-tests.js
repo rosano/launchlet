@@ -40,24 +40,6 @@ describe('LCHDocumentMetalWrite', function test_LCHDocumentMetalWrite() {
 
 });
 
-describe('LCHDocumentMetalRead', function test_LCHDocumentMetalRead() {
-
-	it('rejects if not string', async function() {
-		await rejects(mainModule.LCHDocumentMetalRead(LCHTestingStorageClient, 1), /LCHErrorInputNotValid/);
-	});
-
-	it('returns null if not found', async function() {
-		deepEqual(await mainModule.LCHDocumentMetalRead(LCHTestingStorageClient, 'alfa'), null);
-	});
-
-	it('returns LCHDocument', async function() {
-		let item = await mainModule.LCHDocumentMetalWrite(LCHTestingStorageClient, kTesting.StubDocumentObjectValid());
-
-		deepEqual(await mainModule.LCHDocumentMetalRead(LCHTestingStorageClient, item.LCHDocumentID), item);
-	});
-
-});
-
 describe('LCHDocumentMetalList', function test_LCHDocumentMetalList() {
 
 	it('returns empty array if none', async function() {

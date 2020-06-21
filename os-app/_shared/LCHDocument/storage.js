@@ -54,9 +54,6 @@ export const LCHDocumentStorageBuild = function (privateClient, publicClient, ch
 				await privateClient.storeObject(kType, `${ kCollection }/${ param1 }`, OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(param2));
 				return OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(param2);
 			},
-			LCHStorageRead (inputData) {
-				return privateClient.getObject(`${ kCollection }/${ inputData }`);
-			},
 			LCHStorageDelete (inputData) {
 				return privateClient.remove(`${ kCollection }/${ inputData }`);
 			},
