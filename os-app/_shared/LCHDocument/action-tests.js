@@ -64,24 +64,6 @@ describe('LCHDocumentActionCreate', function test_LCHDocumentActionCreate() {
 
 });
 
-describe('LCHDocumentActionRead', function test_LCHDocumentActionRead() {
-
-	it('rejects if not string', async function() {
-		await rejects(mainModule.LCHDocumentActionRead(LCHTestingStorageClient, null), /LCHErrorInputNotValid/);
-	});
-
-	it('returns null if not found', async function() {
-		deepEqual(await mainModule.LCHDocumentActionRead(LCHTestingStorageClient, 'alfa'), null);
-	});
-
-	it('returns LCHDocument', async function() {
-		let item = await mainModule.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject());
-
-		deepEqual(item, await mainModule.LCHDocumentActionRead(LCHTestingStorageClient, item.LCHDocumentID));
-	});
-
-});
-
 describe('LCHDocumentActionUpdate', function test_LCHDocumentActionUpdate() {
 
 	it('rejects if not object', async function() {
@@ -142,7 +124,7 @@ describe('LCHDocumentActionDelete', function test_LCHDocumentActionDelete() {
 	it('deletes LCHDocument', async function() {
 		let itemID;
 		await mainModule.LCHDocumentActionDelete(LCHTestingStorageClient, itemID = (await mainModule.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject())).LCHDocumentID);
-		deepEqual(await mainModule.LCHDocumentActionRead(LCHTestingStorageClient, itemID), null);
+		deepEqual(await mainModule.LCHDocumentActionList(LCHTestingStorageClient), []);
 	});
 
 });

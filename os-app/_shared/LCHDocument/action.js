@@ -16,10 +16,6 @@ export const LCHDocumentActionCreate = async function(storageClient, inputData) 
 	}));
 };
 
-export const LCHDocumentActionRead = async function(storageClient, inputData) {
-	return await LCHDocumentMetal.LCHDocumentMetalRead(storageClient, inputData);
-};
-
 export const LCHDocumentActionUpdate = async function(storageClient, inputData) {
 	if (typeof inputData !== 'object' || inputData === null) {
 		return Promise.reject(new Error('LCHErrorInputNotValid'));
