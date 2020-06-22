@@ -100,6 +100,10 @@ describe('LCHComposeDetail_Misc', function () {
 			browser.assert.hasClass(LCHComposeDetailToolbarBackButton, 'OLSKToolbarButton');
 		});
 
+		it('classes OLSKVisibilityMobile', function () {
+			browser.assert.hasClass(LCHComposeDetailToolbarBackButton, 'OLSKVisibilityMobile');
+		});
+
 		context('click', function () {
 			
 			before(function () {
