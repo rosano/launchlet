@@ -189,6 +189,24 @@ const mod = {
 		mod._ValueStorageToolbarHidden = !mod._ValueStorageToolbarHidden;
 	},
 
+	OLSKAppToolbarDispatchLauncher () {
+		const items = [];
+
+		if (mod._ValueDocumentSelected) {
+			items.push({
+				LCHRecipeSignature: 'LCHComposeLauncherItemClone',
+				LCHRecipeName: OLSKLocalized('LCHComposeLauncherItemCloneText'),
+				LCHRecipeCallback () {
+					mod.ControlDocumentClone(mod._ValueDocumentSelected);
+				},
+			});
+		}
+
+		window.Launchlet.LCHSingletonCreate({
+			LCHOptionRecipes: items,
+		});
+	},
+
 	LCHComposeMasterDispatchCreate () {
 		mod.ControlDocumentCreate();
 	},
@@ -891,9 +909,11 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 		OLSKAppToolbarGuideURL={ window.OLSKCanonicalFor('LCHGuideRoute') }
 		OLSKAppToolbarDonateURL={ window.OLSKPublicConstants('LCH_SHARED_DONATE_URL') }
 		OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
+		OLSKAppToolbarLauncherVisible={ true }
 		OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
 		_OLSKAppToolbarDispatchExport={ mod._OLSKAppToolbarDispatchExport }
 		_OLSKAppToolbarDispatchImport={ mod._OLSKAppToolbarDispatchImport }
+		OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
 		/>
 
 </footer>

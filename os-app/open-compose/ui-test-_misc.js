@@ -693,6 +693,31 @@ describe('LCHCompose_Misc', function () {
 			browser.assert.attribute('.OLSKAppToolbarDonateLink', 'href', process.env.LCH_SHARED_DONATE_URL);
 		});
 
+	});
+
+
+	describe('LCHComposeLauncherItemClone', function test_LCHComposeLauncherItemClone () {
+
+		before(function () {
+			browser.assert.elements('.LCHComposeMasterListItem', 2);
+		});
+		
+		before(function () {
+			return browser.pressButton('.OLSKAppToolbarLauncherButton');
+		});
+
+		before(function () {
+			return browser.fill('.LCHLauncherFilterInput', 'LCHComposeLauncherItemClone');
+		});
+
+		before(function () {
+			return browser.click('.LCHLauncherPipeItem');
+		});
+
+		it('runs command', function () {
+			browser.assert.elements('.LCHComposeMasterListItem', 3);
+		});
+	
 	});	
 
 });

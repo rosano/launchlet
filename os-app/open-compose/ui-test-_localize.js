@@ -54,6 +54,26 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		
 		});
 
+		context('LCHComposeLauncherItemClone', function () {
+
+			before(function () {
+				return browser.pressButton('.LCHComposeMasterCreateButton');
+			});
+			
+			before(function () {
+				return browser.pressButton('.OLSKAppToolbarLauncherButton');
+			});
+
+			before(function () {
+				return browser.fill('.LCHLauncherFilterInput', 'LCHComposeLauncherItemClone');
+			});
+
+			it('localizes LCHComposeLauncherItemClone', function () {
+				browser.assert.text('.LCHLauncherPipeItem', uLocalized('LCHComposeLauncherItemCloneText'));
+			});
+		
+		});	
+
 	});
 
 });
