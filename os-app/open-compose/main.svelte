@@ -57,8 +57,8 @@ const mod = {
 	OLSKChangeDelegateUpdateDocument (inputData) {
 		// console.log('OLSKChangeDelegateUpdate', inputData);
 
-		if (mod._ValueDocumentSelected && (mod._ValueDocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
-			mod.ControlDocumentSelect(Object.assign(mod._ValueDocumentSelected, inputData));
+		if (mod._ValueDocumentSelected && mod._ValueDocumentSelected.LCHDocumentID === inputData.LCHDocumentID) {
+			mod.ControlDocumentSelect(inputData);
 		}
 
 		mod.ValueDocumentsAll(mod._ValueDocumentsAll.map(function (e) {
