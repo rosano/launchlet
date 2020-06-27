@@ -49,9 +49,9 @@ const mod = {
 	OLSKChangeDelegateCreateDocument (inputData) {
 		// console.log('OLSKChangeDelegateCreate', inputData);
 
-		mod.ValueDocumentsAll(mod._ValueDocumentsAll.filter(function (e) {
+		mod.ValueDocumentsAll([inputData].concat(mod._ValueDocumentsAll.filter(function (e) {
 			return e.LCHDocumentID !== inputData.LCHDocumentID; // @Hotfix Dropbox sending DelegateAdd
-		}).concat(inputData));
+		})), !mod._ValueDocumentSelected);
 	},
 
 	OLSKChangeDelegateUpdateDocument (inputData) {
@@ -62,8 +62,8 @@ const mod = {
 		}
 
 		mod.ValueDocumentsAll(mod._ValueDocumentsAll.map(function (e) {
-		}), false);
 			return e.LCHDocumentID === inputData.LCHDocumentID ? inputData : e;
+		}), !mod._ValueDocumentSelected);
 	},
 
 	OLSKChangeDelegateDeleteDocument (inputData) {
@@ -214,6 +214,45 @@ const mod = {
 					mod.ControlDocumentClone(mod._ValueDocumentSelected);
 				},
 			});
+		}
+
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			items.push(...[
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateCreateDocument',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateDocument () {
+						return mod.OLSKChangeDelegateCreateDocument(await LCHDocumentAction.LCHDocumentActionCreate(mod._ValueStorageClient, mod.DataDocumentObjectTemplate('FakeOLSKChangeDelegateCreateDocument')));
+					},
+				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateDocument',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateDocument () {
+						return mod.OLSKChangeDelegateUpdateDocument(await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueStorageClient, Object.assign(mod._ValueDocumentsAll.filter(function (e) {
+							return e.LCHDocumentName.match('FakeOLSKChangeDelegate');
+						}).pop(), {
+							LCHDocumentName: 'FakeOLSKChangeDelegateUpdateDocument',
+						})));
+					},
+				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteDocument',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateDeleteDocument () {
+						const item = mod._ValueDocumentsAll.filter(function (e) {
+							return e.LCHDocumentName.match('FakeOLSKChangeDelegate');
+						}).pop();
+						
+						await LCHDocumentAction.LCHDocumentActionDelete(mod._ValueStorageClient, item.LCHDocumentID);
+						
+						return mod.OLSKChangeDelegateDeleteDocument(item);
+					},
+				},
+				{
+					LCHRecipeName: 'FakeEscapeWithoutSort',
+					LCHRecipeCallback: function FakeEscapeWithoutSort () {
+						mod.ControlDocumentSelect(null);
+					},
+				},
+			]);
 		}
 
 		window.Launchlet.LCHSingletonCreate({
