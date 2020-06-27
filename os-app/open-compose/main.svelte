@@ -163,6 +163,20 @@ const mod = {
 		return false;
 	},
 
+	DataDocumentObjectTemplate(inputData) {
+		return {
+			LCHDocumentName: inputData || '',
+			LCHDocumentInputTypes: '',
+			LCHDocumentCallbackArgs: '',
+			LCHDocumentCallbackBody: '',
+			LCHDocumentOutputType: '',
+			LCHDocumentCanonicalExampleCallbackBody: '',
+			LCHDocumentSignature: '',
+			LCHDocumentURLFilter: '',
+			LCHDocumentStyle: '',
+		}
+	},
+
 	// MESSAGE
 
 	LCHComposeBuildDispatchRun () {
@@ -357,17 +371,7 @@ const mod = {
 	},
 
 	async ControlDocumentCreate(inputData) {
-		const item = await LCHDocumentAction.LCHDocumentActionCreate(mod._ValueStorageClient, inputData || {
-			LCHDocumentName: '',
-			LCHDocumentInputTypes: '',
-			LCHDocumentCallbackArgs: '',
-			LCHDocumentCallbackBody: '',
-			LCHDocumentOutputType: '',
-			LCHDocumentCanonicalExampleCallbackBody: '',
-			LCHDocumentSignature: '',
-			LCHDocumentURLFilter: '',
-			LCHDocumentStyle: '',
-		});
+		const item = await LCHDocumentAction.LCHDocumentActionCreate(mod._ValueStorageClient, inputData || mod.DataDocumentObjectTemplate());
 
 		mod.ValueDocumentsAll(mod._ValueDocumentsAll.concat(item));
 
