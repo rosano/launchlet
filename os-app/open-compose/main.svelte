@@ -62,8 +62,8 @@ const mod = {
 		}
 
 		mod.ValueDocumentsAll(mod._ValueDocumentsAll.map(function (e) {
-			return Object.assign(e, e.LCHDocumentID === inputData.LCHDocumentID ? inputData : {});
 		}), false);
+			return e.LCHDocumentID === inputData.LCHDocumentID ? inputData : e;
 	},
 
 	OLSKChangeDelegateDeleteDocument (inputData) {
