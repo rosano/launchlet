@@ -403,7 +403,7 @@ const mod = {
 	async ControlDocumentDiscard (inputData) {
 		mod.ValueDocumentsAll(mod._ValueDocumentsAll.filter(function (e) {
 			return e !== inputData;
-		}))
+		}), false);
 
 		await LCHDocumentAction.LCHDocumentActionDelete(mod._ValueStorageClient, inputData.LCHDocumentID);
 
