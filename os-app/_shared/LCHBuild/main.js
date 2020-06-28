@@ -99,7 +99,7 @@ const mod = {
 
 	LCHBuildBoomarkletTemplate () {
 		return `(function () {
-	    mod.LCHBuildBoomarkletTemplate_Script;
+	    LCHBuildBoomarkletTemplate_Script;
 
 	    Launchlet.LCHTasksRun([{
 	      LCHRecipeCallback () {},
@@ -108,8 +108,8 @@ const mod = {
 	      LCHRecipeIsAutomatic: true,
 	    }]);
 
-	    Launchlet.LCHSingletonCreate(Object.assign(mod.LCHBuildBoomarkletTemplate_Options, {
-	      LCHOptionRecipes: mod.LCHBuildBoomarkletTemplate_Recipes,
+	    Launchlet.LCHSingletonCreate(Object.assign(LCHBuildBoomarkletTemplate_Options, {
+	      LCHOptionRecipes: LCHBuildBoomarkletTemplate_Recipes,
 	    }));
 	  })()`;
 	},
