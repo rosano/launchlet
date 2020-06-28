@@ -72,8 +72,6 @@ To filter test paths by regular expressions:
 npm test ui -- --olsk-match='/resultlist/i'
 ```
 
-If you know how to fix UI tests that fail randomly because of timing/WebSocket/timeout issues please let me know.
-
 ## License
 
 The code is released under a [Hippocratic License](https://firstdonoharm.dev), modified to exclude its use for surveillance capitalism and also to require large for-profit entities to purchase a paid license.
