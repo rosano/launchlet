@@ -163,9 +163,9 @@ const mod = {
 		return false;
 	},
 
-	DataDocumentObjectTemplate(inputData) {
+	DataDocumentObjectTemplate (inputData = '') {
 		return {
-			LCHDocumentName: inputData || '',
+			LCHDocumentName: inputData,
 			LCHDocumentInputTypes: '',
 			LCHDocumentCallbackArgs: '',
 			LCHDocumentCallbackBody: '',
