@@ -7,6 +7,7 @@ describe('LCHLauncherPipeItem_Misc', function () {
 			PipeItemTitle: 'alfa',
 			PipeItemSubtitle: 'bravo',
 			PipeItemSource: 'charlie',
+			PipeItemSignature: 'delta',
 		};
 	};
 
@@ -24,6 +25,10 @@ describe('LCHLauncherPipeItem_Misc', function () {
 	
 	it('binds PipeItemSource', function() {
 		browser.assert.text(LCHLauncherPipeItemSource, uStubProps().PipeItemSource);
+	});
+
+	it('classes PipeItemSignature', function () {
+		browser.assert.hasClass(LCHLauncherPipeItem, 'delta');
 	});
 
 });
