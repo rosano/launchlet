@@ -36,7 +36,6 @@ const LCHSettingStorage = require('./os-app/_shared/LCHSetting/storage.js');
 		uStubTwoItems () {
 			return [
 				{
-					LCHRecipeSignature: 'alfa',
 					LCHRecipeName: 'alfa',
 					LCHRecipeCallback: function () {
 						return document.querySelector('.TestRecipeOutput').value = 'alfa';

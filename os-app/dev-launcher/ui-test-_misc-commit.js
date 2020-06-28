@@ -197,21 +197,5 @@ describe('LCHLauncherMisc_Commit', function () {
 		});
 
 	});
-
-	context.skip('LCHLauncherPipeItem', function () {
-		
-		before(function () {
-			return browser.pressButton('.TestLauncherInvoke');
-		});
-		
-		before(function() {
-			browser.fill(LCHLauncherFilterInput, 'a');
-		});
-		
-		it('classes with LCHSignature', function () {
-			browser.assert.hasClass('.LCHLauncherPipeItem', 'alfa');
-		});
-	
-	});
 	
 });

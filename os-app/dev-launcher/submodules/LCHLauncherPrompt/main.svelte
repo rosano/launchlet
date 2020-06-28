@@ -44,7 +44,6 @@ function ResultListDispatchClick(inputData) {
 			PipeItemTitle={ item.LCHRecipeName }
 			PipeItemSubtitle={ item._LCHRecipeOutputTypeName }
 			PipeItemSource={ item._LCHRecipeSource }
-			PipeItemSignature={ item.LCHRecipeSignature }
 			/>
 	</OLSKResults>
 {/if}
