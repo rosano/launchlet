@@ -9,7 +9,7 @@ describe('LCHPackage_Access', function test_LCHPackage_AccessPipe () {
 	});
 
 	it('redirects to style', async function() {
-		deepEqual((await (await browser.fetch('http://loc.tests' + OLSKTestingCanonical(routes.LCHPackageCompiledStyleRedirect))).text()).slice(0, 10), '.Container');
+		deepEqual((await (await browser.fetch('http://loc.tests' + OLSKTestingCanonical(routes.LCHPackageCompiledStyleRedirect))).text()).slice(0, 10), '.OLSKResul');
 	});
 
 });
