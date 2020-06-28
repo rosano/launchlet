@@ -22,32 +22,6 @@ Object.entries({
 	LCHLauncherObjectPrompt: '.LCHLauncherObjectPrompt',
 	LCHLauncherObjectPromptHeading: '.LCHLauncherObjectPrompt .LCHLauncherPromptHeading',
 	LCHLauncherObjectPromptItemSelected: '.LCHLauncherObjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem',
-
-	uStubTwoItems () {
-		return [
-			{
-				LCHRecipeName: 'alfa',
-				LCHRecipeCallback: function () {
-					return document.querySelector('.TestRecipeOutput').value = 'alfa';
-				},
-			},
-			{
-				LCHRecipeName: 'bravo',
-				LCHRecipeCallback: function () {
-					return document.querySelector('.TestRecipeOutput').value = 'bravo';
-				},
-			},
-		];
-	},
-
-	uStubStringify (inputData) {
-		return JSON.stringify(inputData.map(function (e) {
-			return Object.assign(e, {
-				LCHRecipeCallback: `(${ e.LCHRecipeCallback.toString() })`,
-				LCHRecipeIsExcluded: e.LCHRecipeIsExcluded ? `(${ e.LCHRecipeIsExcluded.toString() })` : undefined,
-			});
-		}));
-	},
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });

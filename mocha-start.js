@@ -26,3 +26,39 @@ const LCHSettingStorage = require('./os-app/_shared/LCHSetting/storage.js');
 		return await global.LCHTestingStorageClient[storageModule.name].__DEBUG._OLSKRemoteStorageReset();
 	});
 })();
+
+(function LCHMochaStubs() {
+	if (process.env.OLSK_TESTING_BEHAVIOUR !== 'true') {
+		return;
+	}
+
+	Object.entries({
+		uStubTwoItems () {
+			return [
+				{
+					LCHRecipeName: 'alfa',
+					LCHRecipeCallback: function () {
+						return document.querySelector('.TestRecipeOutput').value = 'alfa';
+					},
+				},
+				{
+					LCHRecipeName: 'bravo',
+					LCHRecipeCallback: function () {
+						return document.querySelector('.TestRecipeOutput').value = 'bravo';
+					},
+				},
+			];
+		},
+
+		uStubStringify (inputData) {
+			return JSON.stringify(inputData.map(function (e) {
+				return Object.assign(e, {
+					LCHRecipeCallback: `(${ e.LCHRecipeCallback.toString() })`,
+					LCHRecipeIsExcluded: e.LCHRecipeIsExcluded ? `(${ e.LCHRecipeIsExcluded.toString() })` : undefined,
+				});
+			}));
+		},
+	}).map(function (e) {
+		return global[e.shift()]  = e.pop();
+	});
+})();
