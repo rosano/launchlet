@@ -82,7 +82,7 @@ describe('LCHLauncherBackspace', function() {
 		});
 			
 		it('shows OLSKResultsList', function() {
-			browser.assert.elements(OLSKResultsList, 1);
+			browser.assert.elements('.OLSKResultsList', 1);
 		});
 			
 		it('shows LCHLauncherActionPromptItemSelected', function() {
@@ -102,7 +102,7 @@ describe('LCHLauncherBackspace', function() {
 		});
 			
 		it('hides OLSKResultsList', function() {
-			browser.assert.elements(OLSKResultsList, 0);
+			browser.assert.elements('.OLSKResultsList', 0);
 		});
 			
 		it('hides LCHLauncherActionPromptItemSelected', function() {

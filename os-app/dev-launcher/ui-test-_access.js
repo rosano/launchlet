@@ -7,9 +7,6 @@ Object.entries({
 
 	LCHLauncherListItem: '.OLSKResultsListItem',
 
-	OLSKResultsList: '.OLSKResultsList',
-	OLSKResultsListItem: '.OLSKResultsListItem',
-
 	LCHLauncherPromptDotModeInput: '.LCHLauncherPromptDotModeInput',
 	LCHLauncherPipeItem: '.LCHLauncherPipeItem',
 
@@ -159,11 +156,11 @@ describe('LCHLauncher_AccessPipe', function test_LCHLauncher_AccessPipe () {
 	});
 
 	it('hides OLSKResultsList', function() {
-		browser.assert.elements(OLSKResultsList, 0)
+		browser.assert.elements('.OLSKResultsList', 0)
 	});
 
 	it('hides OLSKResultsListItem', function() {
-		browser.assert.elements(OLSKResultsListItem, 0)
+		browser.assert.elements('.OLSKResultsListItem', 0)
 	});
 
 	it('hides LCHLauncherPipeItem', function() {

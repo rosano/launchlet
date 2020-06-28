@@ -20,7 +20,7 @@ describe('OLSKResultsList', function () {
 		});
 
 		it('hides OLSKResultsList', function() {
-			browser.assert.elements(OLSKResultsList, 0);
+			browser.assert.elements('.OLSKResultsList', 0);
 		});
 
 		after(function () {
@@ -37,7 +37,7 @@ describe('OLSKResultsList', function () {
 		});
 
 		it('hides OLSKResultsList', function() {
-			browser.assert.elements(OLSKResultsList, 0);
+			browser.assert.elements('.OLSKResultsList', 0);
 		});
 
 		after(function () {
@@ -53,7 +53,7 @@ describe('OLSKResultsList', function () {
 		});
 
 		it('hides OLSKResultsList', function() {
-			browser.assert.elements(OLSKResultsList, 0);
+			browser.assert.elements('.OLSKResultsList', 0);
 		});
 		
 		after(function() {
@@ -70,7 +70,7 @@ describe('OLSKResultsList', function () {
 		})
 
 		it('hides OLSKResultsList', function() {
-			browser.assert.elements(OLSKResultsList, 0);
+			browser.assert.elements('.OLSKResultsList', 0);
 		});
 
 	});
@@ -82,7 +82,7 @@ describe('OLSKResultsList', function () {
 		});
 
 		it('shows OLSKResultsList', function() {
-			browser.assert.elements(OLSKResultsList, 1);
+			browser.assert.elements('.OLSKResultsList', 1);
 		});
 
 		it('selects first item', function() {
@@ -134,7 +134,7 @@ describe('OLSKResultsList', function () {
 		});
 
 		it('shows OLSKResultsList', function() {
-			browser.assert.elements(OLSKResultsList, 1);
+			browser.assert.elements('.OLSKResultsList', 1);
 		});
 
 		it('selects first item', function() {

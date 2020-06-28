@@ -132,7 +132,7 @@ describe('LCHLauncherDotMode', function () {
 		
 		before(function () {
 			browser.assert.text(LCHLauncherSubjectPromptHeading, 'A');
-			browser.assert.elements(OLSKResultsList, 1)
+			browser.assert.elements('.OLSKResultsList', 1)
 		});
 		
 		before(function () {
@@ -140,7 +140,7 @@ describe('LCHLauncherDotMode', function () {
 		});
 		
 		it('hides OLSKResultsList', function() {
-			browser.assert.elements(OLSKResultsList, 0);
+			browser.assert.elements('.OLSKResultsList', 0);
 		});
 
 		it('clears filter text', function() {

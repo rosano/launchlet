@@ -20,7 +20,7 @@ describe('LCHLauncherThrottle', function () {
 		});
 
 		it('cancels throttle', function() {
-			browser.assert.elements(OLSKResultsList, 0);
+			browser.assert.elements('.OLSKResultsList', 0);
 		});
 
 		after(function () {
@@ -38,7 +38,7 @@ describe('LCHLauncherThrottle', function () {
 		});
 		
 		it('cancels throttle', function() {
-			browser.assert.elements(OLSKResultsList, 0);
+			browser.assert.elements('.OLSKResultsList', 0);
 		});
 		
 		after(function() {
@@ -58,7 +58,7 @@ describe('LCHLauncherThrottle', function () {
 		});
 
 		it('skips throttle', function() {
-			browser.assert.elements(OLSKResultsList, 1);
+			browser.assert.elements('.OLSKResultsList', 1);
 		});
 
 		after(function () {
@@ -74,7 +74,7 @@ describe('LCHLauncherThrottle', function () {
 		});
 
 		it('skips throttle', function() {
-			browser.assert.elements(OLSKResultsList, 1);
+			browser.assert.elements('.OLSKResultsList', 1);
 		});
 	
 	});
