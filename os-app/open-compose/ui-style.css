@@ -8,7 +8,7 @@
 	color: var(--LCHCommonForeground);
 }
 
-.LCHCompose .OLSKToolbar {
+.LCHCompose :global(.OLSKToolbar) {
 	--OLSKToolbarBackground: var(--LCHCommonBackground);
 }
 
