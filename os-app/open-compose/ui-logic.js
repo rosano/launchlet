@@ -14,7 +14,7 @@ const mod = {
 		}
 
 		return function (e) {
-			return [e.LCHDocumentName, e.LCHDocumentSignature].filter(function (e) {
+			return [e.LCHDocumentName, e.LCHDocumentSignature, e.LCHDocumentURLFilter].filter(function (e) {
 				if (!e) {
 					return false;
 				}

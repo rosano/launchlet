@@ -100,6 +100,34 @@ describe('LCHComposeFilterFunction', function test_LCHComposeFilterFunction() {
 			});
 		
 		});
+
+		context('LCHDocumentURLFilter', function () {
+			
+			it('returns false if no match', function() {
+				deepEqual(mainModule.LCHComposeFilterFunction('bravo')({
+					LCHDocumentURLFilter: 'alfa',
+				}), false);
+			});
+
+			it('returns true', function() {
+				deepEqual(mainModule.LCHComposeFilterFunction('alfa')({
+					LCHDocumentURLFilter: 'alfa',
+				}), true);
+			});
+
+			it('matches partial', function() {
+				deepEqual(mainModule.LCHComposeFilterFunction('alf')({
+					LCHDocumentURLFilter: 'alfa',
+				}), true);
+			});
+
+			it('matches case insensitive', function() {
+				deepEqual(mainModule.LCHComposeFilterFunction('ALF')({
+					LCHDocumentURLFilter: 'alfa',
+				}), true);
+			});
+		
+		});
 		
 	});
 
