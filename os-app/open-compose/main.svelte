@@ -91,9 +91,7 @@ const mod = {
 	_ValueDocumentsVisible: [],
 
 	ValueDocumentsVisible (inputData, shouldSort = true) {
-		const items = !mod._ValueFilterText ? inputData : inputData.filter(function (e) {
-			return e.LCHDocumentName.toLowerCase().match(mod._ValueFilterText.toLowerCase());
-		});
+		const items = !mod._ValueFilterText ? inputData : inputData.filter(LCHComposeLogic.LCHComposeFilterFunction(mod._ValueFilterText));
 		mod._ValueDocumentsVisible = shouldSort ? items.sort(LCHComposeLogic.LCHComposeSort) : items;
 	},
 	
