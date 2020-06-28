@@ -12,6 +12,16 @@
 	--OLSKToolbarBackground: var(--LCHCommonBackground);
 }
 
+
+:global(.LCHComposeLauncher .LCHLauncher) {
+	background: #ccc !important;
+}
+
+:global(.LCHComposeLauncher .LCHLauncherZoneInput) {
+	background: #999 !important;
+	border-color: #aaa !important;
+}
+
 .LCHComposeTools {
 	border-top: var(--LCHBorderStyle);
 }

@@ -473,6 +473,9 @@ const mod = {
 
 	ControlRun() {
 		setTimeout(new Function(mod._JavascriptComposition));
+		setTimeout(function () {
+			document.querySelector('.LCHLauncher').parentElement.classList.add('LCHComposeLauncher');
+		});
 	},
 
 	async ControlExportData () {
