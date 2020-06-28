@@ -90,7 +90,7 @@
     "mocha": "latest",
     "supervisor": "latest",
 
-    "// UI TESTS": null,
+    "// INTERFACE TESTS": null,
     "zombie": "latest",
 
     "// MOCHA PREPROCESS": null,
