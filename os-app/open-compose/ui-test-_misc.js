@@ -448,8 +448,8 @@ describe('LCHCompose_Misc', function () {
 				browser.fill('.LCHComposeDetailFormNameField', 'alfa');
 			});
 
-			it('sets LCHComposeMasterListItemAccessibilitySummary', function () {
-				browser.assert.attribute('.LCHComposeMasterListItem', 'aria-label', 'alfa');
+			it('sets OLSKMasterListItemAccessibilitySummaryFor', function () {
+				browser.assert.attribute('.OLSKMasterListItem', 'aria-label', 'alfa');
 			});
 
 			it('sets LCHComposeMasterListItemTitle', function () {

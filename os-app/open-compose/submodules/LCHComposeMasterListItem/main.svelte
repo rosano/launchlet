@@ -1,5 +1,4 @@
 <script>
-export let LCHComposeMasterListItemAccessibilitySummary;
 export let LCHComposeMasterListItemTitle;
 export let LCHComposeMasterListItemFlagged;
 
@@ -9,7 +8,7 @@ const OLSKLocalized = function(translationConstant) {
 };
 </script>
 
-<div class="LCHComposeMasterListItem" aria-label={ LCHComposeMasterListItemAccessibilitySummary } class:LCHComposeMasterListItemFlagged={ LCHComposeMasterListItemFlagged } role="button">
+<div class="LCHComposeMasterListItem" class:LCHComposeMasterListItemFlagged={ LCHComposeMasterListItemFlagged }>
 
 {#if LCHComposeMasterListItemFlagged }
 	<strong class="LCHComposeMasterListItemFlaggedAlert">⚠️</strong>

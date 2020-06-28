@@ -4,21 +4,8 @@ describe('LCHComposeMasterListItem_Misc', function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
-			LCHComposeMasterListItemAccessibilitySummary: 'alfa',
 			LCHComposeMasterListItemTitle: 'bravo',
 		});
-	});
-
-	describe('LCHComposeMasterListItem', function test_LCHComposeMasterListItem () {
-		
-		it('sets aria-label', function () {
-			browser.assert.attribute(LCHComposeMasterListItem, 'aria-label', 'alfa');
-		});
-		
-		it('sets role', function () {
-			browser.assert.attribute(LCHComposeMasterListItem, 'role', 'button');
-		});
-	
 	});
 
 	describe('LCHComposeMasterListItemTitle', function test_LCHComposeMasterListItemTitle () {
@@ -41,7 +28,6 @@ describe('LCHComposeMasterListItem_Misc', function () {
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
-				LCHComposeMasterListItemAccessibilitySummary: 'alfa',
 				LCHComposeMasterListItemTitle: 'bravo',
 				LCHComposeMasterListItemFlagged: true,
 			});

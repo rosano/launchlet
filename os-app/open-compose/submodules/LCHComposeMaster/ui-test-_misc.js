@@ -133,8 +133,8 @@ describe('LCHComposeMaster_Misc', function () {
 			});
 		});
 
-		it('sets LCHComposeMasterListItemAccessibilitySummary', function () {
-			browser.assert.attribute('.LCHComposeMasterListItem', 'aria-label', '[Flagged]\nbravo');
+		it('sets OLSKMasterListItemAccessibilitySummaryFor', function () {
+			browser.assert.attribute('.OLSKMasterListItem', 'aria-label', '[Flagged]\nbravo');
 		});
 
 		it('sets LCHComposeMasterListItemTitle', function () {

@@ -14,7 +14,6 @@ describe('LCHComposeMasterListItem_Access', function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
-			LCHComposeMasterListItemAccessibilitySummary: 'alfa',
 			LCHComposeMasterListItemTitle: 'bravo',
 		});
 	});
@@ -35,7 +34,6 @@ describe('LCHComposeMasterListItem_Access', function () {
 		
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
-				LCHComposeMasterListItemAccessibilitySummary: 'alfa',
 				LCHComposeMasterListItemTitle: 'bravo',
 				LCHComposeMasterListItemFlagged: true,
 			});

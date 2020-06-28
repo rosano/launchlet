@@ -53,7 +53,6 @@ import LCHComposeMasterListItem from '../LCHComposeMasterListItem/main.svelte';
 	</div>
 
 	<LCHComposeMasterListItem
-		LCHComposeMasterListItemAccessibilitySummary={ LCHComposeMasterLogic.LCHComposeMasterListItemAccessibilitySummary(item, OLSKLocalized) }
 		LCHComposeMasterListItemTitle={ LCHComposeMasterLogic.LCHComposeMasterListItemTitle(item) }
 		LCHComposeMasterListItemFlagged={ item.LCHDocumentIsFlagged }
 		/>
