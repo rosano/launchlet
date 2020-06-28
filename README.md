@@ -54,7 +54,7 @@ npm install -g mocha supervisor
 npm test
 ```
 
-### Run UI tests
+### Run interface tests
 
 ```
 npm test ui
