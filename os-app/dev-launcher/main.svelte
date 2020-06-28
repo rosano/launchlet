@@ -270,13 +270,13 @@ const mod = {
 				return;
 			}
 
-			if (OLSKThrottle.OLSKThrottleInputDataIsThrottleObject(mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptInputThrottle)) {
+			if (OLSKThrottle.OLSKThrottleIsValid(mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptInputThrottle)) {
 				clearTimeout(mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptInputThrottle._OLSKThrottleTimeoutID);
 			}
 			
 			mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptInputThrottle = undefined;
 
-			if (OLSKThrottle.OLSKThrottleInputDataIsThrottleObject(mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptResultsThrottle)) {
+			if (OLSKThrottle.OLSKThrottleIsValid(mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptResultsThrottle)) {
 				clearTimeout(mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptResultsThrottle._OLSKThrottleTimeoutID);
 			}
 			
@@ -500,7 +500,7 @@ const mod = {
 			return;
 		}
 		
-		if (OLSKThrottle.OLSKThrottleInputDataIsThrottleObject(mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptResultsThrottle)) {
+		if (OLSKThrottle.OLSKThrottleIsValid(mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptResultsThrottle)) {
 			clearTimeout(mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptResultsThrottle._OLSKThrottleTimeoutID);
 		}
 
