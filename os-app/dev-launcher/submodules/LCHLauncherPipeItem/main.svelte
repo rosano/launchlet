@@ -2,10 +2,9 @@
 export let PipeItemTitle = '';
 export let PipeItemSubtitle = '';
 export let PipeItemSource = '';
-export let PipeItemSignature = '';
 </script>
 
-<div class="LCHLauncherPipeItem { PipeItemSignature }">
+<div class="LCHLauncherPipeItem">
 	<span class="LCHLauncherPipeItemTitle">{ PipeItemTitle }</span>
 	
 	{#if PipeItemSubtitle}
