@@ -944,7 +944,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 			</div>
 
 			<div class="OLSKToolbarElementGroup">
-				<OLSKStorageWidget StorageClient={ mod._ValueStorageClient.remoteStorage } />
+				<OLSKStorageWidget StorageClient={ mod._ValueStorageClient } />
 			</div>
 		</div>
 	{/if}
