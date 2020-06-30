@@ -753,24 +753,6 @@ const mod = {
 	},
 
 	async SetupStorageNotifications () {
-		mod._ValueStorageClient.on('not-connected', () => {
-			if (!OLSK_TESTING_BEHAVIOUR()) {
-				console.debug('not-connected', arguments);
-			}
-		});
-
-		mod._ValueStorageClient.on('disconnected', () => {
-			if (!OLSK_TESTING_BEHAVIOUR()) {
-				console.debug('disconnected', arguments);
-			}
-		});
-
-		mod._ValueStorageClient.on('connected', () => {
-			if (!OLSK_TESTING_BEHAVIOUR()) {
-				console.debug('connected', arguments);
-			}
-		});
-
 		mod._ValueStorageClient.on('sync-done', () => {
 			if (!OLSK_TESTING_BEHAVIOUR()) {
 				console.debug('sync-done', arguments);
