@@ -28,60 +28,6 @@ const RemoteStorage = RemoteStoragePackage.default || RemoteStoragePackage;
 
 const mod = {
 
-	MessageReceived(event) {
-		// We only accept messages from ourselves
-	  if (event.source !== window && !OLSK_TESTING_BEHAVIOUR()) {
-	    return;
-	  }
-
-  	if (event.data === 'LCHPageRecipes') {
-	    return;
-	  }
-
-  	// We only accept messages from ourselves
-    // if (not launchlet.dev) {
-    //   return;
-    // }
-
-	  mod.ControlPairResponseReceive(event.data);
-	},
-
-	OLSKChangeDelegateCreateDocument (inputData) {
-		// console.log('OLSKChangeDelegateCreate', inputData);
-
-		mod.ValueDocumentsAll([inputData].concat(mod._ValueDocumentsAll.filter(function (e) {
-			return e.LCHDocumentID !== inputData.LCHDocumentID; // @Hotfix Dropbox sending DelegateAdd
-		})), !mod._ValueDocumentSelected);
-	},
-
-	OLSKChangeDelegateUpdateDocument (inputData) {
-		// console.log('OLSKChangeDelegateUpdate', inputData);
-
-		if (mod._ValueDocumentSelected && mod._ValueDocumentSelected.LCHDocumentID === inputData.LCHDocumentID) {
-			mod.ControlDocumentSelect(inputData);
-		}
-
-		mod.ValueDocumentsAll(mod._ValueDocumentsAll.map(function (e) {
-			return e.LCHDocumentID === inputData.LCHDocumentID ? inputData : e;
-		}), !mod._ValueDocumentSelected);
-	},
-
-	OLSKChangeDelegateDeleteDocument (inputData) {
-		// console.log('OLSKChangeDelegateDelete', inputData);
-
-		if (mod._ValueDocumentSelected && (mod._ValueDocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
-			mod.ControlDocumentSelect(null);
-		}
-
-		mod.ValueDocumentsAll(mod._ValueDocumentsAll.filter(function (e) {
-			return e.LCHDocumentID !== inputData.LCHDocumentID;
-		}), false);
-	},
-
-	async OLSKChangeDelegateConflictDocument (inputData) {
-		return mod.OLSKChangeDelegateUpdateDocument(await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueStorageClient, OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(inputData)));
-	},
-
 	// VALUE
 
 	_ValueIsLoading: true,
@@ -177,151 +123,6 @@ const mod = {
 			LCHDocumentURLFilter: '',
 			LCHDocumentStyle: '',
 		}
-	},
-
-	// MESSAGE
-
-	LCHComposeBuildDispatchRun () {
-		mod.ControlRun();
-	},
-
-	LCHComposeBuildDispatchPipeModeEnabled (inputData) {
-		mod.ControlPipeModeEnabledPersist(mod._ValuePipeModeEnabled = inputData); // #purge-svelte-update
-	},
-
-	LCHComposeBuildDispatchPageRecipesEnabled (inputData) {
-		mod.ControlPageRecipesEnabledPersist(mod._ValuePageRecipesEnabled = inputData); // #purge-svelte-update
-	},
-
-	LCHComposePairDispatchSubmit (inputData) {
-		mod.ControlPublicKeyValidate(inputData);
-	},
-
-	LCHComposePairDispatchClear () {
-		mod.ControlPublicKeyUpdate('');
-	},
-
-	OLSKAppToolbarDispatchStorage () {
-		mod._ValueStorageToolbarHidden = !mod._ValueStorageToolbarHidden;
-	},
-
-	OLSKAppToolbarDispatchLauncher () {
-		const items = [];
-
-		if (mod._ValueDocumentSelected) {
-			items.push({
-				LCHRecipeSignature: 'LCHComposeLauncherItemClone',
-				LCHRecipeName: OLSKLocalized('LCHComposeLauncherItemCloneText'),
-				LCHRecipeCallback () {
-					mod.ControlDocumentClone(mod._ValueDocumentSelected);
-				},
-			});
-		}
-
-		if (OLSK_TESTING_BEHAVIOUR()) {
-			items.push(...[
-				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateCreateDocument',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateDocument () {
-						return mod.OLSKChangeDelegateCreateDocument(await LCHDocumentAction.LCHDocumentActionCreate(mod._ValueStorageClient, mod.DataDocumentObjectTemplate('FakeOLSKChangeDelegateCreateDocument')));
-					},
-				},
-				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateDocument',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateDocument () {
-						return mod.OLSKChangeDelegateUpdateDocument(await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueStorageClient, Object.assign(mod._ValueDocumentsAll.filter(function (e) {
-							return e.LCHDocumentName.match('FakeOLSKChangeDelegate');
-						}).pop(), {
-							LCHDocumentName: 'FakeOLSKChangeDelegateUpdateDocument',
-						})));
-					},
-				},
-				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteDocument',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateDeleteDocument () {
-						const item = mod._ValueDocumentsAll.filter(function (e) {
-							return e.LCHDocumentName.match('FakeOLSKChangeDelegate');
-						}).pop();
-						
-						await LCHDocumentAction.LCHDocumentActionDelete(mod._ValueStorageClient, item.LCHDocumentID);
-						
-						return mod.OLSKChangeDelegateDeleteDocument(item);
-					},
-				},
-				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateConflictDocument',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateConflictDocument () {
-						const item = mod._ValueDocumentsAll.filter(function (e) {
-							return e.LCHDocumentName.match('FakeOLSKChangeDelegateConflictDocument');
-						}).pop();
-						
-						return mod.OLSKChangeDelegateConflictDocument({
-							origin: 'conflict',
-							oldValue: await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueStorageClient, Object.assign({}, item, {
-								LCHDocumentName: item.LCHDocumentName + '-local',
-							})),
-							newValue: Object.assign({}, item, {
-								LCHDocumentName: item.LCHDocumentName + '-remote',
-							}),
-						});
-					},
-				},
-				{
-					LCHRecipeName: 'FakeEscapeWithoutSort',
-					LCHRecipeCallback: function FakeEscapeWithoutSort () {
-						mod.ControlDocumentSelect(null);
-					},
-				},
-			]);
-		}
-
-		window.Launchlet.LCHSingletonCreate({
-			LCHOptionRecipes: items,
-		});
-	},
-
-	LCHComposeMasterDispatchCreate () {
-		mod.ControlDocumentCreate();
-	},
-
-	LCHComposeMasterDispatchClick (inputData) {
-		mod.ControlDocumentSelect(inputData);
-	},
-
-	LCHComposeMasterDispatchArrow (inputData) {
-		mod.ValueDocumentSelected(inputData);
-	},
-
-	LCHComposeMasterDispatchFilter (inputData) {
-		mod.ControlFilter(inputData);
-	},
-
-	LCHComposeDetailDispatchBack () {
-		// mod.ControlDocumentSelect(null);
-
-		mod.OLSKMobileViewInactive = false;
-	},
-
-	LCHComposeDetailDispatchClone () {
-		mod.ControlDocumentClone(mod._ValueDocumentSelected);
-	},
-
-	LCHComposeDetailDispatchDiscard () {
-		mod.ControlDocumentDiscard(mod._ValueDocumentSelected);
-	},
-
-	LCHComposeDetailDispatchUpdate () {
-		mod._ValueDocumentSelected = mod._ValueDocumentSelected; // #purge-svelte-force-update
-
-		mod.ControlDocumentPersist(mod._ValueDocumentSelected);
-	},
-
-	_OLSKAppToolbarDispatchExport () {
-		mod.ControlExportData();
-	},
-
-	_OLSKAppToolbarDispatchImport (inputData) {
-		mod.ControlImportData(inputData);
 	},
 
 	// INTERFACE	
@@ -651,6 +452,203 @@ const mod = {
 		if (mod._ValuePairStatus === 'kStatusFailed') {
 			mod._ValueToolsPairStatusFailedError = inputData.LBXResponseError
 		}
+	},
+
+	// MESSAGE
+
+	LCHComposeBuildDispatchRun () {
+		mod.ControlRun();
+	},
+
+	LCHComposeBuildDispatchPipeModeEnabled (inputData) {
+		mod.ControlPipeModeEnabledPersist(mod._ValuePipeModeEnabled = inputData); // #purge-svelte-update
+	},
+
+	LCHComposeBuildDispatchPageRecipesEnabled (inputData) {
+		mod.ControlPageRecipesEnabledPersist(mod._ValuePageRecipesEnabled = inputData); // #purge-svelte-update
+	},
+
+	LCHComposePairDispatchSubmit (inputData) {
+		mod.ControlPublicKeyValidate(inputData);
+	},
+
+	LCHComposePairDispatchClear () {
+		mod.ControlPublicKeyUpdate('');
+	},
+
+	OLSKAppToolbarDispatchStorage () {
+		mod._ValueStorageToolbarHidden = !mod._ValueStorageToolbarHidden;
+	},
+
+	OLSKAppToolbarDispatchLauncher () {
+		const items = [];
+
+		if (mod._ValueDocumentSelected) {
+			items.push({
+				LCHRecipeSignature: 'LCHComposeLauncherItemClone',
+				LCHRecipeName: OLSKLocalized('LCHComposeLauncherItemCloneText'),
+				LCHRecipeCallback () {
+					mod.ControlDocumentClone(mod._ValueDocumentSelected);
+				},
+			});
+		}
+
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			items.push(...[
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateCreateDocument',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateDocument () {
+						return mod.OLSKChangeDelegateCreateDocument(await LCHDocumentAction.LCHDocumentActionCreate(mod._ValueStorageClient, mod.DataDocumentObjectTemplate('FakeOLSKChangeDelegateCreateDocument')));
+					},
+				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateDocument',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateDocument () {
+						return mod.OLSKChangeDelegateUpdateDocument(await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueStorageClient, Object.assign(mod._ValueDocumentsAll.filter(function (e) {
+							return e.LCHDocumentName.match('FakeOLSKChangeDelegate');
+						}).pop(), {
+							LCHDocumentName: 'FakeOLSKChangeDelegateUpdateDocument',
+						})));
+					},
+				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteDocument',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateDeleteDocument () {
+						const item = mod._ValueDocumentsAll.filter(function (e) {
+							return e.LCHDocumentName.match('FakeOLSKChangeDelegate');
+						}).pop();
+						
+						await LCHDocumentAction.LCHDocumentActionDelete(mod._ValueStorageClient, item.LCHDocumentID);
+						
+						return mod.OLSKChangeDelegateDeleteDocument(item);
+					},
+				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateConflictDocument',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateConflictDocument () {
+						const item = mod._ValueDocumentsAll.filter(function (e) {
+							return e.LCHDocumentName.match('FakeOLSKChangeDelegateConflictDocument');
+						}).pop();
+						
+						return mod.OLSKChangeDelegateConflictDocument({
+							origin: 'conflict',
+							oldValue: await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueStorageClient, Object.assign({}, item, {
+								LCHDocumentName: item.LCHDocumentName + '-local',
+							})),
+							newValue: Object.assign({}, item, {
+								LCHDocumentName: item.LCHDocumentName + '-remote',
+							}),
+						});
+					},
+				},
+				{
+					LCHRecipeName: 'FakeEscapeWithoutSort',
+					LCHRecipeCallback: function FakeEscapeWithoutSort () {
+						mod.ControlDocumentSelect(null);
+					},
+				},
+			]);
+		}
+
+		window.Launchlet.LCHSingletonCreate({
+			LCHOptionRecipes: items,
+		});
+	},
+
+	LCHComposeMasterDispatchCreate () {
+		mod.ControlDocumentCreate();
+	},
+
+	LCHComposeMasterDispatchClick (inputData) {
+		mod.ControlDocumentSelect(inputData);
+	},
+
+	LCHComposeMasterDispatchArrow (inputData) {
+		mod.ValueDocumentSelected(inputData);
+	},
+
+	LCHComposeMasterDispatchFilter (inputData) {
+		mod.ControlFilter(inputData);
+	},
+
+	LCHComposeDetailDispatchBack () {
+		// mod.ControlDocumentSelect(null);
+
+		mod.OLSKMobileViewInactive = false;
+	},
+
+	LCHComposeDetailDispatchClone () {
+		mod.ControlDocumentClone(mod._ValueDocumentSelected);
+	},
+
+	LCHComposeDetailDispatchDiscard () {
+		mod.ControlDocumentDiscard(mod._ValueDocumentSelected);
+	},
+
+	LCHComposeDetailDispatchUpdate () {
+		mod._ValueDocumentSelected = mod._ValueDocumentSelected; // #purge-svelte-force-update
+
+		mod.ControlDocumentPersist(mod._ValueDocumentSelected);
+	},
+
+	_OLSKAppToolbarDispatchExport () {
+		mod.ControlExportData();
+	},
+
+	_OLSKAppToolbarDispatchImport (inputData) {
+		mod.ControlImportData(inputData);
+	},MessageReceived(event) {
+		// We only accept messages from ourselves
+	  if (event.source !== window && !OLSK_TESTING_BEHAVIOUR()) {
+	    return;
+	  }
+
+  	if (event.data === 'LCHPageRecipes') {
+	    return;
+	  }
+
+  	// We only accept messages from ourselves
+    // if (not launchlet.dev) {
+    //   return;
+    // }
+
+	  mod.ControlPairResponseReceive(event.data);
+	},
+
+	OLSKChangeDelegateCreateDocument (inputData) {
+		// console.log('OLSKChangeDelegateCreate', inputData);
+
+		mod.ValueDocumentsAll([inputData].concat(mod._ValueDocumentsAll.filter(function (e) {
+			return e.LCHDocumentID !== inputData.LCHDocumentID; // @Hotfix Dropbox sending DelegateAdd
+		})), !mod._ValueDocumentSelected);
+	},
+
+	OLSKChangeDelegateUpdateDocument (inputData) {
+		// console.log('OLSKChangeDelegateUpdate', inputData);
+
+		if (mod._ValueDocumentSelected && mod._ValueDocumentSelected.LCHDocumentID === inputData.LCHDocumentID) {
+			mod.ControlDocumentSelect(inputData);
+		}
+
+		mod.ValueDocumentsAll(mod._ValueDocumentsAll.map(function (e) {
+			return e.LCHDocumentID === inputData.LCHDocumentID ? inputData : e;
+		}), !mod._ValueDocumentSelected);
+	},
+
+	OLSKChangeDelegateDeleteDocument (inputData) {
+		// console.log('OLSKChangeDelegateDelete', inputData);
+
+		if (mod._ValueDocumentSelected && (mod._ValueDocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
+			mod.ControlDocumentSelect(null);
+		}
+
+		mod.ValueDocumentsAll(mod._ValueDocumentsAll.filter(function (e) {
+			return e.LCHDocumentID !== inputData.LCHDocumentID;
+		}), false);
+	},
+
+	async OLSKChangeDelegateConflictDocument (inputData) {
+		return mod.OLSKChangeDelegateUpdateDocument(await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueStorageClient, OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(inputData)));
 	},
 
 	// REACT
