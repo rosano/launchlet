@@ -78,6 +78,10 @@ const mod = {
 		}), false);
 	},
 
+	async OLSKChangeDelegateConflictDocument (inputData) {
+		return mod.OLSKChangeDelegateUpdateDocument(await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueStorageClient, OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(inputData)));
+	},
+
 	// VALUE
 
 	_ValueIsLoading: true,
@@ -242,6 +246,24 @@ const mod = {
 						await LCHDocumentAction.LCHDocumentActionDelete(mod._ValueStorageClient, item.LCHDocumentID);
 						
 						return mod.OLSKChangeDelegateDeleteDocument(item);
+					},
+				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateConflictDocument',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateConflictDocument () {
+						const item = mod._ValueDocumentsAll.filter(function (e) {
+							return e.LCHDocumentName.match('FakeOLSKChangeDelegateConflictDocument');
+						}).pop();
+						
+						return mod.OLSKChangeDelegateConflictDocument({
+							origin: 'conflict',
+							oldValue: await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueStorageClient, Object.assign({}, item, {
+								LCHDocumentName: item.LCHDocumentName + '-local',
+							})),
+							newValue: Object.assign({}, item, {
+								LCHDocumentName: item.LCHDocumentName + '-remote',
+							}),
+						});
 					},
 				},
 				{
@@ -723,6 +745,7 @@ const mod = {
 					OLSKChangeDelegateCreate: mod.OLSKChangeDelegateCreateDocument,
 					OLSKChangeDelegateUpdate: mod.OLSKChangeDelegateUpdateDocument,
 					OLSKChangeDelegateDelete: mod.OLSKChangeDelegateDeleteDocument,
+					OLSKChangeDelegateConflict: mod.OLSKChangeDelegateConflictDocument,
 				},
 			}),
 			LCHSettingStorage.LCHSettingStorageBuild,

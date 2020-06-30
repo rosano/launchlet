@@ -259,4 +259,24 @@ describe('LCHCompose_Sync', function () {
 
 	});
 
+	describe('OLSKChangeDelegateConflictDocument', function test_OLSKChangeDelegateConflictDocument () {
+
+		before(function () {
+			return browser.pressButton('.LCHComposeMasterCreateButton');
+		});
+
+		before(function () {
+			return browser.fill('.LCHComposeDetailFormNameField', 'FakeOLSKChangeDelegateConflictDocument');
+		});
+
+		before(function () {
+			return kTesting.uLaunch('FakeOLSKChangeDelegateConflictDocument');
+		});
+
+		it('selects local', function () {
+			browser.assert.text('.LCHComposeMasterListItem', 'FakeOLSKChangeDelegateConflictDocument-local alfa4 bravo');
+		});
+
+	});
+
 });

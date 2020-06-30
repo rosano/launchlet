@@ -29,7 +29,7 @@ export const LCHDocumentStorageBuild = function (privateClient, publicClient, ch
 			return console.warn(`${ delegateMethod } not function`);
 		}
 
-		changeDelegate[delegateMethod](OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(event[OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateInput(delegateMethod)]));
+		changeDelegate[delegateMethod](OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateData(delegateMethod, event)));
 	});
 
 	return {
