@@ -13,14 +13,6 @@ describe('LCHCompose_Misc', function () {
 	it('assigns meta:viewport', function () {
 		browser.assert.attribute('meta[name=viewport]', 'content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
 	});
-	
-	it('assigns meta:mobile-web-app-capable', function () {
-		browser.assert.attribute('meta[name=mobile-web-app-capable]', 'content', 'yes');
-	});
-	
-	it('assigns meta:apple-mobile-web-app-capable', function () {
-		browser.assert.attribute('meta[name=apple-mobile-web-app-capable]', 'content', 'yes');
-	});
 
 	context('LCHCompose', function () {
 		
