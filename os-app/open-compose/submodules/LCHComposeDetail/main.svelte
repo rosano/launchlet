@@ -38,7 +38,7 @@ import LCHComposeInput from '../LCHComposeInput/main.svelte';
 		<button class="LCHComposeDetailToolbarCloneButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeDetailToolbarCloneButtonText') } on:click={ LCHComposeDetailDispatchClone }>
 			<div class="LCHComposeDetailToolbarCloneButtonImage">{@html _OLSKSharedClone }</div>
 		</button>
-		<button class="LCHComposeDetailToolbarDiscardButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeDetailToolbarDiscardButtonText') } on:click={ () => window.confirm(OLSKLocalized('LCHComposeDetailDiscardPromptText')) && LCHComposeDetailDispatchDiscard() }>
+		<button class="LCHComposeDetailToolbarDiscardButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeDetailToolbarDiscardButtonText') } on:click={ () => window.confirm(OLSKLocalized('LCHComposeDetailDiscardConfirmText')) && LCHComposeDetailDispatchDiscard() }>
 			<div class="LCHComposeDetailToolbarDiscardButtonImage">{@html _OLSKSharedDiscard }</div>
 		</button>
 	</div>

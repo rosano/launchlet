@@ -1,7 +1,7 @@
 LCHComposeDetailToolbarBackButtonText: Back
 LCHComposeDetailToolbarCloneButtonText: Clonar
 LCHComposeDetailToolbarDiscardButtonText: Eliminar
-LCHComposeDetailDiscardPromptText: ¿Estás segur@?
+LCHComposeDetailDiscardConfirmText: ¿Estás segur@?
 LCHComposeDetailFlagAlertText: Esta receta sera ignorada porque tiene código potencialmente inseguro.
 LCHComposeDetailFormNameFieldText: Nombre (e.g. Decir hola)
 LCHComposeDetailFormSignatureFieldText: Firma (e.g. XYZDarLaBienvenida)

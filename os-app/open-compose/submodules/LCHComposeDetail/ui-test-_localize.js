@@ -95,10 +95,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
 			context('discard', function () {
 			
-				it('localizes LCHComposeDetailDiscardPrompt', function() {
+				it('localizes LCHComposeDetailDiscardConfirm', function() {
 					browser.assert.OLSKConfirmQuestion(function () {
 						return browser.pressButton(LCHComposeDetailToolbarDiscardButton);
-					}, uLocalized('LCHComposeDetailDiscardPromptText'));
+					}, uLocalized('LCHComposeDetailDiscardConfirmText'));
 				});
 		
 			});
