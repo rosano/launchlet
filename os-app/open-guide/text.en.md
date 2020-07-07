@@ -2,7 +2,7 @@
 
 <div class="LCHGuideNotice">
 
-This document is a work-in-progress. Feel free to ask questions tagged with *launchlet* on [Super User](https://superuser.com/) or [Stack Overflow](https://stackoverflow.com).
+This document is a work-in-progress. Feel free to ask questions on [Mastodon](https://merveilles.town/@rosano).
 
 </div>
 
@@ -74,4 +74,4 @@ For example, when running Launchlet on <a href="https://rosano.ca" target="_blan
 
 It allows the same data to be used in different ways by multiple apps. You could think of it as a USB key for your documents that you can plug into websites to work on your stuff.
 
-If you don't have one, it also works with Dropbox and Google Drive. You can also get one for free from [5apps](https://5apps.com/storage/).
+You can get one for free from [5apps](https://5apps.com/storage/).
