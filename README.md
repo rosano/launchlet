@@ -78,6 +78,4 @@ The code is released under a [Hippocratic License](https://firstdonoharm.dev), m
 
 ## Questions
 
-Feel free to ask questions tagged with _launchlet_ on [Super User](https://superuser.com/) or [Stack Overflow](https://stackoverflow.com/).
-
-Let's chat on [Mastodon](https://merveilles.town/@rosano).
+Feel free to ask questions on [Mastodon](https://merveilles.town/@rosano).
