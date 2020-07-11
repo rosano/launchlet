@@ -1,6 +1,6 @@
-const { throws, rejects, deepEqual } = require('assert');
+const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./main.js');
+const mainModule = require('./main.js').default;
 
 describe('_LCHFlags', function test_LCHFlags() {
 
