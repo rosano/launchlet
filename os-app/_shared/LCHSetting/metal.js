@@ -1,4 +1,4 @@
-import LCHSettingsModel from './model.js';
+import LCHSettingModel from './model.js';
 
 const mod = {
 
@@ -7,7 +7,7 @@ const mod = {
 			return Promise.reject(new Error('LCHErrorInputNotValid'));
 		}
 
-		let errors = LCHSettingsModel.LCHSettingModelErrorsFor(inputData);
+		let errors = LCHSettingModel.LCHSettingModelErrorsFor(inputData);
 		if (errors) {
 			return Promise.resolve({
 				LCHErrors: errors,
