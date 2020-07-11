@@ -340,7 +340,7 @@ const mod = {
 		}
 
 		await Promise.all(outputData.LCHSettingObjects.map(function (e) {
-LCHSettingMetal.LCHSettingsMetalWrite(mod._ValueStorageClient, e);
+LCHSettingMetal.LCHSettingMetalWrite(mod._ValueStorageClient, e);
 		}));
 
 		await Promise.all(outputData.LCHDocumentObjects.map(function (e) {

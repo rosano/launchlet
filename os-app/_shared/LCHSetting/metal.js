@@ -2,7 +2,7 @@ import * as LCHSettingsModel from './model.js';
 
 const mod = {
 
-	async LCHSettingsMetalWrite (storageClient, inputData) {
+	async LCHSettingMetalWrite (storageClient, inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			return Promise.reject(new Error('LCHErrorInputNotValid'));
 		}
@@ -17,7 +17,7 @@ const mod = {
 		return await storageClient.launchlet.lch_settings.LCHStorageWrite(inputData.LCHSettingKey, inputData);
 	},
 
-	async LCHSettingsMetalRead (storageClient, inputData) {
+	async LCHSettingMetalRead (storageClient, inputData) {
 		if (typeof inputData !== 'string') {
 			return Promise.reject(new Error('LCHErrorInputNotValid'));
 		}
@@ -25,11 +25,11 @@ const mod = {
 		return await storageClient.launchlet.lch_settings.LCHStorageRead(inputData);
 	},
 
-	async LCHSettingsMetalList (storageClient) {
+	async LCHSettingMetalList (storageClient) {
 		return await storageClient.launchlet.lch_settings.LCHStorageList();
 	},
 
-	async LCHSettingsMetalDelete (storageClient, inputData) {
+	async LCHSettingMetalDelete (storageClient, inputData) {
 		if (typeof inputData !== 'string') {
 			return Promise.reject(new Error('LCHErrorInputNotValid'));
 		}
