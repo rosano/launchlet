@@ -36,6 +36,18 @@ describe('LCHVitrinePageColoursRandomizeRecipe', function test_LCHVitrinePageCol
 
 });
 
+describe('LCHVitrinePageColoursRestoreRecipe', function test_LCHVitrinePageColoursRestoreRecipe() {
+
+	it('returns LCHRecipe', function() {
+		deepEqual(mainModule.LCHVitrinePageColoursRestoreRecipe(), {
+			LCHRecipeCallback: mainModule.LCHVitrinePageColoursRestoreCallback,
+			LCHRecipeSignature: 'LCHVitrinePageColoursRestore',
+			LCHRecipeIsExcluded: mainModule.LCHVitrinePageColoursRestoreIsHidden,
+		});
+	});
+
+});
+
 describe('LCHVitrineCopyPageInfoRecipe', function test_LCHVitrineCopyPageInfoRecipe() {
 
 	it('returns LCHRecipe', function() {

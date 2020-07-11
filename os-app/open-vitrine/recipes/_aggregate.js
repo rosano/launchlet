@@ -3,7 +3,6 @@ const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
 };
 
-import * as LCHVitrinePageColoursRestore from './LCHVitrinePageColoursRestore/main.js';
 import * as LCHVitrineSendEmail from './LCHVitrineSendEmail/main.js';
 
 import * as LCHVitrinePageLinksHighlightAdd from './LCHVitrinePageLinksHighlightAdd/main.js';
@@ -16,7 +15,9 @@ const mod = {
 			{
 				LCHVitrinePageColoursRandomizeRecipe: mod.LCHVitrinePageColoursRandomizeRecipe,
 			},
-			LCHVitrinePageColoursRestore,
+			{
+				LCHVitrinePageColoursRestoreRecipe: mod.LCHVitrinePageColoursRestoreRecipe,
+			},
 			{
 				LCHVitrineCopyPageInfoRecipe: mod.LCHVitrineCopyPageInfoRecipe,
 			},
@@ -67,6 +68,22 @@ const mod = {
 		return {
 			LCHRecipeCallback: mod.LCHVitrinePageColoursRandomize,
 			LCHRecipeSignature: 'LCHVitrinePageColoursRandomize',
+		};
+	},
+
+	LCHVitrinePageColoursRestoreIsHidden () {
+		return !document.querySelector('style.LCHVitrinePageColoursRandomize');
+	},
+
+	LCHVitrinePageColoursRestoreCallback () {
+		document.querySelector('style.LCHVitrinePageColoursRandomize').remove()
+	},
+
+	LCHVitrinePageColoursRestoreRecipe () {
+		return {
+			LCHRecipeCallback: mod.LCHVitrinePageColoursRestoreCallback,
+			LCHRecipeSignature: 'LCHVitrinePageColoursRestore',
+			LCHRecipeIsExcluded: mod.LCHVitrinePageColoursRestoreIsHidden,
 		};
 	},
 
