@@ -1,17 +1,12 @@
-import {
-	LCHLauncherModeCommit,
-	LCHLauncherModePreview,
-	LCHLauncherModePipe,
-	LCHLauncherModes
-} from '../dev-launcher/ui-logic.js';
+import LCHLauncherLogic from '../dev-launcher/ui-logic.js';
 
 import {
 	LCHAPIRunTasks,
 } from '../dev-launcher/api.js';
 
-export const LCHModeCommit = LCHLauncherModeCommit();
-export const LCHModePreview = LCHLauncherModePreview();
-export const LCHModePipe = LCHLauncherModePipe();
+export const LCHModeCommit = LCHLauncherLogic.LCHLauncherModeCommit();
+export const LCHModePreview = LCHLauncherLogic.LCHLauncherModePreview();
+export const LCHModePipe = LCHLauncherLogic.LCHLauncherModePipe();
 
 export const mod = {
 

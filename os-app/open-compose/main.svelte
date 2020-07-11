@@ -20,7 +20,7 @@ import * as LCHSettingMetal from '../_shared/LCHSetting/metal.js';
 import LCHComposeLogic from './ui-logic.js';
 import { LCHFlags } from '../_shared/LCHFlags/main.js'
 import { LCHFormulaFrom, LCHFormulaToEvaluate } from '../_shared/LCHFormula/main.js'
-import { LCHLauncherModeCommit, LCHLauncherModePipe } from '../dev-launcher/ui-logic.js';
+import LCHLauncherLogic from '../dev-launcher/ui-logic.js';
 import LCHBuild from '../_shared/LCHBuild/main.js';
 import OLSKString from 'OLSKString';
 import * as RemoteStoragePackage from 'remotestoragejs';
@@ -102,7 +102,7 @@ const mod = {
 	DataPackageOptions () {
 		return {
 			LCHOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
-			LCHOptionMode: mod._ValuePipeModeEnabled ? LCHLauncherModePipe() : LCHLauncherModeCommit(),
+			LCHOptionMode: mod._ValuePipeModeEnabled ? LCHLauncherLogic.LCHLauncherModePipe() : LCHLauncherLogic.LCHLauncherModeCommit(),
 			LCHOptionIncludePageRecipes: mod._ValuePageRecipesEnabled,
 		};
 	},

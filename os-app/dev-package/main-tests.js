@@ -2,6 +2,8 @@ const { rejects, deepEqual } = require('assert');
 
 const mainModule = require('./main.js');
 
+import LCHLauncherLogic from '../dev-launcher/ui-logic.js';
+
 const kTesting = {
 	StubValueClass: function(inputData) {
 		return function () {
@@ -101,12 +103,10 @@ describe('LifecycleSingletonDestroy', function test_LifecycleSingletonDestroy() 
 
 });
 
-import { LCHLauncherModeCommit, LCHLauncherModePreview, LCHLauncherModePipe } from '../dev-launcher/ui-logic.js';
-
 describe('LCHModeCommit', function test_LCHModeCommit() {
 
 	it('sets value', function() {
-		deepEqual(mainModule.LCHModeCommit, LCHLauncherModeCommit());
+		deepEqual(mainModule.LCHModeCommit, LCHLauncherLogic.LCHLauncherModeCommit());
 	});
 
 });
@@ -114,7 +114,7 @@ describe('LCHModeCommit', function test_LCHModeCommit() {
 describe('LCHModePreview', function test_LCHModePreview() {
 
 	it('sets value', function() {
-		deepEqual(mainModule.LCHModePreview, LCHLauncherModePreview());
+		deepEqual(mainModule.LCHModePreview, LCHLauncherLogic.LCHLauncherModePreview());
 	});
 
 });
@@ -122,7 +122,7 @@ describe('LCHModePreview', function test_LCHModePreview() {
 describe('LCHModePipe', function test_LCHModePipe() {
 
 	it('sets value', function() {
-		deepEqual(mainModule.LCHModePipe, LCHLauncherModePipe());
+		deepEqual(mainModule.LCHModePipe, LCHLauncherLogic.LCHLauncherModePipe());
 	});
 
 });

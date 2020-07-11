@@ -1,6 +1,6 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./ui-logic.js');
+const mainModule = require('./ui-logic.js').default;
 
 describe('LCHLauncherModeCommit', function test_LCHLauncherModeCommit() {
 

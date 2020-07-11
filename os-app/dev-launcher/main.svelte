@@ -4,15 +4,14 @@ export let LRTDidFinish = null;
 
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
 
-import { LCHLauncherOptions } from './ui-logic.js';
-LRTOptions = LCHLauncherOptions(LRTOptions, OLSK_TESTING_BEHAVIOUR() ? undefined : console.warn);
+import LCHLauncherLogic from './ui-logic.js';
+LRTOptions = LCHLauncherLogic.LCHLauncherOptions(LRTOptions, OLSK_TESTING_BEHAVIOUR() ? undefined : console.warn);
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[LRTOptions.LCHOptionLanguage]);
 };
 
-import { LCHLauncherThrottleDuration } from './ui-logic.js';
 import fuzzysort from 'fuzzysort';
 function ActivePromptFilterTextShouldUpdate (inputData) {
 	(function SetFilterText() {
@@ -35,7 +34,7 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 	})();
 
 	(function SetMatchStop() {
-		if (LRTOptions.LCHOptionMode !== LCHLauncherModePipe()) {
+		if (LRTOptions.LCHOptionMode !== LCHLauncherLogic.LCHLauncherModePipe()) {
 			return;
 		}
 
@@ -49,7 +48,7 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 	})();
 
 	(function ThrottleInput() {
-		if (LRTOptions.LCHOptionMode !== LCHLauncherModePipe()) {
+		if (LRTOptions.LCHOptionMode !== LCHLauncherLogic.LCHLauncherModePipe()) {
 			return;
 		}
 
@@ -60,7 +59,7 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 		const inputData = mod._ValuePromptActiveIndex;
 
 		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValuePromptObjects[inputData], 'LCHPromptInputThrottle', {
-			OLSKThrottleDuration: LCHLauncherThrottleDuration,
+			OLSKThrottleDuration: LCHLauncherLogic.LCHLauncherThrottleDuration,
 			OLSKThrottleCallback () {
 				mod._ValuePromptObjects[inputData].LCHPromptInputThrottle = false;
 			},
@@ -68,7 +67,7 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 	})();
 
 	(function ThrottleResults() {
-		if (LRTOptions.LCHOptionMode !== LCHLauncherModePipe()) {
+		if (LRTOptions.LCHOptionMode !== LCHLauncherLogic.LCHLauncherModePipe()) {
 			return;
 		}
 		
@@ -79,7 +78,7 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 		const inputData = mod._ValuePromptActiveIndex;
 
 		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValuePromptObjects[inputData], 'LCHPromptResultsThrottle', {
-			OLSKThrottleDuration: LCHLauncherThrottleDuration,
+			OLSKThrottleDuration: LCHLauncherLogic.LCHLauncherThrottleDuration,
 			OLSKThrottleCallback () {
 				mod._ValuePromptObjects[inputData].LCHPromptResultsThrottle = false;
 			},
@@ -88,12 +87,12 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 
 	(function SetItems() {
 		ActivePromptItemsShouldUpdate((function() {
-			if (LRTOptions.LCHOptionMode === LCHLauncherModePipe() && !mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptFilterText && mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptResultsThrottle === false) {
+			if (LRTOptions.LCHOptionMode === LCHLauncherLogic.LCHLauncherModePipe() && !mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptFilterText && mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptResultsThrottle === false) {
 				return mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptItemsVisible;
 			}
 			
 			if (!mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptFilterText) {
-				return LRTOptions.LCHOptionMode === LCHLauncherModePreview() ? mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptItemsAll : [];
+				return LRTOptions.LCHOptionMode === LCHLauncherLogic.LCHLauncherModePreview() ? mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptItemsAll : [];
 			}
 
 			const visibleRecipes = mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptItemsAll.filter(function (e) {
@@ -110,7 +109,7 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 				});
 			};
 
-			if (LRTOptions.LCHOptionMode === LCHLauncherModePipe() && mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptItemsVisible.length && !results.length) {
+			if (LRTOptions.LCHOptionMode === LCHLauncherLogic.LCHLauncherModePipe() && mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptItemsVisible.length && !results.length) {
 				if (mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptResultsThrottle) {
 					OLSKThrottle.OLSKThrottleSkip(mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptResultsThrottle);
 				}
@@ -141,19 +140,18 @@ function ActivePromptItemsShouldUpdate (inputData) {
 }
 
 import { LCHRecipesModelActionTakesObject } from './api.js';
-import { LCHLauncherActionComparator } from './ui-logic.js';
 function ActivePromptItemSelectedShouldUpdate (inputData) {
 	(function SetItemSelected() {
 		mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptItemSelected = inputData;
 
-		if (LRTOptions.LCHOptionMode !== LCHLauncherModePreview()) {
+		if (LRTOptions.LCHOptionMode !== LCHLauncherLogic.LCHLauncherModePreview()) {
 			return;
 		}
 
 		mod.ControlRun(mod._ValuePromptObjects[0].LCHPromptItemSelected);
 	})();
 
-	if (LRTOptions.LCHOptionMode !== LCHLauncherModePipe()) {
+	if (LRTOptions.LCHOptionMode !== LCHLauncherLogic.LCHLauncherModePipe()) {
 		return;
 	}
 
@@ -173,7 +171,7 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 			return mod._ValueTypeEquivalenceMap[inputData.LCHRecipeOutputType || 'Command'].filter(function (type) {
 				return LCHRuntime.LCHRuntimeInputTypes(e.LCHRecipeInputTypes).shift() === type;
 			}).length;
-		}).sort(LCHLauncherActionComparator(inputData.LCHRecipeOutputType || 'Command'));
+		}).sort(LCHLauncherLogic.LCHLauncherActionComparator(inputData.LCHRecipeOutputType || 'Command'));
 
 		mod._ValuePromptObjects[1].LCHPromptItemsVisible = mod._ValuePromptObjects[1].LCHPromptItemsAll;
 
@@ -205,15 +203,6 @@ const refactorDependancies = function () {};
 
 import OLSKThrottle from 'OLSKThrottle';
 
-
-
-import {
-	LCHLauncherModeCommit,
-	LCHLauncherModePreview,
-	LCHLauncherModePipe,
-	// LCHLauncherFilterForText,
-} from './ui-logic.js';
-
 import { LCHRuntimeFilteredRecipes } from './api.js';
 
 import { LCHRecipesModelErrorsFor } from './api.js';
@@ -225,7 +214,6 @@ import {
 } from './api.js';
 import { LCHLauncherStandardRecipes } from './recipes/_aggregate.js';
 
-import { LCHLauncherKeyboardEventIsTextInput, LCHLauncherConstrainIndex, LCHLauncherReloadableSubjects } from './ui-logic.js';
 import { LCHCompositionModelErrors } from './api.js';
 import { LCHRunCommandRecipe } from './recipes/actions/LCHRunCommand/main.js';
 import { LCHPrimitiveURLCallback } from './recipes/primitives/URL/main.js';
@@ -235,7 +223,6 @@ import {
 	LCHRecipesModelIsSubject,
 	LCHRecipesModelIsAction,
 } from './api.js';
-import { LCHLauncherUIRecipesForMode } from './ui-logic.js';
 
 import {
 	LCHAPIExecuteRecipe,
@@ -266,7 +253,7 @@ const mod = {
 		}
 
 		(function CancelThrottle() {
-			if (LRTOptions.LCHOptionMode !== LCHLauncherModePipe()) {
+			if (LRTOptions.LCHOptionMode !== LCHLauncherLogic.LCHLauncherModePipe()) {
 				return;
 			}
 
@@ -337,7 +324,7 @@ const mod = {
 	// DATA
 
 	DataComposition () {
-		if (LRTOptions.LCHOptionMode === LCHLauncherModePipe()) {
+		if (LRTOptions.LCHOptionMode === LCHLauncherLogic.LCHLauncherModePipe()) {
 			return {
 				LCHCompositionAction: mod._ValuePromptObjects[1].LCHPromptItemSelected,
 				LCHCompositionSubjectPrimary: mod._ValuePromptObjects[0].LCHPromptItemSelected,
@@ -368,7 +355,7 @@ const mod = {
 	},
 
 	interfaceDidClickPrompt (inputData) {
-		if (LRTOptions.LCHOptionMode !== LCHLauncherModePipe()) {
+		if (LRTOptions.LCHOptionMode !== LCHLauncherLogic.LCHLauncherModePipe()) {
 			return;
 		}
 
@@ -417,11 +404,11 @@ const mod = {
 		event.preventDefault();
 		event.stopPropagation();
 
-		if (LRTOptions.LCHOptionMode === LCHLauncherModePipe() && mod.ValuePromptResultsIsVisible()) {
+		if (LRTOptions.LCHOptionMode === LCHLauncherLogic.LCHLauncherModePipe() && mod.ValuePromptResultsIsVisible()) {
 			return mod.ValuePromptResultsIsVisible(false);
 		}
 
-		if (LRTOptions.LCHOptionMode !== LCHLauncherModePipe() && mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptFilterText) {
+		if (LRTOptions.LCHOptionMode !== LCHLauncherLogic.LCHLauncherModePipe() && mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptFilterText) {
 			return ActivePromptFilterTextShouldUpdate('');
 		}
 
@@ -430,11 +417,11 @@ const mod = {
 	_ControlHandleEventKeydownTab (event) {
 		event.preventDefault();
 
-		if (LRTOptions.LCHOptionMode !== LCHLauncherModePipe()) {
+		if (LRTOptions.LCHOptionMode !== LCHLauncherLogic.LCHLauncherModePipe()) {
 			return;
 		}
 
-		mod.ValuePromptActiveIndex(LCHLauncherConstrainIndex(mod._ValuePromptObjects.filter(function (e) {
+		mod.ValuePromptActiveIndex(LCHLauncherLogic.LCHLauncherConstrainIndex(mod._ValuePromptObjects.filter(function (e) {
 			return e.LCHPromptIsVisible;
 		}), mod._ValuePromptActiveIndex + (event.shiftKey ? -1 : 1) * (function () {
 			if (!mod._ValuePromptActiveIndex && mod._ValuePromptObjects[2].LCHPromptIsVisible && mod._ValuePromptObjects[1].LCHPromptItemsAll.length === 1) {
@@ -455,7 +442,7 @@ const mod = {
 		mod.ControlTerminate();
 	},
 	_ControlHandleEventKeydownArrow (event) {
-		if (LRTOptions.LCHOptionMode !== LCHLauncherModePipe()) {
+		if (LRTOptions.LCHOptionMode !== LCHLauncherLogic.LCHLauncherModePipe()) {
 			return;
 		}
 
@@ -472,7 +459,7 @@ const mod = {
 		OLSKThrottle.OLSKThrottleSkip(mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptResultsThrottle);
 	},
 	_ControlHandleEventKeydownArrowDown (event) {
-		if (LRTOptions.LCHOptionMode !== LCHLauncherModePipe()) {
+		if (LRTOptions.LCHOptionMode !== LCHLauncherLogic.LCHLauncherModePipe()) {
 			return;
 		}
 
@@ -490,7 +477,7 @@ const mod = {
 		OLSKThrottle.OLSKThrottleSkip(mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptResultsThrottle);
 	},
 	_ControlHandleEventKeydownDot (event) {
-		if (LRTOptions.LCHOptionMode !== LCHLauncherModePipe()) {
+		if (LRTOptions.LCHOptionMode !== LCHLauncherLogic.LCHLauncherModePipe()) {
 			return;
 		}
 
@@ -518,7 +505,7 @@ const mod = {
 		delete mod._ValuePromptObjects[1].LCHPromptItemSelected;
 	},
 	_ControlHandleEventKeydownBackspace (event) {
-		if (LRTOptions.LCHOptionMode !== LCHLauncherModePipe()) {
+		if (LRTOptions.LCHOptionMode !== LCHLauncherLogic.LCHLauncherModePipe()) {
 			return;
 		}
 
@@ -562,20 +549,20 @@ const mod = {
 			return;
 		}
 
-		if (LRTOptions.LCHOptionMode !== LCHLauncherModePipe()) {
+		if (LRTOptions.LCHOptionMode !== LCHLauncherLogic.LCHLauncherModePipe()) {
 			return;
 		}
 
 		event.preventDefault();
 
-		if (!LCHLauncherKeyboardEventIsTextInput(event)) {
+		if (!LCHLauncherLogic.LCHLauncherKeyboardEventIsTextInput(event)) {
 			return;
 		}
 
 		ActivePromptFilterTextShouldUpdate(!mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptInputThrottle ? event.key : mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptFilterText + event.key);
 	},
 	ControlReloadSubjects (inputData) {
-		let reloadSubjects = LCHLauncherReloadableSubjects([inputData]);
+		let reloadSubjects = LCHLauncherLogic.LCHLauncherReloadableSubjects([inputData]);
 		
 		if (!reloadSubjects.length) {
 			return false;
@@ -591,13 +578,13 @@ const mod = {
 		return true;
 	},
 	async ControlTerminate () {
-		if (LRTOptions.LCHOptionMode === LCHLauncherModePipe()) {
+		if (LRTOptions.LCHOptionMode === LCHLauncherLogic.LCHLauncherModePipe()) {
 			if (mod.ControlReloadSubjects(await mod.ControlRun(mod.DataComposition()))) {
 				return;
 			};
 		}
 
-		if (LRTOptions.LCHOptionMode === LCHLauncherModeCommit()) {
+		if (LRTOptions.LCHOptionMode === LCHLauncherLogic.LCHLauncherModeCommit()) {
 			await mod.ControlRun(mod._ValuePromptObjects[0].LCHPromptItemSelected);
 		}
 
@@ -659,7 +646,7 @@ const mod = {
 	// REACT
 
 	ReactFocusFilterInput () {
-		if (LRTOptions.LCHOptionMode === LCHLauncherModePipe()) {
+		if (LRTOptions.LCHOptionMode === LCHLauncherLogic.LCHLauncherModePipe()) {
 			return;
 		}
 		
@@ -788,9 +775,9 @@ const mod = {
 	},
 
 	SetupPromptObjects () {
-		mod._ValueAllPromptRecipes = LCHLauncherUIRecipesForMode(mod._ValueSharedRecipes, LRTOptions.LCHOptionMode);
+		mod._ValueAllPromptRecipes = LCHLauncherLogic.LCHLauncherUIRecipesForMode(mod._ValueSharedRecipes, LRTOptions.LCHOptionMode);
 
-		if (LRTOptions.LCHOptionMode === LCHLauncherModePipe()) {
+		if (LRTOptions.LCHOptionMode === LCHLauncherLogic.LCHLauncherModePipe()) {
 			mod._ValueTypeEquivalenceMap = LCHAPITypeEquivalenceMapForRecipes(mod._ValueSharedRecipes);
 			
 			const typeNameMap = LCHAPITypeNameMap(mod._ValueSharedRecipes);
@@ -870,7 +857,7 @@ const mod = {
 			LCHPromptIsVisible: true,
 		 });
 
-		if (LRTOptions.LCHOptionMode !== LCHLauncherModePreview()) {
+		if (LRTOptions.LCHOptionMode !== LCHLauncherLogic.LCHLauncherModePreview()) {
 			return;
 		}
 
@@ -920,14 +907,14 @@ import LCHLauncherPipeItem from './submodules/LCHLauncherPipeItem/main.svelte';
 {#if e.LCHPromptIsVisible}
 
 <div class={ e.LCHPromptClass } class:LCHLauncherPromptSelected={ mod._ValuePromptObjects[mod._ValuePromptActiveIndex] === e } on:click={ () => mod.interfaceDidClickPrompt(e) }>
-	{#if LRTOptions.LCHOptionMode === LCHLauncherModePipe()}
+	{#if LRTOptions.LCHOptionMode === LCHLauncherLogic.LCHLauncherModePipe()}
 		<strong class="LCHLauncherPromptHeading" class:LCHLauncherPromptHeadingMatchStop={ e.LCHPromptMatchStop }>{ e.LCHPromptFilterText && e.LCHPromptFilterText.toUpperCase() || e.LCHPromptHeading }</strong>
 	{/if}
 
 	<LCHLauncherPrompt
 		PromptItems={ e.LCHPromptItemsVisible }
 		ItemSelected={ e.LCHPromptItemSelected }
-		ItemSelectedHidden={ LRTOptions.LCHOptionMode !== LCHLauncherModePipe() || e.LCHPromptDotModeEnabled }
+		ItemSelectedHidden={ LRTOptions.LCHOptionMode !== LCHLauncherLogic.LCHLauncherModePipe() || e.LCHPromptDotModeEnabled }
 		ResultsHidden={ e.LCHPromptResultsThrottle !== false }
 		on:ResultListDispatchArrow={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) }
 		on:ResultListDispatchClick={ (event) => ActivePromptItemSelectedShouldUpdate(event.detail) || mod.ControlTerminate() }
@@ -937,7 +924,7 @@ import LCHLauncherPipeItem from './submodules/LCHLauncherPipeItem/main.svelte';
 		{/if}
 
 		{#if e.LCHPromptClass === 'LCHLauncherFilterPrompt' }
-			<input class="LCHLauncherFilterInput" placeholder="{ LRTOptions.LCHOptionMode === LCHLauncherModePreview() ? OLSKLocalized('LCHLauncherInputPlaceholderPreview') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ mod._ValuePromptObjects[0].LCHPromptFilterText } bind:this={ mod._ValueFilterInputInstance } on:input={ () => ActivePromptFilterTextShouldUpdate(mod._ValueFilterInputInstance.value) } autofocus />
+			<input class="LCHLauncherFilterInput" placeholder="{ LRTOptions.LCHOptionMode === LCHLauncherLogic.LCHLauncherModePreview() ? OLSKLocalized('LCHLauncherInputPlaceholderPreview') : OLSKLocalized('LCHLauncherInputPlaceholderDefault') }" bind:value={ mod._ValuePromptObjects[0].LCHPromptFilterText } bind:this={ mod._ValueFilterInputInstance } on:input={ () => ActivePromptFilterTextShouldUpdate(mod._ValueFilterInputInstance.value) } autofocus />
 		{/if}
 
 		{#if !['LCHLauncherFilterPrompt', 'LCHLauncherActionPrompt'].includes(e.LCHPromptClass) && e.LCHPromptDotModeEnabled }
