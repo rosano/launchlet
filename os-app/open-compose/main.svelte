@@ -19,7 +19,7 @@ import LCHSettingAction from '../_shared/LCHSetting/action.js';
 import LCHSettingMetal from '../_shared/LCHSetting/metal.js';
 import LCHComposeLogic from './ui-logic.js';
 import LCHFlagsLogic from '../_shared/LCHFlags/main.js'
-import { LCHFormulaFrom, LCHFormulaToEvaluate } from '../_shared/LCHFormula/main.js'
+import LCHFormula from '../_shared/LCHFormula/main.js'
 import LCHLauncherLogic from '../dev-launcher/ui-logic.js';
 import LCHBuild from '../_shared/LCHBuild/main.js';
 import OLSKString from 'OLSKString';
@@ -203,7 +203,7 @@ const mod = {
 		});
 
 		try	{
-			inputData.LCHDocumentIsFlagged = !!LCHFlagsLogic.LCHFlags(LCHFormulaToEvaluate(LCHFormulaFrom(inputData)));
+			inputData.LCHDocumentIsFlagged = !!LCHFlagsLogic.LCHFlags(LCHFormula.LCHFormulaToEvaluate(LCHFormula.LCHFormulaFrom(inputData)));
 		} catch (e) {
 			if (!e.name.match('SyntaxError')) {
 				throw e

@@ -1,21 +1,21 @@
 const { throws, rejects, deepEqual } = require('assert');
 
-import { LCHFormulaModelErrorsFor } from './main.js';
+const mainModule = require('./main.js').default;
 
 describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			LCHFormulaModelErrorsFor(null);
+			mainModule.LCHFormulaModelErrorsFor(null);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns null', function() {
-		deepEqual(LCHFormulaModelErrorsFor({}), null);
+		deepEqual(mainModule.LCHFormulaModelErrorsFor({}), null);
 	});
 
 	it('returns object if LCHOptionValidateIfNotPresent', function() {
-		deepEqual(Array.isArray(Object.keys(LCHFormulaModelErrorsFor({}, {
+		deepEqual(Array.isArray(Object.keys(mainModule.LCHFormulaModelErrorsFor({}, {
 			LCHOptionValidateIfNotPresent: true,
 		}))), true);
 	});
@@ -23,7 +23,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 	context('LCHFormulaName', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(LCHFormulaModelErrorsFor({
+			deepEqual(mainModule.LCHFormulaModelErrorsFor({
 				LCHFormulaName: null,
 			}), {
 				LCHFormulaName: [
@@ -33,7 +33,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(LCHFormulaModelErrorsFor({
+			deepEqual(mainModule.LCHFormulaModelErrorsFor({
 				LCHFormulaName: 'alfa',
 			}), null);
 		});
@@ -43,7 +43,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 	context('LCHFormulaSignature', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(LCHFormulaModelErrorsFor({
+			deepEqual(mainModule.LCHFormulaModelErrorsFor({
 				LCHFormulaSignature: null,
 			}), {
 				LCHFormulaSignature: [
@@ -53,7 +53,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(LCHFormulaModelErrorsFor({
+			deepEqual(mainModule.LCHFormulaModelErrorsFor({
 				LCHFormulaSignature: 'alfa',
 			}), null);
 		});
@@ -63,7 +63,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 	context('LCHFormulaInputTypes', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(LCHFormulaModelErrorsFor({
+			deepEqual(mainModule.LCHFormulaModelErrorsFor({
 				LCHFormulaInputTypes: null,
 			}), {
 				LCHFormulaInputTypes: [
@@ -73,13 +73,13 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(LCHFormulaModelErrorsFor({
+			deepEqual(mainModule.LCHFormulaModelErrorsFor({
 				LCHFormulaInputTypes: 'alfa',
 			}), null);
 		});
 
 		it('allows comma', function() {
-			deepEqual(LCHFormulaModelErrorsFor({
+			deepEqual(mainModule.LCHFormulaModelErrorsFor({
 				LCHFormulaInputTypes: 'alfa,bravo',
 			}), null);
 		});
@@ -89,7 +89,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 	context('LCHFormulaOutputType', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(LCHFormulaModelErrorsFor({
+			deepEqual(mainModule.LCHFormulaModelErrorsFor({
 				LCHFormulaOutputType: null,
 			}), {
 				LCHFormulaOutputType: [
@@ -99,7 +99,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(LCHFormulaModelErrorsFor({
+			deepEqual(mainModule.LCHFormulaModelErrorsFor({
 				LCHFormulaOutputType: 'alfa',
 			}), null);
 		});
@@ -109,7 +109,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 	context('LCHFormulaIsHidden', function() {
 
 		it('returns object if not function', function() {
-			deepEqual(LCHFormulaModelErrorsFor({
+			deepEqual(mainModule.LCHFormulaModelErrorsFor({
 				LCHFormulaIsHidden: null,
 			}), {
 				LCHFormulaIsHidden: [
@@ -119,7 +119,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(LCHFormulaModelErrorsFor({
+			deepEqual(mainModule.LCHFormulaModelErrorsFor({
 				LCHFormulaIsHidden () {},
 			}), null);
 		});
@@ -129,7 +129,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 	context('LCHFormulaURLFilter', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(LCHFormulaModelErrorsFor({
+			deepEqual(mainModule.LCHFormulaModelErrorsFor({
 				LCHFormulaURLFilter: null,
 			}), {
 				LCHFormulaURLFilter: [
@@ -139,7 +139,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(LCHFormulaModelErrorsFor({
+			deepEqual(mainModule.LCHFormulaModelErrorsFor({
 				LCHFormulaURLFilter: 'alfa',
 			}), null);
 		});
@@ -149,7 +149,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 	context('LCHFormulaIsAutomatic', function() {
 
 		it('returns object if not boolean', function() {
-			deepEqual(LCHFormulaModelErrorsFor({
+			deepEqual(mainModule.LCHFormulaModelErrorsFor({
 				LCHFormulaIsAutomatic: null,
 			}), {
 				LCHFormulaIsAutomatic: [
@@ -159,7 +159,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(LCHFormulaModelErrorsFor({
+			deepEqual(mainModule.LCHFormulaModelErrorsFor({
 				LCHFormulaIsAutomatic: true,
 			}), null);
 		});
@@ -169,7 +169,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 	context('LCHFormulaStyle', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(LCHFormulaModelErrorsFor({
+			deepEqual(mainModule.LCHFormulaModelErrorsFor({
 				LCHFormulaStyle: null,
 			}), {
 				LCHFormulaStyle: [
@@ -179,7 +179,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(LCHFormulaModelErrorsFor({
+			deepEqual(mainModule.LCHFormulaModelErrorsFor({
 				LCHFormulaStyle: 'alfa',
 			}), null);
 		});
@@ -189,7 +189,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 	context('LCHFormulaIsFlagged', function() {
 
 		it('returns object if not boolean', function() {
-			deepEqual(LCHFormulaModelErrorsFor({
+			deepEqual(mainModule.LCHFormulaModelErrorsFor({
 				LCHFormulaIsFlagged: null,
 			}), {
 				LCHFormulaIsFlagged: [
@@ -199,7 +199,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(LCHFormulaModelErrorsFor({
+			deepEqual(mainModule.LCHFormulaModelErrorsFor({
 				LCHFormulaIsFlagged: true,
 			}), null);
 		});
@@ -208,22 +208,20 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 
 });
 
-import { LCHFormulaFrom } from './main.js';
-
 describe('LCHFormulaFrom', function test_LCHFormulaFrom() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			LCHFormulaFrom(null);
+			mainModule.LCHFormulaFrom(null);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns inputData', function() {
-		deepEqual(LCHFormulaFrom({}), {});
+		deepEqual(mainModule.LCHFormulaFrom({}), {});
 	});
 
 	it('replaces domain', function() {
-		deepEqual(LCHFormulaFrom({
+		deepEqual(mainModule.LCHFormulaFrom({
 			LCHAlfaBravo: '',
 		}), {
 			LCHFormulaBravo: '',
@@ -232,28 +230,26 @@ describe('LCHFormulaFrom', function test_LCHFormulaFrom() {
 
 });
 
-import { LCHFormulaTo } from './main.js';
-
 describe('LCHFormulaTo', function test_LCHFormulaTo() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			LCHFormulaTo(null, '');
+			mainModule.LCHFormulaTo(null, '');
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if param2 not string', function() {
 		throws(function() {
-			LCHFormulaTo({}, null);
+			mainModule.LCHFormulaTo({}, null);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns inputData', function() {
-		deepEqual(LCHFormulaTo({}, ''), {});
+		deepEqual(mainModule.LCHFormulaTo({}, ''), {});
 	});
 
 	it('replaces domain and prefix', function() {
-		deepEqual(LCHFormulaTo({
+		deepEqual(mainModule.LCHFormulaTo({
 			LCHFormulaAlfa: '',
 		}, 'bravo'), {
 			bravoAlfa: '',
@@ -262,12 +258,10 @@ describe('LCHFormulaTo', function test_LCHFormulaTo() {
 
 });
 
-import { LCHFormulaSafeStringFields } from './main.js';
-
 describe('LCHFormulaSafeStringFields', function test_LCHFormulaSafeStringFields() {
 
 	it('prefixes fields with with LCHFormula', function() {
-		deepEqual(LCHFormulaSafeStringFields.filter(function (e) {
+		deepEqual(mainModule.LCHFormulaSafeStringFields.filter(function (e) {
 			if (e === '@context') {
 				return false;
 			};
@@ -278,30 +272,29 @@ describe('LCHFormulaSafeStringFields', function test_LCHFormulaSafeStringFields(
 
 });
 
-import { LCHFormulaToEvaluate, LCHFormulaSafeStringFields } from './main.js';
 describe('LCHFormulaToEvaluate', function test_LCHFormulaToEvaluate() {
 
 	it('throws error if not valid', function() {
 		throws(function() {
-			LCHFormulaToEvaluate({
+			mainModule.LCHFormulaToEvaluate({
 				LCHFormulaName: null,
 			});
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns object', function() {
-		deepEqual(LCHFormulaToEvaluate({}), {});
+		deepEqual(mainModule.LCHFormulaToEvaluate({}), {});
 	});
 
 	it('removes LCHFormulaSafeStringFields', function() {
-		deepEqual(LCHFormulaToEvaluate(LCHFormulaSafeStringFields.reduce(function (coll, item) {
+		deepEqual(mainModule.LCHFormulaToEvaluate(mainModule.LCHFormulaSafeStringFields.reduce(function (coll, item) {
 			coll[item] = 'alfa';
 			return coll;
 		}, {})), {});
 	});
 
 	it('adds closure from LCHFormulaCallbackArgs', function() {
-		deepEqual(LCHFormulaToEvaluate({
+		deepEqual(mainModule.LCHFormulaToEvaluate({
 			LCHFormulaCallbackArgs: 'alfa',
 		}), {
 			LCHFormulaCallbackRaw: '(function (alfa) {  })',
@@ -309,7 +302,7 @@ describe('LCHFormulaToEvaluate', function test_LCHFormulaToEvaluate() {
 	});
 
 	it('adds closure from LCHFormulaCallbackArgs', function() {
-		deepEqual(LCHFormulaToEvaluate({
+		deepEqual(mainModule.LCHFormulaToEvaluate({
 			LCHFormulaCallbackBody: 'alfa',
 		}), {
 			LCHFormulaCallbackRaw: '(function () { alfa })',
@@ -317,7 +310,7 @@ describe('LCHFormulaToEvaluate', function test_LCHFormulaToEvaluate() {
 	});
 
 	it('adds closure from LCHFormulaCanonicalExampleCallbackBody', function() {
-		deepEqual(LCHFormulaToEvaluate({
+		deepEqual(mainModule.LCHFormulaToEvaluate({
 			LCHFormulaCanonicalExampleCallbackBody: 'alfa',
 		}), {
 			LCHFormulaCanonicalExampleCallbackRaw: '(function () { alfa })',
@@ -326,7 +319,7 @@ describe('LCHFormulaToEvaluate', function test_LCHFormulaToEvaluate() {
 
 	it('does not modify input', function() {
 		const item = {};
-		deepEqual(LCHFormulaToEvaluate(item) !== item, true);
+		deepEqual(mainModule.LCHFormulaToEvaluate(item) !== item, true);
 	});
 
 });

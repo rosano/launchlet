@@ -1,4 +1,4 @@
-import { LCHFormulaModelErrorsFor, LCHFormulaFrom, LCHFormulaTo } from '../LCHFormula/main.js';
+import LCHFormula from '../LCHFormula/main.js';
 
 const mod = {
 
@@ -7,7 +7,7 @@ const mod = {
 			throw new Error('LCHErrorInputNotValid');
 		}
 
-		var errors = LCHFormulaTo(LCHFormulaModelErrorsFor(LCHFormulaFrom(inputData)) || {}, 'LCHDocument');
+		var errors = LCHFormula.LCHFormulaTo(LCHFormula.LCHFormulaModelErrorsFor(LCHFormula.LCHFormulaFrom(inputData)) || {}, 'LCHDocument');
 
 		if (typeof inputData.LCHDocumentID !== 'string') {
 			errors.LCHDocumentID = [

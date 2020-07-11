@@ -1,4 +1,4 @@
-import { LCHFormulaFrom, LCHFormulaTo } from '../LCHFormula/main.js';
+import LCHFormula from '../LCHFormula/main.js';
 
 const mod = {
 
@@ -75,7 +75,7 @@ const mod = {
 					delete e[key];
 				}
 			});
-			return LCHFormulaTo(LCHFormulaFrom(e), 'LCHRecipe');
+			return LCHFormula.LCHFormulaTo(LCHFormula.LCHFormulaFrom(e), 'LCHRecipe');
 		}).map(mod.LCHBuildObjectString).join(',') }]`;
 	},
 

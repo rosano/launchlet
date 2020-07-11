@@ -1,4 +1,4 @@
-import { LCHFormulaModelErrorsFor, LCHFormulaFrom, LCHFormulaTo } from '../_shared/LCHFormula/main.js';
+import LCHFormula from '../_shared/LCHFormula/main.js';
 
 import LCHRuntime from '../_shared/LCHRuntime/main.js';
 import { LCHTypeServiceSearchRecipe } from './recipes/types/ServiceSearch/main.js';
@@ -19,7 +19,7 @@ const mod = {
 			throw new Error('LCHErrorInputNotValid');
 		}
 
-		const errors = LCHFormulaTo(LCHFormulaModelErrorsFor(LCHFormulaFrom(inputData)) || {}, 'LCHRecipe');
+		const errors = LCHFormula.LCHFormulaTo(LCHFormula.LCHFormulaModelErrorsFor(LCHFormula.LCHFormulaFrom(inputData)) || {}, 'LCHRecipe');
 
 		if (typeof inputData.LCHRecipeCallback !== 'function') {
 			errors.LCHRecipeCallback = [
