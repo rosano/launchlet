@@ -13,7 +13,7 @@ const mod = {
 	// INTERFACE
 
 	InterfaceTestLCHComposeInputFocusButtonDidClick() {
-		LCHComposeInput.LCHComposeInputFocus();
+		LCHComposeInput.modPublic.LCHComposeInputFocus();
 	},
 
 	InterfaceTestLCHComposeInputPropDataSendButtonDidClick() {

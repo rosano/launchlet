@@ -4,28 +4,32 @@ export let LCHComposeInputKey;
 export let LCHComposeInputOptions;
 export let LCHComposeInputDispatchUpdate;
 
-export const LCHComposeInputFocus = function () {
-	mod.ControlConfigureEditor(function (inputData) {
-		inputData.focus();
-	});
-};
+export const modPublic = {
 
-export const LCHComposeInputSetCursor = function (param1, param2) {
-	mod.ControlConfigureEditor(function (inputData) {
-		inputData.setCursor(CodeMirror.Pos(param1, param2));
-	});
-};
+	LCHComposeInputFocus () {
+		mod.ControlConfigureEditor(function (inputData) {
+			inputData.focus();
+		});
+	},
 
-export const LCHComposeInputScrollIntoView = function (param1, param2) {
-	mod.ControlConfigureEditor(function (inputData) {
-		inputData.scrollIntoView(CodeMirror.Pos(param1, param2), 300);
-	});
-};
+	LCHComposeInputSetCursor (param1, param2) {
+		mod.ControlConfigureEditor(function (inputData) {
+			inputData.setCursor(CodeMirror.Pos(param1, param2));
+		});
+	},
 
-export const LCHComposeInputSetSelection = function (param1, param2, param3, param4) {
-	mod.ControlConfigureEditor(function (inputData) {
-		inputData.setSelection(CodeMirror.Pos(param1, param2), CodeMirror.Pos(param3, param4));
-	});
+	LCHComposeInputScrollIntoView (param1, param2) {
+		mod.ControlConfigureEditor(function (inputData) {
+			inputData.scrollIntoView(CodeMirror.Pos(param1, param2), 300);
+		});
+	},
+
+	LCHComposeInputSetSelection (param1, param2, param3, param4) {
+		mod.ControlConfigureEditor(function (inputData) {
+			inputData.setSelection(CodeMirror.Pos(param1, param2), CodeMirror.Pos(param3, param4));
+		});
+	},
+
 };
 
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
