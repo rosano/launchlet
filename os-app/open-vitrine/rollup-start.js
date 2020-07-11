@@ -1,3 +1,3 @@
-import * as RollupStart from './main.js';
+import RollupStart from './main.js';
 
-export default RollupStart.mod;
+export default RollupStart;
