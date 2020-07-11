@@ -2,61 +2,108 @@ import LCHDocumentModel from './model.js';
 import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
 const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 
-const kType = 'lch_document';
 const kCollection = 'lch_documents';
 
-export const LCHDocumentStoragePath = function(inputData) {
-	return `${ kCollection }/${ inputData || '' }`;
-};
+const mod = {
 
-export const LCHDocumentStorageBuild = function (privateClient, publicClient, changeDelegate) {
-	privateClient.on('change', function (event) {
-		if (!changeDelegate) {
-			return;
-		}
-		
-		if (event.relativePath.indexOf(kCollection) !== 0) {
-			return;
-		}
+	LCHDocumentStorageCollectionType () {
+		return 'lch_document';
+	},
 
-		const delegateMethod = OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateProperty(event);
+	LCHDocumentStorageCollectionPath () {
+		return kCollection + '/';
+	},
 
-		if (!delegateMethod) {
-			return;
+	LCHDocumentStorageObjectPath (inputData) {
+		if (LCHDocumentModel.LCHDocumentModelErrorsFor(inputData)) {
+			throw new Error('LCHErrorInputNotValid');
 		}
 
-		if (typeof changeDelegate[delegateMethod] !== 'function') {
-			return console.warn(`${ delegateMethod } not function`);
+		return mod.LCHDocumentStorageCollectionPath() + inputData.LCHDocumentID;
+	},
+
+	LCHDocumentStorageMatch (inputData) {
+		if (typeof inputData !== 'string') {
+			throw new Error('LCHErrorInputNotValid');
 		}
 
-		changeDelegate[delegateMethod](OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateData(delegateMethod, event)));
-	});
+		const item = {
+			LCHDocumentID: inputData.split('/')[1],
+			LCHDocumentCallbackBody: '',
+			LCHDocumentCreationDate: new Date(),
+			LCHDocumentModificationDate: new Date(),
+		};
 
-	return {
-		OLSKRemoteStorageCollectionName: kCollection,
-		OLSKRemoteStorageCollectionType: kType,
-		OLSKRemoteStorageCollectionModelErrors: Object.entries(LCHDocumentModel.LCHDocumentModelErrorsFor({})).map(function (e) {
-			if (!Object.keys(LCHDocumentModel.LCHDocumentModelErrorsFor({})).includes(e[0])) {
-				e[1].push('__RSOptional');
+		return inputData === mod.LCHDocumentStorageObjectPath(item);
+	},
+
+	LCHDocumentStorageBuild (privateClient, publicClient, changeDelegate) {
+		privateClient.on('change', function (event) {
+			if (!changeDelegate) {
+				return;
+			}
+			
+			const delegateMethod = OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateProperty(event);
+
+			if (!delegateMethod) {
+				return;
 			}
 
-			return e;
-		}).reduce(function (coll, item) {
-			coll[item[0]] = item[1];
+			if (typeof changeDelegate[delegateMethod] !== 'function') {
+				return console.warn(`${ delegateMethod } not function`);
+			}
 
-			return coll;
-		}, {}),
-		OLSKRemoteStorageCollectionExports: {
-			LCHStorageList () {
-				return privateClient.getAll(LCHDocumentStoragePath(), false);
+			if (!mod.LCHDocumentStorageMatch(event.relativePath)) {
+				return;
+			}
+
+			if (event.origin === 'remote' && event.oldValue && event.newValue) {
+				// #hotfix-remotestorage-remote-event-from-local-change
+				if (JSON.stringify(event.oldValue) === JSON.stringify(event.newValue)) {
+					return console.info('RemoteIdentical', event);
+				}
+			}
+
+			changeDelegate[delegateMethod](OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateData(delegateMethod, event)));
+		});
+
+		const OLSKRemoteStorageCollectionExports = {
+
+			async LCHStorageList () {
+				return privateClient.getAll(mod.LCHDocumentStorageCollectionPath(), false);
 			},
-			async LCHStorageWrite (param1, param2) {
-				await privateClient.storeObject(kType, `${ kCollection }/${ param1 }`, OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(param2));
-				return OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(param2);
+
+			async LCHStorageWrite (inputData) {
+				await privateClient.storeObject(mod.LCHDocumentStorageCollectionType(), mod.LCHDocumentStorageObjectPath(inputData), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(inputData));
+				return OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(inputData);
 			},
-			LCHStorageDelete (inputData) {
-				return privateClient.remove(`${ kCollection }/${ inputData }`);
+			
+			async LCHStorageDelete (inputData) {
+				return privateClient.remove(mod.LCHDocumentStorageCollectionPath() + inputData);
 			},
-		},
-	};
+
+		};
+
+		return {
+			OLSKRemoteStorageCollectionName: kCollection,
+			OLSKRemoteStorageCollectionType: mod.LCHDocumentStorageCollectionType(),
+			OLSKRemoteStorageCollectionModelErrors: Object.entries(LCHDocumentModel.LCHDocumentModelErrorsFor({}, {
+				LCHOptionValidateIfNotPresent: true,
+			})).map(function (e) {
+				if (!Object.keys(LCHDocumentModel.LCHDocumentModelErrorsFor({})).includes(e[0])) {
+					e[1].push('__RSOptional');
+				}
+
+				return e;
+			}).reduce(function (coll, item) {
+				coll[item[0]] = item[1];
+
+				return coll;
+			}, {}),
+			OLSKRemoteStorageCollectionExports,
+		};
+	},
+
 };
+
+export default mod;

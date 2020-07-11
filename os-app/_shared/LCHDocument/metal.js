@@ -16,7 +16,7 @@ const mod = {
 			});
 		}
 
-		return await storageClient.launchlet.lch_documents.LCHStorageWrite(inputData.LCHDocumentID, inputData);
+		return await storageClient.launchlet.lch_documents.LCHStorageWrite(inputData);
 	},
 
 	async LCHDocumentMetalList (storageClient) {
