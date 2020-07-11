@@ -1,10 +1,10 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./_aggregate.js');
+const mainModule = require('./_aggregate.js').default;
 
 describe('LCHVitrineRecipes', function test_LCHVitrineRecipes() {
 
-	it('returns LCHRecipe for each folder', function() {
+	it.skip('returns LCHRecipe for each folder', function() {
 		const items = [].concat.apply([], require('glob').sync('**/main.js', {
 		  matchBase: true,
 		  cwd: __dirname,
@@ -21,6 +21,17 @@ describe('LCHVitrineRecipes', function test_LCHVitrineRecipes() {
 				return e2.LCHRecipeCallback === e.LCHRecipeCallback;
 			}).length;
 		}), []);
+	});
+
+});
+
+describe('LCHVitrineCopyPageInfoRecipe', function test_LCHVitrineCopyPageInfoRecipe() {
+
+	it('returns LCHRecipe', function() {
+		deepEqual(mainModule.LCHVitrineCopyPageInfoRecipe(), {
+			LCHRecipeCallback: mainModule.LCHVitrineCopyPageInfo,
+			LCHRecipeSignature: 'LCHVitrineCopyPageInfo',
+		});
 	});
 
 });
