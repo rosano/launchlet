@@ -1,4 +1,4 @@
-import * as LCHSettingModel from './model.js';
+import LCHSettingModel from './model.js';
 
 const kType = 'lch_setting';
 const kCollection = 'lch_settings';

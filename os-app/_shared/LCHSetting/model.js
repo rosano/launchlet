@@ -1,25 +1,31 @@
-export const LCHSettingModelErrorsFor = function(inputData) {
-	if (typeof inputData !== 'object' || inputData === null) {
-		throw new Error('LCHErrorInputNotValid');
-	}
+const mod = {
 
-	const errors = {};
+	LCHSettingModelErrorsFor (inputData) {
+		if (typeof inputData !== 'object' || inputData === null) {
+			throw new Error('LCHErrorInputNotValid');
+		}
 
-	if (typeof inputData.LCHSettingKey !== 'string') {
-		errors.LCHSettingKey = [
-			'LCHErrorNotString',
-		];
-	} else if (inputData.LCHSettingKey.trim() === '') {
-		errors.LCHSettingKey = [
-			'LCHErrorNotFilled',
-		];
-	}
+		const errors = {};
 
-	if (typeof inputData.LCHSettingValue !== 'string') {
-		errors.LCHSettingValue = [
-			'LCHErrorNotString',
-		];
-	}
+		if (typeof inputData.LCHSettingKey !== 'string') {
+			errors.LCHSettingKey = [
+				'LCHErrorNotString',
+			];
+		} else if (inputData.LCHSettingKey.trim() === '') {
+			errors.LCHSettingKey = [
+				'LCHErrorNotFilled',
+			];
+		}
 
-	return Object.entries(errors).length ? errors : null;
+		if (typeof inputData.LCHSettingValue !== 'string') {
+			errors.LCHSettingValue = [
+				'LCHErrorNotString',
+			];
+		}
+
+		return Object.entries(errors).length ? errors : null;
+	},
+
 };
+
+export default mod;

@@ -1,4 +1,4 @@
-import * as LCHSettingsModel from './model.js';
+import LCHSettingsModel from './model.js';
 
 const mod = {
 
