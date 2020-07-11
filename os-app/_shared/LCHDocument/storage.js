@@ -1,4 +1,4 @@
-import * as LCHDocumentModel from './model.js';
+import LCHDocumentModel from './model.js';
 import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
 const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 
