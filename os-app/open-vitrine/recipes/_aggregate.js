@@ -5,8 +5,6 @@ const OLSKLocalized = function(translationConstant) {
 
 import * as LCHVitrineSendEmail from './LCHVitrineSendEmail/main.js';
 
-import * as LCHVitrinePageLinksHighlightRemove from './LCHVitrinePageLinksHighlightRemove/main.js';
-
 const mod = {
 
 	LCHVitrineRecipes () {
@@ -24,7 +22,9 @@ const mod = {
 			{
 				LCHVitrinePageLinksHighlightAddRecipe: mod.LCHVitrinePageLinksHighlightAddRecipe,
 			},
-			LCHVitrinePageLinksHighlightRemove,
+			{
+				LCHVitrinePageLinksHighlightRemoveRecipe: mod.LCHVitrinePageLinksHighlightRemoveRecipe,
+			},
 			{
 				LCHVitrineMinimalistDateStringRecipe: mod.LCHVitrineMinimalistDateStringRecipe,
 			},
@@ -98,6 +98,22 @@ const mod = {
 		return {
 			LCHRecipeCallback: mod.LCHVitrineCopyPageInfoCallback,
 			LCHRecipeSignature: 'LCHVitrineCopyPageInfo',
+		};
+	},
+
+	LCHVitrinePageLinksHighlightRemoveIsHidden () {
+		return !document.querySelector('style.LCHVitrinePageLinksHighlightAdd');
+	},
+
+	LCHVitrinePageLinksHighlightRemoveCallback () {
+		document.querySelector('style.LCHVitrinePageLinksHighlightAdd').remove()
+	},
+
+	LCHVitrinePageLinksHighlightRemoveRecipe () {
+		return {
+			LCHRecipeCallback: mod.LCHVitrinePageLinksHighlightRemoveCallback,
+			LCHRecipeSignature: 'LCHVitrinePageLinksHighlightRemove',
+			LCHRecipeIsExcluded: mod.LCHVitrinePageLinksHighlightRemoveIsHidden,
 		};
 	},
 
