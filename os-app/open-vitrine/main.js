@@ -3,10 +3,14 @@ export const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
 };
 
-import LCHVitrineRecipes from './recipes/_aggregate.js'
-const _LCHVitrineRecipes = LCHVitrineRecipes.LCHVitrineRecipes().map(function (e) {
-	return Object.assign(e, {
-		LCHRecipeName: OLSKLocalized('LCHVitrineDemoRecipeNames')[e.LCHRecipeSignature],
+import LCHVitrineRecipes from './recipes.js'
+
+const _LCHVitrineRecipes = Object.entries(LCHVitrineRecipes).filter(function (e) {
+	return e.shift().includes('Recipe');
+}).map(function (e) {
+	const item = e.pop()();
+	return Object.assign(item, {
+		LCHRecipeName: OLSKLocalized('LCHVitrineDemoRecipeNames')[item.LCHRecipeSignature],
 	});
 });
 

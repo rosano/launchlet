@@ -7,40 +7,6 @@ import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
 
 const mod = {
 
-	LCHVitrineRecipes () {
-		return [].concat.apply([], [
-			{
-				LCHVitrinePageColoursRandomizeRecipe: mod.LCHVitrinePageColoursRandomizeRecipe,
-			},
-			{
-				LCHVitrinePageColoursRestoreRecipe: mod.LCHVitrinePageColoursRestoreRecipe,
-			},
-			{
-				LCHVitrineCopyPageInfoRecipe: mod.LCHVitrineCopyPageInfoRecipe,
-			},
-			{
-				LCHVitrineSendEmailRecipe: mod.LCHVitrineSendEmailRecipe,
-			},
-			{
-				LCHVitrinePageLinksHighlightAddRecipe: mod.LCHVitrinePageLinksHighlightAddRecipe,
-			},
-			{
-				LCHVitrinePageLinksHighlightRemoveRecipe: mod.LCHVitrinePageLinksHighlightRemoveRecipe,
-			},
-			{
-				LCHVitrineMinimalistDateStringRecipe: mod.LCHVitrineMinimalistDateStringRecipe,
-			},
-		].map(function (e) {
-			return Object.entries(e).filter(function (e) {
-				return e.shift().includes('Recipe');
-			}).map(function (e) {
-				return e.pop()();
-			}).map(function (e) {
-				return e;
-			});
-		}));
-	},
-
 	LCHVitrinePageColoursRandomizeCallback () {
 		let element = document.querySelector('style.LCHVitrinePageColoursRandomize')
 		
