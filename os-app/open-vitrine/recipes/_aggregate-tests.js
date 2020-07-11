@@ -35,3 +35,23 @@ describe('LCHVitrineCopyPageInfoRecipe', function test_LCHVitrineCopyPageInfoRec
 	});
 
 });
+
+describe('LCHVitrineMinimalistDateStringRecipe', function test_LCHVitrineMinimalistDateStringRecipe() {
+
+	it('returns LCHRecipe', async function() {
+		deepEqual(mainModule.LCHVitrineMinimalistDateStringRecipe(), {
+			LCHRecipeCallback: mainModule.LCHVitrineMinimalistDateString,
+			LCHRecipeSignature: 'LCHVitrineMinimalistDateString',
+			LCHRecipeOutputType: 'String',
+		});
+	});
+
+});
+
+describe('LCHVitrineMinimalistDateString', function test_LCHVitrineMinimalistDateString() {
+
+	it('returns string', async function() {
+		deepEqual(mainModule.LCHVitrineMinimalistDateString(), (new Date()).toJSON().slice(0, 10).replace(/-/g, '.'));
+	});
+
+});

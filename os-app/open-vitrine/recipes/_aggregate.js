@@ -9,9 +9,8 @@ import * as LCHVitrineSendEmail from './LCHVitrineSendEmail/main.js';
 
 import * as LCHVitrinePageLinksHighlightAdd from './LCHVitrinePageLinksHighlightAdd/main.js';
 import * as LCHVitrinePageLinksHighlightRemove from './LCHVitrinePageLinksHighlightRemove/main.js';
-import * as LCHVitrineMinimalistDateString from './LCHVitrineMinimalistDateString/main.js';
 
-export const mod = {
+const mod = {
 
 	LCHVitrineRecipes () {
 		return [].concat.apply([], [
@@ -23,7 +22,9 @@ export const mod = {
 			LCHVitrineSendEmail,
 			LCHVitrinePageLinksHighlightAdd,
 			LCHVitrinePageLinksHighlightRemove,
-			LCHVitrineMinimalistDateString,
+			{
+				LCHVitrineMinimalistDateStringRecipe: mod.LCHVitrineMinimalistDateStringRecipe,
+			},
 		].map(function (e) {
 			return Object.entries(e).filter(function (e) {
 				return e.shift().includes('Recipe');
@@ -45,6 +46,18 @@ export const mod = {
 		return {
 			LCHRecipeCallback: mod.LCHVitrineCopyPageInfo,
 			LCHRecipeSignature: 'LCHVitrineCopyPageInfo',
+		};
+	},
+
+	LCHVitrineMinimalistDateString () {
+		return (new Date()).toJSON().slice(0, 10).replace(/-/g, '.');
+	},
+
+	LCHVitrineMinimalistDateStringRecipe () {
+		return {
+			LCHRecipeCallback: mod.LCHVitrineMinimalistDateString,
+			LCHRecipeSignature: 'LCHVitrineMinimalistDateString',
+			LCHRecipeOutputType: 'String',
 		};
 	},
 
