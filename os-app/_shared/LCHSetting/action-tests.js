@@ -1,6 +1,6 @@
 const { rejects, deepEqual } = require('assert');
 
-const mainModule = require('./action.js');
+const mainModule = require('./action.js').default;
 
 describe('LCHSettingsActionProperty', function test_LCHSettingsActionProperty() {
 
