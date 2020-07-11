@@ -2,7 +2,7 @@ const RemoteStorage = require('remotestoragejs');
 
 const LCH_Data = require('./os-app/_shared/LCH_Data/main.js').default;
 const LCHDocumentStorage = require('./os-app/_shared/LCHDocument/storage.js').default;
-const LCHSettingStorage = require('./os-app/_shared/LCHSetting/storage.js');
+const LCHSettingStorage = require('./os-app/_shared/LCHSetting/storage.js').default;
 
 (function LCHMochaStorage() {
 	if (process.env.OLSK_TESTING_BEHAVIOUR === 'true') {
