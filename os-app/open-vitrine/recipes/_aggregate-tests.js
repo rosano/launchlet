@@ -59,6 +59,18 @@ describe('LCHVitrineCopyPageInfoRecipe', function test_LCHVitrineCopyPageInfoRec
 
 });
 
+describe('LCHVitrinePageLinksHighlightAddRecipe', function test_LCHVitrinePageLinksHighlightAddRecipe() {
+
+	it('returns LCHRecipe', async function() {
+		deepEqual(mainModule.LCHVitrinePageLinksHighlightAddRecipe(), {
+			LCHRecipeCallback: mainModule.LCHVitrinePageLinksHighlightAddCallback,
+			LCHRecipeSignature: 'LCHVitrinePageLinksHighlightAdd',
+			LCHRecipeIsExcluded: mainModule.LCHVitrinePageLinksHighlightAddIsHidden,
+		});
+	});
+
+});
+
 describe('LCHVitrineMinimalistDateStringCallback', function test_LCHVitrineMinimalistDateStringCallback() {
 
 	it('returns string', function() {

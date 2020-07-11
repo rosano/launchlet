@@ -5,7 +5,6 @@ const OLSKLocalized = function(translationConstant) {
 
 import * as LCHVitrineSendEmail from './LCHVitrineSendEmail/main.js';
 
-import * as LCHVitrinePageLinksHighlightAdd from './LCHVitrinePageLinksHighlightAdd/main.js';
 import * as LCHVitrinePageLinksHighlightRemove from './LCHVitrinePageLinksHighlightRemove/main.js';
 
 const mod = {
@@ -22,7 +21,9 @@ const mod = {
 				LCHVitrineCopyPageInfoRecipe: mod.LCHVitrineCopyPageInfoRecipe,
 			},
 			LCHVitrineSendEmail,
-			LCHVitrinePageLinksHighlightAdd,
+			{
+				LCHVitrinePageLinksHighlightAddRecipe: mod.LCHVitrinePageLinksHighlightAddRecipe,
+			},
 			LCHVitrinePageLinksHighlightRemove,
 			{
 				LCHVitrineMinimalistDateStringRecipe: mod.LCHVitrineMinimalistDateStringRecipe,
@@ -97,6 +98,25 @@ const mod = {
 		return {
 			LCHRecipeCallback: mod.LCHVitrineCopyPageInfoCallback,
 			LCHRecipeSignature: 'LCHVitrineCopyPageInfo',
+		};
+	},
+
+	LCHVitrinePageLinksHighlightAddIsHidden () {
+		return document.querySelector('style.LCHVitrinePageLinksHighlightAdd');
+	},
+
+	LCHVitrinePageLinksHighlightAddCallback () {
+		let element = document.body.appendChild(document.createElement('style'))
+		
+		element.classList.add('LCHVitrinePageLinksHighlightAdd')
+		element.innerHTML = `a { background: yellow !important; }`
+	},
+
+	LCHVitrinePageLinksHighlightAddRecipe () {
+		return {
+			LCHRecipeCallback: mod.LCHVitrinePageLinksHighlightAddCallback,
+			LCHRecipeSignature: 'LCHVitrinePageLinksHighlightAdd',
+			LCHRecipeIsExcluded: mod.LCHVitrinePageLinksHighlightAddIsHidden,
 		};
 	},
 
