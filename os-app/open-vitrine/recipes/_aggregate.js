@@ -3,7 +3,6 @@ const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
 };
 
-import * as LCHVitrinePageColoursRandomize from './LCHVitrinePageColoursRandomize/main.js';
 import * as LCHVitrinePageColoursRestore from './LCHVitrinePageColoursRestore/main.js';
 import * as LCHVitrineSendEmail from './LCHVitrineSendEmail/main.js';
 
@@ -14,7 +13,9 @@ const mod = {
 
 	LCHVitrineRecipes () {
 		return [].concat.apply([], [
-			LCHVitrinePageColoursRandomize,
+			{
+				LCHVitrinePageColoursRandomizeRecipe: mod.LCHVitrinePageColoursRandomizeRecipe,
+			},
 			LCHVitrinePageColoursRestore,
 			{
 				LCHVitrineCopyPageInfoRecipe: mod.LCHVitrineCopyPageInfoRecipe,
@@ -34,6 +35,39 @@ const mod = {
 				return e;
 			});
 		}));
+	},
+
+	LCHVitrinePageColoursRandomize () {
+		let element = document.querySelector('style.LCHVitrinePageColoursRandomize')
+		
+		if (!element) {
+			document.body.appendChild(element = document.createElement('style')).classList.add('LCHVitrinePageColoursRandomize')
+		};
+
+		let random = Math.random()
+
+		const match = element.innerHTML.match(/LCHCommonBackground: hsl\(0\, 0\%\, (.*)\%/)
+		if (match) {
+			const previous = parseFloat(match.pop()) / 100;
+
+			while (Math.abs(random - previous) < 0.1 || (random >= 0.4 && random <= 0.6)) {
+				random = Math.random();
+			}
+		};
+
+		element.innerHTML = `
+		body {
+		--LCHCommonBackground: hsl(0, 0%, ${ random * 100 }%);
+		--LCHCommonForeground: hsl(0, 0%, ${ 100.0 - random * 100 }%);
+		}
+	`
+	},
+
+	LCHVitrinePageColoursRandomizeRecipe () {
+		return {
+			LCHRecipeCallback: mod.LCHVitrinePageColoursRandomize,
+			LCHRecipeSignature: 'LCHVitrinePageColoursRandomize',
+		};
 	},
 
 	LCHVitrineCopyPageInfo () {

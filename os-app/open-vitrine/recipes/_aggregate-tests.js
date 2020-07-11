@@ -25,6 +25,17 @@ describe('LCHVitrineRecipes', function test_LCHVitrineRecipes() {
 
 });
 
+describe('LCHVitrinePageColoursRandomizeRecipe', function test_LCHVitrinePageColoursRandomizeRecipe() {
+
+	it('returns LCHRecipe', function() {
+		deepEqual(mainModule.LCHVitrinePageColoursRandomizeRecipe(), {
+			LCHRecipeCallback: mainModule.LCHVitrinePageColoursRandomize,
+			LCHRecipeSignature: 'LCHVitrinePageColoursRandomize',
+		});
+	});
+
+});
+
 describe('LCHVitrineCopyPageInfoRecipe', function test_LCHVitrineCopyPageInfoRecipe() {
 
 	it('returns LCHRecipe', function() {
@@ -38,7 +49,7 @@ describe('LCHVitrineCopyPageInfoRecipe', function test_LCHVitrineCopyPageInfoRec
 
 describe('LCHVitrineMinimalistDateStringRecipe', function test_LCHVitrineMinimalistDateStringRecipe() {
 
-	it('returns LCHRecipe', async function() {
+	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHVitrineMinimalistDateStringRecipe(), {
 			LCHRecipeCallback: mainModule.LCHVitrineMinimalistDateString,
 			LCHRecipeSignature: 'LCHVitrineMinimalistDateString',
@@ -50,7 +61,7 @@ describe('LCHVitrineMinimalistDateStringRecipe', function test_LCHVitrineMinimal
 
 describe('LCHVitrineMinimalistDateString', function test_LCHVitrineMinimalistDateString() {
 
-	it('returns string', async function() {
+	it('returns string', function() {
 		deepEqual(mainModule.LCHVitrineMinimalistDateString(), (new Date()).toJSON().slice(0, 10).replace(/-/g, '.'));
 	});
 
