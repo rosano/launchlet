@@ -204,7 +204,7 @@ const refactorDependancies = function () {};
 
 import OLSKThrottle from 'OLSKThrottle';
 
-import * as LCHRuntime from '../_shared/LCHRuntime/main.js'
+import LCHRuntime from '../_shared/LCHRuntime/main.js'
 import { LCHLauncherStandardRecipes } from './recipes/_aggregate.js';
 
 import { LCHRunCommandRecipe } from './recipes/actions/LCHRunCommand/main.js';

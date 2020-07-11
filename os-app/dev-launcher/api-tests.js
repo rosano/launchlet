@@ -2,6 +2,8 @@ const { throws, rejects, deepEqual } = require('assert');
 
 const mainModule = require('./api.js').default;
 
+import LCHRuntime from '../_shared/LCHRuntime/main.js';
+
 const kTesting = {
 	StubRecipeObjectValid() {
 		return {
@@ -1120,8 +1122,6 @@ describe('LCHAPIExecuteComposition', function test_LCHAPIExecuteComposition() {
 
 });
 
-import { LCHRuntimeAPI } from '../_shared/LCHRuntime/main.js';
-
 describe('LCHAPIExecuteRecipe', function test_LCHAPIExecuteRecipe() {
 
 	it('rejects if param1 not valid', async function() {
@@ -1149,7 +1149,7 @@ describe('LCHAPIExecuteRecipe', function test_LCHAPIExecuteRecipe() {
 			LCHRecipeCallback() {
 				return this.api.fn('alfa')();
 			},
-		}, [], LCHRuntimeAPI([Object.assign(kTesting.StubRecipeObjectValid(), {
+		}, [], LCHRuntime.LCHRuntimeAPI([Object.assign(kTesting.StubRecipeObjectValid(), {
 			LCHRecipeCallback() {
 				return 'bravo';
 			},
@@ -1172,7 +1172,7 @@ describe('LCHAPIExecuteRecipe', function test_LCHAPIExecuteRecipe() {
 			async LCHRecipeCallback() {
 				return Promise.resolve(this.api.fn('alfa')());
 			},
-		}, [], LCHRuntimeAPI([Object.assign(kTesting.StubRecipeObjectValid(), {
+		}, [], LCHRuntime.LCHRuntimeAPI([Object.assign(kTesting.StubRecipeObjectValid(), {
 			LCHRecipeCallback() {
 				return 'bravo';
 			},
@@ -1185,7 +1185,7 @@ describe('LCHAPIExecuteRecipe', function test_LCHAPIExecuteRecipe() {
 			LCHRecipeCallback() {
 				return this.api.fn('alfa')();
 			},
-		}, [], LCHRuntimeAPI([Object.assign(kTesting.StubRecipeObjectValid(), {
+		}, [], LCHRuntime.LCHRuntimeAPI([Object.assign(kTesting.StubRecipeObjectValid(), {
 			LCHRecipeCallback() {
 				return Promise.resolve('bravo');
 			},

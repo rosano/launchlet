@@ -1,6 +1,6 @@
 const { throws, rejects, deepEqual } = require('assert');
 
-const mainModule = require('./main.js');
+const mainModule = require('./main.js').default;
 
 describe('LCHRuntimeURLFilter', function test_LCHRuntimeURLFilter() {
 

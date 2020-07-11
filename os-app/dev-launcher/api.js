@@ -1,6 +1,6 @@
 import { LCHFormulaModelErrorsFor, LCHFormulaFrom, LCHFormulaTo } from '../_shared/LCHFormula/main.js';
 
-import * as LCHRuntime from '../_shared/LCHRuntime/main.js';
+import LCHRuntime from '../_shared/LCHRuntime/main.js';
 import { LCHTypeServiceSearchRecipe } from './recipes/types/ServiceSearch/main.js';
 import { LCHLauncherStandardRecipes } from './recipes/_aggregate.js';
 
