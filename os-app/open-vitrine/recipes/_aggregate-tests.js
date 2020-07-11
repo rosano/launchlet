@@ -59,6 +59,17 @@ describe('LCHVitrineCopyPageInfoRecipe', function test_LCHVitrineCopyPageInfoRec
 
 });
 
+describe('LCHVitrineSendEmailRecipe', function test_LCHVitrineSendEmailRecipe() {
+
+	it('returns LCHRecipe', async function() {
+		deepEqual(mainModule.LCHVitrineSendEmailRecipe(), {
+			LCHRecipeCallback: mainModule.LCHVitrineSendEmailCallback,
+			LCHRecipeSignature: 'LCHVitrineSendEmail',
+		});
+	});
+
+});
+
 describe('LCHVitrinePageLinksHighlightAddRecipe', function test_LCHVitrinePageLinksHighlightAddRecipe() {
 
 	it('returns LCHRecipe', async function() {

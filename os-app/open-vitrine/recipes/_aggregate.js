@@ -3,7 +3,7 @@ const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
 };
 
-import * as LCHVitrineSendEmail from './LCHVitrineSendEmail/main.js';
+import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
 
 const mod = {
 
@@ -18,7 +18,9 @@ const mod = {
 			{
 				LCHVitrineCopyPageInfoRecipe: mod.LCHVitrineCopyPageInfoRecipe,
 			},
-			LCHVitrineSendEmail,
+			{
+				LCHVitrineSendEmailRecipe: mod.LCHVitrineSendEmailRecipe,
+			},
 			{
 				LCHVitrinePageLinksHighlightAddRecipe: mod.LCHVitrinePageLinksHighlightAddRecipe,
 			},
@@ -101,19 +103,20 @@ const mod = {
 		};
 	},
 
-	LCHVitrinePageLinksHighlightRemoveIsHidden () {
-		return !document.querySelector('style.LCHVitrinePageLinksHighlightAdd');
+	LCHVitrineSendEmailCallback () {
+		const url = 'mailto:';
+
+		if (OLSK_TESTING_BEHAVIOUR()) {
+			return window.alert(url)
+		};
+
+		window.location.href = url;
 	},
 
-	LCHVitrinePageLinksHighlightRemoveCallback () {
-		document.querySelector('style.LCHVitrinePageLinksHighlightAdd').remove()
-	},
-
-	LCHVitrinePageLinksHighlightRemoveRecipe () {
+	LCHVitrineSendEmailRecipe () {
 		return {
-			LCHRecipeCallback: mod.LCHVitrinePageLinksHighlightRemoveCallback,
-			LCHRecipeSignature: 'LCHVitrinePageLinksHighlightRemove',
-			LCHRecipeIsExcluded: mod.LCHVitrinePageLinksHighlightRemoveIsHidden,
+			LCHRecipeCallback: mod.LCHVitrineSendEmailCallback,
+			LCHRecipeSignature: 'LCHVitrineSendEmail',
 		};
 	},
 
@@ -133,6 +136,22 @@ const mod = {
 			LCHRecipeCallback: mod.LCHVitrinePageLinksHighlightAddCallback,
 			LCHRecipeSignature: 'LCHVitrinePageLinksHighlightAdd',
 			LCHRecipeIsExcluded: mod.LCHVitrinePageLinksHighlightAddIsHidden,
+		};
+	},
+
+	LCHVitrinePageLinksHighlightRemoveIsHidden () {
+		return !document.querySelector('style.LCHVitrinePageLinksHighlightAdd');
+	},
+
+	LCHVitrinePageLinksHighlightRemoveCallback () {
+		document.querySelector('style.LCHVitrinePageLinksHighlightAdd').remove()
+	},
+
+	LCHVitrinePageLinksHighlightRemoveRecipe () {
+		return {
+			LCHRecipeCallback: mod.LCHVitrinePageLinksHighlightRemoveCallback,
+			LCHRecipeSignature: 'LCHVitrinePageLinksHighlightRemove',
+			LCHRecipeIsExcluded: mod.LCHVitrinePageLinksHighlightRemoveIsHidden,
 		};
 	},
 
