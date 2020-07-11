@@ -14,7 +14,7 @@ import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 import * as OLSKRemoteStoragePackage from '../_shared/__external/OLSKRemoteStorage/main.js'
 const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 import LCHDocumentAction from '../_shared/LCHDocument/action.js';
-import * as LCHDocumentMetal from '../_shared/LCHDocument/metal.js';
+import LCHDocumentMetal from '../_shared/LCHDocument/metal.js';
 import * as LCHSettingAction from '../_shared/LCHSetting/action.js';
 import * as LCHSettingMetal from '../_shared/LCHSetting/metal.js';
 import LCHComposeLogic from './ui-logic.js';

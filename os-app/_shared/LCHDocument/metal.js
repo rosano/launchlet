@@ -2,35 +2,41 @@ import * as LCHDocumentModel from './model.js';
 import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
 const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 
-export const LCHDocumentMetalWrite = async function(storageClient, inputData) {
-	if (typeof inputData !== 'object' || inputData === null) {
-		return Promise.reject(new Error('LCHErrorInputNotValid'));
-	}
+const mod = {
 
-	let errors = LCHDocumentModel.LCHDocumentModelErrorsFor(inputData);
-	if (errors) {
-		return Promise.resolve({
-			LCHErrors: errors,
-		});
-	}
+	async LCHDocumentMetalWrite (storageClient, inputData) {
+		if (typeof inputData !== 'object' || inputData === null) {
+			return Promise.reject(new Error('LCHErrorInputNotValid'));
+		}
 
-	return await storageClient.launchlet.lch_documents.LCHStorageWrite(inputData.LCHDocumentID, inputData);
+		let errors = LCHDocumentModel.LCHDocumentModelErrorsFor(inputData);
+		if (errors) {
+			return Promise.resolve({
+				LCHErrors: errors,
+			});
+		}
+
+		return await storageClient.launchlet.lch_documents.LCHStorageWrite(inputData.LCHDocumentID, inputData);
+	},
+
+	async LCHDocumentMetalList (storageClient) {
+		let outputData = await storageClient.launchlet.lch_documents.LCHStorageList();
+
+		for (let key in outputData) {
+			OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(outputData[key]);
+		}
+		
+		return outputData;
+	},
+
+	async LCHDocumentMetalDelete (storageClient, inputData) {
+		if (typeof inputData !== 'string') {
+			return Promise.reject(new Error('LCHErrorInputNotValid'));
+		}
+
+		return await storageClient.launchlet.lch_documents.LCHStorageDelete(inputData);
+	},
+
 };
 
-export const LCHDocumentMetalList = async function(storageClient) {
-	let outputData = await storageClient.launchlet.lch_documents.LCHStorageList();
-
-	for (let key in outputData) {
-		OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(outputData[key]);
-	}
-	
-	return outputData;
-};
-
-export const LCHDocumentMetalDelete = async function(storageClient, inputData) {
-	if (typeof inputData !== 'string') {
-		return Promise.reject(new Error('LCHErrorInputNotValid'));
-	}
-
-	return await storageClient.launchlet.lch_documents.LCHStorageDelete(inputData);
-};
+export default mod;
