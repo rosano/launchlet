@@ -38,7 +38,7 @@ const mod = {
 		}));
 	},
 
-	LCHVitrinePageColoursRandomize () {
+	LCHVitrinePageColoursRandomizeCallback () {
 		let element = document.querySelector('style.LCHVitrinePageColoursRandomize')
 		
 		if (!element) {
@@ -66,7 +66,7 @@ const mod = {
 
 	LCHVitrinePageColoursRandomizeRecipe () {
 		return {
-			LCHRecipeCallback: mod.LCHVitrinePageColoursRandomize,
+			LCHRecipeCallback: mod.LCHVitrinePageColoursRandomizeCallback,
 			LCHRecipeSignature: 'LCHVitrinePageColoursRandomize',
 		};
 	},
@@ -87,7 +87,7 @@ const mod = {
 		};
 	},
 
-	LCHVitrineCopyPageInfo () {
+	LCHVitrineCopyPageInfoCallback () {
 		window.alert(OLSKLocalized('LCHVitrineCopyPageInfoAlertText'));
 
 		return this.api.LCHCopyToClipboard(`${document.title} ${location.href}`);
@@ -95,18 +95,18 @@ const mod = {
 
 	LCHVitrineCopyPageInfoRecipe () {
 		return {
-			LCHRecipeCallback: mod.LCHVitrineCopyPageInfo,
+			LCHRecipeCallback: mod.LCHVitrineCopyPageInfoCallback,
 			LCHRecipeSignature: 'LCHVitrineCopyPageInfo',
 		};
 	},
 
-	LCHVitrineMinimalistDateString () {
+	LCHVitrineMinimalistDateStringCallback () {
 		return (new Date()).toJSON().slice(0, 10).replace(/-/g, '.');
 	},
 
 	LCHVitrineMinimalistDateStringRecipe () {
 		return {
-			LCHRecipeCallback: mod.LCHVitrineMinimalistDateString,
+			LCHRecipeCallback: mod.LCHVitrineMinimalistDateStringCallback,
 			LCHRecipeSignature: 'LCHVitrineMinimalistDateString',
 			LCHRecipeOutputType: 'String',
 		};

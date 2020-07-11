@@ -29,7 +29,7 @@ describe('LCHVitrinePageColoursRandomizeRecipe', function test_LCHVitrinePageCol
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHVitrinePageColoursRandomizeRecipe(), {
-			LCHRecipeCallback: mainModule.LCHVitrinePageColoursRandomize,
+			LCHRecipeCallback: mainModule.LCHVitrinePageColoursRandomizeCallback,
 			LCHRecipeSignature: 'LCHVitrinePageColoursRandomize',
 		});
 	});
@@ -52,9 +52,17 @@ describe('LCHVitrineCopyPageInfoRecipe', function test_LCHVitrineCopyPageInfoRec
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHVitrineCopyPageInfoRecipe(), {
-			LCHRecipeCallback: mainModule.LCHVitrineCopyPageInfo,
+			LCHRecipeCallback: mainModule.LCHVitrineCopyPageInfoCallback,
 			LCHRecipeSignature: 'LCHVitrineCopyPageInfo',
 		});
+	});
+
+});
+
+describe('LCHVitrineMinimalistDateStringCallback', function test_LCHVitrineMinimalistDateStringCallback() {
+
+	it('returns string', function() {
+		deepEqual(mainModule.LCHVitrineMinimalistDateStringCallback(), (new Date()).toJSON().slice(0, 10).replace(/-/g, '.'));
 	});
 
 });
@@ -63,18 +71,10 @@ describe('LCHVitrineMinimalistDateStringRecipe', function test_LCHVitrineMinimal
 
 	it('returns LCHRecipe', function() {
 		deepEqual(mainModule.LCHVitrineMinimalistDateStringRecipe(), {
-			LCHRecipeCallback: mainModule.LCHVitrineMinimalistDateString,
+			LCHRecipeCallback: mainModule.LCHVitrineMinimalistDateStringCallback,
 			LCHRecipeSignature: 'LCHVitrineMinimalistDateString',
 			LCHRecipeOutputType: 'String',
 		});
-	});
-
-});
-
-describe('LCHVitrineMinimalistDateString', function test_LCHVitrineMinimalistDateString() {
-
-	it('returns string', function() {
-		deepEqual(mainModule.LCHVitrineMinimalistDateString(), (new Date()).toJSON().slice(0, 10).replace(/-/g, '.'));
 	});
 
 });
