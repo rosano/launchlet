@@ -1,4 +1,4 @@
-import * as LCHSettingsMetal from './metal.js';
+import LCHSettingsMetal from './metal.js';
 
 const mod = {
 

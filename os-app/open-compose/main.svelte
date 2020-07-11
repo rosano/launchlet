@@ -16,7 +16,7 @@ const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStorageP
 import LCHDocumentAction from '../_shared/LCHDocument/action.js';
 import LCHDocumentMetal from '../_shared/LCHDocument/metal.js';
 import LCHSettingAction from '../_shared/LCHSetting/action.js';
-import * as LCHSettingMetal from '../_shared/LCHSetting/metal.js';
+import LCHSettingMetal from '../_shared/LCHSetting/metal.js';
 import LCHComposeLogic from './ui-logic.js';
 import LCHFlagsLogic from '../_shared/LCHFlags/main.js'
 import { LCHFormulaFrom, LCHFormulaToEvaluate } from '../_shared/LCHFormula/main.js'
@@ -340,7 +340,7 @@ const mod = {
 		}
 
 		await Promise.all(outputData.LCHSettingObjects.map(function (e) {
-			return LCHSettingMetal.LCHSettingsMetalWrite(mod._ValueStorageClient, e);
+LCHSettingMetal.LCHSettingsMetalWrite(mod._ValueStorageClient, e);
 		}));
 
 		await Promise.all(outputData.LCHDocumentObjects.map(function (e) {
