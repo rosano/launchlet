@@ -1,8 +1,6 @@
 import LCHLauncherLogic from '../dev-launcher/ui-logic.js';
 
-import {
-	LCHAPIRunTasks,
-} from '../dev-launcher/api.js';
+import LCHLauncherAPI from '../dev-launcher/api.js';
 
 export const LCHModeCommit = LCHLauncherLogic.LCHLauncherModeCommit();
 export const LCHModePreview = LCHLauncherLogic.LCHLauncherModePreview();
@@ -27,7 +25,7 @@ export const mod = {
 	// CONTROL
 
 	ControlRunTasks (inputData) {
-		LCHAPIRunTasks(inputData, window.location.href);
+		LCHLauncherAPI.LCHAPIRunTasks(inputData, window.location.href);
 	},
 	
 	// LIFECYCLE

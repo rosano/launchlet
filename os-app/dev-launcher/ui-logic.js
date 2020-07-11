@@ -1,6 +1,6 @@
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
 
-import * as LCHLauncherAPI from './api.js';
+import LCHLauncherAPI from './api.js';
 
 const mod = {
 

@@ -1,6 +1,6 @@
 const { throws, rejects, deepEqual } = require('assert');
 
-const mainModule = require('./api.js');
+const mainModule = require('./api.js').default;
 
 const kTesting = {
 	StubRecipeObjectValid() {
