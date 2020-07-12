@@ -39,6 +39,14 @@ const LCHSettingStorage = require('./os-app/_shared/LCHSetting/storage.js').defa
 				LCHDocumentModificationDate: new Date('2019-02-23T13:56:36Z'),
 			};
 		},
+
+		StubSettingObjectValid () {
+			return {
+				LCHSettingKey: 'alfa',
+				LCHSettingValue: 'bravo',
+			};
+		},
+
 		uStubTwoItems () {
 			return [
 				{
