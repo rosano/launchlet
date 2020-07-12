@@ -1,4 +1,4 @@
-const { throws, deepEqual } = require('assert');
+const { rejects, throws, deepEqual } = require('assert');
 
 const mainModule = require('./storage.js').default;
 
@@ -63,3 +63,63 @@ describe('LCHDocumentStorageMatch', function test_LCHDocumentStorageMatch() {
 	});
 
 });
+
+describe('LCHDocumentStorageWrite', function test_LCHDocumentStorageWrite() {
+
+	it('rejects if not object', async function() {
+		await rejects(mainModule.LCHDocumentStorageWrite(LCHTestingStorageClient, null), /LCHErrorInputNotValid/);
+	});
+
+	it('returns object with LCHErrors if not valid', async function() {
+		deepEqual((await mainModule.LCHDocumentStorageWrite(LCHTestingStorageClient, Object.assign(StubDocumentObjectValid(), {
+			LCHDocumentID: null,
+		}))).LCHErrors, {
+			LCHDocumentID: [
+				'LCHErrorNotString',
+			],
+		});
+	});
+
+	it('returns LCHDocument', async function() {
+		let item = await mainModule.LCHDocumentStorageWrite(LCHTestingStorageClient, StubDocumentObjectValid());
+
+		deepEqual(item, Object.assign(StubDocumentObjectValid(), {
+			'@context': item['@context'],
+		}));
+	});
+
+});
+
+describe('LCHDocumentStorageList', function test_LCHDocumentStorageList() {
+
+	it('returns empty array if none', async function() {
+		deepEqual(await mainModule.LCHDocumentStorageList(LCHTestingStorageClient), {});
+	});
+
+	it('returns existing LCHDocuments', async function() {
+		let item = await mainModule.LCHDocumentStorageWrite(LCHTestingStorageClient, StubDocumentObjectValid());
+		deepEqual(Object.values(await mainModule.LCHDocumentStorageList(LCHTestingStorageClient)), [item]);
+		deepEqual(Object.keys(await mainModule.LCHDocumentStorageList(LCHTestingStorageClient)), [item.LCHDocumentID]);
+	});
+
+});
+
+describe('LCHDocumentStorageDelete', function test_LCHDocumentStorageDelete() {
+
+	it('rejects if not string', async function() {
+		await rejects(mainModule.LCHDocumentStorageDelete(LCHTestingStorageClient, 1), /LCHErrorInputNotValid/);
+	});
+
+	it('returns statusCode', async function() {
+		deepEqual(await mainModule.LCHDocumentStorageDelete(LCHTestingStorageClient, (await mainModule.LCHDocumentStorageWrite(LCHTestingStorageClient, StubDocumentObjectValid())).LCHDocumentID), {
+			statusCode: 200,
+		});
+	});
+
+	it('deletes LCHDocument', async function() {
+		await mainModule.LCHDocumentStorageDelete(LCHTestingStorageClient, (await mainModule.LCHDocumentStorageWrite(LCHTestingStorageClient, StubDocumentObjectValid())).LCHDocumentID);
+		deepEqual(await mainModule.LCHDocumentStorageList(LCHTestingStorageClient), {});
+	});
+
+});
+

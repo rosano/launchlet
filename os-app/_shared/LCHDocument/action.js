@@ -1,4 +1,4 @@
-import LCHDocumentMetal from './metal.js';
+import LCHDocumentStorage from './storage.js';
 import { factory, detectPrng } from 'ulid';
 const uniqueID = typeof require === 'undefined' && navigator.appName === 'Zombie' ? factory(detectPrng(true)) : factory();
 
@@ -11,7 +11,7 @@ const mod = {
 
 		let creationDate = new Date();
 
-		return await LCHDocumentMetal.LCHDocumentMetalWrite(storageClient, Object.assign(inputData, {
+		return await LCHDocumentStorage.LCHDocumentStorageWrite(storageClient, Object.assign(inputData, {
 			LCHDocumentID: uniqueID(),
 			LCHDocumentCreationDate: creationDate,
 			LCHDocumentModificationDate: creationDate,
@@ -23,17 +23,17 @@ const mod = {
 			return Promise.reject(new Error('LCHErrorInputNotValid'));
 		}
 
-		return await LCHDocumentMetal.LCHDocumentMetalWrite(storageClient, Object.assign(inputData, {
+		return await LCHDocumentStorage.LCHDocumentStorageWrite(storageClient, Object.assign(inputData, {
 			LCHDocumentModificationDate: new Date(),
 		}));
 	},
 
 	async LCHDocumentActionDelete (storageClient, inputData) {
-		return await LCHDocumentMetal.LCHDocumentMetalDelete(storageClient, inputData);
+		return await LCHDocumentStorage.LCHDocumentStorageDelete(storageClient, inputData);
 	},
 
 	async LCHDocumentActionList (storageClient) {
-		return Object.values(await LCHDocumentMetal.LCHDocumentMetalList(storageClient));
+		return Object.values(await LCHDocumentStorage.LCHDocumentStorageList(storageClient));
 	},
 
 };

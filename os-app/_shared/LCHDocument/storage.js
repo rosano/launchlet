@@ -71,16 +71,38 @@ const mod = {
 
 		const OLSKRemoteStorageCollectionExports = {
 
-			async LCHStorageList () {
-				return privateClient.getAll(mod.LCHDocumentStorageCollectionPath(), false);
-			},
+			async _LCHDocumentStorageWrite (inputData) {
+				if (typeof inputData !== 'object' || inputData === null) {
+					return Promise.reject(new Error('LCHErrorInputNotValid'));
+				}
 
-			async LCHStorageWrite (inputData) {
+				let errors = LCHDocumentModel.LCHDocumentModelErrorsFor(inputData);
+				if (errors) {
+					return Promise.resolve({
+						LCHErrors: errors,
+					});
+				}
+
 				await privateClient.storeObject(mod.LCHDocumentStorageCollectionType(), mod.LCHDocumentStorageObjectPath(inputData), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(inputData));
+
 				return OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(inputData);
 			},
+
+			async _LCHDocumentStorageList () {
+				let outputData = await privateClient.getAll(mod.LCHDocumentStorageCollectionPath(), false);
+
+				for (let key in outputData) {
+					OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(outputData[key]);
+				}
+				
+				return outputData;
+			},
 			
-			async LCHStorageDelete (inputData) {
+			_LCHDocumentStorageDelete (inputData) {
+				if (typeof inputData !== 'string') {
+					return Promise.reject(new Error('LCHErrorInputNotValid'));
+				}
+				
 				return privateClient.remove(mod.LCHDocumentStorageCollectionPath() + inputData);
 			},
 
@@ -104,6 +126,18 @@ const mod = {
 			}, {}),
 			OLSKRemoteStorageCollectionExports,
 		};
+	},
+
+	LCHDocumentStorageWrite (storageClient, inputData) {
+		return storageClient.launchlet.lch_documents._LCHDocumentStorageWrite(inputData);
+	},
+
+	LCHDocumentStorageList (storageClient) {
+		return storageClient.launchlet.lch_documents._LCHDocumentStorageList();
+	},
+
+	LCHDocumentStorageDelete (storageClient, inputData) {
+		return storageClient.launchlet.lch_documents._LCHDocumentStorageDelete(inputData);
 	},
 
 };
