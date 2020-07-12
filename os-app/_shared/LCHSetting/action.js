@@ -1,4 +1,4 @@
-import LCHSettingMetal from './metal.js';
+import LCHSettingStorage from './storage.js';
 
 const mod = {
 
@@ -11,7 +11,7 @@ const mod = {
 			return Promise.reject(new Error('LCHErrorInputNotValid'));
 		}
 
-		let outputData = (await LCHSettingMetal.LCHSettingMetalWrite(storageClient, {
+		let outputData = (await LCHSettingStorage.LCHSettingStorageWrite(storageClient, {
 			LCHSettingKey: param1,
 			LCHSettingValue: param2,
 		}));
@@ -24,7 +24,7 @@ const mod = {
 			return Promise.reject(new Error('LCHErrorInputNotValid'));
 		}
 
-		let outputData = await LCHSettingMetal.LCHSettingMetalRead(storageClient, inputData);
+		let outputData = await LCHSettingStorage.LCHSettingStorageRead(storageClient, inputData);
 
 		return Promise.resolve(outputData ? outputData.LCHSettingValue : undefined);
 	},
@@ -38,7 +38,7 @@ const mod = {
 	},
 
 	 async LCHSettingsActionDelete (storageClient, inputData) {
-		return await LCHSettingMetal.LCHSettingMetalDelete(storageClient, inputData);
+		return await LCHSettingStorage.LCHSettingStorageDelete(storageClient, inputData);
 	},
 
 	 async LCHSettingsActionQuery (storageClient, inputData) {
@@ -46,7 +46,7 @@ const mod = {
 			return Promise.reject(new Error('LCHErrorInputNotValid'));
 		}
 
-		return Promise.resolve(Object.values(await LCHSettingMetal.LCHSettingMetalList(storageClient)).filter(function(e) {
+		return Promise.resolve(Object.values(await LCHSettingStorage.LCHSettingStorageList(storageClient)).filter(function(e) {
 			if (!Object.keys(inputData).length) {
 				return true;
 			}

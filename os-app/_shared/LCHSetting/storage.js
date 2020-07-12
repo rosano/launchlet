@@ -38,27 +38,68 @@ const mod = {
 				return coll;
 			}, {}),
 			OLSKRemoteStorageCollectionExports: {
-				LCHStorageList () {
-					return privateClient.getAll(mod.LCHSettingStorageCollectionPath(), false);
+				
+				async _LCHSettingStorageWrite (inputData) {
+					if (typeof inputData !== 'object' || inputData === null) {
+						return Promise.reject(new Error('LCHErrorInputNotValid'));
+					}
+
+					let errors = LCHSettingModel.LCHSettingModelErrorsFor(inputData);
+					if (errors) {
+						return Promise.resolve({
+							LCHErrors: errors,
+						});
+					}
+
+					await privateClient.storeObject(mod.LCHSettingStorageCollectionType(), mod.LCHSettingStorageObjectPath(inputData), inputData);
+
+					return inputData;
 				},
-				async LCHStorageWrite (param1, param2) {
-					await privateClient.storeObject(mod.LCHSettingStorageCollectionType(), mod.LCHSettingStorageObjectPath(param2), param2);
-					return param2;
-				},
-				LCHStorageRead (inputData) {
+
+				_LCHSettingStorageRead (inputData) {
+					if (typeof inputData !== 'string') {
+						throw new Error('LCHErrorInputNotValid');
+					}
+
 					return privateClient.getObject(mod.LCHSettingStorageObjectPath({
 						LCHSettingKey: inputData,
 						LCHSettingValue: '',
 					}));
 				},
-				LCHStorageDelete (inputData) {
+
+				_LCHSettingStorageList () {
+					return privateClient.getAll(mod.LCHSettingStorageCollectionPath(), false);
+				},
+
+				_LCHSettingStorageDelete (inputData) {
+					if (typeof inputData !== 'string') {
+						throw new Error('LCHErrorInputNotValid');
+					}
+
 					return privateClient.remove(mod.LCHSettingStorageObjectPath({
 						LCHSettingKey: inputData,
 						LCHSettingValue: '',
 					}));
 				},
+
 			},
 		};
+	},
+
+	LCHSettingStorageWrite (storageClient, inputData) {
+		return storageClient.launchlet.lch_settings._LCHSettingStorageWrite(inputData);
+	},
+
+	LCHSettingStorageRead (storageClient, inputData) {
+		return storageClient.launchlet.lch_settings._LCHSettingStorageRead(inputData);
+	},
+
+	LCHSettingStorageList (storageClient) {
+		return storageClient.launchlet.lch_settings._LCHSettingStorageList();
+	},
+
+	LCHSettingStorageDelete (storageClient, inputData) {
+		return storageClient.launchlet.lch_settings._LCHSettingStorageDelete(inputData);
 	},
 
 };
