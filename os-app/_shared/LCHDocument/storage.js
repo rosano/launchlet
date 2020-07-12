@@ -129,15 +129,15 @@ const mod = {
 	},
 
 	LCHDocumentStorageWrite (storageClient, inputData) {
-		return storageClient.launchlet.lch_documents._LCHDocumentStorageWrite(inputData);
+		return storageClient.launchlet[mod.LCHDocumentStorageCollectionName()]._LCHDocumentStorageWrite(inputData);
 	},
 
 	LCHDocumentStorageList (storageClient) {
-		return storageClient.launchlet.lch_documents._LCHDocumentStorageList();
+		return storageClient.launchlet[mod.LCHDocumentStorageCollectionName()]._LCHDocumentStorageList();
 	},
 
 	LCHDocumentStorageDelete (storageClient, inputData) {
-		return storageClient.launchlet.lch_documents._LCHDocumentStorageDelete(inputData);
+		return storageClient.launchlet[mod.LCHDocumentStorageCollectionName()]._LCHDocumentStorageDelete(inputData);
 	},
 
 };

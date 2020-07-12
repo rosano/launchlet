@@ -87,19 +87,19 @@ const mod = {
 	},
 
 	LCHSettingStorageWrite (storageClient, inputData) {
-		return storageClient.launchlet.lch_settings._LCHSettingStorageWrite(inputData);
+		return storageClient.launchlet[mod.LCHSettingStorageCollectionName()]._LCHSettingStorageWrite(inputData);
 	},
 
 	LCHSettingStorageRead (storageClient, inputData) {
-		return storageClient.launchlet.lch_settings._LCHSettingStorageRead(inputData);
+		return storageClient.launchlet[mod.LCHSettingStorageCollectionName()]._LCHSettingStorageRead(inputData);
 	},
 
 	LCHSettingStorageList (storageClient) {
-		return storageClient.launchlet.lch_settings._LCHSettingStorageList();
+		return storageClient.launchlet[mod.LCHSettingStorageCollectionName()]._LCHSettingStorageList();
 	},
 
 	LCHSettingStorageDelete (storageClient, inputData) {
-		return storageClient.launchlet.lch_settings._LCHSettingStorageDelete(inputData);
+		return storageClient.launchlet[mod.LCHSettingStorageCollectionName()]._LCHSettingStorageDelete(inputData);
 	},
 
 };
