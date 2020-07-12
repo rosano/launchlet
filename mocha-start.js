@@ -22,8 +22,8 @@ const LCHSettingStorage = require('./os-app/_shared/LCHSetting/storage.js').defa
 		global.LCHTestingStorageClient.access.claim(storageModule.name, 'rw');
 	});
 
-	beforeEach(async function() {
-		return await global.LCHTestingStorageClient[storageModule.name].__DEBUG._OLSKRemoteStorageReset();
+	beforeEach(function() {
+		return global.LCHTestingStorageClient[storageModule.name].__DEBUG.__OLSKRemoteStorageReset();
 	});
 })();
 
