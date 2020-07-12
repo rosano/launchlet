@@ -14,9 +14,7 @@ import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 import * as OLSKRemoteStoragePackage from '../_shared/__external/OLSKRemoteStorage/main.js'
 const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 import LCHDocumentAction from '../_shared/LCHDocument/action.js';
-import LCHDocumentMetal from '../_shared/LCHDocument/metal.js';
 import LCHSettingAction from '../_shared/LCHSetting/action.js';
-import LCHSettingMetal from '../_shared/LCHSetting/metal.js';
 import LCHComposeLogic from './ui-logic.js';
 import LCHFlagsLogic from '../_shared/LCHFlags/main.js'
 import LCHFormula from '../_shared/LCHFormula/main.js'
@@ -340,11 +338,11 @@ const mod = {
 		}
 
 		await Promise.all(outputData.LCHSettingObjects.map(function (e) {
-LCHSettingMetal.LCHSettingMetalWrite(mod._ValueStorageClient, e);
+LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 		}));
 
 		await Promise.all(outputData.LCHDocumentObjects.map(function (e) {
-			return LCHDocumentMetal.LCHDocumentMetalWrite(mod._ValueStorageClient, OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(e));
+			return LCHDocumentStorage.LCHDocumentStorageWrite(mod._ValueStorageClient, OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(e));
 		}));
 
 		mod.ValueDocumentsAll(await LCHDocumentAction.LCHDocumentActionList(mod._ValueStorageClient));
