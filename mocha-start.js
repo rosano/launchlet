@@ -28,11 +28,17 @@ const LCHSettingStorage = require('./os-app/_shared/LCHSetting/storage.js').defa
 })();
 
 (function LCHMochaStubs() {
-	if (process.env.OLSK_TESTING_BEHAVIOUR !== 'true') {
-		return;
-	}
-
 	Object.entries({
+
+		StubDocumentObjectValid () {
+			return {
+				LCHDocumentID: 'alfa',
+				LCHDocumentCallbackArgs: 'bravo',
+				LCHDocumentCallbackBody: 'charlie',
+				LCHDocumentCreationDate: new Date('2019-02-23T13:56:36Z'),
+				LCHDocumentModificationDate: new Date('2019-02-23T13:56:36Z'),
+			};
+		},
 		uStubTwoItems () {
 			return [
 				{
@@ -57,23 +63,6 @@ const LCHSettingStorage = require('./os-app/_shared/LCHSetting/storage.js').defa
 					LCHRecipeIsExcluded: e.LCHRecipeIsExcluded ? `(${ e.LCHRecipeIsExcluded.toString() })` : undefined,
 				});
 			}));
-		},
-	}).map(function (e) {
-		return global[e.shift()]  = e.pop();
-	});
-})();
-
-
-(function KVCMochaStubs() {
-	Object.entries({
-		StubDocumentObjectValid: function() {
-			return {
-				LCHDocumentID: 'alfa',
-				LCHDocumentCallbackArgs: 'bravo',
-				LCHDocumentCallbackBody: 'charlie',
-				LCHDocumentCreationDate: new Date('2019-02-23T13:56:36Z'),
-				LCHDocumentModificationDate: new Date('2019-02-23T13:56:36Z'),
-			};
 		},
 	}).map(function (e) {
 		return global[e.shift()]  = e.pop();
