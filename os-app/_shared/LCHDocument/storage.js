@@ -2,16 +2,18 @@ import LCHDocumentModel from './model.js';
 import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
 const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
 
-const kCollection = 'lch_documents';
-
 const mod = {
+
+	LCHDocumentStorageCollectionName () {
+		return 'lch_documents';
+	},
 
 	LCHDocumentStorageCollectionType () {
 		return 'lch_document';
 	},
 
 	LCHDocumentStorageCollectionPath () {
-		return kCollection + '/';
+		return mod.LCHDocumentStorageCollectionName() + '/';
 	},
 
 	LCHDocumentStorageObjectPath (inputData) {
@@ -85,7 +87,7 @@ const mod = {
 		};
 
 		return {
-			OLSKRemoteStorageCollectionName: kCollection,
+			OLSKRemoteStorageCollectionName: mod.LCHDocumentStorageCollectionName(),
 			OLSKRemoteStorageCollectionType: mod.LCHDocumentStorageCollectionType(),
 			OLSKRemoteStorageCollectionModelErrors: Object.entries(LCHDocumentModel.LCHDocumentModelErrorsFor({}, {
 				LCHOptionValidateIfNotPresent: true,

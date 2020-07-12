@@ -2,6 +2,14 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./storage.js').default;
 
+describe('LCHDocumentStorageCollectionName', function test_LCHDocumentStorageCollectionName() {
+
+	it('returns string', function() {
+		deepEqual(mainModule.LCHDocumentStorageCollectionName(), 'lch_documents');
+	});
+
+});
+
 describe('LCHDocumentStorageCollectionType', function test_LCHDocumentStorageCollectionType() {
 
 	it('returns string', function() {
@@ -13,7 +21,7 @@ describe('LCHDocumentStorageCollectionType', function test_LCHDocumentStorageCol
 describe('LCHDocumentStorageCollectionPath', function test_LCHDocumentStorageCollectionPath() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHDocumentStorageCollectionPath(), 'lch_documents/');
+		deepEqual(mainModule.LCHDocumentStorageCollectionPath(), mainModule.LCHDocumentStorageCollectionName() + '/');
 	});
 
 });
