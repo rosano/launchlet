@@ -63,7 +63,9 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValuePromptObjects[inputData], 'LCHPromptInputThrottle', {
 			OLSKThrottleDuration: LCHLauncherLogic.LCHLauncherThrottleDuration,
 			OLSKThrottleCallback () {
-				mod._ValuePromptObjects[inputData].LCHPromptInputThrottle = false;
+				setTimeout(function () {
+					mod._ValuePromptObjects[inputData].LCHPromptInputThrottle = false;
+				});
 			},
 		});
 	})();
@@ -82,7 +84,9 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValuePromptObjects[inputData], 'LCHPromptResultsThrottle', {
 			OLSKThrottleDuration: LCHLauncherLogic.LCHLauncherThrottleDuration,
 			OLSKThrottleCallback () {
-				mod._ValuePromptObjects[inputData].LCHPromptResultsThrottle = false;
+				setTimeout(function () {
+					mod._ValuePromptObjects[inputData].LCHPromptResultsThrottle = false;
+				});
 			},
 		});
 	})();
