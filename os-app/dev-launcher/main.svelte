@@ -919,6 +919,10 @@ import LCHLauncherPipeItem from './submodules/LCHLauncherPipeItem/main.svelte';
 
 {/each}
 
+{#if OLSK_TESTING_BEHAVIOUR() }
+	<button id="#TestLCHDebugCloseButton" on:click={ mod.ControlExit }></button>
+{/if}
+
 </div>
 	
 {#if mod._ValueSecondaryComponentDescriptor}
