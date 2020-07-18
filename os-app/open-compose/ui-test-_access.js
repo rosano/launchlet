@@ -81,6 +81,10 @@ describe('LCHCompose_Access', function () {
 		browser.assert.elements('.OLSKAppToolbarLauncherButton', 1);
 	});
 
+	it('hides LCHComposeLauncherItemClone', function () {
+		return browser.assert.OLSKLauncherItems('LCHComposeLauncherItemClone', 0);
+	});
+
 	context('click OLSKAppToolbarStorageButton', function () {
 		
 		before(function () {
@@ -121,6 +125,14 @@ describe('LCHCompose_Access', function () {
 
 		it('hides OLSKDetailPlaceholder', function () {
 			browser.assert.elements('.OLSKDetailPlaceholder', 0);
+		});
+	
+	});
+
+	context('select', function test_select () {
+		
+		it('shows LCHComposeLauncherItemClone', function () {
+			return browser.assert.OLSKLauncherItems('LCHComposeLauncherItemClone', 1);
 		});
 	
 	});
@@ -259,42 +271,6 @@ describe('LCHCompose_Access', function () {
 		
 		});
 	
-	});
-
-	context('LCHComposeLauncherItemClone', function () {
-		
-		before(function () {
-			return browser.pressButton('.OLSKAppToolbarLauncherButton');
-		});
-
-		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'LCHComposeLauncherItemClone');
-		});
-
-		it('hides LCHComposeLauncherItemClone', function () {
-			browser.assert.elements('.LCHLauncherPipeItem', 0);
-		});
-
-		context('selected', function () {
-			
-			before(function () {
-				return browser.pressButton('.LCHComposeMasterCreateButton');
-			});
-
-			before(function () {
-				return browser.pressButton('.OLSKAppToolbarLauncherButton');
-			});
-
-			before(function () {
-				return browser.fill('.LCHLauncherFilterInput', 'LCHComposeLauncherItemClone');
-			});
-
-			it('shows LCHComposeLauncherItemClone', function () {
-				browser.assert.elements('.LCHLauncherPipeItem', 1);
-			});
-		
-		});
-
 	});
 
 });
