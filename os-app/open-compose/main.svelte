@@ -859,7 +859,6 @@ onMount(mod.LifecycleModuleWillMount);
 
 window.addEventListener('message', mod.MessageReceived, false);
 
-import OLSKViewportContent from 'OLSKViewportContent';
 import LCHComposeMaster from './submodules/LCHComposeMaster/main.svelte';
 import LCHComposeDetail from './submodules/LCHComposeDetail/main.svelte';
 import LCHComposeBuild from './submodules/LCHComposeBuild/main.svelte';
@@ -872,7 +871,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 
 <div class="LCHCompose OLSKViewport" class:OLSKIsLoading={ mod._ValueIsLoading }>
 
-<OLSKViewportContent>
+<div class="OLSKViewportContent">
 	<LCHComposeMaster
 		LCHComposeMasterListItems={ mod._ValueDocumentsVisible }
 		LCHComposeMasterListItemSelected={ mod._ValueDocumentSelected }
@@ -893,7 +892,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 		OLSKMobileViewInactive={ !mod.OLSKMobileViewInactive }
 		bind:this={ mod.LCHComposeDetailInstance }
 		/>
-</OLSKViewportContent>
+</div>
 
 <footer class="LCHComposeViewportFooter OLSKMobileViewFooter">
 
