@@ -479,6 +479,10 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 	},
 
 	OLSKAppToolbarDispatchLauncher () {
+		if (window.Launchlet.LCHSingletonExists()) {
+			return window.Launchlet.LCHSingletonDestroy();
+		}
+
 		const items = [];
 
 		if (mod._ValueDocumentSelected) {
