@@ -1,0 +1,33 @@
+<%
+locals.OLSKPageAssets = [
+	'__compiled/ui-behaviour.js',
+	'__compiled/ui-style.css',
+	'../dev-package/__compiled/launchlet.js',
+	'ui-behaviour.js',
+];
+locals.OLSKPagePublicConstants = {
+	OLSKSharedPageCurrentLanguage: OLSKSharedPageCurrentLanguage,
+};
+%>
+
+<%- include('../_shared/common/layout-header.ejs') %>
+
+<h1>Output</h1>
+
+<p>
+	<textarea class="TestRecipeOutput"></textarea>
+</p>
+
+<hr>
+
+<p>
+	<button class="TestLaunchxrInvoke" onclick="LCHLaunchxrBehaviour.InterfaceButtonDidClick()">TestLaunchxrInvoke</button>
+</p>
+
+<div id="LCHLaunchxrTarget"></div>
+
+<script type="text/javascript">
+LCHLaunchxrBehaviour.LifecyclePageWillLoad();
+</script>
+
+<%- include('../_shared/common/layout-footer.ejs') %>
