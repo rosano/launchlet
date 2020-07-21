@@ -1,4 +1,10 @@
-const params = Object.fromEntries((new window.URLSearchParams(window.location.search)).entries());
+const params = Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
+	if (['TestLaunchxrInput'].includes(e[0])) {
+		e[1] = JSON.parse(e[1]);
+	}
+
+	return e;
+}));
 
 const mod = {
 
@@ -16,10 +22,9 @@ const mod = {
 		let app = new Main({
 			target: document.getElementById('LCHLaunchxrTarget'),
 			props: {
-				// LRTOptions: {
-				// 	LCHOptionRecipes: [],
-				// 	LCHOptionMode: Launchlet[params.LCHOptionMode || 'LCHModeCommit'],
-				// 	LCHOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
+				LRTOptions: Object.assign({
+					LCHOptionMode: 'kLCHLaunchxrModeCommand',
+					LCHOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 				// 	LCHOptionIncludePageRecipes: !!params.LCHOptionIncludePageRecipes || false,
 				// 	LCHOptionRunAutomaticRecipes: !!params.LCHOptionRunAutomaticRecipes || false,
 				// },
@@ -30,7 +35,7 @@ const mod = {
 
 				// 	app.$destroy();
 				// 	app = null;
-				// },
+				}, params.TestLaunchxrInput),
 			},
 		});
 	},
@@ -42,7 +47,7 @@ const mod = {
 			return;
 		}
 		
-		mod.ControlLaunch()
+		mod.ControlLaunch();
 	},
 
 	// LIFECYCLE
