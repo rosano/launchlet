@@ -1,7 +1,7 @@
 const mod = {
 
-	LCHLaunchxrModeCommit () {
-		return 'kLCHLaunchxrModeCommit';
+	LCHLaunchxrModeCommand () {
+		return 'kLCHLaunchxrModeCommand';
 	},
 
 	LCHLaunchxrModePreview () {
@@ -18,7 +18,7 @@ const mod = {
 
 	LCHLaunchxrModes () {
 		return [
-			mod.LCHLaunchxrModeCommit(),
+			mod.LCHLaunchxrModeCommand(),
 			mod.LCHLaunchxrModePreview(),
 			mod.LCHLaunchxrModePipe(),
 			mod.LCHLaunchxrModeTask(),

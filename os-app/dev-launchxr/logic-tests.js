@@ -1,11 +1,11 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./ui-logic.js').default;
+const mainModule = require('./logic.js').default;
 
-describe('LCHLaunchxrModeCommit', function test_LCHLaunchxrModeCommit() {
+describe('LCHLaunchxrModeCommand', function test_LCHLaunchxrModeCommand() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHLaunchxrModeCommit(), 'kLCHLaunchxrModeCommit');
+		deepEqual(mainModule.LCHLaunchxrModeCommand(), 'kLCHLaunchxrModeCommand');
 	});
 
 });
@@ -38,7 +38,7 @@ describe('LCHLaunchxrModes', function test_LCHLaunchxrModes() {
 
 	it('returns array', function() {
 		deepEqual(mainModule.LCHLaunchxrModes(), [
-			mainModule.LCHLaunchxrModeCommit(),
+			mainModule.LCHLaunchxrModeCommand(),
 			mainModule.LCHLaunchxrModePreview(),
 			mainModule.LCHLaunchxrModePipe(),
 			mainModule.LCHLaunchxrModeTask(),
