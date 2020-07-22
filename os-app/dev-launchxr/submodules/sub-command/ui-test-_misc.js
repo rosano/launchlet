@@ -29,7 +29,7 @@ describe('LCHLaunchxrCommand_Misc', function () {
 		});
 
 		before(function () {
-			browser.assert.input('.TestRecipeOutput', '');
+			browser.assert.input('#TestRecipeOutput', '');
 		});
 
 		before(function () {
@@ -37,7 +37,7 @@ describe('LCHLaunchxrCommand_Misc', function () {
 		});
 
 		it('runs callback', function () {
-			browser.assert.input('.TestRecipeOutput', 'alfa');	
+			browser.assert.input('#TestRecipeOutput', 'alfa');	
 		});
 		
 	});

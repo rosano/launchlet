@@ -52,13 +52,13 @@ const LCHSettingStorage = require('./os-app/_shared/LCHSetting/storage.js').defa
 				{
 					LCHRecipeName: 'alfa',
 					LCHRecipeCallback: function () {
-						return document.querySelector('.TestRecipeOutput').value = 'alfa';
+						return document.getElementById('TestRecipeOutput').value = 'alfa';
 					},
 				},
 				{
 					LCHRecipeName: 'bravo',
 					LCHRecipeCallback: function () {
-						return document.querySelector('.TestRecipeOutput').value = 'bravo';
+						return document.getElementById('TestRecipeOutput').value = 'bravo';
 					},
 				},
 			];

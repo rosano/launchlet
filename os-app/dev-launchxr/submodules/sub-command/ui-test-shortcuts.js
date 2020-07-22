@@ -49,7 +49,7 @@ describe('LCHLaunchxrCommand_Shortcuts', function () {
 		});
 
 		it('runs callback', function () {
-			browser.assert.input('.TestRecipeOutput', 'alfa');	
+			browser.assert.input('#TestRecipeOutput', 'alfa');	
 		});
 	
 	});
