@@ -54,4 +54,24 @@ describe('LCHLaunchxrCommand_Shortcuts', function () {
 	
 	});
 
+	context('Escape', function () {
+		
+		before(function () {
+			return browser.pressButton('#TestLaunchxrInvoke');
+		});
+		
+		before(function () {
+			browser.assert.elements(LCHLaunchxrCommand, 1);
+		});
+		
+		before(function () {
+			return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+		});
+
+		it('hides LCHLaunchxrCommand', function () {
+			browser.assert.elements(LCHLaunchxrCommand, 0);
+		});
+	
+	});
+
 });

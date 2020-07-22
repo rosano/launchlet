@@ -2,6 +2,7 @@
 export let OLSKLocalized;
 export let LCHLaunchxrCommandItems;
 export let LCHLaunchxrCommandDidSelect;
+export let LCHLaunchxrCommandDidTerminate;
 
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 
@@ -28,8 +29,11 @@ const mod = {
 
 	InterfaceWindowDidKeyDown () {
 		const handlerFunctions = {
+			Escape () {
+				LCHLaunchxrCommandDidTerminate();
+			},
 			Enter () {
-				LCHLaunchxrCommandDidSelect(mod._ValueItemSelected);
+				mod.ControlRun(mod._ValueItemSelected);
 			},
 		};
 
@@ -44,6 +48,12 @@ const mod = {
 		mod.ValueItemsVisible(mod._ValueItemsAll);
 
 		mod._ValueItemSelected = mod._ValueItemsVisible[0];
+	},
+
+	ControlRun (inputData) {
+		LCHLaunchxrCommandDidSelect(inputData);
+
+		LCHLaunchxrCommandDidTerminate();
 	},
 
 	// MESSAGE
@@ -69,7 +79,7 @@ import LCHLaunchxrResultItem from '../LCHLaunchxrResultItem/main.svelte';
 	OLSKMasterListItems={ mod._ValueItemsVisible }
 	OLSKMasterListItemSelected={ mod._ValueItemSelected }
 	OLSKMasterListFilterText={ mod._ValueFilterText }
-	OLSKMasterListDispatchClick={ LCHLaunchxrCommandDidSelect }
+	OLSKMasterListDispatchClick={ mod.ControlRun }
 	OLSKMasterListDispatchArrow={ mod.OLSKMasterListDispatchArrow }
 	OLSKMasterListDispatchFilter={ mod.OLSKMasterListDispatchFilter }
 	

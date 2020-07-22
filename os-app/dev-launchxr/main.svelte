@@ -23,8 +23,6 @@ const mod = {
 
 	LCHLaunchxrCommandDidSelect (inputData) {
 		inputData.LCHRecipeCallback();
-
-		mod.ControlExit();
 	},
 
 };
@@ -34,7 +32,7 @@ import LCHLaunchxrPipe from './submodules/sub-pipe/main.svelte';
 </script>
 
 {#if LRTOptions.LCHOptionMode === LCHLaunchxrLogic.LCHLaunchxrModeCommand() }
-	<LCHLaunchxrCommand LCHLaunchxrCommandItems={ LRTOptions.LCHOptionRecipes } { OLSKLocalized } LCHLaunchxrCommandDidSelect={ mod.LCHLaunchxrCommandDidSelect } />
+	<LCHLaunchxrCommand LCHLaunchxrCommandItems={ LRTOptions.LCHOptionRecipes } { OLSKLocalized } LCHLaunchxrCommandDidSelect={ mod.LCHLaunchxrCommandDidSelect } LCHLaunchxrCommandDidTerminate={ mod.ControlExit } />
 {/if}
 
 {#if LRTOptions.LCHOptionMode === LCHLaunchxrLogic.LCHLaunchxrModePipe() }
