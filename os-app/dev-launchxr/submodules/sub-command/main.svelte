@@ -1,6 +1,7 @@
 <script>
 export let OLSKLocalized;
 export let LCHLaunchxrCommandItems;
+export let LCHLaunchxrCommandDidSelect;
 
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 
@@ -53,7 +54,7 @@ import LCHLaunchxrResultItem from '../LCHLaunchxrResultItem/main.svelte';
 	OLSKMasterListItems={ mod._ValueItemsVisible }
 	OLSKMasterListItemSelected={ mod._ValueItemSelected }
 	OLSKMasterListFilterText={ mod._ValueFilterText }
-	OLSKMasterListDispatchClick={ () => 'Click' }
+	OLSKMasterListDispatchClick={ LCHLaunchxrCommandDidSelect }
 	OLSKMasterListDispatchArrow={ mod.OLSKMasterListDispatchArrow }
 	OLSKMasterListDispatchFilter={ mod.OLSKMasterListDispatchFilter }
 	

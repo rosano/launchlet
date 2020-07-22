@@ -32,4 +32,20 @@ describe('LCHLaunchxrCommand_Access', function () {
 		browser.assert.elements('.OLSKMasterList', 1);
 	});
 
+	context('select', function () {
+		
+		before(function () {
+			return browser.fill(LCHLaunchxrFilterInput, 'alfa');
+		});
+
+		before(function () {
+			return browser.click(LCHLaunchxrResultItem);
+		});
+
+		it('hides LCHLaunchxrCommand', function () {
+			browser.assert.elements(LCHLaunchxrCommand, 0);
+		});
+		
+	});
+
 });

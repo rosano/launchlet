@@ -22,4 +22,24 @@ describe('LCHLaunchxrCommand_Misc', function () {
 		
 	});
 
+	describe('LCHLaunchxrFilterInput', function test_LCHLaunchxrFilterInput () {
+		
+		before(function () {
+			return browser.fill(LCHLaunchxrFilterInput, 'alfa');
+		});
+
+		before(function () {
+			browser.assert.input('.TestRecipeOutput', '');
+		});
+
+		before(function () {
+			return browser.click(LCHLaunchxrResultItem);
+		});
+
+		it('runs callback', function () {
+			browser.assert.input('.TestRecipeOutput', 'alfa');	
+		});
+		
+	});
+
 });
