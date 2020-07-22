@@ -1,6 +1,6 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./rollup-config-custom.js');
+const mainModule = require('./rollup-config-custo.js');
 
 describe('LCHLaunchxrRollupGrabContainerSelector', function test_LCHLaunchxrRollupGrabContainerSelector() {
 
