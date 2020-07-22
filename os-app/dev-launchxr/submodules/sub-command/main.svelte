@@ -14,7 +14,7 @@ const mod = {
 	// VALUE
 
 	_ValueItemsAll: LCHLaunchxrCommandItems,
-	
+
 	_ValueFilterText: '',
 
 	_ValueItemsVisible: [],
@@ -22,14 +22,18 @@ const mod = {
 		mod._ValueItemsVisible = !mod._ValueFilterText ? inputData : LCHLaunchxrLogic.LCHLaunchxrFilterFunction(fuzzysortPackage, mod._ValueFilterText, inputData);
 	},
 
-	// MESSAGE
+	_ValueItemSelected: undefined,
 
-	OLSKMasterListDispatchFilter (inputData) {
-		mod.ControlFilter(inputData);
-	},
+	// INTERFACE
 
-	OLSKMasterListDispatchArrow (inputData) {
-		mod._ValueItemSelected = inputData;
+	InterfaceWindowDidKeyDown () {
+		const handlerFunctions = {
+			Enter () {
+				LCHLaunchxrCommandDidSelect(mod._ValueItemSelected);
+			},
+		};
+
+		handlerFunctions[event.key] && handlerFunctions[event.key]();
 	},
 
 	// CONTROL
@@ -42,11 +46,22 @@ const mod = {
 		mod._ValueItemSelected = mod._ValueItemsVisible[0];
 	},
 
+	// MESSAGE
+
+	OLSKMasterListDispatchFilter (inputData) {
+		mod.ControlFilter(inputData);
+	},
+
+	OLSKMasterListDispatchArrow (inputData) {
+		mod._ValueItemSelected = inputData;
+	},
+
 };
 
 import OLSKMasterList from 'OLSKMasterList';
 import LCHLaunchxrResultItem from '../LCHLaunchxrResultItem/main.svelte';
 </script>
+<svelte:window on:keydown={ mod.InterfaceWindowDidKeyDown } />
 
 <div class="LCHLaunchxrCommand LCHLaunchxr">
 

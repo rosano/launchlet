@@ -42,4 +42,16 @@ describe('LCHLaunchxrCommand_Shortcuts', function () {
 	
 	});
 
+	context('Enter', function () {
+		
+		before(function () {
+			return browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
+		});
+
+		it('runs callback', function () {
+			browser.assert.input('.TestRecipeOutput', 'alfa');	
+		});
+	
+	});
+
 });
