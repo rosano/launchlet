@@ -14,7 +14,7 @@ import LCHLaunchxrPipe from './submodules/sub-pipe/main.svelte';
 </script>
 
 {#if LRTOptions.LCHOptionMode === LCHLaunchxrLogic.LCHLaunchxrModeCommand() }
-	<LCHLaunchxrCommand />
+	<LCHLaunchxrCommand LCHLaunchxrCommandItems={ LRTOptions.LCHOptionRecipes } { OLSKLocalized } />
 {/if}
 
 {#if LRTOptions.LCHOptionMode === LCHLaunchxrLogic.LCHLaunchxrModePipe() }

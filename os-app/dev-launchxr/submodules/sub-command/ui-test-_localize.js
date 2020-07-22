@@ -1,4 +1,4 @@
-const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
+const kDefaultRoute = require('../../controller.js').OLSKControllerRoutes().shift();
 
 kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
@@ -12,6 +12,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			return browser.OLSKVisit(kDefaultRoute, {
 				OLSKRoutingLanguage: languageCode,
 			});
+		});
+
+		it('localizes LCHLaunchxrFilterInput', function () {
+			browser.assert.attribute(LCHLaunchxrFilterInput, 'placeholder', uLocalized('LCHLaunchxrFilterInputText'));
 		});
 
 	});
