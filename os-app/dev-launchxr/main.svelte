@@ -16,13 +16,15 @@ const mod = {
 	// CONTROL
 
 	ControlExit () {
-
+		LRTDidFinish();
 	},
 
 	// MESSAGE
 
 	LCHLaunchxrCommandDidSelect (inputData) {
 		inputData.LCHRecipeCallback();
+
+		mod.ControlExit();
 	},
 
 };
