@@ -4,7 +4,7 @@ describe('LCHLaunchxrCommand_Shortcuts', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
-			TestLaunchxrInput: JSON.stringify({
+			TestLaunchxrInput: uStubStringifyAll({
 				LCHOptionRecipes: uStubTwoItems(),
 			}),
 		});

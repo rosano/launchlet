@@ -2,6 +2,13 @@ const params = Object.fromEntries(Array.from((new window.URLSearchParams(window.
 	if (['TestLaunchxrInput'].includes(e[0])) {
 		e[1] = JSON.parse(e[1]);
 	}
+	
+	(e[1].LCHOptionRecipes || []).forEach(function (e) {
+		return Object.assign(e, {
+			LCHRecipeCallback: eval(e.LCHRecipeCallback),
+			LCHRecipeIsExcluded: eval(e.LCHRecipeIsExcluded),
+		});
+	});
 
 	return e;
 }));

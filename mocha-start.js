@@ -72,6 +72,21 @@ const LCHSettingStorage = require('./os-app/_shared/LCHSetting/storage.js').defa
 				});
 			}));
 		},
+
+		uStubStringifyAll (inputData) {
+			return JSON.stringify(Object.fromEntries(Object.entries(inputData).map(function (e) {
+				if (e[0] === 'LCHOptionRecipes') {
+					e[1] = e[1].map(function (e) {
+						return Object.assign(e, {
+							LCHRecipeCallback: `(${ e.LCHRecipeCallback.toString() })`,
+							LCHRecipeIsExcluded: e.LCHRecipeIsExcluded ? `(${ e.LCHRecipeIsExcluded.toString() })` : undefined,
+						});
+					});
+				};
+				return e;
+			})));
+		},
+
 	}).map(function (e) {
 		return global[e.shift()]  = e.pop();
 	});
