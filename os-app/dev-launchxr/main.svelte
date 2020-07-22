@@ -1,5 +1,6 @@
 <script>
 export let LRTOptions;
+export let LRTDidFinish;
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {

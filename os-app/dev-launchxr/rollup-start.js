@@ -1,3 +1,7 @@
 import RollupStart from './main.svelte';
 
-export default RollupStart;
+import * as LCHPackage from './package.js';
+
+LCHPackage.mod._ValueClass = RollupStart;
+
+export default LCHPackage.LCHPackage();

@@ -26,25 +26,20 @@ const mod = {
 	// CONTROL
 
 	ControlLaunch() {
-		let app = new Main({
-			target: document.getElementById('LCHLaunchxrTarget'),
-			props: {
-				LRTOptions: Object.assign({
-					LCHOptionMode: 'kLCHLaunchxrModeCommand',
-					LCHOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
-				// 	LCHOptionIncludePageRecipes: !!params.LCHOptionIncludePageRecipes || false,
-				// 	LCHOptionRunAutomaticRecipes: !!params.LCHOptionRunAutomaticRecipes || false,
-				// },
-				// LRTDidFinish () {
-				// 	let span = document.createElement('span');
-				// 	span.classList.add('TestLaunchxrDidFinish');
-				// 	document.body.appendChild(span);
+		Main.LCHSingletonCreate(Object.assign({
+			LCHOptionMode: 'kLCHLaunchxrModeCommand',
+			LCHOptionLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
+		// 	LCHOptionIncludePageRecipes: !!params.LCHOptionIncludePageRecipes || false,
+		// 	LCHOptionRunAutomaticRecipes: !!params.LCHOptionRunAutomaticRecipes || false,
+		// },
+		// LRTDidFinish () {
+		// 	let span = document.createElement('span');
+		// 	span.classList.add('TestLaunchxrDidFinish');
+		// 	document.body.appendChild(span);
 
-				// 	app.$destroy();
-				// 	app = null;
-				}, params.TestLaunchxrInput),
-			},
-		});
+		// 	app.$destroy();
+		// 	app = null;
+		}, params.TestLaunchxrInput));
 	},
 
 	// SETUP
