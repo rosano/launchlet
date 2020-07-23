@@ -1,4 +1,4 @@
-const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
+const kDefaultRoute = require('../../controller.js').OLSKControllerRoutes().shift();
 
 kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 
@@ -11,6 +11,9 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
 				OLSKRoutingLanguage: languageCode,
+				TestLauncherInput: uStubStringifyAll({
+					LCHOptionMode: 'kLCHLauncherModePipe',
+				}),
 			});
 		});
 

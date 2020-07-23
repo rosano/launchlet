@@ -1,4 +1,4 @@
-const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
+const kDefaultRoute = require('../../controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
 	LCHLauncherPipe: '.LCHLauncherPipe',
@@ -9,7 +9,11 @@ Object.entries({
 describe('LCHLauncherPipe_Access', function () {
 
 	before(function () {
-		return browser.OLSKVisit(kDefaultRoute);
+		return browser.OLSKVisit(kDefaultRoute, {
+			TestLauncherInput: uStubStringifyAll({
+				LCHOptionMode: 'kLCHLauncherModePipe',
+			}),
+		});
 	});
 
 	it('shows LCHLauncherPipe', function () {
