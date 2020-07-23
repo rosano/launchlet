@@ -1,6 +1,6 @@
 <script>
 export let LCHLauncherPipePromptItems;
-export let LCHLauncherPipePromptPlaceholderText;
+export let LCHLauncherPipePromptPlaceholderText = '';
 export let LCHLauncherPipePromptFilterInputPlaceholderText;
 export let LCHLauncherPipePromptDispatchSelect;
 export let LCHLauncherPipePromptDispatchEscape;

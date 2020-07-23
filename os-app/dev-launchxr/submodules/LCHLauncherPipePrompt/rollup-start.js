@@ -4,7 +4,6 @@ const LCHLauncherPipePrompt = new RollupStart({
 	target: document.body,
 	props: Object.assign({
 		LCHLauncherPipePromptFilterInputPlaceholderText: '',
-		LCHLauncherPipePromptPlaceholderText: '',
 		LCHLauncherPipePromptDispatchSelect: (function _LCHLauncherPipePromptDispatchSelect (inputData) {
 			window.TestLCHLauncherPipePromptDispatchSelect.innerHTML = parseInt(window.TestLCHLauncherPipePromptDispatchSelect.innerHTML) + 1;
 			window.TestLCHLauncherPipePromptDispatchSelectData.innerHTML = JSON.stringify(inputData);
