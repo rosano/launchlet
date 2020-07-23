@@ -29,12 +29,19 @@ const mod = {
 
 	InterfaceWindowDidKeyDown () {
 		const handlerFunctions = {
+
 			Escape () {
-				LCHLauncherCommandDidTerminate();
+				if (!mod._ValueFilterText) {
+					return LCHLauncherCommandDidTerminate();
+				}
+
+				mod.ControlFilter('');
 			},
+
 			Enter () {
 				mod.ControlRun(mod._ValueItemSelected);
 			},
+
 		};
 
 		handlerFunctions[event.key] && handlerFunctions[event.key]();

@@ -59,17 +59,37 @@ describe('LCHLauncherCommand_Shortcuts', function () {
 		before(function () {
 			return browser.pressButton('#TestLauncherInvoke');
 		});
-		
-		before(function () {
-			browser.assert.elements(LCHLauncherCommand, 1);
-		});
-		
-		before(function () {
-			return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
-		});
 
-		it('hides LCHLauncherCommand', function () {
-			browser.assert.elements(LCHLauncherCommand, 0);
+		context('filter_not_empty', function () {
+			
+			before(function () {
+				return browser.fill(LCHLauncherFilterInput, 'a');
+			});
+
+			before(function () {
+				return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+			});
+
+			it('hides LCHLauncherCommand', function () {
+				browser.assert.input(LCHLauncherFilterInput, '');
+			});
+		
+		});
+		
+		context('filter_empty', function () {
+			
+			before(function () {
+				browser.assert.elements(LCHLauncherCommand, 1);
+			});
+			
+			before(function () {
+				return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
+			});
+
+			it('hides LCHLauncherCommand', function () {
+				browser.assert.elements(LCHLauncherCommand, 0);
+			});
+		
 		});
 	
 	});
