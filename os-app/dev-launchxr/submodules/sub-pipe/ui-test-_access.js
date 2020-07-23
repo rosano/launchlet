@@ -4,6 +4,8 @@ Object.entries({
 	LCHLauncherPipe: '.LCHLauncherPipe',
 	
 	LCHLauncherPipeSubjectPrompt: '.LCHLauncherPipeSubject .LCHLauncherPipePrompt',
+	
+	LCHLauncherPipeActionPrompt: '.LCHLauncherPipeAction .LCHLauncherPipePrompt',
 }).map(function (e) {
 	return global[e.shift()] = e.pop();
 });
@@ -24,6 +26,10 @@ describe('LCHLauncherPipe_Access', function () {
 
 	it('shows LCHLauncherPipeSubjectPrompt', function () {
 		browser.assert.elements(LCHLauncherPipeSubjectPrompt, 1);
+	});
+
+	it('shows LCHLauncherPipeActionPrompt', function () {
+		browser.assert.elements(LCHLauncherPipeActionPrompt, 1);
 	});
 
 });

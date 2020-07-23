@@ -25,6 +25,10 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			browser.assert.text(`${ LCHLauncherPipeSubjectPrompt } .LCHLauncherPipePromptPlaceholder`, uLocalized('LCHLauncherPipeSubjectPromptPlaceholderText'));
 		});
 
+		it('localizes LCHLauncherPipeActionPromptFilterInputPlaceholderText', function () {
+			browser.assert.attribute(`${ LCHLauncherPipeActionPrompt } .LCHLauncherFilterInput`, 'placeholder', uLocalized('LCHLauncherPipeActionPromptFilterInputPlaceholderText'));
+		});
+
 	});
 
 });

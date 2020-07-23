@@ -48,4 +48,13 @@ import LCHLauncherPipePrompt from '../LCHLauncherPipePrompt/main.svelte';
 		/>
 </div>
 
+<div class="LCHLauncherPipeAction">
+	<LCHLauncherPipePrompt
+		LCHLauncherPipePromptItems={ [] }
+		LCHLauncherPipePromptFilterInputPlaceholderText={ OLSKLocalized('LCHLauncherPipeActionPromptFilterInputPlaceholderText') }
+		LCHLauncherPipePromptDispatchSelect={ mod.LCHLauncherPipePromptDispatchSelect }
+		LCHLauncherPipePromptDispatchEscape={ mod.LCHLauncherPipePromptDispatchEscape }
+		/>
+</div>
+
 </div>
