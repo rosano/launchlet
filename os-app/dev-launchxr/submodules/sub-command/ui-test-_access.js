@@ -32,12 +32,24 @@ describe('LCHLauncherCommand_Access', function () {
 		browser.assert.elements('.OLSKMasterList', 1);
 	});
 
-	context('select', function () {
+	it('hides LCHLauncherResultItem', function () {
+		browser.assert.elements(LCHLauncherResultItem, 0);
+	});
+
+	context('filter', function () {
 		
 		before(function () {
 			return browser.fill(LCHLauncherFilterInput, 'alfa');
 		});
 
+		it('shows LCHLauncherResultItem', function () {
+			browser.assert.elements(LCHLauncherResultItem, 1);
+		});
+		
+	});
+
+	context('select', function () {
+		
 		before(function () {
 			return browser.click(LCHLauncherResultItem);
 		});
