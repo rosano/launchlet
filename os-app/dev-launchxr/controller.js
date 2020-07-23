@@ -10,3 +10,9 @@ exports.OLSKControllerRoutes = function() {
 		OLSKRouteIsHidden: process.env.NODE_ENV === 'production',
 	}];
 };
+
+exports.OLSKControllerStaticAssetFiles = function () {
+	return [
+		'stub-behaviour.js',
+	];
+};
