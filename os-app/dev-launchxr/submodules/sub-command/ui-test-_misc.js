@@ -22,22 +22,26 @@ describe('LCHLauncherCommand_Misc', function () {
 		
 	});
 
-	describe('LCHLauncherFilterInput', function test_LCHLauncherFilterInput () {
+	describe('LCHLauncherResultItem', function test_LCHLauncherResultItem () {
 		
 		before(function () {
 			return browser.fill(LCHLauncherFilterInput, 'alfa');
 		});
 
-		before(function () {
-			browser.assert.input('#TestRecipeOutput', '');
-		});
+		context('click', function () {
+			
+			before(function () {
+				browser.assert.input('#TestRecipeOutput', '');
+			});
 
-		before(function () {
-			return browser.click(LCHLauncherResultItem);
-		});
+			before(function () {
+				return browser.click(LCHLauncherResultItem);
+			});
 
-		it('runs callback', function () {
-			browser.assert.input('#TestRecipeOutput', 'alfa');	
+			it('runs callback', function () {
+				browser.assert.input('#TestRecipeOutput', 'alfa');	
+			});
+		
 		});
 		
 	});
