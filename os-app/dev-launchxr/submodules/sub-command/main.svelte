@@ -39,6 +39,10 @@ const mod = {
 			},
 
 			Enter () {
+				if (!mod._ValueItemSelected) {
+					return;
+				}
+				
 				mod.ControlRun(mod._ValueItemSelected);
 			},
 
