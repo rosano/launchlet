@@ -1,31 +1,31 @@
 const kDefaultRoute = require('../../controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
-	LCHLaunchxrCommand: '.LCHLaunchxrCommand',
+	LCHLauncherCommand: '.LCHLauncherCommand',
 
-	LCHLaunchxrFilterInput: '.LCHLaunchxrFilterInput',
+	LCHLauncherFilterInput: '.LCHLauncherFilterInput',
 
-	LCHLaunchxrResultItem: '.LCHLaunchxrResultItem',
+	LCHLauncherResultItem: '.LCHLauncherResultItem',
 }).map(function (e) {
 	return global[e.shift()] = e.pop();
 });
 
-describe('LCHLaunchxrCommand_Access', function () {
+describe('LCHLauncherCommand_Access', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
-			TestLaunchxrInput: uStubStringifyAll({
+			TestLauncherInput: uStubStringifyAll({
 				LCHOptionRecipes: uStubTwoItems(),
 			}),
 		});
 	});
 
-	it('shows LCHLaunchxrCommand', function () {
-		browser.assert.elements(LCHLaunchxrCommand, 1);
+	it('shows LCHLauncherCommand', function () {
+		browser.assert.elements(LCHLauncherCommand, 1);
 	});
 
-	it('shows LCHLaunchxrFilterInput', function () {
-		browser.assert.elements(LCHLaunchxrFilterInput, 1);
+	it('shows LCHLauncherFilterInput', function () {
+		browser.assert.elements(LCHLauncherFilterInput, 1);
 	});
 
 	it('shows OLSKMasterList', function () {
@@ -35,15 +35,15 @@ describe('LCHLaunchxrCommand_Access', function () {
 	context('select', function () {
 		
 		before(function () {
-			return browser.fill(LCHLaunchxrFilterInput, 'alfa');
+			return browser.fill(LCHLauncherFilterInput, 'alfa');
 		});
 
 		before(function () {
-			return browser.click(LCHLaunchxrResultItem);
+			return browser.click(LCHLauncherResultItem);
 		});
 
-		it('hides LCHLaunchxrCommand', function () {
-			browser.assert.elements(LCHLaunchxrCommand, 0);
+		it('hides LCHLauncherCommand', function () {
+			browser.assert.elements(LCHLauncherCommand, 0);
 		});
 		
 	});

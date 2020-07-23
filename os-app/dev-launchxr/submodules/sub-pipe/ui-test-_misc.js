@@ -1,13 +1,13 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHLaunchxrPipe_Misc', function () {
+describe('LCHLauncherPipe_Misc', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 
-	it('classes LCHLaunchxr', function () {
-		browser.assert.hasClass(LCHLaunchxrPipe, 'LCHLaunchxr');
+	it('classes LCHLauncher', function () {
+		browser.assert.hasClass(LCHLauncherPipe, 'LCHLauncher');
 	});
 
 });

@@ -1,31 +1,31 @@
 const mod = {
 
-	LCHLaunchxrModeCommand () {
-		return 'kLCHLaunchxrModeCommand';
+	LCHLauncherModeCommand () {
+		return 'kLCHLauncherModeCommand';
 	},
 
-	LCHLaunchxrModePreview () {
-		return 'kLCHLaunchxrModePreview';
+	LCHLauncherModePreview () {
+		return 'kLCHLauncherModePreview';
 	},
 
-	LCHLaunchxrModePipe () {
-		return 'kLCHLaunchxrModePipe';
+	LCHLauncherModePipe () {
+		return 'kLCHLauncherModePipe';
 	},
 
-	LCHLaunchxrModeTask () {
-		return 'kLCHLaunchxrModeTask';
+	LCHLauncherModeTask () {
+		return 'kLCHLauncherModeTask';
 	},
 
-	LCHLaunchxrModes () {
+	LCHLauncherModes () {
 		return [
-			mod.LCHLaunchxrModeCommand(),
-			mod.LCHLaunchxrModePreview(),
-			mod.LCHLaunchxrModePipe(),
-			mod.LCHLaunchxrModeTask(),
+			mod.LCHLauncherModeCommand(),
+			mod.LCHLauncherModePreview(),
+			mod.LCHLauncherModePipe(),
+			mod.LCHLauncherModeTask(),
 		];
 	},
 
-	LCHLaunchxrFilterFunction (fuzzysortPackage, param1, param2) {
+	LCHLauncherFilterFunction (fuzzysortPackage, param1, param2) {
 		if (typeof fuzzysortPackage.go !== 'function') {
 			throw new Error('LCHErrorInputNotValid');
 		}

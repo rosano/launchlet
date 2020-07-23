@@ -1,43 +1,43 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-const LCHLaunchxrLogic = require('./logic.js').default;
+const LCHLauncherLogic = require('./logic.js').default;
 
 Object.entries({
-	LCHLaunchxr: '.LCHLaunchxr',
+	LCHLauncher: '.LCHLauncher',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHLaunchxr_Access', function () {
+describe('LCHLauncher_Access', function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 
-	it('shows LCHLaunchxr', function() {
-		browser.assert.elements(LCHLaunchxr, 1)
+	it('shows LCHLauncher', function() {
+		browser.assert.elements(LCHLauncher, 1)
 	});
 
-	it('shows LCHLaunchxrCommand', function() {
-		browser.assert.elements('.LCHLaunchxrCommand', 1)
+	it('shows LCHLauncherCommand', function() {
+		browser.assert.elements('.LCHLauncherCommand', 1)
 	});
 
 	context('mode_command', function test_mode_command () {
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
-				TestLaunchxrInput: JSON.stringify({
-					LCHOptionMode: LCHLaunchxrLogic.LCHLaunchxrModeCommand(),
+				TestLauncherInput: JSON.stringify({
+					LCHOptionMode: LCHLauncherLogic.LCHLauncherModeCommand(),
 				}),
 			});
 		});
 
-		it('shows LCHLaunchxr', function() {
-			browser.assert.elements(LCHLaunchxr, 1)
+		it('shows LCHLauncher', function() {
+			browser.assert.elements(LCHLauncher, 1)
 		});
 
-		it('shows LCHLaunchxrCommand', function() {
-			browser.assert.elements('.LCHLaunchxrCommand', 1)
+		it('shows LCHLauncherCommand', function() {
+			browser.assert.elements('.LCHLauncherCommand', 1)
 		});
 
 	});
@@ -46,18 +46,18 @@ describe('LCHLaunchxr_Access', function () {
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
-				TestLaunchxrInput: JSON.stringify({
-					LCHOptionMode: LCHLaunchxrLogic.LCHLaunchxrModePipe(),
+				TestLauncherInput: JSON.stringify({
+					LCHOptionMode: LCHLauncherLogic.LCHLauncherModePipe(),
 				}),
 			});
 		});
 
-		it('shows LCHLaunchxr', function() {
-			browser.assert.elements(LCHLaunchxr, 1)
+		it('shows LCHLauncher', function() {
+			browser.assert.elements(LCHLauncher, 1)
 		});
 
-		it('shows LCHLaunchxrPipe', function() {
-			browser.assert.elements('.LCHLaunchxrPipe', 1)
+		it('shows LCHLauncherPipe', function() {
+			browser.assert.elements('.LCHLauncherPipe', 1)
 		});
 
 	});

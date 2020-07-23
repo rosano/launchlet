@@ -1,10 +1,10 @@
 const kDefaultRoute = require('../../controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHLaunchxrCommand_Filter', function () {
+describe('LCHLauncherCommand_Filter', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
-			TestLaunchxrInput: uStubStringifyAll({
+			TestLauncherInput: uStubStringifyAll({
 				LCHOptionRecipes: uStubTwoItems(),
 			}),
 		});
@@ -13,11 +13,11 @@ describe('LCHLaunchxrCommand_Filter', function () {
 	context('no match', function () {
 		
 		before(function () {
-			browser.fill(LCHLaunchxrFilterInput, 'charlie');
+			browser.fill(LCHLauncherFilterInput, 'charlie');
 		});
 
 		it('filters all', function() {
-			browser.assert.elements(LCHLaunchxrResultItem, 0);
+			browser.assert.elements(LCHLauncherResultItem, 0);
 		});
 
 	});
@@ -25,11 +25,11 @@ describe('LCHLaunchxrCommand_Filter', function () {
 	context('partial match', function () {
 
 		before(function () {
-			browser.fill(LCHLaunchxrFilterInput, 'a');
+			browser.fill(LCHLauncherFilterInput, 'a');
 		});
 
 		it('filters partial', function() {
-			browser.assert.elements(LCHLaunchxrResultItem, 2);
+			browser.assert.elements(LCHLauncherResultItem, 2);
 		});
 
 		it('sets OLSKResultsListItemSelected', function () {
@@ -41,11 +41,11 @@ describe('LCHLaunchxrCommand_Filter', function () {
 	context('exact match', function () {
 
 		before(function () {
-			browser.fill(LCHLaunchxrFilterInput, 'bravo');
+			browser.fill(LCHLauncherFilterInput, 'bravo');
 		});
 
 		it('filters exact', function() {
-			browser.assert.elements(LCHLaunchxrResultItem, 1);
+			browser.assert.elements(LCHLauncherResultItem, 1);
 		});
 
 		it('sets OLSKResultsListItemSelected', function () {

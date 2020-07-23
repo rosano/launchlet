@@ -9,7 +9,7 @@ const OLSKLocalized = function(translationConstant) {
 
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 
-import LCHLaunchxrLogic from './logic.js';
+import LCHLauncherLogic from './logic.js';
 
 const mod = {
 
@@ -21,22 +21,22 @@ const mod = {
 
 	// MESSAGE
 
-	LCHLaunchxrCommandDidSelect (inputData) {
+	LCHLauncherCommandDidSelect (inputData) {
 		inputData.LCHRecipeCallback();
 	},
 
 };
 
-import LCHLaunchxrCommand from './submodules/sub-command/main.svelte';
-import LCHLaunchxrPipe from './submodules/sub-pipe/main.svelte';
+import LCHLauncherCommand from './submodules/sub-command/main.svelte';
+import LCHLauncherPipe from './submodules/sub-pipe/main.svelte';
 </script>
 
-{#if LRTOptions.LCHOptionMode === LCHLaunchxrLogic.LCHLaunchxrModeCommand() }
-	<LCHLaunchxrCommand LCHLaunchxrCommandItems={ LRTOptions.LCHOptionRecipes } { OLSKLocalized } LCHLaunchxrCommandDidSelect={ mod.LCHLaunchxrCommandDidSelect } LCHLaunchxrCommandDidTerminate={ mod.ControlExit } />
+{#if LRTOptions.LCHOptionMode === LCHLauncherLogic.LCHLauncherModeCommand() }
+	<LCHLauncherCommand LCHLauncherCommandItems={ LRTOptions.LCHOptionRecipes } { OLSKLocalized } LCHLauncherCommandDidSelect={ mod.LCHLauncherCommandDidSelect } LCHLauncherCommandDidTerminate={ mod.ControlExit } />
 {/if}
 
-{#if LRTOptions.LCHOptionMode === LCHLaunchxrLogic.LCHLaunchxrModePipe() }
-	<LCHLaunchxrPipe />
+{#if LRTOptions.LCHOptionMode === LCHLauncherLogic.LCHLauncherModePipe() }
+	<LCHLauncherPipe />
 {/if}
 
 {#if OLSK_TESTING_BEHAVIOUR() }

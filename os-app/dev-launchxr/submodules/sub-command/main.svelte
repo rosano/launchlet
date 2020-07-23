@@ -1,26 +1,26 @@
 <script>
 export let OLSKLocalized;
-export let LCHLaunchxrCommandItems;
-export let LCHLaunchxrCommandDidSelect;
-export let LCHLaunchxrCommandDidTerminate;
+export let LCHLauncherCommandItems;
+export let LCHLauncherCommandDidSelect;
+export let LCHLauncherCommandDidTerminate;
 
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 
 import fuzzysortPackage from 'fuzzysort';
 
-import LCHLaunchxrLogic from '../../logic.js';
+import LCHLauncherLogic from '../../logic.js';
 
 const mod = {
 
 	// VALUE
 
-	_ValueItemsAll: LCHLaunchxrCommandItems,
+	_ValueItemsAll: LCHLauncherCommandItems,
 
 	_ValueFilterText: '',
 
 	_ValueItemsVisible: [],
 	ValueItemsVisible (inputData) {
-		mod._ValueItemsVisible = !mod._ValueFilterText ? inputData : LCHLaunchxrLogic.LCHLaunchxrFilterFunction(fuzzysortPackage, mod._ValueFilterText, inputData);
+		mod._ValueItemsVisible = !mod._ValueFilterText ? inputData : LCHLauncherLogic.LCHLauncherFilterFunction(fuzzysortPackage, mod._ValueFilterText, inputData);
 	},
 
 	_ValueItemSelected: undefined,
@@ -30,7 +30,7 @@ const mod = {
 	InterfaceWindowDidKeyDown () {
 		const handlerFunctions = {
 			Escape () {
-				LCHLaunchxrCommandDidTerminate();
+				LCHLauncherCommandDidTerminate();
 			},
 			Enter () {
 				mod.ControlRun(mod._ValueItemSelected);
@@ -51,9 +51,9 @@ const mod = {
 	},
 
 	ControlRun (inputData) {
-		LCHLaunchxrCommandDidSelect(inputData);
+		LCHLauncherCommandDidSelect(inputData);
 
-		LCHLaunchxrCommandDidTerminate();
+		LCHLauncherCommandDidTerminate();
 	},
 
 	// MESSAGE
@@ -69,11 +69,11 @@ const mod = {
 };
 
 import OLSKMasterList from 'OLSKMasterList';
-import LCHLaunchxrResultItem from '../LCHLaunchxrResultItem/main.svelte';
+import LCHLauncherResultItem from '../LCHLauncherResultItem/main.svelte';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeyDown } />
 
-<div class="LCHLaunchxrCommand LCHLaunchxr">
+<div class="LCHLauncherCommand LCHLauncher">
 
 <OLSKMasterList
 	OLSKMasterListItems={ mod._ValueItemsVisible }
@@ -86,12 +86,12 @@ import LCHLaunchxrResultItem from '../LCHLaunchxrResultItem/main.svelte';
 	let:OLSKResultsListItem={ item }
 	OLSKMasterListItemAccessibilitySummaryFor={ (inputData) => inputData }	
 
-	OLSKMasterListFilterFieldClass={ 'LCHLaunchxrFilterInput' }
-	OLSKMasterListFilterFieldPlaceholderText={ OLSKLocalized('LCHLaunchxrFilterInputText') }
+	OLSKMasterListFilterFieldClass={ 'LCHLauncherFilterInput' }
+	OLSKMasterListFilterFieldPlaceholderText={ OLSKLocalized('LCHLauncherFilterInputText') }
 	OLSKMasterListFilterFieldAutofocus={ true }
 	OLSKMasterListFilterFieldClearButton={ false }
 	>
-	<LCHLaunchxrResultItem LCHLaunchxrResultItemObject={ item }
+	<LCHLauncherResultItem LCHLauncherResultItemObject={ item }
 		/>
 </OLSKMasterList>
 

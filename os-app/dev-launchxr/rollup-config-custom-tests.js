@@ -2,56 +2,56 @@ const { throws, deepEqual } = require('assert');
 
 const mainModule = require('./rollup-config-custo.js');
 
-describe('LCHLaunchxrRollupGrabContainerSelector', function test_LCHLaunchxrRollupGrabContainerSelector() {
+describe('LCHLauncherRollupGrabContainerSelector', function test_LCHLauncherRollupGrabContainerSelector() {
 
 	it('throws error if not string', function() {
 		throws(function() {
-			mainModule.LCHLaunchxrRollupGrabContainerSelector(null);
+			mainModule.LCHLauncherRollupGrabContainerSelector(null);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if no identifier', function() {
 		throws(function() {
-			mainModule.LCHLaunchxrRollupGrabContainerSelector('.Containerr {');
+			mainModule.LCHLauncherRollupGrabContainerSelector('.Containerr {');
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if no bracket', function() {
 		throws(function() {
-			mainModule.LCHLaunchxrRollupGrabContainerSelector('.Container');
+			mainModule.LCHLauncherRollupGrabContainerSelector('.Container');
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHLaunchxrRollupGrabContainerSelector('.Container {'), '.Container');
+		deepEqual(mainModule.LCHLauncherRollupGrabContainerSelector('.Container {'), '.Container');
 	});
 
 	it('matches if leading space', function() {
-		deepEqual(mainModule.LCHLaunchxrRollupGrabContainerSelector(' .Container {'), '.Container');
+		deepEqual(mainModule.LCHLauncherRollupGrabContainerSelector(' .Container {'), '.Container');
 	});
 
 	it('matches if no bracket space', function() {
-		deepEqual(mainModule.LCHLaunchxrRollupGrabContainerSelector('.Container{'), '.Container');
+		deepEqual(mainModule.LCHLauncherRollupGrabContainerSelector('.Container{'), '.Container');
 	});
 
 });
 
-describe('LCHLaunchxrRollupPrefixSelector', function test_LCHLaunchxrRollupPrefixSelector() {
+describe('LCHLauncherRollupPrefixSelector', function test_LCHLauncherRollupPrefixSelector() {
 
 	it('throws error if param1 not string', function() {
 		throws(function() {
-			mainModule.LCHLaunchxrRollupPrefixSelector(null, '');
+			mainModule.LCHLauncherRollupPrefixSelector(null, '');
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if param2 not string', function() {
 		throws(function() {
-			mainModule.LCHLaunchxrRollupPrefixSelector('', null);
+			mainModule.LCHLauncherRollupPrefixSelector('', null);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('prefixes with identifier single', function() {
-		deepEqual(mainModule.LCHLaunchxrRollupPrefixSelector('alfa', `\ntemplate {
+		deepEqual(mainModule.LCHLauncherRollupPrefixSelector('alfa', `\ntemplate {
 display: none;
 }
 
@@ -67,7 +67,7 @@ display: none;
 	});
 
 	it('prefixes with identifier multiple', function() {
-		deepEqual(mainModule.LCHLaunchxrRollupPrefixSelector('alfa', `\ntemplate, sidebar {
+		deepEqual(mainModule.LCHLauncherRollupPrefixSelector('alfa', `\ntemplate, sidebar {
 display: none;
 }
 
@@ -83,7 +83,7 @@ display: none;
 	});
 
 	it('strips body', function() {
-		deepEqual(mainModule.LCHLaunchxrRollupPrefixSelector('alfa', `\nbody {
+		deepEqual(mainModule.LCHLauncherRollupPrefixSelector('alfa', `\nbody {
 display: none;
 }`), `\nalfa {
 display: none;
@@ -91,7 +91,7 @@ display: none;
 	});
 
 	it('strips html', function() {
-		deepEqual(mainModule.LCHLaunchxrRollupPrefixSelector('alfa', `\nhtml {
+		deepEqual(mainModule.LCHLauncherRollupPrefixSelector('alfa', `\nhtml {
 display: none;
 }`), `\nalfa {
 display: none;
@@ -100,16 +100,16 @@ display: none;
 
 });
 
-describe('LCHLaunchxrRollupConfigCustom', function test_LCHLaunchxrRollupConfigCustom() {
+describe('LCHLauncherRollupConfigCustom', function test_LCHLauncherRollupConfigCustom() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mainModule.LCHLaunchxrRollupConfigCustom(null);
+			mainModule.LCHLauncherRollupConfigCustom(null);
 		}, /LCHErrorInputNotValid/);
 	})
 
 	it('sets output.format', function() {
-		deepEqual(mainModule.LCHLaunchxrRollupConfigCustom({
+		deepEqual(mainModule.LCHLauncherRollupConfigCustom({
 			output: {},
 		}).output.format, 'umd');
 	});

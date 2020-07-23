@@ -6,7 +6,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		return OLSKTestingLocalized(inputData, languageCode);
 	};
 
-	describe(`LCHLaunchxrPipe_Localize-${ languageCode }`, function () {
+	describe(`LCHLauncherPipe_Localize-${ languageCode }`, function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {

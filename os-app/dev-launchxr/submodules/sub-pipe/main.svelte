@@ -1,5 +1,5 @@
 <script>
 </script>
 
-<div class="LCHLaunchxrPipe LCHLaunchxr">
+<div class="LCHLauncherPipe LCHLauncher">
 </div>

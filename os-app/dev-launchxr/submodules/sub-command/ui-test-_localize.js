@@ -6,7 +6,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		return OLSKTestingLocalized(inputData, languageCode);
 	};
 
-	describe(`LCHLaunchxrCommand_Localize-${ languageCode }`, function () {
+	describe(`LCHLauncherCommand_Localize-${ languageCode }`, function () {
 
 		before(function () {
 			return browser.OLSKVisit(kDefaultRoute, {
@@ -14,8 +14,8 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			});
 		});
 
-		it('localizes LCHLaunchxrFilterInput', function () {
-			browser.assert.attribute(LCHLaunchxrFilterInput, 'placeholder', uLocalized('LCHLaunchxrFilterInputText'));
+		it('localizes LCHLauncherFilterInput', function () {
+			browser.assert.attribute(LCHLauncherFilterInput, 'placeholder', uLocalized('LCHLauncherFilterInputText'));
 		});
 
 	});

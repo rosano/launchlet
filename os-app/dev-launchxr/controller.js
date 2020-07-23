@@ -2,7 +2,7 @@ exports.OLSKControllerRoutes = function() {
 	return [{
 		OLSKRoutePath: '/launchxr',
 		OLSKRouteMethod: 'get',
-		OLSKRouteSignature: 'LCHLaunchxrRoute',
+		OLSKRouteSignature: 'LCHLauncherRoute',
 		OLSKRouteFunction (req, res, next) {
 			return res.render(require('path').join(__dirname, 'stub-view'));
 		},

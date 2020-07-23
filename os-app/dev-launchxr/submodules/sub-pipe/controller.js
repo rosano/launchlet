@@ -1,8 +1,8 @@
 exports.OLSKControllerRoutes = function () {
 	return [{
-		OLSKRoutePath: '/stub/LCHLaunchxrPipe',
+		OLSKRoutePath: '/stub/LCHLauncherPipe',
 		OLSKRouteMethod: 'get',
-		OLSKRouteSignature: 'LCHLaunchxrPipeStubRoute',
+		OLSKRouteSignature: 'LCHLauncherPipeStubRoute',
 		OLSKRouteFunction(req, res, next) {
 			return res.render(require('path').join(__dirname, 'stub-view'));
 		},

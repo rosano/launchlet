@@ -1,31 +1,31 @@
 const kDefaultRoute = require('../../controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHLaunchxrCommand_Misc', function () {
+describe('LCHLauncherCommand_Misc', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
-			TestLaunchxrInput: uStubStringifyAll({
+			TestLauncherInput: uStubStringifyAll({
 				LCHOptionRecipes: uStubTwoItems(),
 			}),
 		});
 	});
 
-	it('classes LCHLaunchxr', function () {
-		browser.assert.hasClass(LCHLaunchxrCommand, 'LCHLaunchxr');
+	it('classes LCHLauncher', function () {
+		browser.assert.hasClass(LCHLauncherCommand, 'LCHLauncher');
 	});	
 
-	describe('LCHLaunchxrFilterInput', function test_LCHLaunchxrFilterInput () {
+	describe('LCHLauncherFilterInput', function test_LCHLauncherFilterInput () {
 		
 		it('sets autofocus', function () {
-			browser.assert.attribute(LCHLaunchxrFilterInput, 'autofocus', '');
+			browser.assert.attribute(LCHLauncherFilterInput, 'autofocus', '');
 		});
 		
 	});
 
-	describe('LCHLaunchxrFilterInput', function test_LCHLaunchxrFilterInput () {
+	describe('LCHLauncherFilterInput', function test_LCHLauncherFilterInput () {
 		
 		before(function () {
-			return browser.fill(LCHLaunchxrFilterInput, 'alfa');
+			return browser.fill(LCHLauncherFilterInput, 'alfa');
 		});
 
 		before(function () {
@@ -33,7 +33,7 @@ describe('LCHLaunchxrCommand_Misc', function () {
 		});
 
 		before(function () {
-			return browser.click(LCHLaunchxrResultItem);
+			return browser.click(LCHLauncherResultItem);
 		});
 
 		it('runs callback', function () {

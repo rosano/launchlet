@@ -4,56 +4,56 @@ const mainModule = require('./logic.js').default;
 
 const fuzzysortPackage = require('fuzzysort');
 
-describe('LCHLaunchxrModeCommand', function test_LCHLaunchxrModeCommand() {
+describe('LCHLauncherModeCommand', function test_LCHLauncherModeCommand() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHLaunchxrModeCommand(), 'kLCHLaunchxrModeCommand');
+		deepEqual(mainModule.LCHLauncherModeCommand(), 'kLCHLauncherModeCommand');
 	});
 
 });
 
-describe('LCHLaunchxrModePreview', function test_LCHLaunchxrModePreview() {
+describe('LCHLauncherModePreview', function test_LCHLauncherModePreview() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHLaunchxrModePreview(), 'kLCHLaunchxrModePreview');
+		deepEqual(mainModule.LCHLauncherModePreview(), 'kLCHLauncherModePreview');
 	});
 
 });
 
-describe('LCHLaunchxrModePipe', function test_LCHLaunchxrModePipe() {
+describe('LCHLauncherModePipe', function test_LCHLauncherModePipe() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHLaunchxrModePipe(), 'kLCHLaunchxrModePipe');
+		deepEqual(mainModule.LCHLauncherModePipe(), 'kLCHLauncherModePipe');
 	});
 
 });
 
-describe('LCHLaunchxrModeTask', function test_LCHLaunchxrModeTask() {
+describe('LCHLauncherModeTask', function test_LCHLauncherModeTask() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHLaunchxrModeTask(), 'kLCHLaunchxrModeTask');
+		deepEqual(mainModule.LCHLauncherModeTask(), 'kLCHLauncherModeTask');
 	});
 
 });
 
-describe('LCHLaunchxrModes', function test_LCHLaunchxrModes() {
+describe('LCHLauncherModes', function test_LCHLauncherModes() {
 
 	it('returns array', function() {
-		deepEqual(mainModule.LCHLaunchxrModes(), [
-			mainModule.LCHLaunchxrModeCommand(),
-			mainModule.LCHLaunchxrModePreview(),
-			mainModule.LCHLaunchxrModePipe(),
-			mainModule.LCHLaunchxrModeTask(),
+		deepEqual(mainModule.LCHLauncherModes(), [
+			mainModule.LCHLauncherModeCommand(),
+			mainModule.LCHLauncherModePreview(),
+			mainModule.LCHLauncherModePipe(),
+			mainModule.LCHLauncherModeTask(),
 		]);
 	});
 
 });
 
-describe('LCHLaunchxrFilterFunction', function test_LCHLaunchxrFilterFunction() {
+describe('LCHLauncherFilterFunction', function test_LCHLauncherFilterFunction() {
 
 	it('throws error if param1 not fuzzysort', function() {
 		throws(function() {
-			mainModule.LCHLaunchxrFilterFunction({
+			mainModule.LCHLauncherFilterFunction({
 				go: null,
 			}, '', []);
 		}, /LCHErrorInputNotValid/);
@@ -61,22 +61,22 @@ describe('LCHLaunchxrFilterFunction', function test_LCHLaunchxrFilterFunction() 
 
 	it('throws error if param2 not string', function() {
 		throws(function() {
-			mainModule.LCHLaunchxrFilterFunction(fuzzysortPackage, null, []);
+			mainModule.LCHLauncherFilterFunction(fuzzysortPackage, null, []);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if param3 not array', function() {
 		throws(function() {
-			mainModule.LCHLaunchxrFilterFunction(fuzzysortPackage, '', null);
+			mainModule.LCHLauncherFilterFunction(fuzzysortPackage, '', null);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns array', function() {
-		deepEqual(mainModule.LCHLaunchxrFilterFunction(fuzzysortPackage, 'alfa', []), []);
+		deepEqual(mainModule.LCHLauncherFilterFunction(fuzzysortPackage, 'alfa', []), []);
 	});
 
 	it('excludes if no match', function() {
-		deepEqual(mainModule.LCHLaunchxrFilterFunction(fuzzysortPackage, 'bravo', [{
+		deepEqual(mainModule.LCHLauncherFilterFunction(fuzzysortPackage, 'bravo', [{
 			LCHRecipeName: 'alfa',
 		}]), []);
 	});
@@ -85,28 +85,28 @@ describe('LCHLaunchxrFilterFunction', function test_LCHLaunchxrFilterFunction() 
 		const item = {
 			LCHRecipeName: 'alfa',
 		};
-		deepEqual(mainModule.LCHLaunchxrFilterFunction(fuzzysortPackage, 'alfa', [item]), [item]);
+		deepEqual(mainModule.LCHLauncherFilterFunction(fuzzysortPackage, 'alfa', [item]), [item]);
 	});
 
 	it('includes if partial match', function() {
 		const item = {
 			LCHRecipeName: 'alfa',
 		};
-		deepEqual(mainModule.LCHLaunchxrFilterFunction(fuzzysortPackage, 'alf', [item]), [item]);
+		deepEqual(mainModule.LCHLauncherFilterFunction(fuzzysortPackage, 'alf', [item]), [item]);
 	});
 
 	it('includes if case insensitive match', function() {
 		const item = {
 			LCHRecipeName: 'ALFA',
 		};
-		deepEqual(mainModule.LCHLaunchxrFilterFunction(fuzzysortPackage, 'alf', [item]), [item]);
+		deepEqual(mainModule.LCHLauncherFilterFunction(fuzzysortPackage, 'alf', [item]), [item]);
 	});
 
 	it('includes if diacritic insensitive match', function() {
 		const item = {
 			LCHRecipeName: 'álfa',
 		};
-		deepEqual(mainModule.LCHLaunchxrFilterFunction(fuzzysortPackage, 'alf', [item]), [item]);
+		deepEqual(mainModule.LCHLauncherFilterFunction(fuzzysortPackage, 'alf', [item]), [item]);
 	});
 
 });

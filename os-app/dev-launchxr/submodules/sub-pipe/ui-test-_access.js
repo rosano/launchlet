@@ -1,19 +1,19 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
-	LCHLaunchxrPipe: '.LCHLaunchxrPipe',
+	LCHLauncherPipe: '.LCHLauncherPipe',
 }).map(function (e) {
 	return global[e.shift()] = e.pop();
 });
 
-describe('LCHLaunchxrPipe_Access', function () {
+describe('LCHLauncherPipe_Access', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 
-	it('shows LCHLaunchxrPipe', function () {
-		browser.assert.elements(LCHLaunchxrPipe, 1);
+	it('shows LCHLauncherPipe', function () {
+		browser.assert.elements(LCHLauncherPipe, 1);
 	});
 
 });
