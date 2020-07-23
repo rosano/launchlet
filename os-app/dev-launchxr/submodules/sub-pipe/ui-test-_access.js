@@ -3,9 +3,9 @@ const kDefaultRoute = require('../../controller.js').OLSKControllerRoutes().shif
 Object.entries({
 	LCHLauncherPipe: '.LCHLauncherPipe',
 	
-	LCHLauncherPipeSubjectPrompt: '.LCHLauncherPipeSubject .LCHLauncherPipePrompt',
+	LCHLauncherPipeSubjectPrompt: '.LCHLauncherPipeSubject .LCHLauncherPrompt',
 	
-	LCHLauncherPipeActionPrompt: '.LCHLauncherPipeAction .LCHLauncherPipePrompt',
+	LCHLauncherPipeActionPrompt: '.LCHLauncherPipeAction .LCHLauncherPrompt',
 }).map(function (e) {
 	return global[e.shift()] = e.pop();
 });

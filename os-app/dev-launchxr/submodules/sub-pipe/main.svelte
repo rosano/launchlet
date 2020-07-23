@@ -24,36 +24,36 @@ const mod = {
 
 	// MESSAGE
 
-	LCHLauncherPipePromptDispatchSelect (inputData) {
+	LCHLauncherPromptDispatchSelect (inputData) {
 	},
 
-	LCHLauncherPipePromptDispatchEscape () {
+	LCHLauncherPromptDispatchEscape () {
 	},
 
 };
 
-import LCHLauncherPipePrompt from '../LCHLauncherPipePrompt/main.svelte';
+import LCHLauncherPrompt from '../LCHLauncherPrompt/main.svelte';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeyDown } />
 
 <div class="LCHLauncherPipe LCHLauncher">
 
 <div class="LCHLauncherPipeSubject">
-	<LCHLauncherPipePrompt
-		LCHLauncherPipePromptItems={ [] }
-		LCHLauncherPipePromptPlaceholderText={ OLSKLocalized('LCHLauncherPipeSubjectPromptPlaceholderText') }
-		LCHLauncherPipePromptFilterInputPlaceholderText={ OLSKLocalized('LCHLauncherPipeSubjectPromptFilterInputPlaceholderText') }
-		LCHLauncherPipePromptDispatchSelect={ mod.LCHLauncherPipePromptDispatchSelect }
-		LCHLauncherPipePromptDispatchEscape={ mod.LCHLauncherPipePromptDispatchEscape }
+	<LCHLauncherPrompt
+		LCHLauncherPromptItems={ [] }
+		LCHLauncherPromptPlaceholderText={ OLSKLocalized('LCHLauncherPipeSubjectPromptPlaceholderText') }
+		LCHLauncherPromptFilterInputPlaceholderText={ OLSKLocalized('LCHLauncherPipeSubjectPromptFilterInputPlaceholderText') }
+		LCHLauncherPromptDispatchSelect={ mod.LCHLauncherPromptDispatchSelect }
+		LCHLauncherPromptDispatchEscape={ mod.LCHLauncherPromptDispatchEscape }
 		/>
 </div>
 
 <div class="LCHLauncherPipeAction">
-	<LCHLauncherPipePrompt
-		LCHLauncherPipePromptItems={ [] }
-		LCHLauncherPipePromptFilterInputPlaceholderText={ OLSKLocalized('LCHLauncherPipeActionPromptFilterInputPlaceholderText') }
-		LCHLauncherPipePromptDispatchSelect={ mod.LCHLauncherPipePromptDispatchSelect }
-		LCHLauncherPipePromptDispatchEscape={ mod.LCHLauncherPipePromptDispatchEscape }
+	<LCHLauncherPrompt
+		LCHLauncherPromptItems={ [] }
+		LCHLauncherPromptFilterInputPlaceholderText={ OLSKLocalized('LCHLauncherPipeActionPromptFilterInputPlaceholderText') }
+		LCHLauncherPromptDispatchSelect={ mod.LCHLauncherPromptDispatchSelect }
+		LCHLauncherPromptDispatchEscape={ mod.LCHLauncherPromptDispatchEscape }
 		/>
 </div>
 

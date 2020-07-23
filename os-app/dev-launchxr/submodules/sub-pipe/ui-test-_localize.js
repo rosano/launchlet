@@ -22,7 +22,7 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 		});
 
 		it('localizes LCHLauncherPipeSubjectPromptPlaceholderText', function () {
-			browser.assert.text(`${ LCHLauncherPipeSubjectPrompt } .LCHLauncherPipePromptPlaceholder`, uLocalized('LCHLauncherPipeSubjectPromptPlaceholderText'));
+			browser.assert.text(`${ LCHLauncherPipeSubjectPrompt } .LCHLauncherPromptPlaceholder`, uLocalized('LCHLauncherPipeSubjectPromptPlaceholderText'));
 		});
 
 		it('localizes LCHLauncherPipeActionPromptFilterInputPlaceholderText', function () {

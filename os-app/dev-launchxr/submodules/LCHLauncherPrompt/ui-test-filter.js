@@ -1,18 +1,18 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHLauncherPipePrompt_Filter', function () {
+describe('LCHLauncherPrompt_Filter', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
-			LCHLauncherPipePromptItems: uStubStringify(uStubTwoItems()),
+			LCHLauncherPromptItems: uStubStringify(uStubTwoItems()),
 		});
 	});
 
 	context('no match', function () {
 		
 		before(function () {
-			browser.assert.text('#TestLCHLauncherPipePromptDispatchSelect', '0');
-			browser.assert.text('#TestLCHLauncherPipePromptDispatchSelectData', 'undefined');
+			browser.assert.text('#TestLCHLauncherPromptDispatchSelect', '0');
+			browser.assert.text('#TestLCHLauncherPromptDispatchSelectData', 'undefined');
 		});
 
 		before(function () {
@@ -20,12 +20,12 @@ describe('LCHLauncherPipePrompt_Filter', function () {
 		});
 
 		it('filters all', function() {
-			browser.assert.elements(LCHLauncherPipePromptResultItem, 0);
+			browser.assert.elements(LCHLauncherPromptResultItem, 0);
 		});
 		
-		it('sends LCHLauncherPipePromptDispatchSelect', function () {
-			browser.assert.text('#TestLCHLauncherPipePromptDispatchSelect', '1');	
-			browser.assert.text('#TestLCHLauncherPipePromptDispatchSelectData', 'undefined');
+		it('sends LCHLauncherPromptDispatchSelect', function () {
+			browser.assert.text('#TestLCHLauncherPromptDispatchSelect', '1');	
+			browser.assert.text('#TestLCHLauncherPromptDispatchSelectData', 'undefined');
 		});
 
 	});
@@ -37,16 +37,16 @@ describe('LCHLauncherPipePrompt_Filter', function () {
 		});
 
 		it('filters partial', function() {
-			browser.assert.elements(LCHLauncherPipePromptResultItem, 2);
+			browser.assert.elements(LCHLauncherPromptResultItem, 2);
 		});
 
 		it('sets OLSKResultsListItemSelected', function () {
 			browser.assert.elements('.OLSKResultsListItemSelected', 1);
 		});
 			
-		it('sends LCHLauncherPipePromptDispatchSelect', function () {
-			browser.assert.text('#TestLCHLauncherPipePromptDispatchSelect', '2');	
-			browser.assert.text('#TestLCHLauncherPipePromptDispatchSelectData', JSON.stringify(uStubTwoItems()[0]));
+		it('sends LCHLauncherPromptDispatchSelect', function () {
+			browser.assert.text('#TestLCHLauncherPromptDispatchSelect', '2');	
+			browser.assert.text('#TestLCHLauncherPromptDispatchSelectData', JSON.stringify(uStubTwoItems()[0]));
 		});
 
 	});
@@ -58,7 +58,7 @@ describe('LCHLauncherPipePrompt_Filter', function () {
 		});
 
 		it('filters exact', function() {
-			browser.assert.elements(LCHLauncherPipePromptResultItem, 1);
+			browser.assert.elements(LCHLauncherPromptResultItem, 1);
 		});
 
 		it('sets OLSKResultsListItemSelected', function () {

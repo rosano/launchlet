@@ -1,10 +1,10 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHLauncherPipePrompt_Shortcuts', function () {
+describe('LCHLauncherPrompt_Shortcuts', function () {
 
 	before(function () {
 		return browser.OLSKVisit(kDefaultRoute, {
-			LCHLauncherPipePromptItems: uStubStringify(uStubTwoItems()),
+			LCHLauncherPromptItems: uStubStringify(uStubTwoItems()),
 		});
 	});
 
@@ -19,8 +19,8 @@ describe('LCHLauncherPipePrompt_Shortcuts', function () {
 	context('ArrowDown', function () {
 			
 		before(function () {
-			browser.assert.text('#TestLCHLauncherPipePromptDispatchSelect', '1');	
-			browser.assert.text('#TestLCHLauncherPipePromptDispatchSelectData', JSON.stringify(uStubTwoItems()[0]));
+			browser.assert.text('#TestLCHLauncherPromptDispatchSelect', '1');	
+			browser.assert.text('#TestLCHLauncherPromptDispatchSelectData', JSON.stringify(uStubTwoItems()[0]));
 		});
 		
 		before(function () {
@@ -31,9 +31,9 @@ describe('LCHLauncherPipePrompt_Shortcuts', function () {
 			browser.assert.text('.OLSKResultsListItemSelected', 'bravo');
 		});
 
-		it('sends LCHLauncherPipePromptDispatchSelect', function () {
-			browser.assert.text('#TestLCHLauncherPipePromptDispatchSelect', '2');	
-			browser.assert.text('#TestLCHLauncherPipePromptDispatchSelectData', JSON.stringify(uStubTwoItems()[1]));
+		it('sends LCHLauncherPromptDispatchSelect', function () {
+			browser.assert.text('#TestLCHLauncherPromptDispatchSelect', '2');	
+			browser.assert.text('#TestLCHLauncherPromptDispatchSelectData', JSON.stringify(uStubTwoItems()[1]));
 		});
 
 	});
@@ -48,9 +48,9 @@ describe('LCHLauncherPipePrompt_Shortcuts', function () {
 			browser.assert.text('.OLSKResultsListItemSelected', 'alfa');
 		});
 
-		it('sends LCHLauncherPipePromptDispatchSelect', function () {
-			browser.assert.text('#TestLCHLauncherPipePromptDispatchSelect', '3');	
-			browser.assert.text('#TestLCHLauncherPipePromptDispatchSelectData', JSON.stringify(uStubTwoItems()[0]));
+		it('sends LCHLauncherPromptDispatchSelect', function () {
+			browser.assert.text('#TestLCHLauncherPromptDispatchSelect', '3');	
+			browser.assert.text('#TestLCHLauncherPromptDispatchSelectData', JSON.stringify(uStubTwoItems()[0]));
 		});
 	
 	});
@@ -58,15 +58,15 @@ describe('LCHLauncherPipePrompt_Shortcuts', function () {
 	context('Escape', function () {
 
 		before(function () {
-			browser.assert.text('#TestLCHLauncherPipePromptDispatchEscape', '0');	
+			browser.assert.text('#TestLCHLauncherPromptDispatchEscape', '0');	
 		});
 		
 		before(function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 		});
 
-		it('sends LCHLauncherPipePromptDispatchEscape', function () {
-			browser.assert.text('#TestLCHLauncherPipePromptDispatchEscape', '1');	
+		it('sends LCHLauncherPromptDispatchEscape', function () {
+			browser.assert.text('#TestLCHLauncherPromptDispatchEscape', '1');	
 		});
 	
 	});
