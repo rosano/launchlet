@@ -5,14 +5,15 @@ describe('LCHLauncherPipePrompt_Misc', function () {
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
 			LCHLauncherPipePromptItems: uStubStringify(uStubTwoItems()),
-			LCHLauncherPipePromptFilterInputPlaceholderText: 'alfa',
+			LCHLauncherPipePromptFilterInputPlaceholderText: 'charlie',
+			LCHLauncherPipePromptPlaceholderText: 'delta',
 		});
 	});
 
 	describe('LCHLauncherFilterInput', function test_LCHLauncherFilterInput () {
 		
 		it('sets placeholder', function () {
-			browser.assert.attribute(LCHLauncherFilterInput, 'placeholder', 'alfa');
+			browser.assert.attribute(LCHLauncherFilterInput, 'placeholder', 'charlie');
 		});
 		
 		it('sets autofocus', function () {
@@ -21,11 +22,27 @@ describe('LCHLauncherPipePrompt_Misc', function () {
 		
 	});
 
-	describe('LCHLauncherResultItem', function test_LCHLauncherResultItem () {
+	describe('LCHLauncherPipePromptPlaceholder', function test_LCHLauncherPipePromptPlaceholder () {
+		
+		it('binds LCHLauncherPipePromptPlaceholderText', function () {
+			browser.assert.text(LCHLauncherPipePromptPlaceholder, 'delta');
+		});
+		
+	});
+
+	describe('LCHLauncherPipePromptSelectedItem', function test_LCHLauncherPipePromptSelectedItem () {
 		
 		before(function () {
 			return browser.fill(LCHLauncherFilterInput, 'alfa');
 		});
+		
+		it('binds OLSKResultsListItemSelected', function () {
+			browser.assert.text(`${ LCHLauncherPipePromptSelectedItem } .LCHLauncherResultItemTitle`, 'alfa');
+		});
+		
+	});
+
+	describe('LCHLauncherPipePromptResultItem', function test_LCHLauncherPipePromptResultItem () {
 		
 		context('click', function () {
 
@@ -35,7 +52,7 @@ describe('LCHLauncherPipePrompt_Misc', function () {
 			});
 			
 			before(function () {
-				return browser.click(LCHLauncherResultItem);
+				return browser.click(LCHLauncherPipePromptResultItem);
 			});
 
 			it('sends LCHLauncherPipePromptDispatchSelect', function () {

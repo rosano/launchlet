@@ -20,7 +20,7 @@ describe('LCHLauncherPipePrompt_Filter', function () {
 		});
 
 		it('filters all', function() {
-			browser.assert.elements(LCHLauncherResultItem, 0);
+			browser.assert.elements(LCHLauncherPipePromptResultItem, 0);
 		});
 		
 		it('sends LCHLauncherPipePromptDispatchSelect', function () {
@@ -37,7 +37,7 @@ describe('LCHLauncherPipePrompt_Filter', function () {
 		});
 
 		it('filters partial', function() {
-			browser.assert.elements(LCHLauncherResultItem, 2);
+			browser.assert.elements(LCHLauncherPipePromptResultItem, 2);
 		});
 
 		it('sets OLSKResultsListItemSelected', function () {
@@ -58,7 +58,7 @@ describe('LCHLauncherPipePrompt_Filter', function () {
 		});
 
 		it('filters exact', function() {
-			browser.assert.elements(LCHLauncherResultItem, 1);
+			browser.assert.elements(LCHLauncherPipePromptResultItem, 1);
 		});
 
 		it('sets OLSKResultsListItemSelected', function () {

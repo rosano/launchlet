@@ -1,5 +1,6 @@
 <script>
 export let LCHLauncherPipePromptItems;
+export let LCHLauncherPipePromptPlaceholderText;
 export let LCHLauncherPipePromptFilterInputPlaceholderText;
 export let LCHLauncherPipePromptDispatchSelect;
 export let LCHLauncherPipePromptDispatchEscape;
@@ -102,6 +103,16 @@ import LCHLauncherResultItem from '../LCHLauncherResultItem/main.svelte';
 	OLSKMasterListFilterFieldAutofocus={ true }
 	OLSKMasterListFilterFieldClearButton={ false }
 	>
+	<div slot="OLSKMasterListToolbarHead">
+		{#if mod._ValueItemSelected }
+			<div class="LCHLauncherPipePromptSelectedItem">
+				<LCHLauncherResultItem LCHLauncherResultItemObject={ mod._ValueItemSelected }
+					/>
+			</div>
+		{:else}
+			<div class="LCHLauncherPipePromptPlaceholder">{ LCHLauncherPipePromptPlaceholderText }</div>
+		{/if}
+	</div>
 	<LCHLauncherResultItem LCHLauncherResultItemObject={ item }
 		/>
 </OLSKMasterList>
