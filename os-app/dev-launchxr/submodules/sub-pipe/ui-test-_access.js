@@ -2,6 +2,8 @@ const kDefaultRoute = require('../../controller.js').OLSKControllerRoutes().shif
 
 Object.entries({
 	LCHLauncherPipe: '.LCHLauncherPipe',
+	
+	LCHLauncherPipeSubjectPrompt: '.LCHLauncherPipeSubject .LCHLauncherPipePrompt',
 }).map(function (e) {
 	return global[e.shift()] = e.pop();
 });
@@ -18,6 +20,10 @@ describe('LCHLauncherPipe_Access', function () {
 
 	it('shows LCHLauncherPipe', function () {
 		browser.assert.elements(LCHLauncherPipe, 1);
+	});
+
+	it('shows LCHLauncherPipeSubjectPrompt', function () {
+		browser.assert.elements(LCHLauncherPipeSubjectPrompt, 1);
 	});
 
 });

@@ -36,7 +36,7 @@ import LCHLauncherPipe from './submodules/sub-pipe/main.svelte';
 {/if}
 
 {#if LRTOptions.LCHOptionMode === LCHLauncherLogic.LCHLauncherModePipe() }
-	<LCHLauncherPipe />
+	<LCHLauncherPipe LCHLauncherPipeItems={ LRTOptions.LCHOptionRecipes } { OLSKLocalized } />
 {/if}
 
 {#if OLSK_TESTING_BEHAVIOUR() }

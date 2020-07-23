@@ -17,6 +17,14 @@ kDefaultRoute.OLSKRouteLanguages.forEach(function (languageCode) {
 			});
 		});
 
+		it('localizes LCHLauncherPipeSubjectPromptFilterInputPlaceholderText', function () {
+			browser.assert.attribute(`${ LCHLauncherPipeSubjectPrompt } .LCHLauncherFilterInput`, 'placeholder', uLocalized('LCHLauncherPipeSubjectPromptFilterInputPlaceholderText'));
+		});
+
+		it('localizes LCHLauncherPipeSubjectPromptPlaceholderText', function () {
+			browser.assert.text(`${ LCHLauncherPipeSubjectPrompt } .LCHLauncherPipePromptPlaceholder`, uLocalized('LCHLauncherPipeSubjectPromptPlaceholderText'));
+		});
+
 	});
 
 });
