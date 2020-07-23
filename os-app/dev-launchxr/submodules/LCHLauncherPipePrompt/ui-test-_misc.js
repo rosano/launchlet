@@ -5,7 +5,7 @@ describe('LCHLauncherPipePrompt_Misc', function () {
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
 			LCHLauncherPipePromptItems: uStubStringify(uStubTwoItems()),
-			LCHLauncherPipePromptPlaceholder: 'alfa',
+			LCHLauncherPipePromptFilterInputPlaceholderText: 'alfa',
 		});
 	});
 

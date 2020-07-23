@@ -1,6 +1,6 @@
 <script>
 export let LCHLauncherPipePromptItems;
-export let LCHLauncherPipePromptPlaceholder;
+export let LCHLauncherPipePromptFilterInputPlaceholderText;
 export let LCHLauncherPipePromptDispatchSelect;
 export let LCHLauncherPipePromptDispatchEscape;
 
@@ -98,7 +98,7 @@ import LCHLauncherResultItem from '../LCHLauncherResultItem/main.svelte';
 	OLSKMasterListItemAccessibilitySummaryFor={ (inputData) => inputData }	
 
 	OLSKMasterListFilterFieldClass={ 'LCHLauncherFilterInput' }
-	OLSKMasterListFilterFieldPlaceholderText={ LCHLauncherPipePromptPlaceholder }
+	OLSKMasterListFilterFieldPlaceholderText={ LCHLauncherPipePromptFilterInputPlaceholderText }
 	OLSKMasterListFilterFieldAutofocus={ true }
 	OLSKMasterListFilterFieldClearButton={ false }
 	>

@@ -3,7 +3,7 @@ import RollupStart from './main.svelte';
 const LCHLauncherPipePrompt = new RollupStart({
 	target: document.body,
 	props: Object.assign({
-		LCHLauncherPipePromptPlaceholder: '',
+		LCHLauncherPipePromptFilterInputPlaceholderText: '',
 		LCHLauncherPipePromptDispatchSelect: (function _LCHLauncherPipePromptDispatchSelect (inputData) {
 			window.TestLCHLauncherPipePromptDispatchSelect.innerHTML = parseInt(window.TestLCHLauncherPipePromptDispatchSelect.innerHTML) + 1;
 			window.TestLCHLauncherPipePromptDispatchSelectData.innerHTML = JSON.stringify(inputData);
