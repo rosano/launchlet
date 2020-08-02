@@ -695,15 +695,7 @@ describe('LCHCompose_Misc', function () {
 		});
 		
 		before(function () {
-			return browser.pressButton('.OLSKAppToolbarLauncherButton');
-		});
-
-		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'LCHComposeLauncherItemClone');
-		});
-
-		before(function () {
-			return browser.click('.LCHLauncherPipeItem');
+			return browser.OLSKLauncherRun('LCHComposeLauncherItemClone');
 		});
 
 		it('runs command', function () {
