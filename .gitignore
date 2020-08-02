@@ -8,8 +8,7 @@ os-workspace-testing
 
 # BUILD
 **/__*/*
+__static
 
 # LOCAL
 .env
-.env.staging
-.env.test
