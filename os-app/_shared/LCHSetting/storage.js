@@ -64,7 +64,7 @@ const mod = {
 					return privateClient.getObject(mod.LCHSettingStorageObjectPath({
 						LCHSettingKey: inputData,
 						LCHSettingValue: '',
-					}));
+					}), false);
 				},
 
 				_LCHSettingStorageList () {
