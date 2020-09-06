@@ -83,9 +83,11 @@ const mod = {
 					});
 				}
 
-				await privateClient.storeObject(mod.LCHDocumentStorageCollectionType(), mod.LCHDocumentStorageObjectPath(inputData), OLSKRemoteStorage.OLSKRemoteStoragePreJSONSchemaValidate(inputData));
-
-				return OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(inputData);
+				try {
+					return OLSKRemoteStorage.OLSKRemoteStorageWriteObject(privateClient, mod.LCHDocumentStorageObjectPath(inputData), inputData);
+				} catch (e) {
+					return Promise.reject(e);
+				}
 			},
 
 			async _LCHDocumentStorageList () {

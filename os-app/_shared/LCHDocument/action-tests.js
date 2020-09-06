@@ -43,7 +43,6 @@ describe('LCHDocumentActionCreate', function test_LCHDocumentActionCreate() {
 			LCHDocumentID: item.LCHDocumentID,
 			LCHDocumentCreationDate: item.LCHDocumentCreationDate,
 			LCHDocumentModificationDate: item.LCHDocumentModificationDate,
-			'@context': item['@context'],
 		}));
 	});
 
@@ -103,7 +102,6 @@ describe('LCHDocumentActionUpdate', function test_LCHDocumentActionUpdate() {
 			LCHDocumentID: item.LCHDocumentID,
 			LCHDocumentCreationDate: item.LCHDocumentCreationDate,
 			LCHDocumentModificationDate: item.LCHDocumentModificationDate,
-			'@context': item['@context'],
 		}));
 	});
 

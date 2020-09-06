@@ -1,5 +1,8 @@
 import LCHSettingModel from './model.js';
 
+import * as OLSKRemoteStoragePackage from 'OLSKRemoteStorage';
+const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
+
 const mod = {
 
 	LCHSettingStorageCollectionName () {
@@ -51,9 +54,11 @@ const mod = {
 						});
 					}
 
-					await privateClient.storeObject(mod.LCHSettingStorageCollectionType(), mod.LCHSettingStorageObjectPath(inputData), inputData);
-
-					return inputData;
+					try {
+						return OLSKRemoteStorage.OLSKRemoteStorageWriteObject(privateClient, mod.LCHSettingStorageObjectPath(inputData), inputData);
+					} catch (e) {
+						return Promise.reject(e);
+					}
 				},
 
 				_LCHSettingStorageRead (inputData) {

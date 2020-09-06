@@ -80,12 +80,14 @@ describe('LCHDocumentStorageWrite', function test_LCHDocumentStorageWrite() {
 		});
 	});
 
-	it('returns LCHDocument', async function() {
-		let item = await mainModule.LCHDocumentStorageWrite(LCHTestingStorageClient, StubDocumentObjectValid());
+	it('returns input', async function () {
+		const item = StubDocumentObjectValid();
 
-		deepEqual(item, Object.assign(StubDocumentObjectValid(), {
-			'@context': item['@context'],
-		}));
+		deepEqual(await mainModule.LCHDocumentStorageWrite(LCHTestingStorageClient, item) === item, true);
+	});
+
+	it('leaves input unmodified', async function () {
+		deepEqual(await mainModule.LCHDocumentStorageWrite(LCHTestingStorageClient, StubDocumentObjectValid()), StubDocumentObjectValid());
 	});
 
 });

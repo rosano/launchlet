@@ -57,12 +57,14 @@ describe('LCHSettingStorageWrite', function test_LCHSettingStorageWrite() {
 		});
 	});
 
-	it('returns LCHSetting', async function() {
-		let item = await mainModule.LCHSettingStorageWrite(LCHTestingStorageClient, StubSettingObjectValid());
+	it('returns input', async function () {
+		const item = StubSettingObjectValid();
 
-		deepEqual(item, Object.assign(StubSettingObjectValid(), {
-			'@context': item['@context'],
-		}));
+		deepEqual(await mainModule.LCHSettingStorageWrite(LCHTestingStorageClient, item) === item, true);
+	});
+
+	it('leaves input unmodified', async function () {
+		deepEqual(await mainModule.LCHSettingStorageWrite(LCHTestingStorageClient, StubSettingObjectValid()), StubSettingObjectValid());
 	});
 
 });
