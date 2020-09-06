@@ -28,7 +28,6 @@ const mod = {
 	LCHSettingStorageBuild  (privateClient, publicClient, changeDelegate) {
 		return {
 			OLSKRemoteStorageCollectionName: mod.LCHSettingStorageCollectionName(),
-			OLSKRemoteStorageCollectionType: mod.LCHSettingStorageCollectionType(),
 			OLSKRemoteStorageCollectionModelErrors: Object.entries(LCHSettingModel.LCHSettingModelErrorsFor({})).map(function (e) {
 				if (!Object.keys(LCHSettingModel.LCHSettingModelErrorsFor({})).includes(e[0])) {
 					e[1].push('__RSOptional');

@@ -112,7 +112,6 @@ const mod = {
 
 		return {
 			OLSKRemoteStorageCollectionName: mod.LCHDocumentStorageCollectionName(),
-			OLSKRemoteStorageCollectionType: mod.LCHDocumentStorageCollectionType(),
 			OLSKRemoteStorageCollectionModelErrors: Object.entries(LCHDocumentModel.LCHDocumentModelErrorsFor({}, {
 				LCHOptionValidateIfNotPresent: true,
 			})).map(function (e) {
