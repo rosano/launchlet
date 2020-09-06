@@ -10,14 +10,6 @@ describe('LCHSettingStorageCollectionName', function test_LCHSettingStorageColle
 
 });
 
-describe('LCHSettingStorageCollectionType', function test_LCHSettingStorageCollectionType() {
-
-	it('returns string', function() {
-		deepEqual(mainModule.LCHSettingStorageCollectionType(), 'lch_setting');
-	});
-
-});
-
 describe('LCHSettingStorageCollectionPath', function test_LCHSettingStorageCollectionPath() {
 
 	it('returns string', function() {

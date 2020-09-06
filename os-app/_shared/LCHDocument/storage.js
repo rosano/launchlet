@@ -8,10 +8,6 @@ const mod = {
 		return 'lch_documents';
 	},
 
-	LCHDocumentStorageCollectionType () {
-		return 'lch_document';
-	},
-
 	LCHDocumentStorageCollectionPath () {
 		return mod.LCHDocumentStorageCollectionName() + '/';
 	},

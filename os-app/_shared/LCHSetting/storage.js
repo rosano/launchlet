@@ -9,10 +9,6 @@ const mod = {
 		return 'lch_settings';
 	},
 
-	LCHSettingStorageCollectionType () {
-		return 'lch_setting';
-	},
-
 	LCHSettingStorageCollectionPath () {
 		return mod.LCHSettingStorageCollectionName() + '/';
 	},

@@ -10,14 +10,6 @@ describe('LCHDocumentStorageCollectionName', function test_LCHDocumentStorageCol
 
 });
 
-describe('LCHDocumentStorageCollectionType', function test_LCHDocumentStorageCollectionType() {
-
-	it('returns string', function() {
-		deepEqual(mainModule.LCHDocumentStorageCollectionType(), 'lch_document');
-	});
-
-});
-
 describe('LCHDocumentStorageCollectionPath', function test_LCHDocumentStorageCollectionPath() {
 
 	it('returns string', function() {
