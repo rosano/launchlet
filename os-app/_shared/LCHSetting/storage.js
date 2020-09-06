@@ -28,17 +28,6 @@ const mod = {
 	LCHSettingStorageBuild  (privateClient, publicClient, changeDelegate) {
 		return {
 			OLSKRemoteStorageCollectionName: mod.LCHSettingStorageCollectionName(),
-			OLSKRemoteStorageCollectionModelErrors: Object.entries(LCHSettingModel.LCHSettingModelErrorsFor({})).map(function (e) {
-				if (!Object.keys(LCHSettingModel.LCHSettingModelErrorsFor({})).includes(e[0])) {
-					e[1].push('__RSOptional');
-				}
-
-				return e;
-			}).reduce(function (coll, item) {
-				coll[item[0]] = item[1];
-
-				return coll;
-			}, {}),
 			OLSKRemoteStorageCollectionExports: {
 				
 				async _LCHSettingStorageWrite (inputData) {

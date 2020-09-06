@@ -112,19 +112,6 @@ const mod = {
 
 		return {
 			OLSKRemoteStorageCollectionName: mod.LCHDocumentStorageCollectionName(),
-			OLSKRemoteStorageCollectionModelErrors: Object.entries(LCHDocumentModel.LCHDocumentModelErrorsFor({}, {
-				LCHOptionValidateIfNotPresent: true,
-			})).map(function (e) {
-				if (!Object.keys(LCHDocumentModel.LCHDocumentModelErrorsFor({})).includes(e[0])) {
-					e[1].push('__RSOptional');
-				}
-
-				return e;
-			}).reduce(function (coll, item) {
-				coll[item[0]] = item[1];
-
-				return coll;
-			}, {}),
 			OLSKRemoteStorageCollectionExports,
 		};
 	},
