@@ -552,6 +552,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 			]);
 		}
 
+		items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes(window, mod._ValueStorageClient, OLSKLocalized, OLSK_TESTING_BEHAVIOUR()));
 		window.Launchlet.LCHSingletonCreate({
 			LCHOptionRecipes: items,
 		});

@@ -81,6 +81,10 @@ describe('LCHCompose_Access', function () {
 		browser.assert.elements('.OLSKAppToolbarLauncherButton', 1);
 	});
 
+	it('shows OLSKRemoteStorageLauncherFakeItemProxy', function () {
+		return browser.assert.OLSKLauncherItems('OLSKRemoteStorageLauncherFakeItemProxy', 1);
+	});
+
 	it('hides LCHComposeLauncherItemClone', function () {
 		return browser.assert.OLSKLauncherItems('LCHComposeLauncherItemClone', 0);
 	});
