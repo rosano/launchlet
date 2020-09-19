@@ -13,6 +13,8 @@ import LCHSettingStorage from '../_shared/LCHSetting/storage.js';
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
 import * as OLSKRemoteStoragePackage from '../_shared/__external/OLSKRemoteStorage/main.js'
 const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
+import * as OLSKServiceWorkerPackage from '../_shared/__external/OLSKServiceWorker/main.js'
+const OLSKServiceWorker = OLSKServiceWorkerPackage.default || OLSKServiceWorkerPackage;
 import LCHDocumentAction from '../_shared/LCHDocument/action.js';
 import LCHSettingAction from '../_shared/LCHSetting/action.js';
 import LCHComposeLogic from './ui-logic.js';
@@ -123,7 +125,13 @@ const mod = {
 		}
 	},
 
-	// INTERFACE	
+	DataNavigator () {
+		return navigator.serviceWorker ? navigator : {
+			serviceWorker: {},
+		};
+	},
+
+	// INTERFACE
 
 	InterfaceWindowDidKeydown (event) {
 		if (document.querySelector('.LCHLauncher')) {
@@ -553,6 +561,8 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 		}
 
 		items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes(window, mod._ValueStorageClient, OLSKLocalized, OLSK_TESTING_BEHAVIOUR()));
+		items.push(...OLSKServiceWorker.OLSKServiceWorkerRecipes(window, mod.DataNavigator(), OLSKLocalized, OLSK_TESTING_BEHAVIOUR()));
+
 		window.Launchlet.LCHSingletonCreate({
 			LCHOptionRecipes: items,
 		});
@@ -869,7 +879,7 @@ import LCHComposeDetail from './submodules/LCHComposeDetail/main.svelte';
 import LCHComposeBuild from './submodules/LCHComposeBuild/main.svelte';
 import LCHComposePair from './submodules/LCHComposePair/main.svelte';
 import OLSKAppToolbar from 'OLSKAppToolbar';
-import OLSKServiceWorker from '../_shared/__external/OLSKServiceWorker/main.svelte';
+import OLSKServiceWorkerView from '../_shared/__external/OLSKServiceWorker/main.svelte';
 import OLSKStorageWidget from 'OLSKStorageWidget';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
@@ -964,7 +974,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 </div>
 
 {#if !OLSK_TESTING_BEHAVIOUR()}
-	<OLSKServiceWorker OLSKServiceWorkerRegistrationRoute={ window.OLSKCanonicalFor('LCHServiceWorkerRoute') } />
+	<OLSKServiceWorkerView OLSKServiceWorkerRegistrationRoute={ window.OLSKCanonicalFor('LCHServiceWorkerRoute') } />
 {/if}
 
 <style src="./ui-style.css"></style>
