@@ -1322,13 +1322,13 @@ describe('LCHRuntimeFilteredRecipes', function test_LCHRuntimeFilteredRecipes() 
 	it('throws if param1 not array', function () {
 		throws(function () {
 			mainModule.LCHRuntimeFilteredRecipes(null, '');
-		}, /ErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws if param2 not string', function () {
 		throws(function () {
 			mainModule.LCHRuntimeFilteredRecipes([], null);
-		}, /ErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns array', function () {
@@ -1387,7 +1387,7 @@ describe('LCHRuntimeFilteredTasks', function test_LCHRuntimeFilteredTasks() {
 	it('throws if not array', function () {
 		throws(function () {
 			mainModule.LCHRuntimeFilteredTasks(null);
-		}, /ErrorInputInvalid/);
+		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns array', function () {

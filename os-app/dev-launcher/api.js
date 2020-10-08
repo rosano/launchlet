@@ -546,11 +546,11 @@ const mod = {
 
 	LCHRuntimeFilteredRecipes  (param1, param2) {
 		if (!Array.isArray(param1)) {
-			throw new Error('LCHErrorInputInvalid');
+			throw new Error('LCHErrorInputNotValid');
 		}
 
 		if (typeof param2 !== 'string') {
-			throw new Error('LCHErrorInputInvalid');
+			throw new Error('LCHErrorInputNotValid');
 		}
 
 		return param1.filter(function (e) {
@@ -568,7 +568,7 @@ const mod = {
 
 	LCHRuntimeFilteredTasks  (inputData) {
 		if (!Array.isArray(inputData)) {
-			throw new Error('LCHErrorInputInvalid');
+			throw new Error('LCHErrorInputNotValid');
 		}
 
 		return inputData.filter(function (e) {
