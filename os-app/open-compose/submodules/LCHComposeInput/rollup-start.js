@@ -27,7 +27,7 @@ const LCHComposeInput = new RollupStart({
 	props: Object.assign({
 		LCHComposeInputItem: {},
 		LCHComposeInputOptions: {},
-		LCHComposeInputDispatchUpdate: (function _LCHComposeInputDispatchUpdate (inputData) {
+		LCHComposeInputDispatchUpdate: (function  (inputData) {
 			window.TestLCHComposeInputDispatchUpdate.innerHTML = parseInt(window.TestLCHComposeInputDispatchUpdate.innerHTML) + 1;
 		}),
 	}, params),

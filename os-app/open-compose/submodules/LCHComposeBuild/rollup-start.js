@@ -5,14 +5,14 @@ const LCHComposeBuild = new RollupStart({
 	props: Object.assign({
 		LCHComposeBuildPipeModeEnabled: false,
 		LCHComposeBuildPageRecipesEnabled: false,
-		LCHComposeBuildDispatchRun: (function _LCHComposeBuildDispatchRun () {
+		LCHComposeBuildDispatchRun: (function  () {
 			window.TestLCHComposeBuildDispatchRun.innerHTML = parseInt(window.TestLCHComposeBuildDispatchRun.innerHTML) + 1;
 		}),
-		LCHComposeBuildDispatchPipeModeEnabled: (function _LCHComposeBuildDispatchPipeModeEnabled (inputData) {
+		LCHComposeBuildDispatchPipeModeEnabled: (function  (inputData) {
 			window.TestLCHComposeBuildDispatchPipeModeEnabled.innerHTML = parseInt(window.TestLCHComposeBuildDispatchPipeModeEnabled.innerHTML) + 1;
 			window.TestLCHComposeBuildDispatchPipeModeEnabledData.innerHTML = inputData;
 		}),
-		LCHComposeBuildDispatchPageRecipesEnabled: (function _LCHComposeBuildDispatchPageRecipesEnabled (inputData) {
+		LCHComposeBuildDispatchPageRecipesEnabled: (function  (inputData) {
 			window.TestLCHComposeBuildDispatchPageRecipesEnabled.innerHTML = parseInt(window.TestLCHComposeBuildDispatchPageRecipesEnabled.innerHTML) + 1;
 			window.TestLCHComposeBuildDispatchPageRecipesEnabledData.innerHTML = inputData;
 		}),

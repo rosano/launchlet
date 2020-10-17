@@ -8,19 +8,19 @@ const LCHComposeMaster = new RollupStart({
 	props: Object.assign({
 		LCHComposeMasterListItems: [],
 		LCHComposeMasterFilterText: '',
-		LCHComposeMasterDispatchCreate: (function _LCHComposeMasterDispatchCreate (inputData) {
+		LCHComposeMasterDispatchCreate: (function  (inputData) {
 			window.TestLCHComposeMasterDispatchCreate.innerHTML = parseInt(window.TestLCHComposeMasterDispatchCreate.innerHTML) + 1;
 			window.TestLCHComposeMasterDispatchCreateData.innerHTML = inputData;
 		}),
-		LCHComposeMasterDispatchClick: (function _LCHComposeMasterDispatchClick (inputData) {
+		LCHComposeMasterDispatchClick: (function  (inputData) {
 			window.TestLCHComposeMasterDispatchClick.innerHTML = parseInt(window.TestLCHComposeMasterDispatchClick.innerHTML) + 1;
 			window.TestLCHComposeMasterDispatchClickData.innerHTML = JSON.stringify(inputData);
 		}),
-		LCHComposeMasterDispatchArrow: (function _LCHComposeMasterDispatchArrow (inputData) {
+		LCHComposeMasterDispatchArrow: (function  (inputData) {
 			window.TestLCHComposeMasterDispatchArrow.innerHTML = parseInt(window.TestLCHComposeMasterDispatchArrow.innerHTML) + 1;
 			window.TestLCHComposeMasterDispatchArrowData.innerHTML = JSON.stringify(inputData);
 		}),
-		LCHComposeMasterDispatchFilter: (function _LCHComposeMasterDispatchFilter (inputData) {
+		LCHComposeMasterDispatchFilter: (function  (inputData) {
 			window.TestLCHComposeMasterDispatchFilter.innerHTML = parseInt(window.TestLCHComposeMasterDispatchFilter.innerHTML) + 1;
 			window.TestLCHComposeMasterDispatchFilterData.innerHTML = inputData;
 		}),

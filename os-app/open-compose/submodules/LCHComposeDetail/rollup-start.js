@@ -35,16 +35,16 @@ mod.LifecycleModuleDidLoad();
 const LCHComposeDetail = new RollupStart({
 	target: document.body,
 	props: Object.assign({
-		LCHComposeDetailDispatchBack: (function _LCHComposeDetailDispatchBack () {
+		LCHComposeDetailDispatchBack: (function  () {
 			window.TestLCHComposeDetailDispatchBack.innerHTML = parseInt(window.TestLCHComposeDetailDispatchBack.innerHTML) + 1;
 		}),
-		LCHComposeDetailDispatchClone: (function _LCHComposeDetailDispatchClone () {
+		LCHComposeDetailDispatchClone: (function  () {
 			window.TestLCHComposeDetailDispatchClone.innerHTML = parseInt(window.TestLCHComposeDetailDispatchClone.innerHTML) + 1;
 		}),
-		LCHComposeDetailDispatchDiscard: (function _LCHComposeDetailDispatchDiscard (inputData) {
+		LCHComposeDetailDispatchDiscard: (function  (inputData) {
 			window.TestLCHComposeDetailDispatchDiscard.innerHTML = parseInt(window.TestLCHComposeDetailDispatchDiscard.innerHTML) + 1;
 		}),
-		LCHComposeDetailDispatchUpdate: (function _LCHComposeDetailDispatchUpdate () {
+		LCHComposeDetailDispatchUpdate: (function  () {
 			window.TestLCHComposeDetailDispatchUpdate.innerHTML = parseInt(window.TestLCHComposeDetailDispatchUpdate.innerHTML) + 1;
 
 			mod.ReactDetailItem(params.LCHComposeDetailItem);

@@ -4,11 +4,11 @@ const LCHLauncherPrompt = new RollupStart({
 	target: document.body,
 	props: Object.assign({
 		LCHLauncherPromptFilterInputPlaceholderText: '',
-		LCHLauncherPromptDispatchSelect: (function _LCHLauncherPromptDispatchSelect (inputData) {
+		LCHLauncherPromptDispatchSelect: (function  (inputData) {
 			window.TestLCHLauncherPromptDispatchSelect.innerHTML = parseInt(window.TestLCHLauncherPromptDispatchSelect.innerHTML) + 1;
 			window.TestLCHLauncherPromptDispatchSelectData.innerHTML = JSON.stringify(inputData);
 		}),
-		LCHLauncherPromptDispatchEscape: (function _LCHLauncherPromptDispatchEscape () {
+		LCHLauncherPromptDispatchEscape: (function  () {
 			window.TestLCHLauncherPromptDispatchEscape.innerHTML = parseInt(window.TestLCHLauncherPromptDispatchEscape.innerHTML) + 1;
 		}),
 	}, Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
