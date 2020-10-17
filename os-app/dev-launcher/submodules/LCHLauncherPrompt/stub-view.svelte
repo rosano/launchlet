@@ -46,11 +46,11 @@ const mod = {
 	<input type="checkbox" on:input={ mod.InterfaceItemSelectedHiddenCheckboxDidInput } id="LCHLauncherPromptTestSetItemSelectedHidden" />
 </p>
 <p>
-	<strong>TestResultListDispatchArrow</strong>
+	<strong>ResultListDispatchArrow</strong>
 	<span id="OLSKResultsListTestResultListDispatchArrow" bind:this={ TestResultListDispatchArrow }>0</span>
 </p>
 
 <p>
-	<strong>TestResultListDispatchClick</strong>
+	<strong>ResultListDispatchClick</strong>
 	<span id="OLSKResultsListTestResultListDispatchClick" bind:this={ TestResultListDispatchClick }>0</span>
 </p>
