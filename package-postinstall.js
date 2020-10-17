@@ -79,28 +79,20 @@
 	const pathPackage = require('path');
 
 	OLSKAssets.OLSKAssetsCopyAssetsFromTo([
-		'normalize.css',
-		'codemirror',
-		'OLSKRouting',
-		'OLSKLayout',
-		'OLSKServiceWorker',
-		'fuzzysort',
 		'clipboard',
-		'jszip',
+		'codemirror',
 		'file-saver',
-		'simplecrypto',
-		'OLSKRemoteStorage',
-		'OLSKStorageWidget',
-		'OLSKRootLink',
-		'ROCORootLink',
-		'OLSKUIAssets',
-
-		// pass tests
-		'OLSKMasterList',
-		'OLSKInputWrapper',
-		'OLSKDetailPlaceholder',
-		'OLSKAppToolbar',
-		'OLSKReloadButton',
+		'fuzzysort',
+		'jszip',
+		'normalize.css',
 		'OLSKLanguageSwitcher',
+		'OLSKLayout',
+		'OLSKRootLink',
+		'OLSKRouting',
+		'OLSKServiceWorker',
+		'OLSKStorageWidget',
+		'OLSKUIAssets',
+		'ROCORootLink',
+		'simplecrypto',
 	], pathPackage.join(__dirname, 'node_modules'), pathPackage.join(__dirname, 'os-app/_shared/__external'));
 })();
