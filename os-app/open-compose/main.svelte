@@ -11,10 +11,8 @@ import LCH_Data from '../_shared/LCH_Data/main.js';
 import LCHDocumentStorage from '../_shared/LCHDocument/storage.js';
 import LCHSettingStorage from '../_shared/LCHSetting/storage.js';
 import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
-import * as OLSKRemoteStoragePackage from '../_shared/__external/OLSKRemoteStorage/main.js'
-const OLSKRemoteStorage = OLSKRemoteStoragePackage.default || OLSKRemoteStoragePackage;
-import * as OLSKServiceWorkerPackage from '../_shared/__external/OLSKServiceWorker/main.js'
-const OLSKServiceWorker = OLSKServiceWorkerPackage.default || OLSKServiceWorkerPackage;
+import OLSKRemoteStorage from 'OLSKRemoteStorage'
+import OLSKServiceWorker from 'OLSKServiceWorker'
 import LCHDocumentAction from '../_shared/LCHDocument/action.js';
 import LCHSettingAction from '../_shared/LCHSetting/action.js';
 import LCHComposeLogic from './ui-logic.js';
