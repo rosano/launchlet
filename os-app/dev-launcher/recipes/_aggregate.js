@@ -10,6 +10,7 @@ import * as ServiceSearch from './types/ServiceSearch/main.js';
 import * as SubjectContainer from './types/SubjectContainer/main.js';
 
 import * as LCHDateLocalOffsetSubtracted from './functions/LCHDateLocalOffsetSubtracted/main.js';
+import * as LCHReadTextFile from './functions/LCHReadTextFile/main.js';
 
 import * as LCHActiveDocumentFocusElements from './subjects/LCHActiveDocumentFocusElements/main.js';
 
@@ -38,6 +39,7 @@ export const LCHLauncherStandardRecipes = function() {
 		LCHActiveDocumentFocusElements,
 
 		LCHDateLocalOffsetSubtracted,
+		LCHReadTextFile,
 
 		LCHCopyToClipboard,
 		LCHDOMElementFocus,
