@@ -1,20 +1,17 @@
-export const LCHReadTextFileCallback = async function() {
+export const LCHReadTextFileCallback = async function(inputData = {}) {
 	return new Promise(function (res, rej) {
-		const inputElement = document.createElement('input');
-		
-		inputElement.type = 'file';
+		Object.assign(document.createElement('input'), inputData, {
+			type: 'file',
+			onchange (e) {
+				const fileReader = new FileReader();
+				
+				fileReader.onload = function (event) {
+					return res(event.target.result);
+				};
 
-		inputElement.onchange = function (e) {
-			const fileReader = new FileReader();
-			
-			fileReader.onload = function (event) {
-				return res(event.target.result);
-			};
-
-			fileReader.readAsText(inputElement.files[0]);
-		};
-
-		inputElement.click();
+				fileReader.readAsText(e.target.files[0]);
+			},
+		}).click();
 	});
 };
 
