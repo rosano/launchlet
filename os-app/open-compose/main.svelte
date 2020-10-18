@@ -602,10 +602,6 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 		mod.ControlDocumentPersist(mod._ValueDocumentSelected);
 	},
 
-	_OLSKAppToolbarDispatchExport () {
-		mod.ControlExportData();
-	},
-
 	MessageReceived(event) {
 		// We only accept messages from ourselves
 	  if (event.source !== window && !OLSK_TESTING_BEHAVIOUR()) {
@@ -960,7 +956,6 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 		OLSKAppToolbarDonateURL={ window.OLSKPublicConstants('LCH_SHARED_DONATE_URL') }
 		OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
 		OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
-		_OLSKAppToolbarDispatchExport={ mod._OLSKAppToolbarDispatchExport }
 		OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
 		/>
 
