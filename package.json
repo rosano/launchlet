@@ -29,6 +29,9 @@
     "// RECIPE URL": null,
     "url-parse": "latest",
 
+    "// RECIPE LCHSaveFile": null,
+    "file-saver": "latest",
+
     "// FRONTEND NORMALIZE CSS": null,
     "normalize.css": "latest",
     "OLSKLayout": "olsk/OLSKLayout",
@@ -52,8 +55,8 @@
     "clipboard": "latest",
 
     "// FRONTEND EXPORT": null,
+    "url-parse": "latest",
     "jszip": "latest",
-    "file-saver": "latest",
 
     "// FRONTEND APP LAYOUT": null,
     "OLSKLayout": "olsk/OLSKLayout",
