@@ -16,19 +16,15 @@ describe(`LCHCopyToClipboard_Localize-${ languageCode }`, function () {
 	});
 
 	before(function() {
-		browser.OLSKFireKeyboardEvent(browser.window, '.');
+		return browser.OLSKFireKeyboardEvent(browser.window, '.');
 	});
 
 	before(function() {
-		return browser.wait({ element: LCHLauncherPromptDotModeInput });
-	});
-
-	before(function() {
-		browser.fill(LCHLauncherPromptDotModeInput, 'alfa');
+		return browser.fill('.LCHLauncherPromptDotModeInput', 'alfa');
 	});
 
 	it('localizes LCHLauncherPipeItemTitle', function() {
-		browser.assert.text(`${ LCHLauncherActionPromptItemSelected } ${ LCHLauncherPipeItemTitle }`, uLocalized('LCHStandardRecipeNames').LCHCopyToClipboard);
+		browser.assert.text('.LCHLauncherPipeItemTitle', uLocalized('LCHStandardRecipeNames').LCHCopyToClipboard);
 	});
 
 	context('callback', function () {

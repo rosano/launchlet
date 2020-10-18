@@ -19,7 +19,7 @@ describe('LCHCopyToClipboard_Access', function () {
 	});
 
 	before(function() {
-		browser.fill(LCHLauncherPromptDotModeInput, 'alfa');
+		browser.fill('.LCHLauncherPromptDotModeInput', 'alfa');
 		
 		browser.OLSKFireKeyboardEvent(browser.window, 'Enter');
 	});

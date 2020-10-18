@@ -24,11 +24,11 @@ describe('LCHCopyToClipboard_Misc', function () {
 	});
 
 	before(function() {
-		return browser.fill(LCHLauncherFilterInput, 'alfa');
+		return browser.fill('.LCHLauncherFilterInput', 'alfa');
 	});
 
 	before(function() {
-		browser.click(LCHLauncherListItem);
+		return browser.click('.LCHLauncherPipeItem');
 	});
 
 	it('focuses LCHCopyToClipboardButton', function() {
@@ -42,7 +42,7 @@ describe('LCHCopyToClipboard_Misc', function () {
 		});
 
 		it('hides LCHLauncher', function() {
-			browser.assert.elements(LCHLauncher, 0);
+			browser.assert.elements('.LCHLauncher', 0);
 		});
 	
 	});
