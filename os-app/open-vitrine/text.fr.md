@@ -24,7 +24,7 @@ Il y a aussi un appli où vous pouvez créer un lanceur personalisé avec vos pr
 - Interface simple
 - Pas d'instructions compliquées
 - Pas de publicité, analyse comportementale, traqueurs tiers
-- Fonctionne sur les appareils mobiles, les tablettes et les ordinateurs de bureau
+- Fonctionne sur des appareils mobiles, les tablettes et les ordinateurs de bureau
 
 <a class="LCHVitrineContentAppButton OLSKCommonButton" href="LCHVitrineTokenComposeURL">LCHVitrineContentAppButtonText</a>
 
