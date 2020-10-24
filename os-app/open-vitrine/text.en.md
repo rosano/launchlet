@@ -2,13 +2,33 @@ _Generalized interface for keyboard-based interaction_
 
 Launchlet is a simple way to add a name to snippets of code and then run it. Inspired by [Quicksilver](LCH_VITRINE_QUICKSILVER_URL), it functions primarily via mouseless interaction and lets you access your [Recipes](LCHVitrineTokenGuideURL) with a few keyboard strokes. You can also use it to customize websites in the same way as 'userscripts' or 'userstyles'. Optimized to be fast so that you can 'think then do'.
 
-Check out the demos below for some ideas or [compose](LCHVitrineTokenComposeURL) your own.
-
 You can run Launchlet as a bookmarklet, [browser extension](LCH_SHARED_EXTENSION_DOCS_URL), or as a [module](LCH_SHARED_PACKAGE_DOCS_URL) in your own project to add a 'jump to' functionality.
 
 The code is open-source and available on [GitHub](LCH_SHARED_GITHUB_URL).
 
 The project is freely accessible but if you are in a position to give, please [donate](LCH_SHARED_DONATE_URL) to support future development.
+
+* * *
+
+# App
+
+There is also an app where you can compose a launcher personalized with your own Recipes.
+
+## Features
+- Create Recipes with JavaScript
+- Create Recipes with CSS
+- Set a URL Filter on Recipes
+- Pair securely with browser extension
+- Sync with multiple devices via remoteStorage
+- Works offline without internet access
+- Simple interface
+- No complicated instructions
+- No ads, behavioural analytics, 3rd party trackers
+- Works on mobile, tablet, and desktop devices
+
+<a class="LCHVitrineContentAppButton OLSKCommonButton" href="LCHVitrineTokenComposeURL">LCHVitrineContentAppButtonText</a>
+
+* * *
 
 # Demos
 

@@ -8,6 +8,7 @@ Object.entries({
 	LCHVitrineIdentityName: '.LCHVitrineIdentityName',
 
 	LCHVitrineContent: '.LCHVitrineContent',
+	LCHVitrineContentAppButton: '.LCHVitrineContentAppButton',
 
 	LCHVitrineDemoButtonCommit: '.LCHVitrineDemoButtonCommit',
 	LCHVitrineDemoButtonPreview: '.LCHVitrineDemoButtonPreview',
@@ -46,6 +47,10 @@ describe('LCHVitrine_Access', function () {
 	
 	it('shows LCHVitrineContent', function() {
 		browser.assert.elements(LCHVitrineContent, 1)
+	});
+
+	it('shows LCHVitrineContentAppButton', function () {
+		browser.assert.elements(LCHVitrineContentAppButton, 1);
 	});
 
 	it('shows LCHVitrineDemoButtonCommit', function() {

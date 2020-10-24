@@ -55,6 +55,10 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 		}) }"]`);
 	});
 
+	it('localizes LCHVitrineContentAppButton', function () {
+		browser.assert.text(LCHVitrineContentAppButton, uLocalized('LCHVitrineContentAppButtonText'));
+	});
+
 	it('localizes LCH_SHARED_EXTENSION_DOCS_URL', function() {
 		browser.assert.element(`a[href="${ process.env.LCH_SHARED_EXTENSION_DOCS_URL }"]`);
 	});
@@ -85,6 +89,20 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 
 	it('localizes LCHVitrineBrueghel', function() {
 		browser.assert.attribute(LCHVitrineBrueghel, 'alt', uLocalized('LCHVitrineBrueghelText'))
+	});
+
+	context('LCHVitrineContentAppButton', function test_LCHVitrineContentAppButton () {
+
+		it('classes OLSKCommonButton', function () {
+			browser.assert.hasClass(LCHVitrineContentAppButton, 'OLSKCommonButton');
+		});
+		
+		it('sets href', function () {
+			browser.assert.attribute(LCHVitrineContentAppButton, 'href', OLSKTestingCanonical(require('../open-compose/controller.js').OLSKControllerRoutes().shift(), {
+				OLSKRoutingLanguage: languageCode,
+			}));
+		});
+	
 	});
 
 	context.skip('DemoCommit', function () {
