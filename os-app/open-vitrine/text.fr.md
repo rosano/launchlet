@@ -2,7 +2,7 @@ _Interface généralisée pour les interactions clavier_
 
 Launchlet est une façon simple d'ajouter un nom à des fragments de code pour les exécuter. Inspiré par [Quicksilver](https://qsapp.com), il fonctionne principalement sans interaction avec la souris et vous permet d'accéder à vos [Recettes](LCHVitrineTokenGuideURL) avec très peu de touches. Vous pouvez également l'utiliser pour personnaliser des sites internet avec votre propre CSS ou JavaScript. Optimisé pour être rapide et ainsi que vous puissiez « penser puis faire ».
 
-Vous pouvez exécuter Launchlet comme un bookmarklet, une [extension web](LCH_SHARED_EXTENSION_DOCS_URL), ou un [module](LCH_SHARED_PACKAGE_DOCS_URL) dans votre propre projet pour ajouter une fonctionnalité « sauter à ».
+C'est possible d'exécuter Launchlet comme un bookmarklet, une [extension web](LCH_SHARED_EXTENSION_DOCS_URL), ou un [module](LCH_SHARED_PACKAGE_DOCS_URL) dans votre propre projet pour ajouter une fonctionnalité « sauter à ».
 
 Le code est open source et est disponible sur [GitHub](LCH_SHARED_GITHUB_URL).
 
