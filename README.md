@@ -8,6 +8,11 @@ _Generalized interface for keyboard-based interaction_
 
 You can run Launchlet as a [bookmarklet](https://launchlet.dev/compose), [browser extension](https://github.com/launchlet/launchlet-extension), or as a [module](https://github.com/launchlet/launchlet/tree/master/os-app/dev-package) in your own project to add a 'jump to' functionality.
 
+There is also an app where you can compose a launcher personalized with your own Recipes.
+
+<a href="https://launchlet.dev/compose" style="display: inline-block; padding: 8px 16px; border: 1px solid rgba(0, 0, 0, 0.3); border-radius: 5px; background: hsl(0, 0%, 90%); font-size: 110%; color: black;
+text-decoration: none;">Go to app</a>
+
 ## Architecture
 
 The project is a large collection of mostly small modules and functions that are put together using [Svelte](https://svelte.dev) and [Rollup](https://rollupjs.org). With the exception of a few 'global' or 'magic' things such as the localization function `OLSKLocalized`, most resources used by a module should be in the same folder or referenced by path name.
