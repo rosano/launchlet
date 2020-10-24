@@ -21,8 +21,7 @@ import LCHFormula from '../_shared/LCHFormula/main.js'
 import LCHLauncherLogic from '../dev-launcher/ui-logic.js';
 import LCHBuild from '../_shared/LCHBuild/main.js';
 import OLSKString from 'OLSKString';
-import * as RemoteStoragePackage from 'remotestoragejs';
-const RemoteStorage = RemoteStoragePackage.default || RemoteStoragePackage;
+import RemoteStorage from 'remotestoragejs';
 
 const mod = {
 
