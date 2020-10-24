@@ -29,7 +29,7 @@ npm install --no-save
 ### Start the Rollup build/reload process
 
 ```
-npm run svelte-build-watch
+npm run watch
 ```
 
 ### Start the node server
