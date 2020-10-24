@@ -10,6 +10,8 @@ The code is open-source and available on [GitHub](LCH_SHARED_GITHUB_URL).
 
 The project is freely accessible but if you are in a position to give, please [donate](LCH_SHARED_DONATE_URL) to support future development.
 
+# Demos
+
 ## Commit mode
 
 Presents a list of options and runs on `Enter`. Try any of the following options:

@@ -10,6 +10,8 @@ El código fuente es código abierto y disponible en [GitHub](LCH_SHARED_GITHUB_
 
 El proyecto es libremente accesible y gratis, pero si estás en posición a dar, por favor [dona](LCH_SHARED_DONATE_URL) para sostener su desarrollo en futuro.
 
+# Demostraciones
+
 ## Modo de 'Commit'
 
 Mostrar una lista de opciónes y ejecutar al `Enter`. Intenta cualquier de las opciones siguientes:
