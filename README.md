@@ -32,7 +32,7 @@ npm install --no-save
 npm run watch
 ```
 
-### Start the node server
+### Start the Node.js server
 
 ```
 npm start
