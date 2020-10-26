@@ -20,6 +20,7 @@ Il y a aussi un appli où vous pouvez créer un lanceur personalisé avec vos pr
 - Régler une filtre de URL sur des Recettes
 - Associer l'appli avec l'extension web
 - Synchroniser automatiquement avec l'extension web
+- Exporter bookmarklet
 - Synchroniser avec plusieurs appareils avec remoteStorage
 - Travailler hors ligne sans accès à l'Internet
 - Interface simple

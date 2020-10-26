@@ -20,6 +20,7 @@ There is also an app where you can compose a launcher personalized with your own
 - Set a URL Filter on Recipes
 - Pair with browser extension
 - Sync automatically with browser extension
+- Export bookmarklet
 - Sync with multiple devices via remoteStorage
 - Works offline without internet access
 - Simple interface

@@ -20,6 +20,7 @@ Hay también un app donde puedes crear un lanzador personalizado con tus prorios
 - Poner un filtro de URL en Recetas
 - Emparejar el app con extensión del navigador
 - Sincronizar automáticamente con extensión del navigador
+- Exportar bookmarklet
 - Sincronizar com múltiples dispositivos con remoteStorage
 - Foncione offline sin acceso al internet
 - Interfaz sencilla
