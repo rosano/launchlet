@@ -27,7 +27,7 @@ Hay también un app donde puedes crear un lanzador personalizado con tus prorios
 - Sin análisis comportamental o rastreadores terceros
 - Foncione en dispositivos mobiles, tabletas y computadoras
 
-<a class="LCHVitrineContentAppButton OLSKCommonButton" href="LCHVitrineTokenComposeURL">LCHVitrineContentAppButtonText</a>
+<a class="LCHVitrineContentAppButton OLSKCommonButton OLSKCommonButtonPrimary" href="LCHVitrineTokenComposeURL">LCHVitrineContentAppButtonText</a>
 
 # Demostraciones
 

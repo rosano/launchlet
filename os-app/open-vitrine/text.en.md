@@ -26,7 +26,7 @@ There is also an app where you can compose a launcher personalized with your own
 - No ads, behavioural analytics, 3rd party trackers
 - Works on mobile, tablet, and desktop devices
 
-<a class="LCHVitrineContentAppButton OLSKCommonButton" href="LCHVitrineTokenComposeURL">LCHVitrineContentAppButtonText</a>
+<a class="LCHVitrineContentAppButton OLSKCommonButton OLSKCommonButtonPrimary" href="LCHVitrineTokenComposeURL">LCHVitrineContentAppButtonText</a>
 
 * * *
 
