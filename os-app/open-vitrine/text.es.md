@@ -18,7 +18,8 @@ Hay también un app donde puedes crear un lanzador personalizado con tus prorios
 - Crear Recetas con JavaScript
 - Crear Recetas con CSS
 - Poner un filtro de URL en Recetas
-- Emparejar el app con el extensión del navigador
+- Emparejar el app con extensión del navigador
+- Sincronizar automáticamente con extensión del navigador
 - Sincronizar com múltiples dispositivos con remoteStorage
 - Foncione offline sin acceso al internet
 - Interfaz sencilla

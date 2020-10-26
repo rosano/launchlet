@@ -18,7 +18,8 @@ There is also an app where you can compose a launcher personalized with your own
 - Create Recipes with JavaScript
 - Create Recipes with CSS
 - Set a URL Filter on Recipes
-- Pair securely with browser extension
+- Pair with browser extension
+- Sync automatically with browser extension
 - Sync with multiple devices via remoteStorage
 - Works offline without internet access
 - Simple interface
