@@ -82,7 +82,7 @@
     "simplecrypto": "encryb/simplecrypto",
 
     "// FLAGS": null,
-    "acorn": "latest",
+    "acorn": "7.x",
 
     "// I sacrifice myself for the commas of others": null
   },
