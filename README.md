@@ -64,16 +64,16 @@ npm test
 npm test ui
 ```
 
-To filter test paths by string:
+To filter ui test paths by string:
 
 ```
-olsk-spec-ui -os-match=ResultList
+npm test ui match=ResultList
 ```
 
-To filter test paths by regular expressions:
+To filter ui test paths by JavaScript regular expressions:
 
 ```
-olsk-spec-ui -os-match='/resultlist/i'
+npm test ui match='/resultlist/i'
 ```
 
 ## License
