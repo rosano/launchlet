@@ -2,7 +2,7 @@
 
 The Launchlet package can be added to your own project as a module to quickly present a 'Jump to' functionality.
 
-## Installing
+## Setup
 
 https://unpkg.com/launchlet/__compiled/launchlet.js
 https://unpkg.com/launchlet/__compiled/launchlet.css
