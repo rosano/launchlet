@@ -20,6 +20,8 @@ Routing, rendering markdown content, and serving pages is done via a Node.js ser
 
 ## Development Setup
 
+Install [Node.js and npm](https://nodejs.org/en/download/), then:
+
 ```
 npm i --no-save
 ```
