@@ -76,4 +76,4 @@ The code is released under a [Hippocratic License](https://firstdonoharm.dev), m
 
 ## Questions
 
-Feel free to ask questions on [Mastodon](https://merveilles.town/@rosano).
+Feel free to reach out on [Mastodon](https://merveilles.town/@rosano) or [Twitter](https://twitter.com/rosano).
