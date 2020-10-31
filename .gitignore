@@ -4,7 +4,6 @@ package-lock.json
 
 # OLDSKOOL
 os-cache
-os-workspace-testing
 
 # BUILD
 **/__*/*
