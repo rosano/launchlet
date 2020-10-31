@@ -681,10 +681,6 @@ describe('LCHCompose_Misc', function () {
 			browser.assert.attribute('.OLSKAppToolbarGuideLink', 'href', require('../open-guide/controller.js').OLSKControllerRoutes().shift().OLSKRoutePath);
 		});
 
-		it('sets OLSKAppToolbarDonateURL', function () {
-			browser.assert.attribute('.OLSKAppToolbarDonateLink', 'href', process.env.LCH_SHARED_DONATE_URL);
-		});
-
 	});
 
 

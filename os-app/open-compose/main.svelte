@@ -952,7 +952,6 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 
 	<OLSKAppToolbar
 		OLSKAppToolbarGuideURL={ window.OLSKCanonicalFor('LCHGuideRoute') }
-		OLSKAppToolbarDonateURL={ window.OLSKPublicConstants('LCH_SHARED_DONATE_URL') }
 		OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
 		OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
 		OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
