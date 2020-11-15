@@ -10,6 +10,10 @@ describe('LCHGuide_Misc', function () {
 		browser.assert.attribute('meta[name=viewport]', 'content', 'width=device-width');
 	});
 
+	it('assigns link:apple-touch-icon', function () {
+		browser.assert.attribute('link[rel=apple-touch-icon]', 'href', process.env.LCH_TEMP_TOUCH_ICON_URL);
+	});
+
 	context('LCHGuide', function () {
 		
 		it('classes OLSKCommon', function () {
