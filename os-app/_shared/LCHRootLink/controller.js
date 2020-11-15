@@ -3,7 +3,7 @@ exports.OLSKControllerRoutes = function() {
 		OLSKRoutePath: '/stub/LCHRootLinkEJS',
 		OLSKRouteMethod: 'get',
 		OLSKRouteFunction (req, res, next) {
-			return res.render(require('path').join(__dirname, 'stub-view'));
+			return res.OLSKLayoutRender(require('path').join(__dirname, 'stub-view'));
 		},
 		OLSKRouteSignature: 'LCHRootLinkEJSStubRoute',
 		OLSKRouteLanguages: ['en', 'fr', 'es'],
@@ -12,7 +12,7 @@ exports.OLSKControllerRoutes = function() {
 		OLSKRoutePath: '/stub/LCHRootLinkSvelte',
 		OLSKRouteMethod: 'get',
 		OLSKRouteFunction (req, res, next) {
-			return res.render(require('path').join(__dirname, 'stub-view'));
+			return res.OLSKLayoutRender(require('path').join(__dirname, 'stub-view'));
 		},
 		OLSKRouteSignature: 'LCHRootLinkSvelteStubRoute',
 		OLSKRouteLanguages: ['en', 'fr', 'es'],

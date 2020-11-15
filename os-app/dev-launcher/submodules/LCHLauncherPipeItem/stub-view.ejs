@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" type="text/css" href="/_shared/__external/normalize.css/normalize.css">
-	<link rel="stylesheet" type="text/css" href="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-style.css">
-</head>
-<body>
+<%
+locals.OLSKPageAssets = [
+	'/_shared/__external/normalize.css/normalize.css',
+	'__compiled/ui-style.css',
+];
+%>
 
 <script src="/<%= OLSKSharedPageControllerSlug %>/__compiled/ui-behaviour.js"></script>
-
-</body>
-</html>

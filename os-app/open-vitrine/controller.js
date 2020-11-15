@@ -16,7 +16,7 @@ exports.OLSKControllerRoutes = function() {
 		OLSKRouteMethod: 'get',
 		OLSKRouteSignature: 'LCHVitrineRoute',
 		OLSKRouteFunction (req, res, next) {
-			return res.render(require('path').join(__dirname, 'ui-view'), {
+			return res.OLSKLayoutRender(require('path').join(__dirname, 'ui-view'), {
 				LCHVitrineContent: require('OLSKString').OLSKStringReplaceTokens(require('marked').setOptions({
 					gfm: true,
 					headerIds: false,
