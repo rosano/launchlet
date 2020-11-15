@@ -32,7 +32,7 @@ module.exports = {
 			css (css) {
 				css.code = require('fs').readFileSync(pathPackage.join(__dirname, '../dev-launcher/__compiled/ui-style.css'), 'utf8').replace('ui-style', 'launchlet');
 
-				return css.write(pathPackage.join(__dirname, '__compiled/launchlet.css'));
+				return css.write('launchlet.css');
 			},
 		})));
 

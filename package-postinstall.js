@@ -1,50 +1,21 @@
-(function OLSKPostinstallPatchRemoteStorageAuthRedirectURI() {
-	let filePath = './node_modules/remotestoragejs/release/remotestorage.js';
-
-	require('fs').writeFileSync(filePath, require('OLSKString').OLSKStringPatch(
-		require('fs').readFileSync(filePath, 'utf8'),
-		// 'options.redirectUri = globalContext.cordova ? config.cordovaRedirectUri : String(Authorize.getLocation());',
-		'e.redirectUri=m.cordova?l.cordovaRedirectUri:String(h.getLocation())',
-		// 'options.redirectUri = globalContext.cordova ? config.cordovaRedirectUri : String(config.OLSKPatchRemoteStorageAuthRedirectURI || Authorize.getLocation());'
-		'e.redirectUri=m.cordova?l.cordovaRedirectUri:String(l.OLSKPatchRemoteStorageAuthRedirectURI || h.getLocation())'
-	));
-})();
-
-(function OLSKPostinstallPatchSimplecryptoForUITests() {
+(function OLSKPostinstallHotfix() {
 	if (process.env.NODE_ENV === 'production') {
 		return;
 	}
 
-	let filePath = './node_modules/simplecrypto/src/simplecrypto.js';
-
-	require('fs').writeFileSync(filePath, require('OLSKString').OLSKStringPatch(
-		require('fs').readFileSync(filePath, 'utf8'),
-		'var _crypto = window.crypto || window.msCrypto;',
-		`var _crypto = window.crypto || window.msCrypto
-    if (!_crypto) {
-        return
-    };`
-	));
+	Object.entries(require('OLSKHotfix').OLSKHotfixPatches()).forEach(function ([path, patches]) {
+		if (!require('fs').existsSync(path)) {
+			return;
+		}
+		
+		Object.entries(patches).forEach(function ([search, replace]) {
+			require('fs').writeFileSync(path, require('OLSKString').OLSKStringPatch(
+				require('fs').readFileSync(path, 'utf8'), search, replace));
+		});
+	});
 })();
 
-(function OLSKPostinstallPatchZombieForUITests() {
-	if (process.env.NODE_ENV === 'production') {
-		return;
-	}
-
-	let filePath = './node_modules/zombie/lib/document.js';
-
-	require('fs').writeFileSync(filePath, require('OLSKString').OLSKStringPatch(
-		require('fs').readFileSync(filePath, 'utf8'),
-		'this.dispatchEvent(event);',
-		`this.dispatchEvent(event)
-			const handled = browser.emit('OLSKMessage', data);
-		  if (!handled)
-		      browser.log('Unhandled message("%s")');`
-	));
-})();
-
-(function OLSKPostinstallPatchOLSKThrottle() {
+(function LCHPostinstallPatchOLSKThrottle() {
 	let filePath = './node_modules/OLSKThrottle/main.js';
 
 	require('fs').writeFileSync(filePath, require('OLSKString').OLSKStringPatch(
@@ -52,26 +23,6 @@
 		'delete param1[param2];',
 		'// delete param1[param2]',
 	));
-})();
-
-(function ROCOHotfixULIDForBrowserTesting() {
-	if (process.env.NODE_ENV === 'production') {
-		return;
-	}
-
-	let filePath = './node_modules/ulid/dist/index.esm.js';
-	require('fs').writeFileSync(filePath, require('fs')
-		.readFileSync(filePath, 'utf8')
-		.replace(
-			'console.error("secure crypto unusable, falling back to insecure Math.random()!");',
-			'// console.error("secure crypto unusable, falling back to insecure Math.random()!");')
-		.replace(
-			'var ulid = factory();',
-			'// var ulid = factory();')
-		.replace(
-			'export { replaceCharAt, incrementBase32, randomChar, encodeTime, encodeRandom, decodeTime, detectPrng, factory, monotonicFactory, ulid };',
-			'export { replaceCharAt, incrementBase32, randomChar, encodeTime, encodeRandom, decodeTime, detectPrng, factory, monotonicFactory };')
-	);
 })();
 
 (function OLSKPostinstallExternalAssets() {

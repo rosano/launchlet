@@ -1,6 +1,6 @@
 import LCHDocumentStorage from './storage.js';
-import { factory, detectPrng } from 'ulid';
-const uniqueID = typeof require === 'undefined' && navigator.appName === 'Zombie' ? factory(detectPrng(true)) : factory();
+import { factory } from 'ulid';
+const uniqueID = factory();
 
 const mod = {
 

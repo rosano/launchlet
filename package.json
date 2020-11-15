@@ -99,6 +99,9 @@
     "// SPEC ACTIVE DOCUMENT FOCUS ELEMENTS": null,
     "jsdom": "latest",
     
+    "// HOTFIX": null,
+    "OLSKHotfix": "olsk/OLSKHotfix",
+    
     "// I sacrifice myself for the commas of others": null    
   }
 }
