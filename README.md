@@ -23,7 +23,7 @@ Routing, rendering markdown content, and serving pages is done via a Node.js ser
 Install [Node.js and npm](https://nodejs.org/en/download/), then:
 
 ```
-npm i --no-save
+npm run setup
 ```
 
 Finally, rename the `.env-sample` file to `.env`.
