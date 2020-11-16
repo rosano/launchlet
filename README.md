@@ -26,6 +26,8 @@ Install [Node.js and npm](https://nodejs.org/en/download/), then:
 npm i --no-save
 ```
 
+Finally, rename the `.env-sample` file to `.env`.
+
 ## Running
 
 ### Start the Rollup process to build and reload automatically
