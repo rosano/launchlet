@@ -12,9 +12,6 @@ exports.OLSKControllerRoutes = function() {
 			});
 		},
 		OLSKRouteLanguages: ['en', 'fr', 'es'],
-		OLSKRouteMiddlewares: [
-			'LCHSharedDonateLinkGuardMiddleware',
-		],
 		_OLSKRouteSkipLanguageRedirect: true,
 	}];
 };
