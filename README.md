@@ -26,7 +26,7 @@ Install [Node.js and npm](https://nodejs.org/en/download/), then:
 npm run setup
 ```
 
-Finally, rename the `.env-sample` file to `.env`.
+If there is no `.env` file, please copy `.env-sample` to `.env`.
 
 ## Running
 
