@@ -1,11 +1,7 @@
 <script>
 export let TestLCHComposeToolsPairIsVisible = false;
 
-import OLSKInternational from 'OLSKInternational';
-const OLSKLocalized = function(translationConstant) {
-	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage')]);
-};
-
+import { OLSKLocalized } from 'OLSKInternational';
 import OLSKThrottle from 'OLSKThrottle';
 import LCH_Data from '../_shared/LCH_Data/main.js';
 import LCHDocumentStorage from '../_shared/LCHDocument/storage.js';
