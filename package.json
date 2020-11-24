@@ -82,6 +82,9 @@
     "// FLAGS": null,
     "acorn": "7.x",
 
+    "// TECH ROBOTS": null,
+    "OLSKRobots": "olsk/OLSKRobots",
+
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {
