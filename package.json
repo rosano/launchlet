@@ -9,7 +9,7 @@
 
     "test": "olsk-spec",
 
-    "build": "olsk-rollup-build",
+    "build": "olsk-rollup",
     "watch": "olsk-rollup-watch"
   },
   "dependencies": {
