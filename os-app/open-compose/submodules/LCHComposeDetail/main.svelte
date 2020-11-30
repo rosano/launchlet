@@ -121,7 +121,7 @@ import LCHComposeInput from '../LCHComposeInput/main.svelte';
 	</p>
 {/if}
 
-<hr>
+<hr role="presentation" />
 
 <p class="LCHComposeDetailFormStyle">
 	<LCHComposeInput
@@ -145,7 +145,7 @@ import LCHComposeInput from '../LCHComposeInput/main.svelte';
 		/>
 </p>
 
-<hr>
+<hr role="presentation" />
 
 <p>
 	<input class="LCHComposeDetailFormURLFilterField" placeholder="{ OLSKLocalized('LCHComposeDetailFormURLFilterFieldText') }" type="text" bind:value={ LCHComposeDetailItem.LCHDocumentURLFilter } on:input={ LCHComposeDetailDispatchUpdate } />

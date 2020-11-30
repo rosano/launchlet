@@ -33,7 +33,7 @@ const mod = {
 
 <Module PromptItems={ StubItems } ItemSelected={ StubItemSelected } ItemSelectedHidden={ StubItemSelectedHidden } on:ResultListDispatchArrow={ (event) => ResultListDispatchArrow(event.detail) } on:ResultListDispatchClick={ (event) => ResultListDispatchClick(event.detail) } ResultsHidden={ ResultsHidden } />
 
-<hr>
+<hr role="presentation" />
 
 <p>
 	<strong>StubItemSelected</strong>
