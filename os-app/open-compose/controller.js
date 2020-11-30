@@ -11,7 +11,7 @@ exports.OLSKControllerRoutes = function() {
 				LCHGoogleClientKey: Buffer.from(process.env.LCH_GOOGLE_CLIENT_KEY).toString('base64'),
 			});
 		},
-		OLSKRouteLanguages: ['en', 'fr', 'es'],
+		OLSKRouteLanguageCodes: ['en', 'fr', 'es'],
 		_OLSKRouteSkipLanguageRedirect: true,
 	}];
 };

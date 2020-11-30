@@ -8,7 +8,7 @@ exports.OLSKControllerRoutes = function() {
 			OLSKRouteFunction (req, res, next) {
 				return res.OLSKLayoutRender(require('path').join(__dirname, 'ui-view'));
 			},
-			OLSKRouteLanguages: ['en'],
+			OLSKRouteLanguageCodes: ['en'],
 			OLSKRouteIsHidden: process.env.NODE_ENV === 'production',
 		},
 		LCHPackageCompiledScriptRedirect: {

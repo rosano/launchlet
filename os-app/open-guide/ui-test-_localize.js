@@ -1,6 +1,6 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-kDefaultRoute._OLSKRouteLanguages.forEach(function (languageCode) {
+kDefaultRoute._OLSKRouteLanguageCodes.forEach(function (languageCode) {
 
 const uLocalized = function (inputData) {
 	return OLSKTestingLocalized(inputData, languageCode);

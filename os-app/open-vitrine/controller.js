@@ -22,7 +22,7 @@ exports.OLSKControllerRoutes = function() {
 				OLSKStringReplaceTokens: require('OLSKString').OLSKStringReplaceTokens,
 			});
 		},
-		OLSKRouteLanguages: ['en', 'fr', 'es'],
+		OLSKRouteLanguageCodes: ['en', 'fr', 'es'],
 	}, {
 		OLSKRoutePath: '/brueghel.jpg',
 		OLSKRouteMethod: 'get',
