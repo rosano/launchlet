@@ -10,7 +10,7 @@ You can run Launchlet as a [bookmarklet](https://launchlet.dev/compose), [browse
 
 There is also an app where you can compose a launcher personalized with your own Recipes.
 
-<a href="https://launchlet.dev/compose"><img alt="Open app" src="http://rosano.s3.amazonaws.com/public/_RCSAppButton.svg" /></a>
+<a href="https://launchlet.dev/compose"><img alt="Open app" src="http://rosano.s3.amazonaws.com/public/_shared/_RCSAppButton.svg" /></a>
 
 ## Architecture
 
