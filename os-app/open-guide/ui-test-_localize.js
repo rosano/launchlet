@@ -16,7 +16,7 @@ describe(`LCHGuide_Localize-${ languageCode }`, function () {
 		browser.assert.text('title', uLocalized('LCHGuideTitle'))
 	});
 
-	it('localizes description', function() {
+	it('localizes meta[description]', function() {
 		browser.assert.attribute('meta[name=description]', 'content', uLocalized('LCHGuideDescription'))
 	});
 

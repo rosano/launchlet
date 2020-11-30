@@ -18,7 +18,7 @@ describe(`LCHVitrine_Localize-${ languageCode }`, function () {
 		browser.assert.text('title', uLocalized('LCHVitrineTitle'))
 	});
 
-	it('localizes description', function() {
+	it('localizes meta[description]', function() {
 		browser.assert.attribute('meta[name=description]', 'content', uLocalized('LCHVitrineDescription'))
 	});
 
