@@ -1,12 +1,12 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-kDefaultRoute._OLSKRouteLanguageCodes.forEach(function (languageCode) {
+kDefaultRoute._OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 const uLocalized = function (inputData) {
-	return OLSKTestingLocalized(inputData, languageCode);
+	return OLSKTestingLocalized(inputData, OLSKRoutingLanguage);
 };
 
-describe(`LCHGuide_Localize-${ languageCode }`, function () {
+describe(`LCHGuide_Localize-${ OLSKRoutingLanguage }`, function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute);

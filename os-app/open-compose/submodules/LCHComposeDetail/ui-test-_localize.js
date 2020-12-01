@@ -1,18 +1,18 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (languageCode) {
+kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 	const uLocalized = function (inputData) {
-		return OLSKTestingLocalized(inputData, languageCode);
+		return OLSKTestingLocalized(inputData, OLSKRoutingLanguage);
 	};
 
-	describe(`LCHComposeDetail_Localize-${ languageCode }`, function () {
+	describe(`LCHComposeDetail_Localize-${ OLSKRoutingLanguage }`, function () {
 
 		context('LCHComposeDetailItem', function() {
 		
 			before(function() {
 				return browser.OLSKVisit(kDefaultRoute, {
-					OLSKRoutingLanguage: languageCode,
+					OLSKRoutingLanguage,
 					LCHComposeDetailItem: JSON.stringify({}),
 				});
 			});
@@ -109,7 +109,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (languageCode) {
 
 			before(function() {
 				return browser.OLSKVisit(kDefaultRoute, {
-					OLSKRoutingLanguage: languageCode,
+					OLSKRoutingLanguage,
 					LCHComposeDetailItem: JSON.stringify({
 						LCHDocumentIsFlagged: true,
 					}),

@@ -2,17 +2,17 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 const uFormatted = require('OLSKString').OLSKStringWithFormat;
 
-kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (languageCode) {
+kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 const uLocalized = function (inputData) {
-	return OLSKTestingLocalized(inputData, languageCode);
+	return OLSKTestingLocalized(inputData, OLSKRoutingLanguage);
 };
 
-describe(`LCHLauncherLocalizeCommit-${ languageCode }`, function test_LCHLauncherLocalizeCommit () {
+describe(`LCHLauncherLocalizeCommit-${ OLSKRoutingLanguage }`, function test_LCHLauncherLocalizeCommit () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
-			OLSKRoutingLanguage: languageCode,
+			OLSKRoutingLanguage,
 			LCHOptionMode: 'LCHModeCommit',
 		});
 	});
@@ -23,11 +23,11 @@ describe(`LCHLauncherLocalizeCommit-${ languageCode }`, function test_LCHLaunche
 
 });
 
-describe(`LCHLauncherLocalizePreview-${ languageCode }`, function test_LCHLauncherLocalizePreview () {
+describe(`LCHLauncherLocalizePreview-${ OLSKRoutingLanguage }`, function test_LCHLauncherLocalizePreview () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
-			OLSKRoutingLanguage: languageCode,
+			OLSKRoutingLanguage,
 			LCHOptionMode: 'LCHModePreview',
 		});
 	});
@@ -38,11 +38,11 @@ describe(`LCHLauncherLocalizePreview-${ languageCode }`, function test_LCHLaunch
 
 });
 
-describe(`LCHLauncherLocalizePipe-${ languageCode }`, function test_LCHLauncherLocalizePipe () {
+describe(`LCHLauncherLocalizePipe-${ OLSKRoutingLanguage }`, function test_LCHLauncherLocalizePipe () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
-			OLSKRoutingLanguage: languageCode,
+			OLSKRoutingLanguage,
 			LCHOptionMode: 'LCHModePipe',
 		});
 	});
