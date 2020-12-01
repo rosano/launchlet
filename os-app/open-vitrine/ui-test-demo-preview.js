@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('LCHVitrineDemoPreview', function () {
@@ -13,7 +11,7 @@ describe('LCHVitrineDemoPreview', function () {
 	});
 	
 	it('shows headings', function () {
-		deepEqual(browser.queryAll('h1,h2').map(function (e) {
+		browser.assert.deepEqual(browser.queryAll('h1,h2').map(function (e) {
 			return e.textContent;
 		}), browser.queryAll('.OLSKResultsListItem').map(function (e) {
 			return e.textContent.trim();

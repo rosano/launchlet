@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('LCHCompose_Pair', function () {
@@ -19,7 +17,7 @@ describe('LCHCompose_Pair', function () {
 		});
 		
 		it('posts message', async function() {
-			deepEqual(await browser.OLSKMessageAsync(function () {
+			browser.assert.deepEqual(await browser.OLSKMessageAsync(function () {
 				browser.pressButton('.LCHComposePairSubmitButton');
 			}), {
 				LBXRequestName: 'DispatchRequestStorePayload',
@@ -36,7 +34,7 @@ describe('LCHCompose_Pair', function () {
 	context('ReactDocuments', function () {
 		
 		it('posts message', async function() {
-			deepEqual(await browser.OLSKMessageAsync(function () {
+			browser.assert.deepEqual(await browser.OLSKMessageAsync(function () {
 				return browser.check('.LCHComposeBuildPipeModeEnabledField');
 			}), {
 				LBXRequestName: 'DispatchRequestStorePayload',
@@ -49,7 +47,7 @@ describe('LCHCompose_Pair', function () {
 	context('LCHComposePairDispatchClear', function () {
 		
 		it('posts no message', async function() {
-			deepEqual(await browser.OLSKMessageAsync(function () {
+			browser.assert.deepEqual(await browser.OLSKMessageAsync(function () {
 				return browser.pressButton('.LCHComposePairClearButton');
 			}), undefined);
 		});

@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('LCHOptionIncludePageRecipes', function test_LCHOptionIncludePageRecipes () {
@@ -117,7 +115,7 @@ describe('LCHPageRecipes', function test_LCHPageRecipes () {
 		});
 
 		it('posts message', async function() {
-			deepEqual(await browser.OLSKMessageAsync(function () {
+			browser.assert.deepEqual(await browser.OLSKMessageAsync(function () {
 				return browser.pressButton('.TestLauncherInvoke');
 			}), 'LCHPageRecipes');
 		});
@@ -163,7 +161,7 @@ describe('LCHPageRecipes', function test_LCHPageRecipes () {
 		context('select', function () {
 
 			it('posts message', async function() {
-				deepEqual(await browser.OLSKMessageAsync(function () {
+				browser.assert.deepEqual(await browser.OLSKMessageAsync(function () {
 					return browser.click('.OLSKResultsListItem:last-child');
 				}), 'delta');
 			});

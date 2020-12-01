@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 const uFilter = function (inputData) {
@@ -37,11 +35,11 @@ describe('LCHVitrineDemoCommit', function () {
 		});
 		
 		it('sets --LCHCommonBackground', async function() {
-			deepEqual(initialContent.includes('--LCHCommonBackground'), true);
+			browser.assert.deepEqual(initialContent.includes('--LCHCommonBackground'), true);
 		});
 		
 		it('sets --LCHCommonForeground', async function() {
-			deepEqual(initialContent.includes('--LCHCommonForeground'), true);
+			browser.assert.deepEqual(initialContent.includes('--LCHCommonForeground'), true);
 		});
 		
 		it('updates element', async function() {
@@ -53,11 +51,11 @@ describe('LCHVitrineDemoCommit', function () {
 			browser.click('.OLSKResultsListItem');
 			await browser.wait({element: elementQuery});
 
-			deepEqual(item, browser.query(elementQuery));
+			browser.assert.deepEqual(item, browser.query(elementQuery));
 		});
 		
 		it('updates declarations', async function() {
-			deepEqual(initialContent !== browser.query(elementQuery).innerHTML, true);
+			browser.assert.deepEqual(initialContent !== browser.query(elementQuery).innerHTML, true);
 		});
 	
 	});

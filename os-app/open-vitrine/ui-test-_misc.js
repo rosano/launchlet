@@ -1,5 +1,3 @@
-import { deepEqual } from 'assert';
-
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('LCHVitrine_Misc', function () {
@@ -33,7 +31,7 @@ describe('LCHVitrine_Misc', function () {
 	});
 
 	it('sets LCHPageRecipes', function() {
-		deepEqual(browser.evaluate('Array.isArray(window.LCHPageRecipes)'), true);
+		browser.assert.deepEqual(browser.evaluate('Array.isArray(window.LCHPageRecipes)'), true);
 	});
 
 	context('LCHVitrineBrueghel', function () {
