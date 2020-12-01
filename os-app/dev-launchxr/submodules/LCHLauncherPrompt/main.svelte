@@ -5,7 +5,7 @@ export let LCHLauncherPromptFilterInputPlaceholderText;
 export let LCHLauncherPromptDispatchSelect;
 export let LCHLauncherPromptDispatchEscape;
 
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
+import { OLSK_SPEC_UI } from 'OLSKSpec';
 
 import fuzzysortPackage from 'fuzzysort';
 

@@ -32,7 +32,7 @@ export const modPublic = {
 
 };
 
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
+import { OLSK_SPEC_UI } from 'OLSKSpec';
 
 const mod = {
 
@@ -53,7 +53,7 @@ const mod = {
 	// CONTROL
 
 	ControlConfigureEditor (inputData) {
-		if (OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_SPEC_UI()) {
 			return;
 		}
 		
@@ -71,7 +71,7 @@ const mod = {
 	},
 
 	SetupEditor () {
-		if (OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_SPEC_UI()) {
  			return;
 		}
 
@@ -131,11 +131,11 @@ onMount(mod.LifecycleComponentDidMount);
 <svelte:options accessors />
 
 <div class="LCHComposeInput">
-	{#if OLSK_TESTING_BEHAVIOUR()}
+	{#if OLSK_SPEC_UI()}
 		<textarea class="LCHComposeInputFieldDebug" bind:value={ LCHComposeInputItem[LCHComposeInputKey] } on:input={ mod.InterfaceEditorFieldDebugDidInput }></textarea>
 	{/if}
 	
-	{#if !OLSK_TESTING_BEHAVIOUR()}
+	{#if !OLSK_SPEC_UI()}
 		<textarea bind:this={ mod._ValueEditorElement }></textarea>
 	{/if}
 </div>

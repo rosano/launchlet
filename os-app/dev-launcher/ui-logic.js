@@ -1,4 +1,4 @@
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
+import { OLSK_SPEC_UI } from 'OLSKSpec'
 
 import LCHLauncherAPI from './api.js';
 
@@ -146,7 +146,7 @@ const mod = {
 	// 	};
 	// };
 
-	LCHLauncherThrottleDuration: OLSK_TESTING_BEHAVIOUR() ? 25 : 1000,
+	LCHLauncherThrottleDuration: OLSK_SPEC_UI() ? 25 : 1000,
 
 	LCHLauncherKeyboardEventIsTextInput (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {

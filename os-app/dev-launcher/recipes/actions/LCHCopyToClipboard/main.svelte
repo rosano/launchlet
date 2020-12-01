@@ -3,7 +3,7 @@ export let inputData;
 export let LCHCopyToClipboardCompletionHandler;
 export let OLSKLocalized;
 
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
+import { OLSK_SPEC_UI } from 'OLSKSpec'
 
 import { onMount } from 'svelte';
 import Clipboard from 'clipboard';
@@ -42,7 +42,7 @@ onMount(function () {
 
 	clipboardButton.focus();
 	
-	if (OLSK_TESTING_BEHAVIOUR()) {
+	if (OLSK_SPEC_UI()) {
 		return;
 	}
 

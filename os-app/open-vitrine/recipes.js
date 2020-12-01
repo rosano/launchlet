@@ -1,5 +1,5 @@
 import { OLSKLocalized } from 'OLSKInternational';
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
+import { OLSK_SPEC_UI } from 'OLSKSpec'
 
 const mod = {
 
@@ -68,7 +68,7 @@ const mod = {
 	LCHVitrineSendEmailCallback () {
 		const url = 'mailto:';
 
-		if (OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_SPEC_UI()) {
 			return window.alert(url)
 		};
 

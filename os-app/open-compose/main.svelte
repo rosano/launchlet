@@ -6,7 +6,7 @@ import OLSKThrottle from 'OLSKThrottle';
 import LCH_Data from '../_shared/LCH_Data/main.js';
 import LCHDocumentStorage from '../_shared/LCHDocument/storage.js';
 import LCHSettingStorage from '../_shared/LCHSetting/storage.js';
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
+import { OLSK_SPEC_UI } from 'OLSKSpec';
 import OLSKRemoteStorage from 'OLSKRemoteStorage'
 import OLSKServiceWorker from 'OLSKServiceWorker'
 import LCHDocumentAction from '../_shared/LCHDocument/action.js';
@@ -135,7 +135,7 @@ const mod = {
 			Escape () {
 				mod.ControlFilter('');
 
-				if (!OLSK_TESTING_BEHAVIOUR()) {
+				if (!OLSK_SPEC_UI()) {
 					document.querySelector('.OLSKMasterListBody').scrollTo(0, 0);
 				}
 			},
@@ -187,7 +187,7 @@ const mod = {
 			},
 		});
 
-		if (OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_SPEC_UI()) {
 			OLSKThrottle.OLSKThrottleSkip(mod._ValuePersistThrottleMap[inputData.LCHDocumentID]);
 		}
 	},
@@ -390,7 +390,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 			LBXPayloadConfirmation: Math.random().toString(),
 		};
 
-		mod._ControlPairPayloadPost(OLSK_TESTING_BEHAVIOUR() ? 'LBX_TESTING_REQUEST_DATA' : await mod._ControlPairPayloadEncrypt(JSON.stringify(item), mod._ValuePublicKey));
+		mod._ControlPairPayloadPost(OLSK_SPEC_UI() ? 'LBX_TESTING_REQUEST_DATA' : await mod._ControlPairPayloadEncrypt(JSON.stringify(item), mod._ValuePublicKey));
 
 		mod._ValuePairPayloadHash = item.LBXPayloadConfirmation;
 	},
@@ -446,7 +446,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 			return;
 		}
 
-		mod._ValuePairStatus = inputData.LBXResponseHash === (OLSK_TESTING_BEHAVIOUR() ? 'LBX_TESTING_RESPONSE_HASH' : mod._ValuePairPayloadHash) ? 'kStatusSuccess' : 'kStatusFailed';
+		mod._ValuePairStatus = inputData.LBXResponseHash === (OLSK_SPEC_UI() ? 'LBX_TESTING_RESPONSE_HASH' : mod._ValuePairPayloadHash) ? 'kStatusSuccess' : 'kStatusFailed';
 
 		if (mod._ValuePairStatus === 'kStatusFailed') {
 			mod._ValueToolsPairStatusFailedError = inputData.LBXResponseError
@@ -496,7 +496,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 			});
 		}
 
-		if (OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_SPEC_UI()) {
 			items.push(...[
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateCreateDocument',
@@ -553,8 +553,8 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 			]);
 		}
 
-		items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes(window, mod._ValueStorageClient, OLSKLocalized, OLSK_TESTING_BEHAVIOUR()));
-		items.push(...OLSKServiceWorker.OLSKServiceWorkerRecipes(window, mod.DataNavigator(), OLSKLocalized, OLSK_TESTING_BEHAVIOUR()));
+		items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes(window, mod._ValueStorageClient, OLSKLocalized, OLSK_SPEC_UI()));
+		items.push(...OLSKServiceWorker.OLSKServiceWorkerRecipes(window, mod.DataNavigator(), OLSKLocalized, OLSK_SPEC_UI()));
 
 		window.Launchlet.LCHSingletonCreate({
 			LCHOptionRecipes: items,
@@ -599,7 +599,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 
 	MessageReceived(event) {
 		// We only accept messages from ourselves
-	  if (event.source !== window && !OLSK_TESTING_BEHAVIOUR()) {
+	  if (event.source !== window && !OLSK_SPEC_UI()) {
 	    return;
 	  }
 
@@ -751,7 +751,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 		
 		mod._ValueStorageClient = new RemoteStorage({
 			modules: [ storageModule ],
-			OLSKPatchRemoteStorageAuthRedirectURI: OLSK_TESTING_BEHAVIOUR() ? undefined : window.location.origin + window.OLSKCanonicalFor('LCHComposeRoute'),
+			OLSKPatchRemoteStorageAuthRedirectURI: OLSK_SPEC_UI() ? undefined : window.location.origin + window.OLSKCanonicalFor('LCHComposeRoute'),
 		});
 
 		mod._ValueStorageClient.access.claim(storageModule.name, 'rw');
@@ -775,7 +775,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 
 	async SetupStorageNotifications () {
 		mod._ValueStorageClient.on('sync-done', () => {
-			if (!OLSK_TESTING_BEHAVIOUR()) {
+			if (!OLSK_SPEC_UI()) {
 				console.debug('sync-done', arguments);
 			}
 		});
@@ -783,7 +783,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 		let isOffline;
 
 		mod._ValueStorageClient.on('network-offline', () => {
-			if (!OLSK_TESTING_BEHAVIOUR()) {
+			if (!OLSK_SPEC_UI()) {
 				console.debug('network-offline', arguments);
 			}
 
@@ -791,7 +791,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 		});
 
 		mod._ValueStorageClient.on('network-online', () => {
-			if (!OLSK_TESTING_BEHAVIOUR()) {
+			if (!OLSK_SPEC_UI()) {
 				console.debug('network-online', arguments);
 			}
 			
@@ -803,7 +803,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 				return;
 			};
 
-			if (!OLSK_TESTING_BEHAVIOUR()) {
+			if (!OLSK_SPEC_UI()) {
 				console.debug('error', error);
 			}
 		});
@@ -826,7 +826,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 	},
 
 	SetupValueToolsPairIsVisible() {
-		if (OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_SPEC_UI()) {
 			mod._ValueToolsPairIsVisible = TestLCHComposeToolsPairIsVisible;
 		}
 	},
@@ -838,7 +838,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 	},
 
 	SetupPageRecipes() {
-		if (!OLSK_TESTING_BEHAVIOUR()) {
+		if (!OLSK_SPEC_UI()) {
 			return;
 		}
 
@@ -957,7 +957,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 
 </div>
 
-{#if !OLSK_TESTING_BEHAVIOUR()}
+{#if !OLSK_SPEC_UI()}
 	<OLSKServiceWorkerView OLSKServiceWorkerRegistrationRoute={ window.OLSKCanonicalFor('LCHServiceWorkerRoute') } />
 {/if}
 

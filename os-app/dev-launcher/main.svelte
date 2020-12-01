@@ -2,12 +2,12 @@
 export let LRTOptions = {};
 export let LRTDidFinish = null;
 
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting'
+import { OLSK_SPEC_UI } from 'OLSKSpec'
 
 import LCHLauncherLogic from './ui-logic.js';
 import LCHLauncherAPI from './api.js';
 
-LRTOptions = LCHLauncherLogic.LCHLauncherOptions(LRTOptions, OLSK_TESTING_BEHAVIOUR() ? undefined : console.warn);
+LRTOptions = LCHLauncherLogic.LCHLauncherOptions(LRTOptions, OLSK_SPEC_UI() ? undefined : console.warn);
 
 import OLSKInternational from 'OLSKInternational';
 const OLSKLocalized = function(translationConstant) {
@@ -109,7 +109,7 @@ function ActivePromptFilterTextShouldUpdate (inputData) {
 				key: 'LCHRecipeName',
 			});
 
-			if (!results.length && OLSK_TESTING_BEHAVIOUR() && !mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptFilterText.slice(0, 3).match(/[^A-Z]/)) {
+			if (!results.length && OLSK_SPEC_UI() && !mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptFilterText.slice(0, 3).match(/[^A-Z]/)) {
 				return visibleRecipes.filter(function (e) {
 					return e.LCHRecipeSignature === mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptFilterText;
 				});
@@ -638,7 +638,7 @@ const mod = {
 	},
 
 	ReactScrollSelectedItemIntoView() {
-		if (OLSK_TESTING_BEHAVIOUR()) {
+		if (OLSK_SPEC_UI()) {
 			return;
 		}
 
@@ -691,7 +691,7 @@ const mod = {
 		if (!inputData && window.location.origin && window.location.origin !== 'null') { // about:blank has no origin
 			await (new Promise(function (resolve, reject) {
 				function receiveMessage(event) {
-					if (event.source !== window && !OLSK_TESTING_BEHAVIOUR()) {
+					if (event.source !== window && !OLSK_SPEC_UI()) {
 					  return console.log('not window');
 					}
 
@@ -919,7 +919,7 @@ import LCHLauncherPipeItem from './submodules/LCHLauncherPipeItem/main.svelte';
 
 {/each}
 
-{#if OLSK_TESTING_BEHAVIOUR() }
+{#if OLSK_SPEC_UI() }
 	<button id="TestLCHDebugCloseButton" on:click={ mod.ControlExit }></button>
 {/if}
 

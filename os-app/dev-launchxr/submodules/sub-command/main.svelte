@@ -4,7 +4,7 @@ export let LCHLauncherCommandItems;
 export let LCHLauncherCommandDidSelect;
 export let LCHLauncherCommandDidTerminate;
 
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
+import { OLSK_SPEC_UI } from 'OLSKSpec';
 
 import fuzzysortPackage from 'fuzzysort';
 

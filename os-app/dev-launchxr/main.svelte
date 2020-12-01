@@ -7,7 +7,7 @@ const OLSKLocalized = function(translationConstant) {
 	return OLSKInternational.OLSKInternationalLocalizedString(translationConstant, JSON.parse(`{"OLSK_I18N_SEARCH_REPLACE":"OLSK_I18N_SEARCH_REPLACE"}`)[LRTOptions.LCHOptionLanguage]);
 };
 
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
+import { OLSK_SPEC_UI } from 'OLSKSpec';
 
 import LCHLauncherLogic from './logic.js';
 
@@ -39,6 +39,6 @@ import LCHLauncherPipe from './submodules/sub-pipe/main.svelte';
 	<LCHLauncherPipe LCHLauncherPipeItems={ LRTOptions.LCHOptionRecipes } { OLSKLocalized } />
 {/if}
 
-{#if OLSK_TESTING_BEHAVIOUR() }
+{#if OLSK_SPEC_UI() }
 	<button id="TestLCHDebugCloseButton" on:click={ mod.ControlExit }></button>
 {/if}

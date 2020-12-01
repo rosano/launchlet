@@ -2,7 +2,7 @@
 export let OLSKLocalized;
 export let LCHLauncherPipeItems;
 
-import { OLSK_TESTING_BEHAVIOUR } from 'OLSKTesting';
+import { OLSK_SPEC_UI } from 'OLSKSpec';
 
 const mod = {
 
