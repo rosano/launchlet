@@ -139,7 +139,6 @@ function ActivePromptItemsShouldUpdate (inputData) {
 		mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptItemsVisible = inputData;
 	})();
 
-
 	(function SetItemSelected() {
 		ActivePromptItemSelectedShouldUpdate(mod._ValuePromptObjects[mod._ValuePromptActiveIndex].LCHPromptItemsVisible[0]);
 	})();
@@ -592,7 +591,6 @@ const mod = {
 
 		return new Promise(function (resolve, reject) {
 			let LCHInstanceProps = inputData.LCHComponentDescriptorProps;
-
 
 			if (inputData.LCHComponentDescriptorOLSKLocalized) {
 				Object.assign(LCHInstanceProps, {

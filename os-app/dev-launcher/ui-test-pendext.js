@@ -18,7 +18,6 @@
 
 // });
 
-
 // #purge
 // context('LCHLauncherTestConvertTypeServiceSearch', function () {
 

@@ -683,7 +683,6 @@ describe('LCHCompose_Misc', function () {
 
 	});
 
-
 	describe('LCHComposeLauncherItemClone', function test_LCHComposeLauncherItemClone () {
 
 		before(function () {

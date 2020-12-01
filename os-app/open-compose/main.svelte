@@ -440,7 +440,6 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 		}, window.location.href);
 	},
 
-
 	ControlPairResponseReceive (inputData) {
 		if (!LCHComposeLogic.LBXResponseIsValid(inputData)) {
 			return;

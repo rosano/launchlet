@@ -105,7 +105,6 @@ describe('LCHLauncherDotMode', function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, 'Backspace');
 			});
 
-
 			before(function () {
 				return browser.OLSKFireKeyboardEvent(browser.window, '.');
 			});

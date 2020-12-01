@@ -477,7 +477,6 @@ describe('LCHLauncherConvertTypeServiceSearch', function test_LCHLauncherConvert
 			return `Search: ${ inputData }`;
 		})[0];
 
-
 		it('replaces with action', function() {
 			deepEqual(mainModule.LCHRecipesModelIsAction(item), true);
 		});

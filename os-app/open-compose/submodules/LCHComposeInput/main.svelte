@@ -91,7 +91,6 @@ const mod = {
 			return e(mod._ValueEditorInstance);
 		});
 
-
 		mod._ValueEditorInstance.setValue(LCHComposeInputItem[LCHComposeInputKey]);
 	},
 
