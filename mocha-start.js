@@ -5,7 +5,7 @@ const LCHDocumentStorage = require('./os-app/_shared/LCHDocument/storage.js').de
 const LCHSettingStorage = require('./os-app/_shared/LCHSetting/storage.js').default;
 
 (function LCHMochaStorage() {
-	if (process.env.OLSK_TESTING_BEHAVIOUR === 'true') {
+	if (process.env.OLSK_SPEC_MOCHA_INTERFACE === 'true') {
 		return;
 	}
 
