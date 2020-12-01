@@ -1,4 +1,4 @@
-const kLCHServiceWorkerVersionID = process.env.HEROKU_SLUG_COMMIT || Date.now().toString();
+const kLCHServiceWorkerVersionID = Date.now().toString();
 
 const OLSKServiceWorker = require('../_shared/__external/OLSKServiceWorker/main.js');
 
