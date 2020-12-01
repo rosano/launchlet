@@ -30,7 +30,7 @@
 // 		browser.fill(LCHLauncherFilterInput, 'LCHLauncherTestConvertTypeServiceSearch');
 // 		await browser.wait({element: LCHLauncherListItem});
 
-// 		browser.assert.text(LCHLauncherListItem, uFormatted(uLocalized('LCHLauncherTestConvertTypeServiceSearchTextFormat'), 'LCHLauncherTestConvertTypeServiceSearch'));
+// 		browser.assert.text(LCHLauncherListItem, OLSKTestingFormatted(uLocalized('LCHLauncherTestConvertTypeServiceSearchTextFormat'), 'LCHLauncherTestConvertTypeServiceSearch'));
 // 	});
 
 // });
