@@ -18,4 +18,16 @@ describe('LCHGuide_Misc', function () {
 	
 	});
 
+	describe('LCHGuideIdentity', function test_LCHGuideIdentity() {
+
+		it('classes OLSKCommonCard', function () {
+			browser.assert.hasClass(LCHGuideIdentity, 'OLSKCommonCard');
+		});
+
+		it('classes OLSKCommonIdentityCard', function () {
+			browser.assert.hasClass(LCHGuideIdentity, 'OLSKCommonIdentityCard');
+		});
+		
+	});
+
 });

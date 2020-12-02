@@ -1,5 +1,3 @@
-# Launchlet Guide
-
 <div class="LCHGuideNotice">
 
 This document is a work-in-progress. Feel free to reach out on [Mastodon](https://merveilles.town/@rosano) or [Twitter](https://twitter.com/rosano).
@@ -44,8 +42,6 @@ LCHGuideTokenExampleAction
 
 In Pipe mode, this can be used on any *Subject* that returns a `String`. Although a *Recipe* can have multiple inputs, an *Action* will generally have only one.
 
-* * *
-
 ## Safety
 
 Running arbitrary JavaScript can be dangerous, and this project comes with no guarantees of safety from malicious code, but there are a few things that the composer will try to flag and ignore:
@@ -56,8 +52,6 @@ Anyone with security expertise and ideas on how to improve safety in the project
 
 It is best to run code that is concise and easy to read.
 
-* * *
-
 ## Recipes from the current page
 
 Optionally, Launchlet can include Recipes from any page that sets `LCHPageRecipes` on the `window` object to an `Array`. This allows pages to expose their functionality in a way that is accessible to 3rd parties:
@@ -65,8 +59,6 @@ Optionally, Launchlet can include Recipes from any page that sets `LCHPageRecipe
 <pre class="LCHGuideExample"><code>window.LCHPageRecipes = [LCHGuideTokenExamplePageRecipe];</code></pre>
 
 For example, when running Launchlet on <a href="https://rosano.ca" target="_blank">rosano.ca</a>, it is possible to choose a 'Send a message' *Command* that originates from the page.
-
-* * *
 
 ## What is remoteStorage?
 
