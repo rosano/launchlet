@@ -6,10 +6,6 @@ describe('LCHCompose_Misc', function () {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 
-	it('assigns link:apple-touch-icon', function () {
-		browser.assert.attribute('link[rel=apple-touch-icon]', 'href', process.env.LCH_TEMP_TOUCH_ICON_URL);
-	});
-	
 	it('assigns meta:viewport', function () {
 		browser.assert.attribute('meta[name=viewport]', 'content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
 	});
