@@ -10,24 +10,32 @@ describe('LCHVitrine_Misc', function () {
 		browser.assert.attribute('meta[name=viewport]', 'content', 'width=device-width');
 	});
 
-	context('LCHVitrine', function () {
-		
-		it('classes OLSKCommon', function () {
-			browser.assert.hasClass(LCHVitrine, 'OLSKCommon');
-		});
-	
+	it('sets LCHPageRecipes', function() {
+		browser.assert.deepEqual(browser.evaluate('Array.isArray(window.LCHPageRecipes)'), true);
 	});
 
-	context('LCHVitrineIdentityLogo', function () {
+	describe('LCHVitrineIdentity', function test_LCHVitrineIdentity() {
+
+		it('classes OLSKCommonCard', function () {
+			browser.assert.hasClass(LCHVitrineIdentity, 'OLSKCommonCard');
+		});
+
+		it('classes OLSKCommonIdentityCard', function () {
+			browser.assert.hasClass(LCHVitrineIdentity, 'OLSKCommonIdentityCard');
+		});
 		
+	});
+
+	describe('LCHVitrineIdentityLogo', function () {
+
 		it('sets role', function () {
 			browser.assert.attribute(LCHVitrineIdentityLogo, 'role', 'presentation');
 		});
-	
-	});
 
-	it('sets LCHPageRecipes', function() {
-		browser.assert.deepEqual(browser.evaluate('Array.isArray(window.LCHPageRecipes)'), true);
+		it('sets src', function () {
+			browser.assert.attribute(LCHVitrineIdentityLogo, 'src', '/_shared/LCHRootLink/ui-assets/identity.svg');
+		});
+
 	});
 
 	context('LCHVitrineBrueghel', function () {

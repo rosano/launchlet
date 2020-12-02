@@ -9,25 +9,6 @@ body {
 	color: var(--LCHCommonForeground);
 }
 
-.LCHVitrineIdentity {
-	display: flex;
-
-	margin-top: 15px;
-
-	align-items: center;
-}
-
-.LCHVitrineIdentityLogo {
-	width: 48px;
-	height: 48px;
-
-	padding-right: 4px;
-}
-
-.LCHVitrineIdentityName {
-	margin: 0;
-}
-
 .LCHVitrineBrueghel {
 	max-width: 100%;
 	margin: 10px 0;
