@@ -6,10 +6,6 @@ describe('LCHVitrine_Misc', function () {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 
-	it('assigns meta:viewport', function () {
-		browser.assert.attribute('meta[name=viewport]', 'content', 'width=device-width');
-	});
-
 	it('sets LCHPageRecipes', function() {
 		browser.assert.deepEqual(browser.evaluate('Array.isArray(window.LCHPageRecipes)'), true);
 	});

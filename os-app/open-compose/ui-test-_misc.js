@@ -6,7 +6,7 @@ describe('LCHCompose_Misc', function () {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 
-	it('assigns meta:viewport', function () {
+	it('sets meta:viewport', function () {
 		browser.assert.attribute('meta[name=viewport]', 'content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
 	});
 
