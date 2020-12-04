@@ -93,7 +93,7 @@ describe('LCHCompose_Access', function () {
 		return browser.assert.OLSKLauncherItems('LCHComposeLauncherItemClone', 0);
 	});
 
-	describe('OLSKLanguageSwitcherLauncher', function test_OLSKLanguageSwitcherLauncher() {
+	describe('tongue', function test_tongue() {
 
 		before(function () {
 			return browser.pressButton('.OLSKAppToolbarLanguageButton');
