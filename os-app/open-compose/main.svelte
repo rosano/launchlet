@@ -18,6 +18,7 @@ import LCHLauncherLogic from '../dev-launcher/ui-logic.js';
 import LCHBuild from '../_shared/LCHBuild/main.js';
 import OLSKString from 'OLSKString';
 import RemoteStorage from 'remotestoragejs';
+import OLSKLanguageSwitcher from 'OLSKLanguageSwitcher';
 
 const mod = {
 
@@ -472,6 +473,40 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 
 	LCHComposePairDispatchClear () {
 		mod.ControlPublicKeyUpdate('');
+	},
+
+	OLSKAppToolbarDispatchLanguage () {
+		if (window.Launchlet.LCHSingletonExists()) {
+			return window.Launchlet.LCHSingletonDestroy();
+		}
+
+		// #hotfix launchlet show all items
+		let selected;
+
+		window.Launchlet.LCHSingletonCreate({
+			LCHOptionRecipes: OLSKLanguageSwitcher.OLSKLanguageSwitcherRecipes({
+				ParamLanguageCodes: window.OLSKPublicConstants('OLSKSharedPageLanguagesAvailable'),
+				ParamCurrentLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
+				ParamSpecUI: OLSK_SPEC_UI(),
+				ParamWindow: window,
+				OLSKLocalized,
+				ParamRouteConstant: window.OLSKPublicConstants('OLSKSharedActiveRouteConstant'),
+				OLSKFormatted: OLSKString.OLSKStringFormatted,
+				OLSKCanonicalFor: window.OLSKCanonicalFor,
+			}).map(function (e) {
+				const item = e.LCHRecipeCallback;
+
+				return Object.assign(e, {
+					LCHRecipeCallback () {
+						selected = item;
+					},
+				})
+			}),
+			LCHOptionCompletionHandler () {
+			  selected && selected();
+			},
+			LCHOptionMode: Launchlet.LCHModePreview,
+		});
 	},
 
 	OLSKAppToolbarDispatchStorage () {
@@ -946,6 +981,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 	{/if}
 
 	<OLSKAppToolbar
+		OLSKAppToolbarDispatchLanguage={ mod.OLSKAppToolbarDispatchLanguage }
 		OLSKAppToolbarGuideURL={ window.OLSKCanonicalFor('LCHGuideRoute') }
 		OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
 		OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
