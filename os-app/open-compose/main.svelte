@@ -475,6 +475,10 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 		mod.ControlPublicKeyUpdate('');
 	},
 
+	OLSKAppToolbarDispatchApropos () {
+		mod._OLSKModalView.modPublic.OLSKModalViewShow();
+	},
+
 	OLSKAppToolbarDispatchTongue () {
 		if (window.Launchlet.LCHSingletonExists()) {
 			return window.Launchlet.LCHSingletonDestroy();
@@ -902,6 +906,8 @@ import LCHComposePair from './submodules/LCHComposePair/main.svelte';
 import OLSKAppToolbar from 'OLSKAppToolbar';
 import OLSKServiceWorkerView from '../_shared/__external/OLSKServiceWorker/main.svelte';
 import OLSKStorageWidget from 'OLSKStorageWidget';
+import OLSKModalView from 'OLSKModalView';
+import OLSKApropos from 'OLSKApropos';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 
@@ -981,6 +987,7 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 	{/if}
 
 	<OLSKAppToolbar
+		OLSKAppToolbarDispatchApropos={ mod.OLSKAppToolbarDispatchApropos }
 		OLSKAppToolbarDispatchTongue={ mod.OLSKAppToolbarDispatchTongue }
 		OLSKAppToolbarGuideURL={ window.OLSKCanonicalFor('LCHGuideRoute') }
 		OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
@@ -989,6 +996,12 @@ import OLSKStorageWidget from 'OLSKStorageWidget';
 		/>
 
 </footer>
+
+<OLSKModalView OLSKModalViewTitleText={ OLSKLocalized('OLSKAproposHeadingText') } bind:this={ mod._OLSKModalView } OLSKModalViewIsCapped={ true }>
+	<OLSKApropos
+		OLSKAproposFeedbackValue={ `javascript:window.location.href = window.atob('${ window.btoa(OLSKString.OLSKStringFormatted(window.atob('OLSK_APROPOS_FEEDBACK_EMAIL_SWAP_TOKEN'), 'RP_001' + (mod._ValueFundClue ? '+' + mod._ValueFundClue : ''))) }')` }
+		/>
+</OLSKModalView>
 
 </div>
 

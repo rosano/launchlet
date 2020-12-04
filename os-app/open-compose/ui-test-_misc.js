@@ -679,6 +679,22 @@ describe('LCHCompose_Misc', function () {
 
 	});
 
+	describe('OLSKApropos', function test_OLSKApropos() {
+
+		before(function () {
+			return browser.pressButton('.OLSKAppToolbarAproposButton');
+		});
+
+		it('sets OLSKAproposFeedbackValue', function () {
+			browser.assert.attribute('.OLSKAproposFeedbackButton', 'href', `javascript:window.location.href = window.atob('${ browser.window.btoa('mailto:' + OLSKTestingFormatted(process.env.OLSK_APROPOS_FEEDBACK_EMAIL, 'RP_001')) }')`);
+		});
+
+		after(function () {
+			browser.pressButton('.OLSKModalViewCloseButton');
+		});
+
+	});
+
 	describe('LCHComposeLauncherItemClone', function test_LCHComposeLauncherItemClone () {
 
 		before(function () {
