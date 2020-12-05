@@ -2,8 +2,6 @@ Launchlet est une façon simple d'ajouter un nom à des fragments de code pour l
 
 C'est possible d'exécuter Launchlet comme un bookmarklet, une [extension web](LCH_SHARED_EXTENSION_DOCS_URL), ou un [module](LCH_SHARED_PACKAGE_DOCS_URL) dans votre propre projet pour ajouter une fonctionnalité « sauter à ».
 
-Le code est open source et est disponible sur [GitHub](LCH_SHARED_GITHUB_URL).
-
 # L'appli
 
 Il y a aussi un appli où vous pouvez créer un lanceur personalisé avec vos propre Recettes.
