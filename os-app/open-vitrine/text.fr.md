@@ -4,8 +4,6 @@ C'est possible d'exécuter Launchlet comme un bookmarklet, une [extension web](L
 
 Le code est open source et est disponible sur [GitHub](LCH_SHARED_GITHUB_URL).
 
-Le projet est librement et gratuitement accessible, mais si vous êtes en mesure de donner, [faites un don](LCH_SHARED_DONATE_URL) s'il vous plaît pour soutenir son développement à l'avenir.
-
 # L'appli
 
 Il y a aussi un appli où vous pouvez créer un lanceur personalisé avec vos propre Recettes.

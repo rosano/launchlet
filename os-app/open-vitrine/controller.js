@@ -17,7 +17,6 @@ exports.OLSKControllerRoutes = function() {
 					LCH_SHARED_EXTENSION_DOCS_URL: process.env.LCH_SHARED_EXTENSION_DOCS_URL,
 					LCH_SHARED_PACKAGE_DOCS_URL: process.env.LCH_SHARED_PACKAGE_DOCS_URL,
 					LCH_SHARED_GITHUB_URL: process.env.LCH_SHARED_GITHUB_URL,
-					LCH_SHARED_DONATE_URL: process.env.LCH_SHARED_DONATE_URL,
 				}, res.locals.OLSKLocalized('LCHVitrineDemoRecipeNames'), res.locals.OLSKLocalized('LCHStandardRecipeNames'))),
 				OLSKStringReplaceTokens: require('OLSKString').OLSKStringReplaceTokens,
 			});

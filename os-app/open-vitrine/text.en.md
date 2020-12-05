@@ -4,8 +4,6 @@ You can run Launchlet as a bookmarklet, [browser extension](LCH_SHARED_EXTENSION
 
 The code is open-source and available on [GitHub](LCH_SHARED_GITHUB_URL).
 
-The project is freely accessible but if you are in a position to give, please [donate](LCH_SHARED_DONATE_URL) to support future development.
-
 # App
 
 There is also an app where you can compose a launcher personalized with your own Recipes.

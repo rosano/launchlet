@@ -67,10 +67,6 @@ describe(`LCHVitrine_Localize-${ OLSKRoutingLanguage }`, function () {
 		browser.assert.element(`a[href="${ process.env.LCH_SHARED_GITHUB_URL }"]`);
 	});
 
-	it('localizes LCH_SHARED_DONATE_URL', function() {
-		browser.assert.element(`a[href="${ process.env.LCH_SHARED_DONATE_URL }"]`);
-	});
-
 	it('localizes LCHVitrineDemoButtonCommit', function() {
 		browser.assert.text(LCHVitrineDemoButtonCommit, uLocalized('LCHVitrineDemoButtonCommitText'))
 	});

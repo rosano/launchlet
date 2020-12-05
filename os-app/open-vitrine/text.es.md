@@ -4,8 +4,6 @@ Puedes ejecutar Launchlet como bookmarklet, [extensión del navegador](LCH_SHARE
 
 El código fuente es código abierto y disponible en [GitHub](LCH_SHARED_GITHUB_URL).
 
-El proyecto es libremente accesible y gratis, pero si estás en posición a dar, por favor [dona](LCH_SHARED_DONATE_URL) para sostener su desarrollo en futuro.
-
 # El app
 
 Hay también un app donde puedes crear un lanzador personalizado con tus prorios Recetas.
