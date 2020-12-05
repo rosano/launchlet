@@ -1,6 +1,6 @@
 Launchlet es una manera sencilla para dar un nombre a fragmentos de código y ejecutarlo. Inspirado par [Quicksilver](https://qsapp.com), te permite de lograr más con el teclado.
 
-Puedes ejecutar Launchlet como bookmarklet, [extensión del navegador](LCH_SHARED_EXTENSION_DOCS_URL), o como un [módulo](LCH_SHARED_PACKAGE_DOCS_URL) en tu proprio proyecto para añadir una 'saltar a' funcionalidad.
+Puedes ejecutar Launchlet como bookmarklet, [extensión del navegador](LCH_SHARED_EXTENSION_DOCS_URL), o como un módulo en tu proprio proyecto para añadir una 'saltar a' funcionalidad.
 
 Lea el [guide](LCHVitrineTokenGuideURL) para aprender más.
 

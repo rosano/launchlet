@@ -9,6 +9,10 @@ body {
 	color: var(--LCHCommonForeground);
 }
 
+.LCHGuide {
+	overflow: hidden;
+}
+
 .LCHGuideNotice {
 	padding: 10px;
 	border: 1px solid var(--LCHCommonForeground)

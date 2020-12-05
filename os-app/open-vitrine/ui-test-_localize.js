@@ -59,7 +59,7 @@ describe(`LCHVitrine_Localize-${ OLSKRoutingLanguage }`, function () {
 		browser.assert.element(`a[href="${ process.env.LCH_SHARED_EXTENSION_DOCS_URL }"]`);
 	});
 
-	it('localizes LCH_SHARED_PACKAGE_DOCS_URL', function() {
+	it.skip('localizes LCH_SHARED_PACKAGE_DOCS_URL', function() {
 		browser.assert.element(`a[href="${ process.env.LCH_SHARED_PACKAGE_DOCS_URL }"]`);
 	});
 
