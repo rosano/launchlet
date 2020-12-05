@@ -597,7 +597,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 			OLSKLocalized: OLSKLocalized,
 			ParamMod: mod,
 			ParamSpecUI: OLSK_SPEC_UI(),
-		});
+		}));
 		items.push(...OLSKServiceWorker.OLSKServiceWorkerRecipes(window, mod.DataNavigator(), OLSKLocalized, OLSK_SPEC_UI()));
 
 		window.Launchlet.LCHSingletonCreate({
