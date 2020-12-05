@@ -591,7 +591,13 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 			]);
 		}
 
-		items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes(window, mod._ValueOLSKRemoteStorage, OLSKLocalized, OLSK_SPEC_UI()));
+		items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes({
+			ParamWindow: window,
+			ParamStorage: mod._ValueOLSKRemoteStorage,
+			OLSKLocalized: OLSKLocalized,
+			ParamMod: mod,
+			ParamSpecUI: OLSK_SPEC_UI(),
+		});
 		items.push(...OLSKServiceWorker.OLSKServiceWorkerRecipes(window, mod.DataNavigator(), OLSKLocalized, OLSK_SPEC_UI()));
 
 		window.Launchlet.LCHSingletonCreate({
