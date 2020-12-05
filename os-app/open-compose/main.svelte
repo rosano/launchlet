@@ -194,7 +194,7 @@ const mod = {
 	},
 
 	async _ControlDocumentSave(inputData) {
-		await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueStorageClient, inputData);
+		await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueOLSKRemoteStorage, inputData);
 	},
 
 	_ControlDocumentFlag(inputData) {
@@ -231,7 +231,7 @@ const mod = {
 	},
 
 	async ControlDocumentCreate(inputData) {
-		const item = await LCHDocumentAction.LCHDocumentActionCreate(mod._ValueStorageClient, inputData || mod.DataDocumentObjectTemplate());
+		const item = await LCHDocumentAction.LCHDocumentActionCreate(mod._ValueOLSKRemoteStorage, inputData || mod.DataDocumentObjectTemplate());
 
 		mod.ValueDocumentsAll(mod._ValueDocumentsAll.concat(item));
 
@@ -269,7 +269,7 @@ const mod = {
 			return e !== inputData;
 		}), false);
 
-		await LCHDocumentAction.LCHDocumentActionDelete(mod._ValueStorageClient, inputData.LCHDocumentID);
+		await LCHDocumentAction.LCHDocumentActionDelete(mod._ValueOLSKRemoteStorage, inputData.LCHDocumentID);
 
 		mod.ControlDocumentSelect(null);
 	},
@@ -311,7 +311,7 @@ const mod = {
 
 		zip.file(`${ fileName }.json`, JSON.stringify({
 			LCHDocumentObjects: mod._ValueDocumentsAll,
-			LCHSettingObjects: await LCHSettingAction.LCHSettingsActionQuery(mod._ValueStorageClient, {}),
+			LCHSettingObjects: await LCHSettingAction.LCHSettingsActionQuery(mod._ValueOLSKRemoteStorage, {}),
 		}));
 		
 		zip.generateAsync({type: 'blob'}).then(function (content) {
@@ -340,26 +340,26 @@ const mod = {
 		}
 
 		await Promise.all(outputData.LCHSettingObjects.map(function (e) {
-LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
+LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 		}));
 
 		await Promise.all(outputData.LCHDocumentObjects.map(function (e) {
-			return LCHDocumentStorage.LCHDocumentStorageWrite(mod._ValueStorageClient, OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(e));
+			return LCHDocumentStorage.LCHDocumentStorageWrite(mod._ValueOLSKRemoteStorage, OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(e));
 		}));
 
-		mod.ValueDocumentsAll(await LCHDocumentAction.LCHDocumentActionList(mod._ValueStorageClient));
+		mod.ValueDocumentsAll(await LCHDocumentAction.LCHDocumentActionList(mod._ValueOLSKRemoteStorage));
 	},
 
 	ControlPipeModeEnabledPersist (inputData) {
 		mod.ReactDocuments(mod._ValueDocumentsAll);
 
-		LCHSettingAction.LCHSettingsActionProperty(mod._ValueStorageClient, 'kLCHComposePreferenceModePipeEnabled', inputData.toString())
+		LCHSettingAction.LCHSettingsActionProperty(mod._ValueOLSKRemoteStorage, 'kLCHComposePreferenceModePipeEnabled', inputData.toString())
 	},
 
 	ControlPageRecipesEnabledPersist (inputData) {
 		mod.ReactDocuments(mod._ValueDocumentsAll);
 
-		LCHSettingAction.LCHSettingsActionProperty(mod._ValueStorageClient, 'kLCHComposePreferenceIncludePageRecipes', inputData.toString())
+		LCHSettingAction.LCHSettingsActionProperty(mod._ValueOLSKRemoteStorage, 'kLCHComposePreferenceIncludePageRecipes', inputData.toString())
 	},
 
 	ControlPublicKeyValidate (inputData) {
@@ -539,13 +539,13 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateCreateDocument',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateDocument () {
-						return mod.OLSKChangeDelegateCreateDocument(await LCHDocumentAction.LCHDocumentActionCreate(mod._ValueStorageClient, mod.DataDocumentObjectTemplate('FakeOLSKChangeDelegateCreateDocument')));
+						return mod.OLSKChangeDelegateCreateDocument(await LCHDocumentAction.LCHDocumentActionCreate(mod._ValueOLSKRemoteStorage, mod.DataDocumentObjectTemplate('FakeOLSKChangeDelegateCreateDocument')));
 					},
 				},
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateDocument',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateDocument () {
-						return mod.OLSKChangeDelegateUpdateDocument(await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueStorageClient, Object.assign(mod._ValueDocumentsAll.filter(function (e) {
+						return mod.OLSKChangeDelegateUpdateDocument(await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueOLSKRemoteStorage, Object.assign(mod._ValueDocumentsAll.filter(function (e) {
 							return e.LCHDocumentName.match('FakeOLSKChangeDelegate');
 						}).pop(), {
 							LCHDocumentName: 'FakeOLSKChangeDelegateUpdateDocument',
@@ -559,7 +559,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 							return e.LCHDocumentName.match('FakeOLSKChangeDelegate');
 						}).pop();
 						
-						await LCHDocumentAction.LCHDocumentActionDelete(mod._ValueStorageClient, item.LCHDocumentID);
+						await LCHDocumentAction.LCHDocumentActionDelete(mod._ValueOLSKRemoteStorage, item.LCHDocumentID);
 						
 						return mod.OLSKChangeDelegateDeleteDocument(item);
 					},
@@ -573,7 +573,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 						
 						return mod.OLSKChangeDelegateConflictDocument({
 							origin: 'conflict',
-							oldValue: await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueStorageClient, Object.assign({}, item, {
+							oldValue: await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueOLSKRemoteStorage, Object.assign({}, item, {
 								LCHDocumentName: item.LCHDocumentName + '-local',
 							})),
 							newValue: Object.assign({}, item, {
@@ -591,7 +591,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 			]);
 		}
 
-		items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes(window, mod._ValueStorageClient, OLSKLocalized, OLSK_SPEC_UI()));
+		items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes(window, mod._ValueOLSKRemoteStorage, OLSKLocalized, OLSK_SPEC_UI()));
 		items.push(...OLSKServiceWorker.OLSKServiceWorkerRecipes(window, mod.DataNavigator(), OLSKLocalized, OLSK_SPEC_UI()));
 
 		window.Launchlet.LCHSingletonCreate({
@@ -686,7 +686,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 	},
 
 	async OLSKChangeDelegateConflictDocument (inputData) {
-		return mod.OLSKChangeDelegateUpdateDocument(await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueStorageClient, OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(inputData)));
+		return mod.OLSKChangeDelegateUpdateDocument(await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueOLSKRemoteStorage, OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(inputData)));
 	},
 
 	// REACT
@@ -787,32 +787,32 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 			LCHSettingStorage.LCHSettingStorageBuild,
 			]);
 		
-		mod._ValueStorageClient = new RemoteStorage({
+		mod._ValueOLSKRemoteStorage = new RemoteStorage({
 			modules: [ storageModule ],
 			OLSKPatchRemoteStorageAuthRedirectURI: OLSK_SPEC_UI() ? undefined : window.location.origin + window.OLSKCanonicalFor('LCHComposeRoute'),
 		});
 
-		mod._ValueStorageClient.access.claim(storageModule.name, 'rw');
+		mod._ValueOLSKRemoteStorage.access.claim(storageModule.name, 'rw');
 
-		mod._ValueStorageClient.caching.enable(`/${ storageModule.name }/`);
+		mod._ValueOLSKRemoteStorage.caching.enable(`/${ storageModule.name }/`);
 	},
 
 	SetupRemoteStorage () {
 		return
-		mod._ValueStorageClient.setApiKeys(window.OLSKPublicConstants('LCHDropboxAppKey') ? {
+		mod._ValueOLSKRemoteStorage.setApiKeys(window.OLSKPublicConstants('LCHDropboxAppKey') ? {
 			dropbox: window.atob(window.OLSKPublicConstants('LCHDropboxAppKey')),
 			googledrive: window.atob(window.OLSKPublicConstants('LCHGoogleClientKey')),
 		} : {});
 	},
 
 	SetupStorageStatus () {
-		OLSKRemoteStorage.OLSKRemoteStorageStatus(mod._ValueStorageClient, function (inputData) {
+		OLSKRemoteStorage.OLSKRemoteStorageStatus(mod._ValueOLSKRemoteStorage, function (inputData) {
 			mod._ValueFooterStorageStatus = inputData;
 		}, OLSKLocalized)
 	},
 
 	async SetupStorageNotifications () {
-		mod._ValueStorageClient.on('sync-done', () => {
+		mod._ValueOLSKRemoteStorage.on('sync-done', () => {
 			if (!OLSK_SPEC_UI()) {
 				console.debug('sync-done', arguments);
 			}
@@ -820,7 +820,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 
 		let isOffline;
 
-		mod._ValueStorageClient.on('network-offline', () => {
+		mod._ValueOLSKRemoteStorage.on('network-offline', () => {
 			if (!OLSK_SPEC_UI()) {
 				console.debug('network-offline', arguments);
 			}
@@ -828,7 +828,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 			isOffline = true;
 		});
 
-		mod._ValueStorageClient.on('network-online', () => {
+		mod._ValueOLSKRemoteStorage.on('network-online', () => {
 			if (!OLSK_SPEC_UI()) {
 				console.debug('network-online', arguments);
 			}
@@ -836,7 +836,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 			isOffline = false;
 		});
 
-		mod._ValueStorageClient.on('error', (error) => {
+		mod._ValueOLSKRemoteStorage.on('error', (error) => {
 			if (isOffline && inputData.message === 'Sync failed: Network request failed.') {
 				return;
 			};
@@ -847,16 +847,16 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 		});
 
 		return new Promise(function (res, rej) {
-			return mod._ValueStorageClient.on('ready', res);
+			return mod._ValueOLSKRemoteStorage.on('ready', res);
 		});
 	},
 
 	async SetupValuePipeModeEnabled() {
-		mod._ValuePipeModeEnabled = (await LCHSettingAction.LCHSettingsActionProperty(mod._ValueStorageClient, 'kLCHComposePreferenceModePipeEnabled')) === 'true';
+		mod._ValuePipeModeEnabled = (await LCHSettingAction.LCHSettingsActionProperty(mod._ValueOLSKRemoteStorage, 'kLCHComposePreferenceModePipeEnabled')) === 'true';
 	},
 
 	async SetupValuePageRecipesEnabled() {
-		mod._ValuePageRecipesEnabled = (await LCHSettingAction.LCHSettingsActionProperty(mod._ValueStorageClient, 'kLCHComposePreferenceIncludePageRecipes')) === 'true';
+		mod._ValuePageRecipesEnabled = (await LCHSettingAction.LCHSettingsActionProperty(mod._ValueOLSKRemoteStorage, 'kLCHComposePreferenceIncludePageRecipes')) === 'true';
 	},
 
 	SetupValuePublicKey() {
@@ -870,7 +870,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueStorageClient, e);
 	},
 
 	async SetupValueDocumentsAll() {
-		mod.ValueDocumentsAll((await LCHDocumentAction.LCHDocumentActionList(mod._ValueStorageClient)).filter(function (e) {
+		mod.ValueDocumentsAll((await LCHDocumentAction.LCHDocumentActionList(mod._ValueOLSKRemoteStorage)).filter(function (e) {
 			return typeof e === 'object'; // #patch-remotestorage-true
 		}));
 	},
@@ -981,7 +981,7 @@ import OLSKApropos from 'OLSKApropos';
 			</div>
 
 			<div class="OLSKToolbarElementGroup">
-				<OLSKStorageWidget StorageClient={ mod._ValueStorageClient } />
+				<OLSKStorageWidget StorageClient={ mod._ValueOLSKRemoteStorage } />
 			</div>
 		</div>
 	{/if}
