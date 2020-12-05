@@ -1,12 +1,12 @@
-Launchlet est une façon simple d'ajouter un nom à des fragments de code pour les exécuter. Inspiré par [Quicksilver](https://qsapp.com), il fonctionne principalement sans interaction avec la souris et vous permet d'accéder à vos [Recettes](LCHVitrineTokenGuideURL) avec très peu de touches. Vous pouvez également l'utiliser pour personnaliser des sites internet avec votre propre CSS ou JavaScript.
+Launchlet est une façon simple d'ajouter un nom à des fragments de code pour les exécuter. Inspiré par [Quicksilver](https://qsapp.com), il vous permet d'accomplir plus avec le clavier.
 
 C'est possible d'exécuter Launchlet comme un bookmarklet, une [extension web](LCH_SHARED_EXTENSION_DOCS_URL), ou un [module](LCH_SHARED_PACKAGE_DOCS_URL) dans votre propre projet pour ajouter une fonctionnalité « sauter à ».
 
-# L'appli
+Veuillez lire le [guide](LCHVitrineTokenGuideURL) pour en apprendre plus.
 
-Il y a aussi un appli où vous pouvez créer un lanceur personalisé avec vos propre Recettes.
+<a class="LCHVitrineContentAppButton OLSKCommonButton OLSKCommonButtonPrimary" href="LCHVitrineTokenComposeURL">LCHVitrineContentAppButtonText</a>
 
-## Caractéristiques
+# Caractéristiques
 - Créer des Recettes avec du JavaScript
 - Créer des Recettes avec du CSS
 - Régler une filtre de URL sur des Recettes
@@ -19,8 +19,6 @@ Il y a aussi un appli où vous pouvez créer un lanceur personalisé avec vos pr
 - Pas d'instructions compliquées
 - Pas de publicité, analyse comportementale, traqueurs tiers
 - Fonctionne sur des appareils mobiles, les tablettes et les ordinateurs de bureau
-
-<a class="LCHVitrineContentAppButton OLSKCommonButton OLSKCommonButtonPrimary" href="LCHVitrineTokenComposeURL">LCHVitrineContentAppButtonText</a>
 
 # Démonstrations
 
