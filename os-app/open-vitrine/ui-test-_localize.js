@@ -90,9 +90,7 @@ describe(`LCHVitrine_Localize-${ OLSKRoutingLanguage }`, function () {
 		});
 		
 		it('sets href', function () {
-			browser.assert.attribute(LCHVitrineContentAppButton, 'href', OLSKTestingCanonical(require('../open-compose/controller.js').OLSKControllerRoutes().shift(), {
-				OLSKRoutingLanguage,
-			}));
+			browser.assert.attribute(LCHVitrineContentAppButton, 'href', OLSKTestingCanonical(require('../open-compose/controller.js').OLSKControllerRoutes().shift()));
 		});
 	
 	});
