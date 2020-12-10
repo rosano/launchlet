@@ -4,6 +4,6 @@ export const LCHFlip = function(param1, param2) {
 	}
 
 	return function() {
-		return param1.apply(param2, Array.from(arguments).reverse());
+		return param1.apply(param2, [...arguments].reverse());
 	};
 };

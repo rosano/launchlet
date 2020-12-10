@@ -26,7 +26,7 @@ describe('LCHFlip', function test_LCHFlip() {
 		
 		it('reverses parameters', function () {
 			deepEqual(mainModule.LCHFlip(function() {
-				return Array.from(arguments);
+				return [...arguments];
 			})('alfa', 'bravo'), ['bravo', 'alfa']);
 		});
 	

@@ -585,7 +585,7 @@ const mod = {
 	},
 
 	LCHAPIRunTasks  () {
-		const inputData = mod.LCHRuntimeFilteredRecipes.apply(null, Array.from(arguments));
+		const inputData = mod.LCHRuntimeFilteredRecipes.apply(null, [...arguments]);
 		const api = LCHRuntime.LCHRuntimeAPI(LCHLauncherStandardRecipes().concat(inputData));
 
 		return Promise.all(mod.LCHRuntimeFilteredTasks(inputData).map(function (e) {
