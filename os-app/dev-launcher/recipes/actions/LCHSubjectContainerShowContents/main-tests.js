@@ -1,12 +1,12 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./main.js');
+const mod = require('./main.js');
 
 describe('LCHSubjectContainerShowContentsCallback', function test_LCHSubjectContainerShowContentsCallback(inputData) {
 
 	it('returns inputData', function() {
 		const item = function () {};
-		deepEqual(mainModule.LCHSubjectContainerShowContentsCallback(item), item);
+		deepEqual(mod.LCHSubjectContainerShowContentsCallback(item), item);
 	});
 
 });
@@ -14,10 +14,10 @@ describe('LCHSubjectContainerShowContentsCallback', function test_LCHSubjectCont
 describe('LCHSubjectContainerShowContentsRecipe', function test_LCHSubjectContainerShowContentsRecipe() {
 
 	it('returns LCHRecipe', function() {
-		deepEqual(mainModule.LCHSubjectContainerShowContentsRecipe(), {
+		deepEqual(mod.LCHSubjectContainerShowContentsRecipe(), {
 			LCHRecipeSignature: 'LCHSubjectContainerShowContents',
 			LCHRecipeInputTypes: 'SubjectContainer',
-			LCHRecipeCallback: mainModule.LCHSubjectContainerShowContentsCallback,
+			LCHRecipeCallback: mod.LCHSubjectContainerShowContentsCallback,
 		});
 	});
 

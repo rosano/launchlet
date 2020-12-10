@@ -1,13 +1,13 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./main.js');
+const mod = require('./main.js');
 
 describe('LCHReadTextFileRecipe', function test_LCHReadTextFileRecipe() {
 
 	it('returns LCHRecipe', function() {
-		deepEqual(mainModule.LCHReadTextFileRecipe(), {
+		deepEqual(mod.LCHReadTextFileRecipe(), {
 			LCHRecipeSignature: 'LCHReadTextFile',
-			LCHRecipeCallback: mainModule.LCHReadTextFileCallback,
+			LCHRecipeCallback: mod.LCHReadTextFileCallback,
 		});
 	});
 

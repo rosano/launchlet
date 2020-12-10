@@ -1,23 +1,23 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./main.js');
+const mod = require('./main.js');
 
 describe('LCHTypeSubjectContainerCallback', function test_LCHTypeSubjectContainerCallback() {
 
 	it('returns false if no LCHRecipeName', function() {
-		deepEqual(mainModule.LCHTypeSubjectContainerCallback(Object.assign(mainModule.LCHTypeSubjectContainerCanonicalExampleCallback(), {
+		deepEqual(mod.LCHTypeSubjectContainerCallback(Object.assign(mod.LCHTypeSubjectContainerCanonicalExampleCallback(), {
 			LCHRecipeName: undefined,
 		})), false);
 	});
 
 	it('returns false if LCHRecipeOutputType not valid', function() {
-		deepEqual(mainModule.LCHTypeSubjectContainerCallback(Object.assign(mainModule.LCHTypeSubjectContainerCanonicalExampleCallback(), {
+		deepEqual(mod.LCHTypeSubjectContainerCallback(Object.assign(mod.LCHTypeSubjectContainerCanonicalExampleCallback(), {
 			LCHRecipeOutputType: 'alfa',
 		})), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mainModule.LCHTypeSubjectContainerCallback(mainModule.LCHTypeSubjectContainerCanonicalExampleCallback()), true);
+		deepEqual(mod.LCHTypeSubjectContainerCallback(mod.LCHTypeSubjectContainerCanonicalExampleCallback()), true);
 	});
 
 });
@@ -25,13 +25,13 @@ describe('LCHTypeSubjectContainerCallback', function test_LCHTypeSubjectContaine
 describe('LCHTypeSubjectContainerCanonicalExampleCallback', function test_LCHTypeSubjectContainerCanonicalExampleCallback() {
 
 	it('returns object', function() {
-		deepEqual(typeof mainModule.LCHTypeSubjectContainerCanonicalExampleCallback(), 'object');
+		deepEqual(typeof mod.LCHTypeSubjectContainerCanonicalExampleCallback(), 'object');
 	});
 
 	context('LCHRecipeName', function() {
 		
 		it('assigns string', function() {
-			deepEqual(mainModule.LCHTypeSubjectContainerCanonicalExampleCallback().LCHRecipeName, 'alfa');
+			deepEqual(mod.LCHTypeSubjectContainerCanonicalExampleCallback().LCHRecipeName, 'alfa');
 		});
 
 	});
@@ -39,7 +39,7 @@ describe('LCHTypeSubjectContainerCanonicalExampleCallback', function test_LCHTyp
 	context('LCHRecipeCallback', function() {
 		
 		it('assigns function', function() {
-			deepEqual(typeof mainModule.LCHTypeSubjectContainerCanonicalExampleCallback().LCHRecipeCallback, 'function');
+			deepEqual(typeof mod.LCHTypeSubjectContainerCanonicalExampleCallback().LCHRecipeCallback, 'function');
 		});
 
 	});
@@ -47,7 +47,7 @@ describe('LCHTypeSubjectContainerCanonicalExampleCallback', function test_LCHTyp
 	context('LCHRecipeOutputType', function() {
 		
 		it('assigns string', function() {
-			deepEqual(mainModule.LCHTypeSubjectContainerCanonicalExampleCallback().LCHRecipeOutputType, 'SubjectContainer');
+			deepEqual(mod.LCHTypeSubjectContainerCanonicalExampleCallback().LCHRecipeOutputType, 'SubjectContainer');
 		});
 
 	});
@@ -57,10 +57,10 @@ describe('LCHTypeSubjectContainerCanonicalExampleCallback', function test_LCHTyp
 describe('LCHTypeSubjectContainerRecipe', function test_LCHTypeSubjectContainerRecipe() {
 
 	it('returns LCHRecipe', function() {
-		deepEqual(mainModule.LCHTypeSubjectContainerRecipe(), {
-			LCHRecipeCallback: mainModule.LCHTypeSubjectContainerCallback,
+		deepEqual(mod.LCHTypeSubjectContainerRecipe(), {
+			LCHRecipeCallback: mod.LCHTypeSubjectContainerCallback,
 			LCHRecipeOutputType: 'Bool',
-			LCHRecipeCanonicalExampleCallback: mainModule.LCHTypeSubjectContainerCanonicalExampleCallback,
+			LCHRecipeCanonicalExampleCallback: mod.LCHTypeSubjectContainerCanonicalExampleCallback,
 			LCHRecipeSignature: 'SubjectContainer',
 			_LCHRecipeTypeIsExclusive: true,
 		});

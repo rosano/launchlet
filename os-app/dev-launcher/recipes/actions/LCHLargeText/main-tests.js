@@ -1,11 +1,11 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./main.js');
+const mod = require('./main.js');
 
 describe('LCHLargeTextCallback', function test_LCHLargeTextCallback() {
 
 	it('returns undefined', function() {
-		deepEqual(mainModule.LCHLargeTextCallback('alfa'), undefined);
+		deepEqual(mod.LCHLargeTextCallback('alfa'), undefined);
 	});
 
 });
@@ -13,10 +13,10 @@ describe('LCHLargeTextCallback', function test_LCHLargeTextCallback() {
 describe('LCHLargeTextRecipe', function test_LCHLargeTextRecipe() {
 
 	it('returns LCHRecipe', function() {
-		deepEqual(mainModule.LCHLargeTextRecipe(), {
+		deepEqual(mod.LCHLargeTextRecipe(), {
 			LCHRecipeSignature: 'LCHLargeText',
 			LCHRecipeInputTypes: 'String',
-			LCHRecipeCallback: mainModule.LCHLargeTextCallback,
+			LCHRecipeCallback: mod.LCHLargeTextCallback,
 		});
 	});
 

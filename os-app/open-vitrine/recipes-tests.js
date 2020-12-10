@@ -1,12 +1,12 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./recipes.js').default;
+const mod = require('./recipes.js').default;
 
 describe('LCHVitrinePageColoursRandomizeRecipe', function test_LCHVitrinePageColoursRandomizeRecipe() {
 
 	it('returns LCHRecipe', function() {
-		deepEqual(mainModule.LCHVitrinePageColoursRandomizeRecipe(), {
-			LCHRecipeCallback: mainModule.LCHVitrinePageColoursRandomizeCallback,
+		deepEqual(mod.LCHVitrinePageColoursRandomizeRecipe(), {
+			LCHRecipeCallback: mod.LCHVitrinePageColoursRandomizeCallback,
 			LCHRecipeSignature: 'LCHVitrinePageColoursRandomize',
 		});
 	});
@@ -16,10 +16,10 @@ describe('LCHVitrinePageColoursRandomizeRecipe', function test_LCHVitrinePageCol
 describe('LCHVitrinePageColoursRestoreRecipe', function test_LCHVitrinePageColoursRestoreRecipe() {
 
 	it('returns LCHRecipe', function() {
-		deepEqual(mainModule.LCHVitrinePageColoursRestoreRecipe(), {
-			LCHRecipeCallback: mainModule.LCHVitrinePageColoursRestoreCallback,
+		deepEqual(mod.LCHVitrinePageColoursRestoreRecipe(), {
+			LCHRecipeCallback: mod.LCHVitrinePageColoursRestoreCallback,
 			LCHRecipeSignature: 'LCHVitrinePageColoursRestore',
-			LCHRecipeIsExcluded: mainModule.LCHVitrinePageColoursRestoreIsHidden,
+			LCHRecipeIsExcluded: mod.LCHVitrinePageColoursRestoreIsHidden,
 		});
 	});
 
@@ -28,8 +28,8 @@ describe('LCHVitrinePageColoursRestoreRecipe', function test_LCHVitrinePageColou
 describe('LCHVitrineCopyPageInfoRecipe', function test_LCHVitrineCopyPageInfoRecipe() {
 
 	it('returns LCHRecipe', function() {
-		deepEqual(mainModule.LCHVitrineCopyPageInfoRecipe(), {
-			LCHRecipeCallback: mainModule.LCHVitrineCopyPageInfoCallback,
+		deepEqual(mod.LCHVitrineCopyPageInfoRecipe(), {
+			LCHRecipeCallback: mod.LCHVitrineCopyPageInfoCallback,
 			LCHRecipeSignature: 'LCHVitrineCopyPageInfo',
 		});
 	});
@@ -39,8 +39,8 @@ describe('LCHVitrineCopyPageInfoRecipe', function test_LCHVitrineCopyPageInfoRec
 describe('LCHVitrineSendEmailRecipe', function test_LCHVitrineSendEmailRecipe() {
 
 	it('returns LCHRecipe', async function() {
-		deepEqual(mainModule.LCHVitrineSendEmailRecipe(), {
-			LCHRecipeCallback: mainModule.LCHVitrineSendEmailCallback,
+		deepEqual(mod.LCHVitrineSendEmailRecipe(), {
+			LCHRecipeCallback: mod.LCHVitrineSendEmailCallback,
 			LCHRecipeSignature: 'LCHVitrineSendEmail',
 		});
 	});
@@ -50,10 +50,10 @@ describe('LCHVitrineSendEmailRecipe', function test_LCHVitrineSendEmailRecipe() 
 describe('LCHVitrinePageLinksHighlightAddRecipe', function test_LCHVitrinePageLinksHighlightAddRecipe() {
 
 	it('returns LCHRecipe', async function() {
-		deepEqual(mainModule.LCHVitrinePageLinksHighlightAddRecipe(), {
-			LCHRecipeCallback: mainModule.LCHVitrinePageLinksHighlightAddCallback,
+		deepEqual(mod.LCHVitrinePageLinksHighlightAddRecipe(), {
+			LCHRecipeCallback: mod.LCHVitrinePageLinksHighlightAddCallback,
 			LCHRecipeSignature: 'LCHVitrinePageLinksHighlightAdd',
-			LCHRecipeIsExcluded: mainModule.LCHVitrinePageLinksHighlightAddIsHidden,
+			LCHRecipeIsExcluded: mod.LCHVitrinePageLinksHighlightAddIsHidden,
 		});
 	});
 
@@ -62,10 +62,10 @@ describe('LCHVitrinePageLinksHighlightAddRecipe', function test_LCHVitrinePageLi
 describe('LCHVitrinePageLinksHighlightRemoveRecipe', function test_LCHVitrinePageLinksHighlightRemoveRecipe() {
 
 	it('returns LCHRecipe', async function() {
-		deepEqual(mainModule.LCHVitrinePageLinksHighlightRemoveRecipe(), {
-			LCHRecipeCallback: mainModule.LCHVitrinePageLinksHighlightRemoveCallback,
+		deepEqual(mod.LCHVitrinePageLinksHighlightRemoveRecipe(), {
+			LCHRecipeCallback: mod.LCHVitrinePageLinksHighlightRemoveCallback,
 			LCHRecipeSignature: 'LCHVitrinePageLinksHighlightRemove',
-			LCHRecipeIsExcluded: mainModule.LCHVitrinePageLinksHighlightRemoveIsHidden,
+			LCHRecipeIsExcluded: mod.LCHVitrinePageLinksHighlightRemoveIsHidden,
 		});
 	});
 
@@ -74,7 +74,7 @@ describe('LCHVitrinePageLinksHighlightRemoveRecipe', function test_LCHVitrinePag
 describe('LCHVitrineMinimalistDateStringCallback', function test_LCHVitrineMinimalistDateStringCallback() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHVitrineMinimalistDateStringCallback(), (new Date()).toJSON().slice(0, 10).replace(/-/g, '.'));
+		deepEqual(mod.LCHVitrineMinimalistDateStringCallback(), (new Date()).toJSON().slice(0, 10).replace(/-/g, '.'));
 	});
 
 });
@@ -82,8 +82,8 @@ describe('LCHVitrineMinimalistDateStringCallback', function test_LCHVitrineMinim
 describe('LCHVitrineMinimalistDateStringRecipe', function test_LCHVitrineMinimalistDateStringRecipe() {
 
 	it('returns LCHRecipe', function() {
-		deepEqual(mainModule.LCHVitrineMinimalistDateStringRecipe(), {
-			LCHRecipeCallback: mainModule.LCHVitrineMinimalistDateStringCallback,
+		deepEqual(mod.LCHVitrineMinimalistDateStringRecipe(), {
+			LCHRecipeCallback: mod.LCHVitrineMinimalistDateStringCallback,
 			LCHRecipeSignature: 'LCHVitrineMinimalistDateString',
 			LCHRecipeOutputType: 'String',
 		});

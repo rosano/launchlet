@@ -1,29 +1,29 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./main.js');
+const mod = require('./main.js');
 
 describe('LCHTypeServiceSearchCallback', function test_LCHTypeServiceSearchCallback() {
 
 	it('returns false if no LCHRecipeName', function() {
-		deepEqual(mainModule.LCHTypeServiceSearchCallback(Object.assign(mainModule.LCHTypeServiceSearchCanonicalExampleCallback(), {
+		deepEqual(mod.LCHTypeServiceSearchCallback(Object.assign(mod.LCHTypeServiceSearchCanonicalExampleCallback(), {
 			LCHRecipeName: undefined,
 		})), false);
 	});
 
 	it('returns false if arguments', function() {
-		deepEqual(mainModule.LCHTypeServiceSearchCallback(Object.assign(mainModule.LCHTypeServiceSearchCanonicalExampleCallback(), {
+		deepEqual(mod.LCHTypeServiceSearchCallback(Object.assign(mod.LCHTypeServiceSearchCanonicalExampleCallback(), {
 			LCHRecipeCallback (alfa) {},
 		})), false);
 	});
 
 	it('returns false if LCHRecipeOutputType not ServiceSearchURLTemplate', function() {
-		deepEqual(mainModule.LCHTypeServiceSearchCallback(Object.assign(mainModule.LCHTypeServiceSearchCanonicalExampleCallback(), {
+		deepEqual(mod.LCHTypeServiceSearchCallback(Object.assign(mod.LCHTypeServiceSearchCanonicalExampleCallback(), {
 			LCHRecipeOutputType: 'alfa',
 		})), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mainModule.LCHTypeServiceSearchCallback(mainModule.LCHTypeServiceSearchCanonicalExampleCallback()), true);
+		deepEqual(mod.LCHTypeServiceSearchCallback(mod.LCHTypeServiceSearchCanonicalExampleCallback()), true);
 	});
 
 });
@@ -31,13 +31,13 @@ describe('LCHTypeServiceSearchCallback', function test_LCHTypeServiceSearchCallb
 describe('LCHTypeServiceSearchCanonicalExampleCallback', function test_LCHTypeServiceSearchCanonicalExampleCallback() {
 
 	it('returns object', function() {
-		deepEqual(typeof mainModule.LCHTypeServiceSearchCanonicalExampleCallback(), 'object');
+		deepEqual(typeof mod.LCHTypeServiceSearchCanonicalExampleCallback(), 'object');
 	});
 
 	context('LCHRecipeName', function() {
 		
 		it('assigns string', function() {
-			deepEqual(mainModule.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeName, 'alfa');
+			deepEqual(mod.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeName, 'alfa');
 		});
 
 	});
@@ -45,11 +45,11 @@ describe('LCHTypeServiceSearchCanonicalExampleCallback', function test_LCHTypeSe
 	context('LCHRecipeCallback', function() {
 		
 		it('assigns function', function() {
-			deepEqual(typeof mainModule.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeCallback, 'function');
+			deepEqual(typeof mod.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeCallback, 'function');
 		});
 		
 		it('returns string', function() {
-			deepEqual(mainModule.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeCallback(), 'http://example.com?q=LCHSEARCHTOKEN');
+			deepEqual(mod.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeCallback(), 'http://example.com?q=LCHSEARCHTOKEN');
 		});
 
 	});
@@ -57,7 +57,7 @@ describe('LCHTypeServiceSearchCanonicalExampleCallback', function test_LCHTypeSe
 	context('LCHRecipeOutputType', function() {
 		
 		it('assigns string', function() {
-			deepEqual(mainModule.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeOutputType, 'ServiceSearchURLTemplate');
+			deepEqual(mod.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeOutputType, 'ServiceSearchURLTemplate');
 		});
 
 	});
@@ -67,10 +67,10 @@ describe('LCHTypeServiceSearchCanonicalExampleCallback', function test_LCHTypeSe
 describe('LCHTypeServiceSearchRecipe', function test_LCHTypeServiceSearchRecipe() {
 
 	it('returns LCHRecipe', function() {
-		deepEqual(mainModule.LCHTypeServiceSearchRecipe(), {
-			LCHRecipeCallback: mainModule.LCHTypeServiceSearchCallback,
+		deepEqual(mod.LCHTypeServiceSearchRecipe(), {
+			LCHRecipeCallback: mod.LCHTypeServiceSearchCallback,
 			LCHRecipeOutputType: 'Bool',
-			LCHRecipeCanonicalExampleCallback: mainModule.LCHTypeServiceSearchCanonicalExampleCallback,
+			LCHRecipeCanonicalExampleCallback: mod.LCHTypeServiceSearchCanonicalExampleCallback,
 			LCHRecipeSignature: 'ServiceSearch',
 		});
 	});

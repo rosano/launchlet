@@ -1,6 +1,6 @@
 const { rejects, deepEqual } = require('assert');
 
-const mainModule = require('./action.js').default;
+const mod = require('./action.js').default;
 
 const kTesting = {
 	StubDocumentObject: function() {
@@ -23,11 +23,11 @@ const kTesting = {
 describe('LCHDocumentActionCreate', function test_LCHDocumentActionCreate() {
 
 	it('rejects if not object', async function() {
-		await rejects(mainModule.LCHDocumentActionCreate(LCHTestingStorageClient, null), /LCHErrorInputNotValid/);
+		await rejects(mod.LCHDocumentActionCreate(LCHTestingStorageClient, null), /LCHErrorInputNotValid/);
 	});
 
 	it('returns object with LCHErrors if not valid', async function() {
-		deepEqual((await mainModule.LCHDocumentActionCreate(LCHTestingStorageClient, Object.assign(kTesting.StubDocumentObject(), {
+		deepEqual((await mod.LCHDocumentActionCreate(LCHTestingStorageClient, Object.assign(kTesting.StubDocumentObject(), {
 			LCHDocumentCallbackBody: null,
 		}))).LCHErrors, {
 			LCHDocumentCallbackBody: [
@@ -37,7 +37,7 @@ describe('LCHDocumentActionCreate', function test_LCHDocumentActionCreate() {
 	});
 
 	it('returns LCHDocument', async function() {
-		let item = await mainModule.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject());
+		let item = await mod.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject());
 
 		deepEqual(item, Object.assign(kTesting.StubDocumentObject(), {
 			LCHDocumentID: item.LCHDocumentID,
@@ -48,17 +48,17 @@ describe('LCHDocumentActionCreate', function test_LCHDocumentActionCreate() {
 
 	it('sets LCHDocumentID to unique value', async function() {
 		let items = await kTesting.uSerial(Array.from(Array(10)).map(async function (e) {
-			return (await mainModule.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject())).LCHDocumentID;
+			return (await mod.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject())).LCHDocumentID;
 		}));
 		deepEqual([...(new Set(items))], items);
 	});
 
 	it('sets LCHDocumentCreationDate to now', async function() {
-		deepEqual(new Date() - (await mainModule.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject())).LCHDocumentCreationDate < 100, true);
+		deepEqual(new Date() - (await mod.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject())).LCHDocumentCreationDate < 100, true);
 	});
 
 	it('sets LCHDocumentModificationDate to now', async function() {
-		deepEqual(new Date() - (await mainModule.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject())).LCHDocumentModificationDate < 100, true);
+		deepEqual(new Date() - (await mod.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject())).LCHDocumentModificationDate < 100, true);
 	});
 
 });
@@ -66,11 +66,11 @@ describe('LCHDocumentActionCreate', function test_LCHDocumentActionCreate() {
 describe('LCHDocumentActionUpdate', function test_LCHDocumentActionUpdate() {
 
 	it('rejects if not object', async function() {
-		await rejects(mainModule.LCHDocumentActionUpdate(LCHTestingStorageClient, null), /LCHErrorInputNotValid/);
+		await rejects(mod.LCHDocumentActionUpdate(LCHTestingStorageClient, null), /LCHErrorInputNotValid/);
 	});
 
 	it('returns object with LCHErrors if not valid', async function() {
-		deepEqual((await mainModule.LCHDocumentActionUpdate(LCHTestingStorageClient, Object.assign(await mainModule.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject()), {
+		deepEqual((await mod.LCHDocumentActionUpdate(LCHTestingStorageClient, Object.assign(await mod.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject()), {
 			LCHDocumentID: null,
 		}))).LCHErrors, {
 			LCHDocumentID: [
@@ -80,9 +80,9 @@ describe('LCHDocumentActionUpdate', function test_LCHDocumentActionUpdate() {
 	});
 
 	it('returns LCHDocument', async function() {
-		let itemCreated = await mainModule.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject());
+		let itemCreated = await mod.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject());
 
-		let item = await mainModule.LCHDocumentActionUpdate(LCHTestingStorageClient, itemCreated);
+		let item = await mod.LCHDocumentActionUpdate(LCHTestingStorageClient, itemCreated);
 
 		deepEqual(item, Object.assign(itemCreated, {
 			LCHDocumentModificationDate: item.LCHDocumentModificationDate,
@@ -90,11 +90,11 @@ describe('LCHDocumentActionUpdate', function test_LCHDocumentActionUpdate() {
 	});
 
 	it('sets LCHDocumentModificationDate to now', async function() {
-		deepEqual(new Date() - (await mainModule.LCHDocumentActionUpdate(LCHTestingStorageClient, await mainModule.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject()))).LCHDocumentModificationDate < 100, true);
+		deepEqual(new Date() - (await mod.LCHDocumentActionUpdate(LCHTestingStorageClient, await mod.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject()))).LCHDocumentModificationDate < 100, true);
 	});
 
 	it('writes inputData if not found', async function() {
-		let item = await mainModule.LCHDocumentActionUpdate(LCHTestingStorageClient, Object.assign(kTesting.StubDocumentObject(), {
+		let item = await mod.LCHDocumentActionUpdate(LCHTestingStorageClient, Object.assign(kTesting.StubDocumentObject(), {
 			LCHDocumentID: 'alfa',
 			LCHDocumentCreationDate: new Date(),
 		}));
@@ -110,19 +110,19 @@ describe('LCHDocumentActionUpdate', function test_LCHDocumentActionUpdate() {
 describe('LCHDocumentActionDelete', function test_LCHDocumentActionDelete() {
 
 	it('rejects if not string', async function() {
-		await rejects(mainModule.LCHDocumentActionDelete(LCHTestingStorageClient, null), /LCHErrorInputNotValid/);
+		await rejects(mod.LCHDocumentActionDelete(LCHTestingStorageClient, null), /LCHErrorInputNotValid/);
 	});
 
 	it('returns statusCode', async function() {
-		deepEqual(await mainModule.LCHDocumentActionDelete(LCHTestingStorageClient, (await mainModule.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject())).LCHDocumentID), {
+		deepEqual(await mod.LCHDocumentActionDelete(LCHTestingStorageClient, (await mod.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject())).LCHDocumentID), {
 			statusCode: 200,
 		});
 	});
 
 	it('deletes LCHDocument', async function() {
 		let itemID;
-		await mainModule.LCHDocumentActionDelete(LCHTestingStorageClient, itemID = (await mainModule.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject())).LCHDocumentID);
-		deepEqual(await mainModule.LCHDocumentActionList(LCHTestingStorageClient), []);
+		await mod.LCHDocumentActionDelete(LCHTestingStorageClient, itemID = (await mod.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject())).LCHDocumentID);
+		deepEqual(await mod.LCHDocumentActionList(LCHTestingStorageClient), []);
 	});
 
 });
@@ -130,13 +130,13 @@ describe('LCHDocumentActionDelete', function test_LCHDocumentActionDelete() {
 describe('LCHDocumentActionList', function test_LCHDocumentActionList() {
 
 	it('returns array', async function() {
-		deepEqual(await mainModule.LCHDocumentActionList(LCHTestingStorageClient), []);
+		deepEqual(await mod.LCHDocumentActionList(LCHTestingStorageClient), []);
 	});
 
 	it('returns array with existing LCHDocuments', async function() {
-		let item = await mainModule.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject());
+		let item = await mod.LCHDocumentActionCreate(LCHTestingStorageClient, kTesting.StubDocumentObject());
 
-		deepEqual(await mainModule.LCHDocumentActionList(LCHTestingStorageClient), [item]);
+		deepEqual(await mod.LCHDocumentActionList(LCHTestingStorageClient), [item]);
 	});
 
 });

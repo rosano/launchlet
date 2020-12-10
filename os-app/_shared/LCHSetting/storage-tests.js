@@ -1,11 +1,11 @@
 const { rejects, throws, deepEqual } = require('assert');
 
-const mainModule = require('./storage.js').default;
+const mod = require('./storage.js').default;
 
 describe('LCHSettingStorageCollectionName', function test_LCHSettingStorageCollectionName() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHSettingStorageCollectionName(), 'lch_settings');
+		deepEqual(mod.LCHSettingStorageCollectionName(), 'lch_settings');
 	});
 
 });
@@ -13,7 +13,7 @@ describe('LCHSettingStorageCollectionName', function test_LCHSettingStorageColle
 describe('LCHSettingStorageCollectionPath', function test_LCHSettingStorageCollectionPath() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHSettingStorageCollectionPath(), mainModule.LCHSettingStorageCollectionName() + '/');
+		deepEqual(mod.LCHSettingStorageCollectionPath(), mod.LCHSettingStorageCollectionName() + '/');
 	});
 
 });
@@ -22,13 +22,13 @@ describe('LCHSettingStorageObjectPath', function test_LCHSettingStorageObjectPat
 
 	it('throws error if not valid', function() {
 		throws(function() {
-			mainModule.LCHSettingStorageObjectPath({});
+			mod.LCHSettingStorageObjectPath({});
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns string', function() {
 		const item = StubSettingObjectValid();
-		deepEqual(mainModule.LCHSettingStorageObjectPath(item), mainModule.LCHSettingStorageCollectionPath() + item.LCHSettingKey);
+		deepEqual(mod.LCHSettingStorageObjectPath(item), mod.LCHSettingStorageCollectionPath() + item.LCHSettingKey);
 	});
 
 });
@@ -36,11 +36,11 @@ describe('LCHSettingStorageObjectPath', function test_LCHSettingStorageObjectPat
 describe('LCHSettingStorageWrite', function test_LCHSettingStorageWrite() {
 
 	it('rejects if not object', async function() {
-		await rejects(mainModule.LCHSettingStorageWrite(LCHTestingStorageClient, null), /LCHErrorInputNotValid/);
+		await rejects(mod.LCHSettingStorageWrite(LCHTestingStorageClient, null), /LCHErrorInputNotValid/);
 	});
 
 	it('returns object with LCHErrors if not valid', async function() {
-		deepEqual((await mainModule.LCHSettingStorageWrite(LCHTestingStorageClient, Object.assign(StubSettingObjectValid(), {
+		deepEqual((await mod.LCHSettingStorageWrite(LCHTestingStorageClient, Object.assign(StubSettingObjectValid(), {
 			LCHSettingKey: null,
 		}))).LCHErrors, {
 			LCHSettingKey: [
@@ -52,11 +52,11 @@ describe('LCHSettingStorageWrite', function test_LCHSettingStorageWrite() {
 	it('returns input', async function () {
 		const item = StubSettingObjectValid();
 
-		deepEqual(await mainModule.LCHSettingStorageWrite(LCHTestingStorageClient, item) === item, true);
+		deepEqual(await mod.LCHSettingStorageWrite(LCHTestingStorageClient, item) === item, true);
 	});
 
 	it('leaves input unmodified', async function () {
-		deepEqual(await mainModule.LCHSettingStorageWrite(LCHTestingStorageClient, StubSettingObjectValid()), StubSettingObjectValid());
+		deepEqual(await mod.LCHSettingStorageWrite(LCHTestingStorageClient, StubSettingObjectValid()), StubSettingObjectValid());
 	});
 
 });
@@ -65,18 +65,18 @@ describe('LCHSettingStorageRead', function test_LCHSettingStorageRead() {
 
 	it('throws if not string', function () {
 		throws(function () {
-			mainModule.LCHSettingStorageRead(LCHTestingStorageClient, 1);
+			mod.LCHSettingStorageRead(LCHTestingStorageClient, 1);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns null if not found', async function() {
-		deepEqual(await mainModule.LCHSettingStorageRead(LCHTestingStorageClient, 'alfa'), null);
+		deepEqual(await mod.LCHSettingStorageRead(LCHTestingStorageClient, 'alfa'), null);
 	});
 
 	it('returns LCHSetting', async function() {
-		let item = await mainModule.LCHSettingStorageWrite(LCHTestingStorageClient, StubSettingObjectValid());
+		let item = await mod.LCHSettingStorageWrite(LCHTestingStorageClient, StubSettingObjectValid());
 
-		deepEqual(await mainModule.LCHSettingStorageRead(LCHTestingStorageClient, item.LCHSettingKey), item);
+		deepEqual(await mod.LCHSettingStorageRead(LCHTestingStorageClient, item.LCHSettingKey), item);
 	});
 
 });
@@ -84,13 +84,13 @@ describe('LCHSettingStorageRead', function test_LCHSettingStorageRead() {
 describe('LCHSettingStorageList', function test_LCHSettingStorageList() {
 
 	it('returns empty array if none', async function() {
-		deepEqual(await mainModule.LCHSettingStorageList(LCHTestingStorageClient), {});
+		deepEqual(await mod.LCHSettingStorageList(LCHTestingStorageClient), {});
 	});
 
 	it('returns existing LCHSettings', async function() {
-		let item = await mainModule.LCHSettingStorageWrite(LCHTestingStorageClient, StubSettingObjectValid());
-		deepEqual(Object.values(await mainModule.LCHSettingStorageList(LCHTestingStorageClient)), [item]);
-		deepEqual(Object.keys(await mainModule.LCHSettingStorageList(LCHTestingStorageClient)), [item.LCHSettingKey]);
+		let item = await mod.LCHSettingStorageWrite(LCHTestingStorageClient, StubSettingObjectValid());
+		deepEqual(Object.values(await mod.LCHSettingStorageList(LCHTestingStorageClient)), [item]);
+		deepEqual(Object.keys(await mod.LCHSettingStorageList(LCHTestingStorageClient)), [item.LCHSettingKey]);
 	});
 
 });
@@ -99,19 +99,19 @@ describe('LCHSettingStorageDelete', function test_LCHSettingStorageDelete() {
 
 	it('throws if not string', function () {
 		throws(function () {
-			mainModule.LCHSettingStorageDelete(LCHTestingStorageClient, 1);
+			mod.LCHSettingStorageDelete(LCHTestingStorageClient, 1);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns statusCode', async function() {
-		deepEqual(await mainModule.LCHSettingStorageDelete(LCHTestingStorageClient, (await mainModule.LCHSettingStorageWrite(LCHTestingStorageClient, StubSettingObjectValid())).LCHSettingKey), {
+		deepEqual(await mod.LCHSettingStorageDelete(LCHTestingStorageClient, (await mod.LCHSettingStorageWrite(LCHTestingStorageClient, StubSettingObjectValid())).LCHSettingKey), {
 			statusCode: 200,
 		});
 	});
 
 	it('deletes LCHSetting', async function() {
-		await mainModule.LCHSettingStorageDelete(LCHTestingStorageClient, (await mainModule.LCHSettingStorageWrite(LCHTestingStorageClient, StubSettingObjectValid())).LCHSettingKey);
-		deepEqual(await mainModule.LCHSettingStorageList(LCHTestingStorageClient), {});
+		await mod.LCHSettingStorageDelete(LCHTestingStorageClient, (await mod.LCHSettingStorageWrite(LCHTestingStorageClient, StubSettingObjectValid())).LCHSettingKey);
+		deepEqual(await mod.LCHSettingStorageList(LCHTestingStorageClient), {});
 	});
 
 });

@@ -1,29 +1,29 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./main.js');
+const mod = require('./main.js');
 
 describe('LCHCopyToClipboardCallback', function test_LCHCopyToClipboardCallback() {
 
 	it('throws error if not string', function() {
 		throws(function() {
-			mainModule.LCHCopyToClipboardCallback(null);
+			mod.LCHCopyToClipboardCallback(null);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if empty', function() {
 		throws(function() {
-			mainModule.LCHCopyToClipboardCallback('');
+			mod.LCHCopyToClipboardCallback('');
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if only whitespace', function() {
 		throws(function() {
-			mainModule.LCHCopyToClipboardCallback(' ');
+			mod.LCHCopyToClipboardCallback(' ');
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns LCHComponentDescriptor', function() {
-		deepEqual(mainModule.LCHCopyToClipboardCallback('alfa'), {
+		deepEqual(mod.LCHCopyToClipboardCallback('alfa'), {
 			LCHComponentDescriptorName: 'LCHCopyToClipboard',
 			LCHComponentDescriptorCompletionHandlerSignature: 'LCHCopyToClipboardCompletionHandler',
 			LCHComponentDescriptorProps: {
@@ -38,10 +38,10 @@ describe('LCHCopyToClipboardCallback', function test_LCHCopyToClipboardCallback(
 describe('LCHCopyToClipboardRecipe', function test_LCHCopyToClipboardRecipe() {
 
 	it('returns LCHRecipe', function() {
-		deepEqual(mainModule.LCHCopyToClipboardRecipe(), {
+		deepEqual(mod.LCHCopyToClipboardRecipe(), {
 			LCHRecipeSignature: 'LCHCopyToClipboard',
 			LCHRecipeInputTypes: 'String',
-			LCHRecipeCallback: mainModule.LCHCopyToClipboardCallback,
+			LCHRecipeCallback: mod.LCHCopyToClipboardCallback,
 		});
 	});
 

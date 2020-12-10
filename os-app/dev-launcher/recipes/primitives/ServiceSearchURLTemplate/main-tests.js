@@ -1,23 +1,23 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./main.js');
+const mod = require('./main.js');
 
 describe('LCHPrimitiveServiceSearchURLTemplateCallback', function test_LCHPrimitiveServiceSearchURLTemplateCallback() {
 
 	it('returns false if not URL', function() {
-		deepEqual(mainModule.LCHPrimitiveServiceSearchURLTemplateCallback('://example'), false);
+		deepEqual(mod.LCHPrimitiveServiceSearchURLTemplateCallback('://example'), false);
 	});
 
 	it('returns false if no token match', function() {
-		deepEqual(mainModule.LCHPrimitiveServiceSearchURLTemplateCallback('http://example.com?q=LCHSEARCHTOKE'), false);
+		deepEqual(mod.LCHPrimitiveServiceSearchURLTemplateCallback('http://example.com?q=LCHSEARCHTOKE'), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mainModule.LCHPrimitiveServiceSearchURLTemplateCallback('http://example.com?q=LCHSEARCHTOKEN1'), true);
+		deepEqual(mod.LCHPrimitiveServiceSearchURLTemplateCallback('http://example.com?q=LCHSEARCHTOKEN1'), true);
 	});
 
 	it('matches lowercase', function() {
-		deepEqual(mainModule.LCHPrimitiveServiceSearchURLTemplateCallback('http://example.com?q=lchsearchtoken'), true);
+		deepEqual(mod.LCHPrimitiveServiceSearchURLTemplateCallback('http://example.com?q=lchsearchtoken'), true);
 	});
 
 });
@@ -25,7 +25,7 @@ describe('LCHPrimitiveServiceSearchURLTemplateCallback', function test_LCHPrimit
 describe('LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback', function test_LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback(), 'http://example.com?q=LCHSEARCHTOKEN');
+		deepEqual(mod.LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback(), 'http://example.com?q=LCHSEARCHTOKEN');
 	});
 
 });
@@ -33,11 +33,11 @@ describe('LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback', functio
 describe('LCHPrimitiveServiceSearchURLTemplateRecipe', function test_LCHPrimitiveServiceSearchURLTemplateRecipe() {
 
 	it('returns LCHRecipe', function() {
-		deepEqual(mainModule.LCHPrimitiveServiceSearchURLTemplateRecipe(), {
+		deepEqual(mod.LCHPrimitiveServiceSearchURLTemplateRecipe(), {
 			LCHRecipeSignature: 'ServiceSearchURLTemplate',
-			LCHRecipeCallback: mainModule.LCHPrimitiveServiceSearchURLTemplateCallback,
+			LCHRecipeCallback: mod.LCHPrimitiveServiceSearchURLTemplateCallback,
 			LCHRecipeOutputType: 'Bool',
-			LCHRecipeCanonicalExampleCallback: mainModule.LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback,
+			LCHRecipeCanonicalExampleCallback: mod.LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback,
 			_LCHRecipeTypeIsExclusive: true,
 		});
 	});

@@ -1,21 +1,21 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./main.js');
+const mod = require('./main.js');
 
 describe('LCHFlip', function test_LCHFlip() {
 
 	it('throws error if not function', function() {
 		throws(function() {
-			mainModule.LCHFlip(null);
+			mod.LCHFlip(null);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns function', function() {
-		deepEqual(typeof mainModule.LCHFlip(function() {}, []), 'function');
+		deepEqual(typeof mod.LCHFlip(function() {}, []), 'function');
 	});
 
 	it('passes param2 to this', function() {
-		deepEqual(mainModule.LCHFlip(function() {
+		deepEqual(mod.LCHFlip(function() {
 			return this.alfa;
 		}, {
 			alfa: 'bravo',
@@ -25,7 +25,7 @@ describe('LCHFlip', function test_LCHFlip() {
 	context('function', function () {
 		
 		it('reverses parameters', function () {
-			deepEqual(mainModule.LCHFlip(function() {
+			deepEqual(mod.LCHFlip(function() {
 				return [...arguments];
 			})('alfa', 'bravo'), ['bravo', 'alfa']);
 		});

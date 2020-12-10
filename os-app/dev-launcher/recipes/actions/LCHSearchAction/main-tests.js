@@ -1,41 +1,41 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./main.js');
+const mod = require('./main.js');
 
 describe('LCHSearchActionURLFrom', function test_LCHSearchActionURLFrom() {
 
 	it('throws error if param1 not string', function() {
 		throws(function() {
-			mainModule.LCHSearchActionURLFrom(null, '');
+			mod.LCHSearchActionURLFrom(null, '');
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws error if param2 not string', function() {
 		throws(function() {
-			mainModule.LCHSearchActionURLFrom('', null);
+			mod.LCHSearchActionURLFrom('', null);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns param1', function() {
-		deepEqual(mainModule.LCHSearchActionURLFrom('alfa', ''), 'alfa');
+		deepEqual(mod.LCHSearchActionURLFrom('alfa', ''), 'alfa');
 	});
 
 	describe('search token', function() {
 
 		it('replaces with param2', function() {
-			deepEqual(mainModule.LCHSearchActionURLFrom('alfa?LCHSEARCHTOKEN', 'bravo'), 'alfa?bravo');
+			deepEqual(mod.LCHSearchActionURLFrom('alfa?LCHSEARCHTOKEN', 'bravo'), 'alfa?bravo');
 		});
 
 		it('replaces case insensitive', function() {
-			deepEqual(mainModule.LCHSearchActionURLFrom('alfa?lchsearchtoken', 'bravo'), 'alfa?bravo');
+			deepEqual(mod.LCHSearchActionURLFrom('alfa?lchsearchtoken', 'bravo'), 'alfa?bravo');
 		});
 
 		it('substitutes spaces', function() {
-			deepEqual(mainModule.LCHSearchActionURLFrom('LCHSEARCHTOKEN', 'bravo charlie'), 'bravo+charlie');
+			deepEqual(mod.LCHSearchActionURLFrom('LCHSEARCHTOKEN', 'bravo charlie'), 'bravo+charlie');
 		});
 
 		it('escapes ampersand', function() {
-			deepEqual(mainModule.LCHSearchActionURLFrom('LCHSEARCHTOKEN', 'bravo & charlie'), 'bravo+%26+charlie');
+			deepEqual(mod.LCHSearchActionURLFrom('LCHSEARCHTOKEN', 'bravo & charlie'), 'bravo+%26+charlie');
 		});
 
 	});
@@ -45,7 +45,7 @@ describe('LCHSearchActionURLFrom', function test_LCHSearchActionURLFrom() {
 describe('LCHSearchWithCallback', function test_LCHSearchWithCallback() {
 
 	it('calls api with result', function() {
-		deepEqual(mainModule.LCHSearchWithCallback.bind({
+		deepEqual(mod.LCHSearchWithCallback.bind({
 			api: {
 				fn () {
 					return function (inputData) {
@@ -61,10 +61,10 @@ describe('LCHSearchWithCallback', function test_LCHSearchWithCallback() {
 describe('LCHSearchWithRecipe', function test_LCHSearchWithRecipe() {
 
 	it('returns LCHRecipe', function() {
-		deepEqual(mainModule.LCHSearchWithRecipe(), {
+		deepEqual(mod.LCHSearchWithRecipe(), {
 			LCHRecipeSignature: 'LCHSearchWith',
 			LCHRecipeInputTypes: 'String,ServiceSearchURLTemplate',
-			LCHRecipeCallback: mainModule.LCHSearchWithCallback,
+			LCHRecipeCallback: mod.LCHSearchWithCallback,
 		});
 	});
 
@@ -73,7 +73,7 @@ describe('LCHSearchWithRecipe', function test_LCHSearchWithRecipe() {
 describe('LCHSearchForCallback', function test_LCHSearchForCallback() {
 
 	it('calls LCHFlip with LCHSearchWithCallback', function() {
-		deepEqual(mainModule.LCHSearchForCallback.bind({
+		deepEqual(mod.LCHSearchForCallback.bind({
 			api: {
 				fn () {
 					return function (inputData) {
@@ -89,10 +89,10 @@ describe('LCHSearchForCallback', function test_LCHSearchForCallback() {
 describe('LCHSearchForRecipe', function test_LCHSearchForRecipe() {
 
 	it('returns LCHRecipe', function() {
-		deepEqual(mainModule.LCHSearchForRecipe(), {
+		deepEqual(mod.LCHSearchForRecipe(), {
 			LCHRecipeSignature: 'LCHSearchFor',
 			LCHRecipeInputTypes: 'ServiceSearchURLTemplate,String',
-			LCHRecipeCallback: mainModule.LCHSearchForCallback,
+			LCHRecipeCallback: mod.LCHSearchForCallback,
 		});
 	});
 

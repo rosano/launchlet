@@ -1,12 +1,12 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./main.js');
+const mod = require('./main.js');
 
 describe('LCHRunCommandCallback', function test_LCHRunCommandCallback() {
 
 	it('returns inputData', function() {
 		const item = function () {};
-		deepEqual(mainModule.LCHRunCommandCallback(item), item);
+		deepEqual(mod.LCHRunCommandCallback(item), item);
 	});
 
 });
@@ -14,10 +14,10 @@ describe('LCHRunCommandCallback', function test_LCHRunCommandCallback() {
 describe('LCHRunCommandRecipe', function test_LCHRunCommandRecipe() {
 
 	it('returns LCHRecipe', function() {
-		deepEqual(mainModule.LCHRunCommandRecipe(), {
+		deepEqual(mod.LCHRunCommandRecipe(), {
 			LCHRecipeSignature: 'LCHRunCommand',
 			LCHRecipeInputTypes: 'Command',
-			LCHRecipeCallback: mainModule.LCHRunCommandCallback,
+			LCHRecipeCallback: mod.LCHRunCommandCallback,
 		});
 	});
 

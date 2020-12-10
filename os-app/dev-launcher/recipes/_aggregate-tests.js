@@ -1,6 +1,6 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./_aggregate.js');
+const mod = require('./_aggregate.js');
 
 describe('LCHLauncherStandardRecipes', function test_LCHLauncherStandardRecipes() {
 
@@ -17,7 +17,7 @@ describe('LCHLauncherStandardRecipes', function test_LCHLauncherStandardRecipes(
 		}));
 
 		deepEqual(item.filter(function (e) {
-			return !mainModule.LCHLauncherStandardRecipes().filter(function (e2) {
+			return !mod.LCHLauncherStandardRecipes().filter(function (e2) {
 				return e2.LCHRecipeCallback === e.LCHRecipeCallback;
 			}).length;
 		}), []);

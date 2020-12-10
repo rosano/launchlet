@@ -1,19 +1,19 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./main.js');
+const mod = require('./main.js');
 
 describe('LCHPrimitiveDOMElementCallback', function test_LCHPrimitiveDOMElementCallback() {
 
 	it('returns false if not object', function() {
-		deepEqual(mainModule.LCHPrimitiveDOMElementCallback(null), false);
+		deepEqual(mod.LCHPrimitiveDOMElementCallback(null), false);
 	});
 
 	it('returns false if focus not function', function() {
-		deepEqual(mainModule.LCHPrimitiveDOMElementCallback({}), false);
+		deepEqual(mod.LCHPrimitiveDOMElementCallback({}), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mainModule.LCHPrimitiveDOMElementCallback(mainModule.LCHPrimitiveDOMElementCanonicalExampleCallback()), true);
+		deepEqual(mod.LCHPrimitiveDOMElementCallback(mod.LCHPrimitiveDOMElementCanonicalExampleCallback()), true);
 	});
 
 });
@@ -21,13 +21,13 @@ describe('LCHPrimitiveDOMElementCallback', function test_LCHPrimitiveDOMElementC
 describe('LCHPrimitiveDOMElementCanonicalExampleCallback', function test_LCHPrimitiveDOMElementCanonicalExampleCallback() {
 
 	it('returns object', function() {
-		deepEqual(typeof mainModule.LCHPrimitiveDOMElementCanonicalExampleCallback(), 'object');
+		deepEqual(typeof mod.LCHPrimitiveDOMElementCanonicalExampleCallback(), 'object');
 	});
 
 	context('focus', function () {
 		
 		it('assigns function', function() {
-			deepEqual(typeof mainModule.LCHPrimitiveDOMElementCanonicalExampleCallback().focus, 'function');
+			deepEqual(typeof mod.LCHPrimitiveDOMElementCanonicalExampleCallback().focus, 'function');
 		});
 	
 	});
@@ -37,11 +37,11 @@ describe('LCHPrimitiveDOMElementCanonicalExampleCallback', function test_LCHPrim
 describe('LCHPrimitiveDOMElementRecipe', function test_LCHPrimitiveDOMElementRecipe() {
 
 	it('returns LCHRecipe', function() {
-		deepEqual(mainModule.LCHPrimitiveDOMElementRecipe(), {
+		deepEqual(mod.LCHPrimitiveDOMElementRecipe(), {
 			LCHRecipeSignature: 'DOMElement',
-			LCHRecipeCallback: mainModule.LCHPrimitiveDOMElementCallback,
+			LCHRecipeCallback: mod.LCHPrimitiveDOMElementCallback,
 			LCHRecipeOutputType: 'Bool',
-			LCHRecipeCanonicalExampleCallback: mainModule.LCHPrimitiveDOMElementCanonicalExampleCallback,
+			LCHRecipeCanonicalExampleCallback: mod.LCHPrimitiveDOMElementCanonicalExampleCallback,
 			_LCHRecipeTypeIsExclusive: true,
 		});
 	});

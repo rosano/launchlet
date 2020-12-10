@@ -1,6 +1,6 @@
 const { rejects, deepEqual } = require('assert');
 
-const mainModule = require('./package.js');
+const mod = require('./package.js');
 
 const kTesting = {
 	StubValueClass: function(inputData) {
@@ -14,35 +14,35 @@ const kTesting = {
 	},
 };
 
-mainModule.mod._ValueClass = kTesting.StubValueClass('alfa');
+mod.mod._ValueClass = kTesting.StubValueClass('alfa');
 
 describe('DataSingletonExists', function test_DataSingletonExists() {
 
 	beforeEach(function () {
-		deepEqual(mainModule.mod._ValueSingleton, undefined);
+		deepEqual(mod.mod._ValueSingleton, undefined);
 	});
 
 	afterEach(function () {
-		deepEqual(mainModule.mod._ValueSingleton, undefined);
+		deepEqual(mod.mod._ValueSingleton, undefined);
 	});
 
 	it('returns false', function() {
-		deepEqual(mainModule.mod.DataSingletonExists(), false);
+		deepEqual(mod.mod.DataSingletonExists(), false);
 	});
 
 	it('returns true after LifecycleSingletonCreate', function() {
-		mainModule.mod.LifecycleSingletonCreate();
+		mod.mod.LifecycleSingletonCreate();
 		
-		deepEqual(mainModule.mod.DataSingletonExists(), true);
+		deepEqual(mod.mod.DataSingletonExists(), true);
 
-		mainModule.mod.LifecycleSingletonDestroy();
+		mod.mod.LifecycleSingletonDestroy();
 	});
 
 	it('returns true after LifecycleSingletonDestroy', function() {
-		mainModule.mod.LifecycleSingletonCreate();
-		mainModule.mod.LifecycleSingletonDestroy();
+		mod.mod.LifecycleSingletonCreate();
+		mod.mod.LifecycleSingletonDestroy();
 		
-		deepEqual(mainModule.mod.DataSingletonExists(), false);
+		deepEqual(mod.mod.DataSingletonExists(), false);
 	});
 
 });
@@ -50,31 +50,31 @@ describe('DataSingletonExists', function test_DataSingletonExists() {
 describe('LifecycleSingletonCreate', function test_LifecycleSingletonCreate() {
 
 	beforeEach(function () {
-		deepEqual(mainModule.mod._ValueSingleton, undefined);
+		deepEqual(mod.mod._ValueSingleton, undefined);
 	});
 
 	afterEach(function () {
-		mainModule.mod.LifecycleSingletonDestroy();
+		mod.mod.LifecycleSingletonDestroy();
 	});
 	
 	afterEach(function () {
-		deepEqual(mainModule.mod._ValueSingleton, undefined);
+		deepEqual(mod.mod._ValueSingleton, undefined);
 	});
 
 	it('sets ValueSingleton', function() {
-		mainModule.mod.LifecycleSingletonCreate();
+		mod.mod.LifecycleSingletonCreate();
 
-		deepEqual(mainModule.mod._ValueSingleton.check1(), 'alfa');
+		deepEqual(mod.mod._ValueSingleton.check1(), 'alfa');
 	});
 
 	it('calls LifecycleSingletonDestroy if exists', function() {
-		mainModule.mod.LifecycleSingletonCreate();
+		mod.mod.LifecycleSingletonCreate();
 		
-		mainModule.mod._ValueClass = kTesting.StubValueClass('bravo');
+		mod.mod._ValueClass = kTesting.StubValueClass('bravo');
 
-		mainModule.mod.LifecycleSingletonCreate();
+		mod.mod.LifecycleSingletonCreate();
 
-		deepEqual(mainModule.mod._ValueSingleton.check1(), 'bravo');
+		deepEqual(mod.mod._ValueSingleton.check1(), 'bravo');
 	});
 
 });
@@ -82,21 +82,21 @@ describe('LifecycleSingletonCreate', function test_LifecycleSingletonCreate() {
 describe('LifecycleSingletonDestroy', function test_LifecycleSingletonDestroy() {
 
 	beforeEach(function () {
-		deepEqual(mainModule.mod._ValueSingleton, undefined);
+		deepEqual(mod.mod._ValueSingleton, undefined);
 	});
 
 	beforeEach(function () {
-		mainModule.mod.LifecycleSingletonCreate();
+		mod.mod.LifecycleSingletonCreate();
 	});
 	
 	afterEach(function () {
-		deepEqual(mainModule.mod._ValueSingleton, undefined);
+		deepEqual(mod.mod._ValueSingleton, undefined);
 	});
 
 	it('deletes ValueSingleton', function() {
-		mainModule.mod.LifecycleSingletonDestroy();
+		mod.mod.LifecycleSingletonDestroy();
 
-		deepEqual(mainModule.mod._ValueSingleton, undefined);
+		deepEqual(mod.mod._ValueSingleton, undefined);
 	});
 
 });
@@ -104,15 +104,15 @@ describe('LifecycleSingletonDestroy', function test_LifecycleSingletonDestroy() 
 describe('LCHPackage', function test_LCHPackage() {
 
 	it('returns object', function() {
-		deepEqual(mainModule.LCHPackage(), {
-			LCHSingletonCreate: mainModule.mod.LifecycleSingletonCreate,
-			LCHSingletonExists: mainModule.mod.DataSingletonExists,
-			LCHSingletonDestroy: mainModule.mod.LifecycleSingletonDestroy,
+		deepEqual(mod.LCHPackage(), {
+			LCHSingletonCreate: mod.mod.LifecycleSingletonCreate,
+			LCHSingletonExists: mod.mod.DataSingletonExists,
+			LCHSingletonDestroy: mod.mod.LifecycleSingletonDestroy,
 		});
 	});
 
 	it('freezes object', function() {
-		let item = mainModule.LCHPackage();
+		let item = mod.LCHPackage();
 
 		item.alfa = 'bravo',
 		

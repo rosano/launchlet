@@ -1,11 +1,11 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./main.js');
+const mod = require('./main.js');
 
 describe('LCHDOMElementFocusCallback', function test_LCHDOMElementFocusCallback() {
 
 	it('returns undefined', function() {
-		deepEqual(mainModule.LCHDOMElementFocusCallback(), undefined);
+		deepEqual(mod.LCHDOMElementFocusCallback(), undefined);
 	});
 
 });
@@ -13,10 +13,10 @@ describe('LCHDOMElementFocusCallback', function test_LCHDOMElementFocusCallback(
 describe('LCHDOMElementFocusRecipe', function test_LCHDOMElementFocusRecipe() {
 
 	it('returns LCHRecipe', function() {
-		deepEqual(mainModule.LCHDOMElementFocusRecipe(), {
+		deepEqual(mod.LCHDOMElementFocusRecipe(), {
 			LCHRecipeSignature: 'LCHDOMElementFocus',
 			LCHRecipeInputTypes: 'DOMElement',
-			LCHRecipeCallback: mainModule.LCHDOMElementFocusCallback,
+			LCHRecipeCallback: mod.LCHDOMElementFocusCallback,
 		});
 	});
 

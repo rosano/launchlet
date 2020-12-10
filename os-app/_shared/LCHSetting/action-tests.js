@@ -1,27 +1,27 @@
 const { rejects, deepEqual } = require('assert');
 
-const mainModule = require('./action.js').default;
+const mod = require('./action.js').default;
 
 describe('LCHSettingsActionProperty', function test_LCHSettingsActionProperty() {
 
 	it('rejects if param1 not string', async function() {
-		await rejects(mainModule.LCHSettingsActionProperty(LCHTestingStorageClient, null));
+		await rejects(mod.LCHSettingsActionProperty(LCHTestingStorageClient, null));
 	});
 
 	it('returns undefined if param1 not found', async function() {
-		deepEqual(await mainModule.LCHSettingsActionProperty(LCHTestingStorageClient, 'alfa'), undefined);
+		deepEqual(await mod.LCHSettingsActionProperty(LCHTestingStorageClient, 'alfa'), undefined);
 	});
 
 	context('param2', function () {
 
 		it('returns value if undefined', async function() {
-			await mainModule.LCHSettingsActionProperty(LCHTestingStorageClient, 'alfa', 'bravo');
+			await mod.LCHSettingsActionProperty(LCHTestingStorageClient, 'alfa', 'bravo');
 
-			deepEqual(await mainModule.LCHSettingsActionProperty(LCHTestingStorageClient, 'alfa'), 'bravo');
+			deepEqual(await mod.LCHSettingsActionProperty(LCHTestingStorageClient, 'alfa'), 'bravo');
 		});
 
 		it('returns true and sets value', async function() {
-			deepEqual(await mainModule.LCHSettingsActionProperty(LCHTestingStorageClient, 'alfa', 'bravo'), true);
+			deepEqual(await mod.LCHSettingsActionProperty(LCHTestingStorageClient, 'alfa', 'bravo'), true);
 		});
 		
 	});
@@ -31,20 +31,20 @@ describe('LCHSettingsActionProperty', function test_LCHSettingsActionProperty() 
 describe('LCHSettingsActionDelete', function test_LCHSettingsActionDelete() {
 
 	it('rejects if not string', async function() {
-		await rejects(mainModule.LCHSettingsActionDelete(LCHTestingStorageClient, 1), /LCHErrorInputNotValid/);
+		await rejects(mod.LCHSettingsActionDelete(LCHTestingStorageClient, 1), /LCHErrorInputNotValid/);
 	});
 
 	it('returns statusCode', async function() {
-		await mainModule.LCHSettingsActionProperty(LCHTestingStorageClient, 'alfa', 'bravo');
-		deepEqual(await mainModule.LCHSettingsActionDelete(LCHTestingStorageClient, 'alfa'), {
+		await mod.LCHSettingsActionProperty(LCHTestingStorageClient, 'alfa', 'bravo');
+		deepEqual(await mod.LCHSettingsActionDelete(LCHTestingStorageClient, 'alfa'), {
 			statusCode: 200,
 		});
 	});
 
 	it('deletes LCHSetting', async function() {
-		await mainModule.LCHSettingsActionProperty(LCHTestingStorageClient, 'alfa', 'bravo');
-		await mainModule.LCHSettingsActionDelete(LCHTestingStorageClient, 'alfa');
-		deepEqual(await mainModule.LCHSettingsActionQuery(LCHTestingStorageClient, {}), []);
+		await mod.LCHSettingsActionProperty(LCHTestingStorageClient, 'alfa', 'bravo');
+		await mod.LCHSettingsActionDelete(LCHTestingStorageClient, 'alfa');
+		deepEqual(await mod.LCHSettingsActionQuery(LCHTestingStorageClient, {}), []);
 	});
 
 });

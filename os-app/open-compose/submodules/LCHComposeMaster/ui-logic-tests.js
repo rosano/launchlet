@@ -1,6 +1,6 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./ui-logic.js');
+const mod = require('./ui-logic.js');
 
 describe('LCHComposeMasterListItemAccessibilitySummary', function test_LCHComposeMasterListItemAccessibilitySummary() {
 
@@ -12,22 +12,22 @@ describe('LCHComposeMasterListItemAccessibilitySummary', function test_LCHCompos
 
 	it('throws if not object', function () {
 		throws(function () {
-			mainModule.LCHComposeMasterListItemAccessibilitySummary(null);
+			mod.LCHComposeMasterListItemAccessibilitySummary(null);
 		}, /LCHErrorInputNotValid/);
 	});
 	
 	it('returns LCHDocumentName', function() {
-		deepEqual(mainModule.LCHComposeMasterListItemAccessibilitySummary(item), 'bravo');
+		deepEqual(mod.LCHComposeMasterListItemAccessibilitySummary(item), 'bravo');
 	});
 	
 	it('returns LCHDocumentSignature if no LCHDocumentName', function() {
-		deepEqual(mainModule.LCHComposeMasterListItemAccessibilitySummary(Object.assign(item, {
+		deepEqual(mod.LCHComposeMasterListItemAccessibilitySummary(Object.assign(item, {
 			LCHDocumentName: undefined,
 		})), 'charlie');
 	});
 	
 	it('returns LCHComposeMasterListItemUntitledText if no LCHDocumentSignature', function() {
-		deepEqual(mainModule.LCHComposeMasterListItemAccessibilitySummary(Object.assign(item, {
+		deepEqual(mod.LCHComposeMasterListItemAccessibilitySummary(Object.assign(item, {
 			LCHDocumentSignature: undefined,
 		}), function (inputData) {
 			return inputData;
@@ -35,7 +35,7 @@ describe('LCHComposeMasterListItemAccessibilitySummary', function test_LCHCompos
 	});
 	
 	it('includes LCHComposeMasterListItemFlaggedAlertText if LCHDocumentIsFlagged', function() {
-		deepEqual(mainModule.LCHComposeMasterListItemAccessibilitySummary(Object.assign(item, {
+		deepEqual(mod.LCHComposeMasterListItemAccessibilitySummary(Object.assign(item, {
 			LCHDocumentIsFlagged: true,
 		}), function (inputData) {
 			return inputData;
@@ -54,22 +54,22 @@ describe('LCHComposeMasterListItemTitle', function test_LCHComposeMasterListItem
 
 	it('throws if not object', function () {
 		throws(function () {
-			mainModule.LCHComposeMasterListItemTitle(null);
+			mod.LCHComposeMasterListItemTitle(null);
 		}, /LCHErrorInputNotValid/);
 	});
 	
 	it('returns LCHDocumentName', function() {
-		deepEqual(mainModule.LCHComposeMasterListItemTitle(item), 'bravo');
+		deepEqual(mod.LCHComposeMasterListItemTitle(item), 'bravo');
 	});
 	
 	it('returns LCHDocumentSignature if no LCHDocumentName', function() {
-		deepEqual(mainModule.LCHComposeMasterListItemTitle(Object.assign(item, {
+		deepEqual(mod.LCHComposeMasterListItemTitle(Object.assign(item, {
 			LCHDocumentName: undefined,
 		})), 'charlie');
 	});
 	
 	it('returns LCHDocumentID if no LCHDocumentSignature', function() {
-		deepEqual(mainModule.LCHComposeMasterListItemTitle(Object.assign(item, {
+		deepEqual(mod.LCHComposeMasterListItemTitle(Object.assign(item, {
 			LCHDocumentSignature: undefined,
 		})), 'alfa');
 	});

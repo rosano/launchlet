@@ -1,6 +1,6 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./model.js').default;
+const mod = require('./model.js').default;
 
 const kTesting = {
 	StubSettingObjectValid: function() {
@@ -15,12 +15,12 @@ describe('LCHSettingModelErrorsFor', function test_LCHSettingModelErrorsFor() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mainModule.LCHSettingModelErrorsFor(null);
+			mod.LCHSettingModelErrorsFor(null);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns object if LCHSettingKey not string', function() {
-		deepEqual(mainModule.LCHSettingModelErrorsFor(Object.assign(kTesting.StubSettingObjectValid(), {
+		deepEqual(mod.LCHSettingModelErrorsFor(Object.assign(kTesting.StubSettingObjectValid(), {
 			LCHSettingKey: null,
 		})), {
 			LCHSettingKey: [
@@ -30,7 +30,7 @@ describe('LCHSettingModelErrorsFor', function test_LCHSettingModelErrorsFor() {
 	});
 
 	it('returns object if LCHSettingKey not filled', function() {
-		deepEqual(mainModule.LCHSettingModelErrorsFor(Object.assign(kTesting.StubSettingObjectValid(), {
+		deepEqual(mod.LCHSettingModelErrorsFor(Object.assign(kTesting.StubSettingObjectValid(), {
 			LCHSettingKey: ' ',
 		})), {
 			LCHSettingKey: [
@@ -40,7 +40,7 @@ describe('LCHSettingModelErrorsFor', function test_LCHSettingModelErrorsFor() {
 	});
 
 	it('returns object if LCHSettingValue not string', function() {
-		deepEqual(mainModule.LCHSettingModelErrorsFor(Object.assign(kTesting.StubSettingObjectValid(), {
+		deepEqual(mod.LCHSettingModelErrorsFor(Object.assign(kTesting.StubSettingObjectValid(), {
 			LCHSettingValue: null,
 		})), {
 			LCHSettingValue: [
@@ -50,7 +50,7 @@ describe('LCHSettingModelErrorsFor', function test_LCHSettingModelErrorsFor() {
 	});
 
 	it('returns null', function() {
-		deepEqual(mainModule.LCHSettingModelErrorsFor(kTesting.StubSettingObjectValid()), null);
+		deepEqual(mod.LCHSettingModelErrorsFor(kTesting.StubSettingObjectValid()), null);
 	});
 
 });

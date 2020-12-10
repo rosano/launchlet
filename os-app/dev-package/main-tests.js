@@ -1,6 +1,6 @@
 const { rejects, deepEqual } = require('assert');
 
-const mainModule = require('./main.js');
+const mod = require('./main.js');
 
 import LCHLauncherLogic from '../dev-launcher/ui-logic.js';
 
@@ -16,35 +16,35 @@ const kTesting = {
 	},
 };
 
-mainModule.mod._ValueClass = kTesting.StubValueClass('alfa');
+mod.mod._ValueClass = kTesting.StubValueClass('alfa');
 
 describe('DataSingletonExists', function test_DataSingletonExists() {
 
 	beforeEach(function () {
-		deepEqual(mainModule.mod._ValueSingleton, undefined);
+		deepEqual(mod.mod._ValueSingleton, undefined);
 	});
 
 	afterEach(function () {
-		deepEqual(mainModule.mod._ValueSingleton, undefined);
+		deepEqual(mod.mod._ValueSingleton, undefined);
 	});
 
 	it('returns false', function() {
-		deepEqual(mainModule.mod.DataSingletonExists(), false);
+		deepEqual(mod.mod.DataSingletonExists(), false);
 	});
 
 	it('returns true after LifecycleSingletonCreate', function() {
-		mainModule.mod.LifecycleSingletonCreate();
+		mod.mod.LifecycleSingletonCreate();
 		
-		deepEqual(mainModule.mod.DataSingletonExists(), true);
+		deepEqual(mod.mod.DataSingletonExists(), true);
 
-		mainModule.mod.LifecycleSingletonDestroy();
+		mod.mod.LifecycleSingletonDestroy();
 	});
 
 	it('returns true after LifecycleSingletonDestroy', function() {
-		mainModule.mod.LifecycleSingletonCreate();
-		mainModule.mod.LifecycleSingletonDestroy();
+		mod.mod.LifecycleSingletonCreate();
+		mod.mod.LifecycleSingletonDestroy();
 		
-		deepEqual(mainModule.mod.DataSingletonExists(), false);
+		deepEqual(mod.mod.DataSingletonExists(), false);
 	});
 
 });
@@ -52,31 +52,31 @@ describe('DataSingletonExists', function test_DataSingletonExists() {
 describe('LifecycleSingletonCreate', function test_LifecycleSingletonCreate() {
 
 	beforeEach(function () {
-		deepEqual(mainModule.mod._ValueSingleton, undefined);
+		deepEqual(mod.mod._ValueSingleton, undefined);
 	});
 
 	afterEach(function () {
-		mainModule.mod.LifecycleSingletonDestroy();
+		mod.mod.LifecycleSingletonDestroy();
 	});
 	
 	afterEach(function () {
-		deepEqual(mainModule.mod._ValueSingleton, undefined);
+		deepEqual(mod.mod._ValueSingleton, undefined);
 	});
 
 	it('sets ValueSingleton', function() {
-		mainModule.mod.LifecycleSingletonCreate();
+		mod.mod.LifecycleSingletonCreate();
 
-		deepEqual(mainModule.mod._ValueSingleton.check1(), 'alfa');
+		deepEqual(mod.mod._ValueSingleton.check1(), 'alfa');
 	});
 
 	it('calls LifecycleSingletonDestroy if exists', function() {
-		mainModule.mod.LifecycleSingletonCreate();
+		mod.mod.LifecycleSingletonCreate();
 		
-		mainModule.mod._ValueClass = kTesting.StubValueClass('bravo');
+		mod.mod._ValueClass = kTesting.StubValueClass('bravo');
 
-		mainModule.mod.LifecycleSingletonCreate();
+		mod.mod.LifecycleSingletonCreate();
 
-		deepEqual(mainModule.mod._ValueSingleton.check1(), 'bravo');
+		deepEqual(mod.mod._ValueSingleton.check1(), 'bravo');
 	});
 
 });
@@ -84,21 +84,21 @@ describe('LifecycleSingletonCreate', function test_LifecycleSingletonCreate() {
 describe('LifecycleSingletonDestroy', function test_LifecycleSingletonDestroy() {
 
 	beforeEach(function () {
-		deepEqual(mainModule.mod._ValueSingleton, undefined);
+		deepEqual(mod.mod._ValueSingleton, undefined);
 	});
 
 	beforeEach(function () {
-		mainModule.mod.LifecycleSingletonCreate();
+		mod.mod.LifecycleSingletonCreate();
 	});
 	
 	afterEach(function () {
-		deepEqual(mainModule.mod._ValueSingleton, undefined);
+		deepEqual(mod.mod._ValueSingleton, undefined);
 	});
 
 	it('deletes ValueSingleton', function() {
-		mainModule.mod.LifecycleSingletonDestroy();
+		mod.mod.LifecycleSingletonDestroy();
 
-		deepEqual(mainModule.mod._ValueSingleton, undefined);
+		deepEqual(mod.mod._ValueSingleton, undefined);
 	});
 
 });
@@ -106,7 +106,7 @@ describe('LifecycleSingletonDestroy', function test_LifecycleSingletonDestroy() 
 describe('LCHModeCommit', function test_LCHModeCommit() {
 
 	it('sets value', function() {
-		deepEqual(mainModule.LCHModeCommit, LCHLauncherLogic.LCHLauncherModeCommit());
+		deepEqual(mod.LCHModeCommit, LCHLauncherLogic.LCHLauncherModeCommit());
 	});
 
 });
@@ -114,7 +114,7 @@ describe('LCHModeCommit', function test_LCHModeCommit() {
 describe('LCHModePreview', function test_LCHModePreview() {
 
 	it('sets value', function() {
-		deepEqual(mainModule.LCHModePreview, LCHLauncherLogic.LCHLauncherModePreview());
+		deepEqual(mod.LCHModePreview, LCHLauncherLogic.LCHLauncherModePreview());
 	});
 
 });
@@ -122,7 +122,7 @@ describe('LCHModePreview', function test_LCHModePreview() {
 describe('LCHModePipe', function test_LCHModePipe() {
 
 	it('sets value', function() {
-		deepEqual(mainModule.LCHModePipe, LCHLauncherLogic.LCHLauncherModePipe());
+		deepEqual(mod.LCHModePipe, LCHLauncherLogic.LCHLauncherModePipe());
 	});
 
 });
@@ -130,21 +130,21 @@ describe('LCHModePipe', function test_LCHModePipe() {
 describe('LCHPackage', function test_LCHPackage() {
 
 	it('returns object', function() {
-		deepEqual(mainModule.LCHPackage(), {
-			LCHModeCommit: mainModule.LCHModeCommit,
-			LCHModePreview: mainModule.LCHModePreview,
-			LCHModePipe: mainModule.LCHModePipe,
+		deepEqual(mod.LCHPackage(), {
+			LCHModeCommit: mod.LCHModeCommit,
+			LCHModePreview: mod.LCHModePreview,
+			LCHModePipe: mod.LCHModePipe,
 
-			LCHSingletonCreate: mainModule.mod.LifecycleSingletonCreate,
-			LCHSingletonExists: mainModule.mod.DataSingletonExists,
-			LCHSingletonDestroy: mainModule.mod.LifecycleSingletonDestroy,
+			LCHSingletonCreate: mod.mod.LifecycleSingletonCreate,
+			LCHSingletonExists: mod.mod.DataSingletonExists,
+			LCHSingletonDestroy: mod.mod.LifecycleSingletonDestroy,
 			
-			LCHTasksRun: mainModule.mod.ControlRunTasks,
+			LCHTasksRun: mod.mod.ControlRunTasks,
 		});
 	});
 
 	it('freezes object', function() {
-		let item = mainModule.LCHPackage();
+		let item = mod.LCHPackage();
 
 		item.alfa = 'bravo',
 		

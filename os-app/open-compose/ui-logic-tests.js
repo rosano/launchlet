@@ -1,6 +1,6 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./ui-logic.js');
+const mod = require('./ui-logic.js');
 
 describe('LCHComposeSort', function test_LCHComposeSort() {
 	
@@ -12,11 +12,11 @@ describe('LCHComposeSort', function test_LCHComposeSort() {
 	};
 
 	it('sorts by LCHDocumentModificationDate descending', function() {
-		deepEqual([item1, item2].sort(mainModule.LCHComposeSort), [item2, item1]);
+		deepEqual([item1, item2].sort(mod.LCHComposeSort), [item2, item1]);
 	});
 
 	it('sorts by LCHDocumentCreationDate descending if no LCHDocumentModificationDate', function() {
-		deepEqual([item1, item2].sort(mainModule.LCHComposeSort), [item2, item1]);
+		deepEqual([item1, item2].sort(mod.LCHComposeSort), [item2, item1]);
 	});
 
 });
@@ -25,12 +25,12 @@ describe('LCHComposeFilterFunction', function test_LCHComposeFilterFunction() {
 
 	it('throws error if not string', function() {
 		throws(function() {
-			mainModule.LCHComposeFilterFunction(null);
+			mod.LCHComposeFilterFunction(null);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns function', function() {
-		deepEqual(typeof mainModule.LCHComposeFilterFunction('alfa'), 'function');
+		deepEqual(typeof mod.LCHComposeFilterFunction('alfa'), 'function');
 	});
 
 	context('function', function () {
@@ -38,7 +38,7 @@ describe('LCHComposeFilterFunction', function test_LCHComposeFilterFunction() {
 		context('LCHDocumentCallbackBody', function () {
 			
 			it('returns false', function() {
-				deepEqual(mainModule.LCHComposeFilterFunction('alfa')({
+				deepEqual(mod.LCHComposeFilterFunction('alfa')({
 					LCHDocumentCallbackBody: "return 'alfa';",
 				}), false);
 			});
@@ -48,25 +48,25 @@ describe('LCHComposeFilterFunction', function test_LCHComposeFilterFunction() {
 		context('LCHDocumentName', function () {
 			
 			it('returns false if no match', function() {
-				deepEqual(mainModule.LCHComposeFilterFunction('bravo')({
+				deepEqual(mod.LCHComposeFilterFunction('bravo')({
 					LCHDocumentName: 'alfa',
 				}), false);
 			});
 
 			it('returns true', function() {
-				deepEqual(mainModule.LCHComposeFilterFunction('alfa')({
+				deepEqual(mod.LCHComposeFilterFunction('alfa')({
 					LCHDocumentName: 'alfa',
 				}), true);
 			});
 
 			it('matches partial', function() {
-				deepEqual(mainModule.LCHComposeFilterFunction('alf')({
+				deepEqual(mod.LCHComposeFilterFunction('alf')({
 					LCHDocumentName: 'alfa',
 				}), true);
 			});
 
 			it('matches case insensitive', function() {
-				deepEqual(mainModule.LCHComposeFilterFunction('ALF')({
+				deepEqual(mod.LCHComposeFilterFunction('ALF')({
 					LCHDocumentName: 'alfa',
 				}), true);
 			});
@@ -76,25 +76,25 @@ describe('LCHComposeFilterFunction', function test_LCHComposeFilterFunction() {
 		context('LCHDocumentSignature', function () {
 			
 			it('returns false if no match', function() {
-				deepEqual(mainModule.LCHComposeFilterFunction('bravo')({
+				deepEqual(mod.LCHComposeFilterFunction('bravo')({
 					LCHDocumentSignature: 'alfa',
 				}), false);
 			});
 
 			it('returns true', function() {
-				deepEqual(mainModule.LCHComposeFilterFunction('alfa')({
+				deepEqual(mod.LCHComposeFilterFunction('alfa')({
 					LCHDocumentSignature: 'alfa',
 				}), true);
 			});
 
 			it('matches partial', function() {
-				deepEqual(mainModule.LCHComposeFilterFunction('alf')({
+				deepEqual(mod.LCHComposeFilterFunction('alf')({
 					LCHDocumentSignature: 'alfa',
 				}), true);
 			});
 
 			it('matches case insensitive', function() {
-				deepEqual(mainModule.LCHComposeFilterFunction('ALF')({
+				deepEqual(mod.LCHComposeFilterFunction('ALF')({
 					LCHDocumentSignature: 'alfa',
 				}), true);
 			});
@@ -104,25 +104,25 @@ describe('LCHComposeFilterFunction', function test_LCHComposeFilterFunction() {
 		context('LCHDocumentURLFilter', function () {
 			
 			it('returns false if no match', function() {
-				deepEqual(mainModule.LCHComposeFilterFunction('bravo')({
+				deepEqual(mod.LCHComposeFilterFunction('bravo')({
 					LCHDocumentURLFilter: 'alfa',
 				}), false);
 			});
 
 			it('returns true', function() {
-				deepEqual(mainModule.LCHComposeFilterFunction('alfa')({
+				deepEqual(mod.LCHComposeFilterFunction('alfa')({
 					LCHDocumentURLFilter: 'alfa',
 				}), true);
 			});
 
 			it('matches partial', function() {
-				deepEqual(mainModule.LCHComposeFilterFunction('alf')({
+				deepEqual(mod.LCHComposeFilterFunction('alf')({
 					LCHDocumentURLFilter: 'alfa',
 				}), true);
 			});
 
 			it('matches case insensitive', function() {
-				deepEqual(mainModule.LCHComposeFilterFunction('ALF')({
+				deepEqual(mod.LCHComposeFilterFunction('ALF')({
 					LCHDocumentURLFilter: 'alfa',
 				}), true);
 			});
@@ -137,32 +137,32 @@ describe('LCHComposePublicKeyIsValid', function test_LCHComposePublicKeyIsValid(
 
 	it('throws error if not string', function() {
 		throws(function() {
-			mainModule.LCHComposePublicKeyIsValid(null);
+			mod.LCHComposePublicKeyIsValid(null);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns false if empty', function() {
-		deepEqual(mainModule.LCHComposePublicKeyIsValid(''), false);
+		deepEqual(mod.LCHComposePublicKeyIsValid(''), false);
 	});
 
 	it('returns false if blank', function() {
-		deepEqual(mainModule.LCHComposePublicKeyIsValid(' '), false);
+		deepEqual(mod.LCHComposePublicKeyIsValid(' '), false);
 	});
 
 	it('returns false if without braces', function() {
-		deepEqual(mainModule.LCHComposePublicKeyIsValid('alfa'), false);
+		deepEqual(mod.LCHComposePublicKeyIsValid('alfa'), false);
 	});
 
 	it('returns false if whitespace leading', function() {
-		deepEqual(mainModule.LCHComposePublicKeyIsValid(' {alfa: \'bravo\'}'), false);
+		deepEqual(mod.LCHComposePublicKeyIsValid(' {alfa: \'bravo\'}'), false);
 	});
 
 	it('returns false if whitespace trailing', function() {
-		deepEqual(mainModule.LCHComposePublicKeyIsValid('{alfa: \'bravo\'} '), false);
+		deepEqual(mod.LCHComposePublicKeyIsValid('{alfa: \'bravo\'} '), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mainModule.LCHComposePublicKeyIsValid('{}'), true);
+		deepEqual(mod.LCHComposePublicKeyIsValid('{}'), true);
 	});
 
 });
@@ -171,18 +171,18 @@ describe('LBXResponseIsValid', function test_LBXResponseIsVald() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mainModule.LBXResponseIsValid(null);
+			mod.LBXResponseIsValid(null);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns false if LBXResponseHash not string', function() {
-		deepEqual(mainModule.LBXResponseIsValid({
+		deepEqual(mod.LBXResponseIsValid({
 			LBXResponseHash: null,
 		}), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mainModule.LBXResponseIsValid({
+		deepEqual(mod.LBXResponseIsValid({
 			LBXResponseHash: '',
 		}), true);
 	});
@@ -190,21 +190,21 @@ describe('LBXResponseIsValid', function test_LBXResponseIsVald() {
 	context('LBXResponseError', function () {
 
 		it('returns false if not string', function() {
-			deepEqual(mainModule.LBXResponseIsValid({
+			deepEqual(mod.LBXResponseIsValid({
 				LBXResponseHash: '',
 				LBXResponseError: null,
 			}), false);
 		});
 
 		it('returns false if not filled', function() {
-			deepEqual(mainModule.LBXResponseIsValid({
+			deepEqual(mod.LBXResponseIsValid({
 				LBXResponseHash: '',
 				LBXResponseError: ' ',
 			}), false);
 		});
 
 		it('returns true', function() {
-			deepEqual(mainModule.LBXResponseIsValid({
+			deepEqual(mod.LBXResponseIsValid({
 				LBXResponseHash: '',
 				LBXResponseError: 'alfa',
 			}), true);

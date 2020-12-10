@@ -1,31 +1,31 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./rollup-config-custom.js');
+const mod = require('./rollup-config-custom.js');
 
 describe('LCHPackageRollupConfigCustom', function test_LCHPackageRollupConfigCustom() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mainModule.LCHPackageRollupConfigCustom(null);
+			mod.LCHPackageRollupConfigCustom(null);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('sets output.name', function() {
-		deepEqual(mainModule.LCHPackageRollupConfigCustom({
+		deepEqual(mod.LCHPackageRollupConfigCustom({
 			output: {},
 			plugins: [],
 		}).output.name, 'Launchlet');
 	});
 
 	it('sets output.file', function() {
-		deepEqual(mainModule.LCHPackageRollupConfigCustom({
+		deepEqual(mod.LCHPackageRollupConfigCustom({
 			output: {},
 			plugins: [],
 		}).output.file, require('path').join(__dirname, '__compiled/launchlet.js'));
 	});
 
 	it('removes livereload', function() {
-		deepEqual(mainModule.LCHPackageRollupConfigCustom({
+		deepEqual(mod.LCHPackageRollupConfigCustom({
 			output: {},
 			plugins: [{
 				name: 'livereload',

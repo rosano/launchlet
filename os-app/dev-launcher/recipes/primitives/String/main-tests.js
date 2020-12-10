@@ -1,15 +1,15 @@
 const { throws, deepEqual } = require('assert');
 
-const mainModule = require('./main.js');
+const mod = require('./main.js');
 
 describe('LCHPrimitiveStringCallback', function test_LCHPrimitiveStringCallback() {
 
 	it('returns false if not string', function() {
-		deepEqual(mainModule.LCHPrimitiveStringCallback(null), false);
+		deepEqual(mod.LCHPrimitiveStringCallback(null), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mainModule.LCHPrimitiveStringCallback(''), true);
+		deepEqual(mod.LCHPrimitiveStringCallback(''), true);
 	});
 
 });
@@ -17,7 +17,7 @@ describe('LCHPrimitiveStringCallback', function test_LCHPrimitiveStringCallback(
 describe('LCHPrimitiveStringCanonicalExampleCallback', function test_LCHPrimitiveStringCanonicalExampleCallback() {
 
 	it('returns string', function() {
-		deepEqual(mainModule.LCHPrimitiveStringCanonicalExampleCallback(), '');
+		deepEqual(mod.LCHPrimitiveStringCanonicalExampleCallback(), '');
 	});
 
 });
@@ -25,11 +25,11 @@ describe('LCHPrimitiveStringCanonicalExampleCallback', function test_LCHPrimitiv
 describe('LCHPrimitiveStringRecipe', function test_LCHPrimitiveStringRecipe() {
 
 	it('returns LCHRecipe', function() {
-		deepEqual(mainModule.LCHPrimitiveStringRecipe(), {
+		deepEqual(mod.LCHPrimitiveStringRecipe(), {
 			LCHRecipeSignature: 'String',
-			LCHRecipeCallback: mainModule.LCHPrimitiveStringCallback,
+			LCHRecipeCallback: mod.LCHPrimitiveStringCallback,
 			LCHRecipeOutputType: 'Bool',
-			LCHRecipeCanonicalExampleCallback: mainModule.LCHPrimitiveStringCanonicalExampleCallback,
+			LCHRecipeCanonicalExampleCallback: mod.LCHPrimitiveStringCanonicalExampleCallback,
 		});
 	});
 
