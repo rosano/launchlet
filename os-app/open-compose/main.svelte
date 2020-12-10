@@ -524,7 +524,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 				OLSKLocalized,
 				ParamRouteConstant: window.OLSKPublicConstants('OLSKSharedActiveRouteConstant'),
 				OLSKFormatted: OLSKString.OLSKStringFormatted,
-				OLSKCanonicalFor: window.OLSKCanonicalFor,
+				OLSKCanonical: window.OLSKCanonical,
 			}).map(function (e) {
 				const item = e.LCHRecipeCallback;
 
@@ -916,7 +916,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 		
 		mod._ValueOLSKRemoteStorage = new RemoteStorage({
 			modules: [ storageModule ],
-			OLSKPatchRemoteStorageAuthRedirectURI: OLSK_SPEC_UI() ? undefined : window.location.origin + window.OLSKCanonicalFor('LCHComposeRoute'),
+			OLSKPatchRemoteStorageAuthRedirectURI: OLSK_SPEC_UI() ? undefined : window.location.origin + window.OLSKCanonical('LCHComposeRoute'),
 		});
 
 		mod._ValueOLSKRemoteStorage.access.claim(storageModule.name, 'rw');
@@ -1166,7 +1166,7 @@ import OLSKApropos from 'OLSKApropos';
 		OLSKAppToolbarFundShowProgress={ mod._ValueOLSKFundProgress }
 		OLSKAppToolbarFundLimitText={ mod._ValueDocumentRemainder }
 		OLSKAppToolbarDispatchFund={ mod._ValueOLSKFundGrant || OLSKFund.OLSKFundResponseIsPresent() ? null : mod.OLSKAppToolbarDispatchFund }
-		OLSKAppToolbarGuideURL={ window.OLSKCanonicalFor('LCHGuideRoute') }
+		OLSKAppToolbarGuideURL={ window.OLSKCanonical('LCHGuideRoute') }
 		OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
 		OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
 		OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
@@ -1187,7 +1187,7 @@ import OLSKApropos from 'OLSKApropos';
 </div>
 
 {#if !OLSK_SPEC_UI()}
-	<OLSKServiceWorkerView OLSKServiceWorkerRegistrationRoute={ window.OLSKCanonicalFor('LCHServiceWorkerRoute') } />
+	<OLSKServiceWorkerView OLSKServiceWorkerRegistrationRoute={ window.OLSKCanonical('LCHServiceWorkerRoute') } />
 {/if}
 
 <style src="./ui-style.css"></style>

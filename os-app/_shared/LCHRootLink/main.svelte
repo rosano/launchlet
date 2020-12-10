@@ -4,7 +4,7 @@ import OLSKRootLink from 'OLSKRootLink';
 
 <div class="LCHRootLink">
 
-<OLSKRootLink OLSKRootLinkURL={ window.OLSKCanonicalFor('LCHVitrineRoute', {
+<OLSKRootLink OLSKRootLinkURL={ window.OLSKCanonical('LCHVitrineRoute', {
 	OLSKRoutingLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 }) }
 	OLSKRootLinkImageURL={ '/_shared/LCHRootLink/ui-assets/identity.svg' } />
