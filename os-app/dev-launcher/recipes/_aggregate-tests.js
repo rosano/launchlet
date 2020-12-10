@@ -5,7 +5,7 @@ const mainModule = require('./_aggregate.js');
 describe('LCHLauncherStandardRecipes', function test_LCHLauncherStandardRecipes() {
 
 	it('returns LCHRecipe for each folder', function() {
-		const items = [].concat.apply([], require('glob').sync('*/**/main.js', {
+		const item = [].concat.apply([], require('glob').sync('*/**/main.js', {
 		  matchBase: true,
 		  cwd: __dirname,
 		}).map(function (e) {
@@ -16,7 +16,7 @@ describe('LCHLauncherStandardRecipes', function test_LCHLauncherStandardRecipes(
 			});
 		}));
 
-		deepEqual(items.filter(function (e) {
+		deepEqual(item.filter(function (e) {
 			return !mainModule.LCHLauncherStandardRecipes().filter(function (e2) {
 				return e2.LCHRecipeCallback === e.LCHRecipeCallback;
 			}).length;
