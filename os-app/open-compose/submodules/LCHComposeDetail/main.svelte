@@ -23,7 +23,7 @@ import LCHComposeInput from '../LCHComposeInput/main.svelte';
 {/if}
 
 {#if LCHComposeDetailItem}
-<header class="LCHComposeDetailToolbar OLSKToolbar OLSKToolbarJustify OLSKMobileViewHeader">
+<header class="LCHComposeDetailToolbar OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeBottom OLSKMobileViewHeader">
 	<div class="OLSKToolbarElementGroup">
 		<button class="LCHComposeDetailToolbarBackButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton OLSKVisibilityMobile" title={ OLSKLocalized('LCHComposeDetailToolbarBackButtonText') } on:click={ LCHComposeDetailDispatchBack }>
 			<div class="LCHComposeDetailToolbarBackButtonImage">{@html _OLSKSharedBack }</div>

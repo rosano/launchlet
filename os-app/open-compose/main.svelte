@@ -1112,7 +1112,7 @@ import OLSKApropos from 'OLSKApropos';
 
 <footer class="LCHComposeViewportFooter OLSKMobileViewFooter">
 
-	<footer class="LCHComposeTools OLSKToolbar OLSKToolbarJustify">
+	<footer class="LCHComposeTools OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeTop">
 		<div class="OLSKToolbarElementGroup">
 			<LCHComposeBuild
 				LCHComposeBuildRunLink={ mod._JavascriptCompositionBinary }
@@ -1149,7 +1149,7 @@ import OLSKApropos from 'OLSKApropos';
 	</footer>
 
 	{#if !mod._ValueStorageToolbarHidden }
-		<div class="LCHComposeStorageToolbar OLSKToolbar OLSKToolbarJustify OLSKStorageToolbar">
+		<div class="LCHComposeStorageToolbar OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeTop OLSKStorageToolbar">
 			<div class="OLSKToolbarElementGroup">
 				<div></div>
 			</div>

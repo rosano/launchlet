@@ -604,6 +604,10 @@ describe('LCHCompose_Misc', function () {
 			browser.assert.hasClass(LCHComposeTools, 'OLSKToolbarJustify');
 		});
 
+		it('classes OLSKCommonEdgeTop', function () {
+			browser.assert.hasClass(LCHComposeTools, 'OLSKCommonEdgeTop');
+		});
+
 		context('LCHComposeToolsPairStatusFailedError', function test_LCHComposeToolsPairStatusFailedError () {
 
 			before(function () {
@@ -655,6 +659,10 @@ describe('LCHCompose_Misc', function () {
 
 		it('classes OLSKToolbarJustify', function () {
 			browser.assert.hasClass(LCHComposeStorageToolbar, 'OLSKToolbarJustify');
+		});
+		
+		it('classes OLSKCommonEdgeTop', function () {
+			browser.assert.hasClass(LCHComposeStorageToolbar, 'OLSKCommonEdgeTop');
 		});
 		
 		it('classes OLSKStorageToolbar', function () {

@@ -22,8 +22,6 @@
 }
 
 .LCHComposeDetailToolbar {
-	border-bottom: var(--LCHBorderStyle);
-
 	/* LCHComposeDetailFlexbox:Child */
 	flex-shrink: 0;
 }
@@ -63,7 +61,7 @@
 
 .LCHComposeDetailForm input[type=text] {
 	width: 50%;
-	border: var(--LCHBorderStyle);
+	border: var(--OLSKCommonEdgeBorder);
 	border-radius: 5px;
 	padding: 5px 7px;
 

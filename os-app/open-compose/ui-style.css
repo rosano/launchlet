@@ -1,6 +1,4 @@
 .LCHCompose {
-	--LCHBorderStyle: 1px solid #ddd;
-	
 	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
 	font-size: 9pt;
 
@@ -21,10 +19,6 @@
 	border-color: #aaa !important;
 }
 
-.LCHComposeTools {
-	border-top: var(--LCHBorderStyle);
-}
-
 @media screen and (max-width: 760px) {
 
 .LCHComposeTools :last-child {
@@ -34,8 +28,6 @@
 }
 
 .LCHComposeStorageToolbar {
-	border-top: var(--LCHBorderStyle);
-	
 	background: var(--LCHCommonBackground);
 
 	/* AppContainerFlexbox:Child */

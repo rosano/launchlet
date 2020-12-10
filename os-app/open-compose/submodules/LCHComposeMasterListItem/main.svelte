@@ -5,7 +5,7 @@ export let LCHComposeMasterListItemFlagged;
 import { OLSKLocalized } from 'OLSKInternational';
 </script>
 
-<div class="LCHComposeMasterListItem" class:LCHComposeMasterListItemFlagged={ LCHComposeMasterListItemFlagged }>
+<div class="LCHComposeMasterListItem OLSKCommonEdgeBottom" class:LCHComposeMasterListItemFlagged={ LCHComposeMasterListItemFlagged }>
 
 {#if LCHComposeMasterListItemFlagged }
 	<strong class="LCHComposeMasterListItemFlaggedAlert">⚠️</strong>
@@ -19,8 +19,7 @@ import { OLSKLocalized } from 'OLSKInternational';
 .LCHComposeMasterListItem {
 	min-height: 46px;
 	padding: 10px;
-	border-bottom: var(--LCHBorderStyle);
-
+	
 	overflow: hidden;
 	text-overflow: ellipsis;
 

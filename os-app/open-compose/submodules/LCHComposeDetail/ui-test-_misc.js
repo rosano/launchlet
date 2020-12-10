@@ -79,6 +79,10 @@ describe('LCHComposeDetail_Misc', function () {
 		it('classes OLSKToolbarJustify', function () {
 			browser.assert.hasClass(LCHComposeDetailToolbar, 'OLSKToolbarJustify');
 		});
+
+		it('classes OLSKCommonEdgeBottom', function () {
+			browser.assert.hasClass(LCHComposeDetailToolbar, 'OLSKCommonEdgeBottom');
+		});
 		
 		it('classes OLSKMobileViewHeader', function () {
 			browser.assert.hasClass(LCHComposeDetailToolbar, 'OLSKMobileViewHeader');

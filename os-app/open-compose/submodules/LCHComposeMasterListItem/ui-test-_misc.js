@@ -8,6 +8,14 @@ describe('LCHComposeMasterListItem_Misc', function () {
 		});
 	});
 
+	describe('LCHComposeMasterListItem', function test_LCHComposeMasterListItem () {
+		
+		it('classes OLSKCommonEdgeBottom', function () {
+			browser.assert.hasClass(LCHComposeMasterListItem, 'OLSKCommonEdgeBottom');
+		});
+	
+	});
+
 	describe('LCHComposeMasterListItemTitle', function test_LCHComposeMasterListItemTitle () {
 		
 		it('sets aria-hidden', function () {

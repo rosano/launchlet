@@ -42,7 +42,7 @@ const mod = {
 }
 
 input {
-	border: var(--LCHBorderStyle);
+	border: var(--OLSKCommonEdgeBorder);
 	border-radius: 5px;
 	padding: 5px;
 
