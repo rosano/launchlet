@@ -2,7 +2,7 @@
 
 # Launchlet
 
-_Generalized interface for keyboard-based interaction_
+_Customize the web with JavaScript or CSS_
 
 <a href="https://launchlet.dev">Launchlet</a> is a simple way to add a name to snippets of code and run it. Inspired by [Quicksilver](https://qsapp.com/), it functions primarily via mouseless interaction and lets you access your [Recipes](https://launchlet.dev/guide) with a few keyboard strokes. You can also use it to personalize websites with custom CSS or JavaScript.
 
