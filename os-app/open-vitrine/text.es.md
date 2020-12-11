@@ -1,8 +1,10 @@
-Launchlet es una manera sencilla para dar un nombre a fragmentos de código y ejecutarlo. Inspirado par [Quicksilver](https://qsapp.com), te permite de lograr más con el teclado.
+**Launchlet facilita la modificación de qualquier sitio web**
+
+Inspirado par [Quicksilver](https://qsapp.com), te permite de ejecutar comandos con el teclado.
 
 Puedes ejecutar Launchlet como bookmarklet, [extensión del navegador](LCH_SHARED_EXTENSION_DOCS_URL), o como un módulo en tu proprio proyecto para añadir una 'saltar a' funcionalidad.
 
-Lea el [guide](LCHVitrineTokenGuideURL) para aprender más.
+Lea la [guía](LCHVitrineTokenGuideURL) para aprender más.
 
 <a class="LCHVitrineContentAppButton OLSKCommonButton OLSKCommonButtonPrimary" href="LCHVitrineTokenComposeURL">LCHVitrineContentAppButtonText</a>
 
