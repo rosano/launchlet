@@ -11,6 +11,8 @@ Object.entries({
 	LCHVitrineContent: '.LCHVitrineContent',
 	LCHVitrineContentAppButton: '.LCHVitrineContentAppButton',
 
+	LCHVitrineFeaturesHeading: '.LCHVitrineFeaturesHeading',
+
 	LCHVitrineDemoButtonCommit: '.LCHVitrineDemoButtonCommit',
 	LCHVitrineDemoButtonPreview: '.LCHVitrineDemoButtonPreview',
 	LCHVitrineDemoButtonPipe: '.LCHVitrineDemoButtonPipe',
@@ -60,6 +62,18 @@ describe('LCHVitrine_Access', function () {
 
 	it('shows LCHVitrineContentAppButton', function () {
 		browser.assert.elements(LCHVitrineContentAppButton, 1);
+	});
+
+	it('shows LCHVitrineFeaturesHeading', function () {
+		browser.assert.elements(LCHVitrineFeaturesHeading, 1);
+	});
+
+	it('shows LCHFeatureList', function () {
+		browser.assert.elements('.LCHFeatureList', 1);
+	});
+
+	it('shows OLSKAppFeatureList', function () {
+		browser.assert.elements('.OLSKAppFeatureList', 1);
 	});
 
 	it('shows LCHVitrineDemoButtonCommit', function() {

@@ -42,6 +42,12 @@ locals.OLSKPagePublicConstants = {
 
 </article>
 
+<h1 class="LCHVitrineFeaturesHeading"><%= OLSKLocalized('OLSKWordingFeatures') %></h1>
+
+<%- include('./submodules/LCHFeatureList/main.ejs') %>
+
+<%- include('../../node_modules/OLSKAppFeatureList/main.ejs').replace(/node_modules/g, '_shared/__external') %>
+
 <hr role="presentation" />
 
 <img class="LCHVitrineBrueghel" src="<%= OLSKCanonical('LCHBrueghelRedirect') %>" alt="<%= OLSKLocalized('LCHVitrineBrueghelText') %>"/>
