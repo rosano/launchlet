@@ -16,8 +16,8 @@ describe('LCHVitrine_Misc', function () {
 			browser.assert.hasClass(LCHVitrineIdentity, 'OLSKCommonCard');
 		});
 
-		it('classes OLSKCommonIdentityCard', function () {
-			browser.assert.hasClass(LCHVitrineIdentity, 'OLSKCommonIdentityCard');
+		it('classes OLSKCommonCrownCard', function () {
+			browser.assert.hasClass(LCHVitrineIdentity, 'OLSKCommonCrownCard');
 		});
 		
 	});
