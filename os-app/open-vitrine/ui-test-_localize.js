@@ -36,8 +36,8 @@ describe(`LCHVitrine_Localize-${ OLSKRoutingLanguage }`, function () {
 
 	it('localizes LCHVitrineContent', function() {
 		const item = require('fs').readFileSync(require('path').join(__dirname, `text.${ OLSKRoutingLanguage }.md`), 'utf-8').replace(/_/g, '');
-		browser.assert.OLSKTextContent(LCHVitrineContent, item.slice(0, 20), function (inputData) {
-			return inputData.slice(0, 20);
+		browser.assert.OLSKTextContent(LCHVitrineContent, item.slice(0, 10), function (inputData) {
+			return inputData.slice(0, 10);
 		});
 	});
 
@@ -50,9 +50,7 @@ describe(`LCHVitrine_Localize-${ OLSKRoutingLanguage }`, function () {
 	});
 
 	it('localizes LCHComposeRoute', function() {
-		browser.assert.element(`a[href="${ OLSKTestingCanonical(require('../open-compose/controller.js').OLSKControllerRoutes().shift(), {
-			OLSKRoutingLanguage,
-		}) }"]`);
+		browser.assert.element(`a[href="${ OLSKTestingCanonical(require('../open-compose/controller.js').OLSKControllerRoutes().shift()) }"]`);
 	});
 
 	it('localizes LCHVitrineContentAppButton', function () {
