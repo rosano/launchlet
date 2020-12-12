@@ -36,6 +36,12 @@
     "normalize.css": "latest",
     "OLSKLayout": "olsk/OLSKLayout",
 
+    "// WORDING": null,
+    "OLSKWording": "olsk/OLSKWording",
+
+    "// VITRINE": null,
+    "OLSKAppFeatureList": "olsk/OLSKAppFeatureList",
+
     "// FRONDEND EDITOR": null,
     "codemirror": "rosano/CodeMirror#add-distribution",
 

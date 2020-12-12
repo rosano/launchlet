@@ -1,0 +1,14 @@
+<div class="LCHFeatureList">
+
+<%- include('../../../../node_modules/OLSKFeatureList/main.ejs', {
+	OLSKFeatureListData: OLSKLocalized('LCHFeatureListArray').map(function (e, i) {
+		return e.concat([
+			'/_shared/__external/OLSKUIAssets/_OLSKSharedFeatureCode.svg',
+			'/_shared/__external/OLSKUIAssets/_OLSKSharedFeatureURL.svg',
+			'/_shared/__external/OLSKUIAssets/_OLSKSharedFeatureExtension.svg',
+			'/_shared/__external/OLSKUIAssets/_OLSKSharedFeatureBookmarklet.svg',
+		][i]);
+	}),
+}) %>
+
+</div>
