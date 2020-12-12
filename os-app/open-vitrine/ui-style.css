@@ -1,7 +1,6 @@
 :root {
 	--OLSKCommonBackground: var(--LCHCommonBackground);
 	--OLSKCommonForeground: var(--LCHCommonForeground);
-	--OLSKCommonFontSize: 11pt;
 }
 
 body {
