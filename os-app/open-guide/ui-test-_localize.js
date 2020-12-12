@@ -20,8 +20,8 @@ describe(`LCHGuide_Localize-${ OLSKRoutingLanguage }`, function () {
 		browser.assert.attribute('meta[name=description]', 'content', uLocalized('LCHGuideDescription'))
 	});
 
-	it('localizes LCHGuideIdentityName', function () {
-		browser.assert.text(LCHGuideIdentityName, uLocalized('LCHGuideTitle'));
+	it('localizes LCHGuideCrownName', function () {
+		browser.assert.text(LCHGuideCrownName, uLocalized('LCHGuideTitle'));
 	});
 
 });

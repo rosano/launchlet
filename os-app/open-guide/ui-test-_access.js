@@ -3,8 +3,8 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 Object.entries({
 	LCHGuide: '.LCHGuide',
 
-	LCHGuideIdentity: '.LCHGuideIdentity',
-	LCHGuideIdentityName: '.LCHGuideIdentityName',
+	LCHGuideCrown: '.LCHGuideCrown',
+	LCHGuideCrownName: '.LCHGuideCrownName',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -19,12 +19,12 @@ describe('LCHGuide_Access', function () {
 		browser.assert.elements(LCHGuide, 1);
 	});
 
-	it('shows LCHGuideIdentity', function () {
-		browser.assert.elements(LCHGuideIdentity, 1);
+	it('shows LCHGuideCrown', function () {
+		browser.assert.elements(LCHGuideCrown, 1);
 	});
 
-	it('shows LCHGuideIdentityName', function () {
-		browser.assert.elements(LCHGuideIdentityName, 1);
+	it('shows LCHGuideCrownName', function () {
+		browser.assert.elements(LCHGuideCrownName, 1);
 	});
 
 	it('shows LCHRootLink', function () {

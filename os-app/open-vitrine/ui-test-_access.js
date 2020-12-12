@@ -3,10 +3,10 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 Object.entries({
 	LCHVitrine: '.LCHVitrine',
 
-	LCHVitrineIdentity: '.LCHVitrineIdentity',
-	LCHVitrineIdentityLogo: '.LCHVitrineIdentityLogo',
-	LCHVitrineIdentityName: '.LCHVitrineIdentityName',
-	LCHVitrineIdentityBlurb: '.LCHVitrineIdentityBlurb',
+	LCHVitrineCrown: '.LCHVitrineCrown',
+	LCHVitrineCrownIcon: '.LCHVitrineCrownIcon',
+	LCHVitrineCrownName: '.LCHVitrineCrownName',
+	LCHVitrineCrownBlurb: '.LCHVitrineCrownBlurb',
 
 	LCHVitrineContent: '.LCHVitrineContent',
 	LCHVitrineContentAppButton: '.LCHVitrineContentAppButton',
@@ -34,20 +34,20 @@ describe('LCHVitrine_Access', function () {
 		browser.assert.elements('.OLSKLanguageSwitcher', 1);
 	});
 
-	it('shows LCHVitrineIdentity', function () {
-		browser.assert.elements(LCHVitrineIdentity, 1);
+	it('shows LCHVitrineCrown', function () {
+		browser.assert.elements(LCHVitrineCrown, 1);
 	});
 
-	it('shows LCHVitrineIdentityLogo', function () {
-		browser.assert.elements(LCHVitrineIdentityLogo, 1);
+	it('shows LCHVitrineCrownIcon', function () {
+		browser.assert.elements(LCHVitrineCrownIcon, 1);
 	});
 
-	it('shows LCHVitrineIdentityName', function () {
-		browser.assert.elements(LCHVitrineIdentityName, 1);
+	it('shows LCHVitrineCrownName', function () {
+		browser.assert.elements(LCHVitrineCrownName, 1);
 	});
 
-	it('shows LCHVitrineIdentityBlurb', function () {
-		browser.assert.elements(LCHVitrineIdentityBlurb, 1);
+	it('shows LCHVitrineCrownBlurb', function () {
+		browser.assert.elements(LCHVitrineCrownBlurb, 1);
 	});
 	
 	it('shows OLSKCommonWhatIsIt', function() {

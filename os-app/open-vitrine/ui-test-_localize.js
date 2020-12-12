@@ -22,12 +22,12 @@ describe(`LCHVitrine_Localize-${ OLSKRoutingLanguage }`, function () {
 		browser.assert.attribute('meta[name=description]', 'content', uLocalized('LCHVitrineDescription'))
 	});
 
-	it('localizes LCHVitrineIdentityName', function () {
-		browser.assert.text(LCHVitrineIdentityName, uLocalized('LCHVitrineTitle'));
+	it('localizes LCHVitrineCrownName', function () {
+		browser.assert.text(LCHVitrineCrownName, uLocalized('LCHVitrineTitle'));
 	});
 
-	it('localizes LCHVitrineIdentityBlurb', function () {
-		browser.assert.text(LCHVitrineIdentityBlurb, uLocalized('LCHVitrineDescription'));
+	it('localizes LCHVitrineCrownBlurb', function () {
+		browser.assert.text(LCHVitrineCrownBlurb, uLocalized('LCHVitrineDescription'));
 	});
 
 	it('localizes OLSKCommonWhatIsIt', function () {
