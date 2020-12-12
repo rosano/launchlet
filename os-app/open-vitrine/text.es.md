@@ -21,6 +21,8 @@ Lea la [guía](LCHVitrineTokenGuideURL) para aprender más.
 - Sin análisis comportamental o rastreadores terceros
 - Foncione en dispositivos mobiles, tabletas y computadoras
 
+<div class="LCHVitrineDemos">
+
 # Demostraciones
 
 ## Modo de 'Commit'
@@ -46,3 +48,5 @@ Organizar los artículos en sujetos y actos. Intenta
 - `Wikipedia` y `LCHSearchFor`
 
 LCHVitrineDemoButtonPipeToken
+	
+</div>

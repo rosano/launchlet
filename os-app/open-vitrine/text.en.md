@@ -20,6 +20,8 @@ Read the [guide](LCHVitrineTokenGuideURL) to learn more.
 - No ads, behavioural analytics, 3rd party trackers
 - Works on mobile, tablet, and desktop devices
 
+<div class="LCHVitrineDemos">
+
 # Demos
 
 ## Commit mode
@@ -45,3 +47,5 @@ Organizes items into subjects and actions. Try
 - `Wikipedia` and `LCHSearchFor`
 
 LCHVitrineDemoButtonPipeToken
+	
+</div>
