@@ -11,6 +11,10 @@ describe('LCHGuide_Misc', function () {
 		it('classes OLSKCommon', function () {
 			browser.assert.hasClass(LCHGuide, 'OLSKCommon')
 		});
+
+		it('classes OLSKCommonCapped', function () {
+			browser.assert.hasClass(LCHGuide, 'OLSKCommonCapped')
+		});
 	
 	});
 
