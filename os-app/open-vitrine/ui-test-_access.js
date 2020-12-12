@@ -50,6 +50,10 @@ describe('LCHVitrine_Access', function () {
 		browser.assert.elements(LCHVitrineIdentityBlurb, 1);
 	});
 	
+	it('shows OLSKCommonWhatIsIt', function() {
+		browser.assert.elements('.OLSKCommonWhatIsIt', 1);
+	});
+
 	it('shows LCHVitrineContent', function() {
 		browser.assert.elements(LCHVitrineContent, 1)
 	});

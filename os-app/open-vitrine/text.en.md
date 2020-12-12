@@ -1,5 +1,3 @@
-**Launchlet makes it simple to modify any website**
-
 Inspired by [Quicksilver](LCH_VITRINE_QUICKSILVER_URL), it lets you run commands via the keyboard.
 
 You can run Launchlet as a bookmarklet, [browser extension](LCH_SHARED_EXTENSION_DOCS_URL), or as a module in your own project to add a 'jump to' functionality.

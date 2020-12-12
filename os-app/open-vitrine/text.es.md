@@ -1,5 +1,3 @@
-**Launchlet facilita la modificación de qualquier sitio web**
-
 Inspirado par [Quicksilver](https://qsapp.com), te permite de ejecutar comandos con el teclado.
 
 Puedes ejecutar Launchlet como bookmarklet, [extensión del navegador](LCH_SHARED_EXTENSION_DOCS_URL), o como un módulo en tu proprio proyecto para añadir una 'saltar a' funcionalidad.

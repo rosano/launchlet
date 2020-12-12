@@ -30,6 +30,10 @@ describe(`LCHVitrine_Localize-${ OLSKRoutingLanguage }`, function () {
 		browser.assert.text(LCHVitrineIdentityBlurb, uLocalized('LCHVitrineDescription'));
 	});
 
+	it('localizes OLSKCommonWhatIsIt', function () {
+		browser.assert.text('.OLSKCommonWhatIsIt', uLocalized('OLSKCommonWhatIsItText'));
+	});
+
 	it('localizes LCHVitrineContent', function() {
 		const item = require('fs').readFileSync(require('path').join(__dirname, `text.${ OLSKRoutingLanguage }.md`), 'utf-8').replace(/_/g, '');
 		browser.assert.OLSKTextContent(LCHVitrineContent, item.slice(0, 20), function (inputData) {
