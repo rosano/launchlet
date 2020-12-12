@@ -4,7 +4,7 @@ Puedes ejecutar Launchlet como bookmarklet, [extensión del navegador](LCH_SHARE
 
 Lea la [guía](LCHVitrineTokenGuideURL) para aprender más.
 
-<a class="LCHVitrineContentAppButton OLSKCommonButton OLSKCommonButtonPrimary" href="LCHVitrineTokenComposeURL">LCHVitrineContentAppButtonText</a>
+<a class="LCHVitrineContentAppButton OLSKCommonButton OLSKCommonButtonPrimary" href="LCHVitrineTokenComposeURL">OLSKWordingOpenApp</a>
 
 # Características
 - Crear Recetas con JavaScript

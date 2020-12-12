@@ -56,7 +56,7 @@ describe(`LCHVitrine_Localize-${ OLSKRoutingLanguage }`, function () {
 	});
 
 	it('localizes LCHVitrineContentAppButton', function () {
-		browser.assert.text(LCHVitrineContentAppButton, uLocalized('LCHVitrineContentAppButtonText'));
+		browser.assert.text(LCHVitrineContentAppButton, uLocalized('OLSKWordingOpenApp'));
 	});
 
 	it('localizes LCH_SHARED_EXTENSION_DOCS_URL', function() {
