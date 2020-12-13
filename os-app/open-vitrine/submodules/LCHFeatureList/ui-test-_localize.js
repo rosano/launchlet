@@ -16,11 +16,11 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 		uLocalized('LCHFeatureListArray').forEach(function ([name, blurb], i) {
 
-			it('localizes KOMVitrineStandardFeaturesItem', function () {
+			it('localizes LCHVitrineStandardFeaturesItem', function () {
 				browser.assert.text(`.OLSKFeatureListItem:nth-child(${ i + 1 }) .OLSKFeatureListItemName`, name);
 			});
 
-			it('localizes KOMVitrineStandardFeaturesBlurb', function () {
+			it('localizes LCHVitrineStandardFeaturesBlurb', function () {
 				browser.assert.text(`.OLSKFeatureListItem:nth-child(${ i + 1 }) .OLSKFeatureListItemBlurb`, blurb);
 			});
 			

@@ -8,6 +8,11 @@ body {
 	color: var(--LCHCommonForeground);
 }
 
+.LCHVitrineVideo2 {
+	--OLSKCommonVideoWide: 632;
+	--OLSKCommonVideoHigh: 540;
+}
+
 .LCHVitrineDemos {
 	display: none;
 }

@@ -48,6 +48,19 @@ locals.OLSKPagePublicConstants = {
 
 <%- include('../../node_modules/OLSKAppFeatureList/main.ejs').replace(/node_modules/g, '_shared/__external') %>
 
+<h1 class="LCHVitrineVideoHeading"><%= OLSKLocalized('OLSKWordingVideo') %></h1>
+
+
+<div class="OLSKCommonVideoList">
+	<p class="OLSKCommonVideoListItem LCHVitrineVideo1">
+		<iframe src="<%= process.env.LCH_VITRINE_VIDEO_URL_1 %>"></iframe>
+	</p>
+
+	<p class="OLSKCommonVideoListItem LCHVitrineVideo2">
+		<iframe src="<%= process.env.LCH_VITRINE_VIDEO_URL_2 %>"></iframe>
+	</p>
+</div>
+
 <hr role="presentation" />
 
 <img class="LCHVitrineBrueghel" src="<%= OLSKCanonical('LCHBrueghelRedirect') %>" alt="<%= OLSKLocalized('LCHVitrineBrueghelText') %>"/>
