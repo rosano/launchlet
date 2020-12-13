@@ -78,7 +78,7 @@ const mod = {
 					});
 				}
 
-				if (window.OLSK_DEMO) {
+				if (typeof window !== 'undefined' && window.OLSK_DEMO) {
 					return inputData;
 				}
 
