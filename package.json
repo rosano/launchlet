@@ -95,6 +95,11 @@
     "// FLAGS": null,
     "acorn": "7.x",
 
+    "// DEMO": null,
+    "OLSKChain": "olsk/OLSKChain",
+    "OLSKBeacon": "olsk/OLSKBeacon",
+    "OLSKPointer": "olsk/OLSKPointer",
+
     "// TECH ROBOTS": null,
     "OLSKRobots": "olsk/OLSKRobots",
 

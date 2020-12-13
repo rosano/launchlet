@@ -78,6 +78,10 @@ const mod = {
 					});
 				}
 
+				if (window.OLSK_DEMO) {
+					return inputData;
+				}
+
 				try {
 					return OLSKRemoteStorage.OLSKRemoteStorageWriteObject(privateClient, mod.LCHDocumentStorageObjectPath(inputData), inputData);
 				} catch (e) {

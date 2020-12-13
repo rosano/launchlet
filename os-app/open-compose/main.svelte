@@ -19,6 +19,8 @@ import RemoteStorage from 'remotestoragejs';
 import OLSKLanguageSwitcher from 'OLSKLanguageSwitcher';
 import OLSKFund from 'OLSKFund';
 import OLSKPact from 'OLSKPact';
+import OLSKChain from 'OLSKChain';
+import OLSKBeacon from 'OLSKBeacon';
 
 const mod = {
 
@@ -80,6 +82,8 @@ const mod = {
 
 	_ValuePairStatus: 'kStatusWaiting',
 	_ValueToolsPairStatusFailedError: '',
+
+	_IsRunningDemo: false,
 
 	_ValueOLSKFundProgress: false,
 
@@ -479,6 +483,86 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 		if (mod._ValuePairStatus === 'kStatusFailed') {
 			mod._ValueToolsPairStatusFailedError = inputData.LBXResponseError
 		}
+	},
+
+	async ControlDemo () {
+		mod._IsRunningDemo = true;
+		window.OLSK_DEMO = true;
+
+		await Promise.all([
+			'Open tweet in Thread Reader',
+			'Toggle mobile app capable',
+			'Go to parent directory',
+			'Clear service workers',
+			'Cite URL',
+			'BugMeNot',
+			'Wayback Machine',
+			'Domain on twitter',
+			'YouTube',
+			'GitHub',
+			'Pocket URL',
+			].reverse().map(function (e) {
+			return mod.ControlDocumentCreate(mod.DataDocumentObjectTemplate(e));
+		}));
+
+		await mod.LCHComposeDetailDispatchBack();
+
+		return OLSKChain.OLSKChainGather(Object.assign({
+			Wait: OLSKBeacon.OLSKBeaconWait,
+			Point: (function (inputData) {
+				return OLSKBeacon._OLSKBeaconAnimate(OLSKBeacon.OLSKBeaconPointFunction('.OLSKPointer', inputData));
+			}),
+			Click: (function (inputData) {
+				return OLSKBeacon._OLSKBeaconAnimate(OLSKBeacon.OLSKBeaconClickFunction(inputData, '.OLSKPointer', 'OLSKPointerActive'));
+			}),
+			Defer: (function (inputData) {
+				return OLSKBeacon.OLSKBeaconDeferFunction(inputData);
+			}),
+			Focus: (function (inputData) {
+				return new Promise(function (resolve) {
+					resolve(document.querySelector(inputData).focus());
+				});
+			}),
+			Fill: (function (param1, param2, param3) {
+				return OLSKBeacon._OLSKBeaconAnimate(OLSKBeacon.OLSKBeaconFillFunction(param1, param2), param3);
+			}),
+			FillCode: (function (param1, param2, param3) {
+				return OLSKBeacon._OLSKBeaconAnimate(function (pct) {
+					window.OLSKDemoEditor.setValue(param2.slice(0, param2.length * pct));
+				}, param3);
+			}),
+			Set: (function (param1, param2) {
+				return OLSKBeacon._OLSKBeaconAnimate(OLSKBeacon.OLSKBeaconSetFunction(param1, param2));
+			}),
+			Nudge: (function () {
+				return OLSKBeacon._OLSKBeaconAnimate(OLSKBeacon.OLSKBeaconNudgeFunction('.OLSKPointer', ...arguments));
+			}),
+		}, mod))
+			.Point('.LCHComposeMasterCreateButton')
+			.Nudge(0, 50)
+			.Wait()
+			.Point('.LCHComposeMasterCreateButton')
+			.Click('.LCHComposeMasterCreateButton')
+			.Point('.LCHComposeDetailFormNameField')
+			.Focus('.LCHComposeDetailFormNameField')
+			.Fill('.LCHComposeDetailFormNameField', 'Say Hello')
+			.Point('.LCHComposeDetailFormCallbackBody .CodeMirror')
+			.Focus('.LCHComposeDetailFormCallbackBody .CodeMirror')
+			.FillCode('.LCHComposeDetailFormCallbackBody .CodeMirror', `alert('Hello')`)
+			.Point('.LCHComposeBuildRunLink')
+			.Click('.LCHComposeBuildRunLink')
+			.Point('.LCHLauncherFilterInput')
+			// .Click('.LCHLauncherFilterInput')
+			.Wait(2200)
+			// .Wait()
+			// .Fill('.LCHLauncherFilterInput', 'sh')
+			.Wait(2000)
+			.Point('.LCHLauncherPipeItem')
+			.Wait()
+			.Click('.LCHLauncherPipeItem')
+			.Wait()
+			.Nudge(0, -200)
+			.OLSKChainExecute();
 	},
 
 	// MESSAGE
@@ -899,6 +983,8 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 		mod.SetupFund();
 
 		mod.ReactIsLoading(mod._ValueIsLoading = false);
+
+		// mod.ControlDemo();
 	},
 
 	SetupStorageClient() {
@@ -1079,6 +1165,7 @@ import LCHComposePair from './submodules/LCHComposePair/main.svelte';
 import OLSKAppToolbar from 'OLSKAppToolbar';
 import OLSKServiceWorkerView from '../_shared/__external/OLSKServiceWorker/main.svelte';
 import OLSKStorageWidget from 'OLSKStorageWidget';
+import OLSKPointer from 'OLSKPointer';
 import OLSKWebView from 'OLSKWebView';
 import OLSKModalView from 'OLSKModalView';
 import OLSKApropos from 'OLSKApropos';
@@ -1188,6 +1275,10 @@ import OLSKApropos from 'OLSKApropos';
 
 {#if !OLSK_SPEC_UI()}
 	<OLSKServiceWorkerView OLSKServiceWorkerRegistrationRoute={ window.OLSKCanonical('LCHServiceWorkerRoute') } />
+{/if}
+
+{#if mod._IsRunningDemo }
+	<OLSKPointer />
 {/if}
 
 <style src="./ui-style.css"></style>

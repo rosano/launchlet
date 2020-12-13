@@ -77,8 +77,12 @@ const mod = {
 
 		mod._ValueEditorInstance = CodeMirror.fromTextArea(mod._ValueEditorElement, LCHComposeInputOptions);
 
+		if (window.OLSK_DEMO && !window.OLSKDemoEditor) {
+			window.OLSKDemoEditor = mod._ValueEditorInstance;
+		}
+
 		mod._ValueEditorInstance.on('change', function (instance, changeObject) {
-			if (changeObject.origin === 'setValue') {
+			if (changeObject.origin === 'setValue' && !window.OLSK_DEMO) {
 				return;
 			}
 
