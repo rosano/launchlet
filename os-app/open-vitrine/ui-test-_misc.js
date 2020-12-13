@@ -40,12 +40,20 @@ describe('LCHVitrine_Misc', function () {
 			browser.assert.attribute(LCHVitrineVideo1, 'src', process.env.LCH_VITRINE_VIDEO_URL_1);
 		});
 
+		it('sets allowfullscreen', function () {
+			browser.assert.attribute(LCHVitrineVideo1, 'allowfullscreen', '');
+		});
+
 	});
 
 	describe('LCHVitrineVideo2', function () {
 
 		it('sets src', function () {
 			browser.assert.attribute(LCHVitrineVideo2, 'src', process.env.LCH_VITRINE_VIDEO_URL_2);
+		});
+
+		it('sets allowfullscreen', function () {
+			browser.assert.attribute(LCHVitrineVideo2, 'allowfullscreen', '');
 		});
 
 	});
