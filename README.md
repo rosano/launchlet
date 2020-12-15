@@ -46,8 +46,6 @@ It should be accessible at <a href="http://localhost:3000" target="_blank">http:
 
 ## Testing
 
-<div style="border: 1px black solid; padding: 10px;">Restart the test runner when creating new files so that they will be included (specifically test files, and localization files).</div>
-
 ### Run logic tests
 
 ```
