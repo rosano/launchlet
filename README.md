@@ -58,13 +58,13 @@ npm test
 npm test ui
 ```
 
-To filter ui test paths by string:
+To filter interface test paths by string:
 
 ```
 npm test ui match=ResultList
 ```
 
-To filter ui test paths by JavaScript regular expressions:
+To filter interface test paths by JavaScript regular expressions:
 
 ```
 npm test ui match='/(guide|vitrine)/'
