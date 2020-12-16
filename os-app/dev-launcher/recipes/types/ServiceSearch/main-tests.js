@@ -49,7 +49,7 @@ describe('LCHTypeServiceSearchCanonicalExampleCallback', function test_LCHTypeSe
 		});
 		
 		it('returns string', function() {
-			deepEqual(mod.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeCallback(), 'http://example.com?q=LCHSEARCHTOKEN');
+			deepEqual(mod.LCHTypeServiceSearchCanonicalExampleCallback().LCHRecipeCallback(), 'https://example.com?q=LCHSEARCHTOKEN');
 		});
 
 	});

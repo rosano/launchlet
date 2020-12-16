@@ -31,7 +31,7 @@ describe('LCHPrimitiveURLCallback', function test_LCHPrimitiveURLCallback() {
 	});
 
 	it('returns true', function() {
-		deepEqual(mod.LCHPrimitiveURLCallback('http://example'), true);
+		deepEqual(mod.LCHPrimitiveURLCallback('https://example'), true);
 	});
 
 	it('accepts https', function() {
@@ -39,23 +39,23 @@ describe('LCHPrimitiveURLCallback', function test_LCHPrimitiveURLCallback() {
 	});
 
 	it('accepts domain', function() {
-		deepEqual(mod.LCHPrimitiveURLCallback('http://example.com'), true);
+		deepEqual(mod.LCHPrimitiveURLCallback('https://example.com'), true);
 	});
 
 	it('accepts port', function() {
-		deepEqual(mod.LCHPrimitiveURLCallback('http://example.com:80'), true);
+		deepEqual(mod.LCHPrimitiveURLCallback('https://example.com:80'), true);
 	});
 
 	it('accepts path', function() {
-		deepEqual(mod.LCHPrimitiveURLCallback('http://example.com/alfa'), true);
+		deepEqual(mod.LCHPrimitiveURLCallback('https://example.com/alfa'), true);
 	});
 
 	it('accepts anchor', function() {
-		deepEqual(mod.LCHPrimitiveURLCallback('http://example.com#alfa'), true);
+		deepEqual(mod.LCHPrimitiveURLCallback('https://example.com#alfa'), true);
 	});
 
 	it('accepts query', function() {
-		deepEqual(mod.LCHPrimitiveURLCallback('http://example.com?alfa'), true);
+		deepEqual(mod.LCHPrimitiveURLCallback('https://example.com?alfa'), true);
 	});
 
 });
@@ -63,7 +63,7 @@ describe('LCHPrimitiveURLCallback', function test_LCHPrimitiveURLCallback() {
 describe('LCHPrimitiveStringCanonicalExampleCallback', function test_LCHPrimitiveStringCanonicalExampleCallback() {
 
 	it('returns string', function() {
-		deepEqual(mod.LCHPrimitiveStringCanonicalExampleCallback(), 'http://example.com');
+		deepEqual(mod.LCHPrimitiveStringCanonicalExampleCallback(), 'https://example.com');
 	});
 
 });

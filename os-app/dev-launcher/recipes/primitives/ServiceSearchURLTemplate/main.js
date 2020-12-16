@@ -13,7 +13,7 @@ export const LCHPrimitiveServiceSearchURLTemplateCallback = function(inputData) 
 };
 
 export const LCHPrimitiveServiceSearchURLTemplateCanonicalExampleCallback = function() {
-	return 'http://example.com?q=LCHSEARCHTOKEN';
+	return 'https://example.com?q=LCHSEARCHTOKEN';
 };
 
 export const LCHPrimitiveServiceSearchURLTemplateRecipe = function() {

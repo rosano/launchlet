@@ -15,7 +15,7 @@ export const LCHPrimitiveURLCallback = function(inputData) {
 };
 
 export const LCHPrimitiveStringCanonicalExampleCallback = function() {
-	return 'http://example.com';
+	return 'https://example.com';
 };
 
 export const LCHPrimitiveURLRecipe = function() {
