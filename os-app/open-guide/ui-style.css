@@ -13,11 +13,6 @@ body {
 	overflow: hidden;
 }
 
-.LCHGuideNotice {
-	padding: 10px;
-	border: 1px solid var(--LCHCommonForeground)
-}
-
 .LCHGuideExample {
 	display: block;
 	padding: 20px 0 10px 15px;
