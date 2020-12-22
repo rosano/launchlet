@@ -92,12 +92,12 @@ describe('LCHComposeDetail_Misc', function () {
 
 	describe('LCHComposeDetailToolbarBackButton', function test_LCHComposeDetailToolbarBackButton () {
 		
-		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(LCHComposeDetailToolbarBackButton, 'OLSKLayoutButtonNoStyle');
+		it('classes OLSKDecorButtonNoStyle', function () {
+			browser.assert.hasClass(LCHComposeDetailToolbarBackButton, 'OLSKDecorButtonNoStyle');
 		});
 
-		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(LCHComposeDetailToolbarBackButton, 'OLSKLayoutElementTappable');
+		it('classes OLSKDecorTappable', function () {
+			browser.assert.hasClass(LCHComposeDetailToolbarBackButton, 'OLSKDecorTappable');
 		});
 
 		it('classes OLSKToolbarButton', function () {
@@ -136,12 +136,12 @@ describe('LCHComposeDetail_Misc', function () {
 
 	describe('LCHComposeDetailToolbarCloneButton', function test_LCHComposeDetailToolbarCloneButton () {
 		
-		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(LCHComposeDetailToolbarCloneButton, 'OLSKLayoutButtonNoStyle');
+		it('classes OLSKDecorButtonNoStyle', function () {
+			browser.assert.hasClass(LCHComposeDetailToolbarCloneButton, 'OLSKDecorButtonNoStyle');
 		});
 
-		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(LCHComposeDetailToolbarCloneButton, 'OLSKLayoutElementTappable');
+		it('classes OLSKDecorTappable', function () {
+			browser.assert.hasClass(LCHComposeDetailToolbarCloneButton, 'OLSKDecorTappable');
 		});
 
 		it('classes OLSKToolbarButton', function () {
@@ -176,12 +176,12 @@ describe('LCHComposeDetail_Misc', function () {
 
 	describe('LCHComposeDetailToolbarDiscardButton', function test_LCHComposeDetailToolbarDiscardButton () {
 		
-		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(LCHComposeDetailToolbarDiscardButton, 'OLSKLayoutButtonNoStyle');
+		it('classes OLSKDecorButtonNoStyle', function () {
+			browser.assert.hasClass(LCHComposeDetailToolbarDiscardButton, 'OLSKDecorButtonNoStyle');
 		});
 
-		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(LCHComposeDetailToolbarDiscardButton, 'OLSKLayoutElementTappable');
+		it('classes OLSKDecorTappable', function () {
+			browser.assert.hasClass(LCHComposeDetailToolbarDiscardButton, 'OLSKDecorTappable');
 		});
 
 		it('classes OLSKToolbarButton', function () {
@@ -216,12 +216,12 @@ describe('LCHComposeDetail_Misc', function () {
 	
 	describe('LCHComposeDetailForm', function test_LCHComposeDetailForm() {
 
-		it('classes OLSKCommon', function () {
-			browser.assert.hasClass(LCHComposeDetailForm, 'OLSKCommon');
+		it('classes OLSKDecor', function () {
+			browser.assert.hasClass(LCHComposeDetailForm, 'OLSKDecor');
 		});
 
-		it('classes OLSKCommonForm', function () {
-			browser.assert.hasClass(LCHComposeDetailForm, 'OLSKCommonForm');
+		it('classes OLSKDecorBigForm', function () {
+			browser.assert.hasClass(LCHComposeDetailForm, 'OLSKDecorBigForm');
 		});
 
 	});

@@ -95,12 +95,12 @@ describe(`LCHVitrine_Localize-${ OLSKRoutingLanguage }`, function () {
 
 	context('LCHVitrineContentAppButton', function test_LCHVitrineContentAppButton () {
 
-		it('classes OLSKCommonButton', function () {
-			browser.assert.hasClass(LCHVitrineContentAppButton, 'OLSKCommonButton');
+		it('classes OLSKDecorPress', function () {
+			browser.assert.hasClass(LCHVitrineContentAppButton, 'OLSKDecorPress');
 		});
 		
-		it('classes OLSKCommonButtonPrimary', function () {
-			browser.assert.hasClass(LCHVitrineContentAppButton, 'OLSKCommonButtonPrimary');
+		it('classes OLSKDecorPressCall', function () {
+			browser.assert.hasClass(LCHVitrineContentAppButton, 'OLSKDecorPressCall');
 		});
 		
 		it('sets href', function () {

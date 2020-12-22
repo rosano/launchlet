@@ -25,22 +25,22 @@ import LCHComposeInput from '../LCHComposeInput/main.svelte';
 {#if LCHComposeDetailItem}
 <header class="LCHComposeDetailToolbar OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeBottom OLSKMobileViewHeader">
 	<div class="OLSKToolbarElementGroup">
-		<button class="LCHComposeDetailToolbarBackButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton OLSKVisibilityMobile" title={ OLSKLocalized('LCHComposeDetailToolbarBackButtonText') } on:click={ LCHComposeDetailDispatchBack }>
+		<button class="LCHComposeDetailToolbarBackButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton OLSKVisibilityMobile" title={ OLSKLocalized('LCHComposeDetailToolbarBackButtonText') } on:click={ LCHComposeDetailDispatchBack }>
 			<div class="LCHComposeDetailToolbarBackButtonImage">{@html _OLSKSharedBack }</div>
 		</button>
 	</div>
 
 	<div class="OLSKToolbarElementGroup">
-		<button class="LCHComposeDetailToolbarCloneButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeDetailToolbarCloneButtonText') } on:click={ LCHComposeDetailDispatchClone }>
+		<button class="LCHComposeDetailToolbarCloneButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeDetailToolbarCloneButtonText') } on:click={ LCHComposeDetailDispatchClone }>
 			<div class="LCHComposeDetailToolbarCloneButtonImage">{@html _OLSKSharedClone }</div>
 		</button>
-		<button class="LCHComposeDetailToolbarDiscardButton OLSKLayoutButtonNoStyle OLSKLayoutElementTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeDetailToolbarDiscardButtonText') } on:click={ () => window.confirm(OLSKLocalized('LCHComposeDetailDiscardConfirmText')) && LCHComposeDetailDispatchDiscard() }>
+		<button class="LCHComposeDetailToolbarDiscardButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeDetailToolbarDiscardButtonText') } on:click={ () => window.confirm(OLSKLocalized('LCHComposeDetailDiscardConfirmText')) && LCHComposeDetailDispatchDiscard() }>
 			<div class="LCHComposeDetailToolbarDiscardButtonImage">{@html _OLSKSharedDiscard }</div>
 		</button>
 	</div>
 </header>
 
-<div class="LCHComposeDetailForm OLSKCommon OLSKCommonForm">
+<div class="LCHComposeDetailForm OLSKDecor OLSKDecorBigForm">
 
 {#if LCHComposeDetailItem.LCHDocumentIsFlagged}
 	<div class="LCHComposeDetailFlagAlert">{ LCHComposeDetailItem.LCHDocumentSyntaxErrorMessage || OLSKLocalized('LCHComposeDetailFlagAlertText') }</div>

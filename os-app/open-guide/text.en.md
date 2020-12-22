@@ -1,4 +1,4 @@
-<div class="OLSKCommonNotice">
+<div class="OLSKDecorNotice">
 
 This document is a work-in-progress. Feel free to reach out on [Mastodon](https://merveilles.town/@rosano) or [Twitter](https://twitter.com/rosano).
 

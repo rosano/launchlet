@@ -77,12 +77,12 @@ describe('LCHComposeMaster_Misc', function () {
 			return browser.OLSKVisit(kDefaultRoute);
 		});
 
-		it('classes OLSKLayoutButtonNoStyle', function () {
-			browser.assert.hasClass(LCHComposeMasterCreateButton, 'OLSKLayoutButtonNoStyle');
+		it('classes OLSKDecorButtonNoStyle', function () {
+			browser.assert.hasClass(LCHComposeMasterCreateButton, 'OLSKDecorButtonNoStyle');
 		});
 
-		it('classes OLSKLayoutElementTappable', function () {
-			browser.assert.hasClass(LCHComposeMasterCreateButton, 'OLSKLayoutElementTappable');
+		it('classes OLSKDecorTappable', function () {
+			browser.assert.hasClass(LCHComposeMasterCreateButton, 'OLSKDecorTappable');
 		});
 
 		it('classes OLSKToolbarButton', function () {

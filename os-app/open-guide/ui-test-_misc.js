@@ -8,12 +8,12 @@ describe('LCHGuide_Misc', function () {
 
 	context('LCHGuide', function () {
 		
-		it('classes OLSKCommon', function () {
-			browser.assert.hasClass(LCHGuide, 'OLSKCommon')
+		it('classes OLSKDecor', function () {
+			browser.assert.hasClass(LCHGuide, 'OLSKDecor')
 		});
 
-		it('classes OLSKCommonCapped', function () {
-			browser.assert.hasClass(LCHGuide, 'OLSKCommonCapped')
+		it('classes OLSKDecorCapped', function () {
+			browser.assert.hasClass(LCHGuide, 'OLSKDecorCapped')
 		});
 	
 	});

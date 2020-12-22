@@ -10,7 +10,7 @@ function OLSKRouteFunction (req, res, next) {
 		}))
 	};
 
-	return res.OLSKLayoutRender(require('path').join(__dirname, 'ui-view'), {
+	return res.OLSKExpressLayoutRender(require('path').join(__dirname, 'ui-view'), {
 		LCHGuideContent: res.OLSKMarkdownContent(require('path').join(__dirname, `text.${ res.locals.OLSKSharedPageCurrentLanguage }.md`), Object.assign({
 			LCHGuideTokenExampleCommandV1: _LCHGuideExampleTemplate({
 				LCHDocumentName: 'Say Hello',

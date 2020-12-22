@@ -2,7 +2,7 @@ Inspirado par [Quicksilver](https://qsapp.com), te permite de ejecutar comandos 
 
 Lea la [guía](LCHVitrineTokenGuideURL) para aprender más.
 
-<a class="LCHVitrineContentAppButton OLSKCommonButton OLSKCommonButtonPrimary" href="LCHVitrineTokenComposeURL">OLSKWordingOpenApp</a>
+<a class="LCHVitrineContentAppButton OLSKDecorPress OLSKDecorPressCall" href="LCHVitrineTokenComposeURL">OLSKWordingOpenApp</a>
 
 <div class="LCHVitrineDemos">
 
