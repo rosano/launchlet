@@ -214,6 +214,18 @@ describe('LCHComposeDetail_Misc', function () {
 	
 	});
 	
+	describe('LCHComposeDetailForm', function test_LCHComposeDetailForm() {
+
+		it('classes OLSKCommon', function () {
+			browser.assert.hasClass(LCHComposeDetailForm, 'OLSKCommon');
+		});
+
+		it('classes OLSKCommonForm', function () {
+			browser.assert.hasClass(LCHComposeDetailForm, 'OLSKCommonForm');
+		});
+
+	});
+	
 	describe('LCHComposeDetailFormNameField', function test_LCHComposeDetailFormNameField() {
 		
 		before(function() {

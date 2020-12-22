@@ -40,7 +40,7 @@ import LCHComposeInput from '../LCHComposeInput/main.svelte';
 	</div>
 </header>
 
-<div class="LCHComposeDetailForm">
+<div class="LCHComposeDetailForm OLSKCommon OLSKCommonForm">
 
 {#if LCHComposeDetailItem.LCHDocumentIsFlagged}
 	<div class="LCHComposeDetailFlagAlert">{ LCHComposeDetailItem.LCHDocumentSyntaxErrorMessage || OLSKLocalized('LCHComposeDetailFlagAlertText') }</div>
