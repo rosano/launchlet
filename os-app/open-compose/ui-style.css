@@ -6,10 +6,6 @@
 	color: var(--LCHCommonForeground);
 }
 
-.LCHCompose :global(.OLSKToolbar) {
-	--OLSKToolbarBackground: var(--LCHCommonBackground);
-}
-
 :global(.LCHComposeLauncher .LCHLauncher) {
 	background: #ccc !important;
 }
