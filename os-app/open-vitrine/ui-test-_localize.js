@@ -70,11 +70,11 @@ describe(`LCHVitrine_Localize-${ OLSKRoutingLanguage }`, function () {
 	});
 
 	it('localizes LCHVitrineSupportHeading', function () {
-		browser.assert.text(LCHVitrineSupportHeading, uLocalized('OLSKWordingSupportHeading'));
+		browser.assert.text(LCHVitrineSupportHeading, uLocalized('OLSKWordingFeedbackHeading'));
 	});
 
 	it('localizes LCHVitrineSupportBlurb', function () {
-		browser.assert.text(LCHVitrineSupportBlurb, uLocalized('OLSKWordingSupportBlurb'));
+		browser.assert.text(LCHVitrineSupportBlurb, uLocalized('OLSKWordingFeedbackBlurb'));
 	});
 
 	it('localizes LCHVitrineDemoButtonCommit', function() {
