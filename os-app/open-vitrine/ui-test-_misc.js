@@ -10,6 +10,14 @@ describe('LCHVitrine_Misc', function () {
 		browser.assert.deepEqual(browser.evaluate('Array.isArray(window.LCHPageRecipes)'), true);
 	});
 
+	describe('LCHVitrineManifest', function test_LCHVitrineManifest() {
+
+		it('sets href', function () {
+			browser.assert.attribute(LCHVitrineManifest, 'href', require('../tech-manifest/controller.js').OLSKControllerRoutes().shift().OLSKRoutePath);
+		});
+
+	});
+
 	describe('LCHVitrineCrown', function test_LCHVitrineCrown() {
 
 		it('classes OLSKCommonCard', function () {

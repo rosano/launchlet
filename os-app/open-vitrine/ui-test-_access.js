@@ -2,6 +2,8 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
 	LCHVitrine: '.LCHVitrine',
+	
+	LCHVitrineManifest: 'link[rel="manifest"]',
 
 	LCHVitrineCrown: '.LCHVitrineCrown',
 	LCHVitrineCrownIcon: '.LCHVitrineCrownIcon',
@@ -37,6 +39,10 @@ describe('LCHVitrine_Access', function () {
 	
 	it('shows LCHVitrine', function() {
 		browser.assert.elements(LCHVitrine, 1)
+	});
+
+	it('shows LCHVitrineManifest', function () {
+		browser.assert.elements(LCHVitrineManifest, 1);
 	});
 	
 	it('shows OLSKLanguageSwitcher', function() {
