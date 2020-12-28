@@ -26,10 +26,6 @@ describe(`LCHVitrine_Localize-${ OLSKRoutingLanguage }`, function () {
 		browser.assert.text(LCHVitrineCrownName, uLocalized('LCHVitrineTitle'));
 	});
 
-	it('localizes LCHVitrineCrownBlurb', function () {
-		browser.assert.text(LCHVitrineCrownBlurb, uLocalized('LCHVitrineDescription'));
-	});
-
 	it('localizes OLSKCommonWhatIsIt', function () {
 		browser.assert.text('.OLSKCommonWhatIsIt', uLocalized('OLSKCommonWhatIsItText'));
 	});

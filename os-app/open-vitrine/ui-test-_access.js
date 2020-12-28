@@ -8,7 +8,6 @@ Object.entries({
 	LCHVitrineCrown: '.LCHVitrineCrown',
 	LCHVitrineCrownIcon: '.LCHVitrineCrownIcon',
 	LCHVitrineCrownName: '.LCHVitrineCrownName',
-	LCHVitrineCrownBlurb: '.LCHVitrineCrownBlurb',
 
 	LCHVitrineContent: '.LCHVitrineContent',
 	LCHVitrineContentAppButton: '.LCHVitrineContentAppButton',
@@ -61,10 +60,6 @@ describe('LCHVitrine_Access', function () {
 		browser.assert.elements(LCHVitrineCrownName, 1);
 	});
 
-	it('shows LCHVitrineCrownBlurb', function () {
-		browser.assert.elements(LCHVitrineCrownBlurb, 1);
-	});
-	
 	it('shows OLSKCommonWhatIsIt', function() {
 		browser.assert.elements('.OLSKCommonWhatIsIt', 1);
 	});
