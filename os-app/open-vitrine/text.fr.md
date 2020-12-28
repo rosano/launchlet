@@ -1,9 +1,3 @@
-Inspiré par [Quicksilver](https://qsapp.com), il vous permet d'exécuter des commandes avec le clavier.
-
-Veuillez lire le [guide](LCHVitrineTokenGuideURL) pour en apprendre plus.
-
-<a class="LCHVitrineContentAppButton OLSKDecorPress OLSKDecorPressCall" href="LCHVitrineTokenComposeURL">OLSKWordingOpenApp</a>
-
 <div class="LCHVitrineDemos">
 
 # Démonstrations

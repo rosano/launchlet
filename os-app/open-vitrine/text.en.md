@@ -1,9 +1,3 @@
-Inspired by [Quicksilver](LCH_VITRINE_QUICKSILVER_URL), it lets you run commands via the keyboard.
-
-Read the [guide](LCHVitrineTokenGuideURL) to learn more.
-
-<a class="LCHVitrineContentAppButton OLSKDecorPress OLSKDecorPressCall" href="LCHVitrineTokenComposeURL">OLSKWordingOpenApp</a>
-
 <div class="LCHVitrineDemos">
 
 # Demos

@@ -30,17 +30,18 @@ locals.OLSKPagePublicConstants = {
 	<%- include('../_shared/__external/OLSKLanguageSwitcher/main.ejs') %>	
 </div>
 
-<p class="OLSKCommonWhatIsIt"><%= OLSKLocalized('OLSKCommonWhatIsItText') %></p>
-
-<article class="LCHVitrineContent">
+<%- include('../../node_modules/OLSKLanding/main.ejs', {
+	OLSKLandingHeadingText: OLSKLocalized('LCHVitrineDescription'),
+	OLSKLandingBlurbText: OLSKLocalized('OLSKLandingBlurbText'),
+	OLSKLandingActionText: OLSKLocalized('OLSKWordingOpenApp'),
+	OLSKLandingActionHref: OLSKCanonical('LCHComposeRoute'),
+}) %>
 
 <%- OLSKStringReplaceTokens(LCHVitrineContent, {
 	LCHVitrineDemoButtonCommitToken: `<button class="LCHVitrineDemoButtonCommit" onclick="LCHVitrineBehaviour.InterfaceDemoButtonCommitDidClick()">${ OLSKLocalized('LCHVitrineDemoButtonCommitText') }</button>`,
 	LCHVitrineDemoButtonPreviewToken: `<button class="LCHVitrineDemoButtonPreview" onclick="LCHVitrineBehaviour.InterfaceDemoButtonPreviewDidClick()">${ OLSKLocalized('LCHVitrineDemoButtonPreviewText') }</button>`,
 	LCHVitrineDemoButtonPipeToken: `<button class="LCHVitrineDemoButtonPipe" onclick="LCHVitrineBehaviour.InterfaceDemoButtonPipeDidClick()">${ OLSKLocalized('LCHVitrineDemoButtonPipeText') }</button>`,
 }) %>
-
-</article>
 
 <h1 class="LCHVitrineFeaturesHeading"><%= OLSKLocalized('OLSKWordingFeatures') %></h1>
 

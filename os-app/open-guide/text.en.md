@@ -4,6 +4,10 @@ This document is a work-in-progress. Feel free to reach out on [Mastodon](https:
 
 </div>
 
+Launchlet is a simple way to run custom styles and scripts on the web.
+
+Inspired by [Quicksilver](https://qsapp.com), it lets you run commands via the keyboard.
+
 # Recipes: A Thinking Tutorial
 
 A *Recipe* is a format for expressing how functions will run in Launchlet.

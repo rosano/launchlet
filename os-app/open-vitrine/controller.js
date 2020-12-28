@@ -10,9 +10,6 @@ exports.OLSKControllerRoutes = function() {
 		OLSKRouteFunction (req, res, next) {
 			return res.OLSKExpressLayoutRender(require('path').join(__dirname, 'ui-view'), {
 				LCHVitrineContent: res.OLSKMarkdownContent(require('path').join(__dirname, `text.${ res.locals.OLSKSharedPageCurrentLanguage }.md`), Object.assign({
-					LCHVitrineTokenComposeURL: res.locals.OLSKCanonical('LCHComposeRoute'),
-					LCHVitrineTokenGuideURL: res.locals.OLSKCanonical('LCHGuideRoute'),
-					LCH_VITRINE_QUICKSILVER_URL: process.env.LCH_VITRINE_QUICKSILVER_URL,
 					LCH_SHARED_EXTENSION_DOCS_URL: process.env.LCH_SHARED_EXTENSION_DOCS_URL,
 					LCH_SHARED_PACKAGE_DOCS_URL: process.env.LCH_SHARED_PACKAGE_DOCS_URL,
 				}, res.locals.OLSKLocalized('LCHVitrineDemoRecipeNames'), res.locals.OLSKLocalized('LCHStandardRecipeNames'))),

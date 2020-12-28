@@ -24,8 +24,8 @@ describe('LCHVitrine_Misc', function () {
 			browser.assert.hasClass(LCHVitrineCrown, 'OLSKCommonCard');
 		});
 
-		it('classes OLSKCommonCrownCard', function () {
-			browser.assert.hasClass(LCHVitrineCrown, 'OLSKCommonCrownCard');
+		it('classes OLSKCommonCrownCardMini', function () {
+			browser.assert.hasClass(LCHVitrineCrown, 'OLSKCommonCrownCardMini');
 		});
 		
 	});
@@ -40,6 +40,14 @@ describe('LCHVitrine_Misc', function () {
 			browser.assert.attribute(LCHVitrineCrownIcon, 'src', '/_shared/LCHRootLink/ui-assets/identity.svg');
 		});
 
+	});
+
+	context('OLSKLanding', function test_OLSKLanding () {
+
+		it('sets OLSKLandingActionHref', function () {
+			browser.assert.attribute('.OLSKLandingAction', 'href', OLSKTestingCanonical(require('../open-compose/controller.js').OLSKControllerRoutes().shift()));
+		});
+	
 	});
 
 	describe('LCHVitrineVideo1', function () {
