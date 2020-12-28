@@ -50,6 +50,22 @@ describe('LCHVitrine_Misc', function () {
 	
 	});
 
+	context('LCHVitrineGuideButton', function test_LCHVitrineGuideButton () {
+
+		it('classes OLSKDecorPress', function () {
+			browser.assert.hasClass(LCHVitrineGuideButton, 'OLSKDecorPress');
+		});
+		
+		it('classes OLSKDecorPressCall', function () {
+			browser.assert.hasClass(LCHVitrineGuideButton, 'OLSKDecorPressCall');
+		});
+		
+		it('sets href', function () {
+			browser.assert.attribute(LCHVitrineGuideButton, 'href', OLSKTestingCanonical(require('../open-guide/controller.js').OLSKControllerRoutes().shift()));
+		});
+	
+	});
+
 	describe('LCHVitrineVideo1', function () {
 
 		it('sets src', function () {
