@@ -11,6 +11,7 @@ import * as SubjectContainer from './types/SubjectContainer/main.js';
 
 import * as LCHDateLocalOffsetSubtracted from './functions/LCHDateLocalOffsetSubtracted/main.js';
 import * as LCHReadTextFile from './functions/LCHReadTextFile/main.js';
+import * as LCHReadTextFileObjects from './functions/LCHReadTextFileObjects/main.js';
 import * as LCHSaveFile from './functions/LCHSaveFile/main.js';
 
 import * as LCHActiveDocumentFocusElements from './subjects/LCHActiveDocumentFocusElements/main.js';
@@ -41,6 +42,7 @@ export const LCHLauncherStandardRecipes = function() {
 
 		LCHDateLocalOffsetSubtracted,
 		LCHReadTextFile,
+		LCHReadTextFileObjects,
 		LCHSaveFile,
 
 		LCHCopyToClipboard,
