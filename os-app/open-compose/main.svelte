@@ -960,8 +960,6 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 	async SetupEverything () {
 		mod.SetupStorageClient();
 
-		mod.SetupRemoteStorage();
-
 		mod.SetupStorageStatus();
 
 		await mod.SetupStorageNotifications();
@@ -1008,14 +1006,6 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 		mod._ValueOLSKRemoteStorage.access.claim(storageModule.name, 'rw');
 
 		mod._ValueOLSKRemoteStorage.caching.enable(`/${ storageModule.name }/`);
-	},
-
-	SetupRemoteStorage () {
-		return
-		mod._ValueOLSKRemoteStorage.setApiKeys(window.OLSKPublicConstants('LCHDropboxAppKey') ? {
-			dropbox: window.atob(window.OLSKPublicConstants('LCHDropboxAppKey')),
-			googledrive: window.atob(window.OLSKPublicConstants('LCHGoogleClientKey')),
-		} : {});
 	},
 
 	SetupStorageStatus () {
