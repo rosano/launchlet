@@ -1094,7 +1094,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 			OLSKFund._OLSKFundFakeGrantResponseRandom();
 		}
 
-		mod._ValueFundClue = (await LCHSettingAction.LCHSettingsActionProperty(mod._ValueOLSKRemoteStorage, 'LCHSettingFundClue') || {}).LCHSettingValue;
+		mod._ValueFundClue = await LCHSettingAction.LCHSettingsActionProperty(mod._ValueOLSKRemoteStorage, 'LCHSettingFundClue');
 
 		await OLSKFund.OLSKFundSetupPostPay({
 			ParamWindow: window,
