@@ -1244,7 +1244,7 @@ import OLSKApropos from 'OLSKApropos';
 		OLSKAppToolbarFundLimitText={ mod._ValueDocumentRemainder }
 		OLSKAppToolbarDispatchFund={ mod._ValueOLSKFundGrant || OLSKFund.OLSKFundResponseIsPresent() ? null : mod.OLSKAppToolbarDispatchFund }
 		OLSKAppToolbarGuideURL={ window.OLSKCanonical('LCHGuideRoute') }
-		OLSKAppToolbarStorageStatus={ mod._ValueFooterStorageStatus }
+		OLSKAppToolbarCloudStatus={ mod._ValueFooterStorageStatus }
 		OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
 		OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
 		/>
