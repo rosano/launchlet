@@ -2,7 +2,7 @@ LCHFeatureListArray:
   - - Adicionar scripts o estilos.
     - Crear Recetas con JavaScript o CSS.
   - - General o específica.
-    - Habilitar algunas Recetas basadas en la URL.
+    - Activar algunas Recetas basadas en la URL.
   - - Augmenta tu navegador.
     - La extensión puede ejecutar Recetas automáticamente al cargar de la página.
   - - Tomarla para llevar.
