@@ -1,8 +1,27 @@
 import LCHFormula from '../LCHFormula/main.js';
+import { factory } from 'ulid';
+const uniqueID = factory();
+import OLSKRemoteStorage from 'OLSKRemoteStorage';
 
 const mod = {
 
-	LCHDocumentModelErrorsFor (inputData, options = {}) {
+	ZDRSchemaKey: 'LCHDocument',
+
+	LCHDocumentDirectory () {
+		return 'lch_documents';
+	},
+
+	ZDRSchemaStub (inputData) {
+		return {
+			LCHDocumentID: inputData.split('/').pop(),
+		};
+	},
+
+	ZDRSchemaPath (inputData) {
+		return `${ mod.LCHDocumentDirectory() }/${ inputData.LCHDocumentID }`;
+	},
+
+	ZDRSchemaDispatchValidate (inputData, options = {}) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('LCHErrorInputNotValid');
 		}
@@ -62,6 +81,38 @@ const mod = {
 		}
 
 		return Object.entries(errors).length ? errors : null;
+	},
+
+	ZDRSchemaMethods: {
+		
+		LCHDocumentCreate (inputData) {
+			if (typeof inputData !== 'object' || inputData === null) {
+				throw new Error('LCHErrorInputNotValid');
+			}
+
+			const LCHDocumentCreationDate = new Date();
+
+			return this.App.LCHDocument.ZDRModelWriteObject(Object.assign({
+				LCHDocumentID: uniqueID(),
+				LCHDocumentCreationDate,
+				LCHDocumentModificationDate: LCHDocumentCreationDate,
+			}, inputData));
+		},
+
+		LCHDocumentUpdate (inputData) {
+			if (typeof inputData !== 'object' || inputData === null) {
+				throw new Error('LCHErrorInputNotValid');
+			}
+
+			return this.App.LCHDocument.ZDRModelWriteObject(Object.assign(inputData, {
+				LCHDocumentModificationDate: new Date(),
+			}));
+		},
+
+		async LCHDocumentList () {
+			return Object.values(await this.App.LCHDocument.ZDRModelListObjects()).map(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse);
+		},
+
 	},
 
 };

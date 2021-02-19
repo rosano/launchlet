@@ -1,14 +1,11 @@
 <script>
 import { OLSKLocalized } from 'OLSKInternational';
 import OLSKThrottle from 'OLSKThrottle';
-import LCH_Data from '../_shared/LCH_Data/main.js';
-import LCHDocumentStorage from '../_shared/LCHDocument/storage.js';
-import LCHSettingStorage from '../_shared/LCHSetting/storage.js';
+import LCHDocument from '../_shared/LCHDocument/main.js';
+import LCHSetting from '../_shared/LCHSetting/main.js';
 import { OLSK_SPEC_UI } from 'OLSKSpec';
 import OLSKRemoteStorage from 'OLSKRemoteStorage'
 import OLSKServiceWorker from 'OLSKServiceWorker'
-import LCHDocumentAction from '../_shared/LCHDocument/action.js';
-import LCHSettingAction from '../_shared/LCHSetting/action.js';
 import LCHComposeLogic from './ui-logic.js';
 import LCHFlagsLogic from '../_shared/LCHFlags/main.js'
 import LCHFormula from '../_shared/LCHFormula/main.js'
@@ -21,6 +18,7 @@ import OLSKFund from 'OLSKFund';
 import OLSKPact from 'OLSKPact';
 import OLSKChain from 'OLSKChain';
 import OLSKBeacon from 'OLSKBeacon';
+import zerodatawrap from 'zerodatawrap';
 
 const mod = {
 
@@ -214,7 +212,7 @@ const mod = {
 	},
 
 	async _ControlDocumentSave(inputData) {
-		await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueOLSKRemoteStorage, inputData);
+		await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(inputData);
 	},
 
 	_ControlDocumentFlag(inputData) {
@@ -263,7 +261,7 @@ const mod = {
 			return mod.ControlFundGate();
 		}
 
-		const item = await LCHDocumentAction.LCHDocumentActionCreate(mod._ValueOLSKRemoteStorage, inputData || mod.DataDocumentObjectTemplate());
+		const item = await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentCreate(inputData || mod.DataDocumentObjectTemplate());
 
 		mod.ValueDocumentsAll(mod._ValueDocumentsAll.concat(item));
 
@@ -301,7 +299,7 @@ const mod = {
 			return e !== inputData;
 		}), false);
 
-		await LCHDocumentAction.LCHDocumentActionDelete(mod._ValueOLSKRemoteStorage, inputData.LCHDocumentID);
+		await mod._ValueZDRWrap.App.LCHDocument.ZDRModelDeleteObject(inputData);
 
 		mod.ControlDocumentSelect(null);
 	},
@@ -343,7 +341,7 @@ const mod = {
 
 		zip.file(`${ fileName }.json`, JSON.stringify({
 			LCHDocumentObjects: mod._ValueDocumentsAll,
-			LCHSettingObjects: await LCHSettingAction.LCHSettingsActionQuery(mod._ValueOLSKRemoteStorage, {}),
+			LCHSettingObjects: await mod._ValueZDRWrap.App.LCHSetting.LCHSettingsList(),
 		}));
 		
 		zip.generateAsync({type: 'blob'}).then(function (content) {
@@ -371,27 +369,31 @@ const mod = {
 			return;
 		}
 
-		await Promise.all(outputData.LCHSettingObjects.map(function (e) {
-LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
-		}));
+		await Promise.all(outputData.LCHSettingObjects.map(mod._ValueZDRWrap.App.LCHSetting.ZDRModelWriteObject));
 
 		await Promise.all(outputData.LCHDocumentObjects.map(function (e) {
-			return LCHDocumentStorage.LCHDocumentStorageWrite(mod._ValueOLSKRemoteStorage, OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(e));
+			return mod._ValueZDRWrap.App.LCHDocument.LCHDocumentCreate(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(e));
 		}));
 
-		mod.ValueDocumentsAll(await LCHDocumentAction.LCHDocumentActionList(mod._ValueOLSKRemoteStorage));
+		mod.ValueDocumentsAll(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentList());
 	},
 
 	ControlPipeModeEnabledPersist (inputData) {
 		mod.ReactDocuments(mod._ValueDocumentsAll);
 
-		LCHSettingAction.LCHSettingsActionProperty(mod._ValueOLSKRemoteStorage, 'kLCHComposePreferenceModePipeEnabled', inputData.toString())
+		mod._ValueZDRWrap.App.LCHSetting.ZDRModelWriteObject({
+			LCHSettingKey: 'kLCHComposePreferenceModePipeEnabled',
+			LCHSettingValue: inputData.toString(),
+		});
 	},
 
 	ControlPageRecipesEnabledPersist (inputData) {
 		mod.ReactDocuments(mod._ValueDocumentsAll);
 
-		LCHSettingAction.LCHSettingsActionProperty(mod._ValueOLSKRemoteStorage, 'kLCHComposePreferenceIncludePageRecipes', inputData.toString())
+		mod._ValueZDRWrap.App.LCHSetting.ZDRModelWriteObject({
+			LCHSettingKey: 'kLCHComposePreferenceIncludePageRecipes',
+			LCHSettingValue: inputData.toString(),
+		});
 	},
 
 	ControlPublicKeyValidate (inputData) {
@@ -587,6 +589,42 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 		mod.ControlPublicKeyUpdate('');
 	},
 
+	async OLSKCloudFormDispatchSubmit (inputData) {
+		const protocol = zerodatawrap.ZDRPreferenceProtocolConnect(inputData);
+		(zerodatawrap.ZDRPreferenceProtocolMigrate() ? await mod.DataStorageClient(protocol) : mod._ValueZDRWrap).ZDRCloudConnect(inputData);
+	},
+
+	OLSKCloudStatusDispatchDisconnect () {
+		mod._ValueZDRWrap.ZDRCloudDisconnect();
+
+		mod._ValueCloudIdentity = null;
+
+		zerodatawrap.ZDRPreferenceProtocolClear();
+	},
+
+	ZDRParamDispatchError (error) {
+		mod._ValueCloudErrorText = error.toString();
+	},
+
+	ZDRParamDispatchConnected (identity) {
+		mod._ValueCloudIdentity = identity;
+	},
+
+	ZDRParamDispatchOnline () {
+		mod._ValueCloudIsOffline = false;
+	},
+
+	ZDRParamDispatchOffline () {
+		mod._ValueCloudIsOffline = true;
+	},
+
+	ZDRSchemaDispatchSyncConflict (event) {
+		setTimeout(async function () {
+			// return mod.OLSKChangeDelegateUpdateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(inputData)));
+			// console.log(await mod._ValueZDRWrap.App.XYZDocument.XYZDocumentCreate(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(event.oldValue)));
+		}, 500);
+	},
+
 	OLSKAppToolbarDispatchApropos () {
 		mod._OLSKModalView.modPublic.OLSKModalViewShow();
 	},
@@ -626,14 +664,14 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 	},
 
 	OLSKAppToolbarDispatchFund () {
-		if (!mod._ValueOLSKRemoteStorage.connected) {
+		if (!mod._ValueCloudIdentity) {
 			return mod._OLSKAppToolbarDispatchFundNotConnected();
 		}
 
 		mod._ValueFundURL = OLSKFund.OLSKFundURL({
 			ParamFormURL: 'OLSK_FUND_FORM_URL_SWAP_TOKEN',
 			ParamProject: 'RP_001',
-			ParamIdentity: mod._ValueOLSKRemoteStorage.remote.userAddress,
+			ParamIdentity: mod._ValueCloudIdentity,
 			ParamHomeURL: window.location.origin + window.location.pathname,
 		});
 
@@ -679,13 +717,13 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateCreateDocument',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateDocument () {
-						return mod.OLSKChangeDelegateCreateDocument(await LCHDocumentAction.LCHDocumentActionCreate(mod._ValueOLSKRemoteStorage, mod.DataDocumentObjectTemplate('FakeOLSKChangeDelegateCreateDocument')));
+						return mod.OLSKChangeDelegateCreateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentCreate(mod.DataDocumentObjectTemplate('FakeOLSKChangeDelegateCreateDocument')));
 					},
 				},
 				{
 					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateDocument',
 					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateDocument () {
-						return mod.OLSKChangeDelegateUpdateDocument(await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueOLSKRemoteStorage, Object.assign(mod._ValueDocumentsAll.filter(function (e) {
+						return mod.OLSKChangeDelegateUpdateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(Object.assign(mod._ValueDocumentsAll.filter(function (e) {
 							return e.LCHDocumentName.match('FakeOLSKChangeDelegate');
 						}).pop(), {
 							LCHDocumentName: 'FakeOLSKChangeDelegateUpdateDocument',
@@ -699,7 +737,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 							return e.LCHDocumentName.match('FakeOLSKChangeDelegate');
 						}).pop();
 						
-						await LCHDocumentAction.LCHDocumentActionDelete(mod._ValueOLSKRemoteStorage, item.LCHDocumentID);
+						await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentDelete(item);
 						
 						return mod.OLSKChangeDelegateDeleteDocument(item);
 					},
@@ -711,9 +749,9 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 							return e.LCHDocumentName.match('FakeOLSKChangeDelegateConflictDocument');
 						}).pop();
 						
-						return mod.OLSKChangeDelegateConflictDocument({
+						return mod.ZDRSchemaDispatchSyncConflict({
 							origin: 'conflict',
-							oldValue: await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueOLSKRemoteStorage, Object.assign({}, item, {
+							oldValue: await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(Object.assign({}, item, {
 								LCHDocumentName: item.LCHDocumentName + '-local',
 							})),
 							newValue: Object.assign({}, item, {
@@ -732,7 +770,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 					LCHRecipeName: 'FakeFundDocumentLimit',
 					LCHRecipeCallback: async function FakeFundDocumentLimit () {
 						await Promise.all(Array.from(Array(mod._ValueDocumentRemainder)).map(function (e) {
-							return LCHDocumentAction.LCHDocumentActionCreate(mod._ValueOLSKRemoteStorage, mod.DataDocumentObjectTemplate());
+							return mod._ValueZDRWrap.App.LCHDocument.LCHDocumentCreate(mod.DataDocumentObjectTemplate());
 						}));
 
 						return mod.SetupValueDocumentsAll();
@@ -741,19 +779,19 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 			]);
 		}
 
-		items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes({
-			ParamWindow: window,
-			ParamStorage: mod._ValueOLSKRemoteStorage,
-			OLSKLocalized: OLSKLocalized,
-			ParamMod: mod,
-			ParamSpecUI: OLSK_SPEC_UI(),
-		}));
+		// items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes({
+		// 	ParamWindow: window,
+		// 	ParamStorage: mod._ValueOLSKRemoteStorage,
+		// 	OLSKLocalized: OLSKLocalized,
+		// 	ParamMod: mod,
+		// 	ParamSpecUI: OLSK_SPEC_UI(),
+		// }));
 		items.push(...OLSKServiceWorker.OLSKServiceWorkerRecipes(window, mod.DataNavigator(), OLSKLocalized, OLSK_SPEC_UI()));
 
 		items.push(...OLSKFund.OLSKFundRecipes({
 			ParamWindow: window,
 			OLSKLocalized: OLSKLocalized, 
-			ParamConnected: mod._ValueOLSKRemoteStorage.connected,
+			ParamConnected: !!mod._ValueCloudIdentity,
 			ParamAuthorized: !!mod._ValueFundClue,
 			OLSKFundDispatchGrant: mod.OLSKFundDispatchGrant,
 			OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
@@ -776,10 +814,15 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 		mod._ValueFundClue = inputData;
 
 		if (!inputData) {
-			return LCHSettingAction.LCHSettingsActionDelete(mod._ValueOLSKRemoteStorage, 'LCHSettingFundClue');
+			return mod._ValueZDRWrap.App.LCHSetting.ZDRModelDeleteObject({
+				LCHSettingKey: 'LCHSettingFundClue',
+			});
 		}
 
-		return LCHSettingAction.LCHSettingsActionProperty(mod._ValueOLSKRemoteStorage, 'LCHSettingFundClue', inputData).then(function () {
+		return mod._ValueZDRWrap.App.LCHSetting.ZDRModelWriteObject({
+			LCHSettingKey: 'LCHSettingFundClue',
+			LCHSettingValue: inputData,
+		}).then(function () {
 			if (OLSK_SPEC_UI()) {
 				return;
 			}
@@ -886,10 +929,6 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 		}), false);
 	},
 
-	async OLSKChangeDelegateConflictDocument (inputData) {
-		return mod.OLSKChangeDelegateUpdateDocument(await LCHDocumentAction.LCHDocumentActionUpdate(mod._ValueOLSKRemoteStorage, OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(inputData)));
-	},
-
 	OLSKRemoteStorageLauncherItemFakeFlipConnectedDidFinish () {
 		mod._ValueOLSKRemoteStorage = mod._ValueOLSKRemoteStorage; // #purge-svelte-force-update
 	},
@@ -958,11 +997,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 	// SETUP
 
 	async SetupEverything () {
-		mod.SetupStorageClient();
-
-		mod.SetupStorageStatus();
-
-		await mod.SetupStorageNotifications();
+		await mod.SetupStorageClient();
 
 		await mod.SetupValuePipeModeEnabled();
 
@@ -985,81 +1020,48 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 		// mod.ControlDemo();
 	},
 
-	SetupStorageClient() {
-		const storageModule = LCH_Data.LCH_DataModule([
-			Object.assign(LCHDocumentStorage.LCHDocumentStorageBuild, {
-				OLSKChangeDelegate: {
-					OLSKChangeDelegateCreate: mod.OLSKChangeDelegateCreateDocument,
-					OLSKChangeDelegateUpdate: mod.OLSKChangeDelegateUpdateDocument,
-					OLSKChangeDelegateDelete: mod.OLSKChangeDelegateDeleteDocument,
-					OLSKChangeDelegateConflict: mod.OLSKChangeDelegateConflictDocument,
-				},
-			}),
-			LCHSettingStorage.LCHSettingStorageBuild,
-			]);
-		
-		mod._ValueOLSKRemoteStorage = new RemoteStorage({
-			modules: [ storageModule ],
-			OLSKPatchRemoteStorageAuthRedirectURI: OLSK_SPEC_UI() ? undefined : window.location.origin + window.OLSKCanonical('LCHComposeRoute'),
-		});
+	DataStorageClient (inputData) {
+		return zerodatawrap.ZDRWrap({
+			ZDRParamLibrary: (function() {
+				if (inputData === zerodatawrap.ZDRProtocolFission()) {
+					return webnative;
+				}
 
-		mod._ValueOLSKRemoteStorage.access.claim(storageModule.name, 'rw');
-
-		mod._ValueOLSKRemoteStorage.caching.enable(`/${ storageModule.name }/`);
+				return RemoteStorage;
+			})(),
+			ZDRParamScopes: [{
+				ZDRScopeKey: 'App',
+				ZDRScopeDirectory: 'launchlet',
+				ZDRScopeSchemas: [Object.assign(LCHDocument, {
+					ZDRSchemaDispatchSyncCreate: mod.OLSKChangeDelegateCreateDocument,
+					ZDRSchemaDispatchSyncUpdate: mod.OLSKChangeDelegateUpdateDocument,
+					ZDRSchemaDispatchSyncDelete: mod.OLSKChangeDelegateDeleteDocument,
+					ZDRSchemaDispatchSyncConflict: mod.ZDRSchemaDispatchSyncConflict,
+				}), LCHSetting],
+			}],
+			ZDRParamDispatchError: mod.ZDRParamDispatchError,
+			ZDRParamDispatchConnected: mod.ZDRParamDispatchConnected,
+			ZDRParamDispatchOnline: mod.ZDRParamDispatchOnline,
+			ZDRParamDispatchOffline: mod.ZDRParamDispatchOffline,
+		})
 	},
 
-	SetupStorageStatus () {
-		OLSKRemoteStorage.OLSKRemoteStorageStatus(mod._ValueOLSKRemoteStorage, function (inputData) {
-			mod._ValueFooterStorageStatus = inputData;
-		}, OLSKLocalized)
+	async SetupStorageClient() {
+		mod._ValueZDRWrap = await mod.DataStorageClient(zerodatawrap.ZDRPreferenceProtocol(zerodatawrap.ZDRProtocolRemoteStorage()));
 	},
 
-	async SetupStorageNotifications () {
-		mod._ValueOLSKRemoteStorage.on('sync-done', () => {
-			if (!OLSK_SPEC_UI()) {
-				console.debug('sync-done', arguments);
-			}
-		});
-
-		let isOffline;
-
-		mod._ValueOLSKRemoteStorage.on('network-offline', () => {
-			if (!OLSK_SPEC_UI()) {
-				console.debug('network-offline', arguments);
-			}
-
-			isOffline = true;
-		});
-
-		mod._ValueOLSKRemoteStorage.on('network-online', () => {
-			if (!OLSK_SPEC_UI()) {
-				console.debug('network-online', arguments);
-			}
-			
-			isOffline = false;
-		});
-
-		mod._ValueOLSKRemoteStorage.on('error', (error) => {
-			if (isOffline && inputData.message === 'Sync failed: Network request failed.') {
-				return;
-			};
-
-			if (!OLSK_SPEC_UI()) {
-				console.debug('error', error);
-			}
-		});
-
-		return new Promise(function (res, rej) {
-			return mod._ValueOLSKRemoteStorage.on('ready', res);
-		});
+	async DataSettingValue (inputData) {
+		return ((await mod._ValueZDRWrap.App.LCHSetting.LCHSettingList()).filter(function (e) {
+			return e.LCHSettingKey === inputData;
+		}).pop() || {}).LCHSettingValue;
 	},
 
 	async SetupValuePipeModeEnabled() {
-		mod._ValuePipeModeEnabled = (await LCHSettingAction.LCHSettingsActionProperty(mod._ValueOLSKRemoteStorage, 'kLCHComposePreferenceModePipeEnabled')) === 'true';
+		mod._ValuePipeModeEnabled = (await mod.DataSettingValue('kLCHComposePreferenceModePipeEnabled')) === 'true';
 	},
 
 	async SetupValuePageRecipesEnabled() {
-		mod._ValuePageRecipesEnabled = (await LCHSettingAction.LCHSettingsActionProperty(mod._ValueOLSKRemoteStorage, 'kLCHComposePreferenceIncludePageRecipes')) === 'true';
+		mod._ValuePageRecipesEnabled = (await mod.DataSettingValue('kLCHComposePreferenceIncludePageRecipes')) === 'true';
 	},
 
 	SetupValuePublicKey() {
@@ -1073,9 +1075,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 	},
 
 	async SetupValueDocumentsAll() {
-		mod.ValueDocumentsAll((await LCHDocumentAction.LCHDocumentActionList(mod._ValueOLSKRemoteStorage)).filter(function (e) {
-			return typeof e === 'object'; // #patch-remotestorage-true
-		}));
+		mod.ValueDocumentsAll(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentList());
 	},
 
 	SetupPageRecipes() {
@@ -1094,7 +1094,7 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 			OLSKFund._OLSKFundFakeGrantResponseRandom();
 		}
 
-		mod._ValueFundClue = await LCHSettingAction.LCHSettingsActionProperty(mod._ValueOLSKRemoteStorage, 'LCHSettingFundClue');
+		mod._ValueFundClue = await mod.DataSettingValue('LCHSettingFundClue');
 
 		await OLSKFund.OLSKFundSetupPostPay({
 			ParamWindow: window,
@@ -1102,14 +1102,18 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 			OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
 		});
 
-		if (!mod._ValueOLSKRemoteStorage.connected) {
+		if (!mod._ValueCloudIdentity) {
 			return;
 		}
 
 		if (!mod._ValueFundClue) {
 			return;
 		}
-		
+
+		if (mod._ValueZDRWrap.ZDRStorageProtocol !== zerodatawrap.ZDRProtocolRemoteStorage()) {
+			return;
+		}
+
 		const item = {
 			OLSK_CRYPTO_PAIR_RECEIVER_PRIVATE: `OLSK_CRYPTO_PAIR_RECEIVER_PRIVATE_SWAP_TOKEN${ '' }`, // #purge
 			OLSK_CRYPTO_PAIR_SENDER_PUBLIC: 'OLSK_CRYPTO_PAIR_SENDER_PUBLIC_SWAP_TOKEN',
@@ -1117,13 +1121,13 @@ LCHSettingStorage.LCHSettingStorageWrite(mod._ValueOLSKRemoteStorage, e);
 			OLSK_FUND_API_URL: 'OLSK_FUND_API_URL_SWAP_TOKEN',
 			ParamBody: {
 				OLSKPactAuthType: OLSKPact.OLSKPactAuthTypeRemoteStorage(),
-				OLSKPactAuthIdentity: mod._ValueOLSKRemoteStorage.remote.userAddress,
-				OLSKPactAuthProof: mod._ValueOLSKRemoteStorage.remote.token,
+				OLSKPactAuthIdentity: mod._ValueCloudIdentity,
+				OLSKPactAuthProof: mod._ValueZDRWrap.ZDRStorageClient().remote.token,
 				OLSKPactAuthMetadata: {
-					OLSKPactAuthMetadataModuleName: LCH_Data.LCH_DataModuleName(),
-					OLSKPactAuthMetadataFolderPath: LCHDocumentStorage.LCHDocumentStorageCollectionPath(),
+					OLSKPactAuthMetadataModuleName: 'launchlet',
+					OLSKPactAuthMetadataFolderPath: LCHDocument.LCHDocumentDirectory() + '/',
 				},
-				OLSKPactPayIdentity: mod._ValueOLSKRemoteStorage.remote.userAddress,
+				OLSKPactPayIdentity: mod._ValueCloudIdentity,
 				OLSKPactPayClue: mod._ValueFundClue,
 			},
 			OLSKLocalized,
@@ -1251,7 +1255,7 @@ import OLSKApropos from 'OLSKApropos';
 
 </footer>
 
-{#if mod._ValueOLSKRemoteStorage && mod._ValueOLSKRemoteStorage.connected }
+{#if mod._ValueOLSKRemoteStorage && !!mod._ValueCloudIdentity }
 	<OLSKWebView OLSKModalViewTitleText={ OLSKLocalized('OLSKFundWebViewTitleText') } OLSKWebViewURL={ mod._ValueFundURL } bind:this={ mod._OLSKWebView } DEBUG_OLSKWebViewDataSource={ OLSK_SPEC_UI() } />
 {/if}
 

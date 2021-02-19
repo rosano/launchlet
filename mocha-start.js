@@ -1,50 +1,51 @@
-const RemoteStorage = require('remotestoragejs');
-
-const LCH_Data = require('./os-app/_shared/LCH_Data/main.js').default;
-const LCHDocumentStorage = require('./os-app/_shared/LCHDocument/storage.js').default;
-const LCHSettingStorage = require('./os-app/_shared/LCHSetting/storage.js').default;
-
-(function LCHMochaStorage() {
+(function LCHMochaWrap() {
 	if (process.env.OLSK_SPEC_MOCHA_INTERFACE === 'true') {
 		return;
 	}
 
-	const storageModule = LCH_Data.LCH_DataModule([
-		LCHDocumentStorage.LCHDocumentStorageBuild,
-		LCHSettingStorage.LCHSettingStorageBuild,
-	], {
-		OLSKOptionIncludeDebug: true,
-	});
-
 	before(function() {
-		global.LCHTestingStorageClient = new RemoteStorage({ modules: [ storageModule ] });
-
-		global.LCHTestingStorageClient.access.claim(storageModule.name, 'rw');
+		global.LCHTestingWrap = require('zerodatawrap')._ZDRWrap({
+			ZDRParamLibrary: require('remotestoragejs'),
+			ZDRParamScopes: [{
+				ZDRScopeKey: 'App',
+				ZDRScopeDirectory: 'launchlet',
+				ZDRScopeSchemas: [
+					require('./os-app/_shared/LCHDocument/main.js').default,
+					require('./os-app/_shared/LCHSetting/main.js').default,
+				],
+			}],
+			ZDRParamDispatchReady: (function () {}),
+		});
 	});
 
-	beforeEach(function() {
-		return global.LCHTestingStorageClient[storageModule.name].__DEBUG.__OLSKRemoteStorageReset();
+	beforeEach(async function() {
+		return Promise.all((await LCHTestingWrap.App.ZDRStoragePathsRecursive('')).map(LCHTestingWrap.App.ZDRStorageDelete));
 	});
 })();
 
 (function LCHMochaStubs() {
 	Object.entries({
 
-		StubDocumentObjectValid () {
-			return {
-				LCHDocumentID: 'alfa',
+		uStubDocument (inputData = {}) {
+			return Object.assign({
 				LCHDocumentCallbackArgs: 'bravo',
 				LCHDocumentCallbackBody: 'charlie',
-				LCHDocumentCreationDate: new Date('2019-02-23T13:56:36Z'),
-				LCHDocumentModificationDate: new Date('2019-02-23T13:56:36Z'),
-			};
+			}, inputData);
 		},
 
-		StubSettingObjectValid () {
-			return {
+		StubDocumentObjectValid (inputData = {}) {
+			return Object.assign(uStubDocument({
+				LCHDocumentID: 'alfa',
+				LCHDocumentCreationDate: new Date('2019-02-23T13:56:36Z'),
+				LCHDocumentModificationDate: new Date('2019-02-23T13:56:36Z'),
+			}), inputData);
+		},
+
+		StubSettingObjectValid (inputData = {}) {
+			return Object.assign({
 				LCHSettingKey: 'alfa',
 				LCHSettingValue: 'bravo',
-			};
+			}, inputData);
 		},
 
 		uStubTwoItems () {

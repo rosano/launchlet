@@ -15,7 +15,8 @@
     "// OLDSKOOL": null,
     "OLSKExpress": "olsk/OLSKExpress",
 
-    "// REMOTE STORAGE": null,
+    "// 0DATA": null,
+    "zerodatawrap": "0dataapp/0datawrap",
     "OLSKRemoteStorage": "olsk/OLSKRemoteStorage",
     "OLSKStorageWidget": "olsk/OSWPackage",
 
