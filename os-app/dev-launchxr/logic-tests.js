@@ -102,7 +102,7 @@ describe('LCHLauncherFilterFunction', function test_LCHLauncherFilterFunction() 
 		deepEqual(mod.LCHLauncherFilterFunction(fuzzysortPackage, 'alf', [item]), [item]);
 	});
 
-	it('includes if diacritic insensitive match', function() {
+	it.skip('includes if diacritic insensitive match', function() {
 		const item = {
 			LCHRecipeName: 'álfa',
 		};
