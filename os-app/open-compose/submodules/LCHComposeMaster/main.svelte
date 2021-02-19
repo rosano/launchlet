@@ -48,10 +48,12 @@ import LCHComposeMasterListItem from '../LCHComposeMasterListItem/main.svelte';
 		</div>
 	</div>
 
-	<LCHComposeMasterListItem
-		LCHComposeMasterListItemTitle={ LCHComposeMasterLogic.LCHComposeMasterListItemTitle(item) }
-		LCHComposeMasterListItemFlagged={ item.LCHDocumentIsFlagged }
-		/>
+	<div slot="OLSKMasterListItem">
+		<LCHComposeMasterListItem
+			LCHComposeMasterListItemTitle={ LCHComposeMasterLogic.LCHComposeMasterListItemTitle(item) }
+			LCHComposeMasterListItemFlagged={ item.LCHDocumentIsFlagged }
+			/>
+	</div>
 </OLSKMasterList>
 
 <style src="./ui-style.css"></style>
