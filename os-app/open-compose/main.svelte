@@ -143,6 +143,112 @@ const mod = {
 		}, inputData));
 	},
 
+	DataRecipes () {
+		const items = [];
+
+		if (mod._ValueDocumentSelected) {
+			items.push({
+				LCHRecipeSignature: 'LCHComposeLauncherItemClone',
+				LCHRecipeName: OLSKLocalized('LCHComposeLauncherItemCloneText'),
+				LCHRecipeCallback () {
+					mod.ControlDocumentClone(mod._ValueDocumentSelected);
+				},
+			});
+		}
+
+		if (OLSK_SPEC_UI()) {
+			items.push(...[
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateCreateDocument',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateDocument () {
+						return mod.OLSKChangeDelegateCreateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentCreate(mod.DataDocumentObjectTemplate('FakeOLSKChangeDelegateCreateDocument')));
+					},
+				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateDocument',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateDocument () {
+						return mod.OLSKChangeDelegateUpdateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(Object.assign(mod._ValueDocumentsAll.filter(function (e) {
+							return e.LCHDocumentName.match('FakeOLSKChangeDelegate');
+						}).pop(), {
+							LCHDocumentName: 'FakeOLSKChangeDelegateUpdateDocument',
+						})));
+					},
+				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteDocument',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateDeleteDocument () {
+						const item = mod._ValueDocumentsAll.filter(function (e) {
+							return e.LCHDocumentName.match('FakeOLSKChangeDelegate');
+						}).pop();
+						
+						await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentDelete(item);
+						
+						return mod.OLSKChangeDelegateDeleteDocument(item);
+					},
+				},
+				{
+					LCHRecipeName: 'FakeOLSKChangeDelegateConflictDocument',
+					LCHRecipeCallback: async function FakeOLSKChangeDelegateConflictDocument () {
+						const item = mod._ValueDocumentsAll.filter(function (e) {
+							return e.LCHDocumentName.match('FakeOLSKChangeDelegateConflictDocument');
+						}).pop();
+						
+						return mod.ZDRSchemaDispatchSyncConflict({
+							origin: 'conflict',
+							oldValue: await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(Object.assign({}, item, {
+								LCHDocumentName: item.LCHDocumentName + '-local',
+							})),
+							newValue: Object.assign({}, item, {
+								LCHDocumentName: item.LCHDocumentName + '-remote',
+							}),
+						});
+					},
+				},
+				{
+					LCHRecipeName: 'FakeEscapeWithoutSort',
+					LCHRecipeCallback: function FakeEscapeWithoutSort () {
+						mod.ControlDocumentSelect(null);
+					},
+				},
+				{
+					LCHRecipeName: 'FakeFundDocumentLimit',
+					LCHRecipeCallback: async function FakeFundDocumentLimit () {
+						await Promise.all(Array.from(Array(mod._ValueDocumentRemainder)).map(function (e) {
+							return mod._ValueZDRWrap.App.LCHDocument.LCHDocumentCreate(mod.DataDocumentObjectTemplate());
+						}));
+
+						return mod.SetupValueDocumentsAll();
+					},
+				},
+			]);
+		}
+
+		if (mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolRemoteStorage()) {
+			items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes({
+				ParamWindow: window,
+				ParamStorage: mod._ValueZDRWrap.ZDRStorageClient(),
+				OLSKLocalized: OLSKLocalized,
+				ParamMod: mod,
+				ParamSpecUI: OLSK_SPEC_UI(),
+			}));
+		}
+
+		items.push(...OLSKServiceWorker.OLSKServiceWorkerRecipes(window, mod.DataNavigator(), OLSKLocalized, OLSK_SPEC_UI()));
+
+		items.push(...OLSKFund.OLSKFundRecipes({
+			ParamWindow: window,
+			OLSKLocalized: OLSKLocalized, 
+			ParamConnected: !!mod._ValueCloudIdentity,
+			ParamAuthorized: !!mod._ValueFundClue,
+			OLSKFundDispatchGrant: mod.OLSKFundDispatchGrant,
+			OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
+			ParamMod: mod,
+			ParamSpecUI: OLSK_SPEC_UI(),
+		}));
+
+		return items;
+	},
+
 	// INTERFACE
 
 	InterfaceWindowDidKeydown (event) {
@@ -722,110 +828,8 @@ const mod = {
 			return window.Launchlet.LCHSingletonDestroy();
 		}
 
-		const items = [];
-
-		if (mod._ValueDocumentSelected) {
-			items.push({
-				LCHRecipeSignature: 'LCHComposeLauncherItemClone',
-				LCHRecipeName: OLSKLocalized('LCHComposeLauncherItemCloneText'),
-				LCHRecipeCallback () {
-					mod.ControlDocumentClone(mod._ValueDocumentSelected);
-				},
-			});
-		}
-
-		if (OLSK_SPEC_UI()) {
-			items.push(...[
-				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateCreateDocument',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateDocument () {
-						return mod.OLSKChangeDelegateCreateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentCreate(mod.DataDocumentObjectTemplate('FakeOLSKChangeDelegateCreateDocument')));
-					},
-				},
-				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateDocument',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateDocument () {
-						return mod.OLSKChangeDelegateUpdateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(Object.assign(mod._ValueDocumentsAll.filter(function (e) {
-							return e.LCHDocumentName.match('FakeOLSKChangeDelegate');
-						}).pop(), {
-							LCHDocumentName: 'FakeOLSKChangeDelegateUpdateDocument',
-						})));
-					},
-				},
-				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteDocument',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateDeleteDocument () {
-						const item = mod._ValueDocumentsAll.filter(function (e) {
-							return e.LCHDocumentName.match('FakeOLSKChangeDelegate');
-						}).pop();
-						
-						await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentDelete(item);
-						
-						return mod.OLSKChangeDelegateDeleteDocument(item);
-					},
-				},
-				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateConflictDocument',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateConflictDocument () {
-						const item = mod._ValueDocumentsAll.filter(function (e) {
-							return e.LCHDocumentName.match('FakeOLSKChangeDelegateConflictDocument');
-						}).pop();
-						
-						return mod.ZDRSchemaDispatchSyncConflict({
-							origin: 'conflict',
-							oldValue: await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(Object.assign({}, item, {
-								LCHDocumentName: item.LCHDocumentName + '-local',
-							})),
-							newValue: Object.assign({}, item, {
-								LCHDocumentName: item.LCHDocumentName + '-remote',
-							}),
-						});
-					},
-				},
-				{
-					LCHRecipeName: 'FakeEscapeWithoutSort',
-					LCHRecipeCallback: function FakeEscapeWithoutSort () {
-						mod.ControlDocumentSelect(null);
-					},
-				},
-				{
-					LCHRecipeName: 'FakeFundDocumentLimit',
-					LCHRecipeCallback: async function FakeFundDocumentLimit () {
-						await Promise.all(Array.from(Array(mod._ValueDocumentRemainder)).map(function (e) {
-							return mod._ValueZDRWrap.App.LCHDocument.LCHDocumentCreate(mod.DataDocumentObjectTemplate());
-						}));
-
-						return mod.SetupValueDocumentsAll();
-					},
-				},
-			]);
-		}
-
-		if (mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolRemoteStorage()) {
-			items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes({
-				ParamWindow: window,
-				ParamStorage: mod._ValueZDRWrap.ZDRStorageClient(),
-				OLSKLocalized: OLSKLocalized,
-				ParamMod: mod,
-				ParamSpecUI: OLSK_SPEC_UI(),
-			}));
-		}
-
-		items.push(...OLSKServiceWorker.OLSKServiceWorkerRecipes(window, mod.DataNavigator(), OLSKLocalized, OLSK_SPEC_UI()));
-
-		items.push(...OLSKFund.OLSKFundRecipes({
-			ParamWindow: window,
-			OLSKLocalized: OLSKLocalized, 
-			ParamConnected: !!mod._ValueCloudIdentity,
-			ParamAuthorized: !!mod._ValueFundClue,
-			OLSKFundDispatchGrant: mod.OLSKFundDispatchGrant,
-			OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
-			ParamMod: mod,
-			ParamSpecUI: OLSK_SPEC_UI(),
-		}));
-
 		window.Launchlet.LCHSingletonCreate({
-			LCHOptionRecipes: items,
+			LCHOptionRecipes: mod.DataRecipes(),
 		});
 	},
 
