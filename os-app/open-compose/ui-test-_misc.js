@@ -477,7 +477,7 @@ describe('LCHCompose_Misc', function () {
 			});
 
 			it('sets LCHComposeDetailItem', function () {
-				browser.assert.text('.LCHComposeMasterListItemTitle', 'bravoalfa');
+				browser.assert.text('.LCHComposeMasterListItemTitle', 'alfabravo');
 			});
 
 		});

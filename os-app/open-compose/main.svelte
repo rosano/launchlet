@@ -400,9 +400,11 @@ const mod = {
 	},
 	
 	async ControlDocumentClone (inputData) {
-		mod.ControlDocumentCreate(Object.assign(Object.assign({}, inputData), {
-			LCHDocumentID: undefined,
-		}));
+		const item = Object.assign({}, inputData);
+
+		delete item.LCHDocumentID;
+
+		mod.ControlDocumentCreate(item);
 	},
 	
 	async ControlDocumentDiscard (inputData) {
