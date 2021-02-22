@@ -623,13 +623,21 @@ const mod = {
 	},
 
 	OLSKCloudStatusDispatchSyncStart () {
+		if (mod._ValueZDRWrap.ZDRStorageProtocol !== zerodatawrap.ZDRProtocolRemoteStorage()) {
+			return;
+		}
+
 		mod._ValueIsSyncing = true;
 
-		mod._ValueOLSKRemoteStorage.startSync();
+		mod._ValueZDRWrap.ZDRStorageClient().startSync();
 	},
 
 	OLSKCloudStatusDispatchSyncStop () {
-		mod._ValueOLSKRemoteStorage.stopSync();
+		if (mod._ValueZDRWrap.ZDRStorageProtocol !== zerodatawrap.ZDRProtocolRemoteStorage()) {
+			return;
+		}
+
+		mod._ValueZDRWrap.ZDRStorageClient().stopSync();
 	},
 
 	ZDRSchemaDispatchSyncConflict (event) {
@@ -802,7 +810,7 @@ const mod = {
 				ParamSpecUI: OLSK_SPEC_UI(),
 			}));
 		}
-		
+
 		items.push(...OLSKServiceWorker.OLSKServiceWorkerRecipes(window, mod.DataNavigator(), OLSKLocalized, OLSK_SPEC_UI()));
 
 		items.push(...OLSKFund.OLSKFundRecipes({
@@ -947,7 +955,7 @@ const mod = {
 	},
 
 	OLSKRemoteStorageLauncherItemFakeFlipConnectedDidFinish () {
-		mod._ValueOLSKRemoteStorage = mod._ValueOLSKRemoteStorage; // #purge-svelte-force-update
+		// mod._ValueOLSKRemoteStorage = mod._ValueOLSKRemoteStorage; // #purge-svelte-force-update
 	},
 
 	// REACT
@@ -1283,7 +1291,7 @@ import OLSKApropos from 'OLSKApropos';
 
 </footer>
 
-{#if mod._ValueOLSKRemoteStorage && !!mod._ValueCloudIdentity }
+{#if !!mod._ValueCloudIdentity }
 	<OLSKWebView OLSKModalViewTitleText={ OLSKLocalized('OLSKFundWebViewTitleText') } OLSKWebViewURL={ mod._ValueFundURL } bind:this={ mod._OLSKWebView } DEBUG_OLSKWebViewDataSource={ OLSK_SPEC_UI() } />
 {/if}
 
