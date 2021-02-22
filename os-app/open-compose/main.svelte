@@ -223,6 +223,11 @@ const mod = {
 			]);
 		}
 
+		items.push(...zerodatawrap.ZDRRecipes({
+			ParamMod: mod,
+			ParamSpecUI: OLSK_SPEC_UI(),
+		}));
+
 		if (mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolRemoteStorage()) {
 			items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes({
 				ParamWindow: window,
@@ -956,10 +961,6 @@ const mod = {
 		mod.ValueDocumentsAll(mod._ValueDocumentsAll.filter(function (e) {
 			return e.LCHDocumentID !== inputData.LCHDocumentID;
 		}), false);
-	},
-
-	OLSKRemoteStorageLauncherItemFakeFlipConnectedDidFinish () {
-		// mod._ValueOLSKRemoteStorage = mod._ValueOLSKRemoteStorage; // #purge-svelte-force-update
 	},
 
 	// REACT
