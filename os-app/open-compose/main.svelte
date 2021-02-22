@@ -735,14 +735,22 @@ const mod = {
 		mod._ValueCloudIsOffline = true;
 	},
 
+	ZDRParamDispatchSyncDidStart () {
+		mod._ValueIsSyncing = true;
+	},
+
+	ZDRParamDispatchSyncDidStop () {
+		mod._ValueIsSyncing = false;
+	},
+
 	OLSKCloudStatusDispatchSyncStart () {
 		if (mod._ValueZDRWrap.ZDRStorageProtocol !== zerodatawrap.ZDRProtocolRemoteStorage()) {
 			return;
 		}
 
-		mod._ValueIsSyncing = true;
-
 		mod._ValueZDRWrap.ZDRStorageClient().startSync();
+
+		mod.ZDRParamDispatchSyncDidStart();
 	},
 
 	OLSKCloudStatusDispatchSyncStop () {
