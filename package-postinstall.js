@@ -37,5 +37,6 @@
 		'OLSKUIAssets',
 		'ROCORootLink',
 		'simplecrypto',
+		'webnative',
 	], require('path').join(__dirname, 'node_modules'), require('path').join(__dirname, 'os-app/_shared/__external'));
 })();
