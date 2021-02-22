@@ -793,13 +793,16 @@ const mod = {
 			]);
 		}
 
-		// items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes({
-		// 	ParamWindow: window,
-		// 	ParamStorage: mod._ValueOLSKRemoteStorage,
-		// 	OLSKLocalized: OLSKLocalized,
-		// 	ParamMod: mod,
-		// 	ParamSpecUI: OLSK_SPEC_UI(),
-		// }));
+		if (mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolRemoteStorage()) {
+			items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes({
+				ParamWindow: window,
+				ParamStorage: mod._ValueZDRWrap.ZDRStorageClient(),
+				OLSKLocalized: OLSKLocalized,
+				ParamMod: mod,
+				ParamSpecUI: OLSK_SPEC_UI(),
+			}));
+		}
+		
 		items.push(...OLSKServiceWorker.OLSKServiceWorkerRecipes(window, mod.DataNavigator(), OLSKLocalized, OLSK_SPEC_UI()));
 
 		items.push(...OLSKFund.OLSKFundRecipes({
