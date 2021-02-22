@@ -18,14 +18,14 @@ describe('LCHCompose_Sync', function () {
 		return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 	});
 
-	describe('OLSKChangeDelegateCreateDocument', function test_OLSKChangeDelegateCreateDocument () {
+	describe('ZDRSchemaDispatchSyncCreateDocument', function test_ZDRSchemaDispatchSyncCreateDocument () {
 
 		before(function () {
 			browser.assert.elements('.LCHComposeMasterListItem', 1);
 		});
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateDocument');
+			return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncCreateDocument');
 		});
 
 		it('adds item', function () {
@@ -33,7 +33,7 @@ describe('LCHCompose_Sync', function () {
 		});
 
 		it('sorts list', function () {
-			browser.assert.text('.LCHComposeMasterListItem', 'FakeOLSKChangeDelegateCreateDocument alfa');
+			browser.assert.text('.LCHComposeMasterListItem', 'FakeZDRSchemaDispatchSyncCreateDocument alfa');
 		});
 
 		context('selected', function () {
@@ -47,7 +47,7 @@ describe('LCHCompose_Sync', function () {
 			});
 
 			before(function () {
-				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateDocument');
+				return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncCreateDocument');
 			});
 
 			it('adds item', function () {
@@ -55,33 +55,33 @@ describe('LCHCompose_Sync', function () {
 			});
 
 			it('skips sort', function () {
-				browser.assert.text('.LCHComposeMasterListItem', 'FakeOLSKChangeDelegateCreateDocument FakeOLSKChangeDelegateCreateDocument alfa2');
+				browser.assert.text('.LCHComposeMasterListItem', 'FakeZDRSchemaDispatchSyncCreateDocument FakeZDRSchemaDispatchSyncCreateDocument alfa2');
 			});
 		
 		});
 
 	});
 
-	describe('OLSKChangeDelegateUpdateDocument', function test_OLSKChangeDelegateUpdateDocument () {
+	describe('ZDRSchemaDispatchSyncUpdateDocument', function test_ZDRSchemaDispatchSyncUpdateDocument () {
 
 		before(function () {
 			return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
 		});
 
 		before(function () {
-			browser.assert.text('.LCHComposeMasterListItem', 'FakeOLSKChangeDelegateCreateDocument alfa2 FakeOLSKChangeDelegateCreateDocument');
+			browser.assert.text('.LCHComposeMasterListItem', 'FakeZDRSchemaDispatchSyncCreateDocument alfa2 FakeZDRSchemaDispatchSyncCreateDocument');
 		});
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateUpdateDocument');
+			return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncUpdateDocument');
 		});
 
 		it('updates item', function () {
-			browser.assert.text('.OLSKResultsListItem:nth-child(1) .LCHComposeMasterListItem', 'FakeOLSKChangeDelegateUpdateDocument');
+			browser.assert.text('.OLSKResultsListItem:nth-child(1) .LCHComposeMasterListItem', 'FakeZDRSchemaDispatchSyncUpdateDocument');
 		});
 
 		it('sorts list', function () {
-			browser.assert.text('.LCHComposeMasterListItem', 'FakeOLSKChangeDelegateUpdateDocument FakeOLSKChangeDelegateCreateDocument alfa2');
+			browser.assert.text('.LCHComposeMasterListItem', 'FakeZDRSchemaDispatchSyncUpdateDocument FakeZDRSchemaDispatchSyncCreateDocument alfa2');
 		});
 
 		context('selected different', function () {
@@ -95,19 +95,19 @@ describe('LCHCompose_Sync', function () {
 			});
 
 			before(function () {
-				browser.assert.text('.LCHComposeMasterListItem', 'bravo FakeOLSKChangeDelegateCreateDocument alfa2');
+				browser.assert.text('.LCHComposeMasterListItem', 'bravo FakeZDRSchemaDispatchSyncCreateDocument alfa2');
 			});
 
 			before(function () {
-				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateUpdateDocument');
+				return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncUpdateDocument');
 			});
 
 			it('updates item', function () {
-				browser.assert.elements('.OLSKResultsListItem:nth-child(3) .LCHComposeMasterListItem', 'FakeOLSKChangeDelegateUpdateDocument');
+				browser.assert.elements('.OLSKResultsListItem:nth-child(3) .LCHComposeMasterListItem', 'FakeZDRSchemaDispatchSyncUpdateDocument');
 			});
 
 			it('skips sort', function () {
-				browser.assert.text('.LCHComposeMasterListItem', 'bravo FakeOLSKChangeDelegateUpdateDocument alfa2');
+				browser.assert.text('.LCHComposeMasterListItem', 'bravo FakeZDRSchemaDispatchSyncUpdateDocument alfa2');
 			});
 		
 		});
@@ -119,22 +119,22 @@ describe('LCHCompose_Sync', function () {
 			});
 
 			before(function () {
-				return browser.fill('.LCHComposeDetailFormNameField', 'FakeOLSKChangeDelegateCreateDocument');
+				return browser.fill('.LCHComposeDetailFormNameField', 'FakeZDRSchemaDispatchSyncCreateDocument');
 			});
 
 			before(function () {
-				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateUpdateDocument');
+				return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncUpdateDocument');
 			});
 
 			it('updates detail', function () {
-				browser.assert.input('.LCHComposeDetailFormNameField', 'FakeOLSKChangeDelegateUpdateDocument');
+				browser.assert.input('.LCHComposeDetailFormNameField', 'FakeZDRSchemaDispatchSyncUpdateDocument');
 			});
 
 		});
 
 	});
 
-	describe('OLSKChangeDelegateDeleteDocument', function test_OLSKChangeDelegateDeleteDocument () {
+	describe('ZDRSchemaDispatchSyncDeleteDocument', function test_ZDRSchemaDispatchSyncDeleteDocument () {
 
 		before(function () {
 			return browser.click('.OLSKResultsListItem:nth-child(3) .LCHComposeMasterListItem');
@@ -149,7 +149,7 @@ describe('LCHCompose_Sync', function () {
 		});
 
 		before(function () {
-			browser.assert.text('.LCHComposeMasterListItem', 'bravo FakeOLSKChangeDelegateUpdateDocument alfa3');
+			browser.assert.text('.LCHComposeMasterListItem', 'bravo FakeZDRSchemaDispatchSyncUpdateDocument alfa3');
 		});
 
 		before(function () {
@@ -157,7 +157,7 @@ describe('LCHCompose_Sync', function () {
 		});
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateDeleteDocument');
+			return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncDeleteDocument');
 		});
 
 		it('removes item', function () {
@@ -179,7 +179,7 @@ describe('LCHCompose_Sync', function () {
 			});
 
 			before(function () {
-				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateDocument');
+				return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncCreateDocument');
 			});
 
 			before(function () {
@@ -187,7 +187,7 @@ describe('LCHCompose_Sync', function () {
 			});
 
 			before(function () {
-				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateDeleteDocument');
+				return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncDeleteDocument');
 			});
 
 			it('removes item', function () {
@@ -203,7 +203,7 @@ describe('LCHCompose_Sync', function () {
 		context('selected same', function () {
 			
 			before(function () {
-				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateDocument');
+				return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncCreateDocument');
 			});
 
 			before(function () {
@@ -211,7 +211,7 @@ describe('LCHCompose_Sync', function () {
 			});
 
 			before(function () {
-				browser.assert.text('.LCHComposeMasterListItem', 'FakeOLSKChangeDelegateCreateDocument bravo alfa4');
+				browser.assert.text('.LCHComposeMasterListItem', 'FakeZDRSchemaDispatchSyncCreateDocument bravo alfa4');
 			});
 
 			before(function () {
@@ -219,7 +219,7 @@ describe('LCHCompose_Sync', function () {
 			});
 
 			before(function () {
-				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateDeleteDocument');
+				return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncDeleteDocument');
 			});
 
 			it('removes item', function () {
@@ -238,22 +238,22 @@ describe('LCHCompose_Sync', function () {
 
 	});
 
-	describe('OLSKChangeDelegateConflictDocument', function test_OLSKChangeDelegateConflictDocument () {
+	describe('ZDRSchemaDispatchSyncConflictDocument', function test_ZDRSchemaDispatchSyncConflictDocument () {
 
 		before(function () {
 			return browser.pressButton('.LCHComposeMasterCreateButton');
 		});
 
 		before(function () {
-			return browser.fill('.LCHComposeDetailFormNameField', 'FakeOLSKChangeDelegateConflictDocument');
+			return browser.fill('.LCHComposeDetailFormNameField', 'FakeZDRSchemaDispatchSyncConflictDocument');
 		});
 
 		before(function () {
-			return browser.OLSKLauncherRun('FakeOLSKChangeDelegateConflictDocument');
+			return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncConflictDocument');
 		});
 
 		it('selects local', function () {
-			browser.assert.text('.LCHComposeMasterListItem', 'FakeOLSKChangeDelegateConflictDocument-local alfa4 bravo');
+			browser.assert.text('.LCHComposeMasterListItem', 'FakeZDRSchemaDispatchSyncConflictDocument-local alfa4 bravo');
 		});
 
 	});

@@ -159,38 +159,38 @@ const mod = {
 		if (OLSK_SPEC_UI()) {
 			items.push(...[
 				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateCreateDocument',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateCreateDocument () {
-						return mod.OLSKChangeDelegateCreateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentCreate(mod.DataDocumentObjectTemplate('FakeOLSKChangeDelegateCreateDocument')));
+					LCHRecipeName: 'FakeZDRSchemaDispatchSyncCreateDocument',
+					LCHRecipeCallback: async function FakeZDRSchemaDispatchSyncCreateDocument () {
+						return mod.ZDRSchemaDispatchSyncCreateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentCreate(mod.DataDocumentObjectTemplate('FakeZDRSchemaDispatchSyncCreateDocument')));
 					},
 				},
 				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateUpdateDocument',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateUpdateDocument () {
-						return mod.OLSKChangeDelegateUpdateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(Object.assign(mod._ValueDocumentsAll.filter(function (e) {
-							return e.LCHDocumentName.match('FakeOLSKChangeDelegate');
+					LCHRecipeName: 'FakeZDRSchemaDispatchSyncUpdateDocument',
+					LCHRecipeCallback: async function FakeZDRSchemaDispatchSyncUpdateDocument () {
+						return mod.ZDRSchemaDispatchSyncUpdateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(Object.assign(mod._ValueDocumentsAll.filter(function (e) {
+							return e.LCHDocumentName.match('FakeZDRSchemaDispatchSync');
 						}).pop(), {
-							LCHDocumentName: 'FakeOLSKChangeDelegateUpdateDocument',
+							LCHDocumentName: 'FakeZDRSchemaDispatchSyncUpdateDocument',
 						})));
 					},
 				},
 				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateDeleteDocument',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateDeleteDocument () {
+					LCHRecipeName: 'FakeZDRSchemaDispatchSyncDeleteDocument',
+					LCHRecipeCallback: async function FakeZDRSchemaDispatchSyncDeleteDocument () {
 						const item = mod._ValueDocumentsAll.filter(function (e) {
-							return e.LCHDocumentName.match('FakeOLSKChangeDelegate');
+							return e.LCHDocumentName.match('FakeZDRSchemaDispatchSync');
 						}).pop();
 						
 						await mod._ValueZDRWrap.App.LCHDocument.ZDRModelDeleteObject(item);
 						
-						return mod.OLSKChangeDelegateDeleteDocument(item);
+						return mod.ZDRSchemaDispatchSyncDeleteDocument(item);
 					},
 				},
 				{
-					LCHRecipeName: 'FakeOLSKChangeDelegateConflictDocument',
-					LCHRecipeCallback: async function FakeOLSKChangeDelegateConflictDocument () {
+					LCHRecipeName: 'FakeZDRSchemaDispatchSyncConflictDocument',
+					LCHRecipeCallback: async function FakeZDRSchemaDispatchSyncConflictDocument () {
 						const item = mod._ValueDocumentsAll.filter(function (e) {
-							return e.LCHDocumentName.match('FakeOLSKChangeDelegateConflictDocument');
+							return e.LCHDocumentName.match('FakeZDRSchemaDispatchSyncConflictDocument');
 						}).pop();
 						
 						return mod.ZDRSchemaDispatchSyncConflict({
@@ -755,7 +755,7 @@ const mod = {
 
 	ZDRSchemaDispatchSyncConflict (event) {
 		setTimeout(async function () {
-			return mod.OLSKChangeDelegateUpdateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(event))));
+			return mod.ZDRSchemaDispatchSyncUpdateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(event))));
 		}, OLSK_SPEC_UI() ? 0 : 500);
 	},
 
@@ -932,16 +932,16 @@ const mod = {
 	  mod.ControlPairResponseReceive(event.data);
 	},
 
-	OLSKChangeDelegateCreateDocument (inputData) {
-		// console.log('OLSKChangeDelegateCreate', inputData);
+	ZDRSchemaDispatchSyncCreateDocument (inputData) {
+		// console.log('ZDRSchemaDispatchSyncCreate', inputData);
 
 		mod.ValueDocumentsAll([inputData].concat(mod._ValueDocumentsAll.filter(function (e) {
 			return e.LCHDocumentID !== inputData.LCHDocumentID; // @Hotfix Dropbox sending DelegateAdd
 		})), !mod._ValueDocumentSelected);
 	},
 
-	OLSKChangeDelegateUpdateDocument (inputData) {
-		// console.log('OLSKChangeDelegateUpdate', inputData);
+	ZDRSchemaDispatchSyncUpdateDocument (inputData) {
+		// console.log('ZDRSchemaDispatchSyncUpdate', inputData);
 
 		if (mod._ValueDocumentSelected && mod._ValueDocumentSelected.LCHDocumentID === inputData.LCHDocumentID) {
 			mod.ControlDocumentSelect(inputData);
@@ -952,8 +952,8 @@ const mod = {
 		}), !mod._ValueDocumentSelected);
 	},
 
-	OLSKChangeDelegateDeleteDocument (inputData) {
-		// console.log('OLSKChangeDelegateDelete', inputData);
+	ZDRSchemaDispatchSyncDeleteDocument (inputData) {
+		// console.log('ZDRSchemaDispatchSyncDelete', inputData);
 
 		if (mod._ValueDocumentSelected && (mod._ValueDocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
 			mod.ControlDocumentSelect(null);
@@ -1064,9 +1064,9 @@ const mod = {
 				ZDRScopeKey: 'App',
 				ZDRScopeDirectory: 'launchlet',
 				ZDRScopeSchemas: [Object.assign(LCHDocument, {
-					ZDRSchemaDispatchSyncCreate: mod.OLSKChangeDelegateCreateDocument,
-					ZDRSchemaDispatchSyncUpdate: mod.OLSKChangeDelegateUpdateDocument,
-					ZDRSchemaDispatchSyncDelete: mod.OLSKChangeDelegateDeleteDocument,
+					ZDRSchemaDispatchSyncCreate: mod.ZDRSchemaDispatchSyncCreateDocument,
+					ZDRSchemaDispatchSyncUpdate: mod.ZDRSchemaDispatchSyncUpdateDocument,
+					ZDRSchemaDispatchSyncDelete: mod.ZDRSchemaDispatchSyncDeleteDocument,
 					ZDRSchemaDispatchSyncConflict: mod.ZDRSchemaDispatchSyncConflict,
 				}), LCHSetting],
 			}],

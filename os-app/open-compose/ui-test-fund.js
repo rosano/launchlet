@@ -152,7 +152,7 @@ describe('LCHCompose_Fund', function () {
 		context.skip('sync', function () {
 
 			before(function () {
-				return browser.OLSKLauncherRun('FakeOLSKChangeDelegateCreateNote');
+				return browser.OLSKLauncherRun('FakeZDRSchemaDispatchSyncCreateNote');
 			});
 
 			it('updates number', function () {
