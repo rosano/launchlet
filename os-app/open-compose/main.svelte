@@ -181,7 +181,7 @@ const mod = {
 							return e.LCHDocumentName.match('FakeOLSKChangeDelegate');
 						}).pop();
 						
-						await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentDelete(item);
+						await mod._ValueZDRWrap.App.LCHDocument.ZDRModelDeleteObject(item);
 						
 						return mod.OLSKChangeDelegateDeleteDocument(item);
 					},
@@ -195,12 +195,12 @@ const mod = {
 						
 						return mod.ZDRSchemaDispatchSyncConflict({
 							origin: 'conflict',
-							oldValue: await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(Object.assign({}, item, {
+							oldValue: JSON.parse(JSON.stringify(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(Object.assign({}, item, {
 								LCHDocumentName: item.LCHDocumentName + '-local',
-							})),
-							newValue: Object.assign({}, item, {
+							})))),
+							newValue: JSON.parse(JSON.stringify(Object.assign(Object.assign({}, item), {
 								LCHDocumentName: item.LCHDocumentName + '-remote',
-							}),
+							}))),
 						});
 					},
 				},
@@ -755,9 +755,8 @@ const mod = {
 
 	ZDRSchemaDispatchSyncConflict (event) {
 		setTimeout(async function () {
-			// return mod.OLSKChangeDelegateUpdateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(inputData)));
-			// console.log(await mod._ValueZDRWrap.App.XYZDocument.XYZDocumentCreate(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(event.oldValue)));
-		}, 500);
+			return mod.OLSKChangeDelegateUpdateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(event))));
+		}, OLSK_SPEC_UI() ? 0 : 500);
 	},
 
 	OLSKAppToolbarDispatchApropos () {
