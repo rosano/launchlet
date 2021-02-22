@@ -34,7 +34,6 @@
 		'OLSKRootLink',
 		'OLSKRouting',
 		'OLSKServiceWorker',
-		'OLSKStorageWidget',
 		'OLSKUIAssets',
 		'ROCORootLink',
 		'simplecrypto',

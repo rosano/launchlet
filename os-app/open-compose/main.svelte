@@ -594,6 +594,10 @@ const mod = {
 		(zerodatawrap.ZDRPreferenceProtocolMigrate() ? await mod.DataStorageClient(protocol) : mod._ValueZDRWrap).ZDRCloudConnect(inputData);
 	},
 
+	OLSKCloudDispatchRenew () {
+		mod._ValueZDRWrap.ZDRCloudReconnect(mod._ValueCloudIdentity);
+	},
+
 	OLSKCloudStatusDispatchDisconnect () {
 		mod._ValueZDRWrap.ZDRCloudDisconnect();
 
@@ -616,6 +620,16 @@ const mod = {
 
 	ZDRParamDispatchOffline () {
 		mod._ValueCloudIsOffline = true;
+	},
+
+	OLSKCloudStatusDispatchSyncStart () {
+		mod._ValueIsSyncing = true;
+
+		mod._ValueOLSKRemoteStorage.startSync();
+	},
+
+	OLSKCloudStatusDispatchSyncStop () {
+		mod._ValueOLSKRemoteStorage.stopSync();
 	},
 
 	ZDRSchemaDispatchSyncConflict (event) {
@@ -1158,7 +1172,7 @@ import LCHComposeBuild from './submodules/LCHComposeBuild/main.svelte';
 import LCHComposePair from './submodules/LCHComposePair/main.svelte';
 import OLSKAppToolbar from 'OLSKAppToolbar';
 import OLSKServiceWorkerView from '../_shared/__external/OLSKServiceWorker/main.svelte';
-import OLSKStorageWidget from 'OLSKStorageWidget';
+import OLSKCloud from 'OLSKCloud';
 import OLSKPointer from 'OLSKPointer';
 import OLSKWebView from 'OLSKWebView';
 import OLSKModalView from 'OLSKModalView';
@@ -1236,7 +1250,16 @@ import OLSKApropos from 'OLSKApropos';
 			</div>
 
 			<div class="OLSKToolbarElementGroup">
-				<OLSKStorageWidget StorageClient={ mod._ValueOLSKRemoteStorage } />
+				<OLSKCloud
+					OLSKCloudErrorText={ mod._ValueCloudErrorText }
+					OLSKCloudDispatchRenew={ mod.OLSKCloudDispatchRenew }
+					OLSKCloudFormDispatchSubmit={ mod.OLSKCloudFormDispatchSubmit }
+					OLSKCloudStatusIdentityText={ mod._ValueCloudIdentity }
+					OLSKCloudStatusIsSyncing={ mod._ValueIsSyncing }
+					OLSKCloudStatusDispatchSyncStart={ mod.OLSKCloudStatusDispatchSyncStart }
+					OLSKCloudStatusDispatchSyncStop={ mod.OLSKCloudStatusDispatchSyncStop }
+					OLSKCloudStatusDispatchDisconnect={ mod.OLSKCloudStatusDispatchDisconnect }
+					/>
 			</div>
 		</div>
 	{/if}
@@ -1248,6 +1271,9 @@ import OLSKApropos from 'OLSKApropos';
 		OLSKAppToolbarFundLimitText={ mod._ValueDocumentRemainder }
 		OLSKAppToolbarDispatchFund={ mod._ValueOLSKFundGrant || OLSKFund.OLSKFundResponseIsPresent() ? null : mod.OLSKAppToolbarDispatchFund }
 		OLSKAppToolbarGuideURL={ window.OLSKCanonical('LCHGuideRoute') }
+		OLSKAppToolbarCloudConnected={ !!mod._ValueCloudIdentity }
+		OLSKAppToolbarCloudOffline={ mod._ValueCloudIsOffline }
+		OLSKAppToolbarCloudError={ !!mod._ValueCloudErrorText }
 		OLSKAppToolbarDispatchStorage={ mod.OLSKAppToolbarDispatchStorage }
 		OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
 		/>

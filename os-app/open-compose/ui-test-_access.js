@@ -127,8 +127,8 @@ describe('LCHCompose_Access', function () {
 			browser.assert.elements(LCHComposeStorageToolbar, 1);
 		});
 
-		it('shows OLSKStorageWidget', function () {
-			browser.assert.elements('.OLSKStorageWidget', 1);
+		it('shows OLSKCloud', function () {
+			browser.assert.elements('.OLSKCloud', 1);
 		});
 	
 	});
