@@ -134,6 +134,10 @@ const mod = {
 	},
 
 	DataIsEligible (inputData = {}) {
+		if (mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolFission()) {
+			return true;
+		}
+
 		return OLSKFund.OLSKFundIsEligible(Object.assign({
 			ParamMinimumTier: 1,
 			ParamCurrentProject: 'RP_001',
@@ -1030,6 +1034,9 @@ const mod = {
 	},
 
 	async ReactDocumentRemainder () {
+		if (mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolFission()) {
+			return
+		}
 		mod._ValueDocumentRemainder = OLSKFund.OLSKFundRemainder(mod._ValueDocumentsAll.length, parseInt('LCH_FUND_DOCUMENT_LIMIT_SWAP_TOKEN'));
 	},
 
@@ -1130,6 +1137,10 @@ const mod = {
 	},
 
 	async SetupFund () {
+		if (mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolFission()) {
+			mod._ValueOLSKFundGrant = {};
+		}
+
 		if (OLSK_SPEC_UI() && window.location.search.match('FakeOLSKFundResponseIsPresent=true')) {
 			OLSKFund._OLSKFundFakeGrantResponseRandom();
 		}
