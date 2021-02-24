@@ -1071,6 +1071,7 @@ const mod = {
 			ZDRParamScopes: [{
 				ZDRScopeKey: 'App',
 				ZDRScopeDirectory: 'launchlet',
+				ZDRScopeCreatorDirectory: 'rCreativ',
 				ZDRScopeSchemas: [Object.assign(LCHDocument, {
 					ZDRSchemaDispatchSyncCreate: mod.ZDRSchemaDispatchSyncCreateDocument,
 					ZDRSchemaDispatchSyncUpdate: mod.ZDRSchemaDispatchSyncUpdateDocument,
