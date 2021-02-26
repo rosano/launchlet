@@ -1122,6 +1122,19 @@ const mod = {
 	},
 
 	async SetupValueDocumentsAll() {
+		if (zerodatawrap.ZDRPreferenceProtocolMigrate()) {
+			const client = await mod.DataStorageClient(zerodatawrap.ZDRPreferenceProtocolMigrate());
+
+			await Promise.all((await client.App.ZDRStoragePathsRecursive('')).map(async function (e) {
+				await mod._ValueZDRWrap.App.ZDRStorageWriteObject(e, await client.App.ZDRStorageReadObject(e));
+				await client.App.ZDRStorageDelete(e);
+			}));
+
+			zerodatawrap.ZDRPreferenceProtocolMigrateClear();
+
+			client.ZDRCloudDisconnect();
+		};
+
 		mod.ValueDocumentsAll(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentList());
 	},
 
