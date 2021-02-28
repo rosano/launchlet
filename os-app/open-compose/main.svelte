@@ -1317,10 +1317,10 @@ import OLSKApropos from 'OLSKApropos';
 	<OLSKAppToolbar
 		OLSKAppToolbarDispatchApropos={ mod.OLSKAppToolbarDispatchApropos }
 		OLSKAppToolbarDispatchTongue={ mod.OLSKAppToolbarDispatchTongue }
+		OLSKAppToolbarGuideURL={ window.OLSKCanonical('LCHGuideRoute') }
 		OLSKAppToolbarFundShowProgress={ mod._ValueOLSKFundProgress }
 		OLSKAppToolbarFundLimitText={ mod._ValueDocumentRemainder }
 		OLSKAppToolbarDispatchFund={ mod._ValueOLSKFundGrant || OLSKFund.OLSKFundResponseIsPresent() ? null : mod.OLSKAppToolbarDispatchFund }
-		OLSKAppToolbarGuideURL={ window.OLSKCanonical('LCHGuideRoute') }
 		OLSKAppToolbarCloudConnected={ !!mod._ValueCloudIdentity }
 		OLSKAppToolbarCloudOffline={ mod._ValueCloudIsOffline }
 		OLSKAppToolbarCloudError={ !!mod._ValueCloudErrorText }
