@@ -19,7 +19,7 @@
 	});
 
 	beforeEach(async function() {
-		return Promise.all((await LCHTestingWrap.App.ZDRStoragePathsRecursive('')).map(LCHTestingWrap.App.ZDRStorageDelete));
+		return Promise.all((await LCHTestingWrap.App.ZDRStoragePathsRecursive('')).map(LCHTestingWrap.App.ZDRStorageDeleteFile));
 	});
 })();
 
