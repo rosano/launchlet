@@ -12,6 +12,7 @@
 				ZDRScopeSchemas: [
 					require('./os-app/_shared/LCHDocument/main.js').default,
 					require('./os-app/_shared/LCHSetting/main.js').default,
+					require('./os-app/_shared/LCHTransport/main.js').default,
 				],
 			}],
 		});
