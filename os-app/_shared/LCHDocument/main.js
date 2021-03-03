@@ -97,11 +97,11 @@ export default Object.assign(mod, {
 
 			const LCHDocumentCreationDate = new Date();
 
-			return this.App.LCHDocument.ZDRModelWriteObject(Object.assign({
+			return this.App.LCHDocument.ZDRModelWriteObject(Object.assign(inputData, Object.assign({
 				LCHDocumentID: uniqueID(),
 				LCHDocumentCreationDate,
 				LCHDocumentModificationDate: LCHDocumentCreationDate,
-			}, inputData));
+			}, inputData)));
 		},
 
 		LCHDocumentUpdate (inputData) {
