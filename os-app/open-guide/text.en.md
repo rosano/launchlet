@@ -4,7 +4,7 @@ This document is a work-in-progress. Feel free to reach out on [Mastodon](https:
 
 </div>
 
-Launchlet is a simple way to run custom styles and scripts on the web.
+Launchlet is a simple way to run customize web sites with JavaScript and CSS.
 
 Inspired by [Quicksilver](https://qsapp.com), it lets you run commands via the keyboard.
 
