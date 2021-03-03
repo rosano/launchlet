@@ -18,8 +18,8 @@
 		});
 	});
 
-	beforeEach(async function() {
-		return Promise.all((await LCHTestingWrap.App.ZDRStoragePathsRecursive('')).map(LCHTestingWrap.App.ZDRStorageDeleteFile));
+	beforeEach(function() {
+		return ZDRTestingWrap.App.ZDRStorageDeleteFolderRecursive('');
 	});
 })();
 
