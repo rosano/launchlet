@@ -5,28 +5,12 @@ import OLSKRemoteStorage from 'OLSKRemoteStorage';
 
 const mod = {
 
-	ZDRSchemaKey: 'LCHDocument',
-
-	LCHDocumentDirectory () {
-		return 'lch_documents';
-	},
-
-	ZDRSchemaStub (inputData) {
-		return {
-			LCHDocumentID: inputData.split('/').pop(),
-		};
-	},
-
-	ZDRSchemaPath (inputData) {
-		return `${ mod.LCHDocumentDirectory() }/${ inputData.LCHDocumentID }`;
-	},
-
-	ZDRSchemaDispatchValidate (inputData, options = {}) {
+	LCHDocumentErrors (inputData, options = {}) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('LCHErrorInputNotValid');
 		}
 
-		var errors = LCHFormula.LCHFormulaTo(LCHFormula.LCHFormulaErrors(LCHFormula.LCHFormulaFrom(inputData)) || {}, 'LCHDocument');
+		const errors = LCHFormula.LCHFormulaTo(LCHFormula.LCHFormulaErrors(LCHFormula.LCHFormulaFrom(inputData)) || {}, 'LCHDocument');
 
 		if (typeof inputData.LCHDocumentID !== 'string') {
 			errors.LCHDocumentID = [
@@ -83,6 +67,27 @@ const mod = {
 		return Object.entries(errors).length ? errors : null;
 	},
 
+	LCHDocumentDirectory () {
+		return 'lch_documents';
+	},
+
+	LCHDocumentObjectPath (inputData) {
+		return `${ mod.LCHDocumentDirectory() }/${ inputData.LCHDocumentID }`;
+	},
+
+	LCHDocumentStub (inputData) {
+		return {
+			LCHDocumentID: inputData.split('/').pop(),
+		};
+	},
+
+};
+
+export default Object.assign(mod, {
+	ZDRSchemaKey: 'LCHDocument',
+	ZDRSchemaDispatchValidate: mod.LCHDocumentErrors,
+	ZDRSchemaPath: mod.LCHDocumentObjectPath,
+	ZDRSchemaStub: mod.LCHDocumentStub,
 	ZDRSchemaMethods: {
 		
 		LCHDocumentCreate (inputData) {
@@ -114,7 +119,4 @@ const mod = {
 		},
 
 	},
-
-};
-
-export default mod;
+});

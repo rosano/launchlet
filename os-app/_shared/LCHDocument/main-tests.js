@@ -2,46 +2,16 @@ const { rejects, throws, deepEqual } = require('assert');
 
 const mod = require('./main.js').default;
 
-describe('LCHDocumentDirectory', function test_LCHDocumentDirectory() {
-
-	it('returns string', function() {
-		deepEqual(mod.LCHDocumentDirectory(), 'lch_documents');
-	});
-
-});
-
-describe('ZDRSchemaStub', function ZDRSchemaStub() {
-
-	it('returns string', function() {
-		const LCHDocumentID = Math.random().toString();
-		deepEqual(mod.ZDRSchemaStub(`${ mod.LCHDocumentDirectory() }/${ LCHDocumentID }`), {
-			LCHDocumentID,
-		});
-	});
-
-});
-
-describe('ZDRSchemaPath', function ZDRSchemaPath() {
-
-	it('returns string', function() {
-		const LCHDocumentID = Math.random().toString();
-		deepEqual(mod.ZDRSchemaPath({
-			LCHDocumentID,
-		}), mod.LCHDocumentDirectory() + '/' + LCHDocumentID);
-	});
-
-});
-
-describe('ZDRSchemaDispatchValidate', function test_ZDRSchemaDispatchValidate() {
+describe('LCHDocumentErrors', function test_LCHDocumentErrors() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mod.ZDRSchemaDispatchValidate(null);
+			mod.LCHDocumentErrors(null);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns object if LCHDocumentID not string', function() {
-		deepEqual(mod.ZDRSchemaDispatchValidate(StubDocumentObjectValid({
+		deepEqual(mod.LCHDocumentErrors(StubDocumentObjectValid({
 			LCHDocumentID: null,
 		})), {
 			LCHDocumentID: [
@@ -51,7 +21,7 @@ describe('ZDRSchemaDispatchValidate', function test_ZDRSchemaDispatchValidate() 
 	});
 
 	it('returns object if LCHDocumentID not filled', function() {
-		deepEqual(mod.ZDRSchemaDispatchValidate(StubDocumentObjectValid({
+		deepEqual(mod.LCHDocumentErrors(StubDocumentObjectValid({
 			LCHDocumentID: ' ',
 		})), {
 			LCHDocumentID: [
@@ -61,7 +31,7 @@ describe('ZDRSchemaDispatchValidate', function test_ZDRSchemaDispatchValidate() 
 	});
 
 	it('returns object if LCHDocumentCallbackBody not string', function() {
-		deepEqual(mod.ZDRSchemaDispatchValidate(StubDocumentObjectValid({
+		deepEqual(mod.LCHDocumentErrors(StubDocumentObjectValid({
 			LCHDocumentCallbackBody: null,
 		})), {
 			LCHDocumentCallbackBody: [
@@ -71,7 +41,7 @@ describe('ZDRSchemaDispatchValidate', function test_ZDRSchemaDispatchValidate() 
 	});
 
 	it('returns object if LCHDocumentCreationDate not date', function() {
-		deepEqual(mod.ZDRSchemaDispatchValidate(StubDocumentObjectValid({
+		deepEqual(mod.LCHDocumentErrors(StubDocumentObjectValid({
 			LCHDocumentCreationDate: new Date('alfa'),
 		})), {
 			LCHDocumentCreationDate: [
@@ -81,7 +51,7 @@ describe('ZDRSchemaDispatchValidate', function test_ZDRSchemaDispatchValidate() 
 	});
 
 	it('returns object if LCHDocumentModificationDate not date', function() {
-		deepEqual(mod.ZDRSchemaDispatchValidate(StubDocumentObjectValid({
+		deepEqual(mod.LCHDocumentErrors(StubDocumentObjectValid({
 			LCHDocumentModificationDate: new Date('alfa'),
 		})), {
 			LCHDocumentModificationDate: [
@@ -91,11 +61,11 @@ describe('ZDRSchemaDispatchValidate', function test_ZDRSchemaDispatchValidate() 
 	});
 
 	it('returns null', function() {
-		deepEqual(mod.ZDRSchemaDispatchValidate(StubDocumentObjectValid()), null);
+		deepEqual(mod.LCHDocumentErrors(StubDocumentObjectValid()), null);
 	});
 
 	it('returns object if LCHOptionValidateIfNotPresent', function() {
-		deepEqual(Array.isArray(Object.keys(mod.ZDRSchemaDispatchValidate(StubDocumentObjectValid(), {
+		deepEqual(Array.isArray(Object.keys(mod.LCHDocumentErrors(StubDocumentObjectValid(), {
 			LCHOptionValidateIfNotPresent: true,
 		}))), true);
 	});
@@ -103,7 +73,7 @@ describe('ZDRSchemaDispatchValidate', function test_ZDRSchemaDispatchValidate() 
 	context('LCHDocumentCallbackArgs', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(mod.ZDRSchemaDispatchValidate(StubDocumentObjectValid({
+			deepEqual(mod.LCHDocumentErrors(StubDocumentObjectValid({
 				LCHDocumentCallbackArgs: null,
 			})), {
 				LCHDocumentCallbackArgs: [
@@ -113,7 +83,7 @@ describe('ZDRSchemaDispatchValidate', function test_ZDRSchemaDispatchValidate() 
 		});
 
 		it('returns null', function() {
-			deepEqual(mod.ZDRSchemaDispatchValidate(StubDocumentObjectValid({
+			deepEqual(mod.LCHDocumentErrors(StubDocumentObjectValid({
 				LCHDocumentCallbackArgs: 'alfa',
 			})), null);
 		});
@@ -123,7 +93,7 @@ describe('ZDRSchemaDispatchValidate', function test_ZDRSchemaDispatchValidate() 
 	context('LCHDocumentSyntaxErrorMessage', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(mod.ZDRSchemaDispatchValidate(StubDocumentObjectValid({
+			deepEqual(mod.LCHDocumentErrors(StubDocumentObjectValid({
 				LCHDocumentSyntaxErrorMessage: null,
 			})), {
 				LCHDocumentSyntaxErrorMessage: [
@@ -133,7 +103,7 @@ describe('ZDRSchemaDispatchValidate', function test_ZDRSchemaDispatchValidate() 
 		});
 
 		it('returns null', function() {
-			deepEqual(mod.ZDRSchemaDispatchValidate(StubDocumentObjectValid({
+			deepEqual(mod.LCHDocumentErrors(StubDocumentObjectValid({
 				LCHDocumentSyntaxErrorMessage: 'alfa',
 			})), null);
 		});
@@ -143,7 +113,7 @@ describe('ZDRSchemaDispatchValidate', function test_ZDRSchemaDispatchValidate() 
 	context('LCHDocumentCanonicalExampleCallbackBody', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(mod.ZDRSchemaDispatchValidate(StubDocumentObjectValid({
+			deepEqual(mod.LCHDocumentErrors(StubDocumentObjectValid({
 				LCHDocumentCanonicalExampleCallbackBody: null,
 			})), {
 				LCHDocumentCanonicalExampleCallbackBody: [
@@ -153,11 +123,41 @@ describe('ZDRSchemaDispatchValidate', function test_ZDRSchemaDispatchValidate() 
 		});
 
 		it('returns null', function() {
-			deepEqual(mod.ZDRSchemaDispatchValidate(StubDocumentObjectValid({
+			deepEqual(mod.LCHDocumentErrors(StubDocumentObjectValid({
 				LCHDocumentCanonicalExampleCallbackBody: '',
 			})), null);
 		});
 
+	});
+
+});
+
+describe('LCHDocumentDirectory', function test_LCHDocumentDirectory() {
+
+	it('returns string', function() {
+		deepEqual(mod.LCHDocumentDirectory(), 'lch_documents');
+	});
+
+});
+
+describe('LCHDocumentObjectPath', function test_LCHDocumentObjectPath() {
+
+	it('returns string', function() {
+		const LCHDocumentID = Math.random().toString();
+		deepEqual(mod.LCHDocumentObjectPath({
+			LCHDocumentID,
+		}), mod.LCHDocumentDirectory() + '/' + LCHDocumentID);
+	});
+
+});
+
+describe('LCHDocumentStub', function test_LCHDocumentStub() {
+
+	it('returns string', function() {
+		const LCHDocumentID = Math.random().toString();
+		deepEqual(mod.LCHDocumentStub(`${ mod.LCHDocumentDirectory() }/${ LCHDocumentID }`), {
+			LCHDocumentID,
+		});
 	});
 
 });
@@ -271,3 +271,28 @@ describe('LCHDocumentList', function test_LCHDocumentActList() {
 	});
 
 });
+
+describe('ZDRSchemaDispatchValidate', function () {
+
+	it('returns function', function () {
+		deepEqual(mod.ZDRSchemaDispatchValidate, mod.LCHDocumentErrors);
+	});
+
+});
+
+describe('ZDRSchemaPath', function () {
+
+	it('returns function', function() {
+		deepEqual(mod.ZDRSchemaPath, mod.LCHDocumentObjectPath);
+	});
+
+});
+
+describe('ZDRSchemaStub', function () {
+
+	it('returns function', function() {
+		deepEqual(mod.ZDRSchemaStub, mod.LCHDocumentStub);
+	});
+
+});
+

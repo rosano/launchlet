@@ -1,22 +1,6 @@
 const mod = {
 
-	ZDRSchemaKey: 'LCHSetting',
-
-	LCHSettingDirectory () {
-		return 'lch_settings';
-	},
-
-	ZDRSchemaStub (inputData) {
-		return {
-			LCHSettingKey: inputData.split('/').pop(),
-		};
-	},
-
-	ZDRSchemaPath (inputData) {
-		return `${ mod.LCHSettingDirectory() }/${ inputData.LCHSettingKey }`;
-	},
-
-	ZDRSchemaDispatchValidate (inputData, options = {}) {
+	LCHSettingErrors (inputData, options = {}) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('LCHErrorInputNotValid');
 		}
@@ -42,6 +26,27 @@ const mod = {
 		return Object.entries(errors).length ? errors : null;
 	},
 
+	LCHSettingDirectory () {
+		return 'lch_settings';
+	},
+
+	LCHSettingObjectPath (inputData) {
+		return `${ mod.LCHSettingDirectory() }/${ inputData.LCHSettingKey }`;
+	},
+
+	LCHSettingStub (inputData) {
+		return {
+			LCHSettingKey: inputData.split('/').pop(),
+		};
+	},
+
+};
+
+export default Object.assign(mod, {
+	ZDRSchemaKey: 'LCHSetting',
+	ZDRSchemaDispatchValidate: mod.LCHSettingErrors,
+	ZDRSchemaPath: mod.LCHSettingObjectPath,
+	ZDRSchemaStub: mod.LCHSettingStub,
 	ZDRSchemaMethods: {
 		
 		async LCHSettingList () {
@@ -49,7 +54,5 @@ const mod = {
 		},
 
 	},
+});
 
-};
-
-export default mod;
