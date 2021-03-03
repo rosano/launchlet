@@ -94,32 +94,19 @@ describe('LCHTransportExport', function test_LCHTransportExport() {
 		}, /LCHErrorInputNotValid/);
 	});
 
-	it('throws if LCHDocument not array', function () {
-		throws(function () {
-			ZDRTestingWrap.App.LCHTransport.LCHTransportExport({
-				LCHDocument: null,
-				LCHSetting: [],
-			});
-		}, /LCHErrorInputNotValid/);
-	});
-
-	it('throws if LCHSetting not array', function () {
-		throws(function () {
-			ZDRTestingWrap.App.LCHTransport.LCHTransportExport({
-				LCHDocument: [],
-				LCHSetting: null,
-			});
-		}, /LCHErrorInputNotValid/);
-	});
-	
 	it('returns object', function () {
-		deepEqual(ZDRTestingWrap.App.LCHTransport.LCHTransportExport({
-			LCHDocument: [],
-			LCHSetting: [],
-		}), {});
+		deepEqual(ZDRTestingWrap.App.LCHTransport.LCHTransportExport({}), {});
 	});
 
 	context('LCHDocument', function () {
+
+		it('throws if not array', function () {
+			throws(function () {
+				ZDRTestingWrap.App.LCHTransport.LCHTransportExport({
+					LCHDocument: null,
+				});
+			}, /LCHErrorInputNotValid/);
+		});
 
 		it('copies input', function () {
 			const item = StubDocumentObjectValid();
@@ -140,6 +127,14 @@ describe('LCHTransportExport', function test_LCHTransportExport() {
 	});
 
 	context('LCHSetting', function () {
+
+		it('throws if not array', function () {
+			throws(function () {
+				ZDRTestingWrap.App.LCHTransport.LCHTransportExport({
+					LCHSetting: null,
+				});
+			}, /LCHErrorInputNotValid/);
+		});
 
 		it('copies input', function () {
 			const item = StubSettingObjectValid();

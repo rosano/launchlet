@@ -53,7 +53,7 @@ export default {
 				}
 				
 				return Object.assign(coll, {
-					[key]: value.map(OLSKRemoteStorage.OLSKRemoteStorageSafeCopy)
+					[key]: value.map(OLSKRemoteStorage.OLSKRemoteStorageSafeCopy),
 				});
 			}, {});
 		},

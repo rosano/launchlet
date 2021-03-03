@@ -2,11 +2,11 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 describe('LCHCompose_Transport', function () {	
 
-	const LCHDocumentName = Math.random().toString();
-
-	const json = [];
+	const json = {};
 
 	describe('LCHComposeLauncherItemImportJSON', function test_LCHComposeLauncherItemImportJSON() {
+
+		const LCHDocumentName = Math.random().toString();
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute);
@@ -35,7 +35,7 @@ describe('LCHCompose_Transport', function () {
 					})],
 				});
 
-				json.push(dialog.response);
+				Object.assign(json, JSON.parse(dialog.response));
 
 				return dialog;
 			});
@@ -68,7 +68,7 @@ describe('LCHCompose_Transport', function () {
     		OLSKDownloadData: JSON.parse(response.OLSKDownloadData),
     	}), {
     		OLSKDownloadName: `${ browser.window.location.hostname }-${ date }.json`,
-    		OLSKDownloadData: JSON.parse(json.pop()),
+    		OLSKDownloadData: json,
     	});
     });
 
