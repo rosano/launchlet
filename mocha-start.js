@@ -28,23 +28,23 @@
 
 		uStubDocument (inputData = {}) {
 			return Object.assign({
-				LCHDocumentCallbackArgs: 'bravo',
-				LCHDocumentCallbackBody: 'charlie',
+				LCHDocumentCallbackArgs: Math.random().toString(),
+				LCHDocumentCallbackBody: Math.random().toString(),
 			}, inputData);
 		},
 
 		StubDocumentObjectValid (inputData = {}) {
 			return Object.assign(uStubDocument({
-				LCHDocumentID: 'alfa',
-				LCHDocumentCreationDate: new Date('2019-02-23T13:56:36Z'),
-				LCHDocumentModificationDate: new Date('2019-02-23T13:56:36Z'),
+				LCHDocumentID: Math.random().toString(),
+				LCHDocumentCreationDate: new Date(),
+				LCHDocumentModificationDate: new Date(),
 			}), inputData);
 		},
 
 		StubSettingObjectValid (inputData = {}) {
 			return Object.assign({
-				LCHSettingKey: 'alfa',
-				LCHSettingValue: 'bravo',
+				LCHSettingKey: Math.random().toString(),
+				LCHSettingValue: Math.random().toString(),
 			}, inputData);
 		},
 
