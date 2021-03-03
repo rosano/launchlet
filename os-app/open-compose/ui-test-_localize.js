@@ -6,7 +6,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 		return OLSKTestingLocalized(inputData, OLSKRoutingLanguage);
 	};
 
-	describe(`LCHCompose_Localize-${ OLSKRoutingLanguage }`, function () {
+	describe.only(`LCHCompose_Localize-${ OLSKRoutingLanguage }`, function () {
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
@@ -20,6 +20,90 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 		it('localizes LCHComposeToolsPairButton', function() {
 			browser.assert.text(LCHComposeToolsPairButton, uLocalized('LCHComposeToolsPairButtonText'));
+		});
+
+		it('localizes LCHComposeLauncherItemImportJSON', function () {
+			return browser.assert.OLSKLauncherItemText('LCHComposeLauncherItemImportJSON', uLocalized('LCHComposeLauncherItemImportJSONText'));
+		});
+
+		it('localizes LCHComposeLauncherItemExportJSON', function () {
+			return browser.assert.OLSKLauncherItemText('LCHComposeLauncherItemExportJSON', uLocalized('LCHComposeLauncherItemExportJSONText'));
+		});
+
+		describe('LCHComposeLauncherItemImportJSON', function test_LCHComposeLauncherItemImportJSON() {
+
+			context('not filled', function () {
+				
+				before(function () {
+					return browser.pressButton('.OLSKAppToolbarLauncherButton');
+				});
+
+				before(async function () {
+					return browser.fill('.LCHLauncherFilterInput', 'LCHComposeLauncherItemDebug_PromptFakeImportSerialized');
+				});
+
+				it('alerts if not filled', function () {
+					return browser.assert.OLSKAlertText(function () {
+						return browser.OLSKPrompt(function () {
+							return browser.click('.LCHLauncherPipeItem');
+						}, function (dialog) {
+							dialog.response = ' ';
+
+							return dialog;
+						});
+					}, uLocalized('LCHComposeLauncherItemImportJSONErrorNotFilledAlertText'));
+				});
+			
+			});
+
+			context('not json', function () {
+				
+				before(function () {
+					return browser.pressButton('.OLSKAppToolbarLauncherButton');
+				});
+
+				before(async function () {
+					return browser.fill('.LCHLauncherFilterInput', 'LCHComposeLauncherItemDebug_PromptFakeImportSerialized');
+				});
+
+				it('alerts if not json', function () {
+					return browser.assert.OLSKAlertText(function () {
+						return browser.OLSKPrompt(function () {
+							return browser.click('.LCHLauncherPipeItem');
+						}, function (dialog) {
+							dialog.response = 'alfa';
+
+							return dialog;
+						});
+					}, uLocalized('LCHComposeLauncherItemImportJSONErrorNotValidAlertText'));
+				});
+			
+			});
+
+			context('not valid', function () {
+				
+				before(function () {
+					return browser.pressButton('.OLSKAppToolbarLauncherButton');
+				});
+
+				before(async function () {
+					return browser.fill('.LCHLauncherFilterInput', 'LCHComposeLauncherItemDebug_PromptFakeImportSerialized');
+				});
+
+				it('alerts if not valid', function () {
+					return browser.assert.OLSKAlertText(function () {
+						return browser.OLSKPrompt(function () {
+							return browser.click('.LCHLauncherPipeItem');
+						}, function (dialog) {
+							dialog.response = JSON.stringify({});
+
+							return dialog;
+						});
+					}, uLocalized('LCHComposeLauncherItemImportJSONErrorNotValidAlertText'));
+				});
+			
+			});
+			
 		});
 
 		context('select', function () {

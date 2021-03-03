@@ -4,3 +4,7 @@ LCHComposePublicKeyNotValidAlertText: Input not valid
 LCHComposeToolsPairStatusWaitingText: Waiting
 LCHComposeToolsPairStatusFailedText: Failed
 LCHComposeLauncherItemCloneText: Clone recipe
+LCHComposeLauncherItemImportJSONText: Import JSON (beta)
+LCHComposeLauncherItemImportJSONErrorNotFilledAlertText: Input not filled
+LCHComposeLauncherItemImportJSONErrorNotValidAlertText: Input not valid
+LCHComposeLauncherItemExportJSONText: Export JSON (beta)

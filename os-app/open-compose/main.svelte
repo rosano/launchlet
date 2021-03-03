@@ -164,7 +164,23 @@ const mod = {
 	},	
 
 	DataComposeRecipes () {
-		const items = [];
+		const items = [
+			{
+				LCHRecipeSignature: 'LCHComposeLauncherItemImportJSON',
+				LCHRecipeName: OLSKLocalized('LCHComposeLauncherItemImportJSONText'),
+				LCHRecipeCallback: async function LCHComposeLauncherItemImportJSON () {
+					return mod.ControlImportData(await this.api.LCHReadTextFile({
+						accept: '.json',
+					}));
+				},
+			}, {
+				LCHRecipeSignature: 'LCHComposeLauncherItemExportJSON',
+				LCHRecipeName: OLSKLocalized('LCHComposeLauncherItemExportJSONText'),
+				LCHRecipeCallback: async function LCHComposeLauncherItemExportJSON () {
+					return this.api.LCHSaveFile(await mod.DataExportJSON(), mod.DataExportJSONFilename());
+				},
+			}
+		];
 
 		if (mod._ValueDocumentSelected) {
 			items.push({
