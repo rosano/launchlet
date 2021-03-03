@@ -64,6 +64,40 @@ Optionally, Launchlet can include Recipes from any page that sets `LCHPageRecipe
 
 For example, when running Launchlet on <a href="https://rosano.ca" target="_blank">rosano.ca</a>, it is possible to choose a 'Send a message' *Command* that originates from the page.
 
+# Shortcuts
+
+<div class="OLSKDecorNotice">
+
+*AccessKey* refers to a one or more shortcut keys followed by a single character. Usually it's `Alt` on Windows or `Control+Alt` on macOS, but it changes [based on your browser and operating system](https://www.w3schools.com/tags/att_global_accesskey.asp#table2).
+
+*Launcher* refers to the app's command runner: press `Alt+Enter`, type the command, then press `Enter` to run.
+
+</div>
+
+| List of recipes ||
+:--- | ---
+| Create new recipe | `AccessKey+n` |
+| Select previous or next card, if filter field is focused | `Up` or `Down` |
+| Clear filter text and selected card, focus filter field | `Escape` |
+| Close, if filter field is focused | `Escape` |
+| `LCHComposeLauncherItemCloneText` | Launcher |
+| `LCHComposeLauncherItemImportJSONText` | Launcher |
+| `LCHComposeLauncherItemExportJSONText` | Launcher |
+
+| Global ||
+:--- | ---
+| `OLSKRemoteStorageLauncherItemOpenLoginLinkText` | Launcher |
+| `OLSKServiceWorkerLauncherItemReloadText` | Launcher |
+| `OLSKServiceWorkerLauncherItemDebugForceUpdateText` | Launcher |
+| Launcher | `Alt+Enter` |
+
+| Global (when storage is connected) ||
+:--- | ---
+| `OLSKRemoteStorageLauncherItemCopyLoginLinkText` | Launcher |
+| `OLSKFundLauncherItemEnterClueText` | Launcher |
+| `OLSKFundLauncherItemClearClueText` | Launcher |
+| `OLSKRemoteStorageLauncherItemDebugFlushDataText` | Launcher |
+
 # What is remoteStorage?
 
 [remoteStorage](https://remotestorage.io) is an incredible open-source technology for synchronizing data between multiple devices and making it available offline.
