@@ -147,7 +147,7 @@ const mod = {
 		}, inputData));
 	},
 
-	DataRecipes () {
+	DataComposeRecipes () {
 		const items = [];
 
 		if (mod._ValueDocumentSelected) {
@@ -847,7 +847,7 @@ const mod = {
 		}
 
 		window.Launchlet.LCHSingletonCreate({
-			LCHOptionRecipes: mod.DataRecipes(),
+			LCHOptionRecipes: mod.DataComposeRecipes(),
 		});
 	},
 
