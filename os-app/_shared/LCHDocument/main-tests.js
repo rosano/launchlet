@@ -166,12 +166,12 @@ describe('LCHDocumentCreate', function test_LCHDocumentActCreate() {
 
 	it('throws if not object', function () {
 		throws(function () {
-			LCHTestingWrap.App.LCHDocument.LCHDocumentCreate(null)
+			ZDRTestingWrap.App.LCHDocument.LCHDocumentCreate(null)
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('rejects with errors if not valid', async function() {
-		await rejects(LCHTestingWrap.App.LCHDocument.LCHDocumentCreate(uStubDocument({
+		await rejects(ZDRTestingWrap.App.LCHDocument.LCHDocumentCreate(uStubDocument({
 			LCHDocumentCallbackBody: null,
 		})), {
 			LCHDocumentCallbackBody: [
@@ -181,7 +181,7 @@ describe('LCHDocumentCreate', function test_LCHDocumentActCreate() {
 	});
 
 	it('returns LCHDocument', async function() {
-		let item = await LCHTestingWrap.App.LCHDocument.LCHDocumentCreate(uStubDocument());
+		let item = await ZDRTestingWrap.App.LCHDocument.LCHDocumentCreate(uStubDocument());
 
 		deepEqual(item, uStubDocument({
 			LCHDocumentID: item.LCHDocumentID,
@@ -192,22 +192,22 @@ describe('LCHDocumentCreate', function test_LCHDocumentActCreate() {
 
 	it('sets LCHDocumentID to unique value', async function() {
 		let items = await uSerial(Array.from(Array(10)).map(async function (e) {
-			return (await LCHTestingWrap.App.LCHDocument.LCHDocumentCreate(uStubDocument())).LCHDocumentID;
+			return (await ZDRTestingWrap.App.LCHDocument.LCHDocumentCreate(uStubDocument())).LCHDocumentID;
 		}));
 		deepEqual([...(new Set(items))], items);
 	});
 
 	it('sets LCHDocumentCreationDate to now', async function() {
-		deepEqual(new Date() - (await LCHTestingWrap.App.LCHDocument.LCHDocumentCreate(uStubDocument())).LCHDocumentCreationDate < 100, true);
+		deepEqual(new Date() - (await ZDRTestingWrap.App.LCHDocument.LCHDocumentCreate(uStubDocument())).LCHDocumentCreationDate < 100, true);
 	});
 
 	it('sets LCHDocumentModificationDate to now', async function() {
-		deepEqual(new Date() - (await LCHTestingWrap.App.LCHDocument.LCHDocumentCreate(uStubDocument())).LCHDocumentModificationDate < 100, true);
+		deepEqual(new Date() - (await ZDRTestingWrap.App.LCHDocument.LCHDocumentCreate(uStubDocument())).LCHDocumentModificationDate < 100, true);
 	});
 
 	it('allows overwrite by input', async function() {
 		const item = StubDocumentObjectValid();
-		deepEqual(await LCHTestingWrap.App.LCHDocument.LCHDocumentCreate(Object.assign({}, item)), item);
+		deepEqual(await ZDRTestingWrap.App.LCHDocument.LCHDocumentCreate(Object.assign({}, item)), item);
 	});
 
 });
@@ -216,12 +216,12 @@ describe('LCHDocumentUpdate', function test_LCHDocumentActUpdate() {
 
 	it('throws if not object', function () {
 		throws(function () {
-			LCHTestingWrap.App.LCHDocument.LCHDocumentUpdate(null)
+			ZDRTestingWrap.App.LCHDocument.LCHDocumentUpdate(null)
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('rejects with errors if not valid', async function() {
-		await rejects(LCHTestingWrap.App.LCHDocument.LCHDocumentUpdate(Object.assign(await LCHTestingWrap.App.LCHDocument.LCHDocumentCreate(uStubDocument()), {
+		await rejects(ZDRTestingWrap.App.LCHDocument.LCHDocumentUpdate(Object.assign(await ZDRTestingWrap.App.LCHDocument.LCHDocumentCreate(uStubDocument()), {
 			LCHDocumentCallbackBody: null,
 		})), {
 			LCHDocumentCallbackBody: [
@@ -231,9 +231,9 @@ describe('LCHDocumentUpdate', function test_LCHDocumentActUpdate() {
 	});
 
 	it('returns LCHDocument', async function() {
-		let itemCreated = await LCHTestingWrap.App.LCHDocument.LCHDocumentCreate(uStubDocument());
+		let itemCreated = await ZDRTestingWrap.App.LCHDocument.LCHDocumentCreate(uStubDocument());
 
-		let item = await LCHTestingWrap.App.LCHDocument.LCHDocumentUpdate(itemCreated);
+		let item = await ZDRTestingWrap.App.LCHDocument.LCHDocumentUpdate(itemCreated);
 
 		deepEqual(item, Object.assign(itemCreated, {
 			LCHDocumentModificationDate: item.LCHDocumentModificationDate,
@@ -241,11 +241,11 @@ describe('LCHDocumentUpdate', function test_LCHDocumentActUpdate() {
 	});
 
 	it('sets LCHDocumentModificationDate to now', async function() {
-		deepEqual(new Date() - (await LCHTestingWrap.App.LCHDocument.LCHDocumentUpdate(await LCHTestingWrap.App.LCHDocument.LCHDocumentCreate(uStubDocument()))).LCHDocumentModificationDate < 100, true);
+		deepEqual(new Date() - (await ZDRTestingWrap.App.LCHDocument.LCHDocumentUpdate(await ZDRTestingWrap.App.LCHDocument.LCHDocumentCreate(uStubDocument()))).LCHDocumentModificationDate < 100, true);
 	});
 
 	it('writes inputData if not found', async function() {
-		let item = await LCHTestingWrap.App.LCHDocument.LCHDocumentUpdate(Object.assign(uStubDocument(), {
+		let item = await ZDRTestingWrap.App.LCHDocument.LCHDocumentUpdate(Object.assign(uStubDocument(), {
 			LCHDocumentID: 'alfa',
 			LCHDocumentCreationDate: new Date(),
 		}));
@@ -262,12 +262,12 @@ describe('LCHDocumentUpdate', function test_LCHDocumentActUpdate() {
 describe('LCHDocumentList', function test_LCHDocumentActList() {
 
 	it('returns array', async function() {
-		deepEqual(await LCHTestingWrap.App.LCHDocument.LCHDocumentList(), []);
+		deepEqual(await ZDRTestingWrap.App.LCHDocument.LCHDocumentList(), []);
 	});
 
 	it('returns array with existing items', async function() {
-		const item = await LCHTestingWrap.App.LCHDocument.LCHDocumentCreate(uStubDocument());
-		deepEqual(await LCHTestingWrap.App.LCHDocument.LCHDocumentList(), [item]);
+		const item = await ZDRTestingWrap.App.LCHDocument.LCHDocumentCreate(uStubDocument());
+		deepEqual(await ZDRTestingWrap.App.LCHDocument.LCHDocumentList(), [item]);
 	});
 
 });

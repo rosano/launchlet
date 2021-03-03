@@ -4,7 +4,7 @@
 	}
 
 	before(function() {
-		global.LCHTestingWrap = require('zerodatawrap')._ZDRWrap({
+		global.ZDRTestingWrap = require('zerodatawrap')._ZDRWrap({
 			ZDRParamLibrary: require('remotestoragejs'),
 			ZDRParamScopes: [{
 				ZDRScopeKey: 'App',

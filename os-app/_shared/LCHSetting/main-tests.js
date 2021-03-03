@@ -85,12 +85,12 @@ describe('ZDRSchemaDispatchValidate', function test_ZDRSchemaDispatchValidate() 
 describe('LCHSettingList', function test_LCHSettingActList() {
 
 	it('returns array', async function() {
-		deepEqual(await LCHTestingWrap.App.LCHSetting.LCHSettingList(), []);
+		deepEqual(await ZDRTestingWrap.App.LCHSetting.LCHSettingList(), []);
 	});
 
 	it('returns array with existing items', async function() {
-		const item = await LCHTestingWrap.App.LCHSetting.ZDRModelWriteObject(StubSettingObjectValid());
-		deepEqual(await LCHTestingWrap.App.LCHSetting.LCHSettingList(), [item]);
+		const item = await ZDRTestingWrap.App.LCHSetting.ZDRModelWriteObject(StubSettingObjectValid());
+		deepEqual(await ZDRTestingWrap.App.LCHSetting.LCHSettingList(), [item]);
 	});
 
 });
