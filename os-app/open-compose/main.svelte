@@ -3,6 +3,7 @@ import { OLSKLocalized } from 'OLSKInternational';
 import OLSKThrottle from 'OLSKThrottle';
 import LCHDocument from '../_shared/LCHDocument/main.js';
 import LCHSetting from '../_shared/LCHSetting/main.js';
+import LCHTransport from '../_shared/LCHTransport/main.js';
 import { OLSK_SPEC_UI } from 'OLSKSpec';
 import OLSKRemoteStorage from 'OLSKRemoteStorage'
 import OLSKServiceWorker from 'OLSKServiceWorker'
@@ -147,6 +148,21 @@ const mod = {
 		}, inputData));
 	},
 
+	async DataExportJSON () {
+		return JSON.stringify(await mod._ValueZDRWrap.App.LCHTransport.LCHTransportExport({
+			LCHDocument: mod._ValueDocumentsAll,
+			LCHSetting: await mod._ValueZDRWrap.App.LCHSetting.LCHSettingList(),
+		}));
+	},
+
+	DataExportBasename () {
+		return `${ window.location.hostname }-${ Date.now() }`;
+	},
+
+	DataExportJSONFilename () {
+		return `${ mod.DataExportBasename() }.json`;
+	},	
+
 	DataComposeRecipes () {
 		const items = [];
 
@@ -206,6 +222,21 @@ const mod = {
 								LCHDocumentName: item.LCHDocumentName + '-remote',
 							}))),
 						});
+					},
+				},
+				{
+					LCHRecipeName: 'LCHComposeLauncherItemDebug_PromptFakeImportSerialized',
+					LCHRecipeCallback: function LCHComposeLauncherItemDebug_PromptFakeImportSerialized () {
+						return mod.ControlImportData(window.prompt());
+					},
+				},
+				{
+					LCHRecipeName: 'LCHComposeLauncherItemDebug_AlertFakeExportSerialized',
+					LCHRecipeCallback: async function LCHComposeLauncherItemDebug_AlertFakeExportSerialized () {
+						return window.alert(JSON.stringify({
+							OLSKDownloadName: mod.DataExportJSONFilename(),
+							OLSKDownloadData: await mod.DataExportJSON(),
+						}));
 					},
 				},
 				{
@@ -448,53 +479,6 @@ const mod = {
 		});
 	},
 
-	async ControlExportData () {
-		let zip = new JSZip();
-
-		const fileName = [
-			'com.launchlet.export',
-			(new Date()).toJSON(),
-		].join(' ');
-
-		zip.file(`${ fileName }.json`, JSON.stringify({
-			LCHDocumentObjects: mod._ValueDocumentsAll,
-			LCHSettingObjects: await mod._ValueZDRWrap.App.LCHSetting.LCHSettingsList(),
-		}));
-		
-		zip.generateAsync({type: 'blob'}).then(function (content) {
-			saveAs(content, `${ fileName }.zip`);
-		});	
-	},
-
-	async ControlImportData (inputData) {
-		let outputData;
-		try {
-			outputData = JSON.parse(inputData);
-		} catch (e)  {
-			console.log(e);
-		}
-
-		if (typeof outputData !== 'object' || outputData === null) {
-			return;
-		}
-
-		if (!Array.isArray(outputData.LCHDocumentObjects)) {
-			return;
-		}
-
-		if (!Array.isArray(outputData.LCHSettingObjects)) {
-			return;
-		}
-
-		await Promise.all(outputData.LCHSettingObjects.map(mod._ValueZDRWrap.App.LCHSetting.ZDRModelWriteObject));
-
-		await Promise.all(outputData.LCHDocumentObjects.map(function (e) {
-			return mod._ValueZDRWrap.App.LCHDocument.LCHDocumentCreate(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(e));
-		}));
-
-		mod.ValueDocumentsAll(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentList());
-	},
-
 	ControlPipeModeEnabledPersist (inputData) {
 		mod.ReactDocuments(mod._ValueDocumentsAll);
 
@@ -601,6 +585,21 @@ const mod = {
 
 		if (mod._ValuePairStatus === 'kStatusFailed') {
 			mod._ValueToolsPairStatusFailedError = inputData.LBXResponseError
+		}
+	},
+
+	async ControlImportData (inputData) {
+		if (!inputData.trim()) {
+			return window.alert(OLSKLocalized('LCHComposeLauncherItemImportJSONErrorNotFilledAlertText'))
+		}
+
+		try {
+			await mod._ValueZDRWrap.App.LCHTransport.LCHTransportImport(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(JSON.parse(inputData)));
+			
+			await mod.SetupSettingsAll();
+			await mod.SetupValueDocumentsAll();
+		} catch (e) {
+			window.alert(OLSKLocalized('LCHComposeLauncherItemImportJSONErrorNotValidAlertText'));
 		}
 	},
 
@@ -1046,10 +1045,8 @@ const mod = {
 	async SetupEverything () {
 		await mod.SetupStorageClient();
 
-		await mod.SetupValuePipeModeEnabled();
-
-		await mod.SetupValuePageRecipesEnabled();
-
+		await mod.SetupSettingsAll();
+		
 		mod.SetupValuePublicKey();
 
 		mod.SetupValueToolsPairIsVisible();
@@ -1080,12 +1077,16 @@ const mod = {
 				ZDRScopeKey: 'App',
 				ZDRScopeDirectory: 'launchlet',
 				ZDRScopeCreatorDirectory: 'rCreativ',
-				ZDRScopeSchemas: [Object.assign(LCHDocument, {
-					ZDRSchemaDispatchSyncCreate: mod.ZDRSchemaDispatchSyncCreateDocument,
-					ZDRSchemaDispatchSyncUpdate: mod.ZDRSchemaDispatchSyncUpdateDocument,
-					ZDRSchemaDispatchSyncDelete: mod.ZDRSchemaDispatchSyncDeleteDocument,
-					ZDRSchemaDispatchSyncConflict: mod.ZDRSchemaDispatchSyncConflict,
-				}), LCHSetting],
+				ZDRScopeSchemas: [
+					Object.assign(LCHDocument, {
+						ZDRSchemaDispatchSyncCreate: mod.ZDRSchemaDispatchSyncCreateDocument,
+						ZDRSchemaDispatchSyncUpdate: mod.ZDRSchemaDispatchSyncUpdateDocument,
+						ZDRSchemaDispatchSyncDelete: mod.ZDRSchemaDispatchSyncDeleteDocument,
+						ZDRSchemaDispatchSyncConflict: mod.ZDRSchemaDispatchSyncConflict,
+					}),
+					LCHSetting,
+					LCHTransport,
+					],
 			}],
 			ZDRParamDispatchError: mod.ZDRParamDispatchError,
 			ZDRParamDispatchConnected: mod.ZDRParamDispatchConnected,
@@ -1104,11 +1105,8 @@ const mod = {
 		}).pop() || {}).LCHSettingValue;
 	},
 
-	async SetupValuePipeModeEnabled() {
+	async SetupSettingsAll() {
 		mod._ValuePipeModeEnabled = (await mod.DataSettingValue('kLCHComposePreferenceModePipeEnabled')) === 'true';
-	},
-
-	async SetupValuePageRecipesEnabled() {
 		mod._ValuePageRecipesEnabled = (await mod.DataSettingValue('kLCHComposePreferenceIncludePageRecipes')) === 'true';
 	},
 
