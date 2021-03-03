@@ -2,20 +2,20 @@ const { throws, rejects, deepEqual } = require('assert');
 
 const mod = require('./main.js').default;
 
-describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
+describe('LCHFormulaErrors', function test_LCHFormulaErrors() {
 
 	it('throws error if not object', function() {
 		throws(function() {
-			mod.LCHFormulaModelErrorsFor(null);
+			mod.LCHFormulaErrors(null);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns null', function() {
-		deepEqual(mod.LCHFormulaModelErrorsFor({}), null);
+		deepEqual(mod.LCHFormulaErrors({}), null);
 	});
 
 	it('returns object if LCHOptionValidateIfNotPresent', function() {
-		deepEqual(Array.isArray(Object.keys(mod.LCHFormulaModelErrorsFor({}, {
+		deepEqual(Array.isArray(Object.keys(mod.LCHFormulaErrors({}, {
 			LCHOptionValidateIfNotPresent: true,
 		}))), true);
 	});
@@ -23,7 +23,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 	context('LCHFormulaName', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(mod.LCHFormulaModelErrorsFor({
+			deepEqual(mod.LCHFormulaErrors({
 				LCHFormulaName: null,
 			}), {
 				LCHFormulaName: [
@@ -33,7 +33,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mod.LCHFormulaModelErrorsFor({
+			deepEqual(mod.LCHFormulaErrors({
 				LCHFormulaName: 'alfa',
 			}), null);
 		});
@@ -43,7 +43,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 	context('LCHFormulaSignature', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(mod.LCHFormulaModelErrorsFor({
+			deepEqual(mod.LCHFormulaErrors({
 				LCHFormulaSignature: null,
 			}), {
 				LCHFormulaSignature: [
@@ -53,7 +53,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mod.LCHFormulaModelErrorsFor({
+			deepEqual(mod.LCHFormulaErrors({
 				LCHFormulaSignature: 'alfa',
 			}), null);
 		});
@@ -63,7 +63,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 	context('LCHFormulaInputTypes', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(mod.LCHFormulaModelErrorsFor({
+			deepEqual(mod.LCHFormulaErrors({
 				LCHFormulaInputTypes: null,
 			}), {
 				LCHFormulaInputTypes: [
@@ -73,13 +73,13 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mod.LCHFormulaModelErrorsFor({
+			deepEqual(mod.LCHFormulaErrors({
 				LCHFormulaInputTypes: 'alfa',
 			}), null);
 		});
 
 		it('allows comma', function() {
-			deepEqual(mod.LCHFormulaModelErrorsFor({
+			deepEqual(mod.LCHFormulaErrors({
 				LCHFormulaInputTypes: 'alfa,bravo',
 			}), null);
 		});
@@ -89,7 +89,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 	context('LCHFormulaOutputType', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(mod.LCHFormulaModelErrorsFor({
+			deepEqual(mod.LCHFormulaErrors({
 				LCHFormulaOutputType: null,
 			}), {
 				LCHFormulaOutputType: [
@@ -99,7 +99,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mod.LCHFormulaModelErrorsFor({
+			deepEqual(mod.LCHFormulaErrors({
 				LCHFormulaOutputType: 'alfa',
 			}), null);
 		});
@@ -109,7 +109,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 	context('LCHFormulaIsHidden', function() {
 
 		it('returns object if not function', function() {
-			deepEqual(mod.LCHFormulaModelErrorsFor({
+			deepEqual(mod.LCHFormulaErrors({
 				LCHFormulaIsHidden: null,
 			}), {
 				LCHFormulaIsHidden: [
@@ -119,7 +119,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mod.LCHFormulaModelErrorsFor({
+			deepEqual(mod.LCHFormulaErrors({
 				LCHFormulaIsHidden () {},
 			}), null);
 		});
@@ -129,7 +129,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 	context('LCHFormulaURLFilter', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(mod.LCHFormulaModelErrorsFor({
+			deepEqual(mod.LCHFormulaErrors({
 				LCHFormulaURLFilter: null,
 			}), {
 				LCHFormulaURLFilter: [
@@ -139,7 +139,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mod.LCHFormulaModelErrorsFor({
+			deepEqual(mod.LCHFormulaErrors({
 				LCHFormulaURLFilter: 'alfa',
 			}), null);
 		});
@@ -149,7 +149,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 	context('LCHFormulaIsAutomatic', function() {
 
 		it('returns object if not boolean', function() {
-			deepEqual(mod.LCHFormulaModelErrorsFor({
+			deepEqual(mod.LCHFormulaErrors({
 				LCHFormulaIsAutomatic: null,
 			}), {
 				LCHFormulaIsAutomatic: [
@@ -159,7 +159,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mod.LCHFormulaModelErrorsFor({
+			deepEqual(mod.LCHFormulaErrors({
 				LCHFormulaIsAutomatic: true,
 			}), null);
 		});
@@ -169,7 +169,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 	context('LCHFormulaStyle', function() {
 
 		it('returns object if not string', function() {
-			deepEqual(mod.LCHFormulaModelErrorsFor({
+			deepEqual(mod.LCHFormulaErrors({
 				LCHFormulaStyle: null,
 			}), {
 				LCHFormulaStyle: [
@@ -179,7 +179,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mod.LCHFormulaModelErrorsFor({
+			deepEqual(mod.LCHFormulaErrors({
 				LCHFormulaStyle: 'alfa',
 			}), null);
 		});
@@ -189,7 +189,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 	context('LCHFormulaIsFlagged', function() {
 
 		it('returns object if not boolean', function() {
-			deepEqual(mod.LCHFormulaModelErrorsFor({
+			deepEqual(mod.LCHFormulaErrors({
 				LCHFormulaIsFlagged: null,
 			}), {
 				LCHFormulaIsFlagged: [
@@ -199,7 +199,7 @@ describe('LCHFormulaModelErrorsFor', function test_LCHFormulaModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mod.LCHFormulaModelErrorsFor({
+			deepEqual(mod.LCHFormulaErrors({
 				LCHFormulaIsFlagged: true,
 			}), null);
 		});

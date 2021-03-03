@@ -76,16 +76,16 @@ const kTesting = {
 	},
 };
 
-describe('LCHRecipesModelErrorsFor', function test_LCHRecipesModelErrorsFor() {
+describe('LCHRecipesErrors', function test_LCHRecipesErrors() {
 
 	it('throws if not object', function() {
 		throws(function() {
-			mod.LCHRecipesModelErrorsFor(null);
+			mod.LCHRecipesErrors(null);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns object if LCHRecipeCallback not function', function() {
-		deepEqual(mod.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+		deepEqual(mod.LCHRecipesErrors(Object.assign(kTesting.StubRecipeObjectValid(), {
 			LCHRecipeCallback: null,
 		})), {
 			LCHRecipeCallback: [
@@ -95,11 +95,11 @@ describe('LCHRecipesModelErrorsFor', function test_LCHRecipesModelErrorsFor() {
 	});
 
 	it('returns null', function() {
-		deepEqual(mod.LCHRecipesModelErrorsFor(kTesting.StubRecipeObjectValid()), null);
+		deepEqual(mod.LCHRecipesErrors(kTesting.StubRecipeObjectValid()), null);
 	});
 
 	it('returns object if LCHOptionValidateIfNotPresent', function() {
-		deepEqual(Array.isArray(Object.keys(mod.LCHRecipesModelErrorsFor(kTesting.StubRecipeObjectValid(), {
+		deepEqual(Array.isArray(Object.keys(mod.LCHRecipesErrors(kTesting.StubRecipeObjectValid(), {
 			LCHOptionValidateIfNotPresent: true,
 		}))), true);
 	});
@@ -107,7 +107,7 @@ describe('LCHRecipesModelErrorsFor', function test_LCHRecipesModelErrorsFor() {
 	context('LCHRecipeName', function() {
 
 		it('returns object if not filled', function() {
-			deepEqual(mod.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mod.LCHRecipesErrors(Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeName: '',
 			})), {
 				LCHRecipeName: [
@@ -117,7 +117,7 @@ describe('LCHRecipesModelErrorsFor', function test_LCHRecipesModelErrorsFor() {
 		});
 
 		it('returns object if only whitespace', function() {
-			deepEqual(mod.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mod.LCHRecipesErrors(Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeName: ' ',
 			})), {
 				LCHRecipeName: [
@@ -127,7 +127,7 @@ describe('LCHRecipesModelErrorsFor', function test_LCHRecipesModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mod.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mod.LCHRecipesErrors(Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeName: 'alfa',
 			})), null);
 		});
@@ -137,7 +137,7 @@ describe('LCHRecipesModelErrorsFor', function test_LCHRecipesModelErrorsFor() {
 	context('LCHRecipeInputTypes', function() {
 
 		it('returns object if not filled', function() {
-			deepEqual(mod.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mod.LCHRecipesErrors(Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeInputTypes: '',
 			})), {
 				LCHRecipeInputTypes: [
@@ -147,7 +147,7 @@ describe('LCHRecipesModelErrorsFor', function test_LCHRecipesModelErrorsFor() {
 		});
 
 		it('returns object if only whitespace', function() {
-			deepEqual(mod.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mod.LCHRecipesErrors(Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeInputTypes: ' ',
 			})), {
 				LCHRecipeInputTypes: [
@@ -157,13 +157,13 @@ describe('LCHRecipesModelErrorsFor', function test_LCHRecipesModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mod.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mod.LCHRecipesErrors(Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeInputTypes: 'alfa',
 			})), null);
 		});
 
 		it('allows comma', function() {
-			deepEqual(mod.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mod.LCHRecipesErrors(Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeInputTypes: 'alfa,bravo',
 			})), null);
 		});
@@ -173,7 +173,7 @@ describe('LCHRecipesModelErrorsFor', function test_LCHRecipesModelErrorsFor() {
 	context('LCHRecipeOutputType', function() {
 
 		it('returns object if not filled', function() {
-			deepEqual(mod.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mod.LCHRecipesErrors(Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeOutputType: '',
 			})), {
 				LCHRecipeOutputType: [
@@ -183,7 +183,7 @@ describe('LCHRecipesModelErrorsFor', function test_LCHRecipesModelErrorsFor() {
 		});
 
 		it('returns object if not trimmed', function() {
-			deepEqual(mod.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mod.LCHRecipesErrors(Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeOutputType: ' alfa ',
 			})), {
 				LCHRecipeOutputType: [
@@ -193,7 +193,7 @@ describe('LCHRecipesModelErrorsFor', function test_LCHRecipesModelErrorsFor() {
 		});
 
 		it('returns object if only whitespace', function() {
-			deepEqual(mod.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mod.LCHRecipesErrors(Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeOutputType: ' ',
 			})), {
 				LCHRecipeOutputType: [
@@ -203,7 +203,7 @@ describe('LCHRecipesModelErrorsFor', function test_LCHRecipesModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mod.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mod.LCHRecipesErrors(Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeOutputType: 'alfa',
 			})), null);
 		});
@@ -213,7 +213,7 @@ describe('LCHRecipesModelErrorsFor', function test_LCHRecipesModelErrorsFor() {
 	context('LCHRecipeSignature', function() {
 
 		it('returns object if LCHRecipeSignature empty', function() {
-			deepEqual(mod.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mod.LCHRecipesErrors(Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeSignature: '',
 			})), {
 				LCHRecipeSignature: [
@@ -223,14 +223,14 @@ describe('LCHRecipesModelErrorsFor', function test_LCHRecipesModelErrorsFor() {
 		});
 
 		it('returns object if contains untrimmed whitespace', function() {
-			deepEqual(mod.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mod.LCHRecipesErrors(Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeSignature: ' alfa',
 			})), {
 				LCHRecipeSignature: [
 					'LCHErrorNotTrimmed',
 				],
 			});
-			deepEqual(mod.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mod.LCHRecipesErrors(Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeSignature: 'alfa ',
 			})), {
 				LCHRecipeSignature: [
@@ -240,7 +240,7 @@ describe('LCHRecipesModelErrorsFor', function test_LCHRecipesModelErrorsFor() {
 		});
 
 		it('returns object if only whitespace', function() {
-			deepEqual(mod.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mod.LCHRecipesErrors(Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeSignature: ' ',
 			})), {
 				LCHRecipeSignature: [
@@ -250,7 +250,7 @@ describe('LCHRecipesModelErrorsFor', function test_LCHRecipesModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mod.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mod.LCHRecipesErrors(Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeSignature: 'alfa',
 			})), null);
 		});
@@ -260,7 +260,7 @@ describe('LCHRecipesModelErrorsFor', function test_LCHRecipesModelErrorsFor() {
 	context('LCHRecipeCanonicalExampleCallback', function() {
 
 		it('returns object if LCHRecipeCanonicalExampleCallback not function', function() {
-			deepEqual(mod.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mod.LCHRecipesErrors(Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeCanonicalExampleCallback: null,
 			})), {
 				LCHRecipeCanonicalExampleCallback: [
@@ -270,7 +270,7 @@ describe('LCHRecipesModelErrorsFor', function test_LCHRecipesModelErrorsFor() {
 		});
 
 		it('returns null', function() {
-			deepEqual(mod.LCHRecipesModelErrorsFor(Object.assign(kTesting.StubRecipeObjectValid(), {
+			deepEqual(mod.LCHRecipesErrors(Object.assign(kTesting.StubRecipeObjectValid(), {
 				LCHRecipeCanonicalExampleCallback () {},
 			})), null);
 		});
@@ -279,174 +279,174 @@ describe('LCHRecipesModelErrorsFor', function test_LCHRecipesModelErrorsFor() {
 
 });
 
-describe('LCHRecipesModelIsCommand', function test_LCHRecipesModelIsCommand() {
+describe('LCHRecipesIsCommand', function test_LCHRecipesIsCommand() {
 
 	it('throws if not valid', function() {
 		throws(function() {
-			mod.LCHRecipesModelIsCommand({});
+			mod.LCHRecipesIsCommand({});
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns false if no LCHRecipeName', function() {
-		deepEqual(mod.LCHRecipesModelIsCommand(Object.assign(kTesting.StubRecipeObjectCommand(), {
+		deepEqual(mod.LCHRecipesIsCommand(Object.assign(kTesting.StubRecipeObjectCommand(), {
 			LCHRecipeName: undefined,
 		})), false);
 	});
 
 	it('returns false if arguments', function() {
-		deepEqual(mod.LCHRecipesModelIsCommand(Object.assign(kTesting.StubRecipeObjectCommand(), {
+		deepEqual(mod.LCHRecipesIsCommand(Object.assign(kTesting.StubRecipeObjectCommand(), {
 			LCHRecipeInputTypes: 'alfa',
 		})), false);
 	});
 
 	it('returns false if LCHRecipeOutputType', function() {
-		deepEqual(mod.LCHRecipesModelIsCommand(Object.assign(kTesting.StubRecipeObjectCommand(), {
+		deepEqual(mod.LCHRecipesIsCommand(Object.assign(kTesting.StubRecipeObjectCommand(), {
 			LCHRecipeOutputType: 'alfa',
 		})), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mod.LCHRecipesModelIsCommand(kTesting.StubRecipeObjectCommand()), true);
+		deepEqual(mod.LCHRecipesIsCommand(kTesting.StubRecipeObjectCommand()), true);
 	});
 
 });
 
-describe('LCHRecipesModelIsSubject', function test_LCHRecipesModelIsSubject() {
+describe('LCHRecipesIsSubject', function test_LCHRecipesIsSubject() {
 
 	it('throws if not valid', function() {
 		throws(function() {
-			mod.LCHRecipesModelIsSubject({});
+			mod.LCHRecipesIsSubject({});
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns false if no LCHRecipeName', function() {
-		deepEqual(mod.LCHRecipesModelIsSubject(Object.assign(kTesting.StubRecipeObjectSubject(), {
+		deepEqual(mod.LCHRecipesIsSubject(Object.assign(kTesting.StubRecipeObjectSubject(), {
 			LCHRecipeName: undefined,
 		})), false);
 	});
 
 	// it('returns false if arguments', function() {
-	// 	deepEqual(mod.LCHRecipesModelIsSubject(Object.assign(kTesting.StubRecipeObjectSubject(), {
+	// 	deepEqual(mod.LCHRecipesIsSubject(Object.assign(kTesting.StubRecipeObjectSubject(), {
 	// 		LCHRecipeInputTypes: 'alfa',
 	// 	})), false);
 	// });
 
 	it('returns false if no LCHRecipeOutputType', function() {
-		deepEqual(mod.LCHRecipesModelIsSubject(Object.assign(kTesting.StubRecipeObjectSubject(), {
+		deepEqual(mod.LCHRecipesIsSubject(Object.assign(kTesting.StubRecipeObjectSubject(), {
 			LCHRecipeOutputType: undefined,
 		})), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mod.LCHRecipesModelIsSubject(kTesting.StubRecipeObjectSubject()), true);
+		deepEqual(mod.LCHRecipesIsSubject(kTesting.StubRecipeObjectSubject()), true);
 	});
 
 });
 
-describe('LCHRecipesModelIsAction', function test_LCHRecipesModelIsAction() {
+describe('LCHRecipesIsAction', function test_LCHRecipesIsAction() {
 
 	it('throws if not valid', function() {
 		throws(function() {
-			mod.LCHRecipesModelIsAction({});
+			mod.LCHRecipesIsAction({});
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns false if no LCHRecipeName', function() {
-		deepEqual(mod.LCHRecipesModelIsAction(Object.assign(kTesting.StubRecipeObjectAction(), {
+		deepEqual(mod.LCHRecipesIsAction(Object.assign(kTesting.StubRecipeObjectAction(), {
 			LCHRecipeName: undefined,
 		})), false);
 	});
 
 	it('returns false if no LCHRecipeInputTypes', function() {
-		deepEqual(mod.LCHRecipesModelIsAction(Object.assign(kTesting.StubRecipeObjectAction(), {
+		deepEqual(mod.LCHRecipesIsAction(Object.assign(kTesting.StubRecipeObjectAction(), {
 			LCHRecipeInputTypes: undefined,
 		})), false);
 	});
 
 	// it('returns false if no arguments', function() {
-	// 	deepEqual(mod.LCHRecipesModelIsAction(Object.assign(kTesting.StubRecipeObjectAction(), {
+	// 	deepEqual(mod.LCHRecipesIsAction(Object.assign(kTesting.StubRecipeObjectAction(), {
 	// 		LCHRecipeCallback () {},
 	// 	})), false);
 	// });
 
 	it('returns true', function() {
-		deepEqual(mod.LCHRecipesModelIsAction(kTesting.StubRecipeObjectAction()), true);
+		deepEqual(mod.LCHRecipesIsAction(kTesting.StubRecipeObjectAction()), true);
 	});
 
 });
 
-describe('LCHRecipesModelIsType', function test_LCHRecipesModelIsType() {
+describe('LCHRecipesIsType', function test_LCHRecipesIsType() {
 
 	it('throws if not valid', function() {
 		throws(function() {
-			mod.LCHRecipesModelIsType({});
+			mod.LCHRecipesIsType({});
 		}, /LCHErrorInputNotValid/);
 	});
 
 	// it('returns false if no arguments', function() {
-	// 	deepEqual(mod.LCHRecipesModelIsType(Object.assign(kTesting.StubRecipeObjectType(), {
+	// 	deepEqual(mod.LCHRecipesIsType(Object.assign(kTesting.StubRecipeObjectType(), {
 	// 		LCHRecipeCallback () {},
 	// 	})), false);
 	// });
 
 	// it('returns false if more than one argument', function() {
-	// 	deepEqual(mod.LCHRecipesModelIsType(Object.assign(kTesting.StubRecipeObjectType(), {
+	// 	deepEqual(mod.LCHRecipesIsType(Object.assign(kTesting.StubRecipeObjectType(), {
 	// 		LCHRecipeCallback (alfa, bravo) {},
 	// 	})), false);
 	// });
 
 	it('returns false if LCHRecipeOutputType not Bool', function() {
-		deepEqual(mod.LCHRecipesModelIsType(Object.assign(kTesting.StubRecipeObjectType(), {
+		deepEqual(mod.LCHRecipesIsType(Object.assign(kTesting.StubRecipeObjectType(), {
 			LCHRecipeOutputType: 'alfa',
 		})), false);
 	});
 
 	it('returns false if no LCHRecipeCanonicalExampleCallback', function() {
-		deepEqual(mod.LCHRecipesModelIsType(Object.assign(kTesting.StubRecipeObjectType(), {
+		deepEqual(mod.LCHRecipesIsType(Object.assign(kTesting.StubRecipeObjectType(), {
 			LCHRecipeCanonicalExampleCallback: undefined,
 		})), false);
 	});
 
 	it('returns false if no LCHRecipeSignature', function() {
-		deepEqual(mod.LCHRecipesModelIsType(Object.assign(kTesting.StubRecipeObjectType(), {
+		deepEqual(mod.LCHRecipesIsType(Object.assign(kTesting.StubRecipeObjectType(), {
 			LCHRecipeSignature: undefined,
 		})), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mod.LCHRecipesModelIsType(kTesting.StubRecipeObjectType()), true);
+		deepEqual(mod.LCHRecipesIsType(kTesting.StubRecipeObjectType()), true);
 	});
 
 });
 
-describe('LCHRecipesModelIsTask', function test_LCHRecipesModelIsTask() {
+describe('LCHRecipesIsTask', function test_LCHRecipesIsTask() {
 
 	it('throws if not valid', function() {
 		throws(function() {
-			mod.LCHRecipesModelIsTask({});
+			mod.LCHRecipesIsTask({});
 		}, /LCHErrorInputNotValid/);
 	});
 
 	// it('returns false if arguments', function() {
-	// 	deepEqual(mod.LCHRecipesModelIsTask(Object.assign(kTesting.StubRecipeObjectTask(), {
+	// 	deepEqual(mod.LCHRecipesIsTask(Object.assign(kTesting.StubRecipeObjectTask(), {
 	// 		LCHRecipeCallback (alfa) {},
 	// 	})), false);
 	// });
 
 	it('returns false if no LCHRecipeURLFilter', function() {
-		deepEqual(mod.LCHRecipesModelIsTask(Object.assign(kTesting.StubRecipeObjectTask(), {
+		deepEqual(mod.LCHRecipesIsTask(Object.assign(kTesting.StubRecipeObjectTask(), {
 			LCHRecipeURLFilter: undefined,
 		})), false);
 	});
 
 	it('returns false if LCHRecipeIsAutomatic not true', function() {
-		deepEqual(mod.LCHRecipesModelIsTask(Object.assign(kTesting.StubRecipeObjectTask(), {
+		deepEqual(mod.LCHRecipesIsTask(Object.assign(kTesting.StubRecipeObjectTask(), {
 			LCHRecipeIsAutomatic: false,
 		})), false);
 	});
 
 	it('returns true', function() {
-		deepEqual(mod.LCHRecipesModelIsTask(kTesting.StubRecipeObjectTask()), true);
+		deepEqual(mod.LCHRecipesIsTask(kTesting.StubRecipeObjectTask()), true);
 	});
 
 });
@@ -478,7 +478,7 @@ describe('LCHLauncherConvertTypeServiceSearch', function test_LCHLauncherConvert
 		})[0];
 
 		it('replaces with action', function() {
-			deepEqual(mod.LCHRecipesModelIsAction(item), true);
+			deepEqual(mod.LCHRecipesIsAction(item), true);
 		});
 
 		it('contains only specified fields', function() {
@@ -540,36 +540,36 @@ describe('LCHLauncherConvertTypeServiceSearch', function test_LCHLauncherConvert
 
 });
 
-describe('LCHRecipesModelActionTakesObject', function test_LCHRecipesModelActionTakesObject() {
+describe('LCHRecipesActionTakesObject', function test_LCHRecipesActionTakesObject() {
 
 	it('throws if not valid', function() {
 		throws(function() {
-			mod.LCHRecipesModelActionTakesObject({});
+			mod.LCHRecipesActionTakesObject({});
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws if not Action', function() {
 		throws(function() {
-			mod.LCHRecipesModelActionTakesObject(Object.assign(kTesting.StubRecipeObjectAction(), {
+			mod.LCHRecipesActionTakesObject(Object.assign(kTesting.StubRecipeObjectAction(), {
 				LCHRecipeName: undefined,
 			}));
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns false if less than two LCHRecipeInputTypes', function() {
-		deepEqual(mod.LCHRecipesModelActionTakesObject(Object.assign(kTesting.StubRecipeObjectAction(), {
+		deepEqual(mod.LCHRecipesActionTakesObject(Object.assign(kTesting.StubRecipeObjectAction(), {
 			LCHRecipeInputTypes: 'alfa',
 		})), false);
 	});
 
 	// it('returns false if less than two arguments', function() {
-	// 	deepEqual(mod.LCHRecipesModelActionTakesObject(Object.assign(kTesting.StubRecipeObjectAction(), {
+	// 	deepEqual(mod.LCHRecipesActionTakesObject(Object.assign(kTesting.StubRecipeObjectAction(), {
 	// 		LCHRecipeCallback (alfa) {},
 	// 	})), false);
 	// });
 
 	it('returns true', function() {
-		deepEqual(mod.LCHRecipesModelActionTakesObject(Object.assign(kTesting.StubRecipeObjectAction(), {
+		deepEqual(mod.LCHRecipesActionTakesObject(Object.assign(kTesting.StubRecipeObjectAction(), {
 			LCHRecipeInputTypes: 'alfa, bravo',
 			LCHRecipeCallback (charlie, delta) {},
 		})), true);
@@ -577,50 +577,50 @@ describe('LCHRecipesModelActionTakesObject', function test_LCHRecipesModelAction
 
 });
 
-describe('LCHRecipesModelActionTakesParams', function test_LCHRecipesModelActionTakesParams() {
+describe('LCHRecipesActionTakesParams', function test_LCHRecipesActionTakesParams() {
 
 	it('throws if not valid', function() {
 		throws(function() {
-			mod.LCHRecipesModelActionTakesParams({});
+			mod.LCHRecipesActionTakesParams({});
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('throws if not Action', function() {
 		throws(function() {
-			mod.LCHRecipesModelActionTakesParams(Object.assign(kTesting.StubRecipeObjectAction(), {
+			mod.LCHRecipesActionTakesParams(Object.assign(kTesting.StubRecipeObjectAction(), {
 				LCHRecipeName: undefined,
 			}));
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns false if last LCHRecipeInputTypes not Object', function() {
-		deepEqual(mod.LCHRecipesModelActionTakesParams(Object.assign(kTesting.StubRecipeObjectAction(), {
+		deepEqual(mod.LCHRecipesActionTakesParams(Object.assign(kTesting.StubRecipeObjectAction(), {
 			LCHRecipeInputTypes: 'alfa, bravo, charlie',
 		})), false);
 	});
 
 	// it('returns false if arguments count not match LCHRecipeInputTypes', function() {
-	// 	deepEqual(mod.LCHRecipesModelActionTakesParams(Object.assign(kTesting.StubRecipeObjectAction(), {
+	// 	deepEqual(mod.LCHRecipesActionTakesParams(Object.assign(kTesting.StubRecipeObjectAction(), {
 	// 		LCHRecipeCallback (alfa, bravo, charlie) {},
 	// 	})), false);
 	// });
 
 	it('returns true', function() {
-		deepEqual(mod.LCHRecipesModelActionTakesParams(Object.assign(kTesting.StubRecipeObjectAction(), {
+		deepEqual(mod.LCHRecipesActionTakesParams(Object.assign(kTesting.StubRecipeObjectAction(), {
 			LCHRecipeInputTypes: 'alfa, bravo, Object',
 			LCHRecipeCallback (charlie, delta, echo) {},
 		})), true);
 	});
 
 	it('accepts two arguments', function() {
-		deepEqual(mod.LCHRecipesModelActionTakesParams(Object.assign(kTesting.StubRecipeObjectAction(), {
+		deepEqual(mod.LCHRecipesActionTakesParams(Object.assign(kTesting.StubRecipeObjectAction(), {
 			LCHRecipeInputTypes: 'alfa, Object',
 			LCHRecipeCallback (charlie, echo) {},
 		})), true);
 	});
 
 	it('accepts one argument', function() {
-		deepEqual(mod.LCHRecipesModelActionTakesParams(Object.assign(kTesting.StubRecipeObjectAction(), {
+		deepEqual(mod.LCHRecipesActionTakesParams(Object.assign(kTesting.StubRecipeObjectAction(), {
 			LCHRecipeInputTypes: 'Object',
 			LCHRecipeCallback (echo) {},
 		})), true);
@@ -949,16 +949,16 @@ describe('_LCHIntersect', function test_LCHIntersect() {
 
 });
 
-describe('LCHCompositionModelErrors', function test_LCHCompositionModelErrors() {
+describe('LCHCompositionErrors', function test_LCHCompositionErrors() {
 
 	it('throws if not object', function() {
 		throws(function() {
-			mod.LCHCompositionModelErrors(null);
+			mod.LCHCompositionErrors(null);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns object if LCHCompositionAction not present', function() {
-		deepEqual(mod.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
+		deepEqual(mod.LCHCompositionErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
 			LCHCompositionAction: undefined,
 		})), {
 			LCHCompositionAction: [
@@ -968,7 +968,7 @@ describe('LCHCompositionModelErrors', function test_LCHCompositionModelErrors() 
 	});
 
 	it('returns object if LCHCompositionAction not Action', function() {
-		deepEqual(mod.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
+		deepEqual(mod.LCHCompositionErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
 			LCHCompositionAction: kTesting.StubRecipeObjectValid(),
 		})), {
 			LCHCompositionAction: [
@@ -978,7 +978,7 @@ describe('LCHCompositionModelErrors', function test_LCHCompositionModelErrors() 
 	});
 
 	it('returns object if LCHCompositionSubjectPrimary blank', function() {
-		deepEqual(mod.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
+		deepEqual(mod.LCHCompositionErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
 			LCHCompositionSubjectPrimary: undefined,
 		})), {
 			LCHCompositionSubjectPrimary: [
@@ -988,7 +988,7 @@ describe('LCHCompositionModelErrors', function test_LCHCompositionModelErrors() 
 	});
 	
 	it('returns object if LCHCompositionSubjectPrimary not Subject', function() {
-		deepEqual(mod.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
+		deepEqual(mod.LCHCompositionErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
 			LCHCompositionSubjectPrimary: kTesting.StubRecipeObjectValid(),
 		})), {
 			LCHCompositionSubjectPrimary: [
@@ -998,7 +998,7 @@ describe('LCHCompositionModelErrors', function test_LCHCompositionModelErrors() 
 	});
 
 	it('returns object if type mismatch', function() {
-		deepEqual(mod.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
+		deepEqual(mod.LCHCompositionErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
 			LCHCompositionSubjectPrimary: Object.assign(kTesting.StubRecipeObjectSubject(), {
 				LCHRecipeOutputType: 'alfa',
 			}),
@@ -1010,11 +1010,11 @@ describe('LCHCompositionModelErrors', function test_LCHCompositionModelErrors() 
 	});
 
 	it('returns null', function() {
-		deepEqual(mod.LCHCompositionModelErrors(kTesting.StubCompositionObjectValid()), null);
+		deepEqual(mod.LCHCompositionErrors(kTesting.StubCompositionObjectValid()), null);
 	});
 
 	it('returns null if running command', function() {
-		deepEqual(mod.LCHCompositionModelErrors({
+		deepEqual(mod.LCHCompositionErrors({
 			LCHCompositionAction: Object.assign(kTesting.StubRecipeObjectAction(), {
 				LCHRecipeInputTypes: 'Command'
 			}),
@@ -1025,7 +1025,7 @@ describe('LCHCompositionModelErrors', function test_LCHCompositionModelErrors() 
 	context('LCHCompositionSubjectSecondary', function() {
 
 		it('returns object if LCHCompositionSubjectSecondary not Subject', function() {
-			deepEqual(mod.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
+			deepEqual(mod.LCHCompositionErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
 				LCHCompositionAction: Object.assign(kTesting.StubRecipeObjectAction(), {
 					LCHRecipeInputTypes: 'bravo, bravo',
 				}),
@@ -1038,7 +1038,7 @@ describe('LCHCompositionModelErrors', function test_LCHCompositionModelErrors() 
 		});
 
 		it('returns object if LCHCompositionSubjectSecondary type mismatch', function() {
-			deepEqual(mod.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
+			deepEqual(mod.LCHCompositionErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
 				LCHCompositionAction: Object.assign(kTesting.StubRecipeObjectAction(), {
 					LCHRecipeInputTypes: 'bravo, bravo',
 				}),
@@ -1053,7 +1053,7 @@ describe('LCHCompositionModelErrors', function test_LCHCompositionModelErrors() 
 		});
 
 		it('returns object if LCHCompositionSubjectSecondary blank', function() {
-			deepEqual(mod.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
+			deepEqual(mod.LCHCompositionErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
 				LCHCompositionAction: Object.assign(kTesting.StubRecipeObjectAction(), {
 					LCHRecipeInputTypes: 'bravo, bravo',
 				}),
@@ -1065,7 +1065,7 @@ describe('LCHCompositionModelErrors', function test_LCHCompositionModelErrors() 
 		});
 
 		it('returns null', function() {
-			deepEqual(mod.LCHCompositionModelErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
+			deepEqual(mod.LCHCompositionErrors(Object.assign(kTesting.StubCompositionObjectValid(), {
 				LCHCompositionSubjectSecondary: kTesting.StubRecipeObjectSubject(),
 			})), null);
 		});
@@ -1202,16 +1202,16 @@ describe('LCHAPIExecuteRecipe', function test_LCHAPIExecuteRecipe() {
 
 });
 
-describe('LCHComponentDescriptorsModelErrorsFor', function test_LCHComponentDescriptorsModelErrorsFor() {
+describe('LCHComponentDescriptorsErrors', function test_LCHComponentDescriptorsErrors() {
 
 	it('throws if not object', function() {
 		throws(function() {
-			mod.LCHComponentDescriptorsModelErrorsFor(null);
+			mod.LCHComponentDescriptorsErrors(null);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns object if LCHComponentDescriptorName not string', function() {
-		deepEqual(mod.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
+		deepEqual(mod.LCHComponentDescriptorsErrors(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
 			LCHComponentDescriptorName: null,
 		})), {
 			LCHComponentDescriptorName: [
@@ -1221,7 +1221,7 @@ describe('LCHComponentDescriptorsModelErrorsFor', function test_LCHComponentDesc
 	});
 
 	it('returns object if LCHComponentDescriptorName empty', function() {
-		deepEqual(mod.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
+		deepEqual(mod.LCHComponentDescriptorsErrors(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
 			LCHComponentDescriptorName: '',
 		})), {
 			LCHComponentDescriptorName: [
@@ -1231,14 +1231,14 @@ describe('LCHComponentDescriptorsModelErrorsFor', function test_LCHComponentDesc
 	});
 
 	it('returns object if LCHComponentDescriptorName contains untrimmed whitespace', function() {
-		deepEqual(mod.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
+		deepEqual(mod.LCHComponentDescriptorsErrors(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
 			LCHComponentDescriptorName: ' alfa',
 		})), {
 			LCHComponentDescriptorName: [
 				'LCHErrorNotTrimmed',
 			],
 		});
-		deepEqual(mod.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
+		deepEqual(mod.LCHComponentDescriptorsErrors(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
 			LCHComponentDescriptorName: 'alfa ',
 		})), {
 			LCHComponentDescriptorName: [
@@ -1248,7 +1248,7 @@ describe('LCHComponentDescriptorsModelErrorsFor', function test_LCHComponentDesc
 	});
 
 	it('returns object if LCHComponentDescriptorCompletionHandlerSignature not string', function() {
-		deepEqual(mod.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
+		deepEqual(mod.LCHComponentDescriptorsErrors(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
 			LCHComponentDescriptorCompletionHandlerSignature: null,
 		})), {
 			LCHComponentDescriptorCompletionHandlerSignature: [
@@ -1258,7 +1258,7 @@ describe('LCHComponentDescriptorsModelErrorsFor', function test_LCHComponentDesc
 	});
 
 	it('returns object if LCHComponentDescriptorCompletionHandlerSignature empty', function() {
-		deepEqual(mod.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
+		deepEqual(mod.LCHComponentDescriptorsErrors(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
 			LCHComponentDescriptorCompletionHandlerSignature: '',
 		})), {
 			LCHComponentDescriptorCompletionHandlerSignature: [
@@ -1268,14 +1268,14 @@ describe('LCHComponentDescriptorsModelErrorsFor', function test_LCHComponentDesc
 	});
 
 	it('returns object if LCHComponentDescriptorCompletionHandlerSignature contains untrimmed whitespace', function() {
-		deepEqual(mod.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
+		deepEqual(mod.LCHComponentDescriptorsErrors(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
 			LCHComponentDescriptorCompletionHandlerSignature: ' alfa',
 		})), {
 			LCHComponentDescriptorCompletionHandlerSignature: [
 				'LCHErrorNotTrimmed',
 			],
 		});
-		deepEqual(mod.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
+		deepEqual(mod.LCHComponentDescriptorsErrors(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
 			LCHComponentDescriptorCompletionHandlerSignature: 'alfa ',
 		})), {
 			LCHComponentDescriptorCompletionHandlerSignature: [
@@ -1285,13 +1285,13 @@ describe('LCHComponentDescriptorsModelErrorsFor', function test_LCHComponentDesc
 	});
 
 	it('returns null', function() {
-		deepEqual(mod.LCHComponentDescriptorsModelErrorsFor(kTesting.StubComponentDescriptorObjectValid()), null);
+		deepEqual(mod.LCHComponentDescriptorsErrors(kTesting.StubComponentDescriptorObjectValid()), null);
 	});
 
 	context('LCHComponentDescriptorProps', function() {
 
 		it('returns object if LCHComponentDescriptorProps not object', function() {
-			deepEqual(mod.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
+			deepEqual(mod.LCHComponentDescriptorsErrors(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
 				LCHComponentDescriptorProps: null,
 			})), {
 				LCHComponentDescriptorProps: [
@@ -1301,7 +1301,7 @@ describe('LCHComponentDescriptorsModelErrorsFor', function test_LCHComponentDesc
 		});
 
 		it('returns null', function() {
-			deepEqual(mod.LCHComponentDescriptorsModelErrorsFor(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
+			deepEqual(mod.LCHComponentDescriptorsErrors(Object.assign(kTesting.StubComponentDescriptorObjectValid(), {
 				LCHComponentDescriptorProps: {},
 			})), null);
 		});
@@ -1454,14 +1454,14 @@ describe('LCHAPIRunTasks', function test_LCHAPIRunTasks() {
 
 });
 
-describe('LCHRecipeProxyModelErrorsFor', function test_LCHRecipeProxyModelErrorsFor() {
+describe('LCHRecipeProxyErrors', function test_LCHRecipeProxyErrors() {
 
 	it('returns object if not object', function() {
-		deepEqual(mod.LCHRecipeProxyModelErrorsFor(null), {});
+		deepEqual(mod.LCHRecipeProxyErrors(null), {});
 	});
 
 	it('returns object if LCHRecipeProxyName not function', function() {
-		deepEqual(mod.LCHRecipeProxyModelErrorsFor(Object.assign(kTesting.StubRecipeProxyObjectValid(), {
+		deepEqual(mod.LCHRecipeProxyErrors(Object.assign(kTesting.StubRecipeProxyObjectValid(), {
 			LCHRecipeProxyName: null,
 		})), {
 			LCHRecipeProxyName: [
@@ -1471,7 +1471,7 @@ describe('LCHRecipeProxyModelErrorsFor', function test_LCHRecipeProxyModelErrors
 	});
 
 	it('returns object if LCHRecipeProxySignature not function', function() {
-		deepEqual(mod.LCHRecipeProxyModelErrorsFor(Object.assign(kTesting.StubRecipeProxyObjectValid(), {
+		deepEqual(mod.LCHRecipeProxyErrors(Object.assign(kTesting.StubRecipeProxyObjectValid(), {
 			LCHRecipeProxySignature: null,
 		})), {
 			LCHRecipeProxySignature: [
@@ -1481,7 +1481,7 @@ describe('LCHRecipeProxyModelErrorsFor', function test_LCHRecipeProxyModelErrors
 	});
 
 	it('returns null', function() {
-		deepEqual(mod.LCHRecipeProxyModelErrorsFor(kTesting.StubRecipeProxyObjectValid()), null);
+		deepEqual(mod.LCHRecipeProxyErrors(kTesting.StubRecipeProxyObjectValid()), null);
 	});
 
 });

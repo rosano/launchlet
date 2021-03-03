@@ -14,12 +14,12 @@ Array.prototype._LCHIntersect = function() {
 
 const mod = {
 
-	LCHRecipesModelErrorsFor (inputData, options = {}) {
+	LCHRecipesErrors (inputData, options = {}) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('LCHErrorInputNotValid');
 		}
 
-		const errors = LCHFormula.LCHFormulaTo(LCHFormula.LCHFormulaModelErrorsFor(LCHFormula.LCHFormulaFrom(inputData)) || {}, 'LCHRecipe');
+		const errors = LCHFormula.LCHFormulaTo(LCHFormula.LCHFormulaErrors(LCHFormula.LCHFormulaFrom(inputData)) || {}, 'LCHRecipe');
 
 		if (typeof inputData.LCHRecipeCallback !== 'function') {
 			errors.LCHRecipeCallback = [
@@ -86,8 +86,8 @@ const mod = {
 		return Object.entries(errors).length ? errors : null;
 	},
 
-	LCHRecipesModelIsCommand (inputData) {
-		if (mod.LCHRecipesModelErrorsFor(inputData)) {
+	LCHRecipesIsCommand (inputData) {
+		if (mod.LCHRecipesErrors(inputData)) {
 			throw new Error('LCHErrorInputNotValid');
 		}
 
@@ -106,8 +106,8 @@ const mod = {
 		return true;
 	},
 
-	LCHRecipesModelIsSubject (inputData) {
-		if (mod.LCHRecipesModelErrorsFor(inputData)) {
+	LCHRecipesIsSubject (inputData) {
+		if (mod.LCHRecipesErrors(inputData)) {
 			throw new Error('LCHErrorInputNotValid');
 		}
 
@@ -126,8 +126,8 @@ const mod = {
 		return true;
 	},
 
-	LCHRecipesModelIsAction (inputData) {
-		if (mod.LCHRecipesModelErrorsFor(inputData)) {
+	LCHRecipesIsAction (inputData) {
+		if (mod.LCHRecipesErrors(inputData)) {
 			throw new Error('LCHErrorInputNotValid');
 		}
 
@@ -146,8 +146,8 @@ const mod = {
 		return true;
 	},
 
-	LCHRecipesModelIsType (inputData) {
-		if (mod.LCHRecipesModelErrorsFor(inputData)) {
+	LCHRecipesIsType (inputData) {
+		if (mod.LCHRecipesErrors(inputData)) {
 			throw new Error('LCHErrorInputNotValid');
 		}
 		
@@ -170,8 +170,8 @@ const mod = {
 		return true;
 	},
 
-	LCHRecipesModelIsTask (inputData) {
-		if (mod.LCHRecipesModelErrorsFor(inputData)) {
+	LCHRecipesIsTask (inputData) {
+		if (mod.LCHRecipesErrors(inputData)) {
 			throw new Error('LCHErrorInputNotValid');
 		}
 		
@@ -217,12 +217,12 @@ const mod = {
 		});
 	},
 
-	LCHRecipesModelActionTakesObject (inputData) {
-		if (mod.LCHRecipesModelErrorsFor(inputData)) {
+	LCHRecipesActionTakesObject (inputData) {
+		if (mod.LCHRecipesErrors(inputData)) {
 			throw new Error('LCHErrorInputNotValid');
 		}
 
-		if (!mod.LCHRecipesModelIsAction(inputData)) {
+		if (!mod.LCHRecipesIsAction(inputData)) {
 			throw new Error('LCHErrorInputNotValid');
 		}
 		
@@ -237,12 +237,12 @@ const mod = {
 		return true;
 	},
 
-	LCHRecipesModelActionTakesParams (inputData) {
-		if (mod.LCHRecipesModelErrorsFor(inputData)) {
+	LCHRecipesActionTakesParams (inputData) {
+		if (mod.LCHRecipesErrors(inputData)) {
 			throw new Error('LCHErrorInputNotValid');
 		}
 
-		if (!mod.LCHRecipesModelIsAction(inputData)) {
+		if (!mod.LCHRecipesIsAction(inputData)) {
 			throw new Error('LCHErrorInputNotValid');
 		}
 		
@@ -264,11 +264,11 @@ const mod = {
 
 		const uniqueSignatures = [];
 		const validRecipes = inputData.filter(function (e) {
-			if (mod.LCHRecipesModelErrorsFor(e)) {
+			if (mod.LCHRecipesErrors(e)) {
 				return false;
 			}
 
-			if (!mod.LCHRecipesModelIsType(e)) {
+			if (!mod.LCHRecipesIsType(e)) {
 				return false;
 			}
 
@@ -314,11 +314,11 @@ const mod = {
 		}
 
 		const validRecipes = inputData.filter(function (e) {
-			if (mod.LCHRecipesModelErrorsFor(e)) {
+			if (mod.LCHRecipesErrors(e)) {
 				return false;
 			}
 
-			return mod.LCHRecipesModelIsType(e);
+			return mod.LCHRecipesIsType(e);
 		});
 
 		return validRecipes.reduce(function (coll, item) {
@@ -342,11 +342,11 @@ const mod = {
 		}
 
 		return param2.filter(function (e) {
-			if (mod.LCHRecipesModelErrorsFor(e)) {
+			if (mod.LCHRecipesErrors(e)) {
 				return false;
 			}
 
-			if (!mod.LCHRecipesModelIsAction(e)) {
+			if (!mod.LCHRecipesIsAction(e)) {
 				return false;
 			}
 
@@ -368,11 +368,11 @@ const mod = {
 		}
 
 		return param2.filter(function (e) {
-			if (mod.LCHRecipesModelErrorsFor(e)) {
+			if (mod.LCHRecipesErrors(e)) {
 				return false;
 			}
 
-			if (!mod.LCHRecipesModelIsSubject(e)) {
+			if (!mod.LCHRecipesIsSubject(e)) {
 				return false;
 			}
 
@@ -384,7 +384,7 @@ const mod = {
 		});
 	},
 
-	LCHCompositionModelErrors (inputData) {
+	LCHCompositionErrors (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('LCHErrorInputNotValid');
 		}
@@ -397,7 +397,7 @@ const mod = {
 			};
 		}
 
-		if (!mod.LCHRecipesModelIsAction(inputData.LCHCompositionAction)) {
+		if (!mod.LCHRecipesIsAction(inputData.LCHCompositionAction)) {
 			return {
 				LCHCompositionAction: [
 					'LCHErrorInputNotValid',
@@ -413,11 +413,11 @@ const mod = {
 					'LCHErrorInputNotPresent',
 				],
 			};
-		} else if (inputData.LCHCompositionAction.LCHRecipeInputTypes === 'Command' && mod.LCHRecipesModelIsCommand(inputData.LCHCompositionSubjectPrimary)) {
+		} else if (inputData.LCHCompositionAction.LCHRecipeInputTypes === 'Command' && mod.LCHRecipesIsCommand(inputData.LCHCompositionSubjectPrimary)) {
 
 		}
 
-		// if (!mod.LCHRecipesModelIsSubject(inputData.LCHCompositionSubjectPrimary)) {
+		// if (!mod.LCHRecipesIsSubject(inputData.LCHCompositionSubjectPrimary)) {
 		// 	errors.LCHCompositionSubjectPrimary = [
 		// 		'LCHErrorInputNotValid',
 		// 	];
@@ -436,7 +436,7 @@ const mod = {
 		}
 
 		if (inputData.LCHCompositionSubjectSecondary !== undefined) {
-			if (!mod.LCHRecipesModelIsSubject(inputData.LCHCompositionSubjectSecondary)) {
+			if (!mod.LCHRecipesIsSubject(inputData.LCHCompositionSubjectSecondary)) {
 				errors.LCHCompositionSubjectSecondary = [
 					'LCHErrorInputNotValid',
 				];
@@ -453,7 +453,7 @@ const mod = {
 	},
 
 	async LCHAPIExecuteComposition (inputData, api = {}) {
-		if (mod.LCHCompositionModelErrors(inputData)) {
+		if (mod.LCHCompositionErrors(inputData)) {
 			return Promise.reject(new Error('LCHErrorInputNotValid'));
 		}
 
@@ -469,7 +469,7 @@ const mod = {
 	},
 
 	async LCHAPIExecuteRecipe (param1, param2 = [], param3 = {}) {
-		if (mod.LCHRecipesModelErrorsFor(param1)) {
+		if (mod.LCHRecipesErrors(param1)) {
 			return Promise.reject(new Error('LCHErrorInputNotValid'));
 		}
 
@@ -490,7 +490,7 @@ const mod = {
 		}, param2.length ? param2 : undefined)); // #mysterious Firefox throws `Permission denied to access property "length"` if array is empty
 	},
 
-	LCHComponentDescriptorsModelErrorsFor (inputData) {
+	LCHComponentDescriptorsErrors (inputData) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('LCHErrorInputNotValid');
 		}
@@ -554,7 +554,7 @@ const mod = {
 		}
 
 		return param1.filter(function (e) {
-			if (mod.LCHRecipesModelErrorsFor(e)) {
+			if (mod.LCHRecipesErrors(e)) {
 				return false;
 			}
 
@@ -572,7 +572,7 @@ const mod = {
 		}
 
 		return inputData.filter(function (e) {
-			if (!mod.LCHRecipesModelIsTask(e)) {
+			if (!mod.LCHRecipesIsTask(e)) {
 				return false;
 			}
 
@@ -593,7 +593,7 @@ const mod = {
 		}));
 	},
 
-	LCHRecipeProxyModelErrorsFor (inputData, options = {}) {
+	LCHRecipeProxyErrors (inputData, options = {}) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			return {};
 		}

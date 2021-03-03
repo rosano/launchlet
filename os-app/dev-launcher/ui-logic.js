@@ -18,7 +18,7 @@ const mod = {
 		};
 
 		inputData.LCHOptionRecipes = inputData.LCHOptionRecipes.filter(function (e) {
-			const errors = LCHLauncherAPI.LCHRecipesModelErrorsFor(e);
+			const errors = LCHLauncherAPI.LCHRecipesErrors(e);
 
 			if (errors) {
 				notify('LCHOptionRecipesItemNotValid', e, errors)
@@ -98,12 +98,12 @@ const mod = {
 			}
 
 			if (param2 === mod.LCHLauncherModeCommit()) {
-				return LCHLauncherAPI.LCHRecipesModelIsCommand(e);
-				// if (LCHLauncherAPI.LCHRecipesModelIsCommand(e)) {
+				return LCHLauncherAPI.LCHRecipesIsCommand(e);
+				// if (LCHLauncherAPI.LCHRecipesIsCommand(e)) {
 				// 	return true;
 				// };
 
-				// if (!LCHLauncherAPI.LCHRecipesModelIsAction(e)) {
+				// if (!LCHLauncherAPI.LCHRecipesIsAction(e)) {
 				// 	return false;
 				// };
 
@@ -121,7 +121,7 @@ const mod = {
 			}
 
 			if (param2 === mod.LCHLauncherModePreview()) {
-				return LCHLauncherAPI.LCHRecipesModelIsCommand(e);
+				return LCHLauncherAPI.LCHRecipesIsCommand(e);
 			}
 			
 			return true;
@@ -251,11 +251,11 @@ const mod = {
 				return false;
 			}
 
-			if (LCHLauncherAPI.LCHRecipesModelErrorsFor(e)) {
+			if (LCHLauncherAPI.LCHRecipesErrors(e)) {
 				return false;
 			};
 
-			if (!LCHLauncherAPI.LCHRecipesModelIsSubject(e)) {
+			if (!LCHLauncherAPI.LCHRecipesIsSubject(e)) {
 				return false;
 			};
 

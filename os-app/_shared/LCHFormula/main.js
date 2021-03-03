@@ -14,7 +14,7 @@ const mod = {
 		'@context',
 	],
 
-	LCHFormulaModelErrorsFor (inputData, options = {}) {
+	LCHFormulaErrors (inputData, options = {}) {
 		if (typeof inputData !== 'object' || inputData === null) {
 			throw new Error('LCHErrorInputNotValid');
 		}
@@ -125,7 +125,7 @@ const mod = {
 	},
 
 	LCHFormulaToEvaluate (inputData) {
-		if (mod.LCHFormulaModelErrorsFor(inputData)) {
+		if (mod.LCHFormulaErrors(inputData)) {
 			throw new Error('LCHErrorInputNotValid');
 		}
 

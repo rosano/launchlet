@@ -26,7 +26,7 @@ const mod = {
 			throw new Error('LCHErrorInputNotValid');
 		}
 
-		var errors = LCHFormula.LCHFormulaTo(LCHFormula.LCHFormulaModelErrorsFor(LCHFormula.LCHFormulaFrom(inputData)) || {}, 'LCHDocument');
+		var errors = LCHFormula.LCHFormulaTo(LCHFormula.LCHFormulaErrors(LCHFormula.LCHFormulaFrom(inputData)) || {}, 'LCHDocument');
 
 		if (typeof inputData.LCHDocumentID !== 'string') {
 			errors.LCHDocumentID = [

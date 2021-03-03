@@ -191,7 +191,7 @@ function ActivePromptItemSelectedShouldUpdate (inputData) {
 			return;
 		}
 
-		mod._ValuePromptObjects[2].LCHPromptIsVisible = LCHLauncherAPI.LCHRecipesModelActionTakesObject(mod._ValuePromptObjects[1].LCHPromptItemSelected);
+		mod._ValuePromptObjects[2].LCHPromptIsVisible = LCHLauncherAPI.LCHRecipesActionTakesObject(mod._ValuePromptObjects[1].LCHPromptItemSelected);
 
 		mod._ValuePromptObjects[2].LCHPromptItemsAll = !mod._ValuePromptObjects[2].LCHPromptIsVisible || LCHRuntime.LCHRuntimeInputTypes(mod._ValuePromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop() === 'String' ? [] : mod._ValueAllSubjects.filter(function (e) {
 			return mod._ValueTypeEquivalenceMap[LCHRuntime.LCHRuntimeInputTypes(mod._ValuePromptObjects[1].LCHPromptItemSelected.LCHRecipeInputTypes).pop()].includes(e.LCHRecipeOutputType);
@@ -416,7 +416,7 @@ const mod = {
 		event.preventDefault();
 		event.stopPropagation();
 
-		if (LCHLauncherAPI.LCHCompositionModelErrors(mod.DataComposition())) {
+		if (LCHLauncherAPI.LCHCompositionErrors(mod.DataComposition())) {
 			return;
 		}
 
@@ -585,7 +585,7 @@ const mod = {
 			return Promise.resolve(inputData);
 		}
 
-		if (LCHLauncherAPI.LCHComponentDescriptorsModelErrorsFor(inputData)) {
+		if (LCHLauncherAPI.LCHComponentDescriptorsErrors(inputData)) {
 			return Promise.resolve(inputData);
 		}
 
@@ -704,7 +704,7 @@ const mod = {
 					window.removeEventListener('message', receiveMessage);
 
 					inputData = event.data.filter(function (e) {
-						return !LCHLauncherAPI.LCHRecipeProxyModelErrorsFor(e);
+						return !LCHLauncherAPI.LCHRecipeProxyErrors(e);
 					}).map(function (e) {
 						return {
 							LCHRecipeName: e.LCHRecipeProxyName,
@@ -738,7 +738,7 @@ const mod = {
 			
 			return e;
 		}).filter(function(e) {
-			return !LCHLauncherAPI.LCHRecipesModelErrorsFor(e);
+			return !LCHLauncherAPI.LCHRecipesErrors(e);
 		}));
 	},
 
@@ -763,11 +763,11 @@ const mod = {
 			const typeNameMap = LCHLauncherAPI.LCHAPITypeNameMap(mod._ValueSharedRecipes);
 
 			mod._ValueAllSubjects = mod._ValueAllPromptRecipes.filter(function (e) {
-				if (LCHLauncherAPI.LCHRecipesModelIsSubject(e)) {
+				if (LCHLauncherAPI.LCHRecipesIsSubject(e)) {
 					return true;
 				};
 
-				if (LCHLauncherAPI.LCHRecipesModelIsCommand(e)) {
+				if (LCHLauncherAPI.LCHRecipesIsCommand(e)) {
 					return true;
 				};
 
@@ -780,7 +780,7 @@ const mod = {
 				})
 			});
 
-			mod._ValueAllActions = mod._ValueAllPromptRecipes.filter(LCHLauncherAPI.LCHRecipesModelIsAction);
+			mod._ValueAllActions = mod._ValueAllPromptRecipes.filter(LCHLauncherAPI.LCHRecipesIsAction);
 
 			const _ActionableTypesForPrimarySubject = Object.keys(mod._ValueTypeEquivalenceMap).filter(function (type) {
 				return mod._ValueAllActions.filter(function (e) {
