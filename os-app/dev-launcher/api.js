@@ -454,11 +454,11 @@ const mod = {
 
 	async LCHAPIExecuteComposition (inputData, api = {}) {
 		if (mod.LCHCompositionErrors(inputData)) {
-			return Promise.reject(new Error('LCHErrorInputNotValid'));
+			throw new Error('LCHErrorInputNotValid');
 		}
 
 		if (typeof api.fn !== 'function') {
-			return Promise.reject(new Error('LCHErrorInputNotValid'));
+			throw new Error('LCHErrorInputNotValid');
 		}
 
 		return mod.LCHAPIExecuteRecipe(inputData.LCHCompositionAction, [
@@ -470,15 +470,15 @@ const mod = {
 
 	async LCHAPIExecuteRecipe (param1, param2 = [], param3 = {}) {
 		if (mod.LCHRecipesErrors(param1)) {
-			return Promise.reject(new Error('LCHErrorInputNotValid'));
+			throw new Error('LCHErrorInputNotValid');
 		}
 
 		if (!Array.isArray(param2)) {
-			return Promise.reject(new Error('LCHErrorInputNotValid'));
+			throw new Error('LCHErrorInputNotValid');
 		}
 
 		if (typeof param3.fn !== 'function') {
-			return Promise.reject(new Error('LCHErrorInputNotValid'));
+			throw new Error('LCHErrorInputNotValid');
 		}
 
 		if (param1.LCHRecipeStyle && typeof document !== 'undefined') {
