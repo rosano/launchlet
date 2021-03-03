@@ -3,8 +3,8 @@
 		return;
 	}
 
-	before(function() {
-		global.ZDRTestingWrap = require('zerodatawrap')._ZDRWrap({
+	before(async function() {
+		global.ZDRTestingWrap = await require('zerodatawrap').ZDRWrap({
 			ZDRParamLibrary: require('remotestoragejs'),
 			ZDRParamScopes: [{
 				ZDRScopeKey: 'App',
@@ -14,7 +14,6 @@
 					require('./os-app/_shared/LCHSetting/main.js').default,
 				],
 			}],
-			ZDRParamDispatchReady: (function () {}),
 		});
 	});
 

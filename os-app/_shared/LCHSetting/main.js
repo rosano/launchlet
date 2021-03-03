@@ -11,7 +11,7 @@ const mod = {
 			errors.LCHSettingKey = [
 				'LCHErrorNotString',
 			];
-		} else if (inputData.LCHSettingKey.trim() === '') {
+		} else if (!inputData.LCHSettingKey.trim()) {
 			errors.LCHSettingKey = [
 				'LCHErrorNotFilled',
 			];

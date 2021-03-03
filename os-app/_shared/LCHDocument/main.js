@@ -16,7 +16,7 @@ const mod = {
 			errors.LCHDocumentID = [
 				'LCHErrorNotString',
 			];
-		} else if (inputData.LCHDocumentID.trim() === '') {
+		} else if (!inputData.LCHDocumentID.trim()) {
 			errors.LCHDocumentID = [
 				'LCHErrorNotFilled',
 			];
