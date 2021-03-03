@@ -727,8 +727,9 @@ const mod = {
 		mod._ValueCloudErrorText = error.toString();
 	},
 
-	ZDRParamDispatchConnected (identity) {
+	ZDRParamDispatchConnected (identity, token) {
 		mod._ValueCloudIdentity = identity;
+		mod._ValueCloudToken = token;
 	},
 
 	ZDRParamDispatchOnline () {
@@ -1186,7 +1187,7 @@ const mod = {
 			ParamBody: {
 				OLSKPactAuthType: OLSKPact.OLSKPactAuthTypeRemoteStorage(),
 				OLSKPactAuthIdentity: mod._ValueCloudIdentity,
-				OLSKPactAuthProof: mod._ValueZDRWrap.ZDRStorageClient().remote.token,
+				OLSKPactAuthProof: mod._ValueCloudToken,
 				OLSKPactAuthMetadata: {
 					OLSKPactAuthMetadataModuleName: 'launchlet',
 					OLSKPactAuthMetadataFolderPath: LCHDocument.LCHDocumentDirectory() + '/',
