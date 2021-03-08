@@ -650,7 +650,7 @@ describe('LCHCompose_Misc', function () {
 	describe('LCHComposeStorageToolbar', function test_LCHComposeStorageToolbar () {
 
 		before(function () {
-			return browser.pressButton('.OLSKAppToolbarStorageButton');
+			return browser.pressButton('.OLSKAppToolbarCloudButton');
 		});
 
 		it('classes OLSKToolbar', function () {
