@@ -5,8 +5,9 @@ import LCHDocument from '../_shared/LCHDocument/main.js';
 import LCHSetting from '../_shared/LCHSetting/main.js';
 import LCHTransport from '../_shared/LCHTransport/main.js';
 import { OLSK_SPEC_UI } from 'OLSKSpec';
-import OLSKRemoteStorage from 'OLSKRemoteStorage'
-import OLSKServiceWorker from 'OLSKServiceWorker'
+import OLSKRemoteStorage from 'OLSKRemoteStorage';
+import OLSKObject from 'OLSKObject';
+import OLSKServiceWorker from 'OLSKServiceWorker';
 import LCHComposeLogic from './ui-logic.js';
 import LCHFlagsLogic from '../_shared/LCHFlags/main.js'
 import LCHFormula from '../_shared/LCHFormula/main.js'
@@ -1106,6 +1107,7 @@ const mod = {
 			ZDRParamDispatchConnected: mod.ZDRParamDispatchConnected,
 			ZDRParamDispatchOnline: mod.ZDRParamDispatchOnline,
 			ZDRParamDispatchOffline: mod.ZDRParamDispatchOffline,
+			_ZDRParamDispatchJSONPreStringify: OLSKObject.OLSKObjectSafeCopy,
 			_ZDRParamDispatchJSONPostParse: OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse,
 		})
 	},
