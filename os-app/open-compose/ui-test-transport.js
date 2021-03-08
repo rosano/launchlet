@@ -26,13 +26,9 @@ describe('LCHCompose_Transport', function () {
 			}, function (dialog) {
 				dialog.response = JSON.stringify({
 					LCHDocument: [StubDocumentObjectValid({
-						LCHDocumentID: Math.random().toString(),
 						LCHDocumentName,
 					})],
-					LCHSetting: [StubSettingObjectValid({
-						LCHSettingKey: Math.random().toString(),
-						LCHSettingValue: Math.random().toString(),
-					})],
+					LCHSetting: [StubSettingObjectValid()],
 				});
 
 				Object.assign(json, JSON.parse(dialog.response));

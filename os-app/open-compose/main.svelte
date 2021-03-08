@@ -60,8 +60,6 @@ const mod = {
 	
 	_ValueStorageToolbarHidden: true,
 
-	_ValueFooterStorageStatus: '',
-
 	_ValuePersistThrottleMap: {},
 
 	_ValuePipeModeEnabled: false,

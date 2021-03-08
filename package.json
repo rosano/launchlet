@@ -18,6 +18,7 @@
     "// 0DATA": null,
     "zerodatawrap": "0dataapp/0datawrap",
     "OLSKRemoteStorage": "olsk/OLSKRemoteStorage",
+    "webnative": "^0.21.3",
     "OLSKCloud": "olsk/OLSKCloud",
 
     "// UNIQUE IDS": null,
