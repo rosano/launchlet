@@ -20,6 +20,7 @@
     "OLSKRemoteStorage": "olsk/OLSKRemoteStorage",
     "webnative": "^0.21.3",
     "OLSKCloud": "olsk/OLSKCloud",
+    "OLSKObject": "olsk/OLSKObject",
 
     "// UNIQUE IDS": null,
     "ulid": "latest",
