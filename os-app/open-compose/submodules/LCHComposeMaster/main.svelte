@@ -36,7 +36,7 @@ import LCHComposeMasterListItem from '../LCHComposeMasterListItem/main.svelte';
 	OLSKMasterListDispatchArrow={ LCHComposeMasterDispatchArrow }
 	OLSKMasterListDispatchFilter={ LCHComposeMasterDispatchFilter }
 	let:OLSKResultsListItem={ item }
-	OLSKMasterListItemAccessibilitySummaryFor={ (inputData) => LCHComposeMasterLogic.LCHComposeMasterListItemAccessibilitySummary(inputData, OLSKLocalized) }	
+	OLSKMasterListItemAccessibilitySummaryFunction={ (inputData) => LCHComposeMasterLogic.LCHComposeMasterListItemAccessibilitySummary(inputData, OLSKLocalized) }	
 	OLSKMasterListClass={ 'LCHComposeMaster' }
 	OLSKMobileViewInactive={ OLSKMobileViewInactive }
 	>

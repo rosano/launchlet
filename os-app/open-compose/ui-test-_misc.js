@@ -436,7 +436,7 @@ describe('LCHCompose_Misc', function () {
 				browser.fill('.LCHComposeDetailFormNameField', 'alfa');
 			});
 
-			it('sets OLSKMasterListItemAccessibilitySummaryFor', function () {
+			it('sets OLSKMasterListItemAccessibilitySummaryFunction', function () {
 				browser.assert.attribute('.OLSKMasterListItem', 'aria-label', 'alfa');
 			});
 
