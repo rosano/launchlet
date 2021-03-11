@@ -59,7 +59,7 @@ const mod = {
 	_JavascriptCompositionBinary: '',
 	_ValueRecipesArrayString: '',
 	
-	_ValueStorageToolbarHidden: true,
+	_ValueCloudToolbarHidden: true,
 
 	_ValuePersistThrottleMap: {},
 
@@ -849,11 +849,11 @@ const mod = {
 			return;
 		}
 
-		mod._ValueStorageToolbarHidden = false;
+		mod._ValueCloudToolbarHidden = false;
 	},
 
 	OLSKAppToolbarDispatchStorage () {
-		mod._ValueStorageToolbarHidden = !mod._ValueStorageToolbarHidden;
+		mod._ValueCloudToolbarHidden = !mod._ValueCloudToolbarHidden;
 	},
 
 	OLSKAppToolbarDispatchLauncher () {
@@ -1309,7 +1309,7 @@ import OLSKApropos from 'OLSKApropos';
 		</div>
 	</footer>
 
-	{#if !mod._ValueStorageToolbarHidden }
+	{#if !mod._ValueCloudToolbarHidden }
 		<div class="LCHComposeStorageToolbar OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeTop OLSKStorageToolbar">
 			<div class="OLSKToolbarElementGroup">
 				<div></div>
