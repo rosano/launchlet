@@ -38,14 +38,14 @@ describe('LCHCompose_Misc', function () {
 	
 	});
 	
-	context('create', function test_create () {
+	context('select', function test_select () {
 
 		before(function () {
 			// browser.assert.hasNoClass('.CodeMirror', 'CodeMirror-focused'); // #skip-codemirror
 		});
 
 		before(function () {
-			return browser.pressButton('.LCHComposeMasterCreateButton');
+			return browser.pressButton(LCHComposeMasterCreateButton);
 		});
 
 		it('focuses LCHComposeDetailFormNameField', function() {
@@ -54,55 +54,7 @@ describe('LCHCompose_Misc', function () {
 
 	});
 
-	context('escape', function test_escape () {
-
-		before(function () {
-			browser.fill('.LCHComposeDetailFormNameField', 'alfa');
-		});
-
-		before(function () {
-			browser.fill('.OLSKMasterListFilterField', 'alfa');
-		});
-
-		before(function () {
-			browser.assert.input('.OLSKMasterListFilterField', 'alfa');
-		});
-
-		before(function () {
-			browser.query('.LCHComposeDetailFormCallbackBody .LCHComposeInputFieldDebug').focus();
-		});
-
-		before(function () {
-			browser.assert.hasFocus('.LCHComposeDetailFormCallbackBody .LCHComposeInputFieldDebug');
-		});
-
-		before(function () {
-			return browser.OLSKFireKeyboardEvent(browser.window, 'Escape');
-		});
-		
-		it('focuses OLSKMasterListFilterField', function() {
-			browser.assert.hasFocus('.OLSKMasterListFilterField');
-		});
-		
-		it.skip('clears LCHComposeMasterFilterText', function() {
-			browser.assert.input('.OLSKMasterListFilterField', '');
-		});
-
-	});
-
-	context('select', function test_select () {
-		
-		before(function () {
-			return browser.click('.LCHComposeMasterListItem');
-		});
-
-		it('focus LCHComposeDetailFormNameField', function() {
-			browser.assert.hasFocus('.LCHComposeDetailFormNameField');
-		});
-
-	});
-
-	context('clone', function test_clone () {
+	context.skip('clone', function test_clone () {
 
 		before(function () {
 			browser.assert.elements('.LCHComposeMasterListItem', 1);
@@ -116,8 +68,12 @@ describe('LCHCompose_Misc', function () {
 			browser.assert.elements('.LCHComposeMasterListItem', 2);
 		});
 
+		it('focuses LCHComposeDetailFormNameField', function() {
+			browser.assert.hasFocus('.LCHComposeDetailFormNameField');
+		});
+
 		it('copies properties from previous item', function () {
-			browser.assert.text('.LCHComposeMasterListItemTitle', 'alfaalfa');
+			browser.assert.text('.OLSKResultsListItem', 'alfaalfa');
 		});
 
 		context('modify', function () {
@@ -126,12 +82,8 @@ describe('LCHCompose_Misc', function () {
 				browser.fill('.LCHComposeDetailFormNameField', 'bravo');
 			});
 
-			it('focuses LCHComposeDetailFormNameField', function() {
-				browser.assert.hasFocus('.LCHComposeDetailFormNameField');
-			});
-
 			it('sets LCHComposeDetailItem', function () {
-				browser.assert.text('.LCHComposeMasterListItemTitle', 'alfabravo');
+				browser.assert.text('.OLSKResultsListItem', 'alfabravo');
 			});
 
 		});
