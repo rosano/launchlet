@@ -1,8 +1,57 @@
 const { throws, deepEqual } = require('assert');
 
-const mod = require('./ui-logic.js');
+const mod = require('./ui-logic.js').default;
 
-describe('LCHComposeSort', function test_LCHComposeSort() {
+const uLocalized = function (inputData) {
+	return inputData + '-LOCALIZED';
+};
+
+describe('LCHComposeAccessibilitySummary', function test_LCHComposeAccessibilitySummary() {
+
+	it('throws if not object', function () {
+		throws(function () {
+			mod.LCHComposeAccessibilitySummary(null);
+		}, /LCHErrorInputNotValid/);
+	});
+
+	it('returns string', function() {
+		const item = Math.random().toString();
+		deepEqual(mod.LCHComposeAccessibilitySummary(StubDocumentObjectValid({
+			[uRandomElement('LCHDocumentName', 'LCHDocumentSignature')]: item,
+		})), item);
+	});
+
+	it('truncates long string', function() {
+		const item = Array.from(Array(100)).map(Math.random).join(' ');
+		deepEqual(mod.LCHComposeAccessibilitySummary(StubDocumentObjectValid({
+			[uRandomElement('LCHDocumentName', 'LCHDocumentSignature')]: item,
+		})), require('OLSKString').OLSKStringSnippet(item));
+	});
+
+	it('prefers LCHDocumentName', function() {
+		const LCHDocumentName = Math.random().toString();
+		deepEqual(mod.LCHComposeAccessibilitySummary(StubDocumentObjectValid({
+			LCHDocumentName,
+			LCHDocumentSignature: Math.random().toString(),
+		})), LCHDocumentName);
+	});
+
+	it('returns LCHComposeMasterListItemUntitledText if no LCHDocumentSignature', function() {
+		deepEqual(mod.LCHComposeAccessibilitySummary(StubDocumentObjectValid({
+			LCHDocumentSignature: undefined,
+		}), uLocalized), uLocalized('LCHComposeMasterListItemUntitledText'));
+	});
+	
+	it('includes LCHComposeMasterListItemFlaggedAlertText if LCHDocumentIsFlagged', function() {
+		deepEqual(mod.LCHComposeAccessibilitySummary(StubDocumentObjectValid({
+			LCHDocumentSignature: undefined,
+			LCHDocumentIsFlagged: true,
+		}), uLocalized), [uLocalized('LCHComposeMasterListItemFlaggedAlertText'), uLocalized('LCHComposeMasterListItemUntitledText')].join(' '));
+	});
+
+});
+
+describe('LCHComposeSortFunction', function test_LCHComposeSortFunction() {
 	
 	const item1 = {
 		LCHDocumentModificationDate: new Date(0),
@@ -12,123 +61,69 @@ describe('LCHComposeSort', function test_LCHComposeSort() {
 	};
 
 	it('sorts by LCHDocumentModificationDate descending', function() {
-		deepEqual([item1, item2].sort(mod.LCHComposeSort), [item2, item1]);
+		deepEqual([item1, item2].sort(mod.LCHComposeSortFunction), [item2, item1]);
 	});
 
 	it('sorts by LCHDocumentCreationDate descending if no LCHDocumentModificationDate', function() {
-		deepEqual([item1, item2].sort(mod.LCHComposeSort), [item2, item1]);
+		deepEqual([item1, item2].sort(mod.LCHComposeSortFunction), [item2, item1]);
 	});
 
 });
 
 describe('LCHComposeFilterFunction', function test_LCHComposeFilterFunction() {
 
-	it('throws error if not string', function() {
+	it('throws error param2 if not string', function() {
 		throws(function() {
-			mod.LCHComposeFilterFunction(null);
+			mod.LCHComposeFilterFunction({}, null);
 		}, /LCHErrorInputNotValid/);
 	});
 
-	it('returns function', function() {
-		deepEqual(typeof mod.LCHComposeFilterFunction('alfa'), 'function');
+	it('returns false if no match', function() {
+		deepEqual(mod.LCHComposeFilterFunction({
+			[uRandomElement('LCHDocumentName', 'LCHDocumentSignature', 'LCHDocumentURLFilter')]: 'alfa',
+		}, 'bravo'), false);
 	});
 
-	context('function', function () {
+	it('returns false if match LCHDocumentCallbackBody', function() {
+		deepEqual(mod.LCHComposeFilterFunction({
+			LCHDocumentCallbackBody: 'alfa',
+		}, 'alfa'), false);
+	});
 
-		context('LCHDocumentCallbackBody', function () {
-			
-			it('returns false', function() {
-				deepEqual(mod.LCHComposeFilterFunction('alfa')({
-					LCHDocumentCallbackBody: "return 'alfa';",
-				}), false);
-			});
-		
-		});
+	it('matches OLSKStringMatch', function() {
+		deepEqual(mod.LCHComposeFilterFunction({
+			[uRandomElement('LCHDocumentName', 'LCHDocumentSignature', 'LCHDocumentURLFilter')]: uRandomElement('alfa', 'álfa'),
+		}, uRandomElement('alf', 'alfa', 'ALF')), true);
+	});
 
-		context('LCHDocumentName', function () {
-			
-			it('returns false if no match', function() {
-				deepEqual(mod.LCHComposeFilterFunction('bravo')({
-					LCHDocumentName: 'alfa',
-				}), false);
-			});
+});
 
-			it('returns true', function() {
-				deepEqual(mod.LCHComposeFilterFunction('alfa')({
-					LCHDocumentName: 'alfa',
-				}), true);
-			});
+describe('LCHComposeExactFunction', function test_LCHComposeExactFunction() {
 
-			it('matches partial', function() {
-				deepEqual(mod.LCHComposeFilterFunction('alf')({
-					LCHDocumentName: 'alfa',
-				}), true);
-			});
+	it('throws error if param2 not string', function() {
+		throws(function() {
+			mod.LCHComposeExactFunction({}, null);
+		}, /LCHErrorInputNotValid/);
+	});
 
-			it('matches case insensitive', function() {
-				deepEqual(mod.LCHComposeFilterFunction('ALF')({
-					LCHDocumentName: 'alfa',
-				}), true);
-			});
-		
-		});
+	it('returns false if not starting with input', function() {
+		const item = Math.random().toString();
+		deepEqual(mod.LCHComposeExactFunction({
+			[uRandomElement('LCHDocumentName', 'LCHDocumentSignature')]: Math.random().toString() + item,
+		}, item), false);
+	});
 
-		context('LCHDocumentSignature', function () {
-			
-			it('returns false if no match', function() {
-				deepEqual(mod.LCHComposeFilterFunction('bravo')({
-					LCHDocumentSignature: 'alfa',
-				}), false);
-			});
+	it('returns true', function() {
+		const item = Math.random().toString();
+		deepEqual(mod.LCHComposeExactFunction({
+			[uRandomElement('LCHDocumentName', 'LCHDocumentSignature')]: item + Math.random().toString(),
+		}, item), true);
+	});
 
-			it('returns true', function() {
-				deepEqual(mod.LCHComposeFilterFunction('alfa')({
-					LCHDocumentSignature: 'alfa',
-				}), true);
-			});
-
-			it('matches partial', function() {
-				deepEqual(mod.LCHComposeFilterFunction('alf')({
-					LCHDocumentSignature: 'alfa',
-				}), true);
-			});
-
-			it('matches case insensitive', function() {
-				deepEqual(mod.LCHComposeFilterFunction('ALF')({
-					LCHDocumentSignature: 'alfa',
-				}), true);
-			});
-		
-		});
-
-		context('LCHDocumentURLFilter', function () {
-			
-			it('returns false if no match', function() {
-				deepEqual(mod.LCHComposeFilterFunction('bravo')({
-					LCHDocumentURLFilter: 'alfa',
-				}), false);
-			});
-
-			it('returns true', function() {
-				deepEqual(mod.LCHComposeFilterFunction('alfa')({
-					LCHDocumentURLFilter: 'alfa',
-				}), true);
-			});
-
-			it('matches partial', function() {
-				deepEqual(mod.LCHComposeFilterFunction('alf')({
-					LCHDocumentURLFilter: 'alfa',
-				}), true);
-			});
-
-			it('matches case insensitive', function() {
-				deepEqual(mod.LCHComposeFilterFunction('ALF')({
-					LCHDocumentURLFilter: 'alfa',
-				}), true);
-			});
-		
-		});
-		
+	it('matches OLSKStringMatch', function() {
+		deepEqual(mod.LCHComposeExactFunction({
+			[uRandomElement('LCHDocumentName', 'LCHDocumentSignature')]: uRandomElement('alfa', 'álfa'),
+		}, uRandomElement('alf', 'alfa', 'ALF')), true);
 	});
 
 });

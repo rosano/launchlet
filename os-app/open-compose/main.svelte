@@ -40,7 +40,7 @@ const mod = {
 
 	ValueDocumentsVisible (inputData, shouldSort = true) {
 		const items = !mod._ValueFilterText ? inputData : inputData.filter(LCHComposeLogic.LCHComposeFilterFunction(mod._ValueFilterText));
-		mod._ValueDocumentsVisible = shouldSort ? items.sort(LCHComposeLogic.LCHComposeSort) : items;
+		mod._ValueDocumentsVisible = shouldSort ? items.sort(LCHComposeLogic.LCHComposeSortFunction) : items;
 	},
 	
 	_ValueDocumentSelected: undefined,
@@ -306,6 +306,10 @@ const mod = {
 
 	// INTERFACE
 
+	InterfaceCreateButtonDidClick () {
+		mod.ControlDocumentCreate();
+	},
+
 	InterfaceWindowDidKeydown (event) {
 		if (document.querySelector('.LCHLauncher')) {
 			return;
@@ -422,11 +426,7 @@ const mod = {
 			return mod.ControlFundGate();
 		}
 
-		const item = await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentCreate(inputData || mod.DataDocumentObjectTemplate());
-
-		mod.ValueDocumentsAll(mod._ValueDocumentsAll.concat(item));
-
-		mod.ControlDocumentSelect(item);
+		mod.ControlDocumentSelect(mod._OLSKCatalog.modPublic.OLSKCatalogInsert(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentCreate(inputData || mod.DataDocumentObjectTemplate())));
 
 		if (mod.DataIsMobile()) {
 			mod.ControlFocusDetail();
@@ -434,13 +434,13 @@ const mod = {
 	},
 	
 	ControlDocumentSelect(inputData) {
-		mod.ValueDocumentSelected(inputData);
+		mod._OLSKCatalog.modPublic.OLSKCatalogSelect(inputData);
 
 		if (!inputData) {
 			return !mod.DataIsMobile() && document.querySelector('.OLSKMasterListFilterField').focus();
 		}
 
-		mod.OLSKMobileViewInactive = true;
+		mod._OLSKCatalog.modPublic.OLSKCatalogFocusDetail();
 
 		if (mod.DataIsMobile()) {
 			return;
@@ -457,14 +457,10 @@ const mod = {
 		mod.ControlDocumentCreate(item);
 	},
 	
-	async ControlDocumentDiscard (inputData) {
-		mod.ValueDocumentsAll(mod._ValueDocumentsAll.filter(function (e) {
-			return e !== inputData;
-		}), false);
+	ControlDocumentDiscard (inputData) {
+		mod._OLSKCatalog.modPublic.OLSKCatalogRemove(inputData);
 
-		await mod._ValueZDRWrap.App.LCHDocument.ZDRModelDeleteObject(inputData);
-
-		mod.ControlDocumentSelect(null);
+		mod._ValueZDRWrap.App.LCHDocument.ZDRModelDeleteObject(inputData);
 	},
 	
 	ControlFilter(inputData) {
@@ -700,6 +696,26 @@ const mod = {
 
 	// MESSAGE
 
+	OLSKMasterListItemAccessibilitySummaryFunction (inputData) {
+		return LCHComposeLogic.LCHComposeAccessibilitySummary(inputData, OLSKLocalized);
+	},
+
+	_OLSKCatalogDispatchKey (inputData) {
+		return inputData.LCHDocumentID;
+	},
+
+	OLSKCatalogDispatchClick (inputData) {
+		mod.ControlDocumentSelect(inputData);
+	},
+
+	OLSKCatalogDispatchArrow (inputData) {
+		mod._OLSKCatalog.modPublic.OLSKCatalogSelect(inputData);
+	},
+
+	OLSKCatalogDispatchQuantity (inputData) {
+		mod._ValueDocumentRemainder = OLSKFund.OLSKFundRemainder(inputData, parseInt('KVC_FUND_DOCUMENT_LIMIT_SWAP_TOKEN'));
+	},
+
 	LCHComposeBuildDispatchRun () {
 		mod.ControlRun();
 	},
@@ -926,17 +942,15 @@ const mod = {
 	},
 
 	LCHComposeDetailDispatchClone () {
-		mod.ControlDocumentClone(mod._ValueDocumentSelected);
+		mod.ControlDocumentClone(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected());
 	},
 
 	LCHComposeDetailDispatchDiscard () {
-		mod.ControlDocumentDiscard(mod._ValueDocumentSelected);
+		mod.ControlDocumentDiscard(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected());
 	},
 
 	LCHComposeDetailDispatchUpdate () {
-		mod._ValueDocumentSelected = mod._ValueDocumentSelected; // #purge-svelte-force-update
-
-		mod.ControlDocumentPersist(mod._ValueDocumentSelected);
+		mod.ControlDocumentPersist(mod._OLSKCatalog.modPublic.OLSKCatalogUpdate(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()));
 	},
 
 	MessageReceived(event) {
@@ -1230,7 +1244,9 @@ onMount(mod.LifecycleModuleWillMount);
 
 window.addEventListener('message', mod.MessageReceived, false);
 
+import OLSKCatalog from 'OLSKCatalog';
 import LCHComposeMaster from './submodules/LCHComposeMaster/main.svelte';
+import LCHComposeMasterListItem from './submodules/LCHComposeMasterListItem/main.svelte';
 import LCHComposeDetail from './submodules/LCHComposeDetail/main.svelte';
 import LCHComposeBuild from './submodules/LCHComposeBuild/main.svelte';
 import LCHComposePair from './submodules/LCHComposePair/main.svelte';
@@ -1241,32 +1257,63 @@ import OLSKPointer from 'OLSKPointer';
 import OLSKWebView from 'OLSKWebView';
 import OLSKModalView from 'OLSKModalView';
 import OLSKApropos from 'OLSKApropos';
+import OLSKUIAssets from 'OLSKUIAssets';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 
 <div class="LCHCompose OLSKViewport" class:OLSKIsLoading={ mod._ValueIsLoading }>
 
 <div class="OLSKViewportContent">
-	<LCHComposeMaster
-		LCHComposeMasterListItems={ mod._ValueDocumentsVisible }
-		LCHComposeMasterListItemSelected={ mod._ValueDocumentSelected }
-		LCHComposeMasterFilterText={ mod._ValueFilterText }
-		LCHComposeMasterDispatchCreate={ mod.LCHComposeMasterDispatchCreate }
-		LCHComposeMasterDispatchClick={ mod.LCHComposeMasterDispatchClick }
-		LCHComposeMasterDispatchArrow={ mod.LCHComposeMasterDispatchArrow }
-		LCHComposeMasterDispatchFilter={ mod.LCHComposeMasterDispatchFilter }
-		OLSKMobileViewInactive={ mod.OLSKMobileViewInactive }
-		/>
+
+<OLSKCatalog
+	bind:this={ mod._OLSKCatalog }
+
+	OLSKMasterListItemAccessibilitySummaryFunction={ mod.OLSKMasterListItemAccessibilitySummaryFunction }
+
+	OLSKCatalogSortFunction={ LCHComposeLogic.LCHComposeSortFunction }
+	OLSKCatalogFilterFunction={ LCHComposeLogic.LCHComposeFilterFunction }
+	OLSKCatalogExactFunction={ LCHComposeLogic.LCHComposeExactFunction }
+
+	_OLSKCatalogDispatchKey={ mod._OLSKCatalogDispatchKey }
+
+	OLSKCatalogDispatchClick={ mod.OLSKCatalogDispatchClick }
+	OLSKCatalogDispatchArrow={ mod.OLSKCatalogDispatchArrow }
+	OLSKCatalogDispatchQuantity={ mod.OLSKCatalogDispatchQuantity }
+
+	let:OLSKResultsListItem
+	>
+
+	<!-- MASTER -->
+
+	<div class="OLSKToolbarElementGroup" slot="OLSKMasterListToolbarTail">
+		<button class="LCHComposeCreateButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeCreateButtonText') } on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">
+			<div class="LCHComposeCreateButtonImage">{@html OLSKUIAssets._OLSKSharedCreate }</div>
+		</button>
+	</div>
+
+	<!-- LIST ITEM -->
+
+	<div slot="OLSKMasterListItem">
+		<LCHComposeMasterListItem LCHComposeMasterListItemTitle={ OLSKResultsListItem.LCHDocumentName } LCHComposeMasterListItemFlagged={ false } />
+	</div>
+
+	<!-- DETAIL -->
 	
-	<LCHComposeDetail
-		LCHComposeDetailItem={ mod._ValueDocumentSelected }
-		LCHComposeDetailDispatchBack={ mod.LCHComposeDetailDispatchBack }
-		LCHComposeDetailDispatchClone={ mod.LCHComposeDetailDispatchClone }
-		LCHComposeDetailDispatchDiscard={ mod.LCHComposeDetailDispatchDiscard }
-		LCHComposeDetailDispatchUpdate={ mod.LCHComposeDetailDispatchUpdate }
-		OLSKMobileViewInactive={ !mod.OLSKMobileViewInactive }
-		bind:this={ mod.LCHComposeDetailInstance }
-		/>
+	<div class="LCHComposeDetailContainer" slot="OLSKCatalogDetailContent" let:OLSKCatalogItemSelected>
+		<LCHComposeDetail
+			LCHComposeDetailItem={ OLSKCatalogItemSelected }
+
+			LCHComposeDetailDispatchBack={ mod.LCHComposeDetailDispatchBack }
+			LCHComposeDetailDispatchClone={ mod.LCHComposeDetailDispatchClone }
+			LCHComposeDetailDispatchDiscard={ mod.LCHComposeDetailDispatchDiscard }
+			LCHComposeDetailDispatchUpdate={ mod.LCHComposeDetailDispatchUpdate }
+
+			bind:this={ mod._LCHComposeDetail }
+			/>
+	</div>
+
+</OLSKCatalog>
+
 </div>
 
 <footer class="LCHComposeViewportFooter OLSKMobileViewFooter">
