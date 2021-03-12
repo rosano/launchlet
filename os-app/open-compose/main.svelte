@@ -43,16 +43,6 @@ const mod = {
 		mod._ValueDocumentsVisible = shouldSort ? items.sort(LCHComposeLogic.LCHComposeSortFunction) : items;
 	},
 	
-	_ValueDocumentSelected: undefined,
-
-	ValueDocumentSelected (inputData) {
-		mod._ValueDocumentSelected = inputData;
-
-		if (!inputData) {
-			mod.OLSKMobileViewInactive = false;	
-		}
-	},
-	
 	_ValueFilterText: '',
 
 	_JavascriptComposition: '', 
@@ -66,8 +56,6 @@ const mod = {
 	_ValuePipeModeEnabled: false,
 
 	_ValueToolsPairIsVisible: undefined,
-
-	LCHComposeDetailInstance: undefined,
 
 	OLSKMobileViewInactive: false,
 
@@ -181,12 +169,12 @@ const mod = {
 			}
 		];
 
-		if (mod._ValueDocumentSelected) {
+		if (mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()) {
 			items.push({
 				LCHRecipeSignature: 'LCHComposeLauncherItemClone',
 				LCHRecipeName: OLSKLocalized('LCHComposeLauncherItemCloneText'),
 				LCHRecipeCallback () {
-					mod.ControlDocumentClone(mod._ValueDocumentSelected);
+					mod.ControlDocumentClone(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected());
 				},
 			});
 		}
@@ -324,7 +312,7 @@ const mod = {
 				}
 			},
 			Tab () {
-				if (document.activeElement === document.querySelector('.OLSKMasterListFilterField') && mod._ValueDocumentSelected) {
+				if (document.activeElement === document.querySelector('.OLSKMasterListFilterField') && mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()) {
 					mod.ControlFocusDetail();
 
 					return event.preventDefault();
@@ -401,13 +389,13 @@ const mod = {
 			// });
 		}
 
-		// if (inputData === mod._ValueDocumentSelected) {
+		// if (inputData === mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()) {
 		// 	// causes reload of codemirror
 		// 	// inputData.LCHDocumentIsFlagged = inputData.LCHDocumentIsFlagged;
 		// };
 
-		if (inputData === mod._ValueDocumentSelected) {
-			mod._ValueDocumentSelected = mod._ValueDocumentSelected; // #purge-svelte-force-update
+		if (inputData === mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()) {
+			mod._OLSKCatalog.modPublic.OLSKCatalogSelect(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()); // #purge-svelte-force-update
 		}
 
 		return inputData;
@@ -919,22 +907,6 @@ const mod = {
 		mod._ValueOLSKFundGrant = OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(inputData);
 	},
 
-	LCHComposeMasterDispatchCreate () {
-		mod.ControlDocumentCreate();
-	},
-
-	LCHComposeMasterDispatchClick (inputData) {
-		mod.ControlDocumentSelect(inputData);
-	},
-
-	LCHComposeMasterDispatchArrow (inputData) {
-		mod.ValueDocumentSelected(inputData);
-	},
-
-	LCHComposeMasterDispatchFilter (inputData) {
-		mod.ControlFilter(inputData);
-	},
-
 	LCHComposeDetailDispatchBack () {
 		// mod.ControlDocumentSelect(null);
 
@@ -976,25 +948,25 @@ const mod = {
 
 		mod.ValueDocumentsAll([inputData].concat(mod._ValueDocumentsAll.filter(function (e) {
 			return e.LCHDocumentID !== inputData.LCHDocumentID; // @Hotfix Dropbox sending DelegateAdd
-		})), !mod._ValueDocumentSelected);
+		})), !mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected());
 	},
 
 	ZDRSchemaDispatchSyncUpdateDocument (inputData) {
 		// console.log('ZDRSchemaDispatchSyncUpdate', inputData);
 
-		if (mod._ValueDocumentSelected && mod._ValueDocumentSelected.LCHDocumentID === inputData.LCHDocumentID) {
+		if (mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected() && mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected().LCHDocumentID === inputData.LCHDocumentID) {
 			mod.ControlDocumentSelect(inputData);
 		}
 
 		mod.ValueDocumentsAll(mod._ValueDocumentsAll.map(function (e) {
 			return e.LCHDocumentID === inputData.LCHDocumentID ? inputData : e;
-		}), !mod._ValueDocumentSelected);
+		}), !mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected());
 	},
 
 	ZDRSchemaDispatchSyncDeleteDocument (inputData) {
 		// console.log('ZDRSchemaDispatchSyncDelete', inputData);
 
-		if (mod._ValueDocumentSelected && (mod._ValueDocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
+		if (mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected() && (mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected().LCHDocumentID === inputData.LCHDocumentID)) {
 			mod.ControlDocumentSelect(null);
 		}
 
@@ -1286,8 +1258,8 @@ import OLSKUIAssets from 'OLSKUIAssets';
 	<!-- MASTER -->
 
 	<div class="OLSKToolbarElementGroup" slot="OLSKMasterListToolbarTail">
-		<button class="LCHComposeCreateButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeCreateButtonText') } on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">
-			<div class="LCHComposeCreateButtonImage">{@html OLSKUIAssets._OLSKSharedCreate }</div>
+		<button class="LCHComposeMasterCreateButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeMasterCreateButtonText') } on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">
+			<div class="LCHComposeMasterCreateButtonImage">{@html OLSKUIAssets._OLSKSharedCreate }</div>
 		</button>
 	</div>
 
