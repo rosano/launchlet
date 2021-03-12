@@ -28,8 +28,6 @@ const mod = {
 
 	_ValueIsLoading: true,
 
-	_ValueFilterText: '',
-
 	_JavascriptComposition: '', 
 	_JavascriptCompositionBinary: '',
 	_ValueRecipesArrayString: '',
@@ -41,8 +39,6 @@ const mod = {
 	_ValuePipeModeEnabled: false,
 
 	_ValueToolsPairIsVisible: undefined,
-
-	OLSKMobileViewInactive: false,
 
 	_ValuePublicKey: null,
 	ValuePublicKeySet (inputData) {
@@ -58,7 +54,7 @@ const mod = {
 
 	_ValueOLSKFundProgress: false,
 
-		_ValueDocumentRemainder: '',
+	_ValueDocumentRemainder: '',
 
 	// DATA
 
