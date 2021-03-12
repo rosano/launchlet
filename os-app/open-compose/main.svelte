@@ -1150,7 +1150,6 @@ onMount(mod.LifecycleModuleWillMount);
 window.addEventListener('message', mod.MessageReceived, false);
 
 import OLSKCatalog from 'OLSKCatalog';
-import LCHComposeMaster from './submodules/LCHComposeMaster/main.svelte';
 import LCHComposeMasterListItem from './submodules/LCHComposeMasterListItem/main.svelte';
 import LCHComposeDetail from './submodules/LCHComposeDetail/main.svelte';
 import LCHComposeBuild from './submodules/LCHComposeBuild/main.svelte';
