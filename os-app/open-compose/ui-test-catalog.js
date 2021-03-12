@@ -1,6 +1,6 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe.only('LCHCompose_Catalog', function () {
+describe('LCHCompose_Catalog', function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute);
