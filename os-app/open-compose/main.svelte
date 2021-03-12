@@ -28,21 +28,6 @@ const mod = {
 
 	_ValueIsLoading: true,
 
-	_ValueDocumentsAll: [],
-
-	ValueDocumentsAll (inputData, shouldSort = true) {
-		mod.ValueDocumentsVisible(mod._ValueDocumentsAll = inputData, shouldSort);
-
-		mod.ReactDocumentRemainder();
-	},
-
-	_ValueDocumentsVisible: [],
-
-	ValueDocumentsVisible (inputData, shouldSort = true) {
-		const items = !mod._ValueFilterText ? inputData : inputData.filter(LCHComposeLogic.LCHComposeFilterFunction(mod._ValueFilterText));
-		mod._ValueDocumentsVisible = shouldSort ? items.sort(LCHComposeLogic.LCHComposeSortFunction) : items;
-	},
-	
 	_ValueFilterText: '',
 
 	_JavascriptComposition: '', 
@@ -137,7 +122,7 @@ const mod = {
 
 	async DataExportJSON () {
 		return JSON.stringify(await mod._ValueZDRWrap.App.LCHTransport.LCHTransportExport({
-			LCHDocument: mod._ValueDocumentsAll,
+			LCHDocument: mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll(),
 			LCHSetting: await mod._ValueZDRWrap.App.LCHSetting.LCHSettingList(),
 		}));
 	},
@@ -190,7 +175,7 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeZDRSchemaDispatchSyncUpdateDocument',
 					LCHRecipeCallback: async function FakeZDRSchemaDispatchSyncUpdateDocument () {
-						return mod.ZDRSchemaDispatchSyncUpdateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(Object.assign(mod._ValueDocumentsAll.filter(function (e) {
+						return mod.ZDRSchemaDispatchSyncUpdateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(Object.assign(mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
 							return e.LCHDocumentName.match('FakeZDRSchemaDispatchSync');
 						}).pop(), {
 							LCHDocumentName: 'FakeZDRSchemaDispatchSyncUpdateDocument',
@@ -200,7 +185,7 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeZDRSchemaDispatchSyncDeleteDocument',
 					LCHRecipeCallback: async function FakeZDRSchemaDispatchSyncDeleteDocument () {
-						const item = mod._ValueDocumentsAll.filter(function (e) {
+						const item = mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
 							return e.LCHDocumentName.match('FakeZDRSchemaDispatchSync');
 						}).pop();
 						
@@ -212,7 +197,7 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeZDRSchemaDispatchSyncConflictDocument',
 					LCHRecipeCallback: async function FakeZDRSchemaDispatchSyncConflictDocument () {
-						const item = mod._ValueDocumentsAll.filter(function (e) {
+						const item = mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
 							return e.LCHDocumentName.match('FakeZDRSchemaDispatchSyncConflictDocument');
 						}).pop();
 						
@@ -255,7 +240,7 @@ const mod = {
 							return mod._ValueZDRWrap.App.LCHDocument.LCHDocumentCreate(mod.DataDocumentObjectTemplate());
 						}));
 
-						return mod.SetupValueDocumentsAll();
+						return mod.SetupCatalog();
 					},
 				},
 			]);
@@ -304,13 +289,6 @@ const mod = {
 		}
 
 		const handlerFunctions = {
-			Escape () {
-				mod.ControlFilter('');
-
-				if (!OLSK_SPEC_UI()) {
-					document.querySelector('.OLSKMasterListBody').scrollTo(0, 0);
-				}
-			},
 			Tab () {
 				if (document.activeElement === document.querySelector('.OLSKMasterListFilterField') && mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()) {
 					mod.ControlFocusDetail();
@@ -355,7 +333,7 @@ const mod = {
 				
 				await mod._ControlDocumentSave(inputData);
 
-				mod.ReactDocuments(mod._ValueDocumentsAll);
+				mod.ReactDocuments(mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll());
 			},
 		});
 
@@ -451,26 +429,6 @@ const mod = {
 		mod._ValueZDRWrap.App.LCHDocument.ZDRModelDeleteObject(inputData);
 	},
 	
-	ControlFilter(inputData) {
-		mod._ValueFilterText = inputData;
-
-		mod.ValueDocumentsVisible(mod._ValueDocumentsAll);
-
-		if (!inputData) {
-			return mod.ControlDocumentSelect(null);
-		}
-
-		if (!mod._ValueDocumentsVisible.length) {
-			return mod.ControlDocumentSelect(null);
-		}
-
-		mod.ValueDocumentSelected(mod._ValueDocumentsVisible.filter(function (e) {
-			return e.LCHDocumentName.toLowerCase() === inputData.toLowerCase();
-		}).concat(mod._ValueDocumentsVisible.filter(function (e) {
-			return e.LCHDocumentName.toLowerCase().includes(inputData.toLowerCase());
-		})).shift());
-	},
-
 	ControlRun() {
 		setTimeout(new Function(mod._JavascriptComposition));
 		setTimeout(function () {
@@ -479,7 +437,7 @@ const mod = {
 	},
 
 	ControlPipeModeEnabledPersist (inputData) {
-		mod.ReactDocuments(mod._ValueDocumentsAll);
+		mod.ReactDocuments(mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll());
 
 		mod._ValueZDRWrap.App.LCHSetting.ZDRModelWriteObject({
 			LCHSettingKey: 'kLCHComposePreferenceModePipeEnabled',
@@ -488,7 +446,7 @@ const mod = {
 	},
 
 	ControlPageRecipesEnabledPersist (inputData) {
-		mod.ReactDocuments(mod._ValueDocumentsAll);
+		mod.ReactDocuments(mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll());
 
 		mod._ValueZDRWrap.App.LCHSetting.ZDRModelWriteObject({
 			LCHSettingKey: 'kLCHComposePreferenceIncludePageRecipes',
@@ -596,7 +554,7 @@ const mod = {
 			await mod._ValueZDRWrap.App.LCHTransport.LCHTransportImport(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(JSON.parse(inputData)));
 			
 			await mod.SetupSettingsAll();
-			await mod.SetupValueDocumentsAll();
+			await mod.SetupCatalog();
 		} catch (e) {
 			window.alert(OLSKLocalized('LCHComposeLauncherItemImportJSONErrorNotValidAlertText'));
 		}
@@ -701,7 +659,11 @@ const mod = {
 	},
 
 	OLSKCatalogDispatchQuantity (inputData) {
-		mod._ValueDocumentRemainder = OLSKFund.OLSKFundRemainder(inputData, parseInt('KVC_FUND_DOCUMENT_LIMIT_SWAP_TOKEN'));
+		if (mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolFission()) {
+			return;
+		}
+		
+		mod._ValueDocumentRemainder = OLSKFund.OLSKFundRemainder(inputData, parseInt('LCH_FUND_DOCUMENT_LIMIT_SWAP_TOKEN'));
 	},
 
 	LCHComposeBuildDispatchRun () {
@@ -782,12 +744,6 @@ const mod = {
 		}
 
 		mod._ValueZDRWrap.ZDRStorageClient().stopSync();
-	},
-
-	ZDRSchemaDispatchSyncConflict (event) {
-		setTimeout(async function () {
-			return mod.ZDRSchemaDispatchSyncUpdateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(event))));
-		}, OLSK_SPEC_UI() ? 0 : 500);
 	},
 
 	OLSKAppToolbarDispatchApropos () {
@@ -944,35 +900,21 @@ const mod = {
 	},
 
 	ZDRSchemaDispatchSyncCreateDocument (inputData) {
-		// console.log('ZDRSchemaDispatchSyncCreate', inputData);
-
-		mod.ValueDocumentsAll([inputData].concat(mod._ValueDocumentsAll.filter(function (e) {
-			return e.LCHDocumentID !== inputData.LCHDocumentID; // @Hotfix Dropbox sending DelegateAdd
-		})), !mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected());
+		mod._OLSKCatalog.modPublic.OLSKCatalogInsert(inputData);
 	},
 
 	ZDRSchemaDispatchSyncUpdateDocument (inputData) {
-		// console.log('ZDRSchemaDispatchSyncUpdate', inputData);
-
-		if (mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected() && mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected().LCHDocumentID === inputData.LCHDocumentID) {
-			mod.ControlDocumentSelect(inputData);
-		}
-
-		mod.ValueDocumentsAll(mod._ValueDocumentsAll.map(function (e) {
-			return e.LCHDocumentID === inputData.LCHDocumentID ? inputData : e;
-		}), !mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected());
+		mod._OLSKCatalog.modPublic.OLSKCatalogUpdate(inputData);
 	},
 
 	ZDRSchemaDispatchSyncDeleteDocument (inputData) {
-		// console.log('ZDRSchemaDispatchSyncDelete', inputData);
+		mod._OLSKCatalog.modPublic.OLSKCatalogRemove(inputData);
+	},
 
-		if (mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected() && (mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected().LCHDocumentID === inputData.LCHDocumentID)) {
-			mod.ControlDocumentSelect(null);
-		}
-
-		mod.ValueDocumentsAll(mod._ValueDocumentsAll.filter(function (e) {
-			return e.LCHDocumentID !== inputData.LCHDocumentID;
-		}), false);
+	ZDRSchemaDispatchSyncConflict (event) {
+		setTimeout(async function () {
+			return mod.ZDRSchemaDispatchSyncUpdateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(event))));
+		}, OLSK_SPEC_UI() ? 0 : 500);
 	},
 
 	// REACT
@@ -1032,13 +974,6 @@ const mod = {
 		mod.ControlPairPayloadSend();
 	},
 
-	async ReactDocumentRemainder () {
-		if (mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolFission()) {
-			return
-		}
-		mod._ValueDocumentRemainder = OLSKFund.OLSKFundRemainder(mod._ValueDocumentsAll.length, parseInt('LCH_FUND_DOCUMENT_LIMIT_SWAP_TOKEN'));
-	},
-
 	// SETUP
 
 	async SetupEverything () {
@@ -1050,11 +985,11 @@ const mod = {
 
 		mod.SetupValueToolsPairIsVisible();
 		
-		await mod.SetupValueDocumentsAll();
+		await mod.SetupCatalog();
 
 		mod.SetupPageRecipes();
 
-		mod.ReactDocuments(mod._ValueDocumentsAll);
+		mod.ReactDocuments(mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll());
 
 		mod.SetupFund();
 
@@ -1121,7 +1056,7 @@ const mod = {
 		}
 	},
 
-	async SetupValueDocumentsAll() {
+	async SetupCatalog() {
 		if (zerodatawrap.ZDRPreferenceProtocolMigrate()) {
 			const client = await mod.DataStorageClient(zerodatawrap.ZDRPreferenceProtocolMigrate());
 
@@ -1135,7 +1070,9 @@ const mod = {
 			client.ZDRCloudDisconnect();
 		};
 
-		mod.ValueDocumentsAll(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentList());
+		if (!(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentList()).map(mod._OLSKCatalog.modPublic.OLSKCatalogInsert).length) {
+			mod.OLSKCatalogDispatchQuantity(0);
+		}
 	},
 
 	SetupPageRecipes() {
