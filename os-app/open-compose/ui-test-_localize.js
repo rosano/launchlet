@@ -6,7 +6,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 		return OLSKTestingLocalized(inputData, OLSKRoutingLanguage);
 	};
 
-	describe.only(`LCHCompose_Localize-${ OLSKRoutingLanguage }`, function () {
+	describe(`LCHCompose_Localize-${ OLSKRoutingLanguage }`, function () {
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
@@ -16,6 +16,10 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 
 		it('localizes title', function() {
 			browser.assert.text('title', uLocalized('LCHComposeTitle'));
+		});
+
+		it('localizes LCHComposeCreateButton', function () {
+			browser.assert.attribute(LCHComposeCreateButton, 'title', uLocalized('LCHComposeCreateButtonText'));
 		});
 
 		it('localizes LCHComposeToolsPairButton', function() {
@@ -111,7 +115,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 		context('select', function () {
 
 			before(function () {
-				return browser.pressButton('.LCHComposeMasterCreateButton');
+				return browser.pressButton('.LCHComposeCreateButton');
 			});			
 
 			it('localizes LCHComposeLauncherItemClone', function () {

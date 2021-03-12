@@ -1,6 +1,16 @@
+import OLSKString from 'OLSKString';
+
 const mod = {
 
-	LCHComposeSort (a, b) {
+	LCHComposeAccessibilitySummary (inputData, OLSKLocalized) {
+		if (typeof inputData !== 'object' || inputData === null) {
+			throw new Error('LCHErrorInputNotValid');
+		}
+
+		return OLSKString.OLSKStringSnippet(inputData.LCHDocumentName || inputData.LCHDocumentSignature || (inputData.LCHDocumentIsFlagged ? [OLSKLocalized('LCHComposeListItemFlaggedAlertText')] : []).concat(OLSKLocalized('LCHComposeListItemUntitledText')).join(' '));
+	},
+
+	LCHComposeSortFunction (a, b) {
 		if (a.LCHDocumentModificationDate && b.LCHDocumentModificationDate) {
 			return b.LCHDocumentModificationDate - a.LCHDocumentModificationDate;
 		}
@@ -8,20 +18,32 @@ const mod = {
 		return b.LCHDocumentCreationDate - a.LCHDocumentCreationDate;
 	},
 
-	LCHComposeFilterFunction (inputData) {
-		if (typeof inputData !== 'string') {
+	LCHComposeFilterFunction (param1, param2) {
+		if (typeof param2 !== 'string') {
 			throw new Error('LCHErrorInputNotValid');
 		}
 
-		return function (e) {
-			return [e.LCHDocumentName, e.LCHDocumentSignature, e.LCHDocumentURLFilter].filter(function (e) {
-				if (!e) {
-					return false;
-				}
+		return [param1.LCHDocumentName, param1.LCHDocumentSignature, param1.LCHDocumentURLFilter].filter(function (e) {
+			if (!e) {
+				return false;
+			}
 
-				return e.toLowerCase().match(inputData.toLowerCase());
-			}).length;
-		};
+			return OLSKString.OLSKStringMatch(param2, e);
+		}).length;
+	},
+
+	LCHComposeExactFunction (param1, param2) {
+		if (typeof param2 !== 'string') {
+			throw new Error('LCHErrorInputNotValid');
+		}
+
+		return [param1.LCHDocumentName, param1.LCHDocumentSignature].filter(function (e) {
+			if (!e) {
+				return false;
+			}
+
+			return OLSKString.OLSKStringMatch(param2, e, 'startsWith');
+		}).length;
 	},
 
 	LCHComposePublicKeyIsValid (inputData) {
@@ -64,4 +86,4 @@ const mod = {
 
 };
 
-Object.assign(exports, mod);
+export default mod;

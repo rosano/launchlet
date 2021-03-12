@@ -6,18 +6,19 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 		return OLSKTestingLocalized(inputData, OLSKRoutingLanguage);
 	};
 
-	describe(`LCHComposeMasterListItem_Localize-${ OLSKRoutingLanguage }`, function () {
+	describe(`LCHComposeListItem_Localize-${ OLSKRoutingLanguage }`, function () {
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
 				OLSKRoutingLanguage,
-				LCHComposeMasterListItemTitle: 'bravo',
-				LCHComposeMasterListItemFlagged: true,
+				LCHComposeListItem: JSON.stringify(StubDocumentObjectValid({
+					LCHDocumentIsFlagged: true,
+				})),
 			});
 		});
 
-		it('localizes LCHComposeMasterListItemFlaggedAlert', function() {
-			browser.assert.text(LCHComposeMasterListItemFlaggedAlert, '⚠️');
+		it('localizes LCHComposeListItemFlaggedAlert', function() {
+			browser.assert.text(LCHComposeListItemFlaggedAlert, '⚠️');
 		});
 
 	});

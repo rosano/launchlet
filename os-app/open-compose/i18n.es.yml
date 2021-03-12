@@ -1,4 +1,6 @@
 LCHComposeTitle: Componer
+LCHComposeCreateButtonText: Crear
+LCHComposeListItemUntitledText: Sin título
 LCHComposeToolsPairButtonText: Emparejar extensión
 LCHComposePublicKeyNotValidAlertText: Entrada no válido
 LCHComposeToolsPairStatusWaitingText: Esperando

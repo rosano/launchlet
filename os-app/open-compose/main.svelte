@@ -28,33 +28,6 @@ const mod = {
 
 	_ValueIsLoading: true,
 
-	_ValueDocumentsAll: [],
-
-	ValueDocumentsAll (inputData, shouldSort = true) {
-		mod.ValueDocumentsVisible(mod._ValueDocumentsAll = inputData, shouldSort);
-
-		mod.ReactDocumentRemainder();
-	},
-
-	_ValueDocumentsVisible: [],
-
-	ValueDocumentsVisible (inputData, shouldSort = true) {
-		const items = !mod._ValueFilterText ? inputData : inputData.filter(LCHComposeLogic.LCHComposeFilterFunction(mod._ValueFilterText));
-		mod._ValueDocumentsVisible = shouldSort ? items.sort(LCHComposeLogic.LCHComposeSort) : items;
-	},
-	
-	_ValueDocumentSelected: undefined,
-
-	ValueDocumentSelected (inputData) {
-		mod._ValueDocumentSelected = inputData;
-
-		if (!inputData) {
-			mod.OLSKMobileViewInactive = false;	
-		}
-	},
-	
-	_ValueFilterText: '',
-
 	_JavascriptComposition: '', 
 	_JavascriptCompositionBinary: '',
 	_ValueRecipesArrayString: '',
@@ -66,10 +39,6 @@ const mod = {
 	_ValuePipeModeEnabled: false,
 
 	_ValueToolsPairIsVisible: undefined,
-
-	LCHComposeDetailInstance: undefined,
-
-	OLSKMobileViewInactive: false,
 
 	_ValuePublicKey: null,
 	ValuePublicKeySet (inputData) {
@@ -85,7 +54,7 @@ const mod = {
 
 	_ValueOLSKFundProgress: false,
 
-		_ValueDocumentRemainder: '',
+	_ValueDocumentRemainder: '',
 
 	// DATA
 
@@ -149,7 +118,7 @@ const mod = {
 
 	async DataExportJSON () {
 		return JSON.stringify(await mod._ValueZDRWrap.App.LCHTransport.LCHTransportExport({
-			LCHDocument: mod._ValueDocumentsAll,
+			LCHDocument: mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll(),
 			LCHSetting: await mod._ValueZDRWrap.App.LCHSetting.LCHSettingList(),
 		}));
 	},
@@ -181,12 +150,12 @@ const mod = {
 			}
 		];
 
-		if (mod._ValueDocumentSelected) {
+		if (mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()) {
 			items.push({
 				LCHRecipeSignature: 'LCHComposeLauncherItemClone',
 				LCHRecipeName: OLSKLocalized('LCHComposeLauncherItemCloneText'),
 				LCHRecipeCallback () {
-					mod.ControlDocumentClone(mod._ValueDocumentSelected);
+					mod.ControlDocumentClone(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected());
 				},
 			});
 		}
@@ -202,7 +171,7 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeZDRSchemaDispatchSyncUpdateDocument',
 					LCHRecipeCallback: async function FakeZDRSchemaDispatchSyncUpdateDocument () {
-						return mod.ZDRSchemaDispatchSyncUpdateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(Object.assign(mod._ValueDocumentsAll.filter(function (e) {
+						return mod.ZDRSchemaDispatchSyncUpdateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(Object.assign(mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
 							return e.LCHDocumentName.match('FakeZDRSchemaDispatchSync');
 						}).pop(), {
 							LCHDocumentName: 'FakeZDRSchemaDispatchSyncUpdateDocument',
@@ -212,7 +181,7 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeZDRSchemaDispatchSyncDeleteDocument',
 					LCHRecipeCallback: async function FakeZDRSchemaDispatchSyncDeleteDocument () {
-						const item = mod._ValueDocumentsAll.filter(function (e) {
+						const item = mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
 							return e.LCHDocumentName.match('FakeZDRSchemaDispatchSync');
 						}).pop();
 						
@@ -224,7 +193,7 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeZDRSchemaDispatchSyncConflictDocument',
 					LCHRecipeCallback: async function FakeZDRSchemaDispatchSyncConflictDocument () {
-						const item = mod._ValueDocumentsAll.filter(function (e) {
+						const item = mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
 							return e.LCHDocumentName.match('FakeZDRSchemaDispatchSyncConflictDocument');
 						}).pop();
 						
@@ -267,7 +236,7 @@ const mod = {
 							return mod._ValueZDRWrap.App.LCHDocument.LCHDocumentCreate(mod.DataDocumentObjectTemplate());
 						}));
 
-						return mod.SetupValueDocumentsAll();
+						return mod.SetupCatalog();
 					},
 				},
 			]);
@@ -306,21 +275,18 @@ const mod = {
 
 	// INTERFACE
 
+	InterfaceCreateButtonDidClick () {
+		mod.ControlDocumentCreate();
+	},
+
 	InterfaceWindowDidKeydown (event) {
 		if (document.querySelector('.LCHLauncher')) {
 			return;
 		}
 
 		const handlerFunctions = {
-			Escape () {
-				mod.ControlFilter('');
-
-				if (!OLSK_SPEC_UI()) {
-					document.querySelector('.OLSKMasterListBody').scrollTo(0, 0);
-				}
-			},
 			Tab () {
-				if (document.activeElement === document.querySelector('.OLSKMasterListFilterField') && mod._ValueDocumentSelected) {
+				if (document.activeElement === document.querySelector('.OLSKMasterListFilterField') && mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()) {
 					mod.ControlFocusDetail();
 
 					return event.preventDefault();
@@ -363,7 +329,7 @@ const mod = {
 				
 				await mod._ControlDocumentSave(inputData);
 
-				mod.ReactDocuments(mod._ValueDocumentsAll);
+				mod.ReactDocuments(mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll());
 			},
 		});
 
@@ -397,13 +363,13 @@ const mod = {
 			// });
 		}
 
-		// if (inputData === mod._ValueDocumentSelected) {
+		// if (inputData === mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()) {
 		// 	// causes reload of codemirror
 		// 	// inputData.LCHDocumentIsFlagged = inputData.LCHDocumentIsFlagged;
 		// };
 
-		if (inputData === mod._ValueDocumentSelected) {
-			mod._ValueDocumentSelected = mod._ValueDocumentSelected; // #purge-svelte-force-update
+		if (inputData === mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()) {
+			mod._OLSKCatalog.modPublic.OLSKCatalogSelect(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()); // #purge-svelte-force-update
 		}
 
 		return inputData;
@@ -422,11 +388,7 @@ const mod = {
 			return mod.ControlFundGate();
 		}
 
-		const item = await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentCreate(inputData || mod.DataDocumentObjectTemplate());
-
-		mod.ValueDocumentsAll(mod._ValueDocumentsAll.concat(item));
-
-		mod.ControlDocumentSelect(item);
+		mod.ControlDocumentSelect(mod._OLSKCatalog.modPublic.OLSKCatalogInsert(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentCreate(inputData || mod.DataDocumentObjectTemplate())));
 
 		if (mod.DataIsMobile()) {
 			mod.ControlFocusDetail();
@@ -434,13 +396,13 @@ const mod = {
 	},
 	
 	ControlDocumentSelect(inputData) {
-		mod.ValueDocumentSelected(inputData);
+		mod._OLSKCatalog.modPublic.OLSKCatalogSelect(inputData);
 
 		if (!inputData) {
-			return !mod.DataIsMobile() && document.querySelector('.OLSKMasterListFilterField').focus();
+			return;
 		}
 
-		mod.OLSKMobileViewInactive = true;
+		mod._OLSKCatalog.modPublic.OLSKCatalogFocusDetail();
 
 		if (mod.DataIsMobile()) {
 			return;
@@ -457,36 +419,12 @@ const mod = {
 		mod.ControlDocumentCreate(item);
 	},
 	
-	async ControlDocumentDiscard (inputData) {
-		mod.ValueDocumentsAll(mod._ValueDocumentsAll.filter(function (e) {
-			return e !== inputData;
-		}), false);
+	ControlDocumentDiscard (inputData) {
+		mod._OLSKCatalog.modPublic.OLSKCatalogRemove(inputData);
 
-		await mod._ValueZDRWrap.App.LCHDocument.ZDRModelDeleteObject(inputData);
-
-		mod.ControlDocumentSelect(null);
+		mod._ValueZDRWrap.App.LCHDocument.ZDRModelDeleteObject(inputData);
 	},
 	
-	ControlFilter(inputData) {
-		mod._ValueFilterText = inputData;
-
-		mod.ValueDocumentsVisible(mod._ValueDocumentsAll);
-
-		if (!inputData) {
-			return mod.ControlDocumentSelect(null);
-		}
-
-		if (!mod._ValueDocumentsVisible.length) {
-			return mod.ControlDocumentSelect(null);
-		}
-
-		mod.ValueDocumentSelected(mod._ValueDocumentsVisible.filter(function (e) {
-			return e.LCHDocumentName.toLowerCase() === inputData.toLowerCase();
-		}).concat(mod._ValueDocumentsVisible.filter(function (e) {
-			return e.LCHDocumentName.toLowerCase().includes(inputData.toLowerCase());
-		})).shift());
-	},
-
 	ControlRun() {
 		setTimeout(new Function(mod._JavascriptComposition));
 		setTimeout(function () {
@@ -495,7 +433,7 @@ const mod = {
 	},
 
 	ControlPipeModeEnabledPersist (inputData) {
-		mod.ReactDocuments(mod._ValueDocumentsAll);
+		mod.ReactDocuments(mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll());
 
 		mod._ValueZDRWrap.App.LCHSetting.ZDRModelWriteObject({
 			LCHSettingKey: 'kLCHComposePreferenceModePipeEnabled',
@@ -504,7 +442,7 @@ const mod = {
 	},
 
 	ControlPageRecipesEnabledPersist (inputData) {
-		mod.ReactDocuments(mod._ValueDocumentsAll);
+		mod.ReactDocuments(mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll());
 
 		mod._ValueZDRWrap.App.LCHSetting.ZDRModelWriteObject({
 			LCHSettingKey: 'kLCHComposePreferenceIncludePageRecipes',
@@ -612,7 +550,7 @@ const mod = {
 			await mod._ValueZDRWrap.App.LCHTransport.LCHTransportImport(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(JSON.parse(inputData)));
 			
 			await mod.SetupSettingsAll();
-			await mod.SetupValueDocumentsAll();
+			await mod.SetupCatalog();
 		} catch (e) {
 			window.alert(OLSKLocalized('LCHComposeLauncherItemImportJSONErrorNotValidAlertText'));
 		}
@@ -671,11 +609,11 @@ const mod = {
 				return OLSKBeacon._OLSKBeaconAnimate(OLSKBeacon.OLSKBeaconNudgeFunction('.OLSKPointer', ...arguments));
 			}),
 		}, mod))
-			.Point('.LCHComposeMasterCreateButton')
+			.Point('.LCHComposeCreateButton')
 			.Nudge(0, 50)
 			.Wait()
-			.Point('.LCHComposeMasterCreateButton')
-			.Click('.LCHComposeMasterCreateButton')
+			.Point('.LCHComposeCreateButton')
+			.Click('.LCHComposeCreateButton')
 			.Point('.LCHComposeDetailFormNameField')
 			.Focus('.LCHComposeDetailFormNameField')
 			.Fill('.LCHComposeDetailFormNameField', 'Say Hello')
@@ -699,6 +637,30 @@ const mod = {
 	},
 
 	// MESSAGE
+
+	OLSKMasterListItemAccessibilitySummaryFunction (inputData) {
+		return LCHComposeLogic.LCHComposeAccessibilitySummary(inputData, OLSKLocalized);
+	},
+
+	_OLSKCatalogDispatchKey (inputData) {
+		return inputData.LCHDocumentID;
+	},
+
+	OLSKCatalogDispatchClick (inputData) {
+		mod.ControlDocumentSelect(inputData);
+	},
+
+	OLSKCatalogDispatchArrow (inputData) {
+		mod._OLSKCatalog.modPublic.OLSKCatalogSelect(inputData);
+	},
+
+	OLSKCatalogDispatchQuantity (inputData) {
+		if (mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolFission()) {
+			return;
+		}
+		
+		mod._ValueDocumentRemainder = OLSKFund.OLSKFundRemainder(inputData, parseInt('LCH_FUND_DOCUMENT_LIMIT_SWAP_TOKEN'));
+	},
 
 	LCHComposeBuildDispatchRun () {
 		mod.ControlRun();
@@ -778,12 +740,6 @@ const mod = {
 		}
 
 		mod._ValueZDRWrap.ZDRStorageClient().stopSync();
-	},
-
-	ZDRSchemaDispatchSyncConflict (event) {
-		setTimeout(async function () {
-			return mod.ZDRSchemaDispatchSyncUpdateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(event))));
-		}, OLSK_SPEC_UI() ? 0 : 500);
 	},
 
 	OLSKAppToolbarDispatchApropos () {
@@ -903,40 +859,22 @@ const mod = {
 		mod._ValueOLSKFundGrant = OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(inputData);
 	},
 
-	LCHComposeMasterDispatchCreate () {
-		mod.ControlDocumentCreate();
-	},
-
-	LCHComposeMasterDispatchClick (inputData) {
-		mod.ControlDocumentSelect(inputData);
-	},
-
-	LCHComposeMasterDispatchArrow (inputData) {
-		mod.ValueDocumentSelected(inputData);
-	},
-
-	LCHComposeMasterDispatchFilter (inputData) {
-		mod.ControlFilter(inputData);
-	},
-
 	LCHComposeDetailDispatchBack () {
 		// mod.ControlDocumentSelect(null);
 
-		mod.OLSKMobileViewInactive = false;
+		mod._OLSKCatalog.modPublic.OLSKCatalogFocusMaster();
 	},
 
 	LCHComposeDetailDispatchClone () {
-		mod.ControlDocumentClone(mod._ValueDocumentSelected);
+		mod.ControlDocumentClone(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected());
 	},
 
 	LCHComposeDetailDispatchDiscard () {
-		mod.ControlDocumentDiscard(mod._ValueDocumentSelected);
+		mod.ControlDocumentDiscard(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected());
 	},
 
 	LCHComposeDetailDispatchUpdate () {
-		mod._ValueDocumentSelected = mod._ValueDocumentSelected; // #purge-svelte-force-update
-
-		mod.ControlDocumentPersist(mod._ValueDocumentSelected);
+		mod.ControlDocumentPersist(mod._OLSKCatalog.modPublic.OLSKCatalogUpdate(mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()));
 	},
 
 	MessageReceived(event) {
@@ -958,35 +896,21 @@ const mod = {
 	},
 
 	ZDRSchemaDispatchSyncCreateDocument (inputData) {
-		// console.log('ZDRSchemaDispatchSyncCreate', inputData);
-
-		mod.ValueDocumentsAll([inputData].concat(mod._ValueDocumentsAll.filter(function (e) {
-			return e.LCHDocumentID !== inputData.LCHDocumentID; // @Hotfix Dropbox sending DelegateAdd
-		})), !mod._ValueDocumentSelected);
+		mod._OLSKCatalog.modPublic.OLSKCatalogInsert(inputData);
 	},
 
 	ZDRSchemaDispatchSyncUpdateDocument (inputData) {
-		// console.log('ZDRSchemaDispatchSyncUpdate', inputData);
-
-		if (mod._ValueDocumentSelected && mod._ValueDocumentSelected.LCHDocumentID === inputData.LCHDocumentID) {
-			mod.ControlDocumentSelect(inputData);
-		}
-
-		mod.ValueDocumentsAll(mod._ValueDocumentsAll.map(function (e) {
-			return e.LCHDocumentID === inputData.LCHDocumentID ? inputData : e;
-		}), !mod._ValueDocumentSelected);
+		mod._OLSKCatalog.modPublic.OLSKCatalogUpdate(inputData);
 	},
 
 	ZDRSchemaDispatchSyncDeleteDocument (inputData) {
-		// console.log('ZDRSchemaDispatchSyncDelete', inputData);
+		mod._OLSKCatalog.modPublic.OLSKCatalogRemove(inputData);
+	},
 
-		if (mod._ValueDocumentSelected && (mod._ValueDocumentSelected.LCHDocumentID === inputData.LCHDocumentID)) {
-			mod.ControlDocumentSelect(null);
-		}
-
-		mod.ValueDocumentsAll(mod._ValueDocumentsAll.filter(function (e) {
-			return e.LCHDocumentID !== inputData.LCHDocumentID;
-		}), false);
+	ZDRSchemaDispatchSyncConflict (event) {
+		setTimeout(async function () {
+			return mod.ZDRSchemaDispatchSyncUpdateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(event))));
+		}, OLSK_SPEC_UI() ? 0 : 500);
 	},
 
 	// REACT
@@ -1046,13 +970,6 @@ const mod = {
 		mod.ControlPairPayloadSend();
 	},
 
-	async ReactDocumentRemainder () {
-		if (mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolFission()) {
-			return
-		}
-		mod._ValueDocumentRemainder = OLSKFund.OLSKFundRemainder(mod._ValueDocumentsAll.length, parseInt('LCH_FUND_DOCUMENT_LIMIT_SWAP_TOKEN'));
-	},
-
 	// SETUP
 
 	async SetupEverything () {
@@ -1064,11 +981,11 @@ const mod = {
 
 		mod.SetupValueToolsPairIsVisible();
 		
-		await mod.SetupValueDocumentsAll();
+		await mod.SetupCatalog();
 
 		mod.SetupPageRecipes();
 
-		mod.ReactDocuments(mod._ValueDocumentsAll);
+		mod.ReactDocuments(mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll());
 
 		mod.SetupFund();
 
@@ -1135,7 +1052,7 @@ const mod = {
 		}
 	},
 
-	async SetupValueDocumentsAll() {
+	async SetupCatalog() {
 		if (zerodatawrap.ZDRPreferenceProtocolMigrate()) {
 			const client = await mod.DataStorageClient(zerodatawrap.ZDRPreferenceProtocolMigrate());
 
@@ -1149,7 +1066,9 @@ const mod = {
 			client.ZDRCloudDisconnect();
 		};
 
-		mod.ValueDocumentsAll(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentList());
+		if (!(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentList()).map(mod._OLSKCatalog.modPublic.OLSKCatalogInsert).length) {
+			mod.OLSKCatalogDispatchQuantity(0);
+		}
 	},
 
 	SetupPageRecipes() {
@@ -1230,7 +1149,8 @@ onMount(mod.LifecycleModuleWillMount);
 
 window.addEventListener('message', mod.MessageReceived, false);
 
-import LCHComposeMaster from './submodules/LCHComposeMaster/main.svelte';
+import OLSKCatalog from 'OLSKCatalog';
+import LCHComposeListItem from './submodules/LCHComposeListItem/main.svelte';
 import LCHComposeDetail from './submodules/LCHComposeDetail/main.svelte';
 import LCHComposeBuild from './submodules/LCHComposeBuild/main.svelte';
 import LCHComposePair from './submodules/LCHComposePair/main.svelte';
@@ -1241,32 +1161,63 @@ import OLSKPointer from 'OLSKPointer';
 import OLSKWebView from 'OLSKWebView';
 import OLSKModalView from 'OLSKModalView';
 import OLSKApropos from 'OLSKApropos';
+import OLSKUIAssets from 'OLSKUIAssets';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 
 <div class="LCHCompose OLSKViewport" class:OLSKIsLoading={ mod._ValueIsLoading }>
 
 <div class="OLSKViewportContent">
-	<LCHComposeMaster
-		LCHComposeMasterListItems={ mod._ValueDocumentsVisible }
-		LCHComposeMasterListItemSelected={ mod._ValueDocumentSelected }
-		LCHComposeMasterFilterText={ mod._ValueFilterText }
-		LCHComposeMasterDispatchCreate={ mod.LCHComposeMasterDispatchCreate }
-		LCHComposeMasterDispatchClick={ mod.LCHComposeMasterDispatchClick }
-		LCHComposeMasterDispatchArrow={ mod.LCHComposeMasterDispatchArrow }
-		LCHComposeMasterDispatchFilter={ mod.LCHComposeMasterDispatchFilter }
-		OLSKMobileViewInactive={ mod.OLSKMobileViewInactive }
-		/>
+
+<OLSKCatalog
+	bind:this={ mod._OLSKCatalog }
+
+	OLSKMasterListItemAccessibilitySummaryFunction={ mod.OLSKMasterListItemAccessibilitySummaryFunction }
+
+	OLSKCatalogSortFunction={ LCHComposeLogic.LCHComposeSortFunction }
+	OLSKCatalogFilterFunction={ LCHComposeLogic.LCHComposeFilterFunction }
+	OLSKCatalogExactFunction={ LCHComposeLogic.LCHComposeExactFunction }
+
+	_OLSKCatalogDispatchKey={ mod._OLSKCatalogDispatchKey }
+
+	OLSKCatalogDispatchClick={ mod.OLSKCatalogDispatchClick }
+	OLSKCatalogDispatchArrow={ mod.OLSKCatalogDispatchArrow }
+	OLSKCatalogDispatchQuantity={ mod.OLSKCatalogDispatchQuantity }
+
+	let:OLSKResultsListItem
+	>
+
+	<!-- MASTER -->
+
+	<div class="OLSKToolbarElementGroup" slot="OLSKMasterListToolbarTail">
+		<button class="LCHComposeCreateButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeCreateButtonText') } on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">
+			<div class="LCHComposeCreateButtonImage">{@html OLSKUIAssets._OLSKSharedCreate }</div>
+		</button>
+	</div>
+
+	<!-- LIST ITEM -->
+
+	<div slot="OLSKMasterListItem">
+		<LCHComposeListItem LCHComposeListItem={ OLSKResultsListItem } />
+	</div>
+
+	<!-- DETAIL -->
 	
-	<LCHComposeDetail
-		LCHComposeDetailItem={ mod._ValueDocumentSelected }
-		LCHComposeDetailDispatchBack={ mod.LCHComposeDetailDispatchBack }
-		LCHComposeDetailDispatchClone={ mod.LCHComposeDetailDispatchClone }
-		LCHComposeDetailDispatchDiscard={ mod.LCHComposeDetailDispatchDiscard }
-		LCHComposeDetailDispatchUpdate={ mod.LCHComposeDetailDispatchUpdate }
-		OLSKMobileViewInactive={ !mod.OLSKMobileViewInactive }
-		bind:this={ mod.LCHComposeDetailInstance }
-		/>
+	<div class="LCHComposeDetailContainer" slot="OLSKCatalogDetailContent" let:OLSKCatalogItemSelected>
+		<LCHComposeDetail
+			LCHComposeDetailItem={ OLSKCatalogItemSelected }
+
+			LCHComposeDetailDispatchBack={ mod.LCHComposeDetailDispatchBack }
+			LCHComposeDetailDispatchClone={ mod.LCHComposeDetailDispatchClone }
+			LCHComposeDetailDispatchDiscard={ mod.LCHComposeDetailDispatchDiscard }
+			LCHComposeDetailDispatchUpdate={ mod.LCHComposeDetailDispatchUpdate }
+
+			bind:this={ mod._LCHComposeDetail }
+			/>
+	</div>
+
+</OLSKCatalog>
+
 </div>
 
 <footer class="LCHComposeViewportFooter OLSKMobileViewFooter">

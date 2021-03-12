@@ -7,7 +7,7 @@ describe('LCHCompose_Safety', function () {
 	});
 
 	before(function () {
-		return browser.pressButton('.LCHComposeMasterCreateButton');
+		return browser.pressButton('.LCHComposeCreateButton');
 	});
 	
 	context('LCHDocumentCallbackBody', function test_LCHDocumentCallbackBody () {
@@ -109,7 +109,7 @@ describe('LCHCompose_Safety', function () {
 		});
 
 		before(function () {
-			return browser.pressButton('.LCHComposeMasterCreateButton');
+			return browser.pressButton('.LCHComposeCreateButton');
 		});
 
 		before(function () {
@@ -119,11 +119,11 @@ describe('LCHCompose_Safety', function () {
 		context('internal input', function () {
 
 			before(function () {
-				browser.assert.elements('.LCHComposeMasterListItemFlagged', 0);
+				browser.assert.elements('.LCHComposeListItemFlagged', 0);
 			});
 
 			before(function () {
-				return browser.pressButton('.LCHComposeMasterCreateButton');
+				return browser.pressButton('.LCHComposeCreateButton');
 			});
 
 			before(function () {
@@ -148,7 +148,7 @@ describe('LCHCompose_Safety', function () {
 			});
 
 			it('flags document', function () {
-				browser.assert.elements('.LCHComposeMasterListItemFlagged', 1);
+				browser.assert.elements('.LCHComposeListItemFlagged', 1);
 			});
 		
 		});
@@ -156,11 +156,11 @@ describe('LCHCompose_Safety', function () {
 		context('external input', function () {
 
 			before(function () {
-				return browser.pressButton('.LCHComposeMasterCreateButton');
+				return browser.pressButton('.LCHComposeCreateButton');
 			});
 
 			before(function () {
-				browser.assert.elements('.LCHComposeMasterListItemFlagged', 1);
+				browser.assert.elements('.LCHComposeListItemFlagged', 1);
 			});
 
 			before(function () {
