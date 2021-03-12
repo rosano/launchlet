@@ -1198,7 +1198,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 	<!-- LIST ITEM -->
 
 	<div slot="OLSKMasterListItem">
-		<LCHComposeListItem LCHComposeListItemTitle={ OLSKResultsListItem.LCHDocumentName } LCHComposeListItemFlagged={ false } />
+		<LCHComposeListItem LCHComposeListItem={ OLSKResultsListItem } />
 	</div>
 
 	<!-- DETAIL -->

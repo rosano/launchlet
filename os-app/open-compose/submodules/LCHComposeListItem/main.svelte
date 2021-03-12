@@ -1,17 +1,16 @@
 <script>
-export let LCHComposeListItemTitle;
-export let LCHComposeListItemFlagged;
+export let LCHComposeListItem;
 
-import { OLSKLocalized } from 'OLSKInternational';
+import LCHComposeLogic from './ui-logic.js';
 </script>
 
-<div class="LCHComposeListItem OLSKCommonEdgeBottom" class:LCHComposeListItemFlagged={ LCHComposeListItemFlagged }>
+<div class="LCHComposeListItem OLSKCommonEdgeBottom" class:LCHComposeListItemFlagged={ LCHComposeListItem.LCHDocumentIsFlagged }>
 
-{#if LCHComposeListItemFlagged }
+{#if LCHComposeListItem.LCHDocumentIsFlagged }
 	<strong class="LCHComposeListItemFlaggedAlert">⚠️</strong>
 {/if}
 
-<strong class="LCHComposeListItemTitle" aria-hidden="true">{ LCHComposeListItemTitle }</strong>
+<strong class="LCHComposeListItemTitle">{ LCHComposeLogic.LCHComposeListItemTitle(LCHComposeListItem) }</strong>
 
 </div>
 

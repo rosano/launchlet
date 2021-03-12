@@ -11,8 +11,9 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
 				OLSKRoutingLanguage,
-				LCHComposeListItemTitle: 'bravo',
-				LCHComposeListItemFlagged: true,
+				LCHComposeListItem: JSON.stringify(StubDocumentObjectValid({
+					LCHDocumentIsFlagged: true,
+				})),
 			});
 		});
 

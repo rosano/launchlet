@@ -1,10 +1,16 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
+const LCHComposeLogic = require('./ui-logic.js').default;
+
 describe('LCHComposeListItem_Misc', function () {
+
+	const item = {
+		[uRandomElement('LCHDocumentName', 'LCHDocumentSignature', 'LCHDocumentID')]: Math.random().toString(),
+	};
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
-			LCHComposeListItemTitle: 'bravo',
+			LCHComposeListItem: JSON.stringify(item),
 		});
 	});
 
@@ -18,12 +24,8 @@ describe('LCHComposeListItem_Misc', function () {
 
 	describe('LCHComposeListItemTitle', function test_LCHComposeListItemTitle () {
 		
-		it('sets aria-hidden', function () {
-			browser.assert.attribute(LCHComposeListItemTitle, 'aria-hidden', 'true');
-		});
-
 		it('binds LCHComposeListItemTitle', function () {
-			browser.assert.text(LCHComposeListItemTitle, 'bravo');
+			browser.assert.text(LCHComposeListItemTitle, LCHComposeLogic.LCHComposeListItemTitle(item));
 		});
 	
 	});
@@ -36,8 +38,9 @@ describe('LCHComposeListItem_Misc', function () {
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
-				LCHComposeListItemTitle: 'bravo',
-				LCHComposeListItemFlagged: true,
+				LCHComposeListItem: JSON.stringify(StubDocumentObjectValid({
+					LCHDocumentIsFlagged: true,
+				})),
 			});
 		});
 

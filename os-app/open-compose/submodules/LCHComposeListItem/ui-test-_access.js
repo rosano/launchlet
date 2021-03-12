@@ -14,7 +14,7 @@ describe('LCHComposeListItem_Access', function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
-			LCHComposeListItemTitle: 'bravo',
+			LCHComposeListItem: JSON.stringify(StubDocumentObjectValid()),
 		});
 	});
 
@@ -34,8 +34,9 @@ describe('LCHComposeListItem_Access', function () {
 		
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
-				LCHComposeListItemTitle: 'bravo',
-				LCHComposeListItemFlagged: true,
+				LCHComposeListItem: JSON.stringify(StubDocumentObjectValid({
+					LCHDocumentIsFlagged: true,
+				})),
 			});
 		});
 
