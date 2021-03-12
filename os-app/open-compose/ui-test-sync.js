@@ -227,7 +227,7 @@ describe('LCHCompose_Sync', function () {
 			});
 
 			it('clear detail', function () {
-				browser.assert.elements('.OLSKDetailPlaceholder', 1);
+				browser.assert.elements('.LCHComposeDetail', 0);
 			});
 
 			it('skips sort', function () {

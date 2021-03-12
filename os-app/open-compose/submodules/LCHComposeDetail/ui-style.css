@@ -4,15 +4,6 @@
 	flex-direction: column;
 }
 
-@media screen and (min-width: 760px) {
-
-.LCHComposeDetail > :global(.OLSKDetailPlaceholder) {
-	/* LCHComposeDetailFlexbox:Child */
-	flex-grow: 1;
-}
-
-}
-
 @media screen and (max-width: 760px) {
 
 .LCHComposeDetail {

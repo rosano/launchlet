@@ -46,14 +46,6 @@ describe('LCHCompose_Access', function () {
 		browser.assert.elements('.LCHComposeMasterListItem', 0);
 	});
 
-	it('shows LCHComposeDetail', function () {
-		browser.assert.elements('.LCHComposeDetail', 1);
-	});
-
-	it('shows OLSKDetailPlaceholder', function () {
-		browser.assert.elements('.OLSKDetailPlaceholder', 1);
-	});
-
 	it('shows LCHComposeTools', function () {
 		browser.assert.elements(LCHComposeTools, 1);
 	});
@@ -188,96 +180,16 @@ describe('LCHCompose_Access', function () {
 
 	});
 
-	context('create', function test_create () {
+	context('select', function test_select () {
 		
 		before(function () {
 			return browser.pressButton('.LCHComposeMasterCreateButton');
 		});
 
-		it('shows LCHComposeMasterListItem', function () {
-			browser.assert.elements('.LCHComposeMasterListItem', 1);
-		});
-
-		it('hides OLSKDetailPlaceholder', function () {
-			browser.assert.elements('.OLSKDetailPlaceholder', 0);
-		});
-	
-	});
-
-	context('select', function test_select () {
-		
 		it('shows LCHComposeLauncherItemClone', function () {
 			return browser.assert.OLSKLauncherItems('LCHComposeLauncherItemClone', 1);
 		});
 	
-	});
-
-	context('back', function test_back () {
-		
-		before(function () {
-			return browser.pressButton('.LCHComposeDetailToolbarBackButton');
-		});
-
-		// it('shows OLSKDetailPlaceholder', function () {
-		// 	browser.assert.elements('.OLSKDetailPlaceholder', 1);
-		// });
-	
-	});
-
-	context('click_LCHComposeMasterListItem', function test_click_LCHComposeMasterListItem () {
-		
-		before(function () {
-			return browser.click('.LCHComposeMasterListItem');
-		});
-
-		it('shows LCHComposeMasterListItem', function () {
-			browser.assert.elements('.LCHComposeMasterListItem', 1);
-		});
-
-		it('hides OLSKDetailPlaceholder', function () {
-			browser.assert.elements('.OLSKDetailPlaceholder', 0);
-		});
-	
-	});
-
-	context('discard', function test_discard () {
-
-		context('cancel', function () {
-			
-			before(async function () {
-				return browser.OLSKConfirm(function () {
-					browser.pressButton('.LCHComposeDetailToolbarDiscardButton');
-				}, function (dialog) {
-					dialog.response = false;
-
-					return dialog;
-				});
-			});
-
-			it('hides OLSKDetailPlaceholder', function () {
-				browser.assert.elements('.OLSKDetailPlaceholder', 0);
-			});
-		
-		});
-
-		context('confirm', function () {
-			
-			before(async function () {
-				return browser.OLSKConfirm(function () {
-					return browser.pressButton('.LCHComposeDetailToolbarDiscardButton');
-				});
-			});
-
-			it('hides LCHComposeMasterListItem', function () {
-				browser.assert.elements('.LCHComposeMasterListItem', 0);
-			});
-
-			it('shows OLSKDetailPlaceholder', function () {
-				browser.assert.elements('.OLSKDetailPlaceholder', 1);
-			});
-		
-		});
-		
 	});
 
 	context('LCHComposeToolsPairButton', function () {

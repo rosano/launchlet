@@ -425,7 +425,7 @@ const mod = {
 		mod._OLSKCatalog.modPublic.OLSKCatalogSelect(inputData);
 
 		if (!inputData) {
-			return !mod.DataIsMobile() && document.querySelector('.OLSKMasterListFilterField').focus();
+			return;
 		}
 
 		mod._OLSKCatalog.modPublic.OLSKCatalogFocusDetail();
@@ -910,7 +910,7 @@ const mod = {
 	LCHComposeDetailDispatchBack () {
 		// mod.ControlDocumentSelect(null);
 
-		mod.OLSKMobileViewInactive = false;
+		mod._OLSKCatalog.modPublic.OLSKCatalogFocusMaster();
 	},
 
 	LCHComposeDetailDispatchClone () {

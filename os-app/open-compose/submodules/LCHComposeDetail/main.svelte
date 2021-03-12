@@ -9,7 +9,6 @@ export let OLSKMobileViewInactive = false;
 import { OLSKLocalized } from 'OLSKInternational';
 import { OLSK_SPEC_UI } from 'OLSKSpec';
 
-import OLSKDetailPlaceholder from 'OLSKDetailPlaceholder';
 import _OLSKSharedBack from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedBack.svg';
 import _OLSKSharedClone from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedClone.svg';
 import _OLSKSharedDiscard from '../../../_shared/__external/OLSKUIAssets/_OLSKSharedDiscard.svg';
@@ -18,11 +17,6 @@ import LCHComposeInput from '../LCHComposeInput/main.svelte';
 
 <div class="LCHComposeDetail OLSKViewportDetail" class:OLSKMobileViewInactive={ OLSKMobileViewInactive } aria-hidden={ OLSKMobileViewInactive ? true : null }>
 
-{#if !LCHComposeDetailItem}
-<OLSKDetailPlaceholder />
-{/if}
-
-{#if LCHComposeDetailItem}
 <header class="LCHComposeDetailToolbar OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeBottom OLSKMobileViewHeader">
 	<div class="OLSKToolbarElementGroup">
 		<button class="LCHComposeDetailToolbarBackButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton OLSKVisibilityMobile" title={ OLSKLocalized('LCHComposeDetailToolbarBackButtonText') } on:click={ LCHComposeDetailDispatchBack }>
@@ -161,7 +155,6 @@ import LCHComposeInput from '../LCHComposeInput/main.svelte';
 {/if}
 
 </div>
-{/if}
 
 </div>
 
