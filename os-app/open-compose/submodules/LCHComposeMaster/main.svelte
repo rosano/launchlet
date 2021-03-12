@@ -41,11 +41,7 @@ import LCHComposeMasterListItem from '../LCHComposeMasterListItem/main.svelte';
 	OLSKMobileViewInactive={ OLSKMobileViewInactive }
 	>
 	<div slot="OLSKMasterListToolbarTail">
-		<div class="OLSKToolbarElementGroup">
-			<button class="LCHComposeMasterCreateButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeMasterCreateButtonText') } on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">
-				<div class="LCHComposeMasterCreateButtonImage">{@html _OLSKSharedCreate }</div>
-			</button>
-		</div>
+		<div class="OLSKToolbarElementGroup"></div>
 	</div>
 
 	<div slot="OLSKMasterListItem">

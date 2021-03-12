@@ -1,6 +1,11 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
+	LCHCompose: '.LCHCompose',
+	
+	LCHComposeMasterCreateButton: '.LCHComposeMasterCreateButton',
+	LCHComposeMasterCreateButtonImage: '.LCHComposeMasterCreateButtonImage',
+	
 	LCHComposeTools: '.LCHComposeTools',
 
 	LCHComposeToolsPairButton: '.LCHComposeToolsPairButton',
@@ -21,8 +26,20 @@ describe('LCHCompose_Access', function () {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 
-	it('shows LCHComposeMaster', function () {
-		browser.assert.elements('.LCHComposeMaster', 1);
+	it('shows LCHCompose', function () {
+		browser.assert.elements(LCHCompose, 1);
+	});
+
+	it('shows OLSKCatalog', function () {
+		browser.assert.elements('.OLSKCatalog', 1);
+	});
+
+	it('shows LCHComposeMasterCreateButton', function () {
+		browser.assert.elements(LCHComposeMasterCreateButton, 1);
+	});
+
+	it('shows LCHComposeMasterCreateButtonImage', function () {
+		browser.assert.elements(LCHComposeMasterCreateButtonImage, 1);
 	});
 
 	it('hides LCHComposeMasterListItem', function () {

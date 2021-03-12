@@ -26,6 +26,34 @@ describe('LCHCompose_Misc', function () {
 		});
 	
 	});
+
+	describe('LCHComposeMasterCreateButton', function test_LCHComposeMasterCreateButton () {
+		
+		it('classes OLSKDecorButtonNoStyle', function () {
+			browser.assert.hasClass(LCHComposeMasterCreateButton, 'OLSKDecorButtonNoStyle');
+		});
+
+		it('classes OLSKDecorTappable', function () {
+			browser.assert.hasClass(LCHComposeMasterCreateButton, 'OLSKDecorTappable');
+		});
+
+		it('classes OLSKToolbarButton', function () {
+			browser.assert.hasClass(LCHComposeMasterCreateButton, 'OLSKToolbarButton');
+		});
+		
+		it('sets accesskey', function () {
+			browser.assert.attribute(LCHComposeMasterCreateButton, 'accesskey', 'n');
+		});
+	
+	});
+
+	describe('LCHComposeMasterCreateButtonImage', function test_LCHComposeMasterCreateButtonImage () {
+
+		it('sets src', function () {
+			browser.assert.elements(`${ LCHComposeMasterCreateButtonImage } #_OLSKSharedCreate`, 1);
+		});
+	
+	});
 	
 	context('create', function test_create () {
 

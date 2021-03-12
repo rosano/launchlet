@@ -18,6 +18,10 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			browser.assert.text('title', uLocalized('LCHComposeTitle'));
 		});
 
+		it('localizes LCHComposeMasterCreateButton', function () {
+			browser.assert.attribute(LCHComposeMasterCreateButton, 'title', uLocalized('LCHComposeMasterCreateButtonText'));
+		});
+
 		it('localizes LCHComposeToolsPairButton', function() {
 			browser.assert.text(LCHComposeToolsPairButton, uLocalized('LCHComposeToolsPairButtonText'));
 		});

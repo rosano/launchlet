@@ -71,54 +71,6 @@ describe('LCHComposeMaster_Misc', function () {
 
 	});
 
-	describe('LCHComposeMasterCreateButton', function test_LCHComposeMasterCreateButton () {
-		
-		before(function() {
-			return browser.OLSKVisit(kDefaultRoute);
-		});
-
-		it('classes OLSKDecorButtonNoStyle', function () {
-			browser.assert.hasClass(LCHComposeMasterCreateButton, 'OLSKDecorButtonNoStyle');
-		});
-
-		it('classes OLSKDecorTappable', function () {
-			browser.assert.hasClass(LCHComposeMasterCreateButton, 'OLSKDecorTappable');
-		});
-
-		it('classes OLSKToolbarButton', function () {
-			browser.assert.hasClass(LCHComposeMasterCreateButton, 'OLSKToolbarButton');
-		});
-		
-		it('sets accesskey', function () {
-			browser.assert.attribute(LCHComposeMasterCreateButton, 'accesskey', 'n');
-		});
-
-		context('click', function () {
-			
-			before(function () {
-				browser.assert.text('#TestLCHComposeMasterDispatchCreate', '0');
-			});
-			
-			before(function () {
-				return browser.pressButton(LCHComposeMasterCreateButton);
-			});
-
-			it('sends LCHComposeMasterDispatchCreate', function () {
-				browser.assert.text('#TestLCHComposeMasterDispatchCreate', '1');
-			});
-		
-		});
-	
-	});
-
-	describe('LCHComposeMasterCreateButtonImage', function test_LCHComposeMasterCreateButtonImage () {
-
-		it('sets src', function () {
-			browser.assert.elements(`${ LCHComposeMasterCreateButtonImage } #_OLSKSharedCreate`, 1);
-		});
-	
-	});
-
 	describe('LCHComposeMasterListItem', function test_LCHComposeMasterListItem() {
 
 		const item = {
