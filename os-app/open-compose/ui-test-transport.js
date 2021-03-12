@@ -38,7 +38,7 @@ describe('LCHCompose_Transport', function () {
 		});
 
 		it('creates document', function () {
-			browser.assert.text('.LCHComposeMasterListItemTitle', LCHDocumentName);
+			browser.assert.text('.LCHComposeListItemTitle', LCHDocumentName);
 		});
 
 	});

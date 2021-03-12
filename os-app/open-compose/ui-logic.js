@@ -7,7 +7,7 @@ const mod = {
 			throw new Error('LCHErrorInputNotValid');
 		}
 
-		return OLSKString.OLSKStringSnippet(inputData.LCHDocumentName || inputData.LCHDocumentSignature || (inputData.LCHDocumentIsFlagged ? [OLSKLocalized('LCHComposeMasterListItemFlaggedAlertText')] : []).concat(OLSKLocalized('LCHComposeMasterListItemUntitledText')).join(' '));
+		return OLSKString.OLSKStringSnippet(inputData.LCHDocumentName || inputData.LCHDocumentSignature || (inputData.LCHDocumentIsFlagged ? [OLSKLocalized('LCHComposeListItemFlaggedAlertText')] : []).concat(OLSKLocalized('LCHComposeListItemUntitledText')).join(' '));
 	},
 
 	LCHComposeSortFunction (a, b) {

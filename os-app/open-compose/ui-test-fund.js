@@ -124,11 +124,11 @@ describe('LCHCompose_Fund', function () {
 		context('create', function () {
 			
 			before(function () {
-				return browser.pressButton('.LCHComposeMasterCreateButton');
+				return browser.pressButton('.LCHComposeCreateButton');
 			});
 
-			it('shows LCHComposeMasterListItem', function () { // #hotfix-invisible-until-assert
-				browser.assert.elements('.LCHComposeMasterListItem', 1);
+			it('shows LCHComposeListItem', function () { // #hotfix-invisible-until-assert
+				browser.assert.elements('.LCHComposeListItem', 1);
 			});
 
 			it('updates number', function () {
@@ -281,7 +281,7 @@ describe('LCHCompose_Fund', function () {
 
 		it('alerts', function() {
 			browser.assert.OLSKConfirmQuestion(function () {
-				return browser.pressButton('.LCHComposeMasterCreateButton');
+				return browser.pressButton('.LCHComposeCreateButton');
 			}, uLocalized('OLSKFundGateText'));
 		});
 
@@ -290,7 +290,7 @@ describe('LCHCompose_Fund', function () {
 		});
 
 		it('exits', function () {
-			browser.assert.elements('.LCHComposeMasterListItem', process.env.LCH_FUND_DOCUMENT_LIMIT);
+			browser.assert.elements('.LCHComposeListItem', process.env.LCH_FUND_DOCUMENT_LIMIT);
 		});
 
 		context('cancel', function () {
@@ -305,7 +305,7 @@ describe('LCHCompose_Fund', function () {
 			
 			before(function () {
 				return browser.OLSKConfirm(function () {
-					return browser.pressButton('.LCHComposeMasterCreateButton');
+					return browser.pressButton('.LCHComposeCreateButton');
 				}, function (dialog) {
 					return Object.assign(dialog, {
 						response: false,
@@ -315,7 +315,7 @@ describe('LCHCompose_Fund', function () {
 
 			it('does nothing', function () {
 				browser.assert.elements('.LCHComposeStorageToolbar', 0);
-				browser.assert.elements('.LCHComposeMasterListItem', process.env.LCH_FUND_DOCUMENT_LIMIT);
+				browser.assert.elements('.LCHComposeListItem', process.env.LCH_FUND_DOCUMENT_LIMIT);
 			});
 		
 		});
@@ -336,7 +336,7 @@ describe('LCHCompose_Fund', function () {
 			
 			it('shows OLSKFundGate', function() {
 				browser.assert.OLSKConfirmQuestion(function () {
-					return browser.pressButton('.LCHComposeMasterCreateButton');
+					return browser.pressButton('.LCHComposeCreateButton');
 				}, uLocalized('OLSKFundGateText'));
 			});
 		

@@ -609,11 +609,11 @@ const mod = {
 				return OLSKBeacon._OLSKBeaconAnimate(OLSKBeacon.OLSKBeaconNudgeFunction('.OLSKPointer', ...arguments));
 			}),
 		}, mod))
-			.Point('.LCHComposeMasterCreateButton')
+			.Point('.LCHComposeCreateButton')
 			.Nudge(0, 50)
 			.Wait()
-			.Point('.LCHComposeMasterCreateButton')
-			.Click('.LCHComposeMasterCreateButton')
+			.Point('.LCHComposeCreateButton')
+			.Click('.LCHComposeCreateButton')
 			.Point('.LCHComposeDetailFormNameField')
 			.Focus('.LCHComposeDetailFormNameField')
 			.Fill('.LCHComposeDetailFormNameField', 'Say Hello')
@@ -1150,7 +1150,7 @@ onMount(mod.LifecycleModuleWillMount);
 window.addEventListener('message', mod.MessageReceived, false);
 
 import OLSKCatalog from 'OLSKCatalog';
-import LCHComposeMasterListItem from './submodules/LCHComposeMasterListItem/main.svelte';
+import LCHComposeListItem from './submodules/LCHComposeListItem/main.svelte';
 import LCHComposeDetail from './submodules/LCHComposeDetail/main.svelte';
 import LCHComposeBuild from './submodules/LCHComposeBuild/main.svelte';
 import LCHComposePair from './submodules/LCHComposePair/main.svelte';
@@ -1190,15 +1190,15 @@ import OLSKUIAssets from 'OLSKUIAssets';
 	<!-- MASTER -->
 
 	<div class="OLSKToolbarElementGroup" slot="OLSKMasterListToolbarTail">
-		<button class="LCHComposeMasterCreateButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeMasterCreateButtonText') } on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">
-			<div class="LCHComposeMasterCreateButtonImage">{@html OLSKUIAssets._OLSKSharedCreate }</div>
+		<button class="LCHComposeCreateButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeCreateButtonText') } on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">
+			<div class="LCHComposeCreateButtonImage">{@html OLSKUIAssets._OLSKSharedCreate }</div>
 		</button>
 	</div>
 
 	<!-- LIST ITEM -->
 
 	<div slot="OLSKMasterListItem">
-		<LCHComposeMasterListItem LCHComposeMasterListItemTitle={ OLSKResultsListItem.LCHDocumentName } LCHComposeMasterListItemFlagged={ false } />
+		<LCHComposeListItem LCHComposeListItemTitle={ OLSKResultsListItem.LCHDocumentName } LCHComposeListItemFlagged={ false } />
 	</div>
 
 	<!-- DETAIL -->

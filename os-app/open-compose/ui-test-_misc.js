@@ -10,30 +10,30 @@ describe('LCHCompose_Misc', function () {
 		browser.assert.attribute('meta[name=viewport]', 'content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
 	});
 
-	describe('LCHComposeMasterCreateButton', function test_LCHComposeMasterCreateButton () {
+	describe('LCHComposeCreateButton', function test_LCHComposeCreateButton () {
 		
 		it('classes OLSKDecorButtonNoStyle', function () {
-			browser.assert.hasClass(LCHComposeMasterCreateButton, 'OLSKDecorButtonNoStyle');
+			browser.assert.hasClass(LCHComposeCreateButton, 'OLSKDecorButtonNoStyle');
 		});
 
 		it('classes OLSKDecorTappable', function () {
-			browser.assert.hasClass(LCHComposeMasterCreateButton, 'OLSKDecorTappable');
+			browser.assert.hasClass(LCHComposeCreateButton, 'OLSKDecorTappable');
 		});
 
 		it('classes OLSKToolbarButton', function () {
-			browser.assert.hasClass(LCHComposeMasterCreateButton, 'OLSKToolbarButton');
+			browser.assert.hasClass(LCHComposeCreateButton, 'OLSKToolbarButton');
 		});
 		
 		it('sets accesskey', function () {
-			browser.assert.attribute(LCHComposeMasterCreateButton, 'accesskey', 'n');
+			browser.assert.attribute(LCHComposeCreateButton, 'accesskey', 'n');
 		});
 	
 	});
 
-	describe('LCHComposeMasterCreateButtonImage', function test_LCHComposeMasterCreateButtonImage () {
+	describe('LCHComposeCreateButtonImage', function test_LCHComposeCreateButtonImage () {
 
 		it('sets src', function () {
-			browser.assert.elements(`${ LCHComposeMasterCreateButtonImage } #_OLSKSharedCreate`, 1);
+			browser.assert.elements(`${ LCHComposeCreateButtonImage } #_OLSKSharedCreate`, 1);
 		});
 	
 	});
@@ -45,7 +45,7 @@ describe('LCHCompose_Misc', function () {
 		});
 
 		before(function () {
-			return browser.pressButton(LCHComposeMasterCreateButton);
+			return browser.pressButton(LCHComposeCreateButton);
 		});
 
 		it('focuses LCHComposeDetailFormNameField', function() {
@@ -57,15 +57,15 @@ describe('LCHCompose_Misc', function () {
 	context.skip('clone', function test_clone () {
 
 		before(function () {
-			browser.assert.elements('.LCHComposeMasterListItem', 1);
+			browser.assert.elements('.LCHComposeListItem', 1);
 		});
 
 		before(function () {
 			return browser.pressButton('.LCHComposeDetailToolbarCloneButton');
 		});
 
-		it('creates LCHComposeMasterListItem', function () {
-			browser.assert.elements('.LCHComposeMasterListItem', 2);
+		it('creates LCHComposeListItem', function () {
+			browser.assert.elements('.LCHComposeListItem', 2);
 		});
 
 		it('focuses LCHComposeDetailFormNameField', function() {
@@ -312,7 +312,7 @@ describe('LCHCompose_Misc', function () {
 	describe('LCHComposeLauncherItemClone', function test_LCHComposeLauncherItemClone () {
 
 		before(function () {
-			browser.assert.elements('.LCHComposeMasterListItem', 2);
+			browser.assert.elements('.LCHComposeListItem', 2);
 		});
 		
 		before(function () {
@@ -320,7 +320,7 @@ describe('LCHCompose_Misc', function () {
 		});
 
 		it('runs command', function () {
-			browser.assert.elements('.LCHComposeMasterListItem', 3);
+			browser.assert.elements('.LCHComposeListItem', 3);
 		});
 	
 	});	

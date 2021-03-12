@@ -93,7 +93,7 @@ describe('LCHCompose_Sync', function () {
 	describe('ZDRSchemaDispatchSyncConflictDocument', function test_ZDRSchemaDispatchSyncConflictDocument () {
 
 		before(function () {
-			return browser.pressButton('.LCHComposeMasterCreateButton');
+			return browser.pressButton('.LCHComposeCreateButton');
 		});
 
 		before(function () {

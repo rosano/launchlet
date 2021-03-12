@@ -36,17 +36,17 @@ describe('LCHComposeAccessibilitySummary', function test_LCHComposeAccessibility
 		})), LCHDocumentName);
 	});
 
-	it('returns LCHComposeMasterListItemUntitledText if no LCHDocumentSignature', function() {
+	it('returns LCHComposeListItemUntitledText if no LCHDocumentSignature', function() {
 		deepEqual(mod.LCHComposeAccessibilitySummary(StubDocumentObjectValid({
 			LCHDocumentSignature: undefined,
-		}), uLocalized), uLocalized('LCHComposeMasterListItemUntitledText'));
+		}), uLocalized), uLocalized('LCHComposeListItemUntitledText'));
 	});
 	
-	it('includes LCHComposeMasterListItemFlaggedAlertText if LCHDocumentIsFlagged', function() {
+	it('includes LCHComposeListItemFlaggedAlertText if LCHDocumentIsFlagged', function() {
 		deepEqual(mod.LCHComposeAccessibilitySummary(StubDocumentObjectValid({
 			LCHDocumentSignature: undefined,
 			LCHDocumentIsFlagged: true,
-		}), uLocalized), [uLocalized('LCHComposeMasterListItemFlaggedAlertText'), uLocalized('LCHComposeMasterListItemUntitledText')].join(' '));
+		}), uLocalized), [uLocalized('LCHComposeListItemFlaggedAlertText'), uLocalized('LCHComposeListItemUntitledText')].join(' '));
 	});
 
 });

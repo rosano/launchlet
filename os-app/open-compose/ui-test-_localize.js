@@ -18,8 +18,8 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			browser.assert.text('title', uLocalized('LCHComposeTitle'));
 		});
 
-		it('localizes LCHComposeMasterCreateButton', function () {
-			browser.assert.attribute(LCHComposeMasterCreateButton, 'title', uLocalized('LCHComposeMasterCreateButtonText'));
+		it('localizes LCHComposeCreateButton', function () {
+			browser.assert.attribute(LCHComposeCreateButton, 'title', uLocalized('LCHComposeCreateButtonText'));
 		});
 
 		it('localizes LCHComposeToolsPairButton', function() {
@@ -115,7 +115,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 		context('select', function () {
 
 			before(function () {
-				return browser.pressButton('.LCHComposeMasterCreateButton');
+				return browser.pressButton('.LCHComposeCreateButton');
 			});			
 
 			it('localizes LCHComposeLauncherItemClone', function () {

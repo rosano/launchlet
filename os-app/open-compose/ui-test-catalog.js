@@ -9,11 +9,11 @@ describe('LCHCompose_Catalog', function () {
 	context('create', function test_create () {
 		
 		before(function () {
-			return browser.pressButton('.LCHComposeMasterCreateButton');
+			return browser.pressButton('.LCHComposeCreateButton');
 		});
 
 		it('adds item', function () {
-			browser.assert.elements('.LCHComposeMasterListItem', 1);
+			browser.assert.elements('.LCHComposeListItem', 1);
 		});
 	
 	});
@@ -29,7 +29,7 @@ describe('LCHCompose_Catalog', function () {
 		});
 
 		before(function () {
-			return browser.click('.LCHComposeMasterListItem');
+			return browser.click('.LCHComposeListItem');
 		});
 
 		it('selects item', function () {
@@ -79,7 +79,7 @@ describe('LCHCompose_Catalog', function () {
 			});
 
 			it('removes item', function () {
-				browser.assert.elements('.LCHComposeMasterListItem', 0);
+				browser.assert.elements('.LCHComposeListItem', 0);
 			});
 		
 		});
@@ -89,11 +89,11 @@ describe('LCHCompose_Catalog', function () {
 	context('OLSKCatalogDispatchArrow', function test_OLSKCatalogDispatchArrow () {
 		
 		before(function () {
-			return browser.pressButton('.LCHComposeMasterCreateButton');
+			return browser.pressButton('.LCHComposeCreateButton');
 		});
 
 		before(function () {
-			return browser.pressButton('.LCHComposeMasterCreateButton');
+			return browser.pressButton('.LCHComposeCreateButton');
 		});
 
 		before(function () {

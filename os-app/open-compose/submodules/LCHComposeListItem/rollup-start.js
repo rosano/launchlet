@@ -1,10 +1,10 @@
 import RollupStart from './main.svelte';
 
-const LCHComposeMasterListItem = new RollupStart({
+const LCHComposeListItem = new RollupStart({
 	target: document.body,
 	props: Object.assign({
-		LCHComposeMasterListItemFlagged: false,
+		LCHComposeListItemFlagged: false,
 	}, Object.fromEntries((new window.URLSearchParams(window.location.search)).entries())),
 });
 
-export default LCHComposeMasterListItem;
+export default LCHComposeListItem;
