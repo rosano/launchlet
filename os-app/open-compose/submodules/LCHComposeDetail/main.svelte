@@ -4,7 +4,6 @@ export let LCHComposeDetailDispatchBack;
 export let LCHComposeDetailDispatchClone;
 export let LCHComposeDetailDispatchDiscard;
 export let LCHComposeDetailDispatchUpdate;
-export let OLSKMobileViewInactive = false;
 
 import { OLSKLocalized } from 'OLSKInternational';
 import { OLSK_SPEC_UI } from 'OLSKSpec';
@@ -15,7 +14,7 @@ import _OLSKSharedDiscard from '../../../_shared/__external/OLSKUIAssets/_OLSKSh
 import LCHComposeInput from '../LCHComposeInput/main.svelte';
 </script>
 
-<div class="LCHComposeDetail OLSKViewportDetail" class:OLSKMobileViewInactive={ OLSKMobileViewInactive } aria-hidden={ OLSKMobileViewInactive ? true : null }>
+<div class="LCHComposeDetail">
 
 <header class="LCHComposeDetailToolbar OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeBottom OLSKMobileViewHeader">
 	<div class="OLSKToolbarElementGroup">

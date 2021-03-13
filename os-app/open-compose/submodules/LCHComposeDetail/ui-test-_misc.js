@@ -4,43 +4,6 @@ describe('LCHComposeDetail_Misc', function () {
 
 	describe('LCHComposeDetail', function test_LCHComposeDetail () {
 
-		before(function() {
-			return browser.OLSKVisit(kDefaultRoute, {
-				LCHComposeDetailItem: JSON.stringify({}),
-			});
-		});
-
-		it('classes OLSKViewportDetail', function () {
-			browser.assert.hasClass(LCHComposeDetail, 'OLSKViewportDetail');
-		});
-
-		context('OLSKMobileViewInactive', function () {
-
-			before(function () {
-				browser.assert.hasNoClass(LCHComposeDetail, 'OLSKMobileViewInactive');
-			});
-
-			before(function () {
-				browser.assert.attribute(LCHComposeDetail, 'aria-hidden', null);
-			});
-			
-			before(function() {
-				return browser.OLSKVisit(kDefaultRoute, {
-					LCHComposeDetailItem: JSON.stringify({}),
-					OLSKMobileViewInactive: true,
-				});
-			});
-
-			it('classes OLSKMobileViewInactive', function () {
-				browser.assert.hasClass(LCHComposeDetail, 'OLSKMobileViewInactive');
-			});
-
-			it('sets aria-hidden', function () {
-				browser.assert.attribute(LCHComposeDetail, 'aria-hidden', 'true');
-			});
-		
-		});
-
 		context('LCHDocumentIsFlagged', function() {
 
 			before(function() {
