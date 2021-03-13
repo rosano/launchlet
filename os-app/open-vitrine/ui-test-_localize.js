@@ -46,6 +46,10 @@ describe(`LCHVitrine_Localize-${ OLSKRoutingLanguage }`, function () {
 		browser.assert.text(LCHVitrineSupportBlurb, uLocalized('OLSKWordingFeedbackBlurb'));
 	});
 
+	it('localizes LCHVitrineGazetteHeading', function () {
+		browser.assert.text(LCHVitrineGazetteHeading, uLocalized('OLSKGazetteHeadingText'));
+	});
+
 	it('localizes LCHVitrineDemoButtonCommit', function() {
 		browser.assert.text(LCHVitrineDemoButtonCommit, uLocalized('LCHVitrineDemoButtonCommitText'))
 	});

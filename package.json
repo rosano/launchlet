@@ -45,6 +45,7 @@
     "// VITRINE": null,
     "OLSKLanding": "olsk/OLSKLanding",
     "OLSKAppFeatureList": "olsk/OLSKAppFeatureList",
+    "OLSKGazette": "olsk/OLSKGazette",
 
     "// FRONDEND EDITOR": null,
     "codemirror": "rosano/CodeMirror#add-distribution",
