@@ -181,13 +181,9 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeZDRSchemaDispatchSyncDeleteDocument',
 					LCHRecipeCallback: async function FakeZDRSchemaDispatchSyncDeleteDocument () {
-						const item = mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
+						return mod.ZDRSchemaDispatchSyncDeleteDocument(await mod._ValueZDRWrap.App.LCHDocument.ZDRModelDeleteObject(mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().filter(function (e) {
 							return e.LCHDocumentName.match('FakeZDRSchemaDispatchSync');
-						}).pop();
-						
-						await mod._ValueZDRWrap.App.LCHDocument.ZDRModelDeleteObject(item);
-						
-						return mod.ZDRSchemaDispatchSyncDeleteDocument(item);
+						}).pop()));
 					},
 				},
 				{
@@ -197,7 +193,7 @@ const mod = {
 							return e.LCHDocumentName.match('FakeZDRSchemaDispatchSyncConflictDocument');
 						}).pop();
 						
-						return mod.ZDRSchemaDispatchSyncConflict({
+						return mod.ZDRSchemaDispatchSyncConflictDocument({
 							origin: 'conflict',
 							oldValue: JSON.parse(JSON.stringify(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(Object.assign({}, item, {
 								LCHDocumentName: item.LCHDocumentName + '-local',
@@ -907,7 +903,7 @@ const mod = {
 		mod._OLSKCatalog.modPublic.OLSKCatalogRemove(inputData);
 	},
 
-	ZDRSchemaDispatchSyncConflict (event) {
+	ZDRSchemaDispatchSyncConflictDocument (event) {
 		setTimeout(async function () {
 			return mod.ZDRSchemaDispatchSyncUpdateDocument(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentUpdate(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(OLSKRemoteStorage.OLSKRemoteStorageChangeDelegateConflictSelectRecent(event))));
 		}, OLSK_SPEC_UI() ? 0 : 500);
@@ -1012,7 +1008,7 @@ const mod = {
 						ZDRSchemaDispatchSyncCreate: mod.ZDRSchemaDispatchSyncCreateDocument,
 						ZDRSchemaDispatchSyncUpdate: mod.ZDRSchemaDispatchSyncUpdateDocument,
 						ZDRSchemaDispatchSyncDelete: mod.ZDRSchemaDispatchSyncDeleteDocument,
-						ZDRSchemaDispatchSyncConflict: mod.ZDRSchemaDispatchSyncConflict,
+						ZDRSchemaDispatchSyncConflict: mod.ZDRSchemaDispatchSyncConflictDocument,
 					}),
 					LCHSetting,
 					LCHTransport,
