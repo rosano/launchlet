@@ -32,7 +32,7 @@ const mod = {
 		}).length;
 	},
 
-	LCHComposeExactFunction (param1, param2) {
+	LCHComposeMatchIsExact (param1, param2) {
 		if (typeof param2 !== 'string') {
 			throw new Error('LCHErrorInputNotValid');
 		}

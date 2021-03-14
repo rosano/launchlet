@@ -98,30 +98,30 @@ describe('LCHComposeFilterFunction', function test_LCHComposeFilterFunction() {
 
 });
 
-describe('LCHComposeExactFunction', function test_LCHComposeExactFunction() {
+describe('LCHComposeMatchIsExact', function test_LCHComposeMatchIsExact() {
 
 	it('throws error if param2 not string', function() {
 		throws(function() {
-			mod.LCHComposeExactFunction({}, null);
+			mod.LCHComposeMatchIsExact({}, null);
 		}, /LCHErrorInputNotValid/);
 	});
 
 	it('returns false if not starting with input', function() {
 		const item = Math.random().toString();
-		deepEqual(mod.LCHComposeExactFunction({
+		deepEqual(mod.LCHComposeMatchIsExact({
 			[uRandomElement('LCHDocumentName', 'LCHDocumentSignature')]: Math.random().toString() + item,
 		}, item), false);
 	});
 
 	it('returns true', function() {
 		const item = Math.random().toString();
-		deepEqual(mod.LCHComposeExactFunction({
+		deepEqual(mod.LCHComposeMatchIsExact({
 			[uRandomElement('LCHDocumentName', 'LCHDocumentSignature')]: item + Math.random().toString(),
 		}, item), true);
 	});
 
 	it('matches OLSKStringMatch', function() {
-		deepEqual(mod.LCHComposeExactFunction({
+		deepEqual(mod.LCHComposeMatchIsExact({
 			[uRandomElement('LCHDocumentName', 'LCHDocumentSignature')]: uRandomElement('alfa', 'álfa'),
 		}, uRandomElement('alf', 'alfa', 'ALF')), true);
 	});

@@ -1172,7 +1172,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 
 	OLSKCatalogSortFunction={ LCHComposeLogic.LCHComposeSortFunction }
 	OLSKCatalogFilterFunction={ LCHComposeLogic.LCHComposeFilterFunction }
-	OLSKCatalogExactFunction={ LCHComposeLogic.LCHComposeExactFunction }
+	OLSKCatalogMatchIsExact={ LCHComposeLogic.LCHComposeMatchIsExact }
 
 	_OLSKCatalogDispatchKey={ mod._OLSKCatalogDispatchKey }
 
