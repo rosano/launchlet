@@ -18,7 +18,7 @@ const mod = {
 		return b.LCHDocumentCreationDate - a.LCHDocumentCreationDate;
 	},
 
-	LCHComposeFilterFunction (param1, param2) {
+	LCHComposeMatchIsResult (param1, param2) {
 		if (typeof param2 !== 'string') {
 			throw new Error('LCHErrorInputNotValid');
 		}

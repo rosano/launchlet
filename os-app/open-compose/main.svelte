@@ -1171,7 +1171,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 	OLSKMasterListItemAccessibilitySummaryFunction={ mod.OLSKMasterListItemAccessibilitySummaryFunction }
 
 	OLSKCatalogSortFunction={ LCHComposeLogic.LCHComposeSortFunction }
-	OLSKCatalogFilterFunction={ LCHComposeLogic.LCHComposeFilterFunction }
+	OLSKCatalogMatchIsResult={ LCHComposeLogic.LCHComposeMatchIsResult }
 	OLSKCatalogMatchIsExact={ LCHComposeLogic.LCHComposeMatchIsExact }
 
 	_OLSKCatalogDispatchKey={ mod._OLSKCatalogDispatchKey }
