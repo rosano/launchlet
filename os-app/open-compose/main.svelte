@@ -222,7 +222,7 @@ const mod = {
 				{
 					LCHRecipeName: 'FakeEscapeWithoutSort',
 					LCHRecipeCallback: function FakeEscapeWithoutSort () {
-						mod.ControlDocumentSelect(null);
+						mod.ControlDocumentActivate(null);
 					},
 				},
 				{
@@ -275,41 +275,11 @@ const mod = {
 		mod.ControlDocumentCreate();
 	},
 
-	InterfaceWindowDidKeydown (event) {
-		if (document.querySelector('.LCHLauncher')) {
-			return;
-		}
-
-		const handlerFunctions = {
-			Tab () {
-				if (document.activeElement === document.querySelector('.OLSKMasterListFilterField') && mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()) {
-					mod.ControlFocusDetail();
-
-					return event.preventDefault();
-				}
-
-				if (document.activeElement === document.querySelector('.LCHComposeDetailFormNameField') && event.shiftKey) {
-					document.querySelector('.OLSKMasterListFilterField').focus();
-
-					return event.preventDefault();
-				}
-			},
-		};
-
-		handlerFunctions[event.key] && handlerFunctions[event.key]();
-	},
-
 	InterfaceToolsPairButtonDidClick() {
 		mod._ValueToolsPairIsVisible = !mod._ValueToolsPairIsVisible;
 	},
 
 	// CONTROL
-
-	ControlFocusDetail () {
-		setTimeout(function () {
-			document.querySelector('.LCHComposeDetailFormNameField').focus();
-		});
-	},
 
 	ControlDocumentPersist(inputData) {
 		OLSKThrottle.OLSKThrottleMappedTimeout(mod._ValuePersistThrottleMap, inputData.LCHDocumentID, {
@@ -384,27 +354,15 @@ const mod = {
 			return mod.ControlFundGate();
 		}
 
-		mod.ControlDocumentSelect(mod._OLSKCatalog.modPublic.OLSKCatalogInsert(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentCreate(inputData || mod.DataDocumentObjectTemplate())));
-
-		if (mod.DataIsMobile()) {
-			mod.ControlFocusDetail();
-		}
+		mod.ControlDocumentActivate(mod._OLSKCatalog.modPublic.OLSKCatalogInsert(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentCreate(inputData || mod.DataDocumentObjectTemplate())));
 	},
 	
-	ControlDocumentSelect(inputData) {
+	ControlDocumentActivate(inputData) {
 		mod._OLSKCatalog.modPublic.OLSKCatalogSelect(inputData);
 
-		if (!inputData) {
-			return;
-		}
-
 		mod._OLSKCatalog.modPublic.OLSKCatalogFocusDetail();
-
-		if (mod.DataIsMobile()) {
-			return;
-		}
 		
-		setTimeout(mod.ControlFocusDetail)
+		mod._OLSKCatalog.modPublic.OLSKCatalogActivateDetail();
 	},
 	
 	async ControlDocumentClone (inputData) {
@@ -643,11 +601,19 @@ const mod = {
 	},
 
 	OLSKCatalogDispatchClick (inputData) {
-		mod.ControlDocumentSelect(inputData);
+		mod.ControlDocumentActivate(inputData);
 	},
 
 	OLSKCatalogDispatchArrow (inputData) {
 		mod._OLSKCatalog.modPublic.OLSKCatalogSelect(inputData);
+	},
+
+	OLSKCatalogDispatchDetailActivate () {
+		document.querySelector('.LCHComposeDetailFormNameField').focus();
+	},
+
+	OLSKCatalogDispatchMasterShouldActivate () {
+		return document.activeElement === document.querySelector('.LCHComposeDetailFormNameField');
 	},
 
 	OLSKCatalogDispatchQuantity (inputData) {
@@ -856,8 +822,6 @@ const mod = {
 	},
 
 	LCHComposeDetailDispatchBack () {
-		// mod.ControlDocumentSelect(null);
-
 		mod._OLSKCatalog.modPublic.OLSKCatalogFocusMaster();
 	},
 
@@ -1159,7 +1123,6 @@ import OLSKModalView from 'OLSKModalView';
 import OLSKApropos from 'OLSKApropos';
 import OLSKUIAssets from 'OLSKUIAssets';
 </script>
-<svelte:window on:keydown={ mod.InterfaceWindowDidKeydown } />
 
 <div class="LCHCompose OLSKViewport" class:OLSKIsLoading={ mod._ValueIsLoading }>
 
@@ -1178,6 +1141,8 @@ import OLSKUIAssets from 'OLSKUIAssets';
 
 	OLSKCatalogDispatchClick={ mod.OLSKCatalogDispatchClick }
 	OLSKCatalogDispatchArrow={ mod.OLSKCatalogDispatchArrow }
+	OLSKCatalogDispatchDetailActivate={ mod.OLSKCatalogDispatchDetailActivate }
+	OLSKCatalogDispatchMasterShouldActivate={ mod.OLSKCatalogDispatchMasterShouldActivate }
 	OLSKCatalogDispatchQuantity={ mod.OLSKCatalogDispatchQuantity }
 
 	let:OLSKResultsListItem
