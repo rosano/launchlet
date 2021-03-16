@@ -5,7 +5,7 @@ LCHComposeDetailDiscardConfirmText: Are you sure?
 LCHComposeDetailFlagAlertText: This recipe will be ignored because it contains potentially unsafe code.
 LCHComposeDetailFormNameFieldText: Name (e.g. Say Hello)
 LCHComposeDetailFormSignatureFieldText: Signature (e.g. XYZGreet)
-LCHComposeDetailFormInputTypesFieldText: Input Types (e.g. String, Bool)
+LCHComposeDetailFormInputTypesFieldText: 'Input Types (e.g. String, Bool)'
 LCHComposeDetailFormCallbackArgsFieldText: arguments
 LCHComposeDetailFormCallbackBodyFieldText: Function Body (e.g. window.alert('Hello');)
 LCHComposeDetailFormOutputTypeFieldText: Output Type (e.g. String)

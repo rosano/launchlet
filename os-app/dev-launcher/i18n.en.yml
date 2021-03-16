@@ -4,4 +4,3 @@ LCHLauncherSubjectPromptPlaceholderText: Type to search
 LCHLauncherSubjectPromptHeadingText: Subject
 LCHLauncherActionPromptHeadingText: Action
 LCHLauncherObjectPromptHeadingText: Object
-# LCHLauncherTestConvertTypeServiceSearchTextFormat: 'Search: %@'
