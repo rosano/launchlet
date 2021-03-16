@@ -38,6 +38,10 @@ describe(`LCHVitrine_Localize-${ OLSKRoutingLanguage }`, function () {
 		browser.assert.text(LCHVitrineVideoHeading, uLocalized('OLSKWordingVideo'));
 	});
 
+	it('localizes LCHVitrineVideo1Heading', function () {
+		browser.assert.text(LCHVitrineVideo1Heading, uLocalized('LCHVitrineVideo1HeadingText'));
+	});
+
 	it('localizes LCHVitrineSupportHeading', function () {
 		browser.assert.text(LCHVitrineSupportHeading, uLocalized('OLSKWordingFeedbackHeading'));
 	});
