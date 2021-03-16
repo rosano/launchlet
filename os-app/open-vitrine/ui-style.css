@@ -8,14 +8,14 @@ body {
 	color: var(--LCHCommonForeground);
 }
 
-.LCHVitrineVideo2 {
+.LCHVitrineVideo2, .LCHVitrineVideo3 {
 	--OLSKCommonVideoWide: 1440;
 	--OLSKCommonVideoHigh: 800;
 }
 
-.LCHVitrineVideo3 {
-	--OLSKCommonVideoWide: 1440;
-	--OLSKCommonVideoHigh: 800;
+.LCHVitrineVideo4 {
+	--OLSKCommonVideoWide: 730;
+	--OLSKCommonVideoHigh: 540;
 }
 
 .LCHVitrineDemos {

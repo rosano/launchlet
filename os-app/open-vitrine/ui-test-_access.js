@@ -20,6 +20,8 @@ Object.entries({
 	LCHVitrineVideo2: '.OLSKCommonVideoList .OLSKCommonVideoListItem.LCHVitrineVideo2 iframe',
 	LCHVitrineVideo3Heading: '.OLSKCommonVideoList .LCHVitrineVideo3Heading',
 	LCHVitrineVideo3: '.OLSKCommonVideoList .OLSKCommonVideoListItem.LCHVitrineVideo3 iframe',
+	LCHVitrineVideo4Heading: '.OLSKCommonVideoList .LCHVitrineVideo4Heading',
+	LCHVitrineVideo4: '.OLSKCommonVideoList .OLSKCommonVideoListItem.LCHVitrineVideo4 iframe',
 
 	LCHVitrineSupportHeading: '.LCHVitrineSupportHeading',
 	LCHVitrineSupportBlurb: '.LCHVitrineSupportBlurb',
@@ -111,6 +113,14 @@ describe('LCHVitrine_Access', function () {
 
 	it('shows LCHVitrineVideo3', function () {
 		browser.assert.elements(LCHVitrineVideo3, 1);
+	});
+
+	it('shows LCHVitrineVideo4Heading', function () {
+		browser.assert.elements(LCHVitrineVideo4Heading, 1);
+	});
+
+	it('shows LCHVitrineVideo4', function () {
+		browser.assert.elements(LCHVitrineVideo4, 1);
 	});
 
 	it('shows LCHVitrineSupportHeading', function () {
