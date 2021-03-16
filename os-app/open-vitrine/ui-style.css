@@ -13,6 +13,11 @@ body {
 	--OLSKCommonVideoHigh: 800;
 }
 
+.LCHVitrineVideo3 {
+	--OLSKCommonVideoWide: 1440;
+	--OLSKCommonVideoHigh: 800;
+}
+
 .LCHVitrineDemos {
 	display: none;
 }
