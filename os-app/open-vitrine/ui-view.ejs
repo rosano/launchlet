@@ -81,7 +81,9 @@ locals.OLSKPagePublicConstants = {
 
 <h1 class="LCHVitrineGazetteHeading"><%= OLSKLocalized('OLSKGazetteHeadingText') %></h1>
 
-<%- include('../../node_modules/OLSKGazette/main.ejs') %>
+<%- include('../../node_modules/OLSKGazette/main.ejs', {
+	OLSKGazetteProject: 'RP_001',
+}) %>
 
 <hr role="presentation" />
 

@@ -114,6 +114,14 @@ describe('LCHVitrine_Misc', function () {
 
 	});
 
+	describe('OLSKGazette', function test_OLSKGazette () {
+
+		it('sets src', function () {
+			browser.assert.attribute('.OLSKGazetteProjectField', 'value', 'RP_001');
+		});
+
+	});
+
 	context('LCHVitrineBrueghel', function () {
 		
 		it('sets src', function () {
