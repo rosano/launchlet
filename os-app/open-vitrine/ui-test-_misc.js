@@ -90,6 +90,30 @@ describe('LCHVitrine_Misc', function () {
 
 	});
 
+	describe('LCHVitrineVideo3', function () {
+
+		it('sets src', function () {
+			browser.assert.attribute(LCHVitrineVideo3, 'src', process.env.LCH_VITRINE_VIDEO_URL_3);
+		});
+
+		it('sets allowfullscreen', function () {
+			browser.assert.attribute(LCHVitrineVideo3, 'allowfullscreen', '');
+		});
+
+	});
+
+	describe('LCHVitrineVideo4', function () {
+
+		it('sets src', function () {
+			browser.assert.attribute(LCHVitrineVideo4, 'src', process.env.LCH_VITRINE_VIDEO_URL_4);
+		});
+
+		it('sets allowfullscreen', function () {
+			browser.assert.attribute(LCHVitrineVideo4, 'allowfullscreen', '');
+		});
+
+	});
+
 	context('LCHVitrineBrueghel', function () {
 		
 		it('sets src', function () {
