@@ -91,7 +91,7 @@ For example, when running Launchlet on <a href="https://rosano.ca" target="_blan
 | `OLSKServiceWorkerLauncherItemDebugForceUpdateText` | Launcher |
 | Launcher | `Alt+Enter` |
 
-| Global (when storage is connected) ||
+| Global (when cloud is connected) ||
 :--- | ---
 | `OLSKRemoteStorageLauncherItemCopyLoginLinkText` | Launcher |
 | `OLSKFundLauncherItemEnterClueText` | Launcher |
