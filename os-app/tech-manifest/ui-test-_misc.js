@@ -7,7 +7,6 @@ describe('LCHManifest_Misc', function () {
 			name: 'Launchlet',
 			short_name: 'Launchlet',
 			start_url: require('../open-compose/controller.js').OLSKControllerRoutes().shift().OLSKRoutePath,
-			display: 'standalone',
 			background_color: 'white',
 			theme_color: 'white',
 			icons: [{

@@ -8,7 +8,6 @@ exports.OLSKControllerRoutes = function() {
 				name: 'Launchlet',
 				short_name: 'Launchlet',
 				start_url: res.locals.OLSKCanonical('LCHComposeRoute'),
-				display: 'standalone',
 				background_color: 'white',
 				theme_color: 'white',
 				icons: [{
