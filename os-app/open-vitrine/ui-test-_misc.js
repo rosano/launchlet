@@ -50,6 +50,14 @@ describe('LCHVitrine_Misc', function () {
 	
 	});
 
+	context('OLSKAppFeaturesList', function test_OLSKAppFeaturesList () {
+
+		it('shows OLSKAppFeatureOpenSource', function () {
+			browser.assert.attribute('.OLSKAppFeatureListItemOpenSource a', 'href', process.env.OLSK_REPO_URL);
+		});
+	
+	});
+
 	context('LCHVitrineGuideButton', function test_LCHVitrineGuideButton () {
 
 		it('classes OLSKDecorPress', function () {
