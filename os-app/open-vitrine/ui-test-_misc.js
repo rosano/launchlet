@@ -6,16 +6,12 @@ describe('LCHVitrine_Misc', function () {
 		return browser.OLSKVisit(kDefaultRoute);
 	});
 
-	it('sets LCHPageRecipes', function() {
-		browser.assert.deepEqual(browser.evaluate('Array.isArray(window.LCHPageRecipes)'), true);
+	it('sets manifest', function () {
+		browser.assert.attribute('link[rel="manifest"]', 'href', require('../tech-manifest/controller.js').OLSKControllerRoutes().shift().OLSKRoutePath);
 	});
 
-	describe('LCHVitrineManifest', function test_LCHVitrineManifest() {
-
-		it('sets href', function () {
-			browser.assert.attribute(LCHVitrineManifest, 'href', require('../tech-manifest/controller.js').OLSKControllerRoutes().shift().OLSKRoutePath);
-		});
-
+	it('sets LCHPageRecipes', function() {
+		browser.assert.deepEqual(browser.evaluate('Array.isArray(window.LCHPageRecipes)'), true);
 	});
 
 	describe('LCHVitrineCrown', function test_LCHVitrineCrown() {
