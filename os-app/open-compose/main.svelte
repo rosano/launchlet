@@ -1124,6 +1124,10 @@ import OLSKApropos from 'OLSKApropos';
 import OLSKUIAssets from 'OLSKUIAssets';
 </script>
 
+{#if !OLSK_SPEC_UI()}
+	<OLSKServiceWorkerView OLSKServiceWorkerRegistrationRoute={ window.OLSKCanonical('LCHServiceWorkerRoute') } />
+{/if}
+
 <div class="LCHCompose OLSKViewport" class:OLSKIsLoading={ mod._ValueIsLoading }>
 
 <div class="OLSKViewportContent">
@@ -1267,10 +1271,6 @@ import OLSKUIAssets from 'OLSKUIAssets';
 </OLSKModalView>
 
 </div>
-
-{#if !OLSK_SPEC_UI()}
-	<OLSKServiceWorkerView OLSKServiceWorkerRegistrationRoute={ window.OLSKCanonical('LCHServiceWorkerRoute') } />
-{/if}
 
 {#if mod._IsRunningDemo }
 	<OLSKPointer />
