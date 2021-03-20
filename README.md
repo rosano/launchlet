@@ -4,7 +4,7 @@
 
 _Customize the web with JavaScript or CSS_
 
-<a href="https://launchlet.dev">Launchlet</a> is a simple way to add a name to snippets of code and run it. Inspired by [Quicksilver](https://qsapp.com/), it functions primarily via mouseless interaction and lets you access your [Recipes](https://launchlet.dev/guide) with a few keyboard strokes. You can also use it to personalize websites with custom CSS or JavaScript.
+<a href="https://launchlet.dev">Launchlet</a> is a simple way to add a name to snippets of code and run it. Inspired by [Quicksilver](https://qsapp.com/), it functions primarily via mouseless interaction and lets you access your Recipes with a few keyboard strokes. You can also use it to personalize websites with custom CSS or JavaScript. Read the <a href="https://launchlet.dev">guide</a> for more details.
 
 You can run Launchlet as a [bookmarklet](https://launchlet.dev/compose), [browser extension](https://github.com/launchlet/launchlet-extension), or as a [module](https://github.com/launchlet/launchlet/tree/master/os-app/dev-package) in your own project to add a 'jump to' functionality.
 
