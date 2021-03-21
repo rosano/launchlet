@@ -43,7 +43,7 @@ function OLSKRouteFunction (req, res, next) {
 			'"LCHGuideTokenExamplePageRecipeFunction"': (function () {
   alert('Hello');
  }).toString(),
-		}, res.locals.OLSKLocalized('LCHGuideDocumentFields'))) + '\n' + res.OLSKMarkdownContent(require('path').join(__dirname, '../dev-package/README.md')),
+		}, res.locals.OLSKLocalized('LCHGuideDocumentFields'))),
 		OLSKStringReplaceTokens: require('OLSKString').OLSKStringReplaceTokens,
 	});
 };
