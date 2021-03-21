@@ -64,6 +64,14 @@ Optionally, Launchlet can include Recipes from any page that sets `LCHPageRecipe
 
 For example, when running Launchlet on <a href="https://rosano.ca" target="_blank">rosano.ca</a>, it is possible to choose a 'Send a message' *Command* that originates from the page.
 
+# Built-in Recipes
+
+## LCHCopyToClipboard(text)
+
+Copy input to clipboard.
+
+Returns promise.
+
 # Shortcuts
 
 <div class="OLSKDecorNotice">
