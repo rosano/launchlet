@@ -1,5 +1,9 @@
 import OLSKString from 'OLSKString';
 
+const uDescending = function (a, b) {
+  return (a > b) ? -1 : ((a < b) ? 1 : 0);
+};
+
 const mod = {
 
 	LCHComposeAccessibilitySummary (inputData, OLSKLocalized) {
@@ -11,11 +15,11 @@ const mod = {
 	},
 
 	LCHComposeSortFunction (a, b) {
-		if (a.LCHDocumentModificationDate && b.LCHDocumentModificationDate) {
-			return b.LCHDocumentModificationDate - a.LCHDocumentModificationDate;
-		}
-
-		return b.LCHDocumentCreationDate - a.LCHDocumentCreationDate;
+		return (function(e) {
+			return uDescending(a[e], b[e]);
+		})(['LCHDocumentModificationDate', 'LCHDocumentCreationDate'].filter(function (e) {
+			return a[e] && b[e];
+		}).shift());
 	},
 
 	LCHComposeMatchIsResult (param1, param2) {
