@@ -7,6 +7,6 @@ LCHComposeToolsPairStatusWaitingText: Esperando
 LCHComposeToolsPairStatusFailedText: Falló
 LCHComposeLauncherItemCloneText: Clonar receta
 LCHComposeLauncherItemImportJSONText: Importar JSON (beta)
-LCHComposeLauncherItemImportJSONErrorNotFilledAlertText: Entrada no cargado
+LCHComposeLauncherItemImportJSONErrorNotFilledAlertText: Entrada no cargada
 LCHComposeLauncherItemImportJSONErrorNotValidAlertText: Entrada no valida
 LCHComposeLauncherItemExportJSONText: Exportar JSON (beta)
