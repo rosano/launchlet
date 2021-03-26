@@ -103,10 +103,6 @@ const mod = {
 	},
 
 	DataIsEligible (inputData = {}) {
-		if (mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolFission()) {
-			return true;
-		}
-
 		return OLSKFund.OLSKFundIsEligible(Object.assign({
 			ParamMinimumTier: 1,
 			ParamCurrentProject: 'RP_001',
@@ -617,10 +613,6 @@ const mod = {
 	},
 
 	OLSKCatalogDispatchQuantity (inputData) {
-		if (mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolFission()) {
-			return;
-		}
-		
 		mod._ValueDocumentRemainder = OLSKFund.OLSKFundRemainder(inputData, parseInt('LCH_FUND_DOCUMENT_LIMIT_SWAP_TOKEN'));
 	},
 
@@ -807,7 +799,9 @@ const mod = {
 				return;
 			}
 
-			window.location.reload();
+			setTimeout(function () {
+				window.location.reload();
+			}, mod._ValueZDRWrap.ZDRStorageProtocol == zerodatawrap.ZDRProtocolFission() ? 1000 : 0);// #hotfix-fission-delay
 		});
 	},
 
@@ -1045,10 +1039,6 @@ const mod = {
 	},
 
 	async SetupFund () {
-		if (mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolFission()) {
-			mod._ValueOLSKFundGrant = {};
-		}
-
 		if (OLSK_SPEC_UI() && window.location.search.match('FakeOLSKFundResponseIsPresent=true')) {
 			OLSKFund._OLSKFundFakeGrantResponseRandom();
 		}
@@ -1079,7 +1069,7 @@ const mod = {
 			ParamWindow: window,
 			OLSK_FUND_API_URL: 'OLSK_FUND_API_URL_SWAP_TOKEN',
 			ParamBody: {
-				OLSKPactAuthType: OLSKPact.OLSKPactAuthTypeRemoteStorage(),
+				OLSKPactAuthType: mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolRemoteStorage() ? OLSKPact.OLSKPactAuthTypeRemoteStorage() : OLSKPact.OLSKPactAuthTypeFission(),
 				OLSKPactAuthIdentity: mod._ValueCloudIdentity,
 				OLSKPactAuthProof: mod._ValueCloudToken,
 				OLSKPactAuthMetadata: {
