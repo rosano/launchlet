@@ -275,10 +275,6 @@ describe('LCHCompose_Misc', function () {
 			browser.assert.hasClass(LCHComposeStorageToolbar, 'OLSKCommonEdgeTop');
 		});
 		
-		it('classes OLSKStorageToolbar', function () {
-			browser.assert.hasClass(LCHComposeStorageToolbar, 'OLSKStorageToolbar');
-		});
-	
 	});
 
 	describe('LCHComposeViewportFooter', function test_LCHComposeViewportFooter () {

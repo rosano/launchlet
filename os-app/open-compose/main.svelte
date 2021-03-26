@@ -1222,7 +1222,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 	</footer>
 
 	{#if !mod._ValueCloudToolbarHidden }
-		<div class="LCHComposeStorageToolbar OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeTop OLSKStorageToolbar">
+		<div class="LCHComposeStorageToolbar OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeTop">
 			<div class="OLSKToolbarElementGroup">
 				<div></div>
 			</div>
