@@ -21,10 +21,10 @@ Object.entries({
 	LCHVitrineVideo4Heading: '.OLSKCommonVideoList .LCHVitrineVideo4Heading',
 	LCHVitrineVideo4: '.OLSKCommonVideoList .OLSKCommonVideoListItem.LCHVitrineVideo4 iframe',
 
+	LCHVitrineGazetteHeading: '.LCHVitrineGazetteHeading',
+
 	LCHVitrineSupportHeading: '.LCHVitrineSupportHeading',
 	LCHVitrineSupportBlurb: '.LCHVitrineSupportBlurb',
-
-	LCHVitrineGazetteHeading: '.LCHVitrineGazetteHeading',
 
 	LCHVitrineDemoButtonCommit: '.LCHVitrineDemoButtonCommit',
 	LCHVitrineDemoButtonPreview: '.LCHVitrineDemoButtonPreview',
@@ -121,20 +121,20 @@ describe('LCHVitrine_Access', function () {
 		browser.assert.elements(LCHVitrineVideo4, 1);
 	});
 
-	it('shows LCHVitrineSupportHeading', function () {
-		browser.assert.elements(LCHVitrineSupportHeading, 1);
-	});
-
-	it('shows LCHVitrineSupportBlurb', function () {
-		browser.assert.elements(LCHVitrineSupportBlurb, 1);
-	});
-
 	it('shows LCHVitrineGazetteHeading', function () {
 		browser.assert.elements(LCHVitrineGazetteHeading, 1);
 	});
 
 	it('shows OLSKGazette', function () {
 		browser.assert.elements('.OLSKGazette', 1);
+	});
+
+	it('shows LCHVitrineSupportHeading', function () {
+		browser.assert.elements(LCHVitrineSupportHeading, 1);
+	});
+
+	it('shows LCHVitrineSupportBlurb', function () {
+		browser.assert.elements(LCHVitrineSupportBlurb, 1);
 	});
 
 	it('shows LCHVitrineDemoButtonCommit', function() {
