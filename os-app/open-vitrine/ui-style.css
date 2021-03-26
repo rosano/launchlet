@@ -1,13 +1,3 @@
-:root {
-	--OLSKCommonBackground: var(--LCHCommonBackground);
-	--OLSKCommonForeground: var(--LCHCommonForeground);
-}
-
-body {
-	background: var(--LCHCommonBackground);
-	color: var(--LCHCommonForeground);
-}
-
 .LCHVitrineVideo2, .LCHVitrineVideo3 {
 	--OLSKCommonVideoWide: 1440;
 	--OLSKCommonVideoHigh: 800;

@@ -34,12 +34,12 @@ describe('LCHVitrineDemoCommit', function () {
 			initialContent = item.innerHTML;
 		});
 		
-		it('sets --LCHCommonBackground', async function() {
-			browser.assert.deepEqual(initialContent.includes('--LCHCommonBackground'), true);
+		it('sets --OLSKCommonBackground', async function() {
+			browser.assert.deepEqual(initialContent.includes('--OLSKCommonBackground'), true);
 		});
 		
-		it('sets --LCHCommonForeground', async function() {
-			browser.assert.deepEqual(initialContent.includes('--LCHCommonForeground'), true);
+		it('sets --OLSKCommonForeground', async function() {
+			browser.assert.deepEqual(initialContent.includes('--OLSKCommonForeground'), true);
 		});
 		
 		it('updates element', async function() {

@@ -1,6 +1,10 @@
 :root {
-	--LCHCommonBackground: hsl(0, 0%, 98%);
-	--LCHCommonForeground: hsl(0, 0%, 0%);
+	--OLSKCommonBackground: hsl(0, 0%, 98%);
+	--OLSKCommonForeground: hsl(0, 0%, 0%);
+}
+
+body {
+	background: var(--OLSKCommonBackground);
 }
 
 .OLSKDecor li code {

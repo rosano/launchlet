@@ -2,9 +2,6 @@
 	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
 	--OLSKCommonFontSize: 9pt;
 	font-size: var(--OLSKCommonFontSize);
-
-	background: var(--LCHCommonBackground);
-	color: var(--LCHCommonForeground);
 }
 
 :global(.LCHComposeLauncher .LCHLauncher) {
@@ -25,8 +22,6 @@
 }
 
 .LCHComposeStorageToolbar {
-	background: var(--LCHCommonBackground);
-
 	/* AppContainerFlexbox:Child */
 	flex-shrink: 0;
 }

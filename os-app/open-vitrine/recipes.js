@@ -23,8 +23,8 @@ const mod = {
 
 		element.innerHTML = `
 		body {
-		--LCHCommonBackground: hsl(0, 0%, ${ random * 100 }%);
-		--LCHCommonForeground: hsl(0, 0%, ${ 100.0 - random * 100 }%);
+		--OLSKCommonBackground: hsl(0, 0%, ${ random * 100 }%);
+		--OLSKCommonForeground: hsl(0, 0%, ${ 100.0 - random * 100 }%);
 		}
 	`
 	},
