@@ -137,7 +137,7 @@ const mod = {
 				LCHRecipeSignature: 'LCHComposeLauncherItemImportJSON',
 				LCHRecipeName: OLSKLocalized('LCHComposeLauncherItemImportJSONText'),
 				LCHRecipeCallback: async function LCHComposeLauncherItemImportJSON () {
-					return mod.ControlImportData(await this.api.LCHReadTextFile({
+					return mod.ControlDocumentsImportJSON(await this.api.LCHReadTextFile({
 						accept: '.json',
 					}));
 				},
@@ -207,7 +207,7 @@ const mod = {
 				{
 					LCHRecipeName: 'LCHComposeLauncherItemDebug_PromptFakeImportSerialized',
 					LCHRecipeCallback: function LCHComposeLauncherItemDebug_PromptFakeImportSerialized () {
-						return mod.ControlImportData(window.prompt());
+						return mod.ControlDocumentsImportJSON(window.prompt());
 					},
 				},
 				{
@@ -495,7 +495,7 @@ const mod = {
 		}
 	},
 
-	async ControlImportData (inputData) {
+	async ControlDocumentsImportJSON (inputData) {
 		if (!inputData.trim()) {
 			return window.alert(OLSKLocalized('LCHComposeLauncherItemImportJSONErrorNotFilledAlertText'))
 		}
