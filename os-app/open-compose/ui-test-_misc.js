@@ -257,22 +257,22 @@ describe('LCHCompose_Misc', function () {
 	
 	});
 
-	describe('LCHComposeStorageToolbar', function test_LCHComposeStorageToolbar () {
+	describe('LCHComposeCloudToolbar', function test_LCHComposeCloudToolbar () {
 
 		before(function () {
 			return browser.pressButton('.OLSKAppToolbarCloudButton');
 		});
 
 		it('classes OLSKToolbar', function () {
-			browser.assert.hasClass(LCHComposeStorageToolbar, 'OLSKToolbar');
+			browser.assert.hasClass(LCHComposeCloudToolbar, 'OLSKToolbar');
 		});
 
 		it('classes OLSKToolbarJustify', function () {
-			browser.assert.hasClass(LCHComposeStorageToolbar, 'OLSKToolbarJustify');
+			browser.assert.hasClass(LCHComposeCloudToolbar, 'OLSKToolbarJustify');
 		});
 		
 		it('classes OLSKCommonEdgeTop', function () {
-			browser.assert.hasClass(LCHComposeStorageToolbar, 'OLSKCommonEdgeTop');
+			browser.assert.hasClass(LCHComposeCloudToolbar, 'OLSKCommonEdgeTop');
 		});
 		
 	});

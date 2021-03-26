@@ -15,7 +15,7 @@ Object.entries({
 
 	LCHComposeViewportFooter: '.LCHComposeViewportFooter',
 
-	LCHComposeStorageToolbar: '.LCHComposeStorageToolbar',
+	LCHComposeCloudToolbar: '.LCHComposeCloudToolbar',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -78,8 +78,8 @@ describe('LCHCompose_Access', function () {
 		browser.assert.elements(LCHComposeViewportFooter, 1);
 	});
 
-	it('hides LCHComposeStorageToolbar', function () {
-		browser.assert.elements(LCHComposeStorageToolbar, 0);
+	it('hides LCHComposeCloudToolbar', function () {
+		browser.assert.elements(LCHComposeCloudToolbar, 0);
 	});
 
 	it('shows OLSKAppToolbar', function () {
@@ -156,8 +156,8 @@ describe('LCHCompose_Access', function () {
 			return browser.pressButton('.OLSKAppToolbarCloudButton');
 		});
 
-		it('shows LCHComposeStorageToolbar', function () {
-			browser.assert.elements(LCHComposeStorageToolbar, 1);
+		it('shows LCHComposeCloudToolbar', function () {
+			browser.assert.elements(LCHComposeCloudToolbar, 1);
 		});
 
 		it('shows OLSKCloud', function () {

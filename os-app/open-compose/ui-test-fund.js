@@ -17,7 +17,7 @@ describe('LCHCompose_Fund', function () {
 		context('not connected', function () {
 
 			before(function () {
-				browser.assert.elements('.LCHComposeStorageToolbar', 0);
+				browser.assert.elements('.LCHComposeCloudToolbar', 0);
 			});
 			
 			context('click', function () {
@@ -28,8 +28,8 @@ describe('LCHCompose_Fund', function () {
 					}, uLocalized('OLSKRemoteStorageConnectConfirmText'));
 				});
 
-				it('shows LCHComposeStorageToolbar', function () {
-					browser.assert.elements('.LCHComposeStorageToolbar', 1);
+				it('shows LCHComposeCloudToolbar', function () {
+					browser.assert.elements('.LCHComposeCloudToolbar', 1);
 				});
 
 				context('cancel', function () {
@@ -39,7 +39,7 @@ describe('LCHCompose_Fund', function () {
 					});
 
 					before(function () {
-						browser.assert.elements('.LCHComposeStorageToolbar', 0);
+						browser.assert.elements('.LCHComposeCloudToolbar', 0);
 					});
 					
 					before(function () {
@@ -53,7 +53,7 @@ describe('LCHCompose_Fund', function () {
 					});
 
 					it('does nothing', function () {
-						browser.assert.elements('.LCHComposeStorageToolbar', 0);
+						browser.assert.elements('.LCHComposeCloudToolbar', 0);
 					});
 				
 				});
@@ -285,8 +285,8 @@ describe('LCHCompose_Fund', function () {
 			}, uLocalized('OLSKFundGateText'));
 		});
 
-		it('shows LCHComposeStorageToolbar', function () {
-			browser.assert.elements('.LCHComposeStorageToolbar', 1);
+		it('shows LCHComposeCloudToolbar', function () {
+			browser.assert.elements('.LCHComposeCloudToolbar', 1);
 		});
 
 		it('exits', function () {
@@ -300,7 +300,7 @@ describe('LCHCompose_Fund', function () {
 			});
 
 			before(function () {
-				browser.assert.elements('.LCHComposeStorageToolbar', 0);
+				browser.assert.elements('.LCHComposeCloudToolbar', 0);
 			});
 			
 			before(function () {
@@ -314,7 +314,7 @@ describe('LCHCompose_Fund', function () {
 			});
 
 			it('does nothing', function () {
-				browser.assert.elements('.LCHComposeStorageToolbar', 0);
+				browser.assert.elements('.LCHComposeCloudToolbar', 0);
 				browser.assert.elements('.LCHComposeListItem', process.env.LCH_FUND_DOCUMENT_LIMIT);
 			});
 		
