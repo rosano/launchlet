@@ -1,0 +1,20 @@
+LCHVitrineTitle: Launchlet
+LCHVitrineDescription: Faça sua o web.
+LCHVitrineVideo1HeadingText: Pesquisar receitas.
+LCHVitrineVideo2HeadingText: Tutorial.
+LCHVitrineVideo3HeadingText: Sincronizar com a extensão do navegador.
+LCHVitrineVideo4HeadingText: Modo Encanado.
+OLSKLandingBlurbText: Personalizar qualquer website com JavaScript ou CSS.
+LCHVitrineDemoButtonCommitText: Modo Commit de demonstração.
+LCHVitrineDemoButtonPreviewText: Modo de Preview de demonstração
+LCHVitrineDemoButtonPipeText: Modo Encanado de demonstração
+LCHVitrineBrueghelText: 'Uma foto de um cartão postal contendo a pintura de Pieter Bruegel: A Queda dos Condenados'
+LCHVitrineDemoRecipeNames:
+  LCHVitrinePageColoursRandomize: Randomizar as cores das páginas
+  LCHVitrinePageColoursRestore: Restaurar as cores das páginas
+  LCHVitrineCopyPageInfo: Copiar informação da página
+  LCHVitrineSendEmail: Enviar e-mail
+  LCHVitrinePageLinksHighlightAdd: Destacar links da página
+  LCHVitrinePageLinksHighlightRemove: Remover a destaca doos links da página
+  LCHVitrineMinimalistDateString: Sequência minimalista da data
+LCHVitrineCopyPageInfoAlertText: Copiado para área de transferência

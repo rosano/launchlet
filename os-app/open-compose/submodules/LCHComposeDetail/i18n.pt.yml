@@ -1,0 +1,15 @@
+LCHComposeDetailToolbarBackButtonText: Voltar
+LCHComposeDetailToolbarCloneButtonText: Clonar
+LCHComposeDetailToolbarDiscardButtonText: Eliminar
+LCHComposeDetailDiscardConfirmText: Você tem certeza?
+LCHComposeDetailFlagAlertText: Essa receita será ignorada porque contém um código potencialmente inseguro.
+LCHComposeDetailFormNameFieldText: 'Nome (por exemplo: Dizer Olá)'
+LCHComposeDetailFormSignatureFieldText: 'Assinatura (por exemplo, XYZCumprimentar)'
+LCHComposeDetailFormInputTypesFieldText: 'Tipos de entrada (por exemplo, String, Bool)'
+LCHComposeDetailFormCallbackArgsFieldText: argumentos
+LCHComposeDetailFormCallbackBodyFieldText: 'Corpo da Função (por exemplo, window.alert(''Olá'');)'
+LCHComposeDetailFormOutputTypeFieldText: 'Tipo de saída (por exemplo, String)'
+LCHComposeDetailFormCanonicalExampleCallbackBodyFieldText: Corpo do Exemplo Canônico
+LCHComposeDetailFormStyleFieldText: 'CSS (por exemplo, body { background: red; })'
+LCHComposeDetailFormURLFilterFieldText: 'Filtro do URL (por exemplo, example.com ou /https?://(.*\\.)?example\\.com/i)'''
+LCHComposeDetailFormIsAutomaticFieldLabelText: É automatico

@@ -9,7 +9,7 @@ exports.OLSKControllerRoutes = function() {
 				LCHComposeBuildPackageScript: require('fs').readFileSync(require('path').join(__dirname, '../dev-package/__compiled/launchlet.js'), 'utf8'),
 			});
 		},
-		OLSKRouteLanguageCodes: ['en', 'fr', 'es'],
+		OLSKRouteLanguageCodes: ['en', 'fr', 'es', 'pt'],
 		_OLSKRouteSkipLanguageRedirect: true,
 	}];
 };

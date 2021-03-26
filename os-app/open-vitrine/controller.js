@@ -16,7 +16,7 @@ exports.OLSKControllerRoutes = function() {
 				OLSKStringReplaceTokens: require('OLSKString').OLSKStringReplaceTokens,
 			});
 		},
-		OLSKRouteLanguageCodes: ['en', 'fr', 'es'],
+		OLSKRouteLanguageCodes: ['en', 'fr', 'es', 'pt'],
 	}, {
 		OLSKRoutePath: '/brueghel.jpg',
 		OLSKRouteMethod: 'get',

@@ -1,0 +1,9 @@
+LCHFeatureListArray:
+  - - Adicionar scripts ou estilos.
+    - Criar receitas com JavaScript ou CSS.
+  - - Geral ou específica.
+    - Acione algumas receitas com base na URL.
+  - - Acione seu navegador.
+    - A extensão pode executar Recipes automaticamente no carregamento da página.
+  - - Tomar para levar.
+    - Exportar todas as Receitas num bookmarklet.

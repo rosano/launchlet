@@ -106,6 +106,7 @@ Creates a singleton instance of the launcher. Destroys existing instance if ther
     - `'en'`
     - `'fr'`
     - `'es'`
+    - `'pt'`
 
 ### Launchlet.LCHSingletonExists
 

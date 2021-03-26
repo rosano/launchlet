@@ -1,0 +1,16 @@
+LCHStandardRecipeNames:
+  LCHActiveDocumentFocusElements: Elementos de foco no documento ativo
+  LCHCopyToClipboard: Cópia na área de transferência
+  LCHLargeText: Texto grande
+  LCHDOMElementFocus: Foco
+  LCHRunCommand: Executar Comando
+  LCHSearchWith: Buscar com
+  LCHSearchFor: Buscar por
+  LCHSubjectContainerShowContents: Mostrar conteúdo
+  LCHURLOpen: Abrir URL
+  SubjectContainer: Contêiner do Sujeito
+  String: Sequência
+  Date: Data
+  URL: URL
+  ServiceSearchURLTemplate: Modelo de URL do serviço de pesquisa
+  DOMElement: Elemento do DOM
