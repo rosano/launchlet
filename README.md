@@ -1,4 +1,4 @@
-<a href="https://launchlet.dev"><img src="https://rosano.s3.amazonaws.com/public/launchlet/identity.svg" width="64"></a>
+<a href="https://launchlet.dev"><img alt="Project logo" src="https://rosano.s3.amazonaws.com/public/launchlet/identity.svg" width="64" /></a>
 
 # Launchlet
 
