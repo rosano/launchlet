@@ -1,8 +1,8 @@
 <div class="LCHRootLink">
 
-<%- include('../__external/OLSKRootLink/main.ejs', {
+<%- include('../../../node_modules/OLSKRootLink/main.ejs', {
 	OLSKRootLinkURL: OLSKCanonicalLocalized('LCHVitrineRoute'),
-	OLSKRootLinkImageURL: '/_shared/LCHRootLink/ui-assets/identity.svg',
+	OLSKRootLinkImageURL: process.env.OLSK_LAYOUT_TOUCH_ICON_URL,
 }) %>
 
 </div>
