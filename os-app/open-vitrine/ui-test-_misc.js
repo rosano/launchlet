@@ -118,6 +118,22 @@ describe('LCHVitrine_Misc', function () {
 
 	});
 
+	describe('LCHVitrineTutorialsButton', function test_LCHVitrineTutorialsButton () {
+
+		it('classes OLSKDecorPress', function () {
+			browser.assert.hasClass(LCHVitrineTutorialsButton, 'OLSKDecorPress');
+		});
+		
+		it('classes OLSKDecorPressCall', function () {
+			browser.assert.hasClass(LCHVitrineTutorialsButton, 'OLSKDecorPressCall');
+		});
+		
+		it('sets href', function () {
+			browser.assert.attribute(LCHVitrineTutorialsButton, 'href', process.env.LCH_VITRINE_TUTORIALS_URL);
+		});
+	
+	});
+
 	describe('OLSKGazette', function test_OLSKGazette () {
 
 		it('sets src', function () {
