@@ -4,7 +4,7 @@ describe('LCHCompose_Transport', function () {
 
 	const json = {};
 
-	describe('LCHComposeLauncherItemImportJSON', function test_LCHComposeLauncherItemImportJSON() {
+	describe('OLSKTransportDispatchImportJSON', function test_OLSKTransportDispatchImportJSON() {
 
 		const LCHDocumentName = Math.random().toString();
 
@@ -17,7 +17,7 @@ describe('LCHCompose_Transport', function () {
 		});
 
 		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'LCHComposeLauncherItemDebug_PromptFakeImportSerialized');
+			return browser.fill('.LCHLauncherFilterInput', 'OLSKTransportLauncherFakeItemImportSerialized');
 		});
 
 		before(function () {
@@ -43,14 +43,14 @@ describe('LCHCompose_Transport', function () {
 
 	});
 
-	describe('LCHComposeLauncherItemExportJSON', function test_LCHComposeLauncherItemExportJSON() {
+	describe('OLSKTransportDispatchExportInput', function test_OLSKTransportDispatchExportInput() {
 
 		before(function () {
 			return browser.pressButton('.OLSKAppToolbarLauncherButton');
 		});
 
 		before(function () {
-			return browser.fill('.LCHLauncherFilterInput', 'LCHComposeLauncherItemDebug_AlertFakeExportSerialized');
+			return browser.fill('.LCHLauncherFilterInput', 'OLSKTransportLauncherFakeItemExportSerialized');
 		});
 
 		it('exports file', async function() {

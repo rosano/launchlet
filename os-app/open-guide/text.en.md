@@ -89,8 +89,8 @@ Returns promise.
 | Clear filter text and selected card, focus filter field | `Escape` |
 | Close, if filter field is focused | `Escape` |
 | `LCHComposeLauncherItemCloneText` | Launcher |
-| `LCHComposeLauncherItemImportJSONText` | Launcher |
-| `LCHComposeLauncherItemExportJSONText` | Launcher |
+| `OLSKTransportLauncherItemImportJSONText` | Launcher |
+| `OLSKTransportLauncherItemExportJSONText` | Launcher |
 
 | Global ||
 :--- | ---

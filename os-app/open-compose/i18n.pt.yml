@@ -6,7 +6,3 @@ LCHComposePublicKeyNotValidAlertText: Entrada não válida
 LCHComposeToolsPairStatusWaitingText: Esperando
 LCHComposeToolsPairStatusFailedText: Falhado
 LCHComposeLauncherItemCloneText: Clonar a receita
-LCHComposeLauncherItemImportJSONText: Importar JSON (beta)
-LCHComposeLauncherItemImportJSONErrorNotFilledAlertText: Entrada não preenchida
-LCHComposeLauncherItemImportJSONErrorNotValidAlertText: Entrada não válida
-LCHComposeLauncherItemExportJSONText: Exportar JSON (beta)

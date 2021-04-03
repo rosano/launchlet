@@ -20,6 +20,7 @@ import OLSKFund from 'OLSKFund';
 import OLSKPact from 'OLSKPact';
 import OLSKChain from 'OLSKChain';
 import OLSKBeacon from 'OLSKBeacon';
+import OLSKTransport from 'OLSKTransport';
 import zerodatawrap from 'zerodatawrap';
 
 const mod = {
@@ -112,39 +113,8 @@ const mod = {
 		}, inputData));
 	},
 
-	async DataExportJSON () {
-		return JSON.stringify(await mod._ValueZDRWrap.App.LCHTransport.LCHTransportExport({
-			LCHDocument: mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll(),
-			LCHSetting: await mod._ValueZDRWrap.App.LCHSetting.LCHSettingList(),
-		}));
-	},
-
-	DataExportBasename () {
-		return `${ window.location.hostname }-${ Date.now() }`;
-	},
-
-	DataExportJSONFilename () {
-		return `${ mod.DataExportBasename() }.json`;
-	},	
-
 	DataComposeRecipes () {
-		const items = [
-			{
-				LCHRecipeSignature: 'LCHComposeLauncherItemImportJSON',
-				LCHRecipeName: OLSKLocalized('LCHComposeLauncherItemImportJSONText'),
-				LCHRecipeCallback: async function LCHComposeLauncherItemImportJSON () {
-					return mod.ControlDocumentsImportJSON(await this.api.LCHReadTextFile({
-						accept: '.json',
-					}));
-				},
-			}, {
-				LCHRecipeSignature: 'LCHComposeLauncherItemExportJSON',
-				LCHRecipeName: OLSKLocalized('LCHComposeLauncherItemExportJSONText'),
-				LCHRecipeCallback: async function LCHComposeLauncherItemExportJSON () {
-					return this.api.LCHSaveFile(await mod.DataExportJSON(), mod.DataExportJSONFilename());
-				},
-			}
-		];
+		const items = [];
 
 		if (mod._OLSKCatalog.modPublic.OLSKCatalogDataItemSelected()) {
 			items.push({
@@ -201,21 +171,6 @@ const mod = {
 					},
 				},
 				{
-					LCHRecipeName: 'LCHComposeLauncherItemDebug_PromptFakeImportSerialized',
-					LCHRecipeCallback: function LCHComposeLauncherItemDebug_PromptFakeImportSerialized () {
-						return mod.ControlDocumentsImportJSON(window.prompt());
-					},
-				},
-				{
-					LCHRecipeName: 'LCHComposeLauncherItemDebug_AlertFakeExportSerialized',
-					LCHRecipeCallback: async function LCHComposeLauncherItemDebug_AlertFakeExportSerialized () {
-						return window.alert(JSON.stringify({
-							OLSKDownloadName: mod.DataExportJSONFilename(),
-							OLSKDownloadData: await mod.DataExportJSON(),
-						}));
-					},
-				},
-				{
 					LCHRecipeName: 'FakeEscapeWithoutSort',
 					LCHRecipeCallback: function FakeEscapeWithoutSort () {
 						mod.ControlDocumentActivate(null);
@@ -236,6 +191,14 @@ const mod = {
 
 		items.push(...zerodatawrap.ZDRRecipes({
 			ParamMod: mod,
+			ParamSpecUI: OLSK_SPEC_UI(),
+		}));
+
+		items.push(...OLSKTransport.OLSKTransportRecipes({
+			ParamWindow: window,
+			OLSKLocalized: OLSKLocalized,
+			OLSKTransportDispatchImportJSON: mod.OLSKTransportDispatchImportJSON,
+			OLSKTransportDispatchExportInput: mod.OLSKTransportDispatchExportInput,
 			ParamSpecUI: OLSK_SPEC_UI(),
 		}));
 
@@ -491,21 +454,6 @@ const mod = {
 		}
 	},
 
-	async ControlDocumentsImportJSON (inputData) {
-		if (!inputData.trim()) {
-			return window.alert(OLSKLocalized('LCHComposeLauncherItemImportJSONErrorNotFilledAlertText'))
-		}
-
-		try {
-			await mod._ValueZDRWrap.App.LCHTransport.LCHTransportImport(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(JSON.parse(inputData)));
-			
-			await mod.SetupSettingsAll();
-			await mod.SetupCatalog();
-		} catch (e) {
-			window.alert(OLSKLocalized('LCHComposeLauncherItemImportJSONErrorNotValidAlertText'));
-		}
-	},
-
 	async ControlDemo () {
 		mod._IsRunningDemo = true;
 		window.OLSK_DEMO = true;
@@ -634,6 +582,20 @@ const mod = {
 
 	LCHComposePairDispatchClear () {
 		mod.ControlPublicKeyUpdate('');
+	},
+
+	async OLSKTransportDispatchImportJSON (inputData) {
+		await mod._ValueZDRWrap.App.LCHTransport.LCHTransportImport(OLSKRemoteStorage.OLSKRemoteStoragePostJSONParse(inputData));
+		
+		await mod.SetupSettingsAll();
+		await mod.SetupCatalog();
+	},
+
+	async OLSKTransportDispatchExportInput () {
+		return mod._ValueZDRWrap.App.LCHTransport.LCHTransportExport({
+			LCHDocument: mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll(),
+			LCHSetting: await mod._ValueZDRWrap.App.LCHSetting.LCHSettingList(),
+		});
 	},
 
 	async OLSKCloudFormDispatchSubmit (inputData) {
