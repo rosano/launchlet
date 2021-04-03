@@ -31,7 +31,7 @@ exports.LCHGuideExampleTemplate = function (inputData) {
 		throw new Error('LCHErrorInputNotValid');
 	}
 
-	return `<dl class="LCHGuideExample">\n\n${ inputData.join('\n\n') }\n\n</dl>`;
+	return `<dl class="OLSKDecorGlossary">\n\n${ inputData.join('\n\n') }\n\n</dl>`;
 };
 
 exports.LCHGuideStringify = function (inputData) {

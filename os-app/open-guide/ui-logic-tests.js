@@ -65,15 +65,15 @@ describe('LCHGuideExampleTemplate', function test_LCHGuideExampleTemplate() {
 	});
 
 	it('returns string', function() {
-		deepEqual(mod.LCHGuideExampleTemplate([]), `<dl class="LCHGuideExample">\n\n\n\n</dl>`);
+		deepEqual(mod.LCHGuideExampleTemplate([]), `<dl class="OLSKDecorGlossary">\n\n\n\n</dl>`);
 	});
 
 	it('inserts input', function() {
-		deepEqual(mod.LCHGuideExampleTemplate(['alfa']), `<dl class="LCHGuideExample">\n\nalfa\n\n</dl>`);
+		deepEqual(mod.LCHGuideExampleTemplate(['alfa']), `<dl class="OLSKDecorGlossary">\n\nalfa\n\n</dl>`);
 	});
 
 	it('joins multiple with newlines', function() {
-		deepEqual(mod.LCHGuideExampleTemplate(['alfa', 'bravo']), `<dl class="LCHGuideExample">\n\nalfa\n\nbravo\n\n</dl>`);
+		deepEqual(mod.LCHGuideExampleTemplate(['alfa', 'bravo']), `<dl class="OLSKDecorGlossary">\n\nalfa\n\nbravo\n\n</dl>`);
 	});
 
 });
