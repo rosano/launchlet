@@ -46,6 +46,7 @@
     "OLSKLanding": "olsk/OLSKLanding",
     "OLSKAppFeatureList": "olsk/OLSKAppFeatureList",
     "OLSKGazette": "olsk/OLSKGazette",
+    "SWARLink": "0dataapp/SWARLink",
 
     "// FRONDEND EDITOR": null,
     "codemirror": "rosano/CodeMirror#add-distribution",
