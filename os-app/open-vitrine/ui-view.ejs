@@ -19,16 +19,10 @@ locals.OLSKPagePublicConstants = {
 
 <div class="LCHVitrine OLSKDecor OLSKDecorCapped">
 
-<div class="OLSKToolbar OLSKToolbarJustify OLSKMobileViewHeader OLSKCommonEdgeBottom OLSKStickyHeader">
-	<div class="LCHVitrineCrown OLSKCommonCard OLSKCommonCrownCardMini">
-		<img class="LCHVitrineCrownIcon" src="/_shared/LCHRootLink/ui-assets/identity.svg" role="presentation" />
-		<section>
-			<span class="LCHVitrineCrownName"><%= OLSKLocalized('LCHVitrineTitle') %></span>
-		</section>
-	</div>
-
-	<%- include('../_shared/__external/OLSKLanguageSwitcher/main.ejs') %>	
-</div>
+<%- include('../../node_modules/OLSKCrown/main.ejs', {
+	OLSKCrownCardImageURL: '/_shared/LCHRootLink/ui-assets/identity.svg',
+	OLSKCrownCardNameText: OLSKLocalized('LCHVitrineTitle'),
+}) %>
 
 <%- include('../../node_modules/OLSKLanding/main.ejs', {
 	OLSKLandingHeadingText: OLSKLocalized('LCHVitrineDescription'),

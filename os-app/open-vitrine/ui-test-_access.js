@@ -3,10 +3,6 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 Object.entries({
 	LCHVitrine: '.LCHVitrine',
 	
-	LCHVitrineCrown: '.LCHVitrineCrown',
-	LCHVitrineCrownIcon: '.LCHVitrineCrownIcon',
-	LCHVitrineCrownName: '.LCHVitrineCrownName',
-
 	LCHVitrineFeaturesHeading: '.LCHVitrineFeaturesHeading',
 
 	LCHVitrineGuideButton: '.LCHVitrineGuideButton',
@@ -47,20 +43,8 @@ describe('LCHVitrine_Access', function () {
 		browser.assert.elements(LCHVitrine, 1)
 	});
 
-	it('shows OLSKLanguageSwitcher', function() {
-		browser.assert.elements('.OLSKLanguageSwitcher', 1);
-	});
-
-	it('shows LCHVitrineCrown', function () {
-		browser.assert.elements(LCHVitrineCrown, 1);
-	});
-
-	it('shows LCHVitrineCrownIcon', function () {
-		browser.assert.elements(LCHVitrineCrownIcon, 1);
-	});
-
-	it('shows LCHVitrineCrownName', function () {
-		browser.assert.elements(LCHVitrineCrownName, 1);
+	it('shows OLSKCrown', function() {
+		browser.assert.elements('.OLSKCrown', 1);
 	});
 
 	it('shows OLSKLanding', function() {

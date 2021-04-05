@@ -14,28 +14,12 @@ describe('LCHVitrine_Misc', function () {
 		browser.assert.deepEqual(browser.evaluate('Array.isArray(window.LCHPageRecipes)'), true);
 	});
 
-	describe('LCHVitrineCrown', function test_LCHVitrineCrown() {
+	describe('OLSKCrown', function test_OLSKCrown () {
 
-		it('classes OLSKCommonCard', function () {
-			browser.assert.hasClass(LCHVitrineCrown, 'OLSKCommonCard');
+		it('sets OLSKCrownCardImageURL', function () {
+			browser.assert.attribute('.OLSKCrownCardImage', 'src', '/_shared/LCHRootLink/ui-assets/identity.svg');
 		});
-
-		it('classes OLSKCommonCrownCardMini', function () {
-			browser.assert.hasClass(LCHVitrineCrown, 'OLSKCommonCrownCardMini');
-		});
-		
-	});
-
-	describe('LCHVitrineCrownIcon', function () {
-
-		it('sets role', function () {
-			browser.assert.attribute(LCHVitrineCrownIcon, 'role', 'presentation');
-		});
-
-		it('sets src', function () {
-			browser.assert.attribute(LCHVitrineCrownIcon, 'src', '/_shared/LCHRootLink/ui-assets/identity.svg');
-		});
-
+	
 	});
 
 	context('OLSKLanding', function test_OLSKLanding () {

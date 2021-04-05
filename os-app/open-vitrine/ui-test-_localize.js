@@ -22,10 +22,6 @@ describe(`LCHVitrine_Localize-${ OLSKRoutingLanguage }`, function () {
 		browser.assert.attribute('meta[name=description]', 'content', uLocalized('LCHVitrineDescription'))
 	});
 
-	it('localizes LCHVitrineCrownName', function () {
-		browser.assert.text(LCHVitrineCrownName, uLocalized('LCHVitrineTitle'));
-	});
-
 	it('localizes LCHVitrineFeaturesHeading', function () {
 		browser.assert.text(LCHVitrineFeaturesHeading, uLocalized('OLSKWordingFeatures'));
 	});
@@ -84,6 +80,14 @@ describe(`LCHVitrine_Localize-${ OLSKRoutingLanguage }`, function () {
 
 	it('localizes LCHVitrineBrueghel', function() {
 		browser.assert.attribute(LCHVitrineBrueghel, 'alt', uLocalized('LCHVitrineBrueghelText'))
+	});
+
+	context('OLSKCrown', function test_OLSKCrown () {
+
+		it('localizes OLSKCrownCardName', function () {
+			browser.assert.text('.OLSKCrownCardName', uLocalized('LCHVitrineTitle'));
+		});
+	
 	});
 
 	context('OLSKLanding', function test_OLSKLanding () {
