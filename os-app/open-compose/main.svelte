@@ -1099,7 +1099,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 	OLSKCatalogDispatchMasterShouldActivate={ mod.OLSKCatalogDispatchMasterShouldActivate }
 	OLSKCatalogDispatchQuantity={ mod.OLSKCatalogDispatchQuantity }
 
-	let:OLSKResultsListItem
+	let:OLSKCollectionItem
 	>
 
 	<!-- MASTER -->
@@ -1113,7 +1113,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 	<!-- LIST ITEM -->
 
 	<div slot="OLSKCollectionItem">
-		<LCHComposeListItem LCHComposeListItem={ OLSKResultsListItem } />
+		<LCHComposeListItem LCHComposeListItem={ OLSKCollectionItem } />
 	</div>
 
 	<!-- DETAIL -->
