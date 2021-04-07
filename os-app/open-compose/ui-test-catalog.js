@@ -105,7 +105,7 @@ describe('LCHCompose_Catalog', function () {
 		});
 
 		it('binds OLSKCollectionItemsLocus', function () {
-			browser.assert.hasClass('.LCHComposeListItem:nth-child(2)', 'OLSKCollectionItemLocus');
+			browser.assert.hasClass('.OLSKCollectionItem:nth-child(2)', 'OLSKCollectionItemLocus');
 		});
 	
 	});

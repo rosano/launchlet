@@ -19,7 +19,7 @@ describe('LCHVitrineDemoPreview', function () {
 	});
 	
 	it('selects one', function () {
-		browser.assert.elements('.OLSKCollectionItemLocus', 1);
+		browser.assert.elements('.OLSKResultsListItemSelected', 1);
 	});
 
 });
