@@ -544,7 +544,7 @@ const mod = {
 		return inputData.LCHDocumentID;
 	},
 
-	OLSKCatalogDispatchClick (inputData) {
+	OLSKCollectionDispatchClick (inputData) {
 		mod.ControlDocumentActivate(inputData);
 	},
 
@@ -1093,7 +1093,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 
 	_OLSKCatalogDispatchKey={ mod._OLSKCatalogDispatchKey }
 
-	OLSKCatalogDispatchClick={ mod.OLSKCatalogDispatchClick }
+	OLSKCollectionDispatchClick={ mod.OLSKCollectionDispatchClick }
 	OLSKCatalogDispatchArrow={ mod.OLSKCatalogDispatchArrow }
 	OLSKCatalogDispatchDetailActivate={ mod.OLSKCatalogDispatchDetailActivate }
 	OLSKCatalogDispatchMasterShouldActivate={ mod.OLSKCatalogDispatchMasterShouldActivate }
