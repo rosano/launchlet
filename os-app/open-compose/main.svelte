@@ -1112,7 +1112,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 
 	<!-- LIST ITEM -->
 
-	<div slot="OLSKMasterListItem">
+	<div slot="OLSKCollectionItem">
 		<LCHComposeListItem LCHComposeListItem={ OLSKResultsListItem } />
 	</div>
 
