@@ -36,7 +36,7 @@ describe('LCHLauncherPrompt_Misc', function () {
 			return browser.fill(LCHLauncherFilterInput, 'alfa');
 		});
 		
-		it('binds OLSKResultsListItemSelected', function () {
+		it('binds OLSKCollectionItemLocus', function () {
 			browser.assert.text(`${ LCHLauncherPromptSelectedItem } .LCHLauncherResultItemTitle`, 'alfa');
 		});
 		

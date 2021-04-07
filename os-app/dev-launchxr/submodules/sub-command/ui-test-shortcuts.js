@@ -15,7 +15,7 @@ describe('LCHLauncherCommand_Shortcuts', function () {
 	});
 
 	before(function () {
-		browser.assert.text('.OLSKResultsListItemSelected', 'alfa');
+		browser.assert.text('.OLSKCollectionItemLocus', 'alfa');
 	});
 
 	context('ArrowDown', function () {
@@ -25,7 +25,7 @@ describe('LCHLauncherCommand_Shortcuts', function () {
 		});
 
 		it('selects next item', function() {
-			browser.assert.text('.OLSKResultsListItemSelected', 'bravo');
+			browser.assert.text('.OLSKCollectionItemLocus', 'bravo');
 		});
 
 	});
@@ -37,7 +37,7 @@ describe('LCHLauncherCommand_Shortcuts', function () {
 		});
 
 		it('selects previous item', function() {
-			browser.assert.text('.OLSKResultsListItemSelected', 'alfa');
+			browser.assert.text('.OLSKCollectionItemLocus', 'alfa');
 		});
 	
 	});

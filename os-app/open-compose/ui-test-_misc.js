@@ -57,7 +57,7 @@ describe('LCHCompose_Misc', function () {
 	context('clone', function test_clone () {
 
 		before(function () {
-			browser.assert.elements('.OLSKResultsListItem', 1);
+			browser.assert.elements('.LCHComposeListItem', 1);
 		});
 
 		before(function () {
@@ -69,7 +69,7 @@ describe('LCHCompose_Misc', function () {
 		});
 
 		it('creates item', function () {
-			browser.assert.elements('.OLSKResultsListItem', 2);
+			browser.assert.elements('.LCHComposeListItem', 2);
 		});
 
 		it('focuses LCHComposeDetailFormNameField', function() {
@@ -77,7 +77,7 @@ describe('LCHCompose_Misc', function () {
 		});
 
 		it('copies properties from previous item', function () {
-			browser.assert.text('.OLSKResultsListItem', 'alfa alfa');
+			browser.assert.text('.LCHComposeListItem', 'alfa alfa');
 		});
 
 		context('modify', function () {
@@ -87,7 +87,7 @@ describe('LCHCompose_Misc', function () {
 			});
 
 			it('sets LCHComposeDetailItem', function () {
-				browser.assert.text('.OLSKResultsListItem', 'bravo alfa');
+				browser.assert.text('.LCHComposeListItem', 'bravo alfa');
 			});
 
 		});
@@ -312,7 +312,7 @@ describe('LCHCompose_Misc', function () {
 	describe('LCHComposeLauncherItemClone', function test_LCHComposeLauncherItemClone () {
 
 		before(function () {
-			browser.assert.elements('.OLSKResultsListItem', 2);
+			browser.assert.elements('.LCHComposeListItem', 2);
 		});
 		
 		before(function () {
@@ -320,7 +320,7 @@ describe('LCHCompose_Misc', function () {
 		});
 
 		it('runs command', function () {
-			browser.assert.elements('.OLSKResultsListItem', 3);
+			browser.assert.elements('.LCHComposeListItem', 3);
 		});
 	
 	});	

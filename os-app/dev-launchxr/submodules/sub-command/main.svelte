@@ -94,7 +94,7 @@ import LCHLauncherResultItem from '../LCHLauncherResultItem/main.svelte';
 	OLSKCollectionDispatchArrow={ mod.OLSKCollectionDispatchArrow }
 	OLSKMasterListDispatchFilter={ mod.OLSKMasterListDispatchFilter }
 	
-	let:OLSKResultsListItem={ item }
+	let:OLSKCollectionItem={ item }
 	OLSKCollectionItemAccessibilitySummaryFunction={ (inputData) => inputData }	
 
 	OLSKMasterListFilterFieldClass={ 'LCHLauncherFilterInput' }
