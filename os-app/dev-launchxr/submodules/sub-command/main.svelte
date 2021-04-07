@@ -73,7 +73,7 @@ const mod = {
 		mod.ControlFilter(inputData);
 	},
 
-	OLSKMasterListDispatchArrow (inputData) {
+	OLSKResultsDispatchArrow (inputData) {
 		mod._ValueItemSelected = inputData;
 	},
 
@@ -91,7 +91,7 @@ import LCHLauncherResultItem from '../LCHLauncherResultItem/main.svelte';
 	OLSKMasterListItemSelected={ mod._ValueItemSelected }
 	OLSKMasterListFilterText={ mod._ValueFilterText }
 	OLSKResultsDispatchClick={ mod.ControlRun }
-	OLSKMasterListDispatchArrow={ mod.OLSKMasterListDispatchArrow }
+	OLSKResultsDispatchArrow={ mod.OLSKResultsDispatchArrow }
 	OLSKMasterListDispatchFilter={ mod.OLSKMasterListDispatchFilter }
 	
 	let:OLSKResultsListItem={ item }
