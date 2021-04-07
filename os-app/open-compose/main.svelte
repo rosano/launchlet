@@ -536,7 +536,7 @@ const mod = {
 
 	// MESSAGE
 
-	OLSKMasterListItemAccessibilitySummaryFunction (inputData) {
+	OLSKCollectionItemAccessibilitySummaryFunction (inputData) {
 		return LCHComposeLogic.LCHComposeAccessibilitySummary(inputData, OLSKLocalized);
 	},
 
@@ -1085,7 +1085,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 <OLSKCatalog
 	bind:this={ mod._OLSKCatalog }
 
-	OLSKMasterListItemAccessibilitySummaryFunction={ mod.OLSKMasterListItemAccessibilitySummaryFunction }
+	OLSKCollectionItemAccessibilitySummaryFunction={ mod.OLSKCollectionItemAccessibilitySummaryFunction }
 
 	OLSKCatalogSortFunction={ LCHComposeLogic.LCHComposeSortFunction }
 	OLSKCatalogIsMatch={ LCHComposeLogic.LCHComposeIsMatch }
