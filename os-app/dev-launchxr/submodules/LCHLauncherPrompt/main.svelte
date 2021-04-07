@@ -89,7 +89,7 @@ import LCHLauncherResultItem from '../LCHLauncherResultItem/main.svelte';
 
 <OLSKMasterList
 	OLSKMasterListItems={ mod._ValueItemsVisible }
-	OLSKMasterListItemSelected={ mod._ValueItemSelected }
+	OLSKCollectionItemsLocus={ mod._ValueItemSelected }
 	OLSKMasterListFilterText={ mod._ValueFilterText }
 	OLSKResultsDispatchClick={ mod.OLSKResultsDispatchClick }
 	OLSKResultsDispatchArrow={ mod.OLSKResultsDispatchArrow }
