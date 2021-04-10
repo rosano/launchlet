@@ -103,6 +103,12 @@ describe(`LCHVitrine_Localize-${ OLSKRoutingLanguage }`, function () {
 		it('localizes OLSKLandingActionText', function () {
 			browser.assert.text('.OLSKLandingAction', uLocalized('OLSKWordingOpenApp'));
 		});
+
+		it('localizes OLSKLandingActionHref', function () {
+			browser.assert.attribute('.OLSKLandingAction', 'href', OLSKTestingCanonical(require('../open-compose/controller.js').OLSKControllerRoutes().shift(), {
+				OLSKRoutingLanguage,
+			}));
+		});
 	
 	});
 

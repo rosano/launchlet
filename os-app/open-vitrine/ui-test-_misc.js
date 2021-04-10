@@ -22,14 +22,6 @@ describe('LCHVitrine_Misc', function () {
 	
 	});
 
-	context('OLSKLanding', function test_OLSKLanding () {
-
-		it('sets OLSKLandingActionHref', function () {
-			browser.assert.attribute('.OLSKLandingAction', 'href', OLSKTestingCanonical(require('../open-compose/controller.js').OLSKControllerRoutes().shift()));
-		});
-	
-	});
-
 	context('OLSKAppFeaturesList', function test_OLSKAppFeaturesList () {
 
 		it('shows OLSKAppFeatureOpenSource', function () {
