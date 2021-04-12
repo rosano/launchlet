@@ -56,26 +56,9 @@
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {
-    "// OLDSKOOL": null,
-    "OLSKExpress": "olsk/OLSKExpress",
-
-    "// SVELTE & ROLLUP": null,
+    "OLSKPithToolchain": "olsk/OLSKPithToolchain",
     "OLSKRollupScaffold": "olsk/OLSKRollupScaffold",
-
-    "// PRODUCTION BUILD": null,
-    "OLSKDisk": "olsk/OLSKDisk",
-
-    "// SPEC": null,
-    "OLSKSpec": "olsk/OLSKSpec",
-
-    "// SPEC ACTIVE DOCUMENT FOCUS ELEMENTS": null,
     "jsdom": "latest",
-    
-    "// HOTFIX": null,
-    "OLSKHotfix": "olsk/OLSKHotfix",
-    
-    "// BUNDLE": null,
-    "OLSKBundle": "olsk/OLSKBundle",
     
     "// I sacrifice myself for the commas of others": null    
   }
