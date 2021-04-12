@@ -12,108 +12,53 @@
     "watch": "olsk-rollup-watch"
   },
   "dependencies": {
-    "// OLDSKOOL": null,
-    "OLSKExpress": "olsk/OLSKExpress",
-
-    "// 0DATA": null,
-    "zerodatawrap": "0dataapp/0datawrap",
-    "OLSKRemoteStorage": "olsk/OLSKRemoteStorage",
-    "webnative": "^0.21.3",
-    "OLSKCloud": "olsk/OLSKCloud",
-    "OLSKObject": "olsk/OLSKObject",
-    "OLSKTransport": "olsk/OLSKTransport",
-
-    "// UNIQUE IDS": null,
-    "ulid": "latest",
-
-    "// I18N": null,
-    "OLSKInternational": "olsk/OLSKInternational",
-    "OLSKString": "olsk/OLSKString",
-
     "// RECIPE URL": null,
     "url-parse": "latest",
 
     "// RECIPE LCHSaveFile": null,
     "file-saver": "latest",
 
-    "// FRONTEND NORMALIZE CSS": null,
-    "normalize.css": "latest",
-    "OLSKDecor": "olsk/OLSKDecor",
-
-    "// WORDING": null,
-    "OLSKWording": "olsk/OLSKWording",
-
-    "// VITRINE": null,
-    "OLSKCrown": "olsk/OLSKCrown",
-    "OLSKLanding": "olsk/OLSKLanding",
-    "OLSKAppFeatureList": "olsk/OLSKAppFeatureList",
-    "OLSKGazette": "olsk/OLSKGazette",
-    "SWARLink": "0dataapp/SWARLink",
-
-    "// FRONDEND EDITOR": null,
-    "codemirror": "rosano/CodeMirror#add-distribution",
-
-    "// FRONTEND THROTTLE": null,
-    "OLSKThrottle": "olsk/OLSKThrottle",
-
-    "// FRONTEND ROUTING": null,
-    "OLSKRouting": "olsk/OLSKRouting",
-
-    "// FRONTEND SERVICE WORKER": null,
-    "OLSKServiceWorker": "olsk/OLSKServiceWorker",
-
-    "// FRONTEND FUZZY SEARCH": null,
+    "// FUZZY SEARCH": null,
     "fuzzysort": "latest",
-
+    
     "// FRONTEND RECIPE LCHCopyToClipboard": null,
     "clipboard": "latest",
 
     "// FRONTEND EXPORT": null,
     "url-parse": "latest",
-    "jszip": "latest",
-
-    "// FRONTEND APP LAYOUT": null,
-    "OLSKDecor": "olsk/OLSKDecor",
-    "OLSKCatalog": "olsk/OLSKCatalog",
-    "OLSKMasterList": "olsk/OLSKMasterList",
-    "OLSKResults": "olsk/OLSKResults",
-    "OLSKUIAssets": "olsk/OLSKUIAssets",
-
-    "// FRONTEND APP TOOLBAR": null,
-    "OLSKAppToolbar": "olsk/OLSKAppToolbar",
-
-    "// APROPOS": null,
-    "OLSKModalView": "olsk/OLSKModalView",
-    "OLSKApropos": "olsk/OLSKApropos",
-
-    "// FRONTEND LANGUAGE SWITCHER": null,
-    "OLSKLanguageSwitcher": "olsk/OLSKLanguageSwitcher",
-
-    "// FUND": null,
-    "OLSKFund": "olsk/OLSKFund",
-    "OLSKWebView": "olsk/OLSKWebView",
-
-    "// FRONTEND ROOT LINK": null,
-    "OLSKRootLink": "olsk/OLSKRootLink",
-    "ROCORootLink": "rationalcreative/ROCORootLink",
-
-    "// WEBCRYPTO": null,
-    "simplecrypto": "encryb/simplecrypto",
 
     "// FLAGS": null,
     "acorn": "7.x",
 
-    "// DEMO": null,
-    "OLSKChain": "olsk/OLSKChain",
-    "OLSKBeacon": "olsk/OLSKBeacon",
-    "OLSKPointer": "olsk/OLSKPointer",
+    "// open-vitrine": null,
+    "OLSKPithVitrine": "olsk/OLSKPithVitrine",
 
-    "// TECH ROBOTS": null,
+    "// open-guide": null,
+    "OLSKPithGuide": "olsk/OLSKPithGuide",
+
+    "// open-compose": null,
+    "OLSKPithApp": "olsk/OLSKPithApp",
+    "OLSKCatalog": "olsk/OLSKCatalog",
+    "OLSKThrottle": "olsk/OLSKThrottle",
+    "codemirror": "rosano/CodeMirror#add-distribution",
+    "simplecrypto": "encryb/simplecrypto",
+    
+    "// dev-laucher": null,
+    "OLSKMasterList": "olsk/OLSKMasterList",
+    "OLSKResults": "olsk/OLSKResults",
+
+    "// tech-robots": null,
     "OLSKRobots": "olsk/OLSKRobots",
+
+    "// tech-sw": null,
+    "OLSKServiceWorker": "olsk/OLSKServiceWorker",
 
     "// I sacrifice myself for the commas of others": null
   },
   "devDependencies": {
+    "// OLDSKOOL": null,
+    "OLSKExpress": "olsk/OLSKExpress",
+
     "// SVELTE & ROLLUP": null,
     "OLSKRollupScaffold": "olsk/OLSKRollupScaffold",
 

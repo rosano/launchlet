@@ -27,7 +27,6 @@
 		'codemirror',
 		'file-saver',
 		'fuzzysort',
-		'jszip',
 		'normalize.css',
 		'OLSKLanguageSwitcher',
 		'OLSKDecor',
