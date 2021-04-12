@@ -66,7 +66,7 @@ const mod = {
 
 	// MESSAGE
 
-	OLSKMasterListDispatchFilter (inputData) {
+	OLSKNarrowDispatchFilter (inputData) {
 		mod.ControlFilter(inputData);
 	},
 
@@ -80,30 +80,30 @@ const mod = {
 
 };
 
-import OLSKMasterList from 'OLSKMasterList';
+import OLSKNarrow from 'OLSKNarrow';
 import LCHLauncherResultItem from '../LCHLauncherResultItem/main.svelte';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeyDown } />
 
 <div class="LCHLauncherPrompt">
 
-<OLSKMasterList
+<OLSKNarrow
 	OLSKCollectionItems={ mod._ValueItemsVisible }
 	OLSKCollectionItemsLocus={ mod._ValueItemSelected }
-	OLSKMasterListFilterText={ mod._ValueFilterText }
+	OLSKNarrowFilterText={ mod._ValueFilterText }
 	OLSKCollectionDispatchClick={ mod.OLSKCollectionDispatchClick }
 	OLSKCollectionDispatchArrow={ mod.OLSKCollectionDispatchArrow }
-	OLSKMasterListDispatchFilter={ mod.OLSKMasterListDispatchFilter }
+	OLSKNarrowDispatchFilter={ mod.OLSKNarrowDispatchFilter }
 	
 	let:OLSKCollectionItem={ item }
 	OLSKCollectionItemAccessibilitySummaryFunction={ (inputData) => inputData }	
 
-	OLSKMasterListFilterFieldClass={ 'LCHLauncherFilterInput' }
-	OLSKMasterListFilterFieldPlaceholderText={ LCHLauncherPromptFilterInputPlaceholderText }
-	OLSKMasterListFilterFieldAutofocus={ true }
-	OLSKMasterListFilterFieldClearButton={ false }
+	OLSKNarrowFilterFieldClass={ 'LCHLauncherFilterInput' }
+	OLSKNarrowFilterFieldPlaceholderText={ LCHLauncherPromptFilterInputPlaceholderText }
+	OLSKNarrowFilterFieldAutofocus={ true }
+	OLSKNarrowFilterFieldClearButton={ false }
 	>
-	<div slot="OLSKMasterListToolbarHead">
+	<div slot="OLSKNarrowToolbarHead">
 		{#if mod._ValueItemSelected }
 			<div class="LCHLauncherPromptSelectedItem">
 				<LCHLauncherResultItem LCHLauncherResultItemObject={ mod._ValueItemSelected }
@@ -115,6 +115,6 @@ import LCHLauncherResultItem from '../LCHLauncherResultItem/main.svelte';
 	</div>
 	<LCHLauncherResultItem LCHLauncherResultItemObject={ item }
 		/>
-</OLSKMasterList>
+</OLSKNarrow>
 
 </div>

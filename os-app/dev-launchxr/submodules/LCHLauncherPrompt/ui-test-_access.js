@@ -8,7 +8,7 @@ Object.entries({
 
 	LCHLauncherFilterInput: '.LCHLauncherFilterInput',
 
-	LCHLauncherPromptResultItem: '.OLSKMasterListBody .LCHLauncherResultItem',
+	LCHLauncherPromptResultItem: '.OLSKNarrowBody .LCHLauncherResultItem',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
@@ -25,8 +25,8 @@ describe('LCHLauncherPrompt_Access', function () {
 		browser.assert.elements(LCHLauncherPrompt, 1);
 	});
 
-	it('shows OLSKMasterList', function () {
-		browser.assert.elements('.OLSKMasterList', 1);
+	it('shows OLSKNarrow', function () {
+		browser.assert.elements('.OLSKNarrow', 1);
 	});
 
 	it('shows LCHLauncherFilterInput', function () {

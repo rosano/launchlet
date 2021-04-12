@@ -843,7 +843,7 @@ const mod = {
 		}
 
 		setTimeout(function () {
-			document.querySelector('.OLSKMasterListFilterField').focus();
+			document.querySelector('.OLSKNarrowFilterField').focus();
 		})
 	},
 
@@ -1104,7 +1104,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 
 	<!-- MASTER -->
 
-	<div class="OLSKToolbarElementGroup" slot="OLSKMasterListToolbarTail">
+	<div class="OLSKToolbarElementGroup" slot="OLSKNarrowToolbarTail">
 		<button class="LCHComposeCreateButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton" title={ OLSKLocalized('LCHComposeCreateButtonText') } on:click={ mod.InterfaceCreateButtonDidClick } accesskey="n">
 			<div class="LCHComposeCreateButtonImage">{@html OLSKUIAssets._OLSKSharedCreate }</div>
 		</button>

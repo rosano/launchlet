@@ -28,8 +28,8 @@ describe('LCHLauncherCommand_Access', function () {
 		browser.assert.elements(LCHLauncherFilterInput, 1);
 	});
 
-	it('shows OLSKMasterList', function () {
-		browser.assert.elements('.OLSKMasterList', 1);
+	it('shows OLSKNarrow', function () {
+		browser.assert.elements('.OLSKNarrow', 1);
 	});
 
 	it('hides LCHLauncherResultItem', function () {
