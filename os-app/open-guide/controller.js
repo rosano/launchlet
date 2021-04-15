@@ -34,7 +34,7 @@ function OLSKRouteFunction (req, res, next) {
 				LCHDocumentName: 'Shout',
 				LCHDocumentInputTypes: 'String',
 				LCHDocumentCallbackArgs: 'message',
-				LCHDocumentCallbackBody: 'alert(message.toUppercase())',
+				LCHDocumentCallbackBody: 'alert(message.toUpperCase())',
 			}),
 			LCHGuideTokenExamplePageRecipe: require('./ui-logic.js').LCHGuideStringify({
 				LCHRecipeName: 'Say Hello',
