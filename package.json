@@ -39,7 +39,6 @@
     "// open-compose": null,
     "OLSKPithApp": "olsk/OLSKPithApp",
     "OLSKCatalog": "olsk/OLSKCatalog",
-    "OLSKThrottle": "olsk/OLSKThrottle",
     "codemirror": "rosano/CodeMirror#add-distribution",
     "simplecrypto": "encryb/simplecrypto",
     
