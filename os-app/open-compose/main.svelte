@@ -195,7 +195,6 @@ const mod = {
 		}));
 
 		items.push(...OLSKTransport.OLSKTransportRecipes({
-			ParamWindow: window,
 			OLSKLocalized: OLSKLocalized,
 			OLSKTransportDispatchImportJSON: mod.OLSKTransportDispatchImportJSON,
 			OLSKTransportDispatchExportInput: mod.OLSKTransportDispatchExportInput,
@@ -204,7 +203,6 @@ const mod = {
 
 		if (mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolRemoteStorage()) {
 			items.push(...OLSKRemoteStorage.OLSKRemoteStorageRecipes({
-				ParamWindow: window,
 				ParamStorage: mod._ValueZDRWrap.ZDRStorageClient(),
 				OLSKLocalized: OLSKLocalized,
 				ParamMod: mod,
@@ -215,7 +213,6 @@ const mod = {
 		items.push(...OLSKServiceWorker.OLSKServiceWorkerRecipes(window, mod.DataNavigator(), OLSKLocalized, OLSK_SPEC_UI()));
 
 		items.push(...OLSKFund.OLSKFundRecipes({
-			ParamWindow: window,
 			OLSKLocalized: OLSKLocalized, 
 			ParamConnected: !!mod._ValueCloudIdentity,
 			ParamAuthorized: !!mod._ValueFundClue,
@@ -675,7 +672,6 @@ const mod = {
 				ParamLanguageCodes: window.OLSKPublicConstants('OLSKSharedPageLanguagesAvailable'),
 				ParamCurrentLanguage: window.OLSKPublicConstants('OLSKSharedPageCurrentLanguage'),
 				ParamSpecUI: OLSK_SPEC_UI(),
-				ParamWindow: window,
 				ParamRouteConstant: window.OLSKPublicConstants('OLSKSharedActiveRouteConstant'),
 				OLSKCanonical: window.OLSKCanonical,
 			}).map(function (e) {
@@ -710,7 +706,6 @@ const mod = {
 		mod._OLSKWebView.modPublic.OLSKModalViewShow();
 
 		OLSKFund.OLSKFundListen({
-			ParamWindow: window,
 			OLSKFundDispatchReceive: mod.OLSKFundDispatchReceive,
 		});
 	},
@@ -1008,7 +1003,6 @@ const mod = {
 		mod._ValueFundClue = await mod.DataSettingValue('LCHSettingFundClue');
 
 		await OLSKFund.OLSKFundSetupPostPay({
-			ParamWindow: window,
 			ParamExistingClue: mod._ValueFundClue || null,
 			OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
 		});
@@ -1028,7 +1022,6 @@ const mod = {
 		const item = {
 			OLSK_CRYPTO_PAIR_RECEIVER_PRIVATE: `OLSK_CRYPTO_PAIR_RECEIVER_PRIVATE_SWAP_TOKEN${ '' }`, // #purge
 			OLSK_CRYPTO_PAIR_SENDER_PUBLIC: 'OLSK_CRYPTO_PAIR_SENDER_PUBLIC_SWAP_TOKEN',
-			ParamWindow: window,
 			OLSK_FUND_API_URL: 'OLSK_FUND_API_URL_SWAP_TOKEN',
 			ParamBody: {
 				OLSKPactAuthType: mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolRemoteStorage() ? OLSKPact.OLSKPactAuthTypeRemoteStorage() : OLSKPact.OLSKPactAuthTypeFission(),
