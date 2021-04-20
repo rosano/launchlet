@@ -4,7 +4,7 @@ export let LCHComposeListItem;
 import LCHComposeLogic from './ui-logic.js';
 </script>
 
-<div class="LCHComposeListItem OLSKCommonEdgeBottom" class:LCHComposeListItemFlagged={ LCHComposeListItem.LCHDocumentIsFlagged }>
+<div class="LCHComposeListItem" class:LCHComposeListItemFlagged={ LCHComposeListItem.LCHDocumentIsFlagged }>
 
 {#if LCHComposeListItem.LCHDocumentIsFlagged }
 	<strong class="LCHComposeListItemFlaggedAlert">⚠️</strong>

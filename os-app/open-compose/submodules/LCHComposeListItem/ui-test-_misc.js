@@ -14,14 +14,6 @@ describe('LCHComposeListItem_Misc', function () {
 		});
 	});
 
-	describe('LCHComposeListItem', function test_LCHComposeListItem () {
-		
-		it('classes OLSKCommonEdgeBottom', function () {
-			browser.assert.hasClass(LCHComposeListItem, 'OLSKCommonEdgeBottom');
-		});
-	
-	});
-
 	describe('LCHComposeListItemTitle', function test_LCHComposeListItemTitle () {
 		
 		it('binds LCHComposeListItemTitle', function () {

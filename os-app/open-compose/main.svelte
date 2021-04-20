@@ -1040,6 +1040,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 	bind:this={ mod._OLSKCatalog }
 
 	OLSKCollectionItemAccessibilitySummaryFunction={ mod.OLSKCollectionItemAccessibilitySummaryFunction }
+	OLSKCollectionItemClass={ 'OLSKCommonEdgeBottom' }
 
 	OLSKCatalogSortFunction={ LCHComposeLogic.LCHComposeSortFunction }
 	OLSKCatalogIsMatch={ LCHComposeLogic.LCHComposeIsMatch }
