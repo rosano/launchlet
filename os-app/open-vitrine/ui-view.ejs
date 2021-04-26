@@ -75,6 +75,7 @@ locals.OLSKPagePublicConstants = {
 <a class="LCHVitrineTutorialsButton OLSKDecorPress OLSKDecorPressCall" href="<%= process.env.LCH_VITRINE_TUTORIALS_URL %>"><%= OLSKLocalized('LCHVitrineTutorialsButtonText') %></a>
 
 <h1 class="LCHVitrineGazetteHeading"><%= OLSKLocalized('OLSKGazetteHeadingText') %></h1>
+<%- include('../../node_modules/OLSKFollow/main.ejs') %>
 <%- include('../../node_modules/OLSKGazette/main.ejs', {
 	OLSKGazetteProject: 'RP_001',
 }) %>
