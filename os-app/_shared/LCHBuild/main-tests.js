@@ -179,32 +179,6 @@ describe('LCHBuildRecipeArrayString', function test_LCHBuildRecipeArrayString() 
 
 });
 
-describe('LCHBuildStripLivereload', function test_LCHBuildStripLivereload() {
-
-	it('throws error if not string', function() {
-		throws(function() {
-			mod.LCHBuildStripLivereload(null);
-		}, /LCHErrorInputNotValid/);
-	});
-
-	it('returns string', function() {
-		deepEqual(mod.LCHBuildStripLivereload(''), '');
-	});
-
-	it('strips single', function() {
-		deepEqual(mod.LCHBuildStripLivereload(`alfa(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':1234567890/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e);})(document, 'script');bravo`), 'alfabravo');
-	});
-
-	it('strips multiple', function() {
-		deepEqual(mod.LCHBuildStripLivereload(`alfa(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':1234567890/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e);})(document, 'script');bravo(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':5000/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e);})(document, 'script');charlie`), 'alfabravocharlie');
-	});
-
-	it('strips legacy', function() {
-		deepEqual(mod.LCHBuildStripLivereload(`alfa(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':1234567890/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');bravo`), 'alfabravo');
-	});
-
-});
-
 describe('LCHBuildStripSourceMap', function test_LCHBuildStripSourceMap() {
 
 	it('throws error if not string', function() {

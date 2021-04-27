@@ -24,13 +24,4 @@ describe('LCHPackageRollupConfigCustom', function test_LCHPackageRollupConfigCus
 		}).output.file, require('path').join(__dirname, '__compiled/launchlet.js'));
 	});
 
-	it('removes livereload', function() {
-		deepEqual(mod.LCHPackageRollupConfigCustom({
-			output: {},
-			plugins: [{
-				name: 'livereload',
-			}],
-		}).plugins, []);
-	});
-
 });

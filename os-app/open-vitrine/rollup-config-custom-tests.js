@@ -17,13 +17,4 @@ describe('LCHVitrineRollupConfigCustom', function test_LCHVitrineRollupConfigCus
 		}).output.name, 'LCHVitrineBehaviour');
 	});
 
-	it('removes livereload', function() {
-		deepEqual(mod.LCHVitrineRollupConfigCustom({
-			output: {},
-			plugins: [{
-				name: 'livereload',
-			}],
-		}).plugins, []);
-	});
-
 });

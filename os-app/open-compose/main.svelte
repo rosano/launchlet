@@ -64,7 +64,7 @@ const mod = {
 	},
 
 	DataPackageScript () {
-		return [window.LCHComposeBuildPackageScript.textContent].map(LCHBuild.LCHBuildStripLivereload).map(LCHBuild.LCHBuildStripSourceMap).pop();
+		return [window.LCHComposeBuildPackageScript.textContent].map(LCHBuild.LCHBuildStripSourceMap).pop();
 	},
 
 	DataPackageOptions () {

@@ -1,7 +1,3 @@
-exports.OLSKControllerUseLivereload = function() {
-	return process.env.NODE_ENV === 'development';
-};
-
 function OLSKRouteFunction (req, res, next) {
 	const { LCHGuideExampleFormatted, LCHGuideExampleQuoted, LCHGuideExampleTemplate } = require('./ui-logic.js');
 	function _LCHGuideExampleTemplate(inputData) {

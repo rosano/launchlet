@@ -79,14 +79,6 @@ const mod = {
 		}).map(mod.LCHBuildObjectString).join(',') }]`;
 	},
 
-	LCHBuildStripLivereload (inputData) {
-		if (typeof inputData !== 'string') {
-			throw new Error('LCHErrorInputNotValid');
-		}
-
-		return inputData.split(`(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':`).join('__LIVERELOADSTART__').split(`/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)`).join('').split(`})(document, 'script');`).join('__LIVERELOADEND__').replace(/__LIVERELOADSTART__[\d;]+__LIVERELOADEND__/g, '');
-	},
-
 	LCHBuildStripSourceMap (inputData) {
 		if (typeof inputData !== 'string') {
 			throw new Error('LCHErrorInputNotValid');
