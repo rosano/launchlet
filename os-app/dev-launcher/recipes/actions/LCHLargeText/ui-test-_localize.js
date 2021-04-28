@@ -6,7 +6,7 @@ const uLocalized = function (inputData) {
 	return OLSKTestingLocalized(inputData, OLSKRoutingLanguage);
 };
 	
-describe(`LCHLargeText_Localize-${ OLSKRoutingLanguage }`, function () {
+describe('LCHLargeText_Localize-' + OLSKRoutingLanguage, function () {
 	
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {

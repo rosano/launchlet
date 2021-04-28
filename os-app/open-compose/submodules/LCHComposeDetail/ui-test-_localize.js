@@ -6,7 +6,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 		return OLSKTestingLocalized(inputData, OLSKRoutingLanguage);
 	};
 
-	describe(`LCHComposeDetail_Localize-${ OLSKRoutingLanguage }`, function () {
+	describe('LCHComposeDetail_Localize-' + OLSKRoutingLanguage, function () {
 
 		context('LCHComposeDetailItem', function() {
 		
