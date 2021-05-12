@@ -21,6 +21,8 @@ Object.entries({
 
 	LCHVitrineGazetteHeading: '.LCHVitrineGazetteHeading',
 
+	LCHVitrineLatestHeading: '.LCHVitrineLatestHeading',
+
 	LCHVitrineSupportHeading: '.LCHVitrineSupportHeading',
 	LCHVitrineSupportBlurb: '.LCHVitrineSupportBlurb',
 
@@ -121,6 +123,14 @@ describe('LCHVitrine_Access', function () {
 
 	it('shows OLSKGazette', function () {
 		browser.assert.elements('.OLSKGazette', 1);
+	});
+
+	it('shows LCHVitrineLatestHeading', function () {
+		browser.assert.elements(LCHVitrineLatestHeading, 1);
+	});
+
+	it('shows ROCOForum', function () {
+		browser.assert.elements('.ROCOForum', 1);
 	});
 
 	it('shows LCHVitrineSupportHeading', function () {
