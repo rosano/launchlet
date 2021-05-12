@@ -265,6 +265,14 @@ describe('LCHCompose_Misc', function () {
 	
 	});
 
+	describe('OLSKAppToolbarGuideLink', function test_OLSKAppToolbarGuideLink() {
+
+		it('binds OLSKAppToolbarGuideURL', function () {
+			browser.assert.attribute('.OLSKAppToolbarGuideLink', 'href', OLSKTestingCanonical(require('../open-guide/controller.js').OLSKControllerRoutes().shift()));
+		});
+
+	});
+
 	describe('LCHComposeCloudToolbar', function test_LCHComposeCloudToolbar () {
 
 		before(function () {
