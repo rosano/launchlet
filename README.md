@@ -1,4 +1,4 @@
-<a href="https://launchlet.dev"><img alt="Project logo" src="https://rosano.s3.amazonaws.com/public/launchlet/identity.svg" width="64" /></a>
+<a href="https://launchlet.dev"><img alt="Project logo" src="https://static.rosano.ca/launchlet/identity.svg" width="64" /></a>
 
 # Launchlet
 
@@ -10,7 +10,7 @@ You can run Launchlet as a [bookmarklet](https://launchlet.dev/compose), [browse
 
 There is also an app where you can compose a launcher personalized with your own Recipes.
 
-<a href="https://launchlet.dev/compose"><img alt="Open app" src="http://rosano.s3.amazonaws.com/public/_shared/_RCSAppButton.svg" /></a>
+<a href="https://launchlet.dev/compose"><img alt="Open app" src="http://static.rosano.ca/_shared/_RCSAppButton.svg" /></a>
 
 ## Architecture
 
