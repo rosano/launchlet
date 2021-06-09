@@ -21,6 +21,8 @@ Object.entries({
 
 	LCHVitrineGazetteHeading: '.LCHVitrineGazetteHeading',
 
+	LCHVitrineJarHeading: '.LCHVitrineJarHeading',
+
 	LCHVitrineLatestHeading: '.LCHVitrineLatestHeading',
 
 	LCHVitrineSupportHeading: '.LCHVitrineSupportHeading',
@@ -123,6 +125,14 @@ describe('LCHVitrine_Access', function () {
 
 	it('shows OLSKGazette', function () {
 		browser.assert.elements('.OLSKGazette', 1);
+	});
+
+	it('shows LCHVitrineJarHeading', function () {
+		browser.assert.elements(LCHVitrineJarHeading, 1);
+	});
+
+	it('shows OLSKJar', function () {
+		browser.assert.elements('.OLSKJar', 1);
 	});
 
 	it('shows LCHVitrineLatestHeading', function () {
