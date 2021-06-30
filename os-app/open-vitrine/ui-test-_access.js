@@ -167,12 +167,12 @@ describe('LCHVitrine_Access', function () {
 		browser.assert.elements(LCHVitrineBrueghel, 1)
 	});
 
-	it('shows SWARLink', function() {
-		browser.assert.elements('.SWARLink', 1)
+	it('shows SWARLink', function () {
+		browser.assert.elements('.SWARLink', 1);
 	});
 
 	it('shows ROCORootLink', function() {
-		browser.assert.elements('.ROCORootLink', 1)
+		browser.assert.elements('.ROCORootLink', 1);
 	});
 
 });
