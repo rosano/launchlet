@@ -19,8 +19,6 @@ Object.entries({
 
 	LCHVitrineTutorialsButton: '.LCHVitrineTutorialsButton',
 
-	LCHVitrineGazetteHeading: '.LCHVitrineGazetteHeading',
-
 	LCHVitrineJarHeading: '.LCHVitrineJarHeading',
 
 	LCHVitrineLatestHeading: '.LCHVitrineLatestHeading',
@@ -115,16 +113,8 @@ describe('LCHVitrine_Access', function () {
 		browser.assert.elements(LCHVitrineTutorialsButton, 1);
 	});
 
-	it('shows LCHVitrineGazetteHeading', function () {
-		browser.assert.elements(LCHVitrineGazetteHeading, 1);
-	});
-
-	it('shows OLSKFollow', function () {
-		browser.assert.elements('.OLSKFollow', 1);
-	});
-
-	it('shows ROCOBulletin', function () {
-		browser.assert.elements('.ROCOBulletin', 1);
+	it('shows ROCOGazette', function () {
+		browser.assert.elements('.ROCOGazette', 1);
 	});
 
 	it('shows LCHVitrineJarHeading', function () {
