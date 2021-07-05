@@ -55,7 +55,7 @@ describe('LCHVitrine_Localize-' + OLSKRoutingLanguage, function () {
 	});
 
 	it('localizes LCHVitrineGazetteHeading', function () {
-		browser.assert.text(LCHVitrineGazetteHeading, uLocalized('OLSKGazetteHeadingText'));
+		browser.assert.text(LCHVitrineGazetteHeading, uLocalized('ROCOBulletinHeadingText'));
 	});
 
 	it('localizes LCHVitrineJarHeading', function () {
