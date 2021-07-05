@@ -19,8 +19,6 @@ Object.entries({
 
 	LCHVitrineTutorialsButton: '.LCHVitrineTutorialsButton',
 
-	LCHVitrineJarHeading: '.LCHVitrineJarHeading',
-
 	LCHVitrineLatestHeading: '.LCHVitrineLatestHeading',
 
 	LCHVitrineSupportHeading: '.LCHVitrineSupportHeading',
@@ -115,10 +113,6 @@ describe('LCHVitrine_Access', function () {
 
 	it('shows ROCOGazette', function () {
 		browser.assert.elements('.ROCOGazette', 1);
-	});
-
-	it('shows LCHVitrineJarHeading', function () {
-		browser.assert.elements(LCHVitrineJarHeading, 1);
 	});
 
 	it('shows OLSKJar', function () {

@@ -54,10 +54,6 @@ describe('LCHVitrine_Localize-' + OLSKRoutingLanguage, function () {
 		browser.assert.text(LCHVitrineTutorialsButton, uLocalized('LCHVitrineTutorialsButtonText'));
 	});
 
-	it('localizes LCHVitrineJarHeading', function () {
-		browser.assert.text(LCHVitrineJarHeading, uLocalized('OLSKJarHeadingText'));
-	});
-
 	it('localizes LCHVitrineLatestHeading', function () {
 		browser.assert.text(LCHVitrineLatestHeading, uLocalized('OLSKWordingLatestHeading'));
 	});
