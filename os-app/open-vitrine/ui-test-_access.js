@@ -19,8 +19,6 @@ Object.entries({
 
 	LCHVitrineTutorialsButton: '.LCHVitrineTutorialsButton',
 
-	LCHVitrineLatestHeading: '.LCHVitrineLatestHeading',
-
 	LCHVitrineSupportHeading: '.LCHVitrineSupportHeading',
 	LCHVitrineSupportBlurb: '.LCHVitrineSupportBlurb',
 
@@ -117,10 +115,6 @@ describe('LCHVitrine_Access', function () {
 
 	it('shows OLSKJar', function () {
 		browser.assert.elements('.OLSKJar', 1);
-	});
-
-	it('shows LCHVitrineLatestHeading', function () {
-		browser.assert.elements(LCHVitrineLatestHeading, 1);
 	});
 
 	it('shows ROCOForum', function () {
