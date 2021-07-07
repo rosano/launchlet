@@ -34,7 +34,6 @@
 		'OLSKRouting',
 		'OLSKServiceWorker',
 		'OLSKUIAssets',
-		'OLSKBanner',
 		'ROCORootLink',
 		'simplecrypto',
 		'webnative',
