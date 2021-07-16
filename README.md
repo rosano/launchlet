@@ -1,6 +1,6 @@
 <a href="https://launchlet.dev"><img alt="Project logo" src="https://static.rosano.ca/launchlet/identity.svg" width="64" /></a>
 
-# Launchlet
+# [Launchlet](https://launchlet.dev)
 
 _Customize the web with JavaScript or CSS_
 
