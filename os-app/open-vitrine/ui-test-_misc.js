@@ -108,6 +108,14 @@ describe('LCHVitrine_Misc', function () {
 			browser.assert.attribute(LCHVitrineTutorialsButton, 'href', process.env.LCH_VITRINE_TUTORIALS_URL);
 		});
 	
+	});	
+
+	describe('OLSKEdit', function test_OLSKEdit () {
+
+		it('sets OLSKEditURL', function () {
+			browser.assert.attribute('.OLSKEdit', 'href', process.env.OLSK_REPO_URL);
+		});
+
 	});
 
 	describe('ROCOGazette', function test_ROCOGazette () {
