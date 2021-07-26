@@ -73,16 +73,16 @@ locals.OLSKPagePublicConstants = {
 
 <a class="LCHVitrineTutorialsButton OLSKDecorPress OLSKDecorPressCall" href="<%= process.env.LCH_VITRINE_TUTORIALS_URL %>"><%= OLSKLocalized('LCHVitrineTutorialsButtonText') %></a>
 
-<%- include('../../node_modules/OLSKEdit/main.ejs', {
-	OLSKEditURL: process.env.OLSK_REPO_URL,
-}) %>
-
 <%- include('../../node_modules/ROCOGazette/main.ejs', {
 	_OLSKModulesDirPrefix: '../.',
 	ROCOBulletinProject: 'RP_001',
 }) %>
 
 <%- include('../../node_modules/OLSKJar/main.ejs') %>
+
+<%- include('../../node_modules/OLSKEdit/main.ejs', {
+	OLSKEditURL: process.env.OLSK_REPO_URL,
+}) %>
 
 <%- include('../../node_modules/ROCOForum/main.ejs', {
 	ROCOForumTopic: process.env.ROCO_FORUM_TOPIC,
