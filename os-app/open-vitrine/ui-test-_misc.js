@@ -10,6 +10,22 @@ describe('LCHVitrine_Misc', function () {
 		browser.assert.attribute('link[rel="manifest"]', 'href', require('../tech-manifest/controller.js').OLSKControllerRoutes().shift().OLSKRoutePath);
 	});
 
+	describe('LCHVitrine', function () {
+
+		it('classes OLSKDecor', function () {
+			browser.assert.hasClass(LCHVitrine, 'OLSKDecor');
+		});
+
+		it('classes OLSKDecorCapped', function () {
+			browser.assert.hasClass(LCHVitrine, 'OLSKDecorCapped');
+		});
+
+		it('classes OLSKDecorNoTopPad', function () {
+			browser.assert.hasClass(LCHVitrine, 'OLSKDecorNoTopPad');
+		});
+
+	});
+
 	it('sets LCHPageRecipes', function() {
 		browser.assert.deepEqual(browser.evaluate('Array.isArray(window.LCHPageRecipes)'), true);
 	});
