@@ -3,6 +3,10 @@
 	font-size: 9pt;
 }
 
+.OLSKCollectionChunkItems > .OLSKCollectionItem :first-child {
+	width: 100%;
+}
+
 .OLSKBanner {
 	display: none;
 }
