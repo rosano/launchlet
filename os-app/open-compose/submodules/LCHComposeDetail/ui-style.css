@@ -34,6 +34,10 @@
 	background: #ffff66;
 }
 
+.LCHComposeDetailForm {
+	--OLSKCommonFontSize: 9pt;
+}
+
 .LCHComposeDetailFormInputTypesField {
 	max-width: 120px;
 }
