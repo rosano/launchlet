@@ -15,6 +15,10 @@ describe('LCHComposePair_Misc', function () {
 	});
 
 	describe('LCHComposePairSubmitButton', function test_LCHComposePairSubmitButton () {
+
+		it('classes OLSKDecorPress', function () {
+			browser.assert.hasClass(LCHComposePairSubmitButton, 'OLSKDecorPress');
+		});
 		
 		context('click', function () {
 			

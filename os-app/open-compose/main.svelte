@@ -1106,7 +1106,7 @@ import OLSKUIAssets from 'OLSKUIAssets';
 
 		<div>
 			{#if !mod._ValueToolsPairIsVisible}
-				<button class="LCHComposeToolsPairButton" on:click={ mod.InterfaceToolsPairButtonDidClick }>{ OLSKLocalized('LCHComposeToolsPairButtonText') }</button>
+				<button class="LCHComposeToolsPairButton OLSKDecorPress" on:click={ mod.InterfaceToolsPairButtonDidClick }>{ OLSKLocalized('LCHComposeToolsPairButtonText') }</button>
 			{/if}
 
 			{#if mod._ValueToolsPairIsVisible}

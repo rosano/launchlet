@@ -26,7 +26,7 @@ const mod = {
 	<form on:submit={ mod.InterfaceFormDidSubmit }>
 		<input class="LCHComposePairKeyField" placeholder={ OLSKLocalized('LCHComposePairKeyFieldText') } bind:value={ mod._ValueKey } autofocus />
 
-		<button class="LCHComposePairSubmitButton">{ OLSKLocalized('LCHComposePairSubmitButtonText') }</button>
+		<button class="LCHComposePairSubmitButton OLSKDecorPress">{ OLSKLocalized('LCHComposePairSubmitButtonText') }</button>
 	</form>
 {/if}
 

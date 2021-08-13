@@ -226,6 +226,14 @@ describe('LCHCompose_Misc', function () {
 			browser.assert.hasClass(LCHComposeTools, 'OLSKCommonEdgeTop');
 		});
 
+		describe('LCHComposeToolsPairButton', function test_LCHComposeToolsPairButton () {
+			
+			it('classes OLSKDecorPress', function () {
+				browser.assert.hasClass(LCHComposeToolsPairButton, 'OLSKDecorPress');
+			});
+			
+		});
+
 		context('LCHComposeToolsPairStatusFailedError', function test_LCHComposeToolsPairStatusFailedError () {
 
 			before(function () {
