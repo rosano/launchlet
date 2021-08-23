@@ -98,7 +98,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 				it('localizes LCHComposeDetailDiscardConfirm', function() {
 					browser.assert.OLSKConfirmQuestion(function () {
 						return browser.pressButton(LCHComposeDetailToolbarDiscardButton);
-					}, uLocalized('LCHComposeDetailDiscardConfirmText'));
+					}, uLocalized('OLSKWordingConfirmText'));
 				});
 		
 			});
