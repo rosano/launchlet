@@ -38,6 +38,10 @@
 	--OLSKCommonFontSize: 9pt;
 }
 
+.LCHComposeDetailForm p {
+	margin: 5px;
+}
+
 .LCHComposeDetailFormInputTypesField {
 	max-width: 120px;
 }
