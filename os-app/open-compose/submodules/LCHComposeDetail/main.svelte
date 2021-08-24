@@ -14,9 +14,9 @@ import _OLSKSharedDiscard from '../../../_shared/__external/OLSKUIAssets/_OLSKSh
 import LCHComposeInput from '../LCHComposeInput/main.svelte';
 </script>
 
-<div class="LCHComposeDetail">
+<div class="LCHComposeDetail ROCOStandardView">
 
-<header class="LCHComposeDetailToolbar OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeBottom OLSKMobileViewHeader">
+<header class="LCHComposeDetailToolbar OLSKToolbar OLSKToolbarJustify OLSKCommonEdgeBottom OLSKMobileViewHeader ROCOStandardViewHead">
 	<div class="OLSKToolbarElementGroup">
 		<button class="LCHComposeDetailToolbarBackButton OLSKDecorButtonNoStyle OLSKDecorTappable OLSKToolbarButton OLSKVisibilityMobile" title={ OLSKLocalized('LCHComposeDetailToolbarBackButtonText') } on:click={ LCHComposeDetailDispatchBack }>
 			<div class="LCHComposeDetailToolbarBackButtonImage">{@html _OLSKSharedBack }</div>
@@ -33,7 +33,7 @@ import LCHComposeInput from '../LCHComposeInput/main.svelte';
 	</div>
 </header>
 
-<div class="LCHComposeDetailForm OLSKDecor OLSKDecorBigForm">
+<div class="LCHComposeDetailForm OLSKDecor OLSKDecorBigForm ROCOStandardViewBody">
 
 {#if LCHComposeDetailItem.LCHDocumentIsFlagged}
 	<div class="LCHComposeDetailFlagAlert">{ LCHComposeDetailItem.LCHDocumentSyntaxErrorMessage || OLSKLocalized('LCHComposeDetailFlagAlertText') }</div>

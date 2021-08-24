@@ -27,13 +27,21 @@ describe('LCHComposeDetail_Misc', function () {
 
 	});
 
-	describe('LCHComposeDetailToolbar', function test_LCHComposeDetailToolbar () {
+	describe('LCHComposeDetail', function test_LCHComposeDetail () {
 
 		before(function() {
 			return browser.OLSKVisit(kDefaultRoute, {
 				LCHComposeDetailItem: JSON.stringify({}),
 			});
 		});
+
+		it('classes ROCOStandardView', function () {
+			browser.assert.hasClass(LCHComposeDetail, 'ROCOStandardView');
+		});
+
+	});
+
+	describe('LCHComposeDetailToolbar', function test_LCHComposeDetailToolbar () {
 
 		it('classes OLSKToolbar', function () {
 			browser.assert.hasClass(LCHComposeDetailToolbar, 'OLSKToolbar');
@@ -49,6 +57,10 @@ describe('LCHComposeDetail_Misc', function () {
 		
 		it('classes OLSKMobileViewHeader', function () {
 			browser.assert.hasClass(LCHComposeDetailToolbar, 'OLSKMobileViewHeader');
+		});
+
+		it('classes ROCOStandardViewHead', function () {
+			browser.assert.hasClass(LCHComposeDetailToolbar, 'ROCOStandardViewHead');
 		});
 	
 	});
@@ -185,6 +197,10 @@ describe('LCHComposeDetail_Misc', function () {
 
 		it('classes OLSKDecorBigForm', function () {
 			browser.assert.hasClass(LCHComposeDetailForm, 'OLSKDecorBigForm');
+		});
+
+		it('classes ROCOStandardViewBody', function () {
+			browser.assert.hasClass(LCHComposeDetailToolbar, 'ROCOStandardViewBody');
 		});
 
 	});
