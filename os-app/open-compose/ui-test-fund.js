@@ -6,7 +6,7 @@ describe('LCHCompose_Fund', function () {
 
 		kDefaultRoute,
 
-		ParamProject: 'RP_001',
+		ParamProject: process.env.ROCO_SHARED_PROJECT_ID,
 		
 		ParamTriggerGate () {
 			return browser.pressButton('.LCHComposeCreateButton');
