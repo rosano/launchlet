@@ -3,7 +3,7 @@ const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 describe('LCHManifest_Misc', function () {
 
 	it('sends json', async function () {
-		browser.assert.deepEqual(await (await browser.fetch('http://loc.tests' + kDefaultRoute.OLSKRoutePath)).json(), {
+		browser.assert.deepEqual(await (await browser.fetch('http://localhost' + kDefaultRoute.OLSKRoutePath)).json(), {
 			name: 'Launchlet',
 			short_name: 'Launchlet',
 			start_url: require('../open-compose/controller.js').OLSKControllerRoutes().shift().OLSKRoutePath,
