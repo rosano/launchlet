@@ -594,6 +594,8 @@ const mod = {
 		mod._ValueCloudIdentity = null;
 
 		zerodatawrap.ZDRPreferenceProtocolClear();
+
+		localStorage.clear();
 	},
 
 	ZDRParamDispatchError (error) {
