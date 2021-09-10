@@ -48,6 +48,18 @@ const mod = {
 		}).shift() || 0;
 	},
 
+	LCHComposeCloned (inputData) {
+		if (typeof inputData !== 'object' || inputData === null) {
+			throw new Error('LCHErrorInputNotValid');
+		}
+
+		const outputData = Object.assign({}, inputData);
+
+		delete outputData.LCHDocumentID;
+
+		return outputData;
+	},
+
 	LCHComposePublicKeyIsValid (inputData) {
 		if (typeof inputData !== 'string') {
 			throw new Error('LCHErrorInputNotValid');

@@ -165,6 +165,32 @@ describe('LCHComposePublicKeyIsValid', function test_LCHComposePublicKeyIsValid(
 
 });
 
+describe('LCHComposeCloned', function test_LCHComposeCloned() {
+
+	it('throws if not object', function () {
+		throws(function () {
+			mod.LCHComposeCloned(null);
+		}, /LCHErrorInputNotValid/);
+	});
+
+	it('returns input', function() {
+		deepEqual(mod.LCHComposeCloned({}), {});
+	});
+
+	it('returns copy', function() {
+		const item = {};
+		require('assert').notStrictEqual(mod.LCHComposeCloned(item), item);
+	});
+
+	it('removes LCHDocumentID', function() {
+		const item = StubDocumentObjectValid({
+			LCHDocumentID: Math.random().toString(),
+		});
+		deepEqual(mod.LCHComposeCloned(item).LCHDocumentID, undefined);
+	});
+
+});
+
 describe('LBXResponseIsValid', function test_LBXResponseIsVald() {
 
 	it('throws error if not object', function() {
