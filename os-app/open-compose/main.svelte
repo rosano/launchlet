@@ -310,11 +310,7 @@ const mod = {
 	},
 	
 	async ControlDocumentClone (inputData) {
-		const item = Object.assign({}, inputData);
-
-		delete item.LCHDocumentID;
-
-		mod.ControlDocumentCreate(item);
+		mod.ControlDocumentCreate(LCHComposeLogic.LCHComposeCloned(inputData));
 	},
 	
 	ControlDocumentDiscard (inputData) {
