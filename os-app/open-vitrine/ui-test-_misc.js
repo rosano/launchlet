@@ -64,6 +64,10 @@ describe('LCHVitrine_Misc', function () {
 
 	describe('LCHVitrineVideo1', function () {
 
+		it('classes OLSKCommonVideoListItemMobile', function () {
+			browser.assert.hasClass(LCHVitrineVideo1, 'OLSKCommonVideoListItemMobile');
+		});
+
 		it('sets src', function () {
 			browser.assert.attribute(LCHVitrineVideo1, 'src', process.env.LCH_VITRINE_VIDEO_URL_1);
 		});
