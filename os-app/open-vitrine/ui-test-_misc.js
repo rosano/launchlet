@@ -65,7 +65,7 @@ describe('LCHVitrine_Misc', function () {
 	describe('LCHVitrineVideo1', function () {
 
 		it('classes OLSKCommonVideoListItemMobile', function () {
-			browser.assert.hasClass(LCHVitrineVideo1, 'OLSKCommonVideoListItemMobile');
+			browser.assert.hasClass('.LCHVitrineVideo1', 'OLSKCommonVideoListItemMobile');
 		});
 
 		it('sets src', function () {
@@ -105,7 +105,7 @@ describe('LCHVitrine_Misc', function () {
 	describe('LCHVitrineVideo4', function () {
 
 		it('classes OLSKCommonVideoListItemSquare', function () {
-			browser.assert.hasClass(LCHVitrineVideo4, 'OLSKCommonVideoListItemSquare');
+			browser.assert.hasClass('.LCHVitrineVideo4', 'OLSKCommonVideoListItemSquare');
 		});
 
 		it('sets src', function () {
