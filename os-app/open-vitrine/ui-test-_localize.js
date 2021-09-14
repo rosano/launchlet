@@ -30,8 +30,8 @@ describe('LCHVitrine_Localize-' + OLSKRoutingLanguage, function () {
 		browser.assert.text(LCHVitrineGuideButton, uLocalized('OLSKWordingOpenGuide'));
 	});
 
-	it('localizes LCHVitrineGlossaryHeading', function () {
-		browser.assert.text(LCHVitrineGlossaryHeading, uLocalized('OLSKWordingGlossaryHeading'));
+	it('localizes LCHVitrineDeeperHeading', function () {
+		browser.assert.text(LCHVitrineDeeperHeading, uLocalized('OLSKWordingDeeperHeading'));
 	});
 
 	it('localizes LCHVitrineVideoHeading', function () {

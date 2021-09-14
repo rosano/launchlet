@@ -7,7 +7,7 @@ Object.entries({
 
 	LCHVitrineGuideButton: '.LCHVitrineGuideButton',
 
-	LCHVitrineGlossaryHeading: '.LCHVitrineGlossaryHeading',
+	LCHVitrineDeeperHeading: '.LCHVitrineDeeperHeading',
 	LCHVitrineGlossary: '.LCHVitrineGlossary',
 
 	LCHVitrineVideoHeading: '.LCHVitrineVideoHeading',
@@ -72,8 +72,8 @@ describe('LCHVitrine_Access', function () {
 		browser.assert.elements(LCHVitrineGuideButton, 1);
 	});
 
-	it('shows LCHVitrineGlossaryHeading', function () {
-		browser.assert.elements(LCHVitrineGlossaryHeading, 1);
+	it('shows LCHVitrineDeeperHeading', function () {
+		browser.assert.elements(LCHVitrineDeeperHeading, 1);
 	});
 
 	it('shows LCHVitrineGlossary', function () {
