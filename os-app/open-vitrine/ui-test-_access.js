@@ -7,6 +7,9 @@ Object.entries({
 
 	LCHVitrineGuideButton: '.LCHVitrineGuideButton',
 
+	LCHVitrineGlossaryHeading: '.LCHVitrineGlossaryHeading',
+	LCHVitrineGlossary: '.LCHVitrineGlossary',
+
 	LCHVitrineVideoHeading: '.LCHVitrineVideoHeading',
 	LCHVitrineVideo1Heading: '.OLSKCommonVideoList .LCHVitrineVideo1Heading',
 	LCHVitrineVideo1: '.OLSKCommonVideoList .OLSKCommonVideoListItem.LCHVitrineVideo1 iframe',
@@ -67,6 +70,18 @@ describe('LCHVitrine_Access', function () {
 
 	it('shows LCHVitrineGuideButton', function () {
 		browser.assert.elements(LCHVitrineGuideButton, 1);
+	});
+
+	it('shows LCHVitrineGlossaryHeading', function () {
+		browser.assert.elements(LCHVitrineGlossaryHeading, 1);
+	});
+
+	it('shows LCHVitrineGlossary', function () {
+		browser.assert.elements(LCHVitrineGlossary, 1);
+	});
+
+	it('shows ROCOGlossary', function () {
+		browser.assert.elements('.ROCOGlossary', 1);
 	});
 
 	it('shows LCHVitrineVideoHeading', function () {

@@ -62,6 +62,14 @@ describe('LCHVitrine_Misc', function () {
 	
 	});
 
+	describe('LCHVitrineGlossary', function test_LCHVitrineGlossary () {
+
+		it('classes OLSKDecorGlossary', function () {
+			browser.assert.hasClass(LCHVitrineGlossary, 'OLSKDecorGlossary');
+		});
+		
+	});
+
 	describe('LCHVitrineVideo1', function () {
 
 		it('classes OLSKCommonVideoListItemMobile', function () {
