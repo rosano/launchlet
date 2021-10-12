@@ -7,6 +7,6 @@
 	width: 100%;
 }
 
-.OLSKBanner {
+:global(.OLSKBanner) {
 	display: none;
 }
