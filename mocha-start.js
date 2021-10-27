@@ -71,7 +71,7 @@
 					LCHRecipeCallback: `(${ e.LCHRecipeCallback.toString() })`,
 					LCHRecipeIsExcluded: e.LCHRecipeIsExcluded ? `(${ e.LCHRecipeIsExcluded.toString() })` : undefined,
 				});
-			}));
+			})).replace('#', encodeURIComponent('#'));
 		},
 
 		uStubStringifyAll (inputData) {
