@@ -1,28 +1,28 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
-	LCHLauncherPrompt: '.LCHLauncherPrompt',
+	LCHLaunchxrPrompt: '.LCHLaunchxrPrompt',
 	
-	LCHLauncherPromptPlaceholder: '.LCHLauncherPromptPlaceholder',
-	LCHLauncherPromptSelectedItem: '.LCHLauncherPromptSelectedItem .LCHLauncherResultItem',
+	LCHLaunchxrPromptPlaceholder: '.LCHLaunchxrPromptPlaceholder',
+	LCHLaunchxrPromptSelectedItem: '.LCHLaunchxrPromptSelectedItem .LCHLauncherResultItem',
 
 	LCHLauncherFilterInput: '.LCHLauncherFilterInput',
 
-	LCHLauncherPromptResultItem: '.OLSKNarrowBody .LCHLauncherResultItem',
+	LCHLaunchxrPromptResultItem: '.OLSKNarrowBody .LCHLauncherResultItem',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHLauncherPrompt_Access', function () {
+describe('LCHLaunchxrPrompt_Access', function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
-			LCHLauncherPromptItems: uStubStringify(uStubTwoItems()),
+			LCHLaunchxrPromptItems: uStubStringify(uStubTwoItems()),
 		});
 	});
 
-	it('shows LCHLauncherPrompt', function () {
-		browser.assert.elements(LCHLauncherPrompt, 1);
+	it('shows LCHLaunchxrPrompt', function () {
+		browser.assert.elements(LCHLaunchxrPrompt, 1);
 	});
 
 	it('shows OLSKNarrow', function () {
@@ -33,16 +33,16 @@ describe('LCHLauncherPrompt_Access', function () {
 		browser.assert.elements(LCHLauncherFilterInput, 1);
 	});
 
-	it('shows LCHLauncherPromptPlaceholder', function () {
-		browser.assert.elements(LCHLauncherPromptPlaceholder, 1);
+	it('shows LCHLaunchxrPromptPlaceholder', function () {
+		browser.assert.elements(LCHLaunchxrPromptPlaceholder, 1);
 	});
 
-	it('hides LCHLauncherPromptSelectedItem', function () {
-		browser.assert.elements(LCHLauncherPromptSelectedItem, 0);
+	it('hides LCHLaunchxrPromptSelectedItem', function () {
+		browser.assert.elements(LCHLaunchxrPromptSelectedItem, 0);
 	});
 
-	it('hides LCHLauncherPromptResultItem', function () {
-		browser.assert.elements(LCHLauncherPromptResultItem, 0);
+	it('hides LCHLaunchxrPromptResultItem', function () {
+		browser.assert.elements(LCHLaunchxrPromptResultItem, 0);
 	});
 
 	context('filter', function () {
@@ -51,16 +51,16 @@ describe('LCHLauncherPrompt_Access', function () {
 			return browser.fill(LCHLauncherFilterInput, 'alfa');
 		});
 
-		it('hides LCHLauncherPromptPlaceholder', function () {
-			browser.assert.elements(LCHLauncherPromptPlaceholder, 0);
+		it('hides LCHLaunchxrPromptPlaceholder', function () {
+			browser.assert.elements(LCHLaunchxrPromptPlaceholder, 0);
 		});
 
-		it('shows LCHLauncherPromptSelectedItem', function () {
-			browser.assert.elements(LCHLauncherPromptSelectedItem, 1);
+		it('shows LCHLaunchxrPromptSelectedItem', function () {
+			browser.assert.elements(LCHLaunchxrPromptSelectedItem, 1);
 		});
 
-		it('shows LCHLauncherPromptResultItem', function () {
-			browser.assert.elements(LCHLauncherPromptResultItem, 1);
+		it('shows LCHLaunchxrPromptResultItem', function () {
+			browser.assert.elements(LCHLaunchxrPromptResultItem, 1);
 		});
 		
 	});

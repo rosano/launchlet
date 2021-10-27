@@ -1,8 +1,8 @@
 exports.OLSKControllerRoutes = function() {
 	return [{
-		OLSKRoutePath: '/stub/LCHLauncherPrompt',
+		OLSKRoutePath: '/stub/LCHLaunchxrPrompt',
 		OLSKRouteMethod: 'get',
-		OLSKRouteSignature: 'LCHLauncherPromptStubRoute',
+		OLSKRouteSignature: 'LCHLaunchxrPromptStubRoute',
 		OLSKRouteFunction (req, res, next) {
 			return res.OLSKExpressLayoutRender(require('path').join(__dirname, 'stub-view'));
 		},

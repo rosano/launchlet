@@ -1,12 +1,12 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHLauncherPrompt_Misc', function () {
+describe('LCHLaunchxrPrompt_Misc', function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
-			LCHLauncherPromptItems: uStubStringify(uStubTwoItems()),
-			LCHLauncherPromptFilterInputPlaceholderText: 'charlie',
-			LCHLauncherPromptPlaceholderText: 'delta',
+			LCHLaunchxrPromptItems: uStubStringify(uStubTwoItems()),
+			LCHLaunchxrPromptFilterInputPlaceholderText: 'charlie',
+			LCHLaunchxrPromptPlaceholderText: 'delta',
 		});
 	});
 
@@ -22,42 +22,42 @@ describe('LCHLauncherPrompt_Misc', function () {
 		
 	});
 
-	describe('LCHLauncherPromptPlaceholder', function test_LCHLauncherPromptPlaceholder () {
+	describe('LCHLaunchxrPromptPlaceholder', function test_LCHLaunchxrPromptPlaceholder () {
 		
-		it('binds LCHLauncherPromptPlaceholderText', function () {
-			browser.assert.text(LCHLauncherPromptPlaceholder, 'delta');
+		it('binds LCHLaunchxrPromptPlaceholderText', function () {
+			browser.assert.text(LCHLaunchxrPromptPlaceholder, 'delta');
 		});
 		
 	});
 
-	describe('LCHLauncherPromptSelectedItem', function test_LCHLauncherPromptSelectedItem () {
+	describe('LCHLaunchxrPromptSelectedItem', function test_LCHLaunchxrPromptSelectedItem () {
 		
 		before(function () {
 			return browser.fill(LCHLauncherFilterInput, 'alfa');
 		});
 		
 		it('binds OLSKCollectionItemLocus', function () {
-			browser.assert.text(`${ LCHLauncherPromptSelectedItem } .LCHLauncherResultItemTitle`, 'alfa');
+			browser.assert.text(`${ LCHLaunchxrPromptSelectedItem } .LCHLauncherResultItemTitle`, 'alfa');
 		});
 		
 	});
 
-	describe('LCHLauncherPromptResultItem', function test_LCHLauncherPromptResultItem () {
+	describe('LCHLaunchxrPromptResultItem', function test_LCHLaunchxrPromptResultItem () {
 		
 		context('click', function () {
 
 			before(function () {
-				browser.assert.text('#TestLCHLauncherPromptDispatchSelect', '1');	
-				browser.assert.text('#TestLCHLauncherPromptDispatchSelectData', JSON.stringify(uStubTwoItems()[0]));
+				browser.assert.text('#TestLCHLaunchxrPromptDispatchSelect', '1');	
+				browser.assert.text('#TestLCHLaunchxrPromptDispatchSelectData', JSON.stringify(uStubTwoItems()[0]));
 			});
 			
 			before(function () {
-				return browser.click(LCHLauncherPromptResultItem);
+				return browser.click(LCHLaunchxrPromptResultItem);
 			});
 
-			it('sends LCHLauncherPromptDispatchSelect', function () {
-				browser.assert.text('#TestLCHLauncherPromptDispatchSelect', '2');	
-				browser.assert.text('#TestLCHLauncherPromptDispatchSelectData', JSON.stringify(uStubTwoItems()[0]));
+			it('sends LCHLaunchxrPromptDispatchSelect', function () {
+				browser.assert.text('#TestLCHLaunchxrPromptDispatchSelect', '2');	
+				browser.assert.text('#TestLCHLaunchxrPromptDispatchSelectData', JSON.stringify(uStubTwoItems()[0]));
 			});
 		
 		});

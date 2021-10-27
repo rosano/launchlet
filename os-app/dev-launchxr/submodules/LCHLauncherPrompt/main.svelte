@@ -1,9 +1,9 @@
 <script>
-export let LCHLauncherPromptItems;
-export let LCHLauncherPromptPlaceholderText = '';
-export let LCHLauncherPromptFilterInputPlaceholderText;
-export let LCHLauncherPromptDispatchSelect;
-export let LCHLauncherPromptDispatchEscape;
+export let LCHLaunchxrPromptItems;
+export let LCHLaunchxrPromptPlaceholderText = '';
+export let LCHLaunchxrPromptFilterInputPlaceholderText;
+export let LCHLaunchxrPromptDispatchSelect;
+export let LCHLaunchxrPromptDispatchEscape;
 
 import { OLSK_SPEC_UI } from 'OLSKSpec';
 
@@ -15,7 +15,7 @@ const mod = {
 
 	// VALUE
 
-	_ValueItemsAll: LCHLauncherPromptItems,
+	_ValueItemsAll: LCHLaunchxrPromptItems,
 
 	_ValueFilterText: '',
 
@@ -32,7 +32,7 @@ const mod = {
 		const handlerFunctions = {
 
 			Escape () {
-				LCHLauncherPromptDispatchEscape();
+				LCHLaunchxrPromptDispatchEscape();
 			},
 
 			Enter () {
@@ -61,7 +61,7 @@ const mod = {
 	ControlSelect (inputData) {
 		mod._ValueItemSelected = inputData;
 
-		LCHLauncherPromptDispatchSelect(inputData);
+		LCHLaunchxrPromptDispatchSelect(inputData);
 	},
 
 	// MESSAGE
@@ -85,7 +85,7 @@ import LCHLauncherResultItem from '../LCHLauncherResultItem/main.svelte';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeyDown } />
 
-<div class="LCHLauncherPrompt">
+<div class="LCHLaunchxrPrompt">
 
 <OLSKNarrow
 	OLSKCollectionItems={ mod._ValueItemsVisible }
@@ -99,18 +99,18 @@ import LCHLauncherResultItem from '../LCHLauncherResultItem/main.svelte';
 	OLSKCollectionItemAccessibilitySummaryFunction={ (inputData) => inputData }	
 
 	OLSKNarrowFilterFieldClass={ 'LCHLauncherFilterInput' }
-	OLSKNarrowFilterFieldPlaceholderText={ LCHLauncherPromptFilterInputPlaceholderText }
+	OLSKNarrowFilterFieldPlaceholderText={ LCHLaunchxrPromptFilterInputPlaceholderText }
 	OLSKNarrowFilterFieldAutofocus={ true }
 	OLSKNarrowFilterFieldClearButton={ false }
 	>
 	<div slot="OLSKNarrowToolbarHead">
 		{#if mod._ValueItemSelected }
-			<div class="LCHLauncherPromptSelectedItem">
+			<div class="LCHLaunchxrPromptSelectedItem">
 				<LCHLauncherResultItem LCHLauncherResultItemObject={ mod._ValueItemSelected }
 					/>
 			</div>
 		{:else}
-			<div class="LCHLauncherPromptPlaceholder">{ LCHLauncherPromptPlaceholderText }</div>
+			<div class="LCHLaunchxrPromptPlaceholder">{ LCHLaunchxrPromptPlaceholderText }</div>
 		{/if}
 	</div>
 	<LCHLauncherResultItem LCHLauncherResultItemObject={ item }
