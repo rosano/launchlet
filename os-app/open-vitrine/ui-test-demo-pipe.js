@@ -58,7 +58,7 @@ describe('LCHVitrineDemoPipe', function () {
 		
 	});
 
-	context('LCHVitrinePageLinksHighlightRemove', function () {
+	context.skip('LCHVitrinePageLinksHighlightRemove', function () {
 
 		const elementQuery = 'style.LCHVitrinePageLinksHighlightAdd';
 
