@@ -41,13 +41,13 @@ describe('LCHLargeText_Misc', function () {
 	
 	});
 
-	context('click outside', function () {
+	context.skip('click outside', function () {
 
 		before(function () {
 			browser.click('.TestRecipeOutput');
 		});
 		
-		it.skip('hides LCHLargeTextContainer', function() {
+		it('hides LCHLargeTextContainer', function() {
 			browser.assert.elements(LCHLargeTextContainer, 0);
 		});
 	
