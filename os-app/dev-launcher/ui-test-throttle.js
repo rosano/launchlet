@@ -57,7 +57,7 @@ describe('LCHLauncherThrottle', function () {
 			browser.OLSKFireKeyboardEvent(browser.window, 'ArrowDown');
 		});
 
-		it('skips throttle', function() {
+		it.skip('skips throttle', function() {
 			browser.assert.elements('.OLSKResultsList', 1);
 		});
 
