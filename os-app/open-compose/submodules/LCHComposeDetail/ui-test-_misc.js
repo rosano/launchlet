@@ -200,7 +200,7 @@ describe('LCHComposeDetail_Misc', function () {
 		});
 
 		it('classes ROCOStandardViewBody', function () {
-			browser.assert.hasClass(LCHComposeDetailToolbar, 'ROCOStandardViewBody');
+			browser.assert.hasClass(LCHComposeDetailForm, 'ROCOStandardViewBody');
 		});
 
 	});
