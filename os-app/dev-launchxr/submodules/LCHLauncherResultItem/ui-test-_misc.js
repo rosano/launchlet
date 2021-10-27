@@ -1,23 +1,23 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
-describe('LCHLauncherResultItem_Misc', function () {
+describe('LCHLaunchxrResultItem_Misc', function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
-			LCHLauncherResultItemObject: JSON.stringify({
+			LCHLaunchxrResultItemObject: JSON.stringify({
 				LCHRecipeName: 'alfa',
 			}),
 		});
 	});
 
-	describe('LCHLauncherResultItemTitle', function test_LCHLauncherResultItemTitle () {
+	describe('LCHLaunchxrResultItemTitle', function test_LCHLaunchxrResultItemTitle () {
 		
 		it('sets aria-hidden', function () {
-			browser.assert.attribute(LCHLauncherResultItemTitle, 'aria-hidden', 'true');
+			browser.assert.attribute(LCHLaunchxrResultItemTitle, 'aria-hidden', 'true');
 		});
 
 		it('sets text', function () {
-			browser.assert.text(LCHLauncherResultItemTitle, 'alfa');
+			browser.assert.text(LCHLaunchxrResultItemTitle, 'alfa');
 		});
 	
 	});

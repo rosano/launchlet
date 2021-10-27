@@ -1,10 +1,10 @@
 <script>
-export let LCHLauncherResultItemObject;
+export let LCHLaunchxrResultItemObject;
 </script>
 
-<div class="LCHLauncherResultItem">
+<div class="LCHLaunchxrResultItem">
 
-<strong class="LCHLauncherResultItemTitle" aria-hidden="true">{ LCHLauncherResultItemObject.LCHRecipeName }</strong>
+<strong class="LCHLaunchxrResultItemTitle" aria-hidden="true">{ LCHLaunchxrResultItemObject.LCHRecipeName }</strong>
 
 </div>
 

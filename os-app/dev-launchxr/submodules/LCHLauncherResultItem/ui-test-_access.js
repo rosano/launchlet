@@ -1,27 +1,27 @@
 const kDefaultRoute = require('./controller.js').OLSKControllerRoutes().shift();
 
 Object.entries({
-	LCHLauncherResultItem: '.LCHLauncherResultItem',
+	LCHLaunchxrResultItem: '.LCHLaunchxrResultItem',
 
-	LCHLauncherResultItemTitle: '.LCHLauncherResultItemTitle',
+	LCHLaunchxrResultItemTitle: '.LCHLaunchxrResultItemTitle',
 }).map(function (e) {
 	return global[e.shift()]  = e.pop();
 });
 
-describe('LCHLauncherResultItem_Access', function () {
+describe('LCHLaunchxrResultItem_Access', function () {
 
 	before(function() {
 		return browser.OLSKVisit(kDefaultRoute, {
-			LCHLauncherResultItemObject: JSON.stringify({}),
+			LCHLaunchxrResultItemObject: JSON.stringify({}),
 		});
 	});
 
-	it('shows LCHLauncherResultItem', function () {
-		browser.assert.elements(LCHLauncherResultItem, 1);
+	it('shows LCHLaunchxrResultItem', function () {
+		browser.assert.elements(LCHLaunchxrResultItem, 1);
 	});
 
-	it('shows LCHLauncherResultItemTitle', function () {
-		browser.assert.elements(LCHLauncherResultItemTitle, 1);
+	it('shows LCHLaunchxrResultItemTitle', function () {
+		browser.assert.elements(LCHLaunchxrResultItemTitle, 1);
 	});
 
 });

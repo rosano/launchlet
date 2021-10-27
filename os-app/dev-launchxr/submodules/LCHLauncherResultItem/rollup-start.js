@@ -1,9 +1,9 @@
 import RollupStart from './main.svelte';
 
-const LCHLauncherResultItem = new RollupStart({
+const LCHLaunchxrResultItem = new RollupStart({
 	target: document.body,
 	props: Object.fromEntries(Array.from((new window.URLSearchParams(window.location.search)).entries()).map(function (e) {
-		if (['LCHLauncherResultItemObject'].includes(e[0])) {
+		if (['LCHLaunchxrResultItemObject'].includes(e[0])) {
 			e[1] = JSON.parse(e[1]);
 		}
 
@@ -11,4 +11,4 @@ const LCHLauncherResultItem = new RollupStart({
 	})),
 });
 
-export default LCHLauncherResultItem;
+export default LCHLaunchxrResultItem;
