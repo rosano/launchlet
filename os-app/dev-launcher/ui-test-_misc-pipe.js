@@ -166,7 +166,7 @@ describe('LCHLauncherMisc_Pipe', function test_LCHLauncherMisc_Pipe() {
 			browser.assert.hasClass(LCHLauncherSubjectPromptHeading, 'LCHLauncherPromptHeadingMatchStop');
 		});
 
-		it('shows OLSKResultsList', function() {
+		it.skip('shows OLSKResultsList', function() {
 			browser.assert.elements('.OLSKResultsList', 1);
 		});
 
