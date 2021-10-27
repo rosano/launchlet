@@ -44,7 +44,7 @@ describe('LCHLargeText_Misc', function () {
 	context.skip('click outside', function () {
 
 		before(function () {
-			browser.click('.TestRecipeOutput');
+			browser.click('#TestRecipeOutput');
 		});
 		
 		it('hides LCHLargeTextContainer', function() {

@@ -13,14 +13,14 @@ describe('AutomaticRunningOfPageRecipes', function test_AutomaticRunningOfPageRe
 
 	before(function () {
 		browser.assert.elements(LCHLauncher, 0)
-		browser.assert.input('.TestRecipeOutput', '')
+		browser.assert.input('#TestRecipeOutput', '')
 	});
 
 	before(function () {
 		browser.evaluate(`window.LCHPageRecipes = [{
 			LCHRecipeName: 'alfa',
 			LCHRecipeCallback: function () {
-				document.querySelector('.TestRecipeOutput').value = 'bravo';
+				document.querySelector('#TestRecipeOutput').value = 'bravo';
 			},
 			LCHRecipeURLFilter: '*',
 			LCHRecipeIsAutomatic: true,
@@ -32,11 +32,11 @@ describe('AutomaticRunningOfPageRecipes', function test_AutomaticRunningOfPageRe
 	});
 
 	before(function () {
-		return browser.assert.input('.TestRecipeOutput', '')
+		return browser.assert.input('#TestRecipeOutput', '')
 	});
 	
 	it('strips LCHRecipeIsAutomatic from LCHPageRecipes', function() {
-		browser.assert.input('.TestRecipeOutput', '')
+		browser.assert.input('#TestRecipeOutput', '')
 	});
 
 	context('filter', function () {
@@ -50,7 +50,7 @@ describe('AutomaticRunningOfPageRecipes', function test_AutomaticRunningOfPageRe
 		});
 		
 		it('runs item', function() {
-			browser.assert.input('.TestRecipeOutput', 'bravo')
+			browser.assert.input('#TestRecipeOutput', 'bravo')
 		});
 	
 	});

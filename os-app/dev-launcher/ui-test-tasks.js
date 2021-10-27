@@ -5,7 +5,7 @@ describe('LCHOptionRunAutomaticRecipes', function test_LCHOptionRunAutomaticReci
 	const uStubItem = function () {
 		return {
 			LCHRecipeCallback: function () {
-				return document.querySelector('.TestRecipeOutput').value = 'alfa';
+				return document.querySelector('#TestRecipeOutput').value = 'alfa';
 			},
 			LCHRecipeURLFilter: '*',
 			LCHRecipeIsAutomatic: true,
@@ -21,7 +21,7 @@ describe('LCHOptionRunAutomaticRecipes', function test_LCHOptionRunAutomaticReci
 		});
 
 		it('runs no callback', function () {
-			browser.assert.input('.TestRecipeOutput', '');	
+			browser.assert.input('#TestRecipeOutput', '');	
 		});
 	
 	});
@@ -36,7 +36,7 @@ describe('LCHOptionRunAutomaticRecipes', function test_LCHOptionRunAutomaticReci
 		});
 
 		it('runs callback', function () {
-			browser.assert.input('.TestRecipeOutput', 'alfa');	
+			browser.assert.input('#TestRecipeOutput', 'alfa');	
 		});
 	
 	});

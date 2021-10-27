@@ -10,7 +10,7 @@ describe('LCHLauncherMisc_Commit', function () {
 	});
 
 	before(function() {
-		browser.assert.input('.TestRecipeOutput', '');	
+		browser.assert.input('#TestRecipeOutput', '');	
 	});
 
 	it('assert callbacks count 0')
@@ -38,7 +38,7 @@ describe('LCHLauncherMisc_Commit', function () {
 			it('assert callbacks count 0')
 
 			it('runs no callback', function() {
-				browser.assert.input('.TestRecipeOutput', '');	
+				browser.assert.input('#TestRecipeOutput', '');	
 			});
 		
 		});
@@ -119,7 +119,7 @@ describe('LCHLauncherMisc_Commit', function () {
 		context('click', function () {
 
 			before(function () {
-				browser.assert.input('.TestRecipeOutput', '');
+				browser.assert.input('#TestRecipeOutput', '');
 			});
 
 			before(function () {
@@ -129,7 +129,7 @@ describe('LCHLauncherMisc_Commit', function () {
 			it('assert callbacks count 1')
 			
 			it('runs callback', function () {
-				browser.assert.input('.TestRecipeOutput', 'bravo');	
+				browser.assert.input('#TestRecipeOutput', 'bravo');	
 			});
 			
 			it('hides LCHLauncher', function () {
@@ -155,7 +155,7 @@ describe('LCHLauncherMisc_Commit', function () {
 			it('assert callbacks count 2')
 			
 			it('runs callback', function () {
-				browser.assert.input('.TestRecipeOutput', 'alfa');	
+				browser.assert.input('#TestRecipeOutput', 'alfa');	
 			});
 			
 			it('hides LCHLauncher', function () {

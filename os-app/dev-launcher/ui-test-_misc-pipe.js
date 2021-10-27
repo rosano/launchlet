@@ -16,7 +16,7 @@ describe('LCHLauncherMisc_Pipe', function test_LCHLauncherMisc_Pipe() {
 		});
 
 		before(function() {
-			browser.assert.input('.TestRecipeOutput', '');	
+			browser.assert.input('#TestRecipeOutput', '');	
 		});
 
 		it('assert callbacks count 0')
@@ -28,7 +28,7 @@ describe('LCHLauncherMisc_Pipe', function test_LCHLauncherMisc_Pipe() {
 			});
 
 			it('runs no callback', function() {
-				browser.assert.input('.TestRecipeOutput', '');
+				browser.assert.input('#TestRecipeOutput', '');
 			});
 		
 		});
@@ -44,7 +44,7 @@ describe('LCHLauncherMisc_Pipe', function test_LCHLauncherMisc_Pipe() {
 			});
 
 			it('runs callback', function() {
-				browser.assert.input('.TestRecipeOutput', 'alfa');
+				browser.assert.input('#TestRecipeOutput', 'alfa');
 			});
 
 			it('hides LCHLauncher', function() {

@@ -10,7 +10,7 @@ describe('LCHLauncherMisc_Preview', function test_LCHLauncherMisc_Preview() {
 	});
 
 	before(function() {
-		browser.assert.input('.TestRecipeOutput', '');	
+		browser.assert.input('#TestRecipeOutput', '');	
 	});
 
 	it('assert callbacks count 0')
@@ -42,7 +42,7 @@ describe('LCHLauncherMisc_Preview', function test_LCHLauncherMisc_Preview() {
 			it('assert callbacks count 1')
 
 			it('runs callback', function() {
-				browser.assert.input('.TestRecipeOutput', 'alfa');	
+				browser.assert.input('#TestRecipeOutput', 'alfa');	
 			});
 		
 		});
@@ -60,7 +60,7 @@ describe('LCHLauncherMisc_Preview', function test_LCHLauncherMisc_Preview() {
 			it('assert callbacks count 2/3')
 
 			it('runs callback', function() {
-				browser.assert.input('.TestRecipeOutput', 'alfa');	
+				browser.assert.input('#TestRecipeOutput', 'alfa');	
 			});
 		
 		});
@@ -78,7 +78,7 @@ describe('LCHLauncherMisc_Preview', function test_LCHLauncherMisc_Preview() {
 			it('assert callbacks count ?')
 
 			it('runs last match callback', function() {
-				browser.assert.input('.TestRecipeOutput', 'alfa');	
+				browser.assert.input('#TestRecipeOutput', 'alfa');	
 			});
 		
 		});
@@ -102,7 +102,7 @@ describe('LCHLauncherMisc_Preview', function test_LCHLauncherMisc_Preview() {
 			});
 			
 			it('runs callback', function () {
-				browser.assert.input('.TestRecipeOutput', 'bravo');	
+				browser.assert.input('#TestRecipeOutput', 'bravo');	
 			});
 		
 		});
@@ -118,7 +118,7 @@ describe('LCHLauncherMisc_Preview', function test_LCHLauncherMisc_Preview() {
 			});
 			
 			it('runs callback', function () {
-				browser.assert.input('.TestRecipeOutput', 'alfa');
+				browser.assert.input('#TestRecipeOutput', 'alfa');
 			});
 		
 		});
@@ -135,7 +135,7 @@ describe('LCHLauncherMisc_Preview', function test_LCHLauncherMisc_Preview() {
 			});
 			
 			it('runs no callback', function () {
-				browser.assert.input('.TestRecipeOutput', 'alfa');	
+				browser.assert.input('#TestRecipeOutput', 'alfa');	
 			});
 		
 		});
@@ -173,7 +173,7 @@ describe('LCHLauncherMisc_Preview', function test_LCHLauncherMisc_Preview() {
 			it('assert callbacks count ?')
 			
 			it('runs callback', function () {
-				browser.assert.input('.TestRecipeOutput', 'alfa');	
+				browser.assert.input('#TestRecipeOutput', 'alfa');	
 			});
 			
 			it('hides LCHLauncher', function () {

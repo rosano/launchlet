@@ -8,7 +8,7 @@ describe('LCHRecipeIsExcluded', function test_LCHRecipeIsExcluded () {
 				LCHRecipeName: 'alfa',
 				LCHRecipeCallback: function () {}, // #purge-callback
 				LCHRecipeIsExcluded: function () {
-					return document.querySelector('.TestRecipeOutput').value !== 'bravo';
+					return document.querySelector('#TestRecipeOutput').value !== 'bravo';
 				},
 			}]),
 		});
@@ -29,7 +29,7 @@ describe('LCHRecipeIsExcluded', function test_LCHRecipeIsExcluded () {
 	context('match', function () {
 		
 		before(function() {
-			browser.fill('.TestRecipeOutput', 'bravo');
+			browser.fill('#TestRecipeOutput', 'bravo');
 		});
 
 		before(function() {
@@ -49,7 +49,7 @@ describe('LCHRecipeURLFilter', function test_LCHRecipeURLFilter () {
 	const StubRecipes = uStubStringify([{
 		LCHRecipeName: 'alfa',
 		LCHRecipeCallback: function () {
-			document.querySelector('.TestRecipeOutput').value = 'bravo';
+			document.querySelector('#TestRecipeOutput').value = 'bravo';
 		},
 		LCHRecipeURLFilter: '/\\d{5}/',
 	}]);
