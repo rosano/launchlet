@@ -24,36 +24,36 @@ const mod = {
 
 	// MESSAGE
 
-	LCHLauncherPromptDispatchSelect (inputData) {
+	LCHLaunchxrPromptDispatchSelect (inputData) {
 	},
 
-	LCHLauncherPromptDispatchEscape () {
+	LCHLaunchxrPromptDispatchEscape () {
 	},
 
 };
 
-import LCHLauncherPrompt from '../LCHLauncherPrompt/main.svelte';
+import LCHLaunchxrPrompt from '../LCHLaunchxrPrompt/main.svelte';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeyDown } />
 
 <div class="LCHLauncherPipe LCHLauncher">
 
 <div class="LCHLauncherPipeSubject">
-	<LCHLauncherPrompt
-		LCHLauncherPromptItems={ [] }
-		LCHLauncherPromptPlaceholderText={ OLSKLocalized('LCHLauncherPipeSubjectPromptPlaceholderText') }
-		LCHLauncherPromptFilterInputPlaceholderText={ OLSKLocalized('LCHLauncherPipeSubjectPromptFilterInputPlaceholderText') }
-		LCHLauncherPromptDispatchSelect={ mod.LCHLauncherPromptDispatchSelect }
-		LCHLauncherPromptDispatchEscape={ mod.LCHLauncherPromptDispatchEscape }
+	<LCHLaunchxrPrompt
+		LCHLaunchxrPromptItems={ [] }
+		LCHLaunchxrPromptPlaceholderText={ OLSKLocalized('LCHLauncherPipeSubjectPromptPlaceholderText') }
+		LCHLaunchxrPromptFilterInputPlaceholderText={ OLSKLocalized('LCHLauncherPipeSubjectPromptFilterInputPlaceholderText') }
+		LCHLaunchxrPromptDispatchSelect={ mod.LCHLaunchxrPromptDispatchSelect }
+		LCHLaunchxrPromptDispatchEscape={ mod.LCHLaunchxrPromptDispatchEscape }
 		/>
 </div>
 
 <div class="LCHLauncherPipeAction">
-	<LCHLauncherPrompt
-		LCHLauncherPromptItems={ [] }
-		LCHLauncherPromptFilterInputPlaceholderText={ OLSKLocalized('LCHLauncherPipeActionPromptFilterInputPlaceholderText') }
-		LCHLauncherPromptDispatchSelect={ mod.LCHLauncherPromptDispatchSelect }
-		LCHLauncherPromptDispatchEscape={ mod.LCHLauncherPromptDispatchEscape }
+	<LCHLaunchxrPrompt
+		LCHLaunchxrPromptItems={ [] }
+		LCHLaunchxrPromptFilterInputPlaceholderText={ OLSKLocalized('LCHLauncherPipeActionPromptFilterInputPlaceholderText') }
+		LCHLaunchxrPromptDispatchSelect={ mod.LCHLaunchxrPromptDispatchSelect }
+		LCHLaunchxrPromptDispatchEscape={ mod.LCHLaunchxrPromptDispatchEscape }
 		/>
 </div>
 

@@ -81,7 +81,7 @@ const mod = {
 };
 
 import OLSKNarrow from 'OLSKNarrow';
-import LCHLauncherResultItem from '../LCHLauncherResultItem/main.svelte';
+import LCHLaunchxrResultItem from '../LCHLaunchxrResultItem/main.svelte';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeyDown } />
 
@@ -106,14 +106,14 @@ import LCHLauncherResultItem from '../LCHLauncherResultItem/main.svelte';
 	<div slot="OLSKNarrowToolbarHead">
 		{#if mod._ValueItemSelected }
 			<div class="LCHLaunchxrPromptSelectedItem">
-				<LCHLauncherResultItem LCHLauncherResultItemObject={ mod._ValueItemSelected }
+				<LCHLaunchxrResultItem LCHLaunchxrResultItemObject={ mod._ValueItemSelected }
 					/>
 			</div>
 		{:else}
 			<div class="LCHLaunchxrPromptPlaceholder">{ LCHLaunchxrPromptPlaceholderText }</div>
 		{/if}
 	</div>
-	<LCHLauncherResultItem LCHLauncherResultItemObject={ item }
+	<LCHLaunchxrResultItem LCHLaunchxrResultItemObject={ item }
 		/>
 </OLSKNarrow>
 

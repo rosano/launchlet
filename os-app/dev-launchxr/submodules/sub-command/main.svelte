@@ -80,7 +80,7 @@ const mod = {
 };
 
 import OLSKNarrow from 'OLSKNarrow';
-import LCHLauncherResultItem from '../LCHLauncherResultItem/main.svelte';
+import LCHLaunchxrResultItem from '../LCHLaunchxrResultItem/main.svelte';
 </script>
 <svelte:window on:keydown={ mod.InterfaceWindowDidKeyDown } />
 
@@ -102,7 +102,7 @@ import LCHLauncherResultItem from '../LCHLauncherResultItem/main.svelte';
 	OLSKNarrowFilterFieldAutofocus={ true }
 	OLSKNarrowFilterFieldClearButton={ false }
 	>
-	<LCHLauncherResultItem LCHLauncherResultItemObject={ item }
+	<LCHLaunchxrResultItem LCHLaunchxrResultItemObject={ item }
 		/>
 </OLSKNarrow>
 
