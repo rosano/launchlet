@@ -54,7 +54,7 @@ kDefaultRoute.OLSKRouteLanguageCodes.forEach(function (OLSKRoutingLanguage) {
 			});
 
 			it('localizes LCHComposeDetailFormURLFilterField', function () {
-				browser.assert.attribute(LCHComposeDetailFormURLFilterField, 'placeholder', uLocalized('LCHComposeDetailFormURLFilterFieldText').replace(/\\\\/g, '\\'));
+				browser.assert.attribute(LCHComposeDetailFormURLFilterField, 'placeholder', uLocalized('LCHComposeDetailFormURLFilterFieldText'));
 			});
 
 			context('LCHDocumentCallbackArgs', function() {
