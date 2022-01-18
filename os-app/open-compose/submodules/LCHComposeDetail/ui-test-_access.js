@@ -29,7 +29,7 @@ Object.entries({
 	LCHComposeDetailFormIsAutomaticFieldLabel: '.LCHComposeDetailFormIsAutomaticFieldLabel',
 	LCHComposeDetailFormIsAutomaticField: '.LCHComposeDetailFormIsAutomaticField',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('LCHComposeDetail_Access', function () {

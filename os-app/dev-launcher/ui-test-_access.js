@@ -23,7 +23,7 @@ Object.entries({
 	LCHLauncherObjectPromptHeading: '.LCHLauncherObjectPrompt .LCHLauncherPromptHeading',
 	LCHLauncherObjectPromptItemSelected: '.LCHLauncherObjectPrompt .LCHLauncherZoneInput .LCHLauncherPipeItem',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('LCHLauncher_AccessCommit', function test_LCHLauncher_AccessCommit () {

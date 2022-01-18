@@ -10,7 +10,7 @@ Object.entries({
 
 	LCHLaunchxrPromptResultItem: '.OLSKNarrowBody .LCHLauncherResultItem',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('LCHLaunchxrPrompt_Access', function () {

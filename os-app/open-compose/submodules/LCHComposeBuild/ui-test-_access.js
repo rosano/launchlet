@@ -11,7 +11,7 @@ Object.entries({
 	LCHComposeBuildPageRecipesEnabledField: '.LCHComposeBuildPageRecipesEnabledField',
 	LCHComposeBuildPageRecipesEnabledFieldLabel: '.LCHComposeBuildPageRecipesEnabledFieldLabel',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('LCHComposeBuild_Access', function () {

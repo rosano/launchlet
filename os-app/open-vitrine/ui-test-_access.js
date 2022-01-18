@@ -31,7 +31,7 @@ Object.entries({
 
 	LCHVitrineBrueghel: '.LCHVitrineBrueghel',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('LCHVitrine_Access', function () {

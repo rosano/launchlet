@@ -6,7 +6,7 @@ Object.entries({
 	LCHLauncherPipeItemSubtitle: '.LCHLauncherPipeItemSubtitle',
 	LCHLauncherPipeItemSource: '.LCHLauncherPipeItemSource',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('LCHLauncherPipeItem_Access', function () {

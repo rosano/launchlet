@@ -4,7 +4,7 @@ Object.entries({
 	LCHLauncherPrompt: '.LCHLauncherPrompt',
 	LCHLauncherPromptItemSelected: '.LCHLauncherZoneInput .LCHLauncherPipeItem',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('LCHLauncherPrompt_Access', function () {

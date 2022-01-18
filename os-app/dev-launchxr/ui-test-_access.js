@@ -5,7 +5,7 @@ const LCHLauncherLogic = require('./logic.js').default;
 Object.entries({
 	LCHLauncher: '.LCHLauncher',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('LCHLauncher_Access', function () {

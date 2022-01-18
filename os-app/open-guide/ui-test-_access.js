@@ -6,7 +6,7 @@ Object.entries({
 	LCHGuideCrown: '.LCHGuideCrown',
 	LCHGuideCrownName: '.LCHGuideCrownName',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('LCHGuide_Access', function () {

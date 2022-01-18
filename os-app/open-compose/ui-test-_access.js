@@ -17,7 +17,7 @@ Object.entries({
 
 	LCHComposeCloudToolbar: '.LCHComposeCloudToolbar',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('LCHCompose_Access', function () {

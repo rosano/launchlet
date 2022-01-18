@@ -3,7 +3,7 @@ const kDefaultRoute = require('../../../controller.js').OLSKControllerRoutes().s
 Object.entries({
 	LCHCopyToClipboardButton: '.LCHCopyToClipboardButton',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('LCHCopyToClipboard_Access', function () {

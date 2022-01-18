@@ -5,7 +5,7 @@ Object.entries({
 
 	LCHLaunchxrResultItemTitle: '.LCHLaunchxrResultItemTitle',
 }).map(function (e) {
-	return global[e.shift()]  = e.pop();
+	return global[e.shift()] = e.pop();
 });
 
 describe('LCHLaunchxrResultItem_Access', function () {
