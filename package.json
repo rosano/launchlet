@@ -12,44 +12,44 @@
     "watch": "olsk-rollup-watch"
   },
   "dependencies": {
-    "// RECIPE URL": null,
+    "//": "RECIPE URL",
     "url-parse": "latest",
 
-    "// RECIPE LCHSaveFile": null,
+    "//": "RECIPE LCHSaveFile",
     "file-saver": "latest",
 
-    "// FUZZY SEARCH": null,
+    "//": "FUZZY SEARCH",
     "fuzzysort": "latest",
     
-    "// FRONTEND RECIPE LCHCopyToClipboard": null,
+    "//": "FRONTEND RECIPE LCHCopyToClipboard",
     "clipboard": "latest",
 
-    "// FRONTEND EXPORT": null,
+    "//": "FRONTEND EXPORT",
     "url-parse": "latest",
 
-    "// FLAGS": null,
+    "//": "FLAGS",
     "acorn": "7.x",
 
-    "// open-vitrine": null,
+    "//": "open-vitrine",
     "OLSKPithVitrine": "olsk/OLSKPithVitrine",
 
-    "// open-guide": null,
+    "//": "open-guide",
     "OLSKPithGuide": "olsk/OLSKPithGuide",
 
-    "// open-compose": null,
+    "//": "open-compose",
     "OLSKPithApp": "olsk/OLSKPithApp",
     "OLSKCatalog": "olsk/OLSKCatalog",
     "codemirror": "rosano/CodeMirror#add-distribution",
     "simplecrypto": "encryb/simplecrypto",
     
-    "// dev-laucher": null,
+    "//": "dev-laucher",
     "OLSKNarrow": "olsk/OLSKNarrow",
     "OLSKResults": "olsk/OLSKResults",
 
-    "// tech-robots": null,
+    "//": "tech-robots",
     "OLSKRobots": "olsk/OLSKRobots",
 
-    "// tech-serviceworker": null,
+    "//": "tech-serviceworker",
     "OLSKServiceWorker": "olsk/OLSKServiceWorker",
 
     "//": "I sacrifice myself for the commas of others"
