@@ -50,15 +50,11 @@
     "OLSKRobots": "olsk/OLSKRobots",
 
     "//": "tech-serviceworker",
-    "OLSKServiceWorker": "olsk/OLSKServiceWorker",
-
-    "//": "I sacrifice myself for the commas of others"
+    "OLSKServiceWorker": "olsk/OLSKServiceWorker"
   },
   "devDependencies": {
     "OLSKPithToolchain": "olsk/OLSKPithToolchain",
     "OLSKRollupScaffold": "olsk/OLSKRollupScaffold",
-    "jsdom": "latest",
-    
-    "//": "I sacrifice myself for the commas of others"
+    "jsdom": "latest"
   }
 }
