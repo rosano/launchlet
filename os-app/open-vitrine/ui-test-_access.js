@@ -136,10 +136,6 @@ describe('LCHVitrine_Access', function () {
 		browser.assert.elements('.OLSKEdit', 1);
 	});
 
-	it('shows ROCOForum', function () {
-		browser.assert.elements('.ROCOForum', 1);
-	});
-
 	it('shows LCHVitrineSupportHeading', function () {
 		browser.assert.elements(LCHVitrineSupportHeading, 1);
 	});
