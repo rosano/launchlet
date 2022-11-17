@@ -12,44 +12,32 @@
     "watch": "olsk-rollup-watch"
   },
   "dependencies": {
-    "//": "RECIPE URL",
     "url-parse": "latest",
 
-    "//": "RECIPE LCHSaveFile",
     "file-saver": "latest",
 
-    "//": "FUZZY SEARCH",
     "fuzzysort": "latest",
     
-    "//": "FRONTEND RECIPE LCHCopyToClipboard",
     "clipboard": "latest",
 
-    "//": "FRONTEND EXPORT",
     "url-parse": "latest",
 
-    "//": "FLAGS",
     "acorn": "7.x",
 
-    "//": "open-vitrine",
     "OLSKPithVitrine": "olsk/OLSKPithVitrine",
 
-    "//": "open-guide",
     "OLSKPithGuide": "olsk/OLSKPithGuide",
 
-    "//": "open-compose",
     "OLSKPithApp": "olsk/OLSKPithApp",
     "OLSKCatalog": "olsk/OLSKCatalog",
     "codemirror": "rosano/CodeMirror#add-distribution",
     "simplecrypto": "encryb/simplecrypto",
     
-    "//": "dev-laucher",
     "OLSKNarrow": "olsk/OLSKNarrow",
     "OLSKResults": "olsk/OLSKResults",
 
-    "//": "tech-robots",
     "OLSKRobots": "olsk/OLSKRobots",
 
-    "//": "tech-serviceworker",
     "OLSKServiceWorker": "olsk/OLSKServiceWorker"
   },
   "devDependencies": {
