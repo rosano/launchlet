@@ -70,7 +70,7 @@ describe('LCHVitrine_Misc', function () {
 		
 	});
 
-	describe('LCHVitrineVideo1', function () {
+	describe('LCHVitrineVideo1', function test_LCHVitrineVideo () {
 
 		it('classes OLSKCommonVideoListItemMobile', function () {
 			browser.assert.hasClass('.LCHVitrineVideo1', 'OLSKCommonVideoListItemMobile');
@@ -80,16 +80,24 @@ describe('LCHVitrine_Misc', function () {
 			browser.assert.attribute(LCHVitrineVideo1, 'src', process.env.LCH_VITRINE_VIDEO_URL_1);
 		});
 
+		it('sets allow', function () {
+			browser.assert.attribute(LCHVitrineVideo1, 'allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+		});
+
 		it('sets allowfullscreen', function () {
 			browser.assert.attribute(LCHVitrineVideo1, 'allowfullscreen', '');
 		});
 
 	});
 
-	describe('LCHVitrineVideo2', function () {
+	describe('LCHVitrineVideo2', function test_LCHVitrineVideo () {
 
 		it('sets src', function () {
 			browser.assert.attribute(LCHVitrineVideo2, 'src', process.env.LCH_VITRINE_VIDEO_URL_2);
+		});
+
+		it('sets allow', function () {
+			browser.assert.attribute(LCHVitrineVideo2, 'allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
 		});
 
 		it('sets allowfullscreen', function () {
@@ -98,10 +106,14 @@ describe('LCHVitrine_Misc', function () {
 
 	});
 
-	describe('LCHVitrineVideo3', function () {
+	describe('LCHVitrineVideo3', function test_LCHVitrineVideo () {
 
 		it('sets src', function () {
 			browser.assert.attribute(LCHVitrineVideo3, 'src', process.env.LCH_VITRINE_VIDEO_URL_3);
+		});
+
+		it('sets allow', function () {
+			browser.assert.attribute(LCHVitrineVideo3, 'allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
 		});
 
 		it('sets allowfullscreen', function () {
@@ -110,7 +122,7 @@ describe('LCHVitrine_Misc', function () {
 
 	});
 
-	describe('LCHVitrineVideo4', function () {
+	describe('LCHVitrineVideo4', function test_LCHVitrineVideo () {
 
 		it('classes OLSKCommonVideoListItemSquare', function () {
 			browser.assert.hasClass('.LCHVitrineVideo4', 'OLSKCommonVideoListItemSquare');
@@ -118,6 +130,10 @@ describe('LCHVitrine_Misc', function () {
 
 		it('sets src', function () {
 			browser.assert.attribute(LCHVitrineVideo4, 'src', process.env.LCH_VITRINE_VIDEO_URL_4);
+		});
+
+		it('sets allow', function () {
+			browser.assert.attribute(LCHVitrineVideo4, 'allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
 		});
 
 		it('sets allowfullscreen', function () {
