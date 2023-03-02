@@ -5,7 +5,7 @@ const mod = require('./_aggregate.js');
 describe('LCHLauncherStandardRecipes', function test_LCHLauncherStandardRecipes() {
 
 	it('returns LCHRecipe for each folder', function() {
-		const item = [].concat.apply([], require('glob').sync('*/**/main.js', {
+		const item = [].concat.apply([], require('glob').globSync('*/**/main.js', {
 		  matchBase: true,
 		  cwd: __dirname,
 		}).map(function (e) {
