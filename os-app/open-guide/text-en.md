@@ -52,7 +52,7 @@ Running arbitrary JavaScript can be dangerous, and this project comes with no gu
 - dynamic code such as `eval` or `new Function()`
 - stateful code that calls `document.cookie`, `localStorage`, `sessionStorage`, `XMLHttpRequest`, `fetch`
 
-Anyone with security expertise and ideas on how to improve safety in the project is welcome to add a [GitHub Issue](https://github.com/launchlet/launchlet/issues).
+Anyone with security expertise and ideas on how to improve safety in the project is welcome to add a [GitHub Issue](https://github.com/rosano/launchlet/issues).
 
 It is best to run code that is concise and easy to read.
 
