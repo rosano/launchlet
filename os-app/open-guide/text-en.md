@@ -102,8 +102,6 @@ Returns promise.
 | Global (when cloud is connected) ||
 :--- | ---
 | `OLSKRemoteStorageLauncherItemCopyLoginLinkText` | Launcher |
-| `OLSKFundLauncherItemEnterClueText` | Launcher |
-| `OLSKFundLauncherItemClearClueText` | Launcher |
 | `OLSKRemoteStorageLauncherItemDebugFlushDataText` | Launcher |
 
 # What are remoteStorage and Fission?

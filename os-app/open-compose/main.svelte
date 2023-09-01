@@ -16,7 +16,6 @@ import LCHBuild from '../_shared/LCHBuild/main.js';
 import OLSKString from 'OLSKString';
 import RemoteStorage from 'remotestoragejs';
 import OLSKLanguageSwitcher from 'OLSKLanguageSwitcher';
-import OLSKFund from 'OLSKFund';
 import OLSKPact from 'OLSKPact';
 import OLSKChain from 'OLSKChain';
 import OLSKBeacon from 'OLSKBeacon';
@@ -99,16 +98,6 @@ const mod = {
 		};
 	},
 
-	DataIsEligible (inputData = {}) {
-		return OLSKFund.OLSKFundIsEligible(Object.assign({
-			ParamMinimumTier: 1,
-			ParamCurrentProject: 'ROCO_SHARED_PROJECT_ID_SWAP_TOKEN',
-			ParamBundleProjects: ['FakeBundleProject'],
-			ParamGrantTier: OLSKFund.OLSKFundTier('OLSK_FUND_PRICING_STRING_SWAP_TOKEN', mod._ValueOLSKFundGrant),
-			ParamGrantProject: mod._ValueOLSKFundGrant ? mod._ValueOLSKFundGrant.OLSKPactGrantProject : '',
-		}, inputData));
-	},
-
 	DataComposeRecipes () {
 		const items = [];
 
@@ -172,16 +161,6 @@ const mod = {
 						mod.ControlDocumentActivate(null);
 					},
 				},
-				{
-					LCHRecipeName: 'FakeFundDocumentLimit',
-					LCHRecipeCallback: async function FakeFundDocumentLimit () {
-						await Promise.all(Array.from(Array(mod._ValueDocumentRemainder)).map(function (e) {
-							return mod._ValueZDRWrap.App.LCHDocument.LCHDocumentCreate(mod.DataDocumentObjectTemplate());
-						}));
-
-						return mod.SetupCatalog();
-					},
-				},
 			]);
 		}
 
@@ -207,16 +186,6 @@ const mod = {
 		}
 
 		items.push(...OLSKServiceWorker.OLSKServiceWorkerRecipes(window, mod.DataNavigator(), OLSKLocalized, OLSK_SPEC_UI()));
-
-		items.push(...OLSKFund.OLSKFundRecipes({
-			OLSKLocalized, 
-			ParamConnected: !!mod._ValueCloudIdentity,
-			ParamAuthorized: !!mod._ValueFundClue,
-			OLSKFundDispatchGrant: mod.OLSKFundDispatchGrant,
-			OLSKFundDispatchPersist: mod.OLSKFundDispatchPersist,
-			ParamMod: mod,
-			ParamSpecUI: OLSK_SPEC_UI(),
-		}));
 
 		return items;
 	},
@@ -294,10 +263,6 @@ const mod = {
 	},
 
 	async ControlDocumentCreate(inputData) {
-		if (mod._ValueDocumentRemainder < 1 && !mod.DataIsEligible()) {
-			return mod.OLSKFundDocumentGate();
-		}
-
 		mod.ControlDocumentActivate(mod._OLSKCatalog.modPublic.OLSKCatalogInsert(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentCreate(inputData || mod.DataDocumentObjectTemplate())));
 	},
 	
@@ -541,10 +506,6 @@ const mod = {
 		return document.activeElement === document.querySelector('.LCHComposeDetailFormNameField');
 	},
 
-	OLSKCatalogDispatchQuantity (inputData) {
-		mod.OLSKFundDocumentRemainder && mod.OLSKFundDocumentRemainder(inputData);
-	},
-
 	LCHComposeBuildDispatchRun () {
 		mod.ControlRun();
 	},
@@ -748,37 +709,6 @@ const mod = {
 		}, OLSK_SPEC_UI() ? 0 : 500);
 	},
 
-	OLSKFundSetupDispatchClue () {
-		return mod.DataSetting('LCHSettingFundClue') || null;
-	},
-	
-	_OLSKFundSetupDispatchUpdate (inputData) {
-		mod[inputData] = mod[inputData]; // #purge-svelte-force-update
-	},
-
-	OLSKFundDispatchPersist (inputData) {
-		mod._ValueFundClue = inputData; // #hotfix-missing-persist
-
-		if (!inputData) {
-			return mod._ValueZDRWrap.App.LCHSetting.ZDRModelDeleteObject({
-				LCHSettingKey: 'LCHSettingFundClue',
-			});
-		}
-
-		return mod._ValueZDRWrap.App.LCHSetting.ZDRModelWriteObject({
-			LCHSettingKey: 'LCHSettingFundClue',
-			LCHSettingValue: inputData,
-		}).then(function () {
-			if (OLSK_SPEC_UI()) {
-				return;
-			}
-
-			setTimeout(function () {
-				window.location.reload();
-			}, mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolFission() ? 1000 : 0); // #hotfix-fission-delay
-		});
-	},
-
 	// REACT
 
 	ReactIsLoading (inputData) {
@@ -853,7 +783,7 @@ const mod = {
 
 		mod.ReactDocuments(mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll());
 
-		mod.SetupFund();
+		mod.SetupCleanup();
 
 		mod.ReactIsLoading(mod._ValueIsLoading = false);
 
@@ -942,7 +872,7 @@ const mod = {
 		};
 
 		if (!(await mod._ValueZDRWrap.App.LCHDocument.LCHDocumentList()).map(mod._OLSKCatalog.modPublic.OLSKCatalogInsert).length) {
-			mod.OLSKCatalogDispatchQuantity(0);
+			// mod.OLSKCatalogDispatchQuantity(0);
 		}
 	},
 
@@ -957,54 +887,12 @@ const mod = {
 		}];
 	},
 
-	async SetupFund () {
-		OLSKFund.OLSKFundSetup({
-			ParamMod: mod,
-			OLSKLocalized,
-			ParamFormURL: 'OLSK_FUND_FORM_URL_SWAP_TOKEN',
-			ParamProject: 'ROCO_SHARED_PROJECT_ID_SWAP_TOKEN',
-			ParamSpecUI: OLSK_SPEC_UI(),
-			ParamDocumentLimit: parseInt('OLSK_FUND_DOCUMENT_LIMIT_SWAP_TOKEN'),
+	SetupCleanup() {
+		window.localStorage.removeItem('OLSK_FUND_GRANT_DATA');
+
+		return mod._ValueSettingsAll.LCHSettingFundClue && mod._ValueZDRWrap.App.LCHSetting.ZDRModelDeleteObject({
+			LCHSettingKey: 'LCHSettingFundClue',
 		});
-
-		mod.OLSKFundDocumentRemainder(mod._OLSKCatalog.modPublic._OLSKCatalogDataItemsAll().length);
-
-		await OLSKFund.OLSKFundSetupPostPay(mod);
-
-		if (!mod._ValueCloudIdentity) {
-			return;
-		}
-
-		if (!mod._ValueFundClue) {
-			return;
-		}
-
-		if (mod._ValueZDRWrap.ZDRStorageProtocol !== zerodatawrap.ZDRProtocolRemoteStorage()) {
-			return;
-		}
-
-		const item = {
-			OLSK_CRYPTO_PAIR_RECEIVER_PRIVATE: `OLSK_CRYPTO_PAIR_RECEIVER_PRIVATE_SWAP_TOKEN${ '' }`, // #purge
-			OLSK_CRYPTO_PAIR_SENDER_PUBLIC: 'OLSK_CRYPTO_PAIR_SENDER_PUBLIC_SWAP_TOKEN',
-			OLSK_FUND_API_URL: 'OLSK_FUND_API_URL_SWAP_TOKEN',
-			ParamBody: {
-				OLSKPactAuthType: mod._ValueZDRWrap.ZDRStorageProtocol === zerodatawrap.ZDRProtocolRemoteStorage() ? OLSKPact.OLSKPactAuthTypeRemoteStorage() : OLSKPact.OLSKPactAuthTypeFission(),
-				OLSKPactAuthIdentity: mod._ValueCloudIdentity,
-				OLSKPactAuthProof: mod._ValueCloudToken,
-				OLSKPactAuthMetadata: {
-					OLSKPactAuthMetadataModuleName: 'launchlet',
-					OLSKPactAuthMetadataFolderPath: LCHDocument.LCHDocumentDirectory() + '/',
-				},
-				OLSKPactPayIdentity: mod._ValueCloudIdentity,
-				OLSKPactPayClue: mod._ValueFundClue,
-			},
-			OLSKLocalized,
-			OLSKFundDispatchProgress: mod.OLSKFundDispatchProgress,
-			OLSKFundDispatchFail: mod.OLSKFundDispatchFail,
-			OLSKFundDispatchGrant: mod.OLSKFundDispatchGrant,
-		};
-
-		return OLSKFund.OLSKFundSetupGrant(item);
 	},
 
 	// LIFECYCLE
@@ -1055,7 +943,6 @@ import OLSKUIAssets from 'OLSKUIAssets';
 	OLSKCollectionDispatchArrow={ mod.OLSKCollectionDispatchArrow }
 	OLSKCatalogDispatchDetailActivate={ mod.OLSKCatalogDispatchDetailActivate }
 	OLSKCatalogDispatchMasterShouldActivate={ mod.OLSKCatalogDispatchMasterShouldActivate }
-	OLSKCatalogDispatchQuantity={ mod.OLSKCatalogDispatchQuantity }
 
 	let:OLSKCollectionItem
 	>
@@ -1156,13 +1043,10 @@ import OLSKUIAssets from 'OLSKUIAssets';
 		OLSKAppToolbarDispatchApropos={ mod.OLSKAppToolbarDispatchApropos }
 		OLSKAppToolbarDispatchTongue={ mod.OLSKAppToolbarDispatchTongue }
 		OLSKAppToolbarGuideURL={ window.OLSKCanonical('LCHGuideRoute') }
-		OLSKAppToolbarFundShowProgress={ mod._ValueOLSKFundProgress }
-		OLSKAppToolbarFundLimitText={ mod._ValueDocumentRemainder }
 		OLSKAppToolbarErrorText={ mod._OLSKAppToolbarErrorText }
 		OLSKAppToolbarCloudConnected={ !!mod._ValueCloudIdentity }
 		OLSKAppToolbarCloudOffline={ mod._ValueCloudIsOffline }
 		OLSKAppToolbarCloudError={ !!mod._ValueCloudErrorText }
-		OLSKAppToolbarDispatchFund={ mod._ValueOLSKFundGrant || OLSKFund.OLSKFundResponseIsPresent() ? null : mod.OLSKAppToolbarDispatchFund }
 		OLSKAppToolbarDispatchCloud={ mod.OLSKAppToolbarDispatchCloud }
 		OLSKAppToolbarDispatchLauncher={ mod.OLSKAppToolbarDispatchLauncher }
 		/>
@@ -1172,13 +1056,9 @@ import OLSKUIAssets from 'OLSKUIAssets';
 	{/if}
 </footer>
 
-{#if !!mod._ValueCloudIdentity }
-	<OLSKWebView OLSKModalViewTitleText={ OLSKLocalized('OLSKFundWebViewTitleText') } OLSKWebViewURL={ mod._ValueFundURL } bind:this={ mod._OLSKWebView } DEBUG_OLSKWebViewDataSource={ OLSK_SPEC_UI() } />
-{/if}
-
 <OLSKModalView OLSKModalViewTitleText={ OLSKLocalized('OLSKAproposHeadingText') } bind:this={ mod._OLSKModalView } OLSKModalViewIsCapped={ true }>
 	<OLSKApropos
-		OLSKAproposFeedbackValue={ `javascript:window.location.href = window.atob('${ window.btoa(OLSKString.OLSKStringFormatted(window.atob('OLSK_APROPOS_FEEDBACK_EMAIL_SWAP_TOKEN'), 'ROCO_SHARED_PROJECT_ID_SWAP_TOKEN' + (mod._ValueFundClue ? '+' + mod._ValueFundClue : ''))) }')` }
+		OLSKAproposFeedbackValue={ `javascript:window.location.href = window.atob('${ window.btoa(OLSKString.OLSKStringFormatted(window.atob('OLSK_APROPOS_FEEDBACK_EMAIL_SWAP_TOKEN'), 'ROCO_SHARED_PROJECT_ID_SWAP_TOKEN')) }')` }
 		/>
 </OLSKModalView>
 
