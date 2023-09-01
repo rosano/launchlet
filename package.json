@@ -43,6 +43,6 @@
   "devDependencies": {
     "OLSKPithToolchain": "olsk/OLSKPithToolchain",
     "OLSKRollupScaffold": "olsk/OLSKRollupScaffold",
-    "jsdom": "latest"
+    "jsdom": "21.x"
   }
 }
