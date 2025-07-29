@@ -1,6 +1,6 @@
 import LCHFormula from '../LCHFormula/main.js';
 import { ulid } from 'ulid';
-const uniqueID = ulid();
+const uniqueID = ulid;
 import OLSKRemoteStorage from 'OLSKRemoteStorage';
 
 const mod = {
