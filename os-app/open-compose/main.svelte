@@ -16,7 +16,7 @@ import LCHBuild from '../_shared/LCHBuild/main.js';
 import OLSKString from 'OLSKString';
 import RemoteStorage from 'remotestoragejs';
 import OLSKLanguageSwitcher from 'OLSKLanguageSwitcher';
-import OLSKPact from 'OLSKPact';
+
 import OLSKChain from 'OLSKChain';
 import OLSKBeacon from 'OLSKBeacon';
 import OLSKTransport from 'OLSKTransport';
