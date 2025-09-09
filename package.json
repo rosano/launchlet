@@ -16,7 +16,7 @@
 
     "file-saver": "latest",
 
-    "fuzzysort": "latest",
+    "fuzzysort": "2.x",
     
     "clipboard": "latest",
 
