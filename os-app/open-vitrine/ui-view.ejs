@@ -82,10 +82,7 @@ locals.OLSKPageFeedsMap = {
 
 <a class="LCHVitrineTutorialsButton OLSKDecorPress OLSKDecorPressCall" href="<%= process.env.LCH_VITRINE_TUTORIALS_URL %>"><%= OLSKLocalized('LCHVitrineTutorialsButtonText') %></a>
 
-<%- include('../../node_modules/ROCOGazette/main.ejs', {
-	_OLSKModulesDirPrefix: '../.',
-	ROCOBulletinProject: 'Launchlet',
-}) %>
+<script src="https://pkg.rosano.ca/gazette/master/main.js" data-gazette></script>
 
 <script src="https://pkg.rosano.ca/feedbox/master/main.js" data-feedbox></script>
 
